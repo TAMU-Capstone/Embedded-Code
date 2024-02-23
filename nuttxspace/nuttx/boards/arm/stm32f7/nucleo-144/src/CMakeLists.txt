@@ -62,8 +62,9 @@ if(CONFIG_STM32F7_BBSRAM)
   list(APPEND SRCS stm32_bbsram.c)
 endif()
 
+#Changed to add rust file
 if(CONFIG_BOARDCTL_RESET)
-  list(APPEND SRCS stm32_reset.c)
+  list(APPEND SRCS stm32_reset.rc)
 endif()
 
 if(CONFIG_STM32_ROMFS)
