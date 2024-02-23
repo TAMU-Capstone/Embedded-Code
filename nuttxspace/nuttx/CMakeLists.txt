@@ -30,6 +30,7 @@
 # ~~~
 
 # Request a version available on latest Ubuntu LTS (20.04)
+project(nuttx)
 
 cmake_minimum_required(VERSION 3.16)
 
