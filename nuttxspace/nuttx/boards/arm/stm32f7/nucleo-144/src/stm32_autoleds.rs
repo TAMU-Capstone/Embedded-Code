@@ -40,7 +40,8 @@
     fn stm32_gpiowrite(pin: u32, state: bool);
   }
 
-  fn phy_set_led(led: usize, state: bool) {
+  #[no_mangle]
+  pub extern "C" fn phy_set_led(led: usize, state: bool) {
     stm32_gpiowrite(g_ledmap[led], state);
   }
  
@@ -51,7 +52,8 @@
  /****************************************************************************
   * Name: board_autoled_initialize
   ****************************************************************************/
-  fn board_autoled_initialize() {
+  #[no_mangle]
+  pub extern "C" fn board_autoled_initialize() {
     for &pin in g_ledmap.iter() {
         stm32_configgpio(pin);
     }
@@ -61,13 +63,85 @@
  /****************************************************************************
   * Name: board_autoled_on
   ****************************************************************************/
- 
+  #[no_mangle]
+  pub extern "C" fn board_autoled_on(led: i32) {
+    match led {
+        LED_HEAPALLOCATE => {
+            phy_set_led(BOARD_LED_BLUE, true);
+        }
+
+        LED_IRQSENABLED => {
+            phy_set_led(BOARD_LED_BLUE, false);
+            phy_set_led(BOARD_LED_GREEN, true);
+        }
+
+        LED_STACKCREATED => {
+            phy_set_led(BOARD_LED_GREEN, true);
+            phy_set_led(BOARD_LED_BLUE, true);
+            g_initialized = true;
+        }
+
+        LED_INIRQ => {
+            phy_set_led(BOARD_LED_BLUE, true);
+        }
+
+        LED_SIGNAL => {
+            phy_set_led(BOARD_LED_GREEN, true);
+        }
+
+        LED_ASSERTION => {
+            phy_set_led(BOARD_LED_RED, true);
+            phy_set_led(BOARD_LED_BLUE, true);
+        }
+
+        LED_PANIC => {
+            phy_set_led(BOARD_LED_RED, true);
+        }
+
+        LED_IDLE => {
+            phy_set_led(BOARD_LED_RED, true);
+        }
+        // default case
+        _ => {
+
+        }
+    }
+  }
  
  
  /****************************************************************************
   * Name: board_autoled_off
   ****************************************************************************/
  
- 
+  #[no_mangle]
+  pub extern "C" fn board_autoled_off(led: i32) {
+    match led {
+        LED_SIGNAL => {
+            phy_set_led(BOARD_LED_GREEN, false);
+        }
+
+        LED_INIRQ => {
+            phy_set_led(BOARD_LED_BLUE, false);
+        }
+
+        LED_ASSERTION => {
+            phy_set_led(BOARD_LED_RED, false);
+            phy_set_led(BOARD_LED_BLUE, false);
+        }
+
+        LED_PANIC => {
+            phy_set_led(BOARD_LED_RED, false);
+        }
+
+        LED_IDLE => {
+            phy_set_led(BOARD_LED_RED, false);
+        }
+
+        // default case
+        _ => {
+
+        }
+    }
+  }
  
  
