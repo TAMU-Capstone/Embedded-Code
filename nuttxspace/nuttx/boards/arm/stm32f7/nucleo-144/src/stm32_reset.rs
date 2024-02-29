@@ -52,9 +52,10 @@
   ****************************************************************************/
 
   #[no_mangle]
-  #[cfg(CONFIG_BOARDCTL_RESET)]
   pub extern "C" fn board_reset(status: i32) -> cty::c_int {
-    up_systemreset();
+    unsafe {
+      up_systemreset();
+    }
     0
   }
  

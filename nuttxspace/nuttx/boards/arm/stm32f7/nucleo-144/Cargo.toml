@@ -6,7 +6,7 @@ edition = "2021"
 # Configuration for Static Library Building
 [lib]
 name = "nucleo_rs"
-path = "src/stm32_reset.rs"
+path = "src/stm32_autoleds.rs"
 crate-type = ["staticlib"]
 
 

@@ -42,7 +42,9 @@
 
   #[no_mangle]
   pub extern "C" fn phy_set_led(led: usize, state: bool) {
-    stm32_gpiowrite(g_ledmap[led], state);
+    unsafe {
+        stm32_gpiowrite(g_ledmap[led], state);
+    }
   }
  
  /****************************************************************************
@@ -55,7 +57,9 @@
   #[no_mangle]
   pub extern "C" fn board_autoled_initialize() {
     for &pin in g_ledmap.iter() {
-        stm32_configgpio(pin);
+        unsafe {
+            stm32_configgpio(pin);
+        }
     }
   }
 
