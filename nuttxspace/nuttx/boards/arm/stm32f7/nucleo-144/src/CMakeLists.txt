@@ -22,7 +22,7 @@ set(SRCS stm32_boot.c stm32_bringup.c)
 
 #Changing because added autoled
 if(CONFIG_ARCH_LEDS)
-  #list(APPEND SRCS stm32_autoleds.c)
+  list(APPEND SRCS stm32_autoleds.c)
 else()
   list(APPEND SRCS stm32_userleds.c)
 endif()

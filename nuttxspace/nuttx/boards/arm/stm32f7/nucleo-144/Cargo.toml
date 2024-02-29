@@ -6,9 +6,10 @@ edition = "2021"
 # Configuration for Static Library Building
 [lib]
 name = "nucleo_rs"
-path = "src/stm32_autoleds.rs"
+path = "src/lib.rs"
 crate-type = ["staticlib"]
 
 
 # Build Dependancies for our project
 [dependencies]
+cty = "0.2.2"
