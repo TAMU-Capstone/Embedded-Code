@@ -1,14 +1,14 @@
 use std::env;
 use std::path::PathBuf;
+use std::fs::canonicalize;
 
 fn main() {
     // Tell cargo to look for shared libraries in the specified directory
     println!("cargo:rerun-if-changed=src/nucleo-144.h");
 
-    let headers_dir = PathBuf::from("../nuttx");
+    let headers_dir = PathBuf::from("../../../../include/");
     let headers_dir_canonical = canonicalize(headers_dir).unwrap();
     let include_path = headers_dir_canonical.to_str().unwrap();
-
 
 
     // The bindgen::Builder is the main entry point
@@ -16,6 +16,7 @@ fn main() {
     // the resulting bindings.
     let bindings = bindgen::Builder::default()
         .header("src/nucleo-144.h")
+        .clang_arg(format!("-I{include_path}"))
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
         .generate()
         .expect("Unable to generate bindings");
