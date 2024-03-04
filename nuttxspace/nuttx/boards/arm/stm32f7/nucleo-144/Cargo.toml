@@ -1,0 +1,15 @@
+[package]
+name = "large-board"
+version = "0.1.0"
+edition = "2021"
+
+# Configuration for Static Library Building
+[lib]
+name = "nucleo_rs"
+path = "src/lib.rs"
+crate-type = ["staticlib"]
+
+
+# Build Dependancies for our project
+[dependencies]
+cty = "0.2.2"
