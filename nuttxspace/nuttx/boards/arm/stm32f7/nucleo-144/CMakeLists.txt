@@ -18,4 +18,11 @@
 #
 # ##############################################################################
 
-add_subdirectory(src)
+add_custom_target(
+    libnucleo_rs
+    COMMAND cargo build
+)
+add_dependencies(libnucleo_rs)
+
+# Link Rust dependant libraries
+TARGET_LINK_LIBRARIES(libdl libpthread)
