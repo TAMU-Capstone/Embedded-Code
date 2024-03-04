@@ -21,15 +21,15 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
-use cty;
-
+// use cty;
+include!("../include/comp_bindings.rs");
 /****************************************************************************
  * Private Data
  ****************************************************************************/
 
 /* Indexed by BOARD_LED_<color> */
 
-static g_ledmap: [u32; BOARD_NLEDS] = [GPIO_LED_GREEN, GPIO_LED_BLUE, GPIO_LED_RED];
+static g_ledmap: [u32; BOARD_NLEDS as usize] = [GPIO_LED_GREEN, GPIO_LED_BLUE, GPIO_LED_RED];
 
 static mut g_initialized: bool = false;
 /****************************************************************************
@@ -42,9 +42,9 @@ extern "C" {
 }
 
 #[no_mangle]
-pub extern "C" fn phy_set_led(led: usize, state: bool) {
+pub extern "C" fn phy_set_led(led: u32, state: bool) {
     unsafe {
-        stm32_gpiowrite(g_ledmap[led], state);
+        stm32_gpiowrite(g_ledmap[led as usize], state);
     }
 }
 
@@ -68,7 +68,7 @@ pub extern "C" fn board_autoled_initialize() {
  * Name: board_autoled_on
  ****************************************************************************/
 #[no_mangle]
-pub extern "C" fn board_autoled_on(led: i32) {
+pub extern "C" fn board_autoled_on(led: u32) {
     match led {
         LED_HEAPALLOCATE => {
             phy_set_led(BOARD_LED_BLUE, true);
@@ -82,7 +82,9 @@ pub extern "C" fn board_autoled_on(led: i32) {
         LED_STACKCREATED => {
             phy_set_led(BOARD_LED_GREEN, true);
             phy_set_led(BOARD_LED_BLUE, true);
-            g_initialized = true;
+            unsafe {
+                g_initialized = true;
+            }
         }
 
         LED_INIRQ => {
@@ -115,7 +117,7 @@ pub extern "C" fn board_autoled_on(led: i32) {
  ****************************************************************************/
 
 #[no_mangle]
-pub extern "C" fn board_autoled_off(led: i32) {
+pub extern "C" fn board_autoled_off(led: u32) {
     match led {
         LED_SIGNAL => {
             phy_set_led(BOARD_LED_GREEN, false);
