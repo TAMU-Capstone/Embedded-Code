@@ -51,30 +51,28 @@
   *   initialized.
   *
   ****************************************************************************/
- 
- void stm32_boardinitialize(void)
+ // https://doc.rust-lang.org/rust-by-example/attribute/cfg.html
+ // #ifdef does not exist, therefor we will use cfg [ conditional configuration check ]
+  fn stm32_boardinitialize()
  {
- #ifdef CONFIG_ARCH_LEDS
-   /* Configure on-board LEDs if LED support has been selected. */
- 
-   board_autoled_initialize();
- #endif
- 
- #if defined(CONFIG_STM32F7_OTGFS) || defined(CONFIG_STM32F7_HOST)
-   stm32_usbinitialize();
- #endif
- 
- #if defined(CONFIG_SPI)
-   /* Configure SPI chip selects */
- 
-   stm32_spidev_initialize();
- #endif
- }
- 
- /****************************************************************************
-  * Name: board_late_initialize
-  *
-  * Description:
+    #[cfg(CONFIG_ARCH_LEDS)]
+    /* Configure on-board LEDs if LED support has been selected. */
+       board_autoled_initialize();
+    
+    #[cfg(CONFIG_STM32F7_OTGFS || CONFIG_STM32F7_HOST)]
+       stm32_usbinitialize();
+    
+    #[cfg(CONFIG_SPI)]
+    /* Configure SPI chip selects */
+        stm32_spidev_initialize();
+    
+}
+
+/****************************************************************************
+ #[cfg(CONFIG_SPI)]
+ * Name: board_late_initialize
+ *
+ * Description:
   *   If CONFIG_BOARD_LATE_INITIALIZE is selected, then an additional
   *   initialization call will be performed in the boot-up sequence to a
   *   function called board_late_initialize().  board_late_initialize() will
@@ -84,13 +82,13 @@
   *   drivers.
   *
   ****************************************************************************/
- 
- #ifdef CONFIG_BOARD_LATE_INITIALIZE
- void board_late_initialize(void)
+  
+  #[cfg(CONFIG_BOARD_LATE_INITIALIZE)]
+
+ fn board_late_initialize()
  {
    /* Perform board-specific initialization */
  
    stm32_bringup();
  }
- #endif
  
