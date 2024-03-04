@@ -1,2 +1,2 @@
 // mod boot;
-mod stm32_boot.rs
+mod stm32_boot;
