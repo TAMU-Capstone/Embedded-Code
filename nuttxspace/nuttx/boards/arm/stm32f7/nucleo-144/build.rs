@@ -5,7 +5,6 @@ use std::fs::canonicalize;
 fn main() {
     // Tell cargo to look for shared libraries in the specified directory
     // println!("cargo:rerun-if-changed=src/nucleo-144.h");
-
     
     let headers_dir = PathBuf::from("../../../../include/");
     let headers_dir_canonical = canonicalize(headers_dir).unwrap();
