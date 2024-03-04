@@ -23,52 +23,51 @@
  ****************************************************************************/
 use cty;
 
- 
- /****************************************************************************
-  * Private Data
-  ****************************************************************************/
- 
- /* Indexed by BOARD_LED_<color> */
- static g_ledmap: [u32; BOARD_NLEDS] = [GPIO_LED_GREEN, GPIO_LED_BLUE, GPIO_LED_RED];
+/****************************************************************************
+ * Private Data
+ ****************************************************************************/
 
- static mut g_initialized: bool = false;
- /****************************************************************************
-  * Private Functions
-  ****************************************************************************/
- 
-  extern "C" {
+/* Indexed by BOARD_LED_<color> */
+
+static g_ledmap: [u32; BOARD_NLEDS] = [GPIO_LED_GREEN, GPIO_LED_BLUE, GPIO_LED_RED];
+
+static mut g_initialized: bool = false;
+/****************************************************************************
+ * Private Functions
+ ****************************************************************************/
+
+extern "C" {
     fn stm32_gpiowrite(pin: u32, state: bool);
-  }
+}
 
-  #[no_mangle]
-  pub extern "C" fn phy_set_led(led: usize, state: bool) {
+#[no_mangle]
+pub extern "C" fn phy_set_led(led: usize, state: bool) {
     unsafe {
         stm32_gpiowrite(g_ledmap[led], state);
     }
-  }
- 
- /****************************************************************************
-  * Public Functions
-  ****************************************************************************/
- 
- /****************************************************************************
-  * Name: board_autoled_initialize
-  ****************************************************************************/
-  #[no_mangle]
-  pub extern "C" fn board_autoled_initialize() {
+}
+
+/****************************************************************************
+ * Public Functions
+ ****************************************************************************/
+
+/****************************************************************************
+ * Name: board_autoled_initialize
+ ****************************************************************************/
+#[no_mangle]
+pub extern "C" fn board_autoled_initialize() {
     for &pin in g_ledmap.iter() {
         unsafe {
             stm32_configgpio(pin);
         }
     }
-  }
+}
 
- 
- /****************************************************************************
-  * Name: board_autoled_on
-  ****************************************************************************/
-  #[no_mangle]
-  pub extern "C" fn board_autoled_on(led: i32) {
+/****************************************************************************
+ * Name: board_autoled_on
+ ****************************************************************************/
+#[no_mangle]
+pub extern "C" fn board_autoled_on(led: i32) {
     match led {
         LED_HEAPALLOCATE => {
             phy_set_led(BOARD_LED_BLUE, true);
@@ -106,19 +105,16 @@ use cty;
             phy_set_led(BOARD_LED_RED, true);
         }
         // default case
-        _ => {
-
-        }
+        _ => {}
     }
-  }
- 
- 
- /****************************************************************************
-  * Name: board_autoled_off
-  ****************************************************************************/
- 
-  #[no_mangle]
-  pub extern "C" fn board_autoled_off(led: i32) {
+}
+
+/****************************************************************************
+ * Name: board_autoled_off
+ ****************************************************************************/
+
+#[no_mangle]
+pub extern "C" fn board_autoled_off(led: i32) {
     match led {
         LED_SIGNAL => {
             phy_set_led(BOARD_LED_GREEN, false);
@@ -142,10 +138,6 @@ use cty;
         }
 
         // default case
-        _ => {
-
-        }
+        _ => {}
     }
-  }
- 
- 
+}

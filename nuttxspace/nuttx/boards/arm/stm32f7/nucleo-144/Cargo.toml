@@ -3,6 +3,8 @@ name = "large-board"
 version = "0.1.0"
 edition = "2021"
 
+build = "build.rs"
+
 # Configuration for Static Library Building
 [lib]
 name = "nucleo_rs"
@@ -10,6 +12,10 @@ path = "src/lib.rs"
 crate-type = ["staticlib"]
 
 
-# Build Dependancies for our project
+# Dependencies for our project
 [dependencies]
 cty = "0.2.2"
+
+# Build Dependencies for our project
+[build-dependencies]
+bindgen = "0.69.4"
