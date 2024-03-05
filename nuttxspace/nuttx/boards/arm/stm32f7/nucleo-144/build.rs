@@ -16,6 +16,6 @@ fn main() {
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
         .generate()
         .expect("Unable to generate bindings")
-        .write_to_file("include/bindings.rs")
+        .write_to_file("src/include/bindings.rs")
         .expect("Couldn't write bindings!");    
 }

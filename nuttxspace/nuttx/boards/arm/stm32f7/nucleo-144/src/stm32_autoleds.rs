@@ -22,16 +22,17 @@
  * Included Files
  ****************************************************************************/
 // use cty;
-include!("../include/comp_bindings.rs");
+use crate::include::*;
+
 /****************************************************************************
  * Private Data
  ****************************************************************************/
 
 /* Indexed by BOARD_LED_<color> */
 
-static g_ledmap: [u32; BOARD_NLEDS as usize] = [GPIO_LED_GREEN, GPIO_LED_BLUE, GPIO_LED_RED];
+static G_LEDMAP: [u32; BOARD_NLEDS as usize] = [GPIO_LED_GREEN, GPIO_LED_BLUE, GPIO_LED_RED];
 
-static mut g_initialized: bool = false;
+static mut G_INITIALIZED: bool = false;
 /****************************************************************************
  * Private Functions
  ****************************************************************************/
@@ -44,7 +45,7 @@ static mut g_initialized: bool = false;
 #[no_mangle]
 pub extern "C" fn phy_set_led(led: u32, state: bool) {
     unsafe {
-        stm32_gpiowrite(g_ledmap[led as usize], state);
+        stm32_gpiowrite(G_LEDMAP[led as usize], state);
     }
 }
 
@@ -57,7 +58,7 @@ pub extern "C" fn phy_set_led(led: u32, state: bool) {
  ****************************************************************************/
 #[no_mangle]
 pub extern "C" fn board_autoled_initialize() {
-    for &pin in g_ledmap.iter() {
+    for &pin in G_LEDMAP.iter() {
         unsafe {
             stm32_configgpio(pin);
         }
@@ -70,44 +71,22 @@ pub extern "C" fn board_autoled_initialize() {
 #[no_mangle]
 pub extern "C" fn board_autoled_on(led: u32) {
     match led {
-        LED_HEAPALLOCATE => {
-            phy_set_led(BOARD_LED_BLUE, true);
-        }
-
+        LED_SIGNAL => phy_set_led(BOARD_LED_GREEN, true),
+        LED_PANIC | LED_IDLE =>  phy_set_led(BOARD_LED_RED, true),
+        LED_HEAPALLOCATE | LED_INIRQ => phy_set_led(BOARD_LED_BLUE, true),
         LED_IRQSENABLED => {
             phy_set_led(BOARD_LED_BLUE, false);
             phy_set_led(BOARD_LED_GREEN, true);
         }
-
         LED_STACKCREATED => {
             phy_set_led(BOARD_LED_GREEN, true);
             phy_set_led(BOARD_LED_BLUE, true);
-            unsafe {
-                g_initialized = true;
-            }
+            unsafe { G_INITIALIZED = true; }
         }
-
-        LED_INIRQ => {
-            phy_set_led(BOARD_LED_BLUE, true);
-        }
-
-        LED_SIGNAL => {
-            phy_set_led(BOARD_LED_GREEN, true);
-        }
-
         LED_ASSERTION => {
             phy_set_led(BOARD_LED_RED, true);
             phy_set_led(BOARD_LED_BLUE, true);
         }
-
-        LED_PANIC => {
-            phy_set_led(BOARD_LED_RED, true);
-        }
-
-        LED_IDLE => {
-            phy_set_led(BOARD_LED_RED, true);
-        }
-        // default case
         _ => {}
     }
 }
@@ -119,28 +98,13 @@ pub extern "C" fn board_autoled_on(led: u32) {
 #[no_mangle]
 pub extern "C" fn board_autoled_off(led: u32) {
     match led {
-        LED_SIGNAL => {
-            phy_set_led(BOARD_LED_GREEN, false);
-        }
-
-        LED_INIRQ => {
-            phy_set_led(BOARD_LED_BLUE, false);
-        }
-
+        LED_SIGNAL => phy_set_led(BOARD_LED_GREEN, false),
+        LED_INIRQ => phy_set_led(BOARD_LED_BLUE, false),
         LED_ASSERTION => {
             phy_set_led(BOARD_LED_RED, false);
             phy_set_led(BOARD_LED_BLUE, false);
         }
-
-        LED_PANIC => {
-            phy_set_led(BOARD_LED_RED, false);
-        }
-
-        LED_IDLE => {
-            phy_set_led(BOARD_LED_RED, false);
-        }
-
-        // default case
+        LED_PANIC | LED_IDLE => phy_set_led(BOARD_LED_RED, false),
         _ => {}
     }
 }
