@@ -463,6 +463,456 @@ pub const SDIO_SLOTNO: u32 = 0;
 pub const BOARD_NGPIOIN: u32 = 4;
 pub const BOARD_NGPIOOUT: u32 = 10;
 pub const BOARD_NGPIOINT: u32 = 1;
+pub const __bool_true_false_are_defined: u32 = 1;
+pub const TRUE: u32 = 1;
+pub const FALSE: u32 = 0;
+pub const SEEK_SET: u32 = 0;
+pub const SEEK_CUR: u32 = 1;
+pub const SEEK_END: u32 = 2;
+pub const CONFIG_SMP_NCPUS: u32 = 1;
+pub const SCHED_PRIORITY_MAX: u32 = 255;
+pub const SCHED_PRIORITY_DEFAULT: u32 = 100;
+pub const SCHED_PRIORITY_MIN: u32 = 1;
+pub const SCHED_PRIORITY_IDLE: u32 = 0;
+pub const STM32_IRQ_RESERVED: u32 = 0;
+pub const STM32_IRQ_NMI: u32 = 2;
+pub const STM32_IRQ_HARDFAULT: u32 = 3;
+pub const STM32_IRQ_MEMFAULT: u32 = 4;
+pub const STM32_IRQ_BUSFAULT: u32 = 5;
+pub const STM32_IRQ_USAGEFAULT: u32 = 6;
+pub const STM32_IRQ_SVCALL: u32 = 11;
+pub const STM32_IRQ_DBGMONITOR: u32 = 12;
+pub const STM32_IRQ_PENDSV: u32 = 14;
+pub const STM32_IRQ_SYSTICK: u32 = 15;
+pub const STM32_IRQ_FIRST: u32 = 16;
+pub const STM32_IRQ_WWDG: u32 = 16;
+pub const STM32_IRQ_PVD: u32 = 17;
+pub const STM32_IRQ_TAMPER: u32 = 18;
+pub const STM32_IRQ_TIMESTAMP: u32 = 18;
+pub const STM32_IRQ_RTC_WKUP: u32 = 19;
+pub const STM32_IRQ_FLASH: u32 = 20;
+pub const STM32_IRQ_RCC: u32 = 21;
+pub const STM32_IRQ_EXTI0: u32 = 22;
+pub const STM32_IRQ_EXTI1: u32 = 23;
+pub const STM32_IRQ_EXTI2: u32 = 24;
+pub const STM32_IRQ_EXTI3: u32 = 25;
+pub const STM32_IRQ_EXTI4: u32 = 26;
+pub const STM32_IRQ_DMA1S0: u32 = 27;
+pub const STM32_IRQ_DMA1S1: u32 = 28;
+pub const STM32_IRQ_DMA1S2: u32 = 29;
+pub const STM32_IRQ_DMA1S3: u32 = 30;
+pub const STM32_IRQ_DMA1S4: u32 = 31;
+pub const STM32_IRQ_DMA1S5: u32 = 32;
+pub const STM32_IRQ_DMA1S6: u32 = 33;
+pub const STM32_IRQ_ADC: u32 = 34;
+pub const STM32_IRQ_CAN1TX: u32 = 35;
+pub const STM32_IRQ_CAN1RX0: u32 = 36;
+pub const STM32_IRQ_CAN1RX1: u32 = 37;
+pub const STM32_IRQ_CAN1SCE: u32 = 38;
+pub const STM32_IRQ_EXTI95: u32 = 39;
+pub const STM32_IRQ_TIM1BRK: u32 = 40;
+pub const STM32_IRQ_TIM9: u32 = 40;
+pub const STM32_IRQ_TIM1UP: u32 = 41;
+pub const STM32_IRQ_TIM10: u32 = 41;
+pub const STM32_IRQ_TIM1TRGCOM: u32 = 42;
+pub const STM32_IRQ_TIM11: u32 = 42;
+pub const STM32_IRQ_TIM1CC: u32 = 43;
+pub const STM32_IRQ_TIM2: u32 = 44;
+pub const STM32_IRQ_TIM3: u32 = 45;
+pub const STM32_IRQ_TIM4: u32 = 46;
+pub const STM32_IRQ_I2C1EV: u32 = 47;
+pub const STM32_IRQ_I2C1ER: u32 = 48;
+pub const STM32_IRQ_I2C2EV: u32 = 49;
+pub const STM32_IRQ_I2C2ER: u32 = 50;
+pub const STM32_IRQ_SPI1: u32 = 51;
+pub const STM32_IRQ_SPI2: u32 = 52;
+pub const STM32_IRQ_USART1: u32 = 53;
+pub const STM32_IRQ_USART2: u32 = 54;
+pub const STM32_IRQ_USART3: u32 = 55;
+pub const STM32_IRQ_EXTI1510: u32 = 56;
+pub const STM32_IRQ_RTCALRM: u32 = 57;
+pub const STM32_IRQ_OTGFSWKUP: u32 = 58;
+pub const STM32_IRQ_TIM8BRK: u32 = 59;
+pub const STM32_IRQ_TIM12: u32 = 59;
+pub const STM32_IRQ_TIM8UP: u32 = 60;
+pub const STM32_IRQ_TIM13: u32 = 60;
+pub const STM32_IRQ_TIM8TRGCOM: u32 = 61;
+pub const STM32_IRQ_TIM14: u32 = 61;
+pub const STM32_IRQ_TIM8CC: u32 = 62;
+pub const STM32_IRQ_DMA1S7: u32 = 63;
+pub const STM32_IRQ_FMC: u32 = 64;
+pub const STM32_IRQ_SDMMC1: u32 = 65;
+pub const STM32_IRQ_TIM5: u32 = 66;
+pub const STM32_IRQ_SPI3: u32 = 67;
+pub const STM32_IRQ_UART4: u32 = 68;
+pub const STM32_IRQ_UART5: u32 = 69;
+pub const STM32_IRQ_TIM6: u32 = 70;
+pub const STM32_IRQ_DAC: u32 = 70;
+pub const STM32_IRQ_TIM7: u32 = 71;
+pub const STM32_IRQ_DMA2S0: u32 = 72;
+pub const STM32_IRQ_DMA2S1: u32 = 73;
+pub const STM32_IRQ_DMA2S2: u32 = 74;
+pub const STM32_IRQ_DMA2S3: u32 = 75;
+pub const STM32_IRQ_DMA2S4: u32 = 76;
+pub const STM32_IRQ_ETH: u32 = 77;
+pub const STM32_IRQ_ETHWKUP: u32 = 78;
+pub const STM32_IRQ_CAN2TX: u32 = 79;
+pub const STM32_IRQ_CAN2RX0: u32 = 80;
+pub const STM32_IRQ_CAN2RX1: u32 = 81;
+pub const STM32_IRQ_CAN2SCE: u32 = 82;
+pub const STM32_IRQ_OTGFS: u32 = 83;
+pub const STM32_IRQ_DMA2S5: u32 = 84;
+pub const STM32_IRQ_DMA2S6: u32 = 85;
+pub const STM32_IRQ_DMA2S7: u32 = 86;
+pub const STM32_IRQ_USART6: u32 = 87;
+pub const STM32_IRQ_I2C3EV: u32 = 88;
+pub const STM32_IRQ_I2C3ER: u32 = 89;
+pub const STM32_IRQ_OTGHSEP1OUT: u32 = 90;
+pub const STM32_IRQ_OTGHSEP1IN: u32 = 91;
+pub const STM32_IRQ_OTGHSWKUP: u32 = 92;
+pub const STM32_IRQ_OTGHS: u32 = 93;
+pub const STM32_IRQ_DCMI: u32 = 94;
+pub const STM32_IRQ_CRYP: u32 = 95;
+pub const STM32_IRQ_HASH: u32 = 96;
+pub const STM32_IRQ_RNG: u32 = 96;
+pub const STM32_IRQ_FPU: u32 = 97;
+pub const STM32_IRQ_UART7: u32 = 98;
+pub const STM32_IRQ_UART8: u32 = 99;
+pub const STM32_IRQ_SPI4: u32 = 100;
+pub const STM32_IRQ_SPI5: u32 = 101;
+pub const STM32_IRQ_SPI6: u32 = 102;
+pub const STM32_IRQ_SAI1: u32 = 103;
+pub const STM32_IRQ_LTDCINT: u32 = 104;
+pub const STM32_IRQ_LTDCERRINT: u32 = 105;
+pub const STM32_IRQ_DMA2D: u32 = 106;
+pub const STM32_IRQ_SAI2: u32 = 107;
+pub const STM32_IRQ_QUADSPI: u32 = 108;
+pub const STM32_IRQ_LPTIMER1: u32 = 109;
+pub const STM32_IRQ_HDMICEC: u32 = 110;
+pub const STM32_IRQ_I2C4EV: u32 = 111;
+pub const STM32_IRQ_I2C4ER: u32 = 112;
+pub const STM32_IRQ_SPDIFRX: u32 = 113;
+pub const STM32_IRQ_NEXTINTS: u32 = 98;
+pub const NR_IRQS: u32 = 114;
+pub const STM32F7_SRAM1_SIZE: u32 = 245760;
+pub const STM32F7_SRAM2_SIZE: u32 = 16384;
+pub const STM32F7_DTCM_SRAM_SIZE: u32 = 65536;
+pub const STM32F7_ITCM_SRAM_SIZE: u32 = 16384;
+pub const STM32F7_NSPDIFRX: u32 = 4;
+pub const STM32F7_NGPIO: u32 = 11;
+pub const STM32F7_NI2C: u32 = 4;
+pub const STM32F7_NATIM: u32 = 2;
+pub const STM32F7_NGTIM32: u32 = 2;
+pub const STM32F7_NGTIM16: u32 = 2;
+pub const STM32F7_NGTIMNDMA: u32 = 6;
+pub const STM32F7_NBTIM: u32 = 2;
+pub const STM32F7_NUART: u32 = 4;
+pub const STM32F7_NUSART: u32 = 4;
+pub const STM32F7_NI2S: u32 = 3;
+pub const STM32F7_NUSBOTGFS: u32 = 1;
+pub const STM32F7_NUSBOTGHS: u32 = 1;
+pub const STM32F7_NSAI: u32 = 2;
+pub const STM32F7_NDMA: u32 = 2;
+pub const STM32F7_NADC: u32 = 3;
+pub const STM32F7_NDAC: u32 = 2;
+pub const STM32F7_NCAPSENSE: u32 = 0;
+pub const STM32F7_NCRC: u32 = 1;
+pub const STM32F7_NFMC: u32 = 1;
+pub const STM32F7_NETHERNET: u32 = 1;
+pub const STM32F7_NRNG: u32 = 1;
+pub const STM32F7_NSPI: u32 = 6;
+pub const STM32F7_NSDMMC: u32 = 1;
+pub const STM32F7_NCAN: u32 = 2;
+pub const STM32F7_NDCMI: u32 = 1;
+pub const STM32F7_NDSIHOST: u32 = 0;
+pub const STM32F7_NLCDTFT: u32 = 1;
+pub const STM32F7_NDMA2D: u32 = 1;
+pub const STM32F7_NJPEG: u32 = 0;
+pub const STM32F7_NCRYP: u32 = 0;
+pub const STM32F7_NHASH: u32 = 0;
+pub const STM32F7_NDFSDM: u32 = 0;
+pub const NVIC_SYSH_PRIORITY_MIN: u32 = 240;
+pub const NVIC_SYSH_PRIORITY_DEFAULT: u32 = 128;
+pub const NVIC_SYSH_PRIORITY_MAX: u32 = 0;
+pub const NVIC_SYSH_PRIORITY_STEP: u32 = 16;
+pub const NVIC_SYSH_MAXNORMAL_PRIORITY: u32 = 128;
+pub const NVIC_SYSH_HIGH_PRIORITY: u32 = 96;
+pub const NVIC_SYSH_DISABLE_PRIORITY: u32 = 128;
+pub const NVIC_SYSH_SVCALL_PRIORITY: u32 = 112;
+pub const CONFIG_SYS_NNEST: u32 = 2;
+pub const REG_R13: u32 = 0;
+pub const REG_PRIMASK: u32 = 1;
+pub const REG_R4: u32 = 2;
+pub const REG_R5: u32 = 3;
+pub const REG_R6: u32 = 4;
+pub const REG_R7: u32 = 5;
+pub const REG_R8: u32 = 6;
+pub const REG_R9: u32 = 7;
+pub const REG_R10: u32 = 8;
+pub const REG_R11: u32 = 9;
+pub const REG_CONTROL: u32 = 10;
+pub const REG_EXC_RETURN: u32 = 11;
+pub const SW_INT_REGS: u32 = 12;
+pub const SW_FPU_REGS: u32 = 0;
+pub const SW_XCPT_REGS: u32 = 12;
+pub const SW_XCPT_SIZE: u32 = 48;
+pub const REG_R0: u32 = 12;
+pub const REG_R1: u32 = 13;
+pub const REG_R2: u32 = 14;
+pub const REG_R3: u32 = 15;
+pub const REG_R12: u32 = 16;
+pub const REG_R14: u32 = 17;
+pub const REG_R15: u32 = 18;
+pub const REG_XPSR: u32 = 19;
+pub const HW_INT_REGS: u32 = 8;
+pub const HW_FPU_REGS: u32 = 0;
+pub const HW_XCPT_REGS: u32 = 8;
+pub const HW_XCPT_SIZE: u32 = 32;
+pub const XCPTCONTEXT_REGS: u32 = 20;
+pub const XCPTCONTEXT_SIZE: u32 = 80;
+pub const REG_A1: u32 = 12;
+pub const REG_A2: u32 = 13;
+pub const REG_A3: u32 = 14;
+pub const REG_A4: u32 = 15;
+pub const REG_V1: u32 = 2;
+pub const REG_V2: u32 = 3;
+pub const REG_V3: u32 = 4;
+pub const REG_V4: u32 = 5;
+pub const REG_V5: u32 = 6;
+pub const REG_V6: u32 = 7;
+pub const REG_V7: u32 = 8;
+pub const REG_SB: u32 = 7;
+pub const REG_SL: u32 = 8;
+pub const REG_FP: u32 = 5;
+pub const REG_IP: u32 = 16;
+pub const REG_SP: u32 = 0;
+pub const REG_LR: u32 = 17;
+pub const REG_PC: u32 = 18;
+pub const REG_PIC: u32 = 8;
+pub const CONTROL_FPCA: u32 = 4;
+pub const CONTROL_SPSEL: u32 = 2;
+pub const CONTROL_NPRIV: u32 = 1;
+pub const STM32_GPIO_MODER_OFFSET: u32 = 0;
+pub const STM32_GPIO_OTYPER_OFFSET: u32 = 4;
+pub const STM32_GPIO_OSPEED_OFFSET: u32 = 8;
+pub const STM32_GPIO_PUPDR_OFFSET: u32 = 12;
+pub const STM32_GPIO_IDR_OFFSET: u32 = 16;
+pub const STM32_GPIO_ODR_OFFSET: u32 = 20;
+pub const STM32_GPIO_BSRR_OFFSET: u32 = 24;
+pub const STM32_GPIO_LCKR_OFFSET: u32 = 28;
+pub const STM32_GPIO_AFRL_OFFSET: u32 = 32;
+pub const STM32_GPIO_AFRH_OFFSET: u32 = 36;
+pub const GPIO_MODER_INPUT: u32 = 0;
+pub const GPIO_MODER_OUTPUT: u32 = 1;
+pub const GPIO_MODER_ALT: u32 = 2;
+pub const GPIO_MODER_ANALOG: u32 = 3;
+pub const GPIO_MODER0_SHIFT: u32 = 0;
+pub const GPIO_MODER0_MASK: u32 = 3;
+pub const GPIO_MODER1_SHIFT: u32 = 2;
+pub const GPIO_MODER1_MASK: u32 = 12;
+pub const GPIO_MODER2_SHIFT: u32 = 4;
+pub const GPIO_MODER2_MASK: u32 = 48;
+pub const GPIO_MODER3_SHIFT: u32 = 6;
+pub const GPIO_MODER3_MASK: u32 = 192;
+pub const GPIO_MODER4_SHIFT: u32 = 8;
+pub const GPIO_MODER4_MASK: u32 = 768;
+pub const GPIO_MODER5_SHIFT: u32 = 10;
+pub const GPIO_MODER5_MASK: u32 = 3072;
+pub const GPIO_MODER6_SHIFT: u32 = 12;
+pub const GPIO_MODER6_MASK: u32 = 12288;
+pub const GPIO_MODER7_SHIFT: u32 = 14;
+pub const GPIO_MODER7_MASK: u32 = 49152;
+pub const GPIO_MODER8_SHIFT: u32 = 16;
+pub const GPIO_MODER8_MASK: u32 = 196608;
+pub const GPIO_MODER9_SHIFT: u32 = 18;
+pub const GPIO_MODER9_MASK: u32 = 786432;
+pub const GPIO_MODER10_SHIFT: u32 = 20;
+pub const GPIO_MODER10_MASK: u32 = 3145728;
+pub const GPIO_MODER11_SHIFT: u32 = 22;
+pub const GPIO_MODER11_MASK: u32 = 12582912;
+pub const GPIO_MODER12_SHIFT: u32 = 24;
+pub const GPIO_MODER12_MASK: u32 = 50331648;
+pub const GPIO_MODER13_SHIFT: u32 = 26;
+pub const GPIO_MODER13_MASK: u32 = 201326592;
+pub const GPIO_MODER14_SHIFT: u32 = 28;
+pub const GPIO_MODER14_MASK: u32 = 805306368;
+pub const GPIO_MODER15_SHIFT: u32 = 30;
+pub const GPIO_MODER15_MASK: u32 = 3221225472;
+pub const GPIO_OSPEED_2MHz: u32 = 0;
+pub const GPIO_OSPEED_25MHz: u32 = 1;
+pub const GPIO_OSPEED_50MHz: u32 = 2;
+pub const GPIO_OSPEED_100MHz: u32 = 3;
+pub const GPIO_OSPEED0_SHIFT: u32 = 0;
+pub const GPIO_OSPEED0_MASK: u32 = 3;
+pub const GPIO_OSPEED1_SHIFT: u32 = 2;
+pub const GPIO_OSPEED1_MASK: u32 = 12;
+pub const GPIO_OSPEED2_SHIFT: u32 = 4;
+pub const GPIO_OSPEED2_MASK: u32 = 48;
+pub const GPIO_OSPEED3_SHIFT: u32 = 6;
+pub const GPIO_OSPEED3_MASK: u32 = 192;
+pub const GPIO_OSPEED4_SHIFT: u32 = 8;
+pub const GPIO_OSPEED4_MASK: u32 = 768;
+pub const GPIO_OSPEED5_SHIFT: u32 = 10;
+pub const GPIO_OSPEED5_MASK: u32 = 3072;
+pub const GPIO_OSPEED6_SHIFT: u32 = 12;
+pub const GPIO_OSPEED6_MASK: u32 = 12288;
+pub const GPIO_OSPEED7_SHIFT: u32 = 14;
+pub const GPIO_OSPEED7_MASK: u32 = 49152;
+pub const GPIO_OSPEED8_SHIFT: u32 = 16;
+pub const GPIO_OSPEED8_MASK: u32 = 196608;
+pub const GPIO_OSPEED9_SHIFT: u32 = 18;
+pub const GPIO_OSPEED9_MASK: u32 = 786432;
+pub const GPIO_OSPEED10_SHIFT: u32 = 20;
+pub const GPIO_OSPEED10_MASK: u32 = 3145728;
+pub const GPIO_OSPEED11_SHIFT: u32 = 22;
+pub const GPIO_OSPEED11_MASK: u32 = 12582912;
+pub const GPIO_OSPEED12_SHIFT: u32 = 24;
+pub const GPIO_OSPEED12_MASK: u32 = 50331648;
+pub const GPIO_OSPEED13_SHIFT: u32 = 26;
+pub const GPIO_OSPEED13_MASK: u32 = 201326592;
+pub const GPIO_OSPEED14_SHIFT: u32 = 28;
+pub const GPIO_OSPEED14_MASK: u32 = 805306368;
+pub const GPIO_OSPEED15_SHIFT: u32 = 30;
+pub const GPIO_OSPEED15_MASK: u32 = 3221225472;
+pub const GPIO_PUPDR_NONE: u32 = 0;
+pub const GPIO_PUPDR_PULLUP: u32 = 1;
+pub const GPIO_PUPDR_PULLDOWN: u32 = 2;
+pub const GPIO_PUPDR0_SHIFT: u32 = 0;
+pub const GPIO_PUPDR0_MASK: u32 = 3;
+pub const GPIO_PUPDR1_SHIFT: u32 = 2;
+pub const GPIO_PUPDR1_MASK: u32 = 12;
+pub const GPIO_PUPDR2_SHIFT: u32 = 4;
+pub const GPIO_PUPDR2_MASK: u32 = 48;
+pub const GPIO_PUPDR3_SHIFT: u32 = 6;
+pub const GPIO_PUPDR3_MASK: u32 = 192;
+pub const GPIO_PUPDR4_SHIFT: u32 = 8;
+pub const GPIO_PUPDR4_MASK: u32 = 768;
+pub const GPIO_PUPDR5_SHIFT: u32 = 10;
+pub const GPIO_PUPDR5_MASK: u32 = 3072;
+pub const GPIO_PUPDR6_SHIFT: u32 = 12;
+pub const GPIO_PUPDR6_MASK: u32 = 12288;
+pub const GPIO_PUPDR7_SHIFT: u32 = 14;
+pub const GPIO_PUPDR7_MASK: u32 = 49152;
+pub const GPIO_PUPDR8_SHIFT: u32 = 16;
+pub const GPIO_PUPDR8_MASK: u32 = 196608;
+pub const GPIO_PUPDR9_SHIFT: u32 = 18;
+pub const GPIO_PUPDR9_MASK: u32 = 786432;
+pub const GPIO_PUPDR10_SHIFT: u32 = 20;
+pub const GPIO_PUPDR10_MASK: u32 = 3145728;
+pub const GPIO_PUPDR11_SHIFT: u32 = 22;
+pub const GPIO_PUPDR11_MASK: u32 = 12582912;
+pub const GPIO_PUPDR12_SHIFT: u32 = 24;
+pub const GPIO_PUPDR12_MASK: u32 = 50331648;
+pub const GPIO_PUPDR13_SHIFT: u32 = 26;
+pub const GPIO_PUPDR13_MASK: u32 = 201326592;
+pub const GPIO_PUPDR14_SHIFT: u32 = 28;
+pub const GPIO_PUPDR14_MASK: u32 = 805306368;
+pub const GPIO_PUPDR15_SHIFT: u32 = 30;
+pub const GPIO_PUPDR15_MASK: u32 = 3221225472;
+pub const GPIO_LCKK: u32 = 65536;
+pub const GPIO_AFRL0_SHIFT: u32 = 0;
+pub const GPIO_AFRL0_MASK: u32 = 15;
+pub const GPIO_AFRL1_SHIFT: u32 = 4;
+pub const GPIO_AFRL1_MASK: u32 = 240;
+pub const GPIO_AFRL2_SHIFT: u32 = 8;
+pub const GPIO_AFRL2_MASK: u32 = 3840;
+pub const GPIO_AFRL3_SHIFT: u32 = 12;
+pub const GPIO_AFRL3_MASK: u32 = 61440;
+pub const GPIO_AFRL4_SHIFT: u32 = 16;
+pub const GPIO_AFRL4_MASK: u32 = 983040;
+pub const GPIO_AFRL5_SHIFT: u32 = 20;
+pub const GPIO_AFRL5_MASK: u32 = 15728640;
+pub const GPIO_AFRL6_SHIFT: u32 = 24;
+pub const GPIO_AFRL6_MASK: u32 = 251658240;
+pub const GPIO_AFRL7_SHIFT: u32 = 28;
+pub const GPIO_AFRL7_MASK: u32 = 4026531840;
+pub const GPIO_AFRH8_SHIFT: u32 = 0;
+pub const GPIO_AFRH8_MASK: u32 = 15;
+pub const GPIO_AFRH9_SHIFT: u32 = 4;
+pub const GPIO_AFRH9_MASK: u32 = 240;
+pub const GPIO_AFRH10_SHIFT: u32 = 8;
+pub const GPIO_AFRH10_MASK: u32 = 3840;
+pub const GPIO_AFRH11_SHIFT: u32 = 12;
+pub const GPIO_AFRH11_MASK: u32 = 61440;
+pub const GPIO_AFRH12_SHIFT: u32 = 16;
+pub const GPIO_AFRH12_MASK: u32 = 983040;
+pub const GPIO_AFRH13_SHIFT: u32 = 20;
+pub const GPIO_AFRH13_MASK: u32 = 15728640;
+pub const GPIO_AFRH14_SHIFT: u32 = 24;
+pub const GPIO_AFRH14_MASK: u32 = 251658240;
+pub const GPIO_AFRH15_SHIFT: u32 = 28;
+pub const GPIO_AFRH15_MASK: u32 = 4026531840;
+pub const GPIO_MODE_SHIFT: u32 = 18;
+pub const GPIO_MODE_MASK: u32 = 786432;
+pub const GPIO_INPUT: u32 = 0;
+pub const GPIO_OUTPUT: u32 = 262144;
+pub const GPIO_ALT: u32 = 524288;
+pub const GPIO_ANALOG: u32 = 786432;
+pub const GPIO_PUPD_SHIFT: u32 = 16;
+pub const GPIO_PUPD_MASK: u32 = 196608;
+pub const GPIO_FLOAT: u32 = 0;
+pub const GPIO_PULLUP: u32 = 65536;
+pub const GPIO_PULLDOWN: u32 = 131072;
+pub const GPIO_AF_SHIFT: u32 = 12;
+pub const GPIO_AF_MASK: u32 = 61440;
+pub const GPIO_AF0: u32 = 0;
+pub const GPIO_AF1: u32 = 4096;
+pub const GPIO_AF2: u32 = 8192;
+pub const GPIO_AF3: u32 = 12288;
+pub const GPIO_AF4: u32 = 16384;
+pub const GPIO_AF5: u32 = 20480;
+pub const GPIO_AF6: u32 = 24576;
+pub const GPIO_AF7: u32 = 28672;
+pub const GPIO_AF8: u32 = 32768;
+pub const GPIO_AF9: u32 = 36864;
+pub const GPIO_AF10: u32 = 40960;
+pub const GPIO_AF11: u32 = 45056;
+pub const GPIO_AF12: u32 = 49152;
+pub const GPIO_AF13: u32 = 53248;
+pub const GPIO_AF14: u32 = 57344;
+pub const GPIO_AF15: u32 = 61440;
+pub const GPIO_SPEED_SHIFT: u32 = 10;
+pub const GPIO_SPEED_MASK: u32 = 3072;
+pub const GPIO_SPEED_2MHz: u32 = 0;
+pub const GPIO_SPEED_25MHz: u32 = 1024;
+pub const GPIO_SPEED_50MHz: u32 = 2048;
+pub const GPIO_SPEED_100MHz: u32 = 3072;
+pub const GPIO_OPENDRAIN: u32 = 512;
+pub const GPIO_PUSHPULL: u32 = 0;
+pub const GPIO_OUTPUT_SET: u32 = 256;
+pub const GPIO_OUTPUT_CLEAR: u32 = 0;
+pub const GPIO_EXTI: u32 = 256;
+pub const GPIO_PORT_SHIFT: u32 = 4;
+pub const GPIO_PORT_MASK: u32 = 240;
+pub const GPIO_PORTA: u32 = 0;
+pub const GPIO_PORTB: u32 = 16;
+pub const GPIO_PORTC: u32 = 32;
+pub const GPIO_PORTD: u32 = 48;
+pub const GPIO_PORTE: u32 = 64;
+pub const GPIO_PORTF: u32 = 80;
+pub const GPIO_PORTG: u32 = 96;
+pub const GPIO_PORTH: u32 = 112;
+pub const GPIO_PORTI: u32 = 128;
+pub const GPIO_PORTJ: u32 = 144;
+pub const GPIO_PORTK: u32 = 160;
+pub const GPIO_PIN_SHIFT: u32 = 0;
+pub const GPIO_PIN_MASK: u32 = 15;
+pub const GPIO_PIN0: u32 = 0;
+pub const GPIO_PIN1: u32 = 1;
+pub const GPIO_PIN2: u32 = 2;
+pub const GPIO_PIN3: u32 = 3;
+pub const GPIO_PIN4: u32 = 4;
+pub const GPIO_PIN5: u32 = 5;
+pub const GPIO_PIN6: u32 = 6;
+pub const GPIO_PIN7: u32 = 7;
+pub const GPIO_PIN8: u32 = 8;
+pub const GPIO_PIN9: u32 = 9;
+pub const GPIO_PIN10: u32 = 10;
+pub const GPIO_PIN11: u32 = 11;
+pub const GPIO_PIN12: u32 = 12;
+pub const GPIO_PIN13: u32 = 13;
+pub const GPIO_PIN14: u32 = 14;
+pub const GPIO_PIN15: u32 = 15;
 pub type _int8_t = ::std::os::raw::c_schar;
 pub type _uint8_t = ::std::os::raw::c_uchar;
 pub type _int16_t = ::std::os::raw::c_short;
@@ -509,4 +959,197 @@ extern "C" {
 extern "C" {
     #[doc = " Name: stm32_dma_alloc_init\n\n Description:\n   Called to create a FAT DMA allocator\n\n Returned Value:\n   0 on success or -ENOMEM\n"]
     pub fn stm32_dma_alloc_init();
+}
+pub type mode_t = ::std::os::raw::c_uint;
+pub type rsize_t = _size_t;
+pub type uid_t = ::std::os::raw::c_uint;
+pub type gid_t = ::std::os::raw::c_uint;
+pub type dev_t = u32;
+pub type ino_t = u16;
+pub type nlink_t = u16;
+pub type pid_t = ::std::os::raw::c_int;
+pub type id_t = ::std::os::raw::c_int;
+pub type key_t = i32;
+pub type wchar_t = _wchar_t;
+pub type wint_t = ::std::os::raw::c_int;
+pub type wctype_t = ::std::os::raw::c_int;
+pub type fsblkcnt_t = u32;
+pub type fsfilcnt_t = u32;
+pub type blkcnt_t = u32;
+pub type off_t = i32;
+pub type fpos_t = i32;
+pub type blksize_t = i16;
+pub type socklen_t = ::std::os::raw::c_uint;
+pub type sa_family_t = u16;
+pub type clock_t = u32;
+pub type time_t = u32;
+pub type clockid_t = ::std::os::raw::c_int;
+pub type timer_t = *mut ::std::os::raw::c_void;
+pub type useconds_t = u32;
+pub type suseconds_t = i32;
+pub type cpu_set_t = u8;
+pub type u_char = ::std::os::raw::c_uchar;
+pub type u_short = ::std::os::raw::c_ushort;
+pub type u_int = ::std::os::raw::c_uint;
+pub type u_long = ::std::os::raw::c_ulong;
+pub type unchar = ::std::os::raw::c_uchar;
+pub type ushort = ::std::os::raw::c_ushort;
+pub type uint = ::std::os::raw::c_uint;
+pub type ulong = ::std::os::raw::c_ulong;
+pub type s_char = ::std::os::raw::c_schar;
+pub type caddr_t = *mut ::std::os::raw::c_char;
+pub type u_int8_t = u8;
+pub type u_int16_t = u16;
+pub type u_int32_t = u32;
+pub type u_int64_t = u64;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct fsid_s {
+    pub val: [::std::os::raw::c_int; 2usize],
+}
+#[test]
+fn bindgen_test_layout_fsid_s() {
+    const UNINIT: ::std::mem::MaybeUninit<fsid_s> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<fsid_s>(),
+        8usize,
+        concat!("Size of: ", stringify!(fsid_s))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<fsid_s>(),
+        4usize,
+        concat!("Alignment of ", stringify!(fsid_s))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).val) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(fsid_s),
+            "::",
+            stringify!(val)
+        )
+    );
+}
+pub type main_t = ::std::option::Option<
+    unsafe extern "C" fn(
+        argc: ::std::os::raw::c_int,
+        argv: *mut *mut ::std::os::raw::c_char,
+    ) -> ::std::os::raw::c_int,
+>;
+pub const ERROR: _bindgen_ty_1 = -1;
+pub const OK: _bindgen_ty_1 = 0;
+pub type _bindgen_ty_1 = ::std::os::raw::c_int;
+extern "C" {
+    pub fn nsh_main(
+        argc: ::std::os::raw::c_int,
+        argv: *mut *mut ::std::os::raw::c_char,
+    ) -> ::std::os::raw::c_int;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct xcptcontext {
+    pub sigdeliver: *mut ::std::os::raw::c_void,
+    pub saved_regs: *mut u32,
+    pub regs: *mut u32,
+}
+#[test]
+fn bindgen_test_layout_xcptcontext() {
+    const UNINIT: ::std::mem::MaybeUninit<xcptcontext> = ::std::mem::MaybeUninit::uninit();
+    let ptr = UNINIT.as_ptr();
+    assert_eq!(
+        ::std::mem::size_of::<xcptcontext>(),
+        24usize,
+        concat!("Size of: ", stringify!(xcptcontext))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<xcptcontext>(),
+        8usize,
+        concat!("Alignment of ", stringify!(xcptcontext))
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).sigdeliver) as usize - ptr as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(xcptcontext),
+            "::",
+            stringify!(sigdeliver)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).saved_regs) as usize - ptr as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(xcptcontext),
+            "::",
+            stringify!(saved_regs)
+        )
+    );
+    assert_eq!(
+        unsafe { ::std::ptr::addr_of!((*ptr).regs) as usize - ptr as usize },
+        16usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(xcptcontext),
+            "::",
+            stringify!(regs)
+        )
+    );
+}
+extern "C" {
+    #[doc = " Public Data"]
+    pub static mut g_current_regs: [*mut u32; 1usize];
+}
+pub type irq_t = u8;
+pub type xcpt_t = ::std::option::Option<
+    unsafe extern "C" fn(
+        irq: ::std::os::raw::c_int,
+        context: *mut ::std::os::raw::c_void,
+        arg: *mut ::std::os::raw::c_void,
+    ) -> ::std::os::raw::c_int,
+>;
+extern "C" {
+    #[doc = " Name: irq_attach\n\n Description:\n   Configure the IRQ subsystem so that IRQ number 'irq' is dispatched to\n   'isr' with argument 'arg'\n"]
+    pub fn irq_attach(
+        irq: ::std::os::raw::c_int,
+        isr: xcpt_t,
+        arg: *mut ::std::os::raw::c_void,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub static g_gpiobase: [u32; 11usize];
+}
+extern "C" {
+    #[doc = " Name: stm32_configgpio\n\n Description:\n   Configure a GPIO pin based on bit-encoded description of the pin.\n   Once it is configured as Alternative (GPIO_ALT|GPIO_CNF_AFPP|...)\n   function, it must be unconfigured with stm32_unconfiggpio() with\n   the same cfgset first before it can be set to non-alternative function.\n\n Returned Value:\n   OK on success\n   ERROR on invalid port, or when pin is locked as ALT function.\n"]
+    pub fn stm32_configgpio(cfgset: u32) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[doc = " Name: stm32_unconfiggpio\n\n Description:\n   Unconfigure a GPIO pin based on bit-encoded description of the pin, set\n   it into default HiZ state (and possibly mark it's unused) and unlock it\n   whether it was previously selected as alternative function\n   (GPIO_ALT|GPIO_CNF_AFPP|...).\n\n   This is a safety function and prevents hardware from shocks, as\n   unexpected write to the Timer Channel Output GPIO to fixed '1' or '0'\n   while it should operate in PWM mode could produce excessive on-board\n   currents and trigger over-current/alarm function.\n\n Returned Value:\n  OK on success\n  ERROR on invalid port\n"]
+    pub fn stm32_unconfiggpio(cfgset: u32) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    #[doc = " Name: stm32_gpiowrite\n\n Description:\n   Write one or zero to the selected GPIO pin\n"]
+    pub fn stm32_gpiowrite(pinset: u32, value: bool);
+}
+extern "C" {
+    #[doc = " Name: stm32_gpioread\n\n Description:\n   Read one or zero from the selected GPIO pin\n"]
+    pub fn stm32_gpioread(pinset: u32) -> bool;
+}
+extern "C" {
+    #[doc = " Name: stm32_iocompensation\n\n Description:\n   Enable I/O compensation.\n\n   By default the I/O compensation cell is not used. However when the I/O\n   output buffer speed is configured in 50 MHz or 100 MHz mode, it is\n   recommended to use the compensation cell for slew rate control on I/O\n   tf(IO)out)/tr(IO)out commutation to reduce the I/O noise on power\n   supply.\n\n   The I/O compensation cell can be used only when the supply voltage\n   ranges from 2.4 to 3.6 V.\n\n Input Parameters:\n   None\n\n Returned Value:\n   None\n"]
+    pub fn stm32_iocompensation();
+}
+extern "C" {
+    #[doc = " Name: stm32_gpiosetevent\n\n Description:\n   Sets/clears GPIO based event and interrupt triggers.\n\n Input Parameters:\n  - pinset:      GPIO pin configuration\n  - risingedge:  Enables interrupt on rising edges\n  - fallingedge: Enables interrupt on falling edges\n  - event:       Generate event when set\n  - func:        When non-NULL, generate interrupt\n  - arg:         Argument passed to the interrupt callback\n\n Returned Value:\n   Zero (OK) on success; a negated errno value on failure indicating the\n   nature of the failure.\n"]
+    pub fn stm32_gpiosetevent(
+        pinset: u32,
+        risingedge: bool,
+        fallingedge: bool,
+        event: bool,
+        func: xcpt_t,
+        arg: *mut ::std::os::raw::c_void,
+    ) -> ::std::os::raw::c_int;
 }

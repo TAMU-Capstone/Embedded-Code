@@ -36,10 +36,10 @@ static mut g_initialized: bool = false;
  * Private Functions
  ****************************************************************************/
 
-extern "C" {
-    fn stm32_gpiowrite(pin: u32, state: bool);
-    fn stm32_configgpio(pin: u32);
-}
+// extern "C" {
+//     fn stm32_gpiowrite(pin: u32, state: bool);
+//     fn stm32_configgpio(pin: u32);
+// }
 
 #[no_mangle]
 pub extern "C" fn phy_set_led(led: u32, state: bool) {
