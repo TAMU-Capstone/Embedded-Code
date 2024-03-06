@@ -1153,3 +1153,39 @@ extern "C" {
         arg: *mut ::std::os::raw::c_void,
     ) -> ::std::os::raw::c_int;
 }
+extern "C" {
+    #[doc = " Name: board_app_initialize\n\n Description:\n   Perform application specific initialization.  This function is never\n   called directly from application code, but only indirectly via the\n   (non-standard) boardctl() interface using the command BOARDIOC_INIT.\n\n Input Parameters:\n   arg - The boardctl() argument is passed to the board_app_initialize()\n         implementation without modification.  The argument has no\n         meaning to NuttX; the meaning of the argument is a contract\n         between the board-specific initialization logic and the\n         matching application logic.  The value could be such things as a\n         mode enumeration value, a set of DIP switch switch settings, a\n         pointer to configuration data read from a file or serial FLASH,\n         or whatever you would like to do with it.  Every implementation\n         should accept zero/NULL as a default configuration.\n\n Returned Value:\n   Zero (OK) is returned on success; a negated errno value is returned on\n   any failure to indicate the nature of the failure.\n"]
+    pub fn board_app_initialize(arg: usize) -> ::std::os::raw::c_int;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct fb_vtable_s {
+    _unused: [u8; 0],
+}
+extern "C" {
+    pub fn board_graphics_setup(devno: ::std::os::raw::c_uint) -> *mut fb_vtable_s;
+}
+extern "C" {
+    pub fn board_autoled_initialize();
+}
+extern "C" {
+    pub fn board_autoled_on(led: ::std::os::raw::c_int);
+}
+extern "C" {
+    pub fn board_autoled_off(led: ::std::os::raw::c_int);
+}
+extern "C" {
+    pub fn board_userled_initialize() -> u32;
+}
+extern "C" {
+    pub fn board_userled(led: ::std::os::raw::c_int, ledon: bool);
+}
+extern "C" {
+    pub fn board_userled_all(ledset: u32);
+}
+extern "C" {
+    pub fn board_button_initialize() -> u32;
+}
+extern "C" {
+    pub fn board_buttons() -> u32;
+}
