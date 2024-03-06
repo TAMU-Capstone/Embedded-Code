@@ -93,6 +93,12 @@ define COMPILE
 	$(call MVOBJS, $(2), $(subst .c,.obj,$(notdir $(1))), $(2))
 endef
 
+define RUSTCOMPILE
+	$(call RMOBJS, $(2)) # remove any existing builds
+	$(Q) $(CC) $(CFLAGS) $($(strip $(1))_CFLAGS) `cygpath -w "$(1)"`
+	$(call MVOBJS, $(2), $(subst .c,.obj,$(notdir $(1))), $(2))
+endef
+
 define ASSEMBLE
 	$(call RMOBJS, $(2))
 	$(Q) $(AS) $(AFLAGS) $($(strip $(1))_AFLAGS) `cygpath -w "$(1)"`

@@ -46,11 +46,17 @@ AOBJS = $(ASRCS:.S=$(OBJEXT))
 else
 AOBJS = $(ASRCS:$(ASMEXT)=$(OBJEXT))
 endif
-COBJS = $(CSRCS:.c=$(OBJEXT))
+# generate object files for c and c++, replacing the source file name with .o
+COBJS = $(CSRCS:.c=$(OBJEXT)) 
 CXXOBJS = $(CXXSRCS:.cxx=$(OBJEXT))
+# new intent is to replace the rust fie with a .o file
+RUSTOBJS = $(RUSTSRCS:.rs=$(OBJEXT))
 
 SRCS = $(ASRCS) $(CSRCS)
-OBJS = $(AOBJS) $(COBJS)
+# old line for just c and c++
+# OBJS = $(AOBJS) $(COBJS) 
+# new line for rust (  hopefully )
+OBJS = $(AOBJS) $(COBJS) $(RUSTOBJS)
 
 SCHEDSRCDIR = $(TOPDIR)$(DELIM)sched
 ARCHSRCDIR = $(TOPDIR)$(DELIM)arch$(DELIM)$(CONFIG_ARCH)$(DELIM)src
@@ -75,6 +81,11 @@ $(ASRCS) $(HEAD_ASRC): %$(ASMEXT): %.S
 	$(Q) cat $@.tmp | sed -e "s/^#/;/g" > $@
 	$(Q) rm $@.tmp
 endif
+# now compile our new rust objects
+# RUSTCOMPILE is aliased to 
+$(RUSTOBJS) $(LINKOBJS): %$(OBJEXT): %.rs
+	$(call RUSTCOMPILE, $<, $@)
+	# $(RUSTC) $(RUSTFLAGS) --crate-type=rlib $< -o $@
 
 $(AOBJS): %$(OBJEXT): %$(ASMEXT)
 	$(call ASSEMBLE, $<, $@)
@@ -84,6 +95,9 @@ $(COBJS) $(LINKOBJS): %$(OBJEXT): %.c
 
 $(CXXOBJS) $(LINKOBJS): %$(OBJEXT): %.cxx
 	$(call COMPILEXX, $<, $@)
+
+
+
 
 libboard$(LIBEXT): $(OBJS) $(CXXOBJS)
 	$(call ARCHIVE, $@, $(OBJS) $(CXXOBJS))
@@ -115,5 +129,4 @@ clean::
 distclean:: clean
 	$(call DELFILE, Make.dep)
 	$(call DELFILE, .depend)
-
 -include Make.dep
