@@ -16,4 +16,4 @@ pub const GPIO_LED_RED: u32 = GPIO_LD3;
 
 
 // used by boot.c
-pub const CONFIG_STM32F7_OTGFS: 
+// pub const CONFIG_STM32F7_OTGFS: 

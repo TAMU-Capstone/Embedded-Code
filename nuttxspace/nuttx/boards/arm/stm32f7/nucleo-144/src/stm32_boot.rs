@@ -63,6 +63,7 @@
        board_autoled_initialize();
     
     #[cfg(CONFIG_STM32F7_OTGFS || CONFIG_STM32F7_HOST)]
+        // this not defined
        stm32_usbinitialize();
     
     #[cfg(CONFIG_SPI)]
