@@ -61,7 +61,7 @@
     #[cfg(CONFIG_ARCH_LEDS)]
     /* Configure on-board LEDs if LED support has been selected. */
        board_autoled_initialize();
-    
+    // CONFIG_STM32F7_HOST is missing from files
     #[cfg(CONFIG_STM32F7_OTGFS || CONFIG_STM32F7_HOST)]
         // this not defined
        stm32_usbinitialize();
