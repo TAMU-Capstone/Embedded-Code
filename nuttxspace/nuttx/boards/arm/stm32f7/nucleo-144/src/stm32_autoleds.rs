@@ -43,7 +43,7 @@ static mut G_INITIALIZED: bool = false;
 // }
 
 #[no_mangle]
-pub extern "C" fn phy_set_led(led: u32, state: bool) {
+pub extern "C" fn phy_set_led(led: u8, state: bool) {
     unsafe {
         stm32_gpiowrite(G_LEDMAP[led as usize], state);
     }
@@ -69,7 +69,7 @@ pub extern "C" fn board_autoled_initialize() {
  * Name: board_autoled_on
  ****************************************************************************/
 #[no_mangle]
-pub extern "C" fn board_autoled_on(led: u32) {
+pub extern "C" fn board_autoled_on(led: u8) {
     match led {
         LED_SIGNAL => phy_set_led(BOARD_LED_GREEN, true),
         LED_PANIC | LED_IDLE =>  phy_set_led(BOARD_LED_RED, true),
@@ -96,7 +96,7 @@ pub extern "C" fn board_autoled_on(led: u32) {
  ****************************************************************************/
 
 #[no_mangle]
-pub extern "C" fn board_autoled_off(led: u32) {
+pub extern "C" fn board_autoled_off(led: u8) {
     match led {
         LED_SIGNAL => phy_set_led(BOARD_LED_GREEN, false),
         LED_INIRQ => phy_set_led(BOARD_LED_BLUE, false),

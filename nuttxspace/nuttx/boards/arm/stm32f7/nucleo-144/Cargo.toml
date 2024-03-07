@@ -11,6 +11,11 @@ name = "nucleo_rs"
 path = "src/lib.rs"
 crate-type = ["staticlib"]
 
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
 
 # Dependencies for our project
 [dependencies]
