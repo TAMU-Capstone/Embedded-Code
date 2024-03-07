@@ -196,7 +196,6 @@ $(addsuffix .tmp,$(ARCHSCRIPT)): $(ARCHSCRIPT)
 nuttx$(EXEEXT): $(HEAD_OBJ) board$(DELIM)libboard$(LIBEXT) $(addsuffix .tmp,$(ARCHSCRIPT))
 	$(Q) echo "LD: nuttx"
 ifneq ($(CONFIG_ALLSYMS),y)
-	$(Q) echo "LD: TJB"
 	$(Q) $(LD) --entry=__start $(LDFLAGS) $(LIBPATHS) $(EXTRA_LIBPATHS) \
 		-o $(NUTTX) $(HEAD_OBJ) $(EXTRA_OBJS) \
 		$(LDSTARTGROUP) -L $(TOPDIR)/boards/arm/stm32f7/nucleo-144/target/debug -lnucleo_rs $(LDLIBS) $(EXTRA_LIBS) $(LDENDGROUP) \
