@@ -99,7 +99,7 @@ $(foreach lib,$(notdir $(wildcard $(APPDIR)$(DELIM)staging$(DELIM)*$(LIBEXT))), 
  )
 
 EXTRA_LIBS := $(filter-out $(NAMEFULL_LIBS) $(NAMESPEC_LIBS),$(EXTRA_LIBS))
-EXTRA_LIBS += $(wildcard $(APPDIR)$(DELIM)staging$(DELIM)*$(LIBEXT))
+EXTRA_LIBS += $(wildcard $(APPDIR)$(DELIM)staging$(DELIM)*$(LIBEXT)) 
 
 # Override in Make.defs if linker is not 'ld'
 
@@ -185,7 +185,8 @@ define LINK_ALLSYMS
 	$(Q) $(call COMPILE, allsyms.tmp, allsyms$(OBJEXT), -x c)
 	$(Q) $(LD) --entry=__start $(LDFLAGS) $(LIBPATHS) $(EXTRA_LIBPATHS) \
 		-o $(NUTTX) $(HEAD_OBJ) allsyms$(OBJEXT) $(EXTRA_OBJS) \
-		$(LDSTARTGROUP) $(LDLIBS) $(EXTRA_LIBS) $(LDENDGROUP)
+		$(LDSTARTGROUP) $(LDLIBS) $(EXTRA_LIBS) $(LDENDGROUP) \
+		-L $(TOPDIR)/boards/arm/stm32f7/nucleo-144/target/debug -lnucleo_rs
 	$(Q) $(call DELFILE, allsyms.tmp allsyms$(OBJEXT))
 endef
 
@@ -195,9 +196,11 @@ $(addsuffix .tmp,$(ARCHSCRIPT)): $(ARCHSCRIPT)
 nuttx$(EXEEXT): $(HEAD_OBJ) board$(DELIM)libboard$(LIBEXT) $(addsuffix .tmp,$(ARCHSCRIPT))
 	$(Q) echo "LD: nuttx"
 ifneq ($(CONFIG_ALLSYMS),y)
+	$(Q) echo "LD: TJB"
 	$(Q) $(LD) --entry=__start $(LDFLAGS) $(LIBPATHS) $(EXTRA_LIBPATHS) \
 		-o $(NUTTX) $(HEAD_OBJ) $(EXTRA_OBJS) \
-		$(LDSTARTGROUP) $(LDLIBS) $(EXTRA_LIBS) $(LDENDGROUP)
+		$(LDSTARTGROUP) -L $(TOPDIR)/boards/arm/stm32f7/nucleo-144/target/debug -lnucleo_rs $(LDLIBS) $(EXTRA_LIBS) $(LDENDGROUP) \
+		-L $(TOPDIR)/boards/arm/stm32f7/nucleo-144/target/debug -lnucleo_rs
 else
 	$(Q) # Link and generate default table
 	$(Q) $(if $(wildcard $(shell echo $(NUTTX))),,$(call LINK_ALLSYMS,$^))
