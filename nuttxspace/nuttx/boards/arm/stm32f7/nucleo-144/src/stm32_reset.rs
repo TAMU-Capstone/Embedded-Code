@@ -52,7 +52,7 @@ extern "C" {
  ****************************************************************************/
 
 #[no_mangle]
-pub extern "C" fn board_reset(_status: i32) -> cty::c_int {
+pub extern "C" fn board_reset(_status: i8) -> cty::c_int {
     unsafe {
         up_systemreset();
     }
