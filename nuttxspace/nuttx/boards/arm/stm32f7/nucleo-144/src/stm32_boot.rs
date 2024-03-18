@@ -21,21 +21,8 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
- #[no_mangle]
- #include <nuttx/config.h>
  
- #[no_mangle]
- #include <debug.h>
- 
- #[no_mangle]
- #include <nuttx/board.h>
- #[no_mangle]
- #include <arch/board/board.h>
- 
- #[no_mangle]
- #include "arm_internal.h"
- #[no_mangle]
- #include "nucleo-144.h"
+ use crate::include::*;
  
  /****************************************************************************
   * Public Functions
