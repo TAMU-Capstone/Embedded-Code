@@ -38,8 +38,9 @@
  #[no_mangle]
  #include "nucleo-144.h"
   */
- use crate::include::*;
-
+ use crate::include::*; // I cannot tell how these two lines are different
+ use crate::stm32_autoleds::board_autoled_initialize;
+ use crate::stm32_usb::stm32_usbinitialize; // this will need to be defined and created as a rust file
  /****************************************************************************
   * Public Functions
   ****************************************************************************/
@@ -58,17 +59,20 @@
  // #ifdef does not exist, therefor we will use cfg [ conditional configuration check ]
   fn stm32_boardinitialize()
  {
-    #[cfg(CONFIG_ARCH_LEDS)]
-    /* Configure on-board LEDs if LED support has been selected. */
+    if cfg!(CONFIG_ARCH_LEDS){
+       /* Configure on-board LEDs if LED support has been selected. */
        board_autoled_initialize();
+      }
     // CONFIG_STM32F7_HOST is missing from files
-    #[cfg(CONFIG_STM32F7_OTGFS || CONFIG_STM32F7_HOST)]
-        // this not defined
+    if  cfg!(CONFIG_STM32F7_OTGFS) || cfg!(CONFIG_STM32F7_HOST) 
+    {
        stm32_usbinitialize();
+      }
     
-    #[cfg(CONFIG_SPI)]
-    /* Configure SPI chip selects */
-        stm32_spidev_initialize();
+    if cfg!(CONFIG_SPI){
+       /* Configure SPI chip selects */
+       stm32_spidev_initialize();
+      }
     
 }
 
@@ -88,7 +92,6 @@
   ****************************************************************************/
   
   #[cfg(CONFIG_BOARD_LATE_INITIALIZE)]
-
  fn board_late_initialize()
  {
    /* Perform board-specific initialization */
