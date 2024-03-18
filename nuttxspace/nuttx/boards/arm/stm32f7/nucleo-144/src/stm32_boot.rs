@@ -21,26 +21,8 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
- /*
- #[no_mangle]
- #include <nuttx/config.h>
- 
- #[no_mangle]
- #include <debug.h>
- 
- #[no_mangle]
- #include <nuttx/board.h>
- #[no_mangle]
- #include <arch/board/board.h>
- 
- #[no_mangle]
- #include "arm_internal.h"
- #[no_mangle]
- #include "nucleo-144.h"
-  */
  use crate::include::*; // I cannot tell how these two lines are different
  use crate::stm32_autoleds::board_autoled_initialize;
- use crate::stm32_usb::stm32_usbinitialize; // this will need to be defined and created as a rust file
  /****************************************************************************
   * Public Functions
   ****************************************************************************/
