@@ -543,7 +543,9 @@ ifeq ($(CONFIG_BUILD_2PASS),y)
 	fi
 	$(Q) $(MAKE) -C $(CONFIG_PASS1_BUILDIR) LINKLIBS="$(LINKLIBS)" USERLIBS="$(USERLIBS)" "$(CONFIG_PASS1_TARGET)"
 endif
-	$(Q) $(MAKE) -C $(ARCH_SRC) EXTRA_OBJS="$(EXTRA_OBJS)" LINKLIBS="$(LINKLIBS)" APPDIR="$(APPDIR)" EXTRAFLAGS="$(KDEFINE) $(EXTRAFLAGS)" $(BIN)
+	$(Q) cd $(TOPDIR)/boards/arm/stm32f7/nucleo-144/ ; cargo build
+	$(Q) ranlib $(TOPDIR)/boards/arm/stm32f7/nucleo-144/target/thumbv7em-none-eabi/debug/libnucleo_rs.a
+	$(Q) $(MAKE) -C $(ARCH_SRC) EXTRA_OBJS="$(EXTRA_OBJS)" LINKLIBS="$(LINKLIBS) -L $(TOPDIR)/boards/arm/stm32f7/nucleo-144/target/thumbv7em-none-eabi/debug -lnucleo_rs" APPDIR="$(APPDIR)" EXTRAFLAGS="$(KDEFINE) $(EXTRAFLAGS)" $(BIN)
 	$(Q) if [ -w /tftpboot ] ; then \
 		cp -f $(BIN) /tftpboot/$(BIN).${CONFIG_ARCH}; \
 	fi
@@ -793,7 +795,7 @@ endif
 	$(call DELFILE, .config.old)
 	$(call DELFILE, .config.orig)
 	$(call DELFILE, .gdbinit)
-
+	rm -f $(TOPDIR)/boards/arm/stm32f7/nucleo-144/target/thumbv7em-none-eabi/debug/libnucleo_rs.a
 # Application housekeeping targets.  The APPDIR variable refers to the user
 # application directory.  A sample apps/ directory is included with NuttX,
 # however, this is not treated as part of NuttX and may be replaced with a
