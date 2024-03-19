@@ -56,7 +56,7 @@ use crate::include::*;
 
 // NEED board_late_initialize() TO CALL CONFIG_BOARD_LATE_INITIALIZE
 #[no_mangle]
-pub extern "C" fn board_app_initialize(arg: usize) -> cty::c_int { 
+pub extern "C" fn board_app_initialize(_arg: usize) -> cty::c_int { 
     #[cfg(not(CONFIG_BOARD_LATE_INITIALIZE))] {
         unsafe {
             return stm32_bringup();

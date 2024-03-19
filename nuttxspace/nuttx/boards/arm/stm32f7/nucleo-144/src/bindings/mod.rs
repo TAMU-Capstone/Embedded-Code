@@ -1,7 +1,5 @@
-#![allow(dead_code)]
-
-mod bindings;
-pub use bindings::*;
+mod generated;
+pub use generated::*;
 
 pub const GPIO_LD1: u32 = GPIO_OUTPUT | GPIO_PUSHPULL as u32 | GPIO_SPEED_50MHz as u32 | GPIO_OUTPUT_CLEAR as u32 | GPIO_PORTB as u32 | GPIO_PIN0 as u32;
 pub const GPIO_LD2: u32 = GPIO_OUTPUT | GPIO_PUSHPULL as u32 | GPIO_SPEED_50MHz as u32 | GPIO_OUTPUT_CLEAR as u32 | GPIO_PORTB as u32 | GPIO_PIN7 as u32;

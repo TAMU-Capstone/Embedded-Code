@@ -21,8 +21,7 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
-// use cty;
-use crate::include::*;
+use crate::bindings::*;
 
 /****************************************************************************
  * Private Data
@@ -30,7 +29,11 @@ use crate::include::*;
 
 /* Indexed by BOARD_LED_<color> */
 
-static G_LEDMAP: [u32; BOARD_NLEDS as usize] = [GPIO_LED_GREEN, GPIO_LED_BLUE, GPIO_LED_RED];
+static G_LEDMAP: [u32; BOARD_NLEDS as usize] = [
+    GPIO_LED_GREEN,
+    GPIO_LED_BLUE,
+    GPIO_LED_RED
+];
 
 static mut G_INITIALIZED: bool = false;
 /****************************************************************************
@@ -58,6 +61,8 @@ pub extern "C" fn phy_set_led(led: u8, state: bool) {
  ****************************************************************************/
 #[no_mangle]
 pub extern "C" fn board_autoled_initialize() {
+    // G_LEDMAP.map(|pin| unsafe { stm32_configgpio(pin) });
+    
     for &pin in G_LEDMAP.iter() {
         unsafe {
             stm32_configgpio(pin);

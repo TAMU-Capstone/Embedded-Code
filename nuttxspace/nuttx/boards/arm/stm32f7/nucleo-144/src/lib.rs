@@ -9,7 +9,7 @@ fn panic(_info: &PanicInfo) -> ! {
 }
 
 
-mod include;
+mod bindings;
 
 mod stm32_autoleds;
 mod stm32_reset;
