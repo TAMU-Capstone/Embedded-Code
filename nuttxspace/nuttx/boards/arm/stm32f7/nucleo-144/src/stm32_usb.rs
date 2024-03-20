@@ -21,8 +21,6 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
-use crate::include::*; // I cannot tell how these two lines are different
-use crate::stm32_autoleds::board_autoled_initialize;
 use log::warn;
 use thiserror_no_std::Error;
 
@@ -33,7 +31,6 @@ use thiserror_no_std::Error;
 cfg_if::cfg_if! { // https://docs.rs/cfg-if/latest/cfg_if/
   if #[cfg(CONFIG_STM32F7_OTGFS)]
   {
-
     if ( cfg!(CONFIG_USBDEV) || cfg!(CONFIG_USBHOST) )
     {
       //https://stackoverflow.com/questions/45163024/whats-the-equivalent-of-a-c-preprocessor-like-define-for-an-array-length
@@ -79,7 +76,7 @@ cfg_if::cfg_if! { // https://docs.rs/cfg-if/latest/cfg_if/
 cfg_if::cfg_if!{
 
   if #[cfg(CONFIG_USBHOST)]{
-    static fn usbhost_waiter( argc: i32, argv: &[String]) -> i32
+    extern "C" fn usbhost_waiter( argc: i32, argv: &[String]) -> i32
     {
       struct usbhost_hubport_s *hport;
 
@@ -87,7 +84,9 @@ cfg_if::cfg_if!{
     loop
       {
         /* Wait for the device to change state */
-        let hport = conn_wait(&g_usbconn).expect("Failed to wait for connection state change");
+        unsafe{
+          let hport = conn_wait(&g_usbconn).expect("Failed to wait for connection state change");
+        }
         if(hport.connected == true)
         {
           println!("connected\n");
@@ -101,8 +100,9 @@ cfg_if::cfg_if!{
         if (hport->connected)
           {
             /* Yes.. enumerate the newly connected device */
-
-            CONN_ENUMERATE(g_usbconn, hport);
+            unsafe{
+              CONN_ENUMERATE(g_usbconn, hport);
+            }
           }
         }
 
@@ -125,8 +125,8 @@ cfg_if::cfg_if!{
     *   USB-related GPIO pins for the nucleo-144 board.
     *
     ****************************************************************************/
-
- pub fn stm32_usbinitialize()
+#[no_mangle]
+ pub extern "C" fn stm32_usbinitialize()
   {
     // pub to allow boot to use this function
     /* The OTG FS has an internal soft pull-up.
@@ -137,12 +137,14 @@ cfg_if::cfg_if!{
       * Power On, and Overcurrent GPIOs
       */
 
-  if ( cfg! (CONFIG_STM32F7_OTGFS))
-  {
-    stm32_configgpio(GPIO_OTGFS_VBUS);
-    stm32_configgpio(GPIO_OTGFS_PWRON);
-    stm32_configgpio(GPIO_OTGFS_OVER);
-  }
+    if ( cfg! (CONFIG_STM32F7_OTGFS) )
+    {
+      unsafe{
+        stm32_configgpio(GPIO_OTGFS_VBUS);
+        stm32_configgpio(GPIO_OTGFS_PWRON);
+        stm32_configgpio(GPIO_OTGFS_OVER);
+      }
+    }
   }
 
   /****************************************************************************
@@ -161,7 +163,7 @@ cfg_if::cfg_if!{
      if( #[cfg(CONFIG_USBHOST)])
      {
 
-       pub fn stm32_usbhost_initialize()
+       pub extern "C" fn stm32_usbhost_initialize()
        {
         let ret: i32;
 
@@ -170,13 +172,13 @@ cfg_if::cfg_if!{
           */
 
         println!("Register class drivers\n");
-
   if #[cfg(CONFIG_USBHOST_HUB)]
   {
 
     /* Initialize USB hub class support */
-
-    ret = usbhost_hub_initialize();
+    unsafe{
+      ret = usbhost_hub_initialize();
+    }
     if (ret < 0)
     {
       #[error("ERROR: usbhost_hub_initialize failed: {}\n", ret)];
@@ -187,7 +189,9 @@ cfg_if::cfg_if!{
   if(#[cfg(CONFIG_USBHOST_MSC)])
   {
     /* Register the USB mass storage class class */
-    ret = usbhost_msc_initialize();
+    unsafe{
+      ret = usbhost_msc_initialize();
+    }
     if (ret != OK)
     {
       #[error("ERROR: Failed to register the mass storage class: {}\n", ret)];
@@ -199,8 +203,9 @@ cfg_if::cfg_if!{
   {
 
     /* Register the CDC/ACM serial class */
-
-    ret = usbhost_cdcacm_initialize();
+    unsafe{
+      ret = usbhost_cdcacm_initialize();
+    }
     if (ret != OK)
       {
         #[error("ERROR: Failed to register the CDC/ACM serial class: {}\n", ret)];
@@ -211,8 +216,9 @@ cfg_if::cfg_if!{
   {
 
     /* Initialize the HID keyboard class */
-
-    ret = usbhost_kbdinit();
+unsafe{
+  ret = usbhost_kbdinit();
+}
     if (ret != OK)
       {
         #[error("ERROR: Failed to register the HID keyboard class\n")];
@@ -223,8 +229,9 @@ cfg_if::cfg_if!{
   {
 
     /* Initialize the HID mouse class */
-
-    ret = usbhost_mouse_init();
+    unsafe{
+      ret = usbhost_mouse_init();
+    }
     if (ret != OK)
     {
         #[error("ERROR: Failed to register the HID mouse class\n")];
@@ -234,12 +241,20 @@ cfg_if::cfg_if!{
     /* Then get an instance of the USB host interface */
 
     println!("Initialize USB host\n");
-    g_usbconn = stm32_otgfshost_initialize(0);
+    unsafe{
+      g_usbconn = stm32_otgfshost_initialize(0);
+    }
     if (g_usbconn)
       {
         /* Start a thread to handle device connection. */
 
         println!("Start usbhost_waiter\n");
+        unsafe{
+          let usbhost_thread = kthread_create("usbhost", CONFIG_NUCLEO144_USBHOST_PRIO,
+          CONFIG_NUCLEO_USBHOST_STACKSIZE,
+          usbhost_waiter, NULL);
+        }
+        /*
         // CONFIG_NUCLEO144_USBHOST_PRIO ->  is defined on line 48 of this file, this is defined to be static to prevent it from dropping out of scope
         // CONFIG_NUCLEO_USBHOST_STACKSIZE -> is defined on line 52 of this file,this is defined to be static to prevent it from dropping out of scope
         // Converted using https://github.com/torvalds/linux/blob/master/include/linux/kthread.h#L15
@@ -247,6 +262,7 @@ cfg_if::cfg_if!{
         .name("usbhost".into()) // with this name
         .spawn(usbhost_waiter) // run on this function
         .expect("Failed to create USB host thread"); // provide a error on failure
+      */
         // CONFIG_NUCLEO144_USBHOST_PRIO and CONFIG_NUCLEO_USBHOST_STACKSIZE are not used as std::thread:Builder does not expose the stack size and priority parameters
         /*
 
@@ -294,13 +310,14 @@ cfg_if::cfg_if!{
   cfg_if::cfg_if!{
     if( #[cfg(CONFIG_USBHOST)])
     {
-      fn stm32_usbhost_vbusdrive( iface :i32, enable: bool)
+      pub extern "C" fn stm32_usbhost_vbusdrive( iface :i32, enable: bool)
   {
     debug_assert_eq!(iface,0);
 
     /* Set the Power Switch by driving the active low enable pin */
-
-    stm32_gpiowrite(GPIO_OTGFS_PWRON, !enable);
+    unsafe{
+      stm32_gpiowrite(GPIO_OTGFS_PWRON, !enable);
+    }
   }
 } /* CONFIG_USBHOST */
 } /* cfg_if end for CONFIG_USBHOST */
@@ -326,10 +343,11 @@ cfg_if::cfg_if!{
       if( #[cfg(CONFIG_USBHOST)])
       {
         // reading line 1414 of binding.rs
-        fn stm32_setup_overcurrent( handler : c_int, arg: *mut cty::c_void) -> i32
+        pub extern "C" fn stm32_setup_overcurrent( handler : c_int, arg: *mut cty::c_void) -> i32
         {
-          // i think this  works since bindgen declared the extern "C"
-          return stm32_gpiosetevent(GPIO_OTGFS_OVER, true, true, true, handler, arg);
+          unsafe{
+            return stm32_gpiosetevent(GPIO_OTGFS_OVER, true, true, true, handler, arg);
+          }
         }
       } /* CONFIG_USBHOST */
       } /* cfg_if end for CONFIG_USBHOST */
@@ -347,7 +365,7 @@ cfg_if::cfg_if!{
     cfg_if::cfg_if!{
       if( #[cfg(CONFIG_USBDEV)])
       {
-  fn stm32_usbsuspend(struct usbdev_s *dev, resume : bool)
+  pub extern "C" fn stm32_usbsuspend(struct usbdev_s *dev, resume : bool)
   {
     println!("resume: {}\n", resume);
   }

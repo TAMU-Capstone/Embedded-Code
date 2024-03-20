@@ -23,6 +23,7 @@
  ****************************************************************************/
  use crate::include::*; // I cannot tell how these two lines are different
  use crate::stm32_autoleds::board_autoled_initialize;
+ use crate::stm32_usb::stm32_usbinitialize;
  /****************************************************************************
   * Public Functions
   ****************************************************************************/

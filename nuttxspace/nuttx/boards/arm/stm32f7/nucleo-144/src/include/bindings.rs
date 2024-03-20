@@ -2,6 +2,86 @@
 
 #![allow(non_snake_case, non_camel_case_types, non_upper_case_globals)]
 
+#[repr(C)]
+#[derive(Copy, Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd)]
+pub struct __BindgenBitfieldUnit<Storage> {
+    storage: Storage,
+}
+impl<Storage> __BindgenBitfieldUnit<Storage> {
+    #[inline]
+    pub const fn new(storage: Storage) -> Self {
+        Self { storage }
+    }
+}
+impl<Storage> __BindgenBitfieldUnit<Storage>
+where
+    Storage: AsRef<[u8]> + AsMut<[u8]>,
+{
+    #[inline]
+    pub fn get_bit(&self, index: usize) -> bool {
+        debug_assert!(index / 8 < self.storage.as_ref().len());
+        let byte_index = index / 8;
+        let byte = self.storage.as_ref()[byte_index];
+        let bit_index = if cfg!(target_endian = "big") {
+            7 - (index % 8)
+        } else {
+            index % 8
+        };
+        let mask = 1 << bit_index;
+        byte & mask == mask
+    }
+    #[inline]
+    pub fn set_bit(&mut self, index: usize, val: bool) {
+        debug_assert!(index / 8 < self.storage.as_ref().len());
+        let byte_index = index / 8;
+        let byte = &mut self.storage.as_mut()[byte_index];
+        let bit_index = if cfg!(target_endian = "big") {
+            7 - (index % 8)
+        } else {
+            index % 8
+        };
+        let mask = 1 << bit_index;
+        if val {
+            *byte |= mask;
+        } else {
+            *byte &= !mask;
+        }
+    }
+    #[inline]
+    pub fn get(&self, bit_offset: usize, bit_width: u8) -> u64 {
+        debug_assert!(bit_width <= 64);
+        debug_assert!(bit_offset / 8 < self.storage.as_ref().len());
+        debug_assert!((bit_offset + (bit_width as usize)) / 8 <= self.storage.as_ref().len());
+        let mut val = 0;
+        for i in 0..(bit_width as usize) {
+            if self.get_bit(i + bit_offset) {
+                let index = if cfg!(target_endian = "big") {
+                    bit_width as usize - 1 - i
+                } else {
+                    i
+                };
+                val |= 1 << index;
+            }
+        }
+        val
+    }
+    #[inline]
+    pub fn set(&mut self, bit_offset: usize, bit_width: u8, val: u64) {
+        debug_assert!(bit_width <= 64);
+        debug_assert!(bit_offset / 8 < self.storage.as_ref().len());
+        debug_assert!((bit_offset + (bit_width as usize)) / 8 <= self.storage.as_ref().len());
+        for i in 0..(bit_width as usize) {
+            let mask = 1 << i;
+            let val_bit_is_set = val & mask == mask;
+            let index = if cfg!(target_endian = "big") {
+                bit_width as usize - 1 - i
+            } else {
+                i
+            };
+            self.set_bit(index + bit_offset, val_bit_is_set);
+        }
+    }
+}
 pub const CONFIG_y: u8 = 1;
 pub const CONFIG_m: u8 = 2;
 pub const CONFIG_HOST_LINUX: u8 = 1;
@@ -1291,6 +1371,2128 @@ pub const EPOCH_YEAR: u16 = 1970;
 pub const EPOCH_WDAY: u8 = 4;
 pub const USBHOST_DEVADDR_HASHSIZE: u8 = 8;
 pub const USBHOST_DEVADDR_HASHMASK: u8 = 7;
+pub const GPIO_ADC1_IN0_0: u32 = 786432;
+pub const GPIO_ADC1_IN1_0: u32 = 786433;
+pub const GPIO_ADC1_IN2_0: u32 = 786434;
+pub const GPIO_ADC1_IN3_0: u32 = 786435;
+pub const GPIO_ADC1_IN4_0: u32 = 786436;
+pub const GPIO_ADC1_IN5_0: u32 = 786437;
+pub const GPIO_ADC1_IN6_0: u32 = 786438;
+pub const GPIO_ADC1_IN7_0: u32 = 786439;
+pub const GPIO_ADC1_IN8_0: u32 = 786448;
+pub const GPIO_ADC1_IN9_0: u32 = 786449;
+pub const GPIO_ADC1_IN10_0: u32 = 786464;
+pub const GPIO_ADC1_IN11_0: u32 = 786465;
+pub const GPIO_ADC1_IN12_0: u32 = 786466;
+pub const GPIO_ADC1_IN13_0: u32 = 786467;
+pub const GPIO_ADC1_IN14_0: u32 = 786468;
+pub const GPIO_ADC1_IN15_0: u32 = 786469;
+pub const GPIO_ADC2_IN0_0: u32 = 786432;
+pub const GPIO_ADC2_IN1_0: u32 = 786433;
+pub const GPIO_ADC2_IN2_0: u32 = 786434;
+pub const GPIO_ADC2_IN3_0: u32 = 786435;
+pub const GPIO_ADC2_IN4_0: u32 = 786436;
+pub const GPIO_ADC2_IN5_0: u32 = 786437;
+pub const GPIO_ADC2_IN6_0: u32 = 786438;
+pub const GPIO_ADC2_IN7_0: u32 = 786439;
+pub const GPIO_ADC2_IN8_0: u32 = 786448;
+pub const GPIO_ADC2_IN9_0: u32 = 786449;
+pub const GPIO_ADC2_IN10_0: u32 = 786464;
+pub const GPIO_ADC2_IN11_0: u32 = 786465;
+pub const GPIO_ADC2_IN12_0: u32 = 786466;
+pub const GPIO_ADC2_IN13_0: u32 = 786467;
+pub const GPIO_ADC2_IN14_0: u32 = 786468;
+pub const GPIO_ADC2_IN15_0: u32 = 786469;
+pub const GPIO_ADC3_IN0_0: u32 = 786432;
+pub const GPIO_ADC3_IN1_0: u32 = 786433;
+pub const GPIO_ADC3_IN2_0: u32 = 786434;
+pub const GPIO_ADC3_IN3_0: u32 = 786435;
+pub const GPIO_ADC3_IN4_0: u32 = 786518;
+pub const GPIO_ADC3_IN5_0: u32 = 786519;
+pub const GPIO_ADC3_IN6_0: u32 = 786520;
+pub const GPIO_ADC3_IN7_0: u32 = 786521;
+pub const GPIO_ADC3_IN8_0: u32 = 786522;
+pub const GPIO_ADC3_IN9_0: u32 = 786515;
+pub const GPIO_ADC3_IN10_0: u32 = 786464;
+pub const GPIO_ADC3_IN11_0: u32 = 786465;
+pub const GPIO_ADC3_IN12_0: u32 = 786466;
+pub const GPIO_ADC3_IN13_0: u32 = 786467;
+pub const GPIO_ADC3_IN14_0: u32 = 786516;
+pub const GPIO_ADC3_IN15_0: u32 = 786517;
+pub const GPIO_CAN1_RX_1: u32 = 561163;
+pub const GPIO_CAN1_RX_2: u32 = 561176;
+pub const GPIO_CAN1_RX_3: u32 = 561200;
+pub const GPIO_CAN1_RX_4: u32 = 561289;
+pub const GPIO_CAN1_TX_1: u32 = 561164;
+pub const GPIO_CAN1_TX_2: u32 = 561177;
+pub const GPIO_CAN1_TX_3: u32 = 561201;
+pub const GPIO_CAN1_TX_4: u32 = 561277;
+pub const GPIO_CAN2_RX_1: u32 = 561180;
+pub const GPIO_CAN2_RX_2: u32 = 561173;
+pub const GPIO_CAN2_TX_1: u32 = 561181;
+pub const GPIO_CAN2_TX_2: u32 = 561174;
+pub const GPIO_DAC1_OUT_0: u32 = 786436;
+pub const GPIO_DAC2_OUT_0: u32 = 786437;
+pub const GPIO_DCMI_D0_1: u32 = 577545;
+pub const GPIO_DCMI_D0_2: u32 = 577574;
+pub const GPIO_DCMI_D0_3: u32 = 577657;
+pub const GPIO_DCMI_D1_1: u32 = 577546;
+pub const GPIO_DCMI_D1_2: u32 = 577575;
+pub const GPIO_DCMI_D1_3: u32 = 577658;
+pub const GPIO_DCMI_D2_1: u32 = 577576;
+pub const GPIO_DCMI_D2_2: u32 = 577600;
+pub const GPIO_DCMI_D2_3: u32 = 577642;
+pub const GPIO_DCMI_D2_4: u32 = 577659;
+pub const GPIO_DCMI_D3_1: u32 = 577577;
+pub const GPIO_DCMI_D3_2: u32 = 577601;
+pub const GPIO_DCMI_D3_3: u32 = 577643;
+pub const GPIO_DCMI_D3_4: u32 = 577660;
+pub const GPIO_DCMI_D4_1: u32 = 577579;
+pub const GPIO_DCMI_D4_2: u32 = 577604;
+pub const GPIO_DCMI_D4_3: u32 = 577662;
+pub const GPIO_DCMI_D5_1: u32 = 577558;
+pub const GPIO_DCMI_D5_2: u32 = 577587;
+pub const GPIO_DCMI_D5_3: u32 = 577668;
+pub const GPIO_DCMI_D6_1: u32 = 577560;
+pub const GPIO_DCMI_D6_2: u32 = 577605;
+pub const GPIO_DCMI_D6_3: u32 = 577670;
+pub const GPIO_DCMI_D7_1: u32 = 577561;
+pub const GPIO_DCMI_D7_2: u32 = 577606;
+pub const GPIO_DCMI_D7_3: u32 = 577671;
+pub const GPIO_DCMI_D8_1: u32 = 577578;
+pub const GPIO_DCMI_D8_2: u32 = 577654;
+pub const GPIO_DCMI_D8_3: u32 = 577665;
+pub const GPIO_DCMI_D9_1: u32 = 577580;
+pub const GPIO_DCMI_D9_2: u32 = 577655;
+pub const GPIO_DCMI_D9_3: u32 = 577666;
+pub const GPIO_DCMI_D10_1: u32 = 577557;
+pub const GPIO_DCMI_D10_2: u32 = 577590;
+pub const GPIO_DCMI_D10_3: u32 = 577667;
+pub const GPIO_DCMI_D11_1: u32 = 577586;
+pub const GPIO_DCMI_D11_2: u32 = 577626;
+pub const GPIO_DCMI_D11_3: u32 = 577663;
+pub const GPIO_DCMI_D12_1: u32 = 577627;
+pub const GPIO_DCMI_D12_2: u32 = 577638;
+pub const GPIO_DCMI_D13_1: u32 = 577647;
+pub const GPIO_DCMI_D13_2: u32 = 577639;
+pub const GPIO_DCMI_D13_3: u32 = 577664;
+pub const GPIO_DCMI_HSYNC_1: u32 = 577540;
+pub const GPIO_DCMI_HSYNC_2: u32 = 577656;
+pub const GPIO_DCMI_PIXCK_0: u32 = 577542;
+pub const GPIO_DCMI_VSYNC_1: u32 = 577559;
+pub const GPIO_DCMI_VSYNC_2: u32 = 577641;
+pub const GPIO_DCMI_VSYNC_3: u32 = 577669;
+pub const GPIO_ETH_MDC_0: u32 = 569377;
+pub const GPIO_ETH_MDIO_0: u32 = 569346;
+pub const GPIO_ETH_MII_COL_1: u32 = 569347;
+pub const GPIO_ETH_MII_COL_2: u32 = 569459;
+pub const GPIO_ETH_MII_CRS_1: u32 = 569344;
+pub const GPIO_ETH_MII_CRS_2: u32 = 569458;
+pub const GPIO_ETH_MII_RXD0_0: u32 = 569380;
+pub const GPIO_ETH_MII_RXD1_0: u32 = 569381;
+pub const GPIO_ETH_MII_RXD2_1: u32 = 569360;
+pub const GPIO_ETH_MII_RXD2_2: u32 = 569462;
+pub const GPIO_ETH_MII_RXD3_1: u32 = 569361;
+pub const GPIO_ETH_MII_RXD3_2: u32 = 569463;
+pub const GPIO_ETH_MII_RX_CLK_0: u32 = 569345;
+pub const GPIO_ETH_MII_RX_DV_0: u32 = 569351;
+pub const GPIO_ETH_MII_RX_ER_1: u32 = 569370;
+pub const GPIO_ETH_MII_RX_ER_2: u32 = 569482;
+pub const GPIO_ETH_MII_TXD0_1: u32 = 569372;
+pub const GPIO_ETH_MII_TXD0_2: u32 = 569453;
+pub const GPIO_ETH_MII_TXD1_1: u32 = 569373;
+pub const GPIO_ETH_MII_TXD1_2: u32 = 569454;
+pub const GPIO_ETH_MII_TXD2_0: u32 = 569378;
+pub const GPIO_ETH_MII_TXD3_1: u32 = 569368;
+pub const GPIO_ETH_MII_TXD3_2: u32 = 569410;
+pub const GPIO_ETH_MII_TX_CLK_0: u32 = 569379;
+pub const GPIO_ETH_MII_TX_EN_1: u32 = 569371;
+pub const GPIO_ETH_MII_TX_EN_2: u32 = 569451;
+pub const GPIO_ETH_PPS_OUT_1: u32 = 569365;
+pub const GPIO_ETH_PPS_OUT_2: u32 = 569448;
+pub const GPIO_ETH_RMII_CRS_DV_0: u32 = 569351;
+pub const GPIO_ETH_RMII_REF_CLK_0: u32 = 569345;
+pub const GPIO_ETH_RMII_RXD0_0: u32 = 569380;
+pub const GPIO_ETH_RMII_RXD1_0: u32 = 569381;
+pub const GPIO_ETH_RMII_TXD0_1: u32 = 569372;
+pub const GPIO_ETH_RMII_TXD0_2: u32 = 569453;
+pub const GPIO_ETH_RMII_TXD1_1: u32 = 569373;
+pub const GPIO_ETH_RMII_TXD1_2: u32 = 569454;
+pub const GPIO_ETH_RMII_TX_EN_1: u32 = 569371;
+pub const GPIO_ETH_RMII_TX_EN_2: u32 = 569451;
+pub const GPIO_PA0_EVENTOUT_0: u32 = 585728;
+pub const GPIO_PA1_EVENTOUT_0: u32 = 585729;
+pub const GPIO_PA2_EVENTOUT_0: u32 = 585730;
+pub const GPIO_PA3_EVENTOUT_0: u32 = 585731;
+pub const GPIO_PA4_EVENTOUT_0: u32 = 585732;
+pub const GPIO_PA5_EVENTOUT_0: u32 = 585733;
+pub const GPIO_PA6_EVENTOUT_0: u32 = 585734;
+pub const GPIO_PA7_EVENTOUT_0: u32 = 585735;
+pub const GPIO_PA8_EVENTOUT_0: u32 = 585736;
+pub const GPIO_PA9_EVENTOUT_0: u32 = 585737;
+pub const GPIO_PA10_EVENTOUT_0: u32 = 585738;
+pub const GPIO_PA11_EVENTOUT_0: u32 = 585739;
+pub const GPIO_PA12_EVENTOUT_0: u32 = 585740;
+pub const GPIO_PA13_EVENTOUT_0: u32 = 585741;
+pub const GPIO_PA14_EVENTOUT_0: u32 = 585742;
+pub const GPIO_PA15_EVENTOUT_0: u32 = 585743;
+pub const GPIO_PB0_EVENTOUT_0: u32 = 585744;
+pub const GPIO_PB1_EVENTOUT_0: u32 = 585745;
+pub const GPIO_PB2_EVENTOUT_0: u32 = 585746;
+pub const GPIO_PB3_EVENTOUT_0: u32 = 585747;
+pub const GPIO_PB4_EVENTOUT_0: u32 = 585748;
+pub const GPIO_PB5_EVENTOUT_0: u32 = 585749;
+pub const GPIO_PB6_EVENTOUT_0: u32 = 585750;
+pub const GPIO_PB7_EVENTOUT_0: u32 = 585751;
+pub const GPIO_PB8_EVENTOUT_0: u32 = 585752;
+pub const GPIO_PB9_EVENTOUT_0: u32 = 585753;
+pub const GPIO_PB10_EVENTOUT_0: u32 = 585754;
+pub const GPIO_PB11_EVENTOUT_0: u32 = 585755;
+pub const GPIO_PB12_EVENTOUT_0: u32 = 585756;
+pub const GPIO_PB13_EVENTOUT_0: u32 = 585757;
+pub const GPIO_PB14_EVENTOUT_0: u32 = 585758;
+pub const GPIO_PB15_EVENTOUT_0: u32 = 585759;
+pub const GPIO_PC0_EVENTOUT_0: u32 = 585760;
+pub const GPIO_PC1_EVENTOUT_0: u32 = 585761;
+pub const GPIO_PC2_EVENTOUT_0: u32 = 585762;
+pub const GPIO_PC3_EVENTOUT_0: u32 = 585763;
+pub const GPIO_PC4_EVENTOUT_0: u32 = 585764;
+pub const GPIO_PC5_EVENTOUT_0: u32 = 585765;
+pub const GPIO_PC6_EVENTOUT_0: u32 = 585766;
+pub const GPIO_PC7_EVENTOUT_0: u32 = 585767;
+pub const GPIO_PC8_EVENTOUT_0: u32 = 585768;
+pub const GPIO_PC9_EVENTOUT_0: u32 = 585769;
+pub const GPIO_PC10_EVENTOUT_0: u32 = 585770;
+pub const GPIO_PC11_EVENTOUT_0: u32 = 585771;
+pub const GPIO_PC12_EVENTOUT_0: u32 = 585772;
+pub const GPIO_PC13_EVENTOUT_0: u32 = 585773;
+pub const GPIO_PC14_EVENTOUT_0: u32 = 585774;
+pub const GPIO_PC15_EVENTOUT_0: u32 = 585775;
+pub const GPIO_PD0_EVENTOUT_0: u32 = 585776;
+pub const GPIO_PD1_EVENTOUT_0: u32 = 585777;
+pub const GPIO_PD2_EVENTOUT_0: u32 = 585778;
+pub const GPIO_PD3_EVENTOUT_0: u32 = 585779;
+pub const GPIO_PD4_EVENTOUT_0: u32 = 585780;
+pub const GPIO_PD5_EVENTOUT_0: u32 = 585781;
+pub const GPIO_PD6_EVENTOUT_0: u32 = 585782;
+pub const GPIO_PD7_EVENTOUT_0: u32 = 585783;
+pub const GPIO_PD8_EVENTOUT_0: u32 = 585784;
+pub const GPIO_PD9_EVENTOUT_0: u32 = 585785;
+pub const GPIO_PD10_EVENTOUT_0: u32 = 585786;
+pub const GPIO_PD11_EVENTOUT_0: u32 = 585787;
+pub const GPIO_PD12_EVENTOUT_0: u32 = 585788;
+pub const GPIO_PD13_EVENTOUT_0: u32 = 585789;
+pub const GPIO_PD14_EVENTOUT_0: u32 = 585790;
+pub const GPIO_PD15_EVENTOUT_0: u32 = 585791;
+pub const GPIO_PE0_EVENTOUT_0: u32 = 585792;
+pub const GPIO_PE1_EVENTOUT_0: u32 = 585793;
+pub const GPIO_PE2_EVENTOUT_0: u32 = 585794;
+pub const GPIO_PE3_EVENTOUT_0: u32 = 585795;
+pub const GPIO_PE4_EVENTOUT_0: u32 = 585796;
+pub const GPIO_PE5_EVENTOUT_0: u32 = 585797;
+pub const GPIO_PE6_EVENTOUT_0: u32 = 585798;
+pub const GPIO_PE7_EVENTOUT_0: u32 = 585799;
+pub const GPIO_PE8_EVENTOUT_0: u32 = 585800;
+pub const GPIO_PE9_EVENTOUT_0: u32 = 585801;
+pub const GPIO_PE10_EVENTOUT_0: u32 = 585802;
+pub const GPIO_PE11_EVENTOUT_0: u32 = 585803;
+pub const GPIO_PE12_EVENTOUT_0: u32 = 585804;
+pub const GPIO_PE13_EVENTOUT_0: u32 = 585805;
+pub const GPIO_PE14_EVENTOUT_0: u32 = 585806;
+pub const GPIO_PE15_EVENTOUT_0: u32 = 585807;
+pub const GPIO_PF0_EVENTOUT_0: u32 = 585808;
+pub const GPIO_PF1_EVENTOUT_0: u32 = 585809;
+pub const GPIO_PF2_EVENTOUT_0: u32 = 585810;
+pub const GPIO_PF3_EVENTOUT_0: u32 = 585811;
+pub const GPIO_PF4_EVENTOUT_0: u32 = 585812;
+pub const GPIO_PF5_EVENTOUT_0: u32 = 585813;
+pub const GPIO_PF6_EVENTOUT_0: u32 = 585814;
+pub const GPIO_PF7_EVENTOUT_0: u32 = 585815;
+pub const GPIO_PF8_EVENTOUT_0: u32 = 585816;
+pub const GPIO_PF9_EVENTOUT_0: u32 = 585817;
+pub const GPIO_PF10_EVENTOUT_0: u32 = 585818;
+pub const GPIO_PF11_EVENTOUT_0: u32 = 585819;
+pub const GPIO_PF12_EVENTOUT_0: u32 = 585820;
+pub const GPIO_PF13_EVENTOUT_0: u32 = 585821;
+pub const GPIO_PF14_EVENTOUT_0: u32 = 585822;
+pub const GPIO_PF15_EVENTOUT_0: u32 = 585823;
+pub const GPIO_PG0_EVENTOUT_0: u32 = 585824;
+pub const GPIO_PG1_EVENTOUT_0: u32 = 585825;
+pub const GPIO_PG2_EVENTOUT_0: u32 = 585826;
+pub const GPIO_PG3_EVENTOUT_0: u32 = 585827;
+pub const GPIO_PG4_EVENTOUT_0: u32 = 585828;
+pub const GPIO_PG5_EVENTOUT_0: u32 = 585829;
+pub const GPIO_PG6_EVENTOUT_0: u32 = 585830;
+pub const GPIO_PG7_EVENTOUT_0: u32 = 585831;
+pub const GPIO_PG8_EVENTOUT_0: u32 = 585832;
+pub const GPIO_PG9_EVENTOUT_0: u32 = 585833;
+pub const GPIO_PG10_EVENTOUT_0: u32 = 585834;
+pub const GPIO_PG11_EVENTOUT_0: u32 = 585835;
+pub const GPIO_PG12_EVENTOUT_0: u32 = 585836;
+pub const GPIO_PG13_EVENTOUT_0: u32 = 585837;
+pub const GPIO_PG14_EVENTOUT_0: u32 = 585838;
+pub const GPIO_PG15_EVENTOUT_0: u32 = 585839;
+pub const GPIO_PH0_EVENTOUT_0: u32 = 585840;
+pub const GPIO_PH1_EVENTOUT_0: u32 = 585841;
+pub const GPIO_PH2_EVENTOUT_0: u32 = 585842;
+pub const GPIO_PH3_EVENTOUT_0: u32 = 585843;
+pub const GPIO_PH4_EVENTOUT_0: u32 = 585844;
+pub const GPIO_PH5_EVENTOUT_0: u32 = 585845;
+pub const GPIO_PH6_EVENTOUT_0: u32 = 585846;
+pub const GPIO_PH7_EVENTOUT_0: u32 = 585847;
+pub const GPIO_PH8_EVENTOUT_0: u32 = 585848;
+pub const GPIO_PH9_EVENTOUT_0: u32 = 585849;
+pub const GPIO_PH10_EVENTOUT_0: u32 = 585850;
+pub const GPIO_PH11_EVENTOUT_0: u32 = 585851;
+pub const GPIO_PH12_EVENTOUT_0: u32 = 585852;
+pub const GPIO_PH13_EVENTOUT_0: u32 = 585853;
+pub const GPIO_PH14_EVENTOUT_0: u32 = 585854;
+pub const GPIO_PH15_EVENTOUT_0: u32 = 585855;
+pub const GPIO_PI0_EVENTOUT_0: u32 = 585856;
+pub const GPIO_PI1_EVENTOUT_0: u32 = 585857;
+pub const GPIO_PI2_EVENTOUT_0: u32 = 585858;
+pub const GPIO_PI3_EVENTOUT_0: u32 = 585859;
+pub const GPIO_PI4_EVENTOUT_0: u32 = 585860;
+pub const GPIO_PI5_EVENTOUT_0: u32 = 585861;
+pub const GPIO_PI6_EVENTOUT_0: u32 = 585862;
+pub const GPIO_PI7_EVENTOUT_0: u32 = 585863;
+pub const GPIO_PI8_EVENTOUT_0: u32 = 585864;
+pub const GPIO_PI9_EVENTOUT_0: u32 = 585865;
+pub const GPIO_PI10_EVENTOUT_0: u32 = 585866;
+pub const GPIO_PI11_EVENTOUT_0: u32 = 585867;
+pub const GPIO_PI12_EVENTOUT_0: u32 = 585868;
+pub const GPIO_PI13_EVENTOUT_0: u32 = 585869;
+pub const GPIO_PI14_EVENTOUT_0: u32 = 585870;
+pub const GPIO_PI15_EVENTOUT_0: u32 = 585871;
+pub const GPIO_PJ0_EVENTOUT_0: u32 = 585872;
+pub const GPIO_PJ1_EVENTOUT_0: u32 = 585873;
+pub const GPIO_PJ2_EVENTOUT_0: u32 = 585874;
+pub const GPIO_PJ3_EVENTOUT_0: u32 = 585875;
+pub const GPIO_PJ4_EVENTOUT_0: u32 = 585876;
+pub const GPIO_PJ5_EVENTOUT_0: u32 = 585877;
+pub const GPIO_PJ6_EVENTOUT_0: u32 = 585878;
+pub const GPIO_PJ7_EVENTOUT_0: u32 = 585879;
+pub const GPIO_PJ8_EVENTOUT_0: u32 = 585880;
+pub const GPIO_PJ9_EVENTOUT_0: u32 = 585881;
+pub const GPIO_PJ10_EVENTOUT_0: u32 = 585882;
+pub const GPIO_PJ11_EVENTOUT_0: u32 = 585883;
+pub const GPIO_PJ12_EVENTOUT_0: u32 = 585884;
+pub const GPIO_PJ13_EVENTOUT_0: u32 = 585885;
+pub const GPIO_PJ14_EVENTOUT_0: u32 = 585886;
+pub const GPIO_PJ15_EVENTOUT_0: u32 = 585887;
+pub const GPIO_PK0_EVENTOUT_0: u32 = 585888;
+pub const GPIO_PK1_EVENTOUT_0: u32 = 585889;
+pub const GPIO_PK2_EVENTOUT_0: u32 = 585890;
+pub const GPIO_PK3_EVENTOUT_0: u32 = 585891;
+pub const GPIO_PK4_EVENTOUT_0: u32 = 585892;
+pub const GPIO_PK5_EVENTOUT_0: u32 = 585893;
+pub const GPIO_PK6_EVENTOUT_0: u32 = 585894;
+pub const GPIO_PK7_EVENTOUT_0: u32 = 585895;
+pub const GPIO_FMC_A0_0: u32 = 573520;
+pub const GPIO_FMC_A1_0: u32 = 573521;
+pub const GPIO_FMC_A2_0: u32 = 573522;
+pub const GPIO_FMC_A3_0: u32 = 573523;
+pub const GPIO_FMC_A4_0: u32 = 573524;
+pub const GPIO_FMC_A5_0: u32 = 573525;
+pub const GPIO_FMC_A6_0: u32 = 573532;
+pub const GPIO_FMC_A7_0: u32 = 573533;
+pub const GPIO_FMC_A8_0: u32 = 573534;
+pub const GPIO_FMC_A9_0: u32 = 573535;
+pub const GPIO_FMC_A10_0: u32 = 573536;
+pub const GPIO_FMC_A11_0: u32 = 573537;
+pub const GPIO_FMC_A12_0: u32 = 573538;
+pub const GPIO_FMC_A13_0: u32 = 573539;
+pub const GPIO_FMC_A14_0: u32 = 573540;
+pub const GPIO_FMC_A15_0: u32 = 573541;
+pub const GPIO_FMC_A16_0: u32 = 573499;
+pub const GPIO_FMC_A17_0: u32 = 573500;
+pub const GPIO_FMC_A18_0: u32 = 573501;
+pub const GPIO_FMC_A19_0: u32 = 573507;
+pub const GPIO_FMC_A20_0: u32 = 573508;
+pub const GPIO_FMC_A21_0: u32 = 573509;
+pub const GPIO_FMC_A22_0: u32 = 573510;
+pub const GPIO_FMC_A23_0: u32 = 573506;
+pub const GPIO_FMC_A24_0: u32 = 573549;
+pub const GPIO_FMC_A25_0: u32 = 573550;
+pub const GPIO_FMC_ALE_0: u32 = 573500;
+pub const GPIO_FMC_BA0_0: u32 = 573540;
+pub const GPIO_FMC_BA1_0: u32 = 573541;
+pub const GPIO_FMC_CLE_0: u32 = 573499;
+pub const GPIO_FMC_CLK_0: u32 = 573491;
+pub const GPIO_FMC_D0_0: u32 = 573502;
+pub const GPIO_FMC_D1_0: u32 = 573503;
+pub const GPIO_FMC_D2_0: u32 = 573488;
+pub const GPIO_FMC_D3_0: u32 = 573489;
+pub const GPIO_FMC_D4_0: u32 = 573511;
+pub const GPIO_FMC_D5_0: u32 = 573512;
+pub const GPIO_FMC_D6_0: u32 = 573513;
+pub const GPIO_FMC_D7_0: u32 = 573514;
+pub const GPIO_FMC_D8_0: u32 = 573515;
+pub const GPIO_FMC_D9_0: u32 = 573516;
+pub const GPIO_FMC_D10_0: u32 = 573517;
+pub const GPIO_FMC_D11_0: u32 = 573518;
+pub const GPIO_FMC_D12_0: u32 = 573519;
+pub const GPIO_FMC_D13_0: u32 = 573496;
+pub const GPIO_FMC_D14_0: u32 = 573497;
+pub const GPIO_FMC_D15_0: u32 = 573498;
+pub const GPIO_FMC_D16_0: u32 = 573560;
+pub const GPIO_FMC_D17_0: u32 = 573561;
+pub const GPIO_FMC_D18_0: u32 = 573562;
+pub const GPIO_FMC_D19_0: u32 = 573563;
+pub const GPIO_FMC_D20_0: u32 = 573564;
+pub const GPIO_FMC_D21_0: u32 = 573565;
+pub const GPIO_FMC_D22_0: u32 = 573566;
+pub const GPIO_FMC_D23_0: u32 = 573567;
+pub const GPIO_FMC_D24_0: u32 = 573568;
+pub const GPIO_FMC_D25_0: u32 = 573569;
+pub const GPIO_FMC_D26_0: u32 = 573570;
+pub const GPIO_FMC_D27_0: u32 = 573571;
+pub const GPIO_FMC_D28_0: u32 = 573574;
+pub const GPIO_FMC_D29_0: u32 = 573575;
+pub const GPIO_FMC_D30_0: u32 = 573577;
+pub const GPIO_FMC_D31_0: u32 = 573578;
+pub const GPIO_FMC_INT_0: u32 = 573543;
+pub const GPIO_FMC_NBL0_0: u32 = 573504;
+pub const GPIO_FMC_NBL1_0: u32 = 573505;
+pub const GPIO_FMC_NBL2_0: u32 = 573572;
+pub const GPIO_FMC_NBL3_0: u32 = 573573;
+pub const GPIO_FMC_NCE_0: u32 = 573545;
+pub const GPIO_FMC_NE1_0: u32 = 573495;
+pub const GPIO_FMC_NE2_0: u32 = 573545;
+pub const GPIO_FMC_NE3_0: u32 = 573546;
+pub const GPIO_FMC_NE4_0: u32 = 573548;
+pub const GPIO_FMC_NL_0: u32 = 573463;
+pub const GPIO_FMC_NOE_0: u32 = 573492;
+pub const GPIO_FMC_NWAIT_0: u32 = 573494;
+pub const GPIO_FMC_NWE_0: u32 = 573493;
+pub const GPIO_FMC_SDCKE0_1: u32 = 573475;
+pub const GPIO_FMC_SDCKE0_2: u32 = 573477;
+pub const GPIO_FMC_SDCKE0_3: u32 = 573554;
+pub const GPIO_FMC_SDCKE1_1: u32 = 573461;
+pub const GPIO_FMC_SDCKE1_2: u32 = 573559;
+pub const GPIO_FMC_SDCLK_0: u32 = 573544;
+pub const GPIO_FMC_SDNCAS_0: u32 = 573551;
+pub const GPIO_FMC_SDNE0_1: u32 = 573474;
+pub const GPIO_FMC_SDNE0_2: u32 = 573476;
+pub const GPIO_FMC_SDNE0_3: u32 = 573555;
+pub const GPIO_FMC_SDNE1_1: u32 = 573462;
+pub const GPIO_FMC_SDNE1_2: u32 = 573558;
+pub const GPIO_FMC_SDNRAS_0: u32 = 573531;
+pub const GPIO_FMC_SDNWE_1: u32 = 573447;
+pub const GPIO_FMC_SDNWE_2: u32 = 573472;
+pub const GPIO_FMC_SDNWE_3: u32 = 573557;
+pub const GPIO_HDMICEC_1: u32 = 536598;
+pub const GPIO_HDMICEC_2: u32 = 540687;
+pub const GPIO_I2C1_SCL_1: u32 = 541206;
+pub const GPIO_I2C1_SCL_2: u32 = 541208;
+pub const GPIO_I2C1_SDA_1: u32 = 541207;
+pub const GPIO_I2C1_SDA_2: u32 = 541209;
+pub const GPIO_I2C1_SMBA_0: u32 = 540693;
+pub const GPIO_I2C2_SCL_1: u32 = 541210;
+pub const GPIO_I2C2_SCL_2: u32 = 541265;
+pub const GPIO_I2C2_SCL_3: u32 = 541300;
+pub const GPIO_I2C2_SDA_1: u32 = 541211;
+pub const GPIO_I2C2_SDA_2: u32 = 541264;
+pub const GPIO_I2C2_SDA_3: u32 = 541301;
+pub const GPIO_I2C2_SMBA_1: u32 = 540700;
+pub const GPIO_I2C2_SMBA_2: u32 = 540754;
+pub const GPIO_I2C2_SMBA_3: u32 = 540790;
+pub const GPIO_I2C3_SCL_1: u32 = 541192;
+pub const GPIO_I2C3_SCL_2: u32 = 541303;
+pub const GPIO_I2C3_SDA_1: u32 = 541225;
+pub const GPIO_I2C3_SDA_2: u32 = 541304;
+pub const GPIO_I2C3_SMBA_1: u32 = 540681;
+pub const GPIO_I2C3_SMBA_2: u32 = 540793;
+pub const GPIO_I2C4_SCL_1: u32 = 541244;
+pub const GPIO_I2C4_SCL_2: u32 = 541278;
+pub const GPIO_I2C4_SCL_3: u32 = 541307;
+pub const GPIO_I2C4_SDA_1: u32 = 541245;
+pub const GPIO_I2C4_SDA_2: u32 = 541279;
+pub const GPIO_I2C4_SDA_3: u32 = 541308;
+pub const GPIO_I2C4_SMBA_1: u32 = 540731;
+pub const GPIO_I2C4_SMBA_2: u32 = 540765;
+pub const GPIO_I2C4_SMBA_3: u32 = 540794;
+pub const GPIO_I2S1_CK_1: u32 = 544773;
+pub const GPIO_I2S1_CK_2: u32 = 544787;
+pub const GPIO_I2S1_MCK_0: u32 = 544804;
+pub const GPIO_I2S1_SD_1: u32 = 544775;
+pub const GPIO_I2S1_SD_2: u32 = 544789;
+pub const GPIO_I2S1_WS_1: u32 = 544783;
+pub const GPIO_I2S1_WS_2: u32 = 544772;
+pub const GPIO_I2S2_CK_1: u32 = 544777;
+pub const GPIO_I2S2_CK_2: u32 = 544794;
+pub const GPIO_I2S2_CK_3: u32 = 544797;
+pub const GPIO_I2S2_CK_4: u32 = 544819;
+pub const GPIO_I2S2_CK_5: u32 = 544897;
+pub const GPIO_I2S2_MCK_0: u32 = 544806;
+pub const GPIO_I2S2_SD_1: u32 = 544799;
+pub const GPIO_I2S2_SD_2: u32 = 544801;
+pub const GPIO_I2S2_SD_3: u32 = 544803;
+pub const GPIO_I2S2_SD_4: u32 = 544899;
+pub const GPIO_I2S2_WS_1: u32 = 544796;
+pub const GPIO_I2S2_WS_2: u32 = 544793;
+pub const GPIO_I2S2_WS_3: u32 = 544896;
+pub const GPIO_I2S2_WS_4: u32 = 552980;
+pub const GPIO_I2S3_CK_1: u32 = 548883;
+pub const GPIO_I2S3_CK_2: u32 = 548906;
+pub const GPIO_I2S3_MCK_0: u32 = 548903;
+pub const GPIO_I2S3_SD_1: u32 = 544822;
+pub const GPIO_I2S3_SD_2: u32 = 548885;
+pub const GPIO_I2S3_SD_3: u32 = 548908;
+pub const GPIO_I2S3_SD_4: u32 = 552978;
+pub const GPIO_I2S3_WS_1: u32 = 548879;
+pub const GPIO_I2S3_WS_2: u32 = 548868;
+pub const GPIO_I2S_CKIN_0: u32 = 544809;
+pub const GPIO_JTCK_0: u32 = 524302;
+pub const GPIO_JTDI_0: u32 = 524303;
+pub const GPIO_JTDO_0: u32 = 524307;
+pub const GPIO_JTMS_0: u32 = 524301;
+pub const GPIO_NJTRST_0: u32 = 524308;
+pub const GPIO_SWCLK_0: u32 = 524302;
+pub const GPIO_SWDIO_0: u32 = 524301;
+pub const GPIO_LTDC_R0_1: u32 = 647277;
+pub const GPIO_LTDC_R0_2: u32 = 647282;
+pub const GPIO_LTDC_R0_3: u32 = 647311;
+pub const GPIO_LTDC_R1_1: u32 = 647170;
+pub const GPIO_LTDC_R1_2: u32 = 647283;
+pub const GPIO_LTDC_R1_3: u32 = 647312;
+pub const GPIO_LTDC_R2_1: u32 = 647169;
+pub const GPIO_LTDC_R2_2: u32 = 647210;
+pub const GPIO_LTDC_R2_3: u32 = 647288;
+pub const GPIO_LTDC_R2_4: u32 = 647313;
+pub const GPIO_LTDC_R3_2: u32 = 647289;
+pub const GPIO_LTDC_R3_3: u32 = 647314;
+pub const GPIO_LTDC_R3_1: u32 = 626704;
+pub const GPIO_LTDC_R4_1: u32 = 647179;
+pub const GPIO_LTDC_R4_2: u32 = 647173;
+pub const GPIO_LTDC_R4_3: u32 = 647290;
+pub const GPIO_LTDC_R4_4: u32 = 647315;
+pub const GPIO_LTDC_R5_1: u32 = 647180;
+pub const GPIO_LTDC_R5_2: u32 = 647200;
+pub const GPIO_LTDC_R5_3: u32 = 647291;
+pub const GPIO_LTDC_R5_4: u32 = 647316;
+pub const GPIO_LTDC_R6_1: u32 = 647176;
+pub const GPIO_LTDC_R6_2: u32 = 626705;
+pub const GPIO_LTDC_R6_3: u32 = 647292;
+pub const GPIO_LTDC_R6_4: u32 = 647317;
+pub const GPIO_LTDC_R7_1: u32 = 647247;
+pub const GPIO_LTDC_R7_2: u32 = 647270;
+pub const GPIO_LTDC_R7_3: u32 = 647318;
+pub const GPIO_LTDC_B0_1: u32 = 647236;
+pub const GPIO_LTDC_B0_2: u32 = 647278;
+pub const GPIO_LTDC_B0_3: u32 = 647324;
+pub const GPIO_LTDC_B1_1: u32 = 647276;
+pub const GPIO_LTDC_B1_2: u32 = 647325;
+pub const GPIO_LTDC_B2_1: u32 = 647222;
+pub const GPIO_LTDC_B2_2: u32 = 647274;
+pub const GPIO_LTDC_B2_3: u32 = 647326;
+pub const GPIO_LTDC_B3_1: u32 = 647226;
+pub const GPIO_LTDC_B3_2: u32 = 647275;
+pub const GPIO_LTDC_B3_3: u32 = 647327;
+pub const GPIO_LTDC_B4_1: u32 = 647244;
+pub const GPIO_LTDC_B4_2: u32 = 647300;
+pub const GPIO_LTDC_B4_3: u32 = 647331;
+pub const GPIO_LTDC_B4_4: u32 = 626796;
+pub const GPIO_LTDC_B5_1: u32 = 647171;
+pub const GPIO_LTDC_B5_2: u32 = 647301;
+pub const GPIO_LTDC_B5_3: u32 = 647332;
+pub const GPIO_LTDC_B6_1: u32 = 647192;
+pub const GPIO_LTDC_B6_2: u32 = 647302;
+pub const GPIO_LTDC_B6_3: u32 = 647333;
+pub const GPIO_LTDC_B7_1: u32 = 647193;
+pub const GPIO_LTDC_B7_2: u32 = 647303;
+pub const GPIO_LTDC_B7_3: u32 = 647334;
+pub const GPIO_LTDC_G0_1: u32 = 647237;
+pub const GPIO_LTDC_G0_2: u32 = 647319;
+pub const GPIO_LTDC_G1_1: u32 = 647238;
+pub const GPIO_LTDC_G1_2: u32 = 647320;
+pub const GPIO_LTDC_G2_1: u32 = 647174;
+pub const GPIO_LTDC_G2_2: u32 = 647293;
+pub const GPIO_LTDC_G2_3: u32 = 647321;
+pub const GPIO_LTDC_G3_1: u32 = 647243;
+pub const GPIO_LTDC_G3_2: u32 = 626794;
+pub const GPIO_LTDC_G3_3: u32 = 647294;
+pub const GPIO_LTDC_G3_4: u32 = 647322;
+pub const GPIO_LTDC_G4_1: u32 = 647194;
+pub const GPIO_LTDC_G4_2: u32 = 647295;
+pub const GPIO_LTDC_G4_3: u32 = 647323;
+pub const GPIO_LTDC_G5_1: u32 = 647195;
+pub const GPIO_LTDC_G5_2: u32 = 647296;
+pub const GPIO_LTDC_G5_3: u32 = 647328;
+pub const GPIO_LTDC_G6_1: u32 = 647207;
+pub const GPIO_LTDC_G6_2: u32 = 647297;
+pub const GPIO_LTDC_G6_3: u32 = 647329;
+pub const GPIO_LTDC_G7_1: u32 = 647219;
+pub const GPIO_LTDC_G7_2: u32 = 647298;
+pub const GPIO_LTDC_G7_3: u32 = 647330;
+pub const GPIO_LTDC_HSYNC_1: u32 = 647206;
+pub const GPIO_LTDC_HSYNC_2: u32 = 647306;
+pub const GPIO_LTDC_HSYNC_3: u32 = 647308;
+pub const GPIO_LTDC_VSYNC_1: u32 = 647172;
+pub const GPIO_LTDC_VSYNC_2: u32 = 647305;
+pub const GPIO_LTDC_VSYNC_3: u32 = 647309;
+pub const GPIO_LTDC_CLK_1: u32 = 647246;
+pub const GPIO_LTDC_CLK_2: u32 = 647271;
+pub const GPIO_LTDC_CLK_3: u32 = 647310;
+pub const GPIO_LTDC_DE_1: u32 = 647245;
+pub const GPIO_LTDC_DE_2: u32 = 647258;
+pub const GPIO_LTDC_DE_3: u32 = 647335;
+pub const GPIO_LPTIM1_ETR_1: u32 = 536640;
+pub const GPIO_LPTIM1_ETR_2: u32 = 536686;
+pub const GPIO_LPTIM1_IN1_1: u32 = 536636;
+pub const GPIO_LPTIM1_IN1_2: u32 = 536684;
+pub const GPIO_LPTIM1_IN2_3: u32 = 536641;
+pub const GPIO_LPTIM1_IN2_4: u32 = 536690;
+pub const GPIO_LPTIM1_OUT_1: u32 = 536637;
+pub const GPIO_LPTIM1_OUT_2: u32 = 536685;
+pub const GPIO_MCO1_0: u32 = 524296;
+pub const GPIO_MCO2_0: u32 = 524329;
+pub const GPIO_OTGFS_DM_0: u32 = 565259;
+pub const GPIO_OTGFS_DP_0: u32 = 565260;
+pub const GPIO_OTGFS_ID_0: u32 = 631306;
+pub const GPIO_OTGFS_SOF_0: u32 = 565256;
+pub const GPIO_OTGHSFS_DM_0: u32 = 573470;
+pub const GPIO_OTGHSFS_DP_0: u32 = 573471;
+pub const GPIO_OTGHSFS_ID_0: u32 = 639516;
+pub const GPIO_OTGHS_SOF_0: u32 = 573444;
+pub const GPIO_OTGHS_ULPI_CK_0: u32 = 565253;
+pub const GPIO_OTGHS_ULPI_D0_0: u32 = 565251;
+pub const GPIO_OTGHS_ULPI_D1_0: u32 = 565264;
+pub const GPIO_OTGHS_ULPI_D2_0: u32 = 565265;
+pub const GPIO_OTGHS_ULPI_D3_0: u32 = 565274;
+pub const GPIO_OTGHS_ULPI_D4_0: u32 = 565275;
+pub const GPIO_OTGHS_ULPI_D5_0: u32 = 565276;
+pub const GPIO_OTGHS_ULPI_D6_0: u32 = 565277;
+pub const GPIO_OTGHS_ULPI_D7_0: u32 = 565269;
+pub const GPIO_OTGHS_ULPI_DIR_1: u32 = 565282;
+pub const GPIO_OTGHS_ULPI_DIR_2: u32 = 565387;
+pub const GPIO_OTGHS_ULPI_NXT_1: u32 = 565283;
+pub const GPIO_OTGHS_ULPI_NXT_2: u32 = 565364;
+pub const GPIO_OTGHS_ULPI_STP_0: u32 = 565280;
+pub const GPIO_QUADSPI_BK1_IO0_1: u32 = 565336;
+pub const GPIO_QUADSPI_BK1_IO0_2: u32 = 561193;
+pub const GPIO_QUADSPI_BK1_IO0_3: u32 = 561211;
+pub const GPIO_QUADSPI_BK1_IO1_1: u32 = 565337;
+pub const GPIO_QUADSPI_BK1_IO1_2: u32 = 561194;
+pub const GPIO_QUADSPI_BK1_IO1_3: u32 = 561212;
+pub const GPIO_QUADSPI_BK1_IO2_1: u32 = 561218;
+pub const GPIO_QUADSPI_BK1_IO2_2: u32 = 561239;
+pub const GPIO_QUADSPI_BK1_IO3_1: u32 = 561153;
+pub const GPIO_QUADSPI_BK1_IO3_2: u32 = 561213;
+pub const GPIO_QUADSPI_BK1_IO3_3: u32 = 561238;
+pub const GPIO_QUADSPI_BK1_NCS_0: u32 = 565270;
+pub const GPIO_QUADSPI_BK2_IO0_1: u32 = 565319;
+pub const GPIO_QUADSPI_BK2_IO0_2: u32 = 561266;
+pub const GPIO_QUADSPI_BK2_IO1_1: u32 = 565320;
+pub const GPIO_QUADSPI_BK2_IO1_2: u32 = 561267;
+pub const GPIO_QUADSPI_BK2_IO2_1: u32 = 565321;
+pub const GPIO_QUADSPI_BK2_IO2_2: u32 = 561257;
+pub const GPIO_QUADSPI_BK2_IO3_1: u32 = 565322;
+pub const GPIO_QUADSPI_BK2_IO3_2: u32 = 561262;
+pub const GPIO_QUADSPI_BK2_NCS_0: u32 = 561195;
+pub const GPIO_QUADSPI_CLK_0: u32 = 561170;
+pub const GPIO_RTC_REFIN_0: u32 = 524319;
+pub const GPIO_SAI1_FS_A_0: u32 = 548932;
+pub const GPIO_SAI1_FS_B_0: u32 = 548953;
+pub const GPIO_SAI1_MCLK_A_0: u32 = 548930;
+pub const GPIO_SAI1_MCLK_B_0: u32 = 548951;
+pub const GPIO_SAI1_SCK_A_0: u32 = 548933;
+pub const GPIO_SAI1_SCK_B_0: u32 = 548952;
+pub const GPIO_SAI1_SD_A_1: u32 = 548882;
+pub const GPIO_SAI1_SD_A_2: u32 = 548897;
+pub const GPIO_SAI1_SD_A_3: u32 = 548918;
+pub const GPIO_SAI1_SD_A_4: u32 = 548934;
+pub const GPIO_SAI1_SD_B_1: u32 = 548931;
+pub const GPIO_SAI1_SD_B_2: u32 = 548950;
+pub const GPIO_SAI2_FS_A_1: u32 = 565308;
+pub const GPIO_SAI2_FS_A_2: u32 = 565383;
+pub const GPIO_SAI2_FS_B_1: u32 = 565325;
+pub const GPIO_SAI2_FS_B_2: u32 = 565353;
+pub const GPIO_SAI2_FS_B_3: u32 = 557068;
+pub const GPIO_SAI2_FS_B_4: u32 = 557088;
+pub const GPIO_SAI2_MCLK_A_1: u32 = 565312;
+pub const GPIO_SAI2_MCLK_A_2: u32 = 565380;
+pub const GPIO_SAI2_MCLK_B_1: u32 = 565249;
+pub const GPIO_SAI2_MCLK_B_2: u32 = 565326;
+pub const GPIO_SAI2_MCLK_B_3: u32 = 565318;
+pub const GPIO_SAI2_MCLK_B_4: u32 = 565363;
+pub const GPIO_SAI2_SCK_A_1: u32 = 565309;
+pub const GPIO_SAI2_SCK_A_2: u32 = 565381;
+pub const GPIO_SAI2_SCK_B_1: u32 = 565324;
+pub const GPIO_SAI2_SCK_B_2: u32 = 565362;
+pub const GPIO_SAI2_SCK_B_3: u32 = 557058;
+pub const GPIO_SAI2_SD_A_1: u32 = 565307;
+pub const GPIO_SAI2_SD_A_2: u32 = 565382;
+pub const GPIO_SAI2_SD_B_1: u32 = 565248;
+pub const GPIO_SAI2_SD_B_2: u32 = 565323;
+pub const GPIO_SAI2_SD_B_3: u32 = 565339;
+pub const GPIO_SAI2_SD_B_4: u32 = 565354;
+pub const GPIO_SDMMC1_CK_0: u32 = 573484;
+pub const GPIO_SDMMC1_CMD_0: u32 = 639026;
+pub const GPIO_SDMMC1_D0_0: u32 = 639016;
+pub const GPIO_SDMMC1_D1_0: u32 = 639017;
+pub const GPIO_SDMMC1_D2_0: u32 = 639018;
+pub const GPIO_SDMMC1_D3_0: u32 = 639019;
+pub const GPIO_SDMMC1_D4_0: u32 = 639000;
+pub const GPIO_SDMMC1_D5_0: u32 = 639001;
+pub const GPIO_SDMMC1_D6_0: u32 = 639014;
+pub const GPIO_SDMMC1_D7_0: u32 = 639015;
+pub const GPIO_SPDIFRX_IN0_1: u32 = 553067;
+pub const GPIO_SPDIFRX_IN0_2: u32 = 557111;
+pub const GPIO_SPDIFRX_IN1_1: u32 = 553068;
+pub const GPIO_SPDIFRX_IN1_2: u32 = 557112;
+pub const GPIO_SPDIFRX_IN2_1: u32 = 553064;
+pub const GPIO_SPDIFRX_IN2_2: u32 = 557092;
+pub const GPIO_SPDIFRX_IN3_1: u32 = 553065;
+pub const GPIO_SPDIFRX_IN3_2: u32 = 557093;
+pub const GPIO_SPI1_MISO_1: u32 = 544774;
+pub const GPIO_SPI1_MISO_2: u32 = 544788;
+pub const GPIO_SPI1_MOSI_1: u32 = 544775;
+pub const GPIO_SPI1_MOSI_2: u32 = 544789;
+pub const GPIO_SPI1_NSS_1: u32 = 544783;
+pub const GPIO_SPI1_NSS_2: u32 = 544772;
+pub const GPIO_SPI1_SCK_1: u32 = 544773;
+pub const GPIO_SPI1_SCK_2: u32 = 544787;
+pub const GPIO_SPI2_MISO_1: u32 = 544798;
+pub const GPIO_SPI2_MISO_2: u32 = 544802;
+pub const GPIO_SPI2_MISO_3: u32 = 544898;
+pub const GPIO_SPI2_MOSI_1: u32 = 544799;
+pub const GPIO_SPI2_MOSI_2: u32 = 544803;
+pub const GPIO_SPI2_MOSI_3: u32 = 544899;
+pub const GPIO_SPI2_NSS_1: u32 = 544796;
+pub const GPIO_SPI2_NSS_2: u32 = 544793;
+pub const GPIO_SPI2_NSS_3: u32 = 544896;
+pub const GPIO_SPI2_NSS_4: u32 = 552980;
+pub const GPIO_SPI2_SCK_1: u32 = 544777;
+pub const GPIO_SPI2_SCK_2: u32 = 544794;
+pub const GPIO_SPI2_SCK_3: u32 = 544797;
+pub const GPIO_SPI2_SCK_4: u32 = 544819;
+pub const GPIO_SPI2_SCK_5: u32 = 544897;
+pub const GPIO_SPI3_MISO_1: u32 = 548884;
+pub const GPIO_SPI3_MISO_2: u32 = 548907;
+pub const GPIO_SPI3_MOSI_1: u32 = 552978;
+pub const GPIO_SPI3_MOSI_2: u32 = 548885;
+pub const GPIO_SPI3_MOSI_3: u32 = 548908;
+pub const GPIO_SPI3_MOSI_4: u32 = 544822;
+pub const GPIO_SPI3_NSS_1: u32 = 548879;
+pub const GPIO_SPI3_NSS_2: u32 = 548868;
+pub const GPIO_SPI3_SCK_1: u32 = 548883;
+pub const GPIO_SPI3_SCK_2: u32 = 548906;
+pub const GPIO_SPI4_MISO_1: u32 = 544837;
+pub const GPIO_SPI4_MISO_2: u32 = 544845;
+pub const GPIO_SPI4_MOSI_1: u32 = 544838;
+pub const GPIO_SPI4_MOSI_2: u32 = 544846;
+pub const GPIO_SPI4_NSS_1: u32 = 544836;
+pub const GPIO_SPI4_NSS_2: u32 = 544843;
+pub const GPIO_SPI4_SCK_1: u32 = 544834;
+pub const GPIO_SPI4_SCK_2: u32 = 544844;
+pub const GPIO_SPI5_MISO_1: u32 = 544856;
+pub const GPIO_SPI5_MISO_2: u32 = 544887;
+pub const GPIO_SPI5_MOSI_1: u32 = 544857;
+pub const GPIO_SPI5_MOSI_2: u32 = 544859;
+pub const GPIO_SPI5_NSS_1: u32 = 544854;
+pub const GPIO_SPI5_NSS_2: u32 = 544885;
+pub const GPIO_SPI5_SCK_1: u32 = 544855;
+pub const GPIO_SPI5_SCK_2: u32 = 544886;
+pub const GPIO_SPI6_MISO_0: u32 = 544876;
+pub const GPIO_SPI6_MOSI_0: u32 = 544878;
+pub const GPIO_SPI6_NSS_0: u32 = 544872;
+pub const GPIO_SPI6_SCK_0: u32 = 544877;
+pub const GPIO_TIM1_BKIN_1: u32 = 528390;
+pub const GPIO_TIM1_BKIN_2: u32 = 528412;
+pub const GPIO_TIM1_BKIN_3: u32 = 528463;
+pub const GPIO_TIM1_BKIN2_0: u32 = 528454;
+pub const GPIO_TIM1_CH1NOUT_1: u32 = 528391;
+pub const GPIO_TIM1_CH1NOUT_2: u32 = 528413;
+pub const GPIO_TIM1_CH1NOUT_3: u32 = 528456;
+pub const GPIO_TIM1_CH1IN_1: u32 = 528392;
+pub const GPIO_TIM1_CH1IN_2: u32 = 528457;
+pub const GPIO_TIM1_CH1OUT_1: u32 = 528392;
+pub const GPIO_TIM1_CH1OUT_2: u32 = 528457;
+pub const GPIO_TIM1_CH2IN_1: u32 = 528393;
+pub const GPIO_TIM1_CH2IN_2: u32 = 528459;
+pub const GPIO_TIM1_CH2OUT_1: u32 = 528393;
+pub const GPIO_TIM1_CH2OUT_2: u32 = 528459;
+pub const GPIO_TIM1_CH2NOUT_1: u32 = 528400;
+pub const GPIO_TIM1_CH2NOUT_2: u32 = 528414;
+pub const GPIO_TIM1_CH2NOUT_3: u32 = 528458;
+pub const GPIO_TIM1_CH3IN_1: u32 = 528394;
+pub const GPIO_TIM1_CH3IN_2: u32 = 528461;
+pub const GPIO_TIM1_CH3OUT_1: u32 = 528394;
+pub const GPIO_TIM1_CH3OUT_2: u32 = 528461;
+pub const GPIO_TIM1_CH3NOUT_1: u32 = 528401;
+pub const GPIO_TIM1_CH3NOUT_2: u32 = 528415;
+pub const GPIO_TIM1_CH3NOUT_3: u32 = 528460;
+pub const GPIO_TIM1_CH4IN_1: u32 = 528395;
+pub const GPIO_TIM1_CH4IN_2: u32 = 528462;
+pub const GPIO_TIM1_CH4OUT_1: u32 = 528395;
+pub const GPIO_TIM1_CH4OUT_2: u32 = 528462;
+pub const GPIO_TIM1_ETR_1: u32 = 528396;
+pub const GPIO_TIM1_ETR_2: u32 = 528455;
+pub const GPIO_TIM2_CH1IN_1: u32 = 528384;
+pub const GPIO_TIM2_CH1IN_2: u32 = 528399;
+pub const GPIO_TIM2_CH1IN_3: u32 = 528389;
+pub const GPIO_TIM2_CH1OUT_1: u32 = 528384;
+pub const GPIO_TIM2_CH1OUT_2: u32 = 528399;
+pub const GPIO_TIM2_CH1OUT_3: u32 = 528389;
+pub const GPIO_TIM2_CH2IN_1: u32 = 528385;
+pub const GPIO_TIM2_CH2IN_2: u32 = 528403;
+pub const GPIO_TIM2_CH2OUT_1: u32 = 528385;
+pub const GPIO_TIM2_CH2OUT_2: u32 = 528403;
+pub const GPIO_TIM2_CH3IN_1: u32 = 528386;
+pub const GPIO_TIM2_CH3IN_2: u32 = 528410;
+pub const GPIO_TIM2_CH3OUT_1: u32 = 528386;
+pub const GPIO_TIM2_CH3OUT_2: u32 = 528410;
+pub const GPIO_TIM2_CH4IN_1: u32 = 528387;
+pub const GPIO_TIM2_CH4IN_2: u32 = 528411;
+pub const GPIO_TIM2_CH4OUT_1: u32 = 528387;
+pub const GPIO_TIM2_CH4OUT_2: u32 = 528411;
+pub const GPIO_TIM2_ETR_1: u32 = 528384;
+pub const GPIO_TIM2_ETR_2: u32 = 528399;
+pub const GPIO_TIM2_ETR_3: u32 = 528389;
+pub const GPIO_TIM3_CH1IN_1: u32 = 532486;
+pub const GPIO_TIM3_CH1IN_2: u32 = 532500;
+pub const GPIO_TIM3_CH1IN_3: u32 = 532518;
+pub const GPIO_TIM3_CH1OUT_1: u32 = 532486;
+pub const GPIO_TIM3_CH1OUT_2: u32 = 532500;
+pub const GPIO_TIM3_CH1OUT_3: u32 = 532518;
+pub const GPIO_TIM3_CH2IN_1: u32 = 532487;
+pub const GPIO_TIM3_CH2IN_2: u32 = 532501;
+pub const GPIO_TIM3_CH2IN_3: u32 = 532519;
+pub const GPIO_TIM3_CH2OUT_1: u32 = 532487;
+pub const GPIO_TIM3_CH2OUT_2: u32 = 532501;
+pub const GPIO_TIM3_CH2OUT_3: u32 = 532519;
+pub const GPIO_TIM3_CH3IN_1: u32 = 532496;
+pub const GPIO_TIM3_CH3IN_2: u32 = 532520;
+pub const GPIO_TIM3_CH3OUT_1: u32 = 532496;
+pub const GPIO_TIM3_CH3OUT_2: u32 = 532520;
+pub const GPIO_TIM3_CH4IN_1: u32 = 532497;
+pub const GPIO_TIM3_CH4IN_2: u32 = 532521;
+pub const GPIO_TIM3_CH4OUT_1: u32 = 532497;
+pub const GPIO_TIM3_CH4OUT_2: u32 = 532521;
+pub const GPIO_TIM3_ETR_0: u32 = 532530;
+pub const GPIO_TIM4_CH1IN_1: u32 = 532502;
+pub const GPIO_TIM4_CH1IN_2: u32 = 532540;
+pub const GPIO_TIM4_CH1OUT_1: u32 = 532502;
+pub const GPIO_TIM4_CH1OUT_2: u32 = 532540;
+pub const GPIO_TIM4_CH2IN_1: u32 = 532503;
+pub const GPIO_TIM4_CH2IN_2: u32 = 532541;
+pub const GPIO_TIM4_CH2OUT_1: u32 = 532503;
+pub const GPIO_TIM4_CH2OUT_2: u32 = 532541;
+pub const GPIO_TIM4_CH3IN_1: u32 = 532504;
+pub const GPIO_TIM4_CH3IN_2: u32 = 532542;
+pub const GPIO_TIM4_CH3OUT_1: u32 = 532504;
+pub const GPIO_TIM4_CH3OUT_2: u32 = 532542;
+pub const GPIO_TIM4_CH4IN_1: u32 = 532505;
+pub const GPIO_TIM4_CH4IN_2: u32 = 532543;
+pub const GPIO_TIM4_CH4OUT_1: u32 = 532505;
+pub const GPIO_TIM4_CH4OUT_2: u32 = 532543;
+pub const GPIO_TIM4_ETR_0: u32 = 532544;
+pub const GPIO_TIM5_CH1IN_1: u32 = 532480;
+pub const GPIO_TIM5_CH1IN_2: u32 = 532602;
+pub const GPIO_TIM5_CH1OUT_1: u32 = 532480;
+pub const GPIO_TIM5_CH1OUT_2: u32 = 532602;
+pub const GPIO_TIM5_CH2IN_1: u32 = 532481;
+pub const GPIO_TIM5_CH2IN_2: u32 = 532603;
+pub const GPIO_TIM5_CH2OUT_1: u32 = 532481;
+pub const GPIO_TIM5_CH2OUT_2: u32 = 532603;
+pub const GPIO_TIM5_CH3IN_1: u32 = 532482;
+pub const GPIO_TIM5_CH3IN_2: u32 = 532604;
+pub const GPIO_TIM5_CH3OUT_1: u32 = 532482;
+pub const GPIO_TIM5_CH3OUT_2: u32 = 532604;
+pub const GPIO_TIM5_CH4IN_1: u32 = 532483;
+pub const GPIO_TIM5_CH4IN_2: u32 = 532608;
+pub const GPIO_TIM5_CH4OUT_1: u32 = 532483;
+pub const GPIO_TIM5_CH4OUT_2: u32 = 532608;
+pub const GPIO_TIM8_BKIN_1: u32 = 536582;
+pub const GPIO_TIM8_BKIN_2: u32 = 536708;
+pub const GPIO_TIM8_BKIN2_1: u32 = 536584;
+pub const GPIO_TIM8_BKIN2_2: u32 = 536705;
+pub const GPIO_TIM8_CH1IN_1: u32 = 536614;
+pub const GPIO_TIM8_CH1IN_2: u32 = 536709;
+pub const GPIO_TIM8_CH1OUT_1: u32 = 536614;
+pub const GPIO_TIM8_CH1OUT_2: u32 = 536709;
+pub const GPIO_TIM8_CH1NOUT_1: u32 = 536581;
+pub const GPIO_TIM8_CH1NOUT_2: u32 = 536583;
+pub const GPIO_TIM8_CH1NOUT_3: u32 = 536701;
+pub const GPIO_TIM8_CH2IN_1: u32 = 536615;
+pub const GPIO_TIM8_CH2IN_2: u32 = 536710;
+pub const GPIO_TIM8_CH2OUT_1: u32 = 536615;
+pub const GPIO_TIM8_CH2OUT_2: u32 = 536710;
+pub const GPIO_TIM8_CH2NOUT_1: u32 = 536592;
+pub const GPIO_TIM8_CH2NOUT_2: u32 = 536606;
+pub const GPIO_TIM8_CH2NOUT_3: u32 = 536702;
+pub const GPIO_TIM8_CH3IN_1: u32 = 536616;
+pub const GPIO_TIM8_CH3IN_2: u32 = 536711;
+pub const GPIO_TIM8_CH3OUT_1: u32 = 536616;
+pub const GPIO_TIM8_CH3OUT_2: u32 = 536711;
+pub const GPIO_TIM8_CH3NOUT_1: u32 = 536593;
+pub const GPIO_TIM8_CH3NOUT_2: u32 = 536607;
+pub const GPIO_TIM8_CH3NOUT_3: u32 = 536703;
+pub const GPIO_TIM8_CH4IN_1: u32 = 536617;
+pub const GPIO_TIM8_CH4IN_2: u32 = 536706;
+pub const GPIO_TIM8_CH4OUT_1: u32 = 536617;
+pub const GPIO_TIM8_CH4OUT_2: u32 = 536706;
+pub const GPIO_TIM8_ETR_1: u32 = 536576;
+pub const GPIO_TIM8_ETR_2: u32 = 536707;
+pub const GPIO_TIM9_CH1IN_1: u32 = 536578;
+pub const GPIO_TIM9_CH1IN_2: u32 = 536645;
+pub const GPIO_TIM9_CH1OUT_1: u32 = 536578;
+pub const GPIO_TIM9_CH1OUT_2: u32 = 536645;
+pub const GPIO_TIM9_CH2IN_1: u32 = 536579;
+pub const GPIO_TIM9_CH2IN_2: u32 = 536646;
+pub const GPIO_TIM9_CH2OUT_1: u32 = 536579;
+pub const GPIO_TIM9_CH2OUT_2: u32 = 536646;
+pub const GPIO_TIM10_CH1IN_1: u32 = 536600;
+pub const GPIO_TIM10_CH1IN_2: u32 = 536662;
+pub const GPIO_TIM10_CH1OUT_1: u32 = 536600;
+pub const GPIO_TIM10_CH1OUT_2: u32 = 536662;
+pub const GPIO_TIM11_CH1IN_1: u32 = 536601;
+pub const GPIO_TIM11_CH1IN_2: u32 = 536663;
+pub const GPIO_TIM11_CH1OUT_1: u32 = 536601;
+pub const GPIO_TIM11_CH1OUT_2: u32 = 536663;
+pub const GPIO_TIM12_CH1IN_1: u32 = 561182;
+pub const GPIO_TIM12_CH1IN_2: u32 = 561270;
+pub const GPIO_TIM12_CH1OUT_1: u32 = 561182;
+pub const GPIO_TIM12_CH1OUT_2: u32 = 561270;
+pub const GPIO_TIM12_CH2IN_1: u32 = 561183;
+pub const GPIO_TIM12_CH2IN_2: u32 = 561273;
+pub const GPIO_TIM12_CH2OUT_1: u32 = 561183;
+pub const GPIO_TIM12_CH2OUT_2: u32 = 561273;
+pub const GPIO_TIM13_CH1IN_1: u32 = 561158;
+pub const GPIO_TIM13_CH1IN_2: u32 = 561240;
+pub const GPIO_TIM13_CH1OUT_1: u32 = 561158;
+pub const GPIO_TIM13_CH1OUT_2: u32 = 561240;
+pub const GPIO_TIM14_CH1IN_1: u32 = 561159;
+pub const GPIO_TIM14_CH1IN_2: u32 = 561241;
+pub const GPIO_TIM14_CH1OUT_1: u32 = 561159;
+pub const GPIO_TIM14_CH1OUT_2: u32 = 561241;
+pub const GPIO_TRACECLK_0: u32 = 524354;
+pub const GPIO_TRACED0_1: u32 = 524321;
+pub const GPIO_TRACED0_2: u32 = 524355;
+pub const GPIO_TRACED0_3: u32 = 524397;
+pub const GPIO_TRACED1_1: u32 = 524328;
+pub const GPIO_TRACED1_2: u32 = 524356;
+pub const GPIO_TRACED1_3: u32 = 524398;
+pub const GPIO_TRACED2_1: u32 = 524338;
+pub const GPIO_TRACED2_2: u32 = 524357;
+pub const GPIO_TRACED3_1: u32 = 524332;
+pub const GPIO_TRACED3_2: u32 = 524358;
+pub const GPIO_TRACESWO_0: u32 = 524307;
+pub const GPIO_USART1_CK_0: u32 = 552968;
+pub const GPIO_USART1_CTS_0: u32 = 552971;
+pub const GPIO_USART1_RTS_0: u32 = 552972;
+pub const GPIO_USART1_RX_1: u32 = 618506;
+pub const GPIO_USART1_RX_2: u32 = 618519;
+pub const GPIO_USART1_TX_1: u32 = 618505;
+pub const GPIO_USART1_TX_2: u32 = 618518;
+pub const GPIO_USART2_CK_1: u32 = 552964;
+pub const GPIO_USART2_CK_2: u32 = 553015;
+pub const GPIO_USART2_CTS_1: u32 = 552960;
+pub const GPIO_USART2_CTS_2: u32 = 553011;
+pub const GPIO_USART2_RTS_1: u32 = 552961;
+pub const GPIO_USART2_RTS_2: u32 = 553012;
+pub const GPIO_USART2_RX_1: u32 = 618499;
+pub const GPIO_USART2_RX_2: u32 = 618550;
+pub const GPIO_USART2_TX_1: u32 = 618498;
+pub const GPIO_USART2_TX_2: u32 = 618549;
+pub const GPIO_USART3_CK_1: u32 = 552988;
+pub const GPIO_USART3_CK_2: u32 = 553004;
+pub const GPIO_USART3_CK_3: u32 = 553018;
+pub const GPIO_USART3_CTS_1: u32 = 552989;
+pub const GPIO_USART3_CTS_2: u32 = 553019;
+pub const GPIO_USART3_RTS_1: u32 = 552990;
+pub const GPIO_USART3_RTS_2: u32 = 553020;
+pub const GPIO_USART3_RX_1: u32 = 618523;
+pub const GPIO_USART3_RX_2: u32 = 618539;
+pub const GPIO_USART3_RX_3: u32 = 618553;
+pub const GPIO_USART3_TX_1: u32 = 618522;
+pub const GPIO_USART3_TX_2: u32 = 618538;
+pub const GPIO_USART3_TX_3: u32 = 618552;
+pub const GPIO_UART4_CTS_0: u32 = 557072;
+pub const GPIO_UART4_RTS_0: u32 = 557071;
+pub const GPIO_UART4_RX_1: u32 = 622593;
+pub const GPIO_UART4_RX_2: u32 = 622635;
+pub const GPIO_UART4_TX_1: u32 = 622592;
+pub const GPIO_UART4_TX_2: u32 = 622634;
+pub const GPIO_UART5_CTS_0: u32 = 553001;
+pub const GPIO_UART5_RTS_0: u32 = 553000;
+pub const GPIO_UART5_RX_0: u32 = 622642;
+pub const GPIO_UART5_TX_0: u32 = 622636;
+pub const GPIO_USART6_CK_1: u32 = 557096;
+pub const GPIO_USART6_CK_2: u32 = 557159;
+pub const GPIO_USART6_CTS_1: u32 = 557165;
+pub const GPIO_USART6_CTS_2: u32 = 557167;
+pub const GPIO_USART6_RTS_1: u32 = 557164;
+pub const GPIO_USART6_RTS_2: u32 = 557160;
+pub const GPIO_USART6_RX_1: u32 = 622631;
+pub const GPIO_USART6_RX_2: u32 = 622697;
+pub const GPIO_USART6_TX_1: u32 = 622630;
+pub const GPIO_USART6_TX_2: u32 = 622702;
+pub const GPIO_UART7_CTS_1: u32 = 557130;
+pub const GPIO_UART7_CTS_2: u32 = 557145;
+pub const GPIO_UART7_RTS_1: u32 = 557129;
+pub const GPIO_UART7_RTS_2: u32 = 557144;
+pub const GPIO_UART7_RX_1: u32 = 622663;
+pub const GPIO_UART7_RX_2: u32 = 622678;
+pub const GPIO_UART7_TX_1: u32 = 622664;
+pub const GPIO_UART7_TX_2: u32 = 622679;
+pub const GPIO_UART8_CTS_0: u32 = 557118;
+pub const GPIO_UART8_RTS_0: u32 = 557119;
+pub const GPIO_UART8_RX_0: u32 = 622656;
+pub const GPIO_UART8_TX_0: u32 = 622657;
+pub const STM32_CODE_BASE: u8 = 0;
+pub const STM32_SRAM_BASE: u32 = 536870912;
+pub const STM32_PERIPH_BASE: u32 = 1073741824;
+pub const STM32_FMC_BASE12: u32 = 1610612736;
+pub const STM32_FMC_BANK1: u32 = 1610612736;
+pub const STM32_FMC_BANK2: u32 = 1879048192;
+pub const STM32_FMC_BASE34: u32 = 2147483648;
+pub const STM32_FMC_BANK3: u32 = 2147483648;
+pub const STM32_FMC_BANK4: u32 = 2415919104;
+pub const STM32_FMC_BASE5: u32 = 3221225472;
+pub const STM32_FMC_BASE6: u32 = 3489660928;
+pub const STM32_CORTEX_BASE: u32 = 3758096384;
+pub const STM32_REGION_MASK: u32 = 4026531840;
+pub const STM32_BOOT_BASE: u8 = 0;
+pub const STM32_INSTRAM_BASE: u8 = 0;
+pub const STM32_SYSMEM_ICTM: u32 = 1048576;
+pub const STM32_FLASH_ITCM: u32 = 2097152;
+pub const STM32_LOADER_BASE: u32 = 16777216;
+pub const STM32_FLASH_AXIM: u32 = 134217728;
+pub const STM32_FLASH_BASE: u32 = 134217728;
+pub const STM32_OPTIONS_BASE: u32 = 536805376;
+pub const STM32_SYSMEM_AXIM: u32 = 535822336;
+pub const STM32_SYSMEM_UID: u32 = 535884832;
+pub const STM32_OTP_ICTM: u32 = 1110016;
+pub const STM32_OTP_AXIM: u32 = 535883776;
+pub const STM32_OPT_BASE: u32 = 535883776;
+pub const STM32_OPT_SIZE: u16 = 1056;
+pub const STM32_DTCRAM_BASE: u32 = 536870912;
+pub const STM32_SRAM1_BASE: u32 = 536936448;
+pub const STM32_SRAM2_BASE: u32 = 537182208;
+pub const STM32_APB1_BASE: u32 = 1073741824;
+pub const STM32_APB2_BASE: u32 = 1073807360;
+pub const STM32_AHB1_BASE: u32 = 1073872896;
+pub const STM32_AHB2_BASE: u32 = 1342177280;
+pub const STM32_AHB3_BASE: u32 = 1610612736;
+pub const STM32_TIM2_BASE: u32 = 1073741824;
+pub const STM32_TIM3_BASE: u32 = 1073742848;
+pub const STM32_TIM4_BASE: u32 = 1073743872;
+pub const STM32_TIM5_BASE: u32 = 1073744896;
+pub const STM32_TIM6_BASE: u32 = 1073745920;
+pub const STM32_TIM7_BASE: u32 = 1073746944;
+pub const STM32_TIM12_BASE: u32 = 1073747968;
+pub const STM32_TIM13_BASE: u32 = 1073748992;
+pub const STM32_TIM14_BASE: u32 = 1073750016;
+pub const STM32_LPTIM1_BASE: u32 = 1073751040;
+pub const STM32_RTC_BASE: u32 = 1073752064;
+pub const STM32_WWDG_BASE: u32 = 1073753088;
+pub const STM32_IWDG_BASE: u32 = 1073754112;
+pub const STM32_SPI2_BASE: u32 = 1073756160;
+pub const STM32_I2S2_BASE: u32 = 1073756160;
+pub const STM32_SPI3_BASE: u32 = 1073757184;
+pub const STM32_I2S3_BASE: u32 = 1073757184;
+pub const STM32_SPDIFRX_BASE: u32 = 1073758208;
+pub const STM32_USART2_BASE: u32 = 1073759232;
+pub const STM32_USART3_BASE: u32 = 1073760256;
+pub const STM32_UART4_BASE: u32 = 1073761280;
+pub const STM32_UART5_BASE: u32 = 1073762304;
+pub const STM32_I2C1_BASE: u32 = 1073763328;
+pub const STM32_I2C2_BASE: u32 = 1073764352;
+pub const STM32_I2C3_BASE: u32 = 1073765376;
+pub const STM32_I2C4_BASE: u32 = 1073766400;
+pub const STM32_CAN1_BASE: u32 = 1073767424;
+pub const STM32_CAN2_BASE: u32 = 1073768448;
+pub const STM32_HDMICEC_BASE: u32 = 1073769472;
+pub const STM32_PWR_BASE: u32 = 1073770496;
+pub const STM32_DAC_BASE: u32 = 1073771520;
+pub const STM32_UART7_BASE: u32 = 1073772544;
+pub const STM32_UART8_BASE: u32 = 1073773568;
+pub const STM32_TIM1_BASE: u32 = 1073807360;
+pub const STM32_TIM8_BASE: u32 = 1073808384;
+pub const STM32_USART1_BASE: u32 = 1073811456;
+pub const STM32_USART6_BASE: u32 = 1073812480;
+pub const STM32_ADC_BASE: u32 = 1073815552;
+pub const STM32_ADC1_BASE: u32 = 1073815552;
+pub const STM32_ADC2_BASE: u32 = 1073815808;
+pub const STM32_ADC3_BASE: u32 = 1073816064;
+pub const STM32_ADCCMN_BASE: u32 = 1073816320;
+pub const STM32_SDMMC1_BASE: u32 = 1073818624;
+pub const STM32_SPI1_BASE: u32 = 1073819648;
+pub const STM32_SPI4_BASE: u32 = 1073820672;
+pub const STM32_SYSCFG_BASE: u32 = 1073821696;
+pub const STM32_EXTI_BASE: u32 = 1073822720;
+pub const STM32_TIM9_BASE: u32 = 1073823744;
+pub const STM32_TIM10_BASE: u32 = 1073824768;
+pub const STM32_TIM11_BASE: u32 = 1073825792;
+pub const STM32_SPI5_BASE: u32 = 1073827840;
+pub const STM32_SPI6_BASE: u32 = 1073828864;
+pub const STM32_SAI1_BASE: u32 = 1073829888;
+pub const STM32_SAI2_BASE: u32 = 1073830912;
+pub const STM32_LTDC_BASE: u32 = 1073833984;
+pub const STM32_GPIOA_BASE: u32 = 1073872896;
+pub const STM32_GPIOB_BASE: u32 = 1073873920;
+pub const STM32_GPIOC_BASE: u32 = 1073874944;
+pub const STM32_GPIOD_BASE: u32 = 1073875968;
+pub const STM32_GPIOE_BASE: u32 = 1073876992;
+pub const STM32_GPIOF_BASE: u32 = 1073878016;
+pub const STM32_GPIOG_BASE: u32 = 1073879040;
+pub const STM32_GPIOH_BASE: u32 = 1073880064;
+pub const STM32_GPIOI_BASE: u32 = 1073881088;
+pub const STM32_GPIOJ_BASE: u32 = 1073882112;
+pub const STM32_GPIOK_BASE: u32 = 1073883136;
+pub const STM32_CRC_BASE: u32 = 1073885184;
+pub const STM32_RCC_BASE: u32 = 1073887232;
+pub const STM32_FLASHIF_BASE: u32 = 1073888256;
+pub const STM32_BKPSRAM_BASE: u32 = 1073889280;
+pub const STM32_DMA1_BASE: u32 = 1073897472;
+pub const STM32_DMA2_BASE: u32 = 1073898496;
+pub const STM32_ETHMAC_BASE: u32 = 1073905664;
+pub const STM32_DMA2D_BASE: u32 = 1073917952;
+pub const STM32_USBOTGHS_BASE: u32 = 1074003968;
+pub const STM32_USBOTGFS_BASE: u32 = 1342177280;
+pub const STM32_DCMI_BASE: u32 = 1342504960;
+pub const STM32_CRYP_BASE: u32 = 1342570496;
+pub const STM32_HASH_BASE: u32 = 1342571520;
+pub const STM32_RNG_BASE: u32 = 1342572544;
+pub const STM32_FMCBANK1_BASE: u32 = 1610612736;
+pub const STM32_FMCBANK2_BASE: u32 = 1879048192;
+pub const STM32_FMCBANK3_BASE: u32 = 2147483648;
+pub const STM32_FMCBANK4_BASE: u32 = 2415919104;
+pub const STM32_FMC_BASE: u32 = 2684354560;
+pub const STM32_QUADSPI_BASE: u32 = 2684358656;
+pub const STM32_FMCBANK5_BASE: u32 = 3221225472;
+pub const STM32_FMCBANK6_BASE: u32 = 3489660928;
+pub const STM32_DEBUGMCU_BASE: u32 = 3758366720;
+pub const ARMV7M_PERIPHERAL_INTERRUPTS: u8 = 98;
+pub const ARMV7M_DCACHE_LINESIZE: u8 = 32;
+pub const ARMV7M_ICACHE_LINESIZE: u8 = 32;
+pub const OTG_EPTYPE_CTRL: u8 = 0;
+pub const OTG_EPTYPE_ISOC: u8 = 1;
+pub const OTG_EPTYPE_BULK: u8 = 2;
+pub const OTG_EPTYPE_INTR: u8 = 3;
+pub const OTG_PID_DATA0: u8 = 0;
+pub const OTG_PID_DATA2: u8 = 1;
+pub const OTG_PID_DATA1: u8 = 2;
+pub const OTG_PID_MDATA: u8 = 3;
+pub const OTG_PID_SETUP: u8 = 3;
+pub const STM32_OTG_GOTGCTL_OFFSET: u8 = 0;
+pub const STM32_OTG_GOTGINT_OFFSET: u8 = 4;
+pub const STM32_OTG_GAHBCFG_OFFSET: u8 = 8;
+pub const STM32_OTG_GUSBCFG_OFFSET: u8 = 12;
+pub const STM32_OTG_GRSTCTL_OFFSET: u8 = 16;
+pub const STM32_OTG_GINTSTS_OFFSET: u8 = 20;
+pub const STM32_OTG_GINTMSK_OFFSET: u8 = 24;
+pub const STM32_OTG_GRXSTSR_OFFSET: u8 = 28;
+pub const STM32_OTG_GRXSTSP_OFFSET: u8 = 32;
+pub const STM32_OTG_GRXFSIZ_OFFSET: u8 = 36;
+pub const STM32_OTG_HNPTXFSIZ_OFFSET: u8 = 40;
+pub const STM32_OTG_DIEPTXF0_OFFSET: u8 = 40;
+pub const STM32_OTG_HNPTXSTS_OFFSET: u8 = 44;
+pub const STM32_OTG_GCCFG_OFFSET: u8 = 56;
+pub const STM32_OTG_CID_OFFSET: u8 = 60;
+pub const STM32_OTG_HPTXFSIZ_OFFSET: u16 = 256;
+pub const STM32_OTG_HCFG_OFFSET: u16 = 1024;
+pub const STM32_OTG_HFIR_OFFSET: u16 = 1028;
+pub const STM32_OTG_HFNUM_OFFSET: u16 = 1032;
+pub const STM32_OTG_HPTXSTS_OFFSET: u16 = 1040;
+pub const STM32_OTG_HAINT_OFFSET: u16 = 1044;
+pub const STM32_OTG_HAINTMSK_OFFSET: u16 = 1048;
+pub const STM32_OTG_HPRT_OFFSET: u16 = 1088;
+pub const STM32_OTG_HCCHAR_CHOFFSET: u8 = 0;
+pub const STM32_OTG_HCINT_CHOFFSET: u8 = 8;
+pub const STM32_OTG_HCINTMSK_CHOFFSET: u8 = 12;
+pub const STM32_OTG_HCTSIZ_CHOFFSET: u8 = 16;
+pub const STM32_OTG_DCFG_OFFSET: u16 = 2048;
+pub const STM32_OTG_DCTL_OFFSET: u16 = 2052;
+pub const STM32_OTG_DSTS_OFFSET: u16 = 2056;
+pub const STM32_OTG_DIEPMSK_OFFSET: u16 = 2064;
+pub const STM32_OTG_DOEPMSK_OFFSET: u16 = 2068;
+pub const STM32_OTG_DAINT_OFFSET: u16 = 2072;
+pub const STM32_OTG_DAINTMSK_OFFSET: u16 = 2076;
+pub const STM32_OTG_DVBUSDIS_OFFSET: u16 = 2088;
+pub const STM32_OTG_DVBUSPULSE_OFFSET: u16 = 2092;
+pub const STM32_OTG_DIEPEMPMSK_OFFSET: u16 = 2100;
+pub const STM32_OTG_DIEPCTL_EPOFFSET: u8 = 0;
+pub const STM32_OTG_DIEPINT_EPOFFSET: u8 = 8;
+pub const STM32_OTG_DIEPTSIZ_EPOFFSET: u8 = 16;
+pub const STM32_OTG_DTXFSTS_EPOFFSET: u8 = 24;
+pub const STM32_OTG_DOEPCTL_EPOFFSET: u8 = 0;
+pub const STM32_OTG_DOEPINT_EPOFFSET: u8 = 8;
+pub const STM32_OTG_PCGCCTL_OFFSET: u16 = 3584;
+pub const STM32_USBPHYC_PLL1_OFFSET: u8 = 0;
+pub const STM32_USBPHYC_TUNE_OFFSET: u8 = 12;
+pub const STM32_USBPHYC_LDO_OFFSET: u8 = 24;
+pub const OTG_GOTGCTL_SRQSCS: u8 = 1;
+pub const OTG_GOTGCTL_SRQ: u8 = 2;
+pub const OTG_GOTGCTL_VBVALOEN: u8 = 4;
+pub const OTG_GOTGCTL_VBVALOVAL: u8 = 8;
+pub const OTG_GOTGCTL_AVALOEN: u8 = 16;
+pub const OTG_GOTGCTL_AVALOVAL: u8 = 32;
+pub const OTG_GOTGCTL_BVALOEN: u8 = 64;
+pub const OTG_GOTGCTL_BVALOVAL: u8 = 128;
+pub const OTG_GOTGCTL_HNGSCS: u16 = 256;
+pub const OTG_GOTGCTL_HNPRQ: u16 = 512;
+pub const OTG_GOTGCTL_HSHNPEN: u16 = 1024;
+pub const OTG_GOTGCTL_DHNPEN: u16 = 2048;
+pub const OTG_GOTGCTL_EHEN: u16 = 4096;
+pub const OTG_GOTGCTL_CIDSTS: u32 = 65536;
+pub const OTG_GOTGCTL_DBCT: u32 = 131072;
+pub const OTG_GOTGCTL_ASVLD: u32 = 262144;
+pub const OTG_GOTGCTL_BSVLD: u32 = 524288;
+pub const OTG_GOTGCTL_OTGVER: u32 = 1048576;
+pub const OTG_GOTGINT_SEDET: u8 = 4;
+pub const OTG_GOTGINT_SRSSCHG: u16 = 256;
+pub const OTG_GOTGINT_HNSSCHG: u16 = 512;
+pub const OTG_GOTGINT_HNGDET: u32 = 131072;
+pub const OTG_GOTGINT_ADTOCHG: u32 = 262144;
+pub const OTG_GOTGINT_DBCDNE: u32 = 524288;
+pub const OTG_GOTGINT_IDCHNG: u32 = 1048576;
+pub const OTG_GAHBCFG_GINTMSK: u8 = 1;
+pub const OTG_GAHBCFG_TXFELVL: u8 = 128;
+pub const OTG_GAHBCFG_PTXFELVL: u16 = 256;
+pub const OTG_GUSBCFG_TOCAL_SHIFT: u8 = 0;
+pub const OTG_GUSBCFG_TOCAL_MASK: u8 = 7;
+pub const OTG_GUSBCFG_ULPISEL: u8 = 16;
+pub const OTG_GUSBCFG_PHYSEL: u8 = 64;
+pub const OTG_GUSBCFG_SRPCAP: u16 = 256;
+pub const OTG_GUSBCFG_HNPCAP: u16 = 512;
+pub const OTG_GUSBCFG_TRDT_SHIFT: u8 = 10;
+pub const OTG_GUSBCFG_TRDT_MASK: u16 = 15360;
+pub const OTG_GUSBCFG_PHYLPC: u16 = 32768;
+pub const OTG_GUSBCFG_ULPIFSLS: u32 = 131072;
+pub const OTG_GUSBCFG_ULPIAR: u32 = 262144;
+pub const OTG_GUSBCFG_ULPICSM: u32 = 524288;
+pub const OTG_GUSBCFG_ULPIEVBUSD: u32 = 1048576;
+pub const OTG_GUSBCFG_ULPIEVBUSI: u32 = 2097152;
+pub const OTG_GUSBCFG_TSDPS: u32 = 4194304;
+pub const OTG_GUSBCFG_PCCI: u32 = 8388608;
+pub const OTG_GUSBCFG_PTCI: u32 = 16777216;
+pub const OTG_GUSBCFG_ULPIIPD: u32 = 33554432;
+pub const OTG_GUSBCFG_FHMOD: u32 = 536870912;
+pub const OTG_GUSBCFG_FDMOD: u32 = 1073741824;
+pub const OTG_GRSTCTL_CSRST: u8 = 1;
+pub const OTG_GRSTCTL_HSRST: u8 = 2;
+pub const OTG_GRSTCTL_FCRST: u8 = 4;
+pub const OTG_GRSTCTL_RXFFLSH: u8 = 16;
+pub const OTG_GRSTCTL_TXFFLSH: u8 = 32;
+pub const OTG_GRSTCTL_TXFNUM_SHIFT: u8 = 6;
+pub const OTG_GRSTCTL_TXFNUM_MASK: u16 = 1984;
+pub const OTG_GRSTCTL_TXFNUM_HNONPER: u8 = 0;
+pub const OTG_GRSTCTL_TXFNUM_HPER: u8 = 64;
+pub const OTG_GRSTCTL_TXFNUM_HALL: u16 = 1024;
+pub const OTG_GRSTCTL_TXFNUM_DALL: u16 = 1024;
+pub const OTG_GRSTCTL_AHBIDL: u32 = 2147483648;
+pub const OTG_GINTSTS_CMOD: u8 = 1;
+pub const OTG_GINTSTS_DEVMODE: u8 = 0;
+pub const OTG_GINTSTS_HOSTMODE: u8 = 1;
+pub const OTG_GINT_MMIS: u8 = 2;
+pub const OTG_GINT_OTG: u8 = 4;
+pub const OTG_GINT_SOF: u8 = 8;
+pub const OTG_GINT_RXFLVL: u8 = 16;
+pub const OTG_GINT_NPTXFE: u8 = 32;
+pub const OTG_GINT_GINAKEFF: u8 = 64;
+pub const OTG_GINT_GONAKEFF: u8 = 128;
+pub const OTG_GINT_RES89: u16 = 768;
+pub const OTG_GINT_ESUSP: u16 = 1024;
+pub const OTG_GINT_USBSUSP: u16 = 2048;
+pub const OTG_GINT_USBRST: u16 = 4096;
+pub const OTG_GINT_ENUMDNE: u16 = 8192;
+pub const OTG_GINT_ISOODRP: u16 = 16384;
+pub const OTG_GINT_EOPF: u16 = 32768;
+pub const OTG_GINT_RES1617: u32 = 196608;
+pub const OTG_GINT_IEP: u32 = 262144;
+pub const OTG_GINT_OEP: u32 = 524288;
+pub const OTG_GINT_IISOIXFR: u32 = 1048576;
+pub const OTG_GINT_IISOOXFR: u32 = 2097152;
+pub const OTG_GINT_IPXFR: u32 = 2097152;
+pub const OTG_GINT_RES22: u32 = 4194304;
+pub const OTG_GINT_DATAFSUSP: u32 = 4194304;
+pub const OTG_GINT_RES23: u32 = 8388608;
+pub const OTG_GINT_RSTDET: u32 = 8388608;
+pub const OTG_GINT_HPRT: u32 = 16777216;
+pub const OTG_GINT_HC: u32 = 33554432;
+pub const OTG_GINT_PTXFE: u32 = 67108864;
+pub const OTG_GINT_LPMINT: u32 = 134217728;
+pub const OTG_GINT_RES27: u32 = 134217728;
+pub const OTG_GINT_CIDSCHG: u32 = 268435456;
+pub const OTG_GINT_DISC: u32 = 536870912;
+pub const OTG_GINT_SRQ: u32 = 1073741824;
+pub const OTG_GINT_WKUP: u32 = 2147483648;
+pub const OTG_GRXSTSH_CHNUM_SHIFT: u8 = 0;
+pub const OTG_GRXSTSH_CHNUM_MASK: u8 = 15;
+pub const OTG_GRXSTSH_BCNT_SHIFT: u8 = 4;
+pub const OTG_GRXSTSH_BCNT_MASK: u16 = 32752;
+pub const OTG_GRXSTSH_DPID_SHIFT: u8 = 15;
+pub const OTG_GRXSTSH_DPID_MASK: u32 = 98304;
+pub const OTG_GRXSTSH_DPID_DATA0: u8 = 0;
+pub const OTG_GRXSTSH_DPID_DATA2: u16 = 32768;
+pub const OTG_GRXSTSH_DPID_DATA1: u32 = 65536;
+pub const OTG_GRXSTSH_DPID_MDATA: u32 = 98304;
+pub const OTG_GRXSTSH_PKTSTS_SHIFT: u8 = 17;
+pub const OTG_GRXSTSH_PKTSTS_MASK: u32 = 1966080;
+pub const OTG_GRXSTSH_PKTSTS_INRECVD: u32 = 262144;
+pub const OTG_GRXSTSH_PKTSTS_INDONE: u32 = 393216;
+pub const OTG_GRXSTSH_PKTSTS_DTOGERR: u32 = 655360;
+pub const OTG_GRXSTSH_PKTSTS_HALTED: u32 = 917504;
+pub const OTG_GRXSTSD_EPNUM_SHIFT: u8 = 0;
+pub const OTG_GRXSTSD_EPNUM_MASK: u8 = 15;
+pub const OTG_GRXSTSD_BCNT_SHIFT: u8 = 4;
+pub const OTG_GRXSTSD_BCNT_MASK: u16 = 32752;
+pub const OTG_GRXSTSD_DPID_SHIFT: u8 = 15;
+pub const OTG_GRXSTSD_DPID_MASK: u32 = 98304;
+pub const OTG_GRXSTSD_DPID_DATA0: u8 = 0;
+pub const OTG_GRXSTSD_DPID_DATA2: u16 = 32768;
+pub const OTG_GRXSTSD_DPID_DATA1: u32 = 65536;
+pub const OTG_GRXSTSD_DPID_MDATA: u32 = 98304;
+pub const OTG_GRXSTSD_PKTSTS_SHIFT: u8 = 17;
+pub const OTG_GRXSTSD_PKTSTS_MASK: u32 = 1966080;
+pub const OTG_GRXSTSD_PKTSTS_OUTNAK: u32 = 131072;
+pub const OTG_GRXSTSD_PKTSTS_OUTRECVD: u32 = 262144;
+pub const OTG_GRXSTSD_PKTSTS_OUTDONE: u32 = 393216;
+pub const OTG_GRXSTSD_PKTSTS_SETUPDONE: u32 = 524288;
+pub const OTG_GRXSTSD_PKTSTS_SETUPRECVD: u32 = 786432;
+pub const OTG_GRXSTSD_FRMNUM_SHIFT: u8 = 21;
+pub const OTG_GRXSTSD_FRMNUM_MASK: u32 = 31457280;
+pub const OTG_GRXFSIZ_MASK: u16 = 65535;
+pub const OTG_HNPTXFSIZ_NPTXFSA_SHIFT: u8 = 0;
+pub const OTG_HNPTXFSIZ_NPTXFSA_MASK: u16 = 65535;
+pub const OTG_HNPTXFSIZ_NPTXFD_SHIFT: u8 = 16;
+pub const OTG_HNPTXFSIZ_NPTXFD_MASK: u32 = 4294901760;
+pub const OTG_HNPTXFSIZ_NPTXFD_MIN: u32 = 1048576;
+pub const OTG_HNPTXFSIZ_NPTXFD_MAX: u32 = 16777216;
+pub const OTG_DIEPTXF0_TX0FD_SHIFT: u8 = 0;
+pub const OTG_DIEPTXF0_TX0FD_MASK: u16 = 65535;
+pub const OTG_DIEPTXF0_TX0FSA_SHIFT: u8 = 16;
+pub const OTG_DIEPTXF0_TX0FSA_MASK: u32 = 4294901760;
+pub const OTG_DIEPTXF0_TX0FSA_MIN: u32 = 1048576;
+pub const OTG_DIEPTXF0_TX0FSA_MAX: u32 = 16777216;
+pub const OTG_HNPTXSTS_NPTXFSAV_SHIFT: u8 = 0;
+pub const OTG_HNPTXSTS_NPTXFSAV_MASK: u16 = 65535;
+pub const OTG_HNPTXSTS_NPTXFSAV_FULL: u8 = 0;
+pub const OTG_HNPTXSTS_NPTQXSAV_SHIFT: u8 = 16;
+pub const OTG_HNPTXSTS_NPTQXSAV_MASK: u32 = 16711680;
+pub const OTG_HNPTXSTS_NPTQXSAV_FULL: u8 = 0;
+pub const OTG_HNPTXSTS_NPTXQTOP_SHIFT: u8 = 24;
+pub const OTG_HNPTXSTS_NPTXQTOP_MASK: u32 = 2130706432;
+pub const OTG_HNPTXSTS_TERMINATE: u32 = 16777216;
+pub const OTG_HNPTXSTS_TYPE_SHIFT: u8 = 25;
+pub const OTG_HNPTXSTS_TYPE_MASK: u32 = 100663296;
+pub const OTG_HNPTXSTS_TYPE_INOUT: u8 = 0;
+pub const OTG_HNPTXSTS_TYPE_ZLP: u32 = 33554432;
+pub const OTG_HNPTXSTS_TYPE_HALT: u32 = 100663296;
+pub const OTG_HNPTXSTS_CHNUM_SHIFT: u8 = 27;
+pub const OTG_HNPTXSTS_CHNUM_MASK: u32 = 2013265920;
+pub const OTG_HNPTXSTS_EPNUM_SHIFT: u8 = 27;
+pub const OTG_HNPTXSTS_EPNUM_MASK: u32 = 2013265920;
+pub const OTG_GCCFG_PWRDWN: u32 = 65536;
+pub const OTG_GCCFG_VBDEN: u32 = 2097152;
+pub const OTG_GCCFG_PHYHSEN: u32 = 8388608;
+pub const OTG_HPTXFSIZ_PTXSA_SHIFT: u8 = 0;
+pub const OTG_HPTXFSIZ_PTXSA_MASK: u16 = 65535;
+pub const OTG_HPTXFSIZ_PTXFD_SHIFT: u8 = 16;
+pub const OTG_HPTXFSIZ_PTXFD_MASK: u32 = 4294901760;
+pub const OTG_DIEPTXF_INEPTXSA_SHIFT: u8 = 0;
+pub const OTG_DIEPTXF_INEPTXSA_MASK: u16 = 65535;
+pub const OTG_DIEPTXF_INEPTXFD_SHIFT: u8 = 16;
+pub const OTG_DIEPTXF_INEPTXFD_MASK: u32 = 4294901760;
+pub const OTG_DIEPTXF_INEPTXFD_MIN: u8 = 16;
+pub const OTG_HCFG_FSLSPCS_SHIFT: u8 = 0;
+pub const OTG_HCFG_FSLSPCS_MASK: u8 = 3;
+pub const OTG_HCFG_FSLSPCS_FS48MHz: u8 = 1;
+pub const OTG_HCFG_FSLSPCS_LS48MHz: u8 = 1;
+pub const OTG_HCFG_FSLSPCS_LS6MHz: u8 = 2;
+pub const OTG_HCFG_FSLSS: u8 = 4;
+pub const OTG_HFIR_MASK: u16 = 65535;
+pub const OTG_HFNUM_FRNUM_SHIFT: u8 = 0;
+pub const OTG_HFNUM_FRNUM_MASK: u16 = 65535;
+pub const OTG_HFNUM_FTREM_SHIFT: u8 = 16;
+pub const OTG_HFNUM_FTREM_MASK: u32 = 4294901760;
+pub const OTG_HPTXSTS_PTXFSAVL_SHIFT: u8 = 0;
+pub const OTG_HPTXSTS_PTXFSAVL_MASK: u16 = 65535;
+pub const OTG_HPTXSTS_PTXFSAVL_FULL: u8 = 0;
+pub const OTG_HPTXSTS_PTXQSAV_SHIFT: u8 = 16;
+pub const OTG_HPTXSTS_PTXQSAV_MASK: u32 = 16711680;
+pub const OTG_HPTXSTS_PTXQSAV_FULL: u8 = 0;
+pub const OTG_HPTXSTS_PTXQTOP_SHIFT: u8 = 24;
+pub const OTG_HPTXSTS_PTXQTOP_MASK: u32 = 2130706432;
+pub const OTG_HPTXSTS_TERMINATE: u32 = 16777216;
+pub const OTG_HPTXSTS_TYPE_SHIFT: u8 = 25;
+pub const OTG_HPTXSTS_TYPE_MASK: u32 = 100663296;
+pub const OTG_HPTXSTS_TYPE_INOUT: u8 = 0;
+pub const OTG_HPTXSTS_TYPE_ZLP: u32 = 33554432;
+pub const OTG_HPTXSTS_TYPE_HALT: u32 = 100663296;
+pub const OTG_HPTXSTS_EPNUM_SHIFT: u8 = 27;
+pub const OTG_HPTXSTS_EPNUM_MASK: u32 = 2013265920;
+pub const OTG_HPTXSTS_CHNUM_SHIFT: u8 = 27;
+pub const OTG_HPTXSTS_CHNUM_MASK: u32 = 2013265920;
+pub const OTG_HPTXSTS_ODD: u32 = 16777216;
+pub const OTG_HPRT_PCSTS: u8 = 1;
+pub const OTG_HPRT_PCDET: u8 = 2;
+pub const OTG_HPRT_PENA: u8 = 4;
+pub const OTG_HPRT_PENCHNG: u8 = 8;
+pub const OTG_HPRT_POCA: u8 = 16;
+pub const OTG_HPRT_POCCHNG: u8 = 32;
+pub const OTG_HPRT_PRES: u8 = 64;
+pub const OTG_HPRT_PSUSP: u8 = 128;
+pub const OTG_HPRT_PRST: u16 = 256;
+pub const OTG_HPRT_PLSTS_SHIFT: u8 = 10;
+pub const OTG_HPRT_PLSTS_MASK: u16 = 3072;
+pub const OTG_HPRT_PLSTS_DP: u16 = 1024;
+pub const OTG_HPRT_PLSTS_DM: u16 = 2048;
+pub const OTG_HPRT_PPWR: u16 = 4096;
+pub const OTG_HPRT_PTCTL_SHIFT: u8 = 13;
+pub const OTG_HPRT_PTCTL_MASK: u32 = 122880;
+pub const OTG_HPRT_PTCTL_DISABLED: u8 = 0;
+pub const OTG_HPRT_PTCTL_J: u16 = 8192;
+pub const OTG_HPRT_PTCTL_L: u16 = 16384;
+pub const OTG_HPRT_PTCTL_SE0_NAK: u16 = 24576;
+pub const OTG_HPRT_PTCTL_PACKET: u16 = 32768;
+pub const OTG_HPRT_PTCTL_FORCE: u16 = 40960;
+pub const OTG_HPRT_PSPD_SHIFT: u8 = 17;
+pub const OTG_HPRT_PSPD_MASK: u32 = 393216;
+pub const OTG_HPRT_PSPD_FS: u32 = 131072;
+pub const OTG_HPRT_PSPD_LS: u32 = 262144;
+pub const OTG_HCCHAR_MPSIZ_SHIFT: u8 = 0;
+pub const OTG_HCCHAR_MPSIZ_MASK: u16 = 2047;
+pub const OTG_HCCHAR_EPNUM_SHIFT: u8 = 11;
+pub const OTG_HCCHAR_EPNUM_MASK: u16 = 30720;
+pub const OTG_HCCHAR_EPDIR: u16 = 32768;
+pub const OTG_HCCHAR_EPDIR_OUT: u8 = 0;
+pub const OTG_HCCHAR_EPDIR_IN: u16 = 32768;
+pub const OTG_HCCHAR_LSDEV: u32 = 131072;
+pub const OTG_HCCHAR_EPTYP_SHIFT: u8 = 18;
+pub const OTG_HCCHAR_EPTYP_MASK: u32 = 786432;
+pub const OTG_HCCHAR_EPTYP_CTRL: u8 = 0;
+pub const OTG_HCCHAR_EPTYP_ISOC: u32 = 262144;
+pub const OTG_HCCHAR_EPTYP_BULK: u32 = 524288;
+pub const OTG_HCCHAR_EPTYP_INTR: u32 = 786432;
+pub const OTG_HCCHAR_MCNT_SHIFT: u8 = 20;
+pub const OTG_HCCHAR_MCNT_MASK: u32 = 3145728;
+pub const OTG_HCCHAR_DAD_SHIFT: u8 = 22;
+pub const OTG_HCCHAR_DAD_MASK: u32 = 532676608;
+pub const OTG_HCCHAR_ODDFRM: u32 = 536870912;
+pub const OTG_HCCHAR_CHDIS: u32 = 1073741824;
+pub const OTG_HCCHAR_CHENA: u32 = 2147483648;
+pub const OTG_HCINT_XFRC: u8 = 1;
+pub const OTG_HCINT_CHH: u8 = 2;
+pub const OTG_HCINT_STALL: u8 = 8;
+pub const OTG_HCINT_NAK: u8 = 16;
+pub const OTG_HCINT_ACK: u8 = 32;
+pub const OTG_HCINT_NYET: u8 = 64;
+pub const OTG_HCINT_TXERR: u8 = 128;
+pub const OTG_HCINT_BBERR: u16 = 256;
+pub const OTG_HCINT_FRMOR: u16 = 512;
+pub const OTG_HCINT_DTERR: u16 = 1024;
+pub const OTG_HCTSIZ_XFRSIZ_SHIFT: u8 = 0;
+pub const OTG_HCTSIZ_XFRSIZ_MASK: u32 = 524287;
+pub const OTG_HCTSIZ_PKTCNT_SHIFT: u8 = 19;
+pub const OTG_HCTSIZ_PKTCNT_MASK: u32 = 536346624;
+pub const OTG_HCTSIZ_DPID_SHIFT: u8 = 29;
+pub const OTG_HCTSIZ_DPID_MASK: u32 = 1610612736;
+pub const OTG_HCTSIZ_DPID_DATA0: u8 = 0;
+pub const OTG_HCTSIZ_DPID_DATA2: u32 = 536870912;
+pub const OTG_HCTSIZ_DPID_DATA1: u32 = 1073741824;
+pub const OTG_HCTSIZ_DPID_MDATA: u32 = 1610612736;
+pub const OTG_HCTSIZ_PID_SETUP: u32 = 1610612736;
+pub const OTG_DCFG_DSPD_SHIFT: u8 = 0;
+pub const OTG_DCFG_DSPD_MASK: u8 = 3;
+pub const OTG_DCFG_DSPD_HS: u8 = 0;
+pub const OTG_DCFG_DSPD_FS_USING_HS: u8 = 1;
+pub const OTG_DCFG_DSPD_FS: u8 = 3;
+pub const OTG_DCFG_NZLSOHSK: u8 = 4;
+pub const OTG_DCFG_DAD_SHIFT: u8 = 4;
+pub const OTG_DCFG_DAD_MASK: u16 = 2032;
+pub const OTG_DCFG_PFIVL_SHIFT: u8 = 11;
+pub const OTG_DCFG_PFIVL_MASK: u16 = 6144;
+pub const OTG_DCFG_PFIVL_80PCT: u8 = 0;
+pub const OTG_DCFG_PFIVL_85PCT: u16 = 2048;
+pub const OTG_DCFG_PFIVL_90PCT: u16 = 4096;
+pub const OTG_DCFG_PFIVL_95PCT: u16 = 6144;
+pub const OTG_TESTMODE_DISABLED: u8 = 0;
+pub const OTG_TESTMODE_J: u8 = 1;
+pub const OTG_TESTMODE_K: u8 = 2;
+pub const OTG_TESTMODE_SE0_NAK: u8 = 3;
+pub const OTG_TESTMODE_PACKET: u8 = 4;
+pub const OTG_TESTMODE_FORCE: u8 = 5;
+pub const OTG_DCTL_RWUSIG: u8 = 1;
+pub const OTG_DCTL_SDIS: u8 = 2;
+pub const OTG_DCTL_GINSTS: u8 = 4;
+pub const OTG_DCTL_GONSTS: u8 = 8;
+pub const OTG_DCTL_TCTL_SHIFT: u8 = 4;
+pub const OTG_DCTL_TCTL_MASK: u8 = 112;
+pub const OTG_DCTL_TCTL_DISABLED: u8 = 0;
+pub const OTG_DCTL_TCTL_J: u8 = 16;
+pub const OTG_DCTL_TCTL_K: u8 = 32;
+pub const OTG_DCTL_TCTL_SE0_NAK: u8 = 48;
+pub const OTG_DCTL_TCTL_PACKET: u8 = 64;
+pub const OTG_DCTL_TCTL_FORCE: u8 = 80;
+pub const OTG_DCTL_SGINAK: u8 = 128;
+pub const OTG_DCTL_CGINAK: u16 = 256;
+pub const OTG_DCTL_SGONAK: u16 = 512;
+pub const OTG_DCTL_CGONAK: u16 = 1024;
+pub const OTG_DCTL_POPRGDNE: u16 = 2048;
+pub const OTG_DSTS_SUSPSTS: u8 = 1;
+pub const OTG_DSTS_ENUMSPD_SHIFT: u8 = 1;
+pub const OTG_DSTS_ENUMSPD_MASK: u8 = 6;
+pub const OTG_DSTS_ENUMSPD_FS: u8 = 192;
+pub const OTG_DSTS_EERR: u8 = 8;
+pub const OTG_DSTS_SOFFN_SHIFT: u8 = 8;
+pub const OTG_DSTS_SOFFN_MASK: u32 = 4194048;
+pub const OTG_DSTS_SOFFN0: u16 = 256;
+pub const OTG_DSTS_SOFFN_EVEN: u8 = 0;
+pub const OTG_DSTS_SOFFN_ODD: u16 = 256;
+pub const OTG_DIEPMSK_XFRCM: u8 = 1;
+pub const OTG_DIEPMSK_EPDM: u8 = 2;
+pub const OTG_DIEPMSK_AHBERRM: u8 = 4;
+pub const OTG_DIEPMSK_TOM: u8 = 8;
+pub const OTG_DIEPMSK_ITTXFEMSK: u8 = 16;
+pub const OTG_DIEPMSK_INEPNMM: u8 = 32;
+pub const OTG_DIEPMSK_INEPNEM: u8 = 64;
+pub const OTG_DIEPMSK_TXFURM: u16 = 256;
+pub const OTG_DIEPMSK_NAKM: u16 = 8192;
+pub const OTG_DOEPMSK_XFRCM: u8 = 1;
+pub const OTG_DOEPMSK_EPDM: u8 = 2;
+pub const OTG_DOEPMSK_STUPM: u8 = 8;
+pub const OTG_DOEPMSK_OTEPDM: u8 = 16;
+pub const OTG_DAINT_IEP_SHIFT: u8 = 0;
+pub const OTG_DAINT_IEP_MASK: u16 = 65535;
+pub const OTG_DAINT_OEP_SHIFT: u8 = 16;
+pub const OTG_DAINT_OEP_MASK: u32 = 4294901760;
+pub const OTG_DVBUSDIS_MASK: u16 = 65535;
+pub const OTG_DVBUSPULSE_MASK: u16 = 4095;
+pub const OTG_DIEPCTL0_MPSIZ_SHIFT: u8 = 0;
+pub const OTG_DIEPCTL0_MPSIZ_MASK: u8 = 3;
+pub const OTG_DIEPCTL0_MPSIZ_64: u8 = 0;
+pub const OTG_DIEPCTL0_MPSIZ_32: u8 = 1;
+pub const OTG_DIEPCTL0_MPSIZ_16: u8 = 2;
+pub const OTG_DIEPCTL0_MPSIZ_8: u8 = 3;
+pub const OTG_DIEPCTL0_USBAEP: u16 = 32768;
+pub const OTG_DIEPCTL0_NAKSTS: u32 = 131072;
+pub const OTG_DIEPCTL0_EPTYP_SHIFT: u8 = 18;
+pub const OTG_DIEPCTL0_EPTYP_MASK: u32 = 786432;
+pub const OTG_DIEPCTL0_EPTYP_CTRL: u8 = 0;
+pub const OTG_DIEPCTL0_STALL: u32 = 2097152;
+pub const OTG_DIEPCTL0_TXFNUM_SHIFT: u8 = 22;
+pub const OTG_DIEPCTL0_TXFNUM_MASK: u32 = 62914560;
+pub const OTG_DIEPCTL0_CNAK: u32 = 67108864;
+pub const OTG_DIEPCTL0_SNAK: u32 = 134217728;
+pub const OTG_DIEPCTL0_EPDIS: u32 = 1073741824;
+pub const OTG_DIEPCTL0_EPENA: u32 = 2147483648;
+pub const OTG_DIEPCTL_MPSIZ_SHIFT: u8 = 0;
+pub const OTG_DIEPCTL_MPSIZ_MASK: u16 = 2047;
+pub const OTG_DIEPCTL_USBAEP: u16 = 32768;
+pub const OTG_DIEPCTL_EONUM: u32 = 65536;
+pub const OTG_DIEPCTL_EVEN: u8 = 0;
+pub const OTG_DIEPCTL_ODD: u32 = 65536;
+pub const OTG_DIEPCTL_DATA0: u8 = 0;
+pub const OTG_DIEPCTL_DATA1: u32 = 65536;
+pub const OTG_DIEPCTL_NAKSTS: u32 = 131072;
+pub const OTG_DIEPCTL_EPTYP_SHIFT: u8 = 18;
+pub const OTG_DIEPCTL_EPTYP_MASK: u32 = 786432;
+pub const OTG_DIEPCTL_EPTYP_CTRL: u8 = 0;
+pub const OTG_DIEPCTL_EPTYP_ISOC: u32 = 262144;
+pub const OTG_DIEPCTL_EPTYP_BULK: u32 = 524288;
+pub const OTG_DIEPCTL_EPTYP_INTR: u32 = 786432;
+pub const OTG_DIEPCTL_STALL: u32 = 2097152;
+pub const OTG_DIEPCTL_TXFNUM_SHIFT: u8 = 22;
+pub const OTG_DIEPCTL_TXFNUM_MASK: u32 = 62914560;
+pub const OTG_DIEPCTL_CNAK: u32 = 67108864;
+pub const OTG_DIEPCTL_SNAK: u32 = 134217728;
+pub const OTG_DIEPCTL_SD0PID: u32 = 268435456;
+pub const OTG_DIEPCTL_SEVNFRM: u32 = 268435456;
+pub const OTG_DIEPCTL_SODDFRM: u32 = 536870912;
+pub const OTG_DIEPCTL_EPDIS: u32 = 1073741824;
+pub const OTG_DIEPCTL_EPENA: u32 = 2147483648;
+pub const OTG_DIEPINT_XFRC: u8 = 1;
+pub const OTG_DIEPINT_EPDISD: u8 = 2;
+pub const OTG_DIEPINT_TOC: u8 = 8;
+pub const OTG_DIEPINT_ITTXFE: u8 = 16;
+pub const OTG_DIEPINT_INEPNE: u8 = 64;
+pub const OTG_DIEPINT_TXFE: u8 = 128;
+pub const OTG_DIEPTSIZ0_XFRSIZ_SHIFT: u8 = 0;
+pub const OTG_DIEPTSIZ0_XFRSIZ_MASK: u8 = 127;
+pub const OTG_DIEPTSIZ0_PKTCNT_SHIFT: u8 = 19;
+pub const OTG_DIEPTSIZ0_PKTCNT_MASK: u32 = 1572864;
+pub const OTG_DIEPTSIZ_XFRSIZ_SHIFT: u8 = 0;
+pub const OTG_DIEPTSIZ_XFRSIZ_MASK: u32 = 524287;
+pub const OTG_DIEPTSIZ_PKTCNT_SHIFT: u8 = 19;
+pub const OTG_DIEPTSIZ_PKTCNT_MASK: u32 = 536346624;
+pub const OTG_DIEPTSIZ_MCNT_SHIFT: u8 = 29;
+pub const OTG_DIEPTSIZ_MCNT_MASK: u32 = 1610612736;
+pub const OTG_DTXFSTS_MASK: u16 = 65535;
+pub const OTG_DOEPCTL0_MPSIZ_SHIFT: u8 = 0;
+pub const OTG_DOEPCTL0_MPSIZ_MASK: u8 = 3;
+pub const OTG_DOEPCTL0_MPSIZ_64: u8 = 0;
+pub const OTG_DOEPCTL0_MPSIZ_32: u8 = 1;
+pub const OTG_DOEPCTL0_MPSIZ_16: u8 = 2;
+pub const OTG_DOEPCTL0_MPSIZ_8: u8 = 3;
+pub const OTG_DOEPCTL0_USBAEP: u16 = 32768;
+pub const OTG_DOEPCTL0_NAKSTS: u32 = 131072;
+pub const OTG_DOEPCTL0_EPTYP_SHIFT: u8 = 18;
+pub const OTG_DOEPCTL0_EPTYP_MASK: u32 = 786432;
+pub const OTG_DOEPCTL0_EPTYP_CTRL: u8 = 0;
+pub const OTG_DOEPCTL0_SNPM: u32 = 1048576;
+pub const OTG_DOEPCTL0_STALL: u32 = 2097152;
+pub const OTG_DOEPCTL0_CNAK: u32 = 67108864;
+pub const OTG_DOEPCTL0_SNAK: u32 = 134217728;
+pub const OTG_DOEPCTL0_EPDIS: u32 = 1073741824;
+pub const OTG_DOEPCTL0_EPENA: u32 = 2147483648;
+pub const OTG_DOEPCTL_MPSIZ_SHIFT: u8 = 0;
+pub const OTG_DOEPCTL_MPSIZ_MASK: u16 = 2047;
+pub const OTG_DOEPCTL_USBAEP: u16 = 32768;
+pub const OTG_DOEPCTL_DPID: u32 = 65536;
+pub const OTG_DOEPCTL_DATA0: u8 = 0;
+pub const OTG_DOEPCTL_DATA1: u32 = 65536;
+pub const OTG_DOEPCTL_EONUM: u32 = 65536;
+pub const OTG_DOEPCTL_EVEN: u8 = 0;
+pub const OTG_DOEPCTL_ODD: u32 = 65536;
+pub const OTG_DOEPCTL_NAKSTS: u32 = 131072;
+pub const OTG_DOEPCTL_EPTYP_SHIFT: u8 = 18;
+pub const OTG_DOEPCTL_EPTYP_MASK: u32 = 786432;
+pub const OTG_DOEPCTL_EPTYP_CTRL: u8 = 0;
+pub const OTG_DOEPCTL_EPTYP_ISOC: u32 = 262144;
+pub const OTG_DOEPCTL_EPTYP_BULK: u32 = 524288;
+pub const OTG_DOEPCTL_EPTYP_INTR: u32 = 786432;
+pub const OTG_DOEPCTL_SNPM: u32 = 1048576;
+pub const OTG_DOEPCTL_STALL: u32 = 2097152;
+pub const OTG_DOEPCTL_CNAK: u32 = 67108864;
+pub const OTG_DOEPCTL_SNAK: u32 = 134217728;
+pub const OTG_DOEPCTL_SD0PID: u32 = 268435456;
+pub const OTG_DOEPCTL_SEVNFRM: u32 = 268435456;
+pub const OTG_DOEPCTL_SD1PID: u32 = 536870912;
+pub const OTG_DOEPCTL_SODDFRM: u32 = 536870912;
+pub const OTG_DOEPCTL_EPDIS: u32 = 1073741824;
+pub const OTG_DOEPCTL_EPENA: u32 = 2147483648;
+pub const OTG_DOEPINT_XFRC: u8 = 1;
+pub const OTG_DOEPINT_EPDISD: u8 = 2;
+pub const OTG_DOEPINT_SETUP: u8 = 8;
+pub const OTG_DOEPINT_OTEPDIS: u8 = 16;
+pub const OTG_DOEPINT_B2BSTUP: u8 = 64;
+pub const OTG_DOEPTSIZ0_XFRSIZ_SHIFT: u8 = 0;
+pub const OTG_DOEPTSIZ0_XFRSIZ_MASK: u8 = 127;
+pub const OTG_DOEPTSIZ0_PKTCNT: u32 = 524288;
+pub const OTG_DOEPTSIZ0_STUPCNT_SHIFT: u8 = 29;
+pub const OTG_DOEPTSIZ0_STUPCNT_MASK: u32 = 1610612736;
+pub const OTG_DOEPTSIZ_XFRSIZ_SHIFT: u8 = 0;
+pub const OTG_DOEPTSIZ_XFRSIZ_MASK: u32 = 524287;
+pub const OTG_DOEPTSIZ_PKTCNT_SHIFT: u8 = 19;
+pub const OTG_DOEPTSIZ_PKTCNT_MASK: u32 = 536346624;
+pub const OTG_DOEPTSIZ_STUPCNT_SHIFT: u8 = 29;
+pub const OTG_DOEPTSIZ_STUPCNT_MASK: u32 = 1610612736;
+pub const OTG_DOEPTSIZ_RXDPID_SHIFT: u8 = 29;
+pub const OTG_DOEPTSIZ_RXDPID_MASK: u32 = 1610612736;
+pub const OTG_DOEPTSIZ_RXDPID_DATA0: u8 = 0;
+pub const OTG_DOEPTSIZ_RXDPID_DATA2: u32 = 536870912;
+pub const OTG_DOEPTSIZ_RXDPID_DATA1: u32 = 1073741824;
+pub const OTG_DOEPTSIZ_RXDPID_MDATA: u32 = 1610612736;
+pub const OTG_PCGCCTL_STPPCLK: u8 = 1;
+pub const OTG_PCGCCTL_GATEHCLK: u8 = 2;
+pub const OTG_PCGCCTL_PHYSUSP: u8 = 16;
+pub const USBPHYC_PLL1_EN: u8 = 1;
+pub const USBPHYC_PLL1_SEL_SHIFT: u8 = 1;
+pub const USBPHYC_PLL1_SEL_12MHz: u8 = 0;
+pub const USBPHYC_PLL1_SEL_12_5MHz: u8 = 2;
+pub const USBPHYC_PLL1_SEL_12_5bMHz: u8 = 4;
+pub const USBPHYC_PLL1_SEL_16MHz: u8 = 6;
+pub const USBPHYC_PLL1_SEL_24MHz: u8 = 8;
+pub const USBPHYC_PLL1_SEL_25MHz: u8 = 10;
+pub const USBPHYC_PLL1_SEL_25bMHz: u8 = 12;
+pub const USBPHYC_TUNE_INCURREN: u8 = 1;
+pub const USBPHYC_TUNE_INCURRINT: u8 = 2;
+pub const USBPHYC_TUNE_LFSCAPEN: u8 = 4;
+pub const USBPHYC_TUNE_HSDRVSLEW: u8 = 8;
+pub const USBPHYC_TUNE_HSDRVDCLEV: u8 = 16;
+pub const USBPHYC_TUNE_HSDRVDCCUR: u8 = 32;
+pub const USBPHYC_TUNE_HSDRVCURINCR: u8 = 64;
+pub const USBPHYC_TUNE_FSDRVRFADJ: u8 = 128;
+pub const USBPHYC_TUNE_HSDRVRFRED: u16 = 256;
+pub const USBPHYC_TUNE_HSDRVCHKITRM_SHIFT: u8 = 9;
+pub const USBPHYC_TUNE_HSDRVCHKITRM_MASK: u16 = 7680;
+pub const USBPHYC_TUNE_HSDRVCHKZTRM_SHIFT: u8 = 13;
+pub const USBPHYC_TUNE_HSDRVCHKZTRM_MASK: u16 = 24576;
+pub const USBPHYC_TUNE_SQLCHCTL_SHIFT: u8 = 15;
+pub const USBPHYC_TUNE_SQLCHCTL_MASK: u32 = 98304;
+pub const USBPHYC_TUNE_HDRXGNEQEN: u32 = 131072;
+pub const USBPHYC_TUNE_STAGSEL: u32 = 262144;
+pub const USBPHYC_TUNE_HSFALLPREEM: u32 = 524288;
+pub const USBPHYC_TUNE_HSRXOFF_SHIFT: u8 = 20;
+pub const USBPHYC_TUNE_HSRXOFF_MASK: u32 = 3145728;
+pub const USBPHYC_TUNE_SHTCCTCTLPROT: u32 = 4194304;
+pub const USBPHYC_TUNE_SQLBYP: u32 = 8388608;
+pub const USBPHYC_LDO_USED: u8 = 1;
+pub const USBPHYC_LDO_STATUS: u8 = 2;
+pub const USBPHYC_LDO_ENABLE: u8 = 4;
+pub const SCHED_NORMAL: u8 = 0;
+pub const SCHED_OTHER: u8 = 0;
+pub const SCHED_FIFO: u8 = 1;
+pub const SCHED_RR: u8 = 2;
+pub const SCHED_SPORADIC: u8 = 3;
+pub const TASK_CANCEL_ENABLE: u8 = 0;
+pub const TASK_CANCEL_DISABLE: u8 = 1;
+pub const TASK_CANCEL_DEFERRED: u8 = 0;
+pub const TASK_CANCEL_ASYNCHRONOUS: u8 = 1;
+pub const PTHREAD_KEYS_MAX: u8 = 0;
+pub const __GNUC_VA_LIST: u8 = 1;
+pub const LOG_PID: u8 = 1;
+pub const LOG_CONS: u8 = 2;
+pub const LOG_ODELAY: u8 = 4;
+pub const LOG_NDELAY: u8 = 8;
+pub const LOG_NOWAIT: u8 = 16;
+pub const LOG_PERROR: u8 = 32;
+pub const LOG_AUTH: u8 = 0;
+pub const LOG_AUTHPRIV: u8 = 0;
+pub const LOG_CRON: u8 = 0;
+pub const LOG_DAEMON: u8 = 0;
+pub const LOG_FTP: u8 = 0;
+pub const LOG_KERN: u8 = 0;
+pub const LOG_LOCAL0: u8 = 0;
+pub const LOG_LOCAL1: u8 = 0;
+pub const LOG_LOCAL2: u8 = 0;
+pub const LOG_LOCAL3: u8 = 0;
+pub const LOG_LOCAL4: u8 = 0;
+pub const LOG_LOCAL5: u8 = 0;
+pub const LOG_LOCAL6: u8 = 0;
+pub const LOG_LOCAL7: u8 = 0;
+pub const LOG_LPR: u8 = 0;
+pub const LOG_MAIL: u8 = 0;
+pub const LOG_NEWS: u8 = 0;
+pub const LOG_SYSLOG: u8 = 0;
+pub const LOG_USER: u8 = 0;
+pub const LOG_UUCP: u8 = 0;
+pub const LOG_EMERG: u8 = 0;
+pub const LOG_ALERT: u8 = 1;
+pub const LOG_CRIT: u8 = 2;
+pub const LOG_ERR: u8 = 3;
+pub const LOG_WARNING: u8 = 4;
+pub const LOG_NOTICE: u8 = 5;
+pub const LOG_INFO: u8 = 6;
+pub const LOG_DEBUG: u8 = 7;
+pub const LOG_ALL: u8 = 255;
+pub const EXTRA_FMT: &[u8; 5] = b"%s: \0";
+pub const MIN_SIGNO: u8 = 1;
+pub const MAX_SIGNO: u8 = 63;
+pub const SIGSTDMIN: u8 = 1;
+pub const SIGSTDMAX: u8 = 31;
+pub const SIGRTMIN: u8 = 32;
+pub const SIGRTMAX: u8 = 63;
+pub const _NSIG: u8 = 64;
+pub const NSIG: u8 = 64;
+pub const _SIGSET_NELEM: u8 = 2;
+pub const SIGHUP: u8 = 1;
+pub const SIGINT: u8 = 2;
+pub const SIGQUIT: u8 = 3;
+pub const SIGILL: u8 = 4;
+pub const SIGTRAP: u8 = 5;
+pub const SIGABRT: u8 = 6;
+pub const SIGBUS: u8 = 7;
+pub const SIGFPE: u8 = 8;
+pub const SIGKILL: u8 = 9;
+pub const SIGUSR1: u8 = 10;
+pub const SIGSEGV: u8 = 11;
+pub const SIGUSR2: u8 = 12;
+pub const SIGPIPE: u8 = 13;
+pub const SIGALRM: u8 = 14;
+pub const SIGTERM: u8 = 15;
+pub const SIGCHLD: u8 = 17;
+pub const SIGCONT: u8 = 18;
+pub const SIGSTOP: u8 = 19;
+pub const SIGTSTP: u8 = 20;
+pub const SIGTTIN: u8 = 21;
+pub const SIGTTOU: u8 = 22;
+pub const SIGURG: u8 = 23;
+pub const SIGXCPU: u8 = 24;
+pub const SIGXFSZ: u8 = 25;
+pub const SIGVTALRM: u8 = 26;
+pub const SIGPROF: u8 = 27;
+pub const SIGWINCH: u8 = 28;
+pub const SIGPOLL: u8 = 29;
+pub const SIGIO: u8 = 29;
+pub const SIGSYS: u8 = 31;
+pub const SIG_BLOCK: u8 = 1;
+pub const SIG_UNBLOCK: u8 = 2;
+pub const SIG_SETMASK: u8 = 3;
+pub const SA_NOCLDSTOP: u8 = 1;
+pub const SA_SIGINFO: u8 = 2;
+pub const SA_NOCLDWAIT: u8 = 4;
+pub const SA_ONSTACK: u8 = 8;
+pub const SA_RESTART: u8 = 16;
+pub const SA_NODEFER: u8 = 32;
+pub const SA_RESETHAND: u8 = 64;
+pub const SA_KERNELHAND: u8 = 128;
+pub const SI_USER: u8 = 0;
+pub const SI_QUEUE: u8 = 1;
+pub const SI_TIMER: u8 = 2;
+pub const SI_ASYNCIO: u8 = 3;
+pub const SI_MESGQ: u8 = 4;
+pub const CLD_EXITED: u8 = 5;
+pub const CLD_KILLED: u8 = 6;
+pub const CLD_DUMPED: u8 = 7;
+pub const CLD_TRAPPED: u8 = 8;
+pub const CLD_STOPPED: u8 = 9;
+pub const CLD_CONTINUED: u8 = 10;
+pub const ILL_ILLOPC: u8 = 1;
+pub const ILL_ILLOPN: u8 = 2;
+pub const ILL_ILLADR: u8 = 3;
+pub const ILL_ILLTRP: u8 = 4;
+pub const ILL_PRVOPC: u8 = 5;
+pub const ILL_PRVREG: u8 = 6;
+pub const ILL_COPROC: u8 = 7;
+pub const ILL_BADSTK: u8 = 8;
+pub const FPE_INTDIV: u8 = 1;
+pub const FPE_INTOVF: u8 = 2;
+pub const FPE_FLTDIV: u8 = 3;
+pub const FPE_FLTOVF: u8 = 4;
+pub const FPE_FLTUND: u8 = 5;
+pub const FPE_FLTRES: u8 = 6;
+pub const FPE_FLTINV: u8 = 7;
+pub const FPE_FLTSUB: u8 = 8;
+pub const SEGV_MAPERR: u8 = 1;
+pub const SEGV_ACCERR: u8 = 2;
+pub const BUS_ADRALN: u8 = 1;
+pub const BUS_ADRERR: u8 = 2;
+pub const BUS_OBJERR: u8 = 3;
+pub const TRAP_BRKPT: u8 = 1;
+pub const TRAP_TRACE: u8 = 2;
+pub const POLL_IN: u8 = 1;
+pub const POLL_OUT: u8 = 2;
+pub const POLL_MSG: u8 = 3;
+pub const POLL_ERR: u8 = 4;
+pub const POLL_PRI: u8 = 5;
+pub const POLL_HUP: u8 = 6;
+pub const SIGEV_NONE: u8 = 0;
+pub const SIGEV_SIGNAL: u8 = 1;
+pub const MINSIGSTKSZ: u16 = 256;
+pub const SIGSTKSZ: u16 = 2048;
+pub const SS_ONSTACK: u8 = 1;
+pub const SS_DISABLE: u8 = 2;
+pub const F_OK: u8 = 0;
+pub const X_OK: u8 = 1;
+pub const W_OK: u8 = 2;
+pub const R_OK: u8 = 4;
+pub const _POSIX_MESSAGE_PASSING: u8 = 1;
+pub const _POSIX_PRIORITY_SCHEDULING: u8 = 1;
+pub const _POSIX_TIMERS: u8 = 1;
+pub const _POSIX_TIMEOUTS: u8 = 1;
+pub const _POSIX_SYNCHRONIZED_IO: u8 = 1;
+pub const _POSIX_VERSION: u32 = 201712;
+pub const _POSIX_PRIORITIZED_IO: u32 = 201712;
+pub const _POSIX_CPUTIME: u32 = 201712;
+pub const _POSIX_THREAD_CPUTIME: u32 = 201712;
+pub const _POSIX_REALTIME_SIGNALS: u32 = 201712;
+pub const _POSIX_THREAD_PRIORITY_SCHEDULING: u32 = 201712;
+pub const _POSIX_SEMAPHORES: u32 = 201712;
+pub const _POSIX_SPORADIC_SERVER: i8 = -1;
+pub const _POSIX_THREAD_SPORADIC_SERVER: i8 = -1;
+pub const _POSIX_SYNC_IO: u8 = 1;
+pub const _PC_2_SYMLINKS: u8 = 1;
+pub const _PC_ALLOC_SIZE_MIN: u8 = 2;
+pub const _PC_ASYNC_IO: u8 = 3;
+pub const _PC_CHOWN_RESTRICTED: u8 = 4;
+pub const _PC_FILESIZEBITS: u8 = 5;
+pub const _PC_LINK_MAX: u8 = 6;
+pub const _PC_MAX_CANON: u8 = 7;
+pub const _PC_MAX_INPUT: u8 = 8;
+pub const _PC_NAME_MAX: u8 = 9;
+pub const _PC_NO_TRUNC: u8 = 10;
+pub const _PC_PATH_MAX: u8 = 11;
+pub const _PC_PIPE_BUF: u8 = 12;
+pub const _PC_PRIO_IO: u8 = 13;
+pub const _PC_REC_INCR_XFER_SIZE: u8 = 14;
+pub const _PC_REC_MIN_XFER_SIZE: u8 = 15;
+pub const _PC_REC_XFER_ALIGN: u8 = 16;
+pub const _PC_SYMLINK_MAX: u8 = 17;
+pub const _PC_SYNC_IO: u8 = 18;
+pub const _PC_VDISABLE: u8 = 19;
+pub const _SC_2_C_BIND: u8 = 1;
+pub const _SC_2_C_DEV: u8 = 2;
+pub const _SC_2_CHAR_TERM: u8 = 3;
+pub const _SC_2_FORT_DEV: u8 = 4;
+pub const _SC_2_FORT_RUN: u8 = 5;
+pub const _SC_2_LOCALEDEF: u8 = 6;
+pub const _SC_2_PBS: u8 = 7;
+pub const _SC_2_PBS_ACCOUNTING: u8 = 8;
+pub const _SC_2_PBS_CHECKPOINT: u8 = 9;
+pub const _SC_2_PBS_LOCATE: u8 = 10;
+pub const _SC_2_PBS_MESSAGE: u8 = 11;
+pub const _SC_2_PBS_TRACK: u8 = 12;
+pub const _SC_2_SW_DEV: u8 = 13;
+pub const _SC_2_UPE: u8 = 14;
+pub const _SC_2_VERSION: u8 = 15;
+pub const _SC_ADVISORY_INFO: u8 = 16;
+pub const _SC_AIO_LISTIO_MAX: u8 = 17;
+pub const _SC_AIO_MAX: u8 = 18;
+pub const _SC_AIO_PRIO_DELTA_MAX: u8 = 19;
+pub const _SC_ARG_MAX: u8 = 20;
+pub const _SC_ASYNCHRONOUS_IO: u8 = 21;
+pub const _SC_ATEXIT_MAX: u8 = 22;
+pub const _SC_BARRIERS: u8 = 23;
+pub const _SC_BC_BASE_MAX: u8 = 24;
+pub const _SC_BC_DIM_MAX: u8 = 25;
+pub const _SC_BC_SCALE_MAX: u8 = 26;
+pub const _SC_BC_STRING_MAX: u8 = 27;
+pub const _SC_CHILD_MAX: u8 = 28;
+pub const _SC_CLK_TCK: u8 = 29;
+pub const _SC_CLOCK_SELECTION: u8 = 30;
+pub const _SC_COLL_WEIGHTS_MAX: u8 = 31;
+pub const _SC_CPUTIME: u8 = 32;
+pub const _SC_DELAYTIMER_MAX: u8 = 33;
+pub const _SC_EXPR_NEST_MAX: u8 = 34;
+pub const _SC_FSYNC: u8 = 35;
+pub const _SC_GETGR_R_SIZE_MAX: u8 = 36;
+pub const _SC_GETPW_R_SIZE_MAX: u8 = 37;
+pub const _SC_HOST_NAME_MAX: u8 = 38;
+pub const _SC_IOV_MAX: u8 = 39;
+pub const _SC_IPV6: u8 = 40;
+pub const _SC_JOB_CONTROL: u8 = 41;
+pub const _SC_LINE_MAX: u8 = 42;
+pub const _SC_LOGIN_NAME_MAX: u8 = 43;
+pub const _SC_MAPPED_FILES: u8 = 44;
+pub const _SC_MEMLOCK: u8 = 45;
+pub const _SC_MEMLOCK_RANGE: u8 = 46;
+pub const _SC_MEMORY_PROTECTION: u8 = 47;
+pub const _SC_MESSAGE_PASSING: u8 = 48;
+pub const _SC_MONOTONIC_CLOCK: u8 = 49;
+pub const _SC_MQ_OPEN_MAX: u8 = 50;
+pub const _SC_MQ_PRIO_MAX: u8 = 51;
+pub const _SC_NGROUPS_MAX: u8 = 52;
+pub const _SC_OPEN_MAX: u8 = 53;
+pub const _SC_PAGE_SIZE: u8 = 54;
+pub const _SC_PAGESIZE: u8 = 54;
+pub const _SC_PRIORITIZED_IO: u8 = 55;
+pub const _SC_PRIORITY_SCHEDULING: u8 = 56;
+pub const _SC_RAW_SOCKETS: u8 = 57;
+pub const _SC_RE_DUP_MAX: u8 = 58;
+pub const _SC_READER_WRITER_LOCKS: u8 = 59;
+pub const _SC_REALTIME_SIGNALS: u8 = 60;
+pub const _SC_REGEXP: u8 = 61;
+pub const _SC_RTSIG_MAX: u8 = 62;
+pub const _SC_SAVED_IDS: u8 = 63;
+pub const _SC_SEM_NSEMS_MAX: u8 = 64;
+pub const _SC_SEM_VALUE_MAX: u8 = 65;
+pub const _SC_SEMAPHORES: u8 = 66;
+pub const _SC_SHARED_MEMORY_OBJECTS: u8 = 67;
+pub const _SC_SHELL: u8 = 68;
+pub const _SC_SIGQUEUE_MAX: u8 = 69;
+pub const _SC_SPAWN: u8 = 70;
+pub const _SC_SPIN_LOCKS: u8 = 71;
+pub const _SC_SPORADIC_SERVER: u8 = 72;
+pub const _SC_SS_REPL_MAX: u8 = 73;
+pub const _SC_STREAM_MAX: u8 = 74;
+pub const _SC_SYMLOOP_MAX: u8 = 75;
+pub const _SC_SYNCHRONIZED_IO: u8 = 76;
+pub const _SC_THREAD_ATTR_STACKADDR: u8 = 77;
+pub const _SC_THREAD_ATTR_STACKSIZE: u8 = 78;
+pub const _SC_THREAD_CPUTIME: u8 = 79;
+pub const _SC_THREAD_DESTRUCTOR_ITERATIONS: u8 = 80;
+pub const _SC_THREAD_KEYS_MAX: u8 = 81;
+pub const _SC_THREAD_PRIO_INHERIT: u8 = 82;
+pub const _SC_THREAD_PRIO_PROTECT: u8 = 83;
+pub const _SC_THREAD_PRIORITY_SCHEDULING: u8 = 84;
+pub const _SC_THREAD_PROCESS_SHARED: u8 = 85;
+pub const _SC_THREAD_SAFE_FUNCTIONS: u8 = 86;
+pub const _SC_THREAD_SPORADIC_SERVER: u8 = 87;
+pub const _SC_THREAD_STACK_MIN: u8 = 88;
+pub const _SC_THREAD_THREADS_MAX: u8 = 89;
+pub const _SC_THREADS: u8 = 90;
+pub const _SC_TIMEOUTS: u8 = 91;
+pub const _SC_TIMER_MAX: u8 = 92;
+pub const _SC_TIMERS: u8 = 93;
+pub const _SC_TRACE: u8 = 94;
+pub const _SC_TRACE_EVENT_FILTER: u8 = 95;
+pub const _SC_TRACE_EVENT_NAME_MAX: u8 = 96;
+pub const _SC_TRACE_INHERIT: u8 = 97;
+pub const _SC_TRACE_LOG: u8 = 98;
+pub const _SC_TRACE_NAME_MAX: u8 = 99;
+pub const _SC_TRACE_SYS_MAX: u8 = 100;
+pub const _SC_TRACE_USER_EVENT_MAX: u8 = 101;
+pub const _SC_TTY_NAME_MAX: u8 = 102;
+pub const _SC_TYPED_MEMORY_OBJECTS: u8 = 103;
+pub const _SC_TZNAME_MAX: u8 = 104;
+pub const _SC_V6_ILP32_OFF32: u8 = 105;
+pub const _SC_V6_ILP32_OFFBIG: u8 = 106;
+pub const _SC_V6_LP64_OFF64: u8 = 107;
+pub const _SC_V6_LPBIG_OFFBIG: u8 = 108;
+pub const _SC_VERSION: u8 = 109;
+pub const _SC_XBS5_ILP32_OFF32: u8 = 110;
+pub const _SC_XBS5_ILP32_OFFBIG: u8 = 111;
+pub const _SC_XBS5_LP64_OFF64: u8 = 112;
+pub const _SC_XBS5_LPBIG_OFFBIG: u8 = 113;
+pub const _SC_XOPEN_CRYPT: u8 = 114;
+pub const _SC_XOPEN_ENH_I18N: u8 = 115;
+pub const _SC_XOPEN_LEGACY: u8 = 116;
+pub const _SC_XOPEN_REALTIME: u8 = 117;
+pub const _SC_XOPEN_REALTIME_THREADS: u8 = 118;
+pub const _SC_XOPEN_SHM: u8 = 119;
+pub const _SC_XOPEN_STREAMS: u8 = 120;
+pub const _SC_XOPEN_UNIX: u8 = 121;
+pub const _SC_XOPEN_VERSION: u8 = 122;
+pub const _SC_PHYS_PAGES: u8 = 123;
+pub const _SC_AVPHYS_PAGES: u8 = 124;
+pub const _SC_NPROCESSORS_CONF: u8 = 125;
+pub const _SC_NPROCESSORS_ONLN: u8 = 126;
+pub const STDERR_FILENO: u8 = 2;
+pub const STDIN_FILENO: u8 = 0;
+pub const STDOUT_FILENO: u8 = 1;
+pub const PTHREAD_PROCESS_PRIVATE: u8 = 0;
+pub const PTHREAD_PROCESS_SHARED: u8 = 1;
+pub const PTHREAD_MUTEX_NORMAL: u8 = 0;
+pub const PTHREAD_MUTEX_ERRORCHECK: u8 = 1;
+pub const PTHREAD_MUTEX_RECURSIVE: u8 = 2;
+pub const PTHREAD_MUTEX_DEFAULT: u8 = 0;
+pub const PTHREAD_STACK_MIN: u16 = 256;
+pub const PTHREAD_STACK_DEFAULT: u16 = 2048;
+pub const PTHREAD_INHERIT_SCHED: u8 = 0;
+pub const PTHREAD_EXPLICIT_SCHED: u8 = 1;
+pub const PTHREAD_CREATE_JOINABLE: u8 = 0;
+pub const PTHREAD_CREATE_DETACHED: u8 = 1;
+pub const PTHREAD_DEFAULT_PRIORITY: u8 = 100;
+pub const PTHREAD_CANCEL_ENABLE: u8 = 0;
+pub const PTHREAD_CANCEL_DISABLE: u8 = 1;
+pub const PTHREAD_CANCEL_DEFERRED: u8 = 0;
+pub const PTHREAD_CANCEL_ASYNCHRONOUS: u8 = 1;
+pub const PTHREAD_BARRIER_SERIAL_THREAD: u16 = 4096;
+pub const PTHREAD_PRIO_NONE: u8 = 0;
+pub const PTHREAD_PRIO_INHERIT: u8 = 1;
+pub const PTHREAD_PRIO_PROTECT: u8 = 2;
+pub const PTHREAD_MUTEX_STALLED: u8 = 0;
+pub const PTHREAD_MUTEX_ROBUST: u8 = 1;
+pub const _PTHREAD_MFLAGS_ROBUST: u8 = 1;
+pub const _PTHREAD_MFLAGS_INCONSISTENT: u8 = 2;
+pub const _PTHREAD_MFLAGS_NRECOVERABLE: u8 = 4;
+pub const PTHREAD_SCOPE_SYSTEM: u8 = 0;
+pub const PTHREAD_SCOPE_PROCESS: u8 = 1;
+pub const __PTHREAD_KEY_T_DEFINED: u8 = 1;
+pub const __PTHREAD_ADDR_T_DEFINED: u8 = 1;
+pub const __PTHREAD_ATTR_T_DEFINED: u8 = 1;
+pub const __PTHREAD_T_DEFINED: u8 = 1;
+pub const __PTHREAD_CONDATTR_T_DEFINED: u8 = 1;
+pub const __PTHREAD_COND_T_DEFINED: u8 = 1;
+pub const __PTHREAD_MUTEXATTR_T_DEFINED: u8 = 1;
+pub const __PTHREAD_MUTEX_T_DEFINED: u8 = 1;
+pub const __PTHREAD_MUTEX_DEFAULT_FLAGS: u8 = 1;
+pub const __PTHREAD_BARRIERATTR_T_DEFINED: u8 = 1;
+pub const __PTHREAD_BARRIER_T_DEFINED: u8 = 1;
+pub const __PTHREAD_ONCE_T_DEFINED: u8 = 1;
+pub const __PTHREAD_RWLOCKATTR_T_DEFINED: u8 = 1;
+pub const __PTHREAD_RWLOCK_T_DEFINED: u8 = 1;
+pub const HPWORK: u8 = 0;
+pub const LPWORK: u8 = 0;
+pub const USRWORK: u8 = 0;
+pub const DT_UNKNOWN: u8 = 0;
+pub const DT_FIFO: u8 = 1;
+pub const DT_CHR: u8 = 2;
+pub const DT_SEM: u8 = 3;
+pub const DT_DIR: u8 = 4;
+pub const DT_MQ: u8 = 5;
+pub const DT_BLK: u8 = 6;
+pub const DT_SHM: u8 = 7;
+pub const DT_REG: u8 = 8;
+pub const DT_MTD: u8 = 9;
+pub const DT_LNK: u8 = 10;
+pub const DT_SOCK: u8 = 12;
+pub const DTYPE_UNKNOWN: u8 = 0;
+pub const DTYPE_FIFO: u8 = 1;
+pub const DTYPE_CHR: u8 = 2;
+pub const DTYPE_SEM: u8 = 3;
+pub const DTYPE_DIRECTORY: u8 = 4;
+pub const DTYPE_MQ: u8 = 5;
+pub const DTYPE_BLK: u8 = 6;
+pub const DTYPE_SHM: u8 = 7;
+pub const DTYPE_FILE: u8 = 8;
+pub const DTYPE_MTD: u8 = 9;
+pub const DTYPE_LINK: u8 = 10;
+pub const DTYPE_SOCK: u8 = 12;
+pub const SP_UNLOCKED: u8 = 0;
+pub const SP_LOCKED: u8 = 1;
+pub const POSIX_SPAWN_RESETIDS: u8 = 1;
+pub const POSIX_SPAWN_SETPGROUP: u8 = 2;
+pub const POSIX_SPAWN_SETSCHEDPARAM: u8 = 4;
+pub const POSIX_SPAWN_SETSCHEDULER: u8 = 8;
+pub const POSIX_SPAWN_SETSIGDEF: u8 = 16;
+pub const POSIX_SPAWN_SETSIGMASK: u8 = 32;
+pub const POSIX_SPAWN_SETSID: u8 = 128;
+pub const __FS_FLAG_EOF: u8 = 1;
+pub const __FS_FLAG_ERROR: u8 = 2;
+pub const __FS_FLAG_LBF: u8 = 4;
+pub const __FS_FLAG_UBF: u8 = 8;
+pub const FSNODEFLAG_TYPE_MASK: u8 = 15;
+pub const FSNODEFLAG_TYPE_PSEUDODIR: u8 = 0;
+pub const FSNODEFLAG_TYPE_DRIVER: u8 = 1;
+pub const FSNODEFLAG_TYPE_BLOCK: u8 = 2;
+pub const FSNODEFLAG_TYPE_MOUNTPT: u8 = 3;
+pub const FSNODEFLAG_TYPE_NAMEDSEM: u8 = 4;
+pub const FSNODEFLAG_TYPE_MQUEUE: u8 = 5;
+pub const FSNODEFLAG_TYPE_SHM: u8 = 6;
+pub const FSNODEFLAG_TYPE_MTD: u8 = 7;
+pub const FSNODEFLAG_TYPE_SOFTLINK: u8 = 8;
+pub const FSNODEFLAG_TYPE_SOCKET: u8 = 9;
+pub const FSNODEFLAG_TYPE_PIPE: u8 = 10;
+pub const FSNODEFLAG_DELETED: u8 = 16;
+pub const CH_STAT_MODE: u8 = 1;
+pub const CH_STAT_UID: u8 = 2;
+pub const CH_STAT_GID: u8 = 4;
+pub const CH_STAT_ATIME: u8 = 8;
+pub const CH_STAT_MTIME: u8 = 16;
+pub const HAVE_GROUP_MEMBERS: u8 = 1;
+pub const CONFIG_SCHED_SPORADIC_MAXREPL: u8 = 3;
+pub const MAX_LOCK_COUNT: u8 = 127;
+pub const TCB_FLAG_TTYPE_SHIFT: u8 = 0;
+pub const TCB_FLAG_TTYPE_MASK: u8 = 3;
+pub const TCB_FLAG_TTYPE_TASK: u8 = 0;
+pub const TCB_FLAG_TTYPE_PTHREAD: u8 = 1;
+pub const TCB_FLAG_TTYPE_KERNEL: u8 = 2;
+pub const TCB_FLAG_POLICY_SHIFT: u8 = 3;
+pub const TCB_FLAG_POLICY_MASK: u8 = 24;
+pub const TCB_FLAG_SCHED_FIFO: u8 = 0;
+pub const TCB_FLAG_SCHED_RR: u8 = 8;
+pub const TCB_FLAG_SCHED_SPORADIC: u8 = 16;
+pub const TCB_FLAG_CPU_LOCKED: u8 = 32;
+pub const TCB_FLAG_SIGNAL_ACTION: u8 = 64;
+pub const TCB_FLAG_SYSCALL: u8 = 128;
+pub const TCB_FLAG_EXIT_PROCESSING: u16 = 256;
+pub const TCB_FLAG_FREE_STACK: u16 = 512;
+pub const TCB_FLAG_HEAP_CHECK: u16 = 1024;
+pub const TCB_FLAG_HEAP_DUMP: u16 = 2048;
+pub const TCB_FLAG_DETACHED: u16 = 4096;
+pub const TCB_FLAG_FORCED_CANCEL: u16 = 8192;
+pub const GROUP_FLAG_NOCLDWAIT: u8 = 1;
+pub const GROUP_FLAG_PRIVILEGED: u8 = 2;
+pub const GROUP_FLAG_DELETED: u8 = 4;
+pub const GROUP_FLAG_EXITING: u8 = 8;
+pub const CHILD_FLAG_TTYPE_SHIFT: u8 = 0;
+pub const CHILD_FLAG_TTYPE_MASK: u8 = 3;
+pub const CHILD_FLAG_TTYPE_TASK: u8 = 0;
+pub const CHILD_FLAG_TTYPE_PTHREAD: u8 = 1;
+pub const CHILD_FLAG_TTYPE_KERNEL: u8 = 2;
+pub const CHILD_FLAG_EXITED: u8 = 4;
+pub const SPORADIC_FLAG_ALLOCED: u8 = 1;
+pub const SPORADIC_FLAG_MAIN: u8 = 2;
+pub const SPORADIC_FLAG_REPLENISH: u8 = 4;
+pub const TCB_NAME_OFF: u8 = 0;
+pub const DEBUGPOINT_NONE: u8 = 0;
+pub const DEBUGPOINT_WATCHPOINT_RO: u8 = 1;
+pub const DEBUGPOINT_WATCHPOINT_WO: u8 = 2;
+pub const DEBUGPOINT_WATCHPOINT_RW: u8 = 3;
+pub const DEBUGPOINT_BREAKPOINT: u8 = 4;
+pub const DEBUGPOINT_STEPPOINT: u8 = 5;
+pub const EXIT_SUCCESS: u8 = 0;
+pub const EXIT_FAILURE: u8 = 1;
+pub const RAND_MAX: u32 = 2147483647;
+pub const MB_CUR_MAX: u8 = 4;
+pub const M_TRIM_THRESHOLD: i8 = -1;
+pub const M_TOP_PAD: i8 = -2;
+pub const M_MMAP_THRESHOLD: i8 = -3;
+pub const M_MMAP_MAX: i8 = -4;
+pub const M_CHECK_ACTION: i8 = -5;
+pub const M_PERTURB: i8 = -6;
+pub const M_ARENA_TEST: i8 = -7;
+pub const M_ARENA_MAX: i8 = -8;
+pub const TLIST_ATTR_PRIORITIZED: u8 = 1;
+pub const TLIST_ATTR_INDEXED: u8 = 2;
+pub const TLIST_ATTR_RUNNABLE: u8 = 4;
+pub const TLIST_ATTR_OFFSET: u8 = 8;
 pub type _int8_t = cty::c_schar;
 pub type _uint8_t = cty::c_uchar;
 pub type _int16_t = cty::c_short;
@@ -1496,11 +3698,6 @@ pub struct tm {
 pub struct itimerspec {
     pub it_interval: timespec,
     pub it_value: timespec,
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct sigevent {
-    _unused: [u8; 0],
 }
 extern "C" {
     #[doc = " Public Function Prototypes"]
@@ -2146,8 +4343,3489 @@ extern "C" {
         devclass: *mut *mut usbhost_class_s,
     ) -> cty::c_int;
 }
+#[doc = " Type Definitions"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct max_align_t {
+    pub max_align_i: cty::c_longlong,
+    pub max_align_f: f64,
+}
+extern "C" {
+    pub fn strdup(s: *const cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strndup(s: *const cty::c_char, size: cty::c_uint) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strerror(arg1: cty::c_int) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strerror_r(arg1: cty::c_int, arg2: *mut cty::c_char, arg3: usize) -> cty::c_int;
+}
+extern "C" {
+    pub fn strlen(arg1: *const cty::c_char) -> cty::c_uint;
+}
+extern "C" {
+    pub fn strnlen(arg1: *const cty::c_char, arg2: usize) -> usize;
+}
+extern "C" {
+    pub fn strcat(arg1: *mut cty::c_char, arg2: *const cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strlcat(arg1: *mut cty::c_char, arg2: *const cty::c_char, arg3: usize) -> usize;
+}
+extern "C" {
+    pub fn strncat(
+        arg1: *mut cty::c_char,
+        arg2: *const cty::c_char,
+        arg3: cty::c_uint,
+    ) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strcmp(arg1: *const cty::c_char, arg2: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn strncmp(
+        arg1: *const cty::c_char,
+        arg2: *const cty::c_char,
+        arg3: cty::c_uint,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn strcoll(arg1: *const cty::c_char, s2: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn strcpy(dest: *mut cty::c_char, src: *const cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn stpcpy(dest: *mut cty::c_char, src: *const cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strlcpy(dst: *mut cty::c_char, src: *const cty::c_char, siz: usize) -> usize;
+}
+extern "C" {
+    pub fn strncpy(
+        arg1: *mut cty::c_char,
+        arg2: *const cty::c_char,
+        arg3: cty::c_uint,
+    ) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn stpncpy(
+        arg1: *mut cty::c_char,
+        arg2: *const cty::c_char,
+        arg3: cty::c_uint,
+    ) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strpbrk(arg1: *const cty::c_char, arg2: *const cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strchr(s: *const cty::c_char, c: cty::c_int) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strchrnul(s: *const cty::c_char, c: cty::c_int) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strrchr(s: *const cty::c_char, c: cty::c_int) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strspn(arg1: *const cty::c_char, arg2: *const cty::c_char) -> cty::c_uint;
+}
+extern "C" {
+    pub fn strcspn(arg1: *const cty::c_char, arg2: *const cty::c_char) -> cty::c_uint;
+}
+extern "C" {
+    pub fn strstr(arg1: *const cty::c_char, arg2: *const cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strcasestr(arg1: *const cty::c_char, arg2: *const cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strsep(arg1: *mut *mut cty::c_char, arg2: *const cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strsignal(signum: cty::c_int) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strtok(arg1: *mut cty::c_char, arg2: *const cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strtok_r(
+        arg1: *mut cty::c_char,
+        arg2: *const cty::c_char,
+        arg3: *mut *mut cty::c_char,
+    ) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strxfrm(arg1: *mut cty::c_char, arg2: *const cty::c_char, n: cty::c_uint)
+        -> cty::c_uint;
+}
+extern "C" {
+    pub fn strverscmp(s1: *const cty::c_char, s2: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn memchr(s: *const cty::c_void, c: cty::c_int, n: cty::c_uint) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn memrchr(s: *const cty::c_void, c: cty::c_int, n: usize) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn rawmemchr(s: *const cty::c_void, c: cty::c_int) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn memccpy(
+        s1: *mut cty::c_void,
+        s2: *const cty::c_void,
+        c: cty::c_int,
+        n: cty::c_uint,
+    ) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn memcmp(s1: *const cty::c_void, s2: *const cty::c_void, n: cty::c_uint) -> cty::c_int;
+}
+extern "C" {
+    pub fn memcpy(
+        dest: *mut cty::c_void,
+        src: *const cty::c_void,
+        n: cty::c_uint,
+    ) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn mempcpy(
+        dest: *mut cty::c_void,
+        src: *const cty::c_void,
+        n: cty::c_uint,
+    ) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn memmove(
+        dest: *mut cty::c_void,
+        src: *const cty::c_void,
+        count: cty::c_uint,
+    ) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn memset(s: *mut cty::c_void, c: cty::c_int, n: cty::c_uint) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn memmem(
+        haystack: *const cty::c_void,
+        haystacklen: usize,
+        needle: *const cty::c_void,
+        needlelen: usize,
+    ) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn explicit_bzero(s: *mut cty::c_void, n: usize);
+}
+extern "C" {
+    pub fn timingsafe_bcmp(b1: *const cty::c_void, b2: *const cty::c_void, n: usize) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Public Function Prototypes"]
+    pub fn ffs(j: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn ffsl(j: cty::c_long) -> cty::c_int;
+}
+extern "C" {
+    pub fn ffsll(j: cty::c_longlong) -> cty::c_int;
+}
+extern "C" {
+    pub fn fls(j: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn flsl(j: cty::c_long) -> cty::c_int;
+}
+extern "C" {
+    pub fn flsll(j: cty::c_longlong) -> cty::c_int;
+}
+extern "C" {
+    pub fn popcount(j: cty::c_uint) -> cty::c_uint;
+}
+extern "C" {
+    pub fn popcountl(j: cty::c_ulong) -> cty::c_uint;
+}
+extern "C" {
+    pub fn popcountll(j: cty::c_ulonglong) -> cty::c_uint;
+}
+extern "C" {
+    pub fn index(s: *const cty::c_char, c: cty::c_int) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn rindex(s: *const cty::c_char, c: cty::c_int) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strcasecmp(arg1: *const cty::c_char, arg2: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn strncasecmp(
+        arg1: *const cty::c_char,
+        arg2: *const cty::c_char,
+        arg3: cty::c_uint,
+    ) -> cty::c_int;
+}
+#[doc = " Public Type Definitions"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct sched_param {
+    pub sched_priority: cty::c_int,
+}
+extern "C" {
+    pub fn task_create(
+        name: *const cty::c_char,
+        priority: cty::c_int,
+        stack_size: cty::c_int,
+        entry: main_t,
+        argv: *const *mut cty::c_char,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn task_create_with_stack(
+        name: *const cty::c_char,
+        priority: cty::c_int,
+        stack_addr: *mut cty::c_void,
+        stack_size: cty::c_int,
+        entry: main_t,
+        argv: *const *mut cty::c_char,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn task_delete(pid: pid_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn task_restart(pid: pid_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn task_setcancelstate(state: cty::c_int, oldstate: *mut cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn task_setcanceltype(type_: cty::c_int, oldtype: *mut cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn task_testcancel();
+}
+extern "C" {
+    pub fn sched_setparam(pid: pid_t, param: *const sched_param) -> cty::c_int;
+}
+extern "C" {
+    pub fn sched_getparam(pid: pid_t, param: *mut sched_param) -> cty::c_int;
+}
+extern "C" {
+    pub fn sched_setscheduler(
+        pid: pid_t,
+        policy: cty::c_int,
+        param: *const sched_param,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn sched_getscheduler(pid: pid_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn sched_yield() -> cty::c_int;
+}
+extern "C" {
+    pub fn sched_get_priority_max(policy: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn sched_get_priority_min(policy: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn sched_rr_get_interval(pid: pid_t, interval: *mut timespec) -> cty::c_int;
+}
+extern "C" {
+    pub fn sched_lock() -> cty::c_int;
+}
+extern "C" {
+    pub fn sched_unlock() -> cty::c_int;
+}
+extern "C" {
+    pub fn sched_lockcount() -> cty::c_int;
+}
+extern "C" {
+    pub fn sched_idletask() -> bool;
+}
+pub type va_list = u32;
+pub type __gnuc_va_list = u32;
+extern "C" {
+    #[doc = " Name: syslog and vsyslog\n\n Description:\n   syslog() generates a log message. The priority argument is formed by\n   ORing the facility and the level values (see include/syslog.h). The\n   remaining arguments are a format, as in printf and any arguments to the\n   format.\n\n   The NuttX implementation does not support any special formatting\n   characters beyond those supported by printf.\n\n   The function vsyslog() performs the same task as syslog() with the\n   difference that it takes a set of arguments which have been obtained\n   using the stdarg variable argument list macros.\n"]
+    pub fn syslog(priority: cty::c_int, fmt: *const cty::c_char, ...);
+}
+extern "C" {
+    pub fn vsyslog(priority: cty::c_int, fmt: *const cty::c_char, ap: va_list);
+}
+extern "C" {
+    #[doc = " Name: setlogmask\n\n Description:\n   The setlogmask() function sets the logmask and returns the previous\n   mask. If the mask argument is 0, the current logmask is not modified.\n\n   The SYSLOG priorities are: LOG_EMERG, LOG_ALERT, LOG_CRIT, LOG_ERR,\n   LOG_WARNING, LOG_NOTICE, LOG_INFO, and LOG_DEBUG.  The bit corresponding\n   to a priority p is LOG_MASK(p); LOG_UPTO(p) provides the mask of all\n   priorities in the above list up to and including p.\n\n   Per OpenGroup.org \"If the maskpri argument is 0, the current log mask\n   is not modified.\"  In this implementation, the value zero is permitted\n   in order to disable all syslog levels.\n\n   NOTE:  setlogmask is not a thread-safe, re-entrant function.  Concurrent\n   use of setlogmask() will have undefined behavior.\n\n   REVISIT: Per POSIX the syslog mask should be a per-process value but in\n   NuttX, the scope of the mask is dependent on the nature of the build:\n\n   Flat Build:  There is one, global SYSLOG mask that controls all output.\n   Protected Build:  There are two SYSLOG masks.  One within the kernel\n     that controls only kernel output.  And one in user-space that controls\n     only user SYSLOG output.\n   Kernel Build:  The kernel build is compliant with the POSIX requirement:\n     There will be one mask for for each user process, controlling the\n     SYSLOG output only form that process.  There will be a separate mask\n     accessible only in the kernel code to control kernel SYSLOG output.\n"]
+    pub fn setlogmask(mask: cty::c_int) -> cty::c_int;
+}
+#[doc = " Public Types"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct iovec {
+    pub iov_base: *mut cty::c_void,
+    pub iov_len: usize,
+}
+extern "C" {
+    #[doc = " Name: readv()\n\n Description:\n   The readv() function is equivalent to read(), except as described below.\n   The readv() function places the input data into the 'iovcnt' buffers\n   specified by the members of the 'iov' array: iov[0], iov[1], ...,\n   iov['iovcnt'-1].  The 'iovcnt' argument is valid if greater than 0 and\n   less than or equal to IOV_MAX as defined in limits.h.\n\n   Each iovec entry specifies the base address and length of an area in\n   memory where data should be placed.  The readv() function will always\n   fill an area completely before proceeding to the next.\n\n   TODO: pon successful completion, readv() will mark for update the\n   st_atime field of the file.\n\n Input Parameters:\n   filedes - The open file descriptor for the file to be read\n   iov     - Array of read buffer descriptors\n   iovcnt  - Number of elements in iov[]\n\n Returned Value:\n   Upon successful completion, readv() will return a non-negative integer\n   indicating the number of bytes actually read.  Otherwise, the functions\n   will return -1 and set errno to indicate the error.  See read() for the\n   list of returned errno values.  In addition, the readv() function will\n   fail if:\n\n    EINVAL.\n      The sum of the iov_len values in the iov array overflowed an ssize_t\n      or The 'iovcnt' argument was less than or equal to 0, or greater than\n      IOV_MAX (Not implemented).\n"]
+    pub fn readv(fildes: cty::c_int, iov: *const iovec, iovcnt: cty::c_int) -> isize;
+}
+extern "C" {
+    #[doc = " Name: writev()\n\n Description:\n   The writev() function is equivalent to write(), except as described\n   below. The writev() function will gather output data from the 'iovcnt'\n   buffers specified by the members of the 'iov' array: iov[0], iov[1],\n   ..., iov[iovcnt-1]. The 'iovcnt' argument is valid if greater than 0\n   and less than or equal to IOV_MAX, as defined in limits.h.\n\n   Each iovec entry specifies the base address and length of an area in\n   memory from which data should be written. The writev() function always\n   writes a complete area before proceeding to the next.\n\n   If 'filedes' refers to a regular file and all of the iov_len members in\n   the array pointed to by iov are 0, writev() will return 0 and have no\n   other effect. For other file types, the behavior is unspecified.\n\n   TODO: If the sum of the iov_len values is greater than SSIZE_MAX, the\n   operation will fail and no data will be transferred.\n\n Input Parameters:\n   filedes - The open file descriptor for the file to be read\n   iov     - Array of read buffer descriptors\n   iovcnt  - Number of elements in iov[]\n\n Returned Value:\n   Upon successful completion, writev() shall return the number of bytes\n   actually written. Otherwise, it shall return a value of -1, the file-\n   pointer shall remain unchanged, and errno shall be set to indicate an\n   error. See write for the list of returned errno values. In addition,\n   the readv() function will fail if:\n\n    EINVAL.\n      The sum of the iov_len values in the iov array overflowed an ssize_t\n      or The 'iovcnt' argument was less than or equal to 0, or greater than\n      IOV_MAX (Not implemented).\n"]
+    pub fn writev(fildes: cty::c_int, iov: *const iovec, iovcnt: cty::c_int) -> isize;
+}
+extern "C" {
+    pub fn preadv(
+        fildes: cty::c_int,
+        iov: *const iovec,
+        iovcnt: cty::c_int,
+        offset: off_t,
+    ) -> isize;
+}
+extern "C" {
+    pub fn pwritev(
+        fildes: cty::c_int,
+        iov: *const iovec,
+        iovcnt: cty::c_int,
+        offset: off_t,
+    ) -> isize;
+}
+pub type lib_dump_handler_t = ::core::option::Option<
+    unsafe extern "C" fn(arg: *mut cty::c_void, fmt: *const cty::c_char, ...),
+>;
+extern "C" {
+    pub fn lib_dumphandler(
+        msg: *const cty::c_char,
+        buffer: *const u8,
+        buflen: cty::c_uint,
+        handler: lib_dump_handler_t,
+        arg: *mut cty::c_void,
+    );
+}
+extern "C" {
+    pub fn lib_dumpvhandler(
+        msg: *const cty::c_char,
+        iov: *const iovec,
+        iovcnt: cty::c_int,
+        handler: lib_dump_handler_t,
+        arg: *mut cty::c_void,
+    );
+}
+extern "C" {
+    pub fn lib_dumpbuffer(msg: *const cty::c_char, buffer: *const u8, buflen: cty::c_uint);
+}
+extern "C" {
+    pub fn lib_dumpvbuffer(msg: *const cty::c_char, iov: *const iovec, iovcnt: cty::c_int);
+}
+extern "C" {
+    pub fn lib_dumpfile(
+        fd: cty::c_int,
+        msg: *const cty::c_char,
+        buffer: *const u8,
+        buflen: cty::c_uint,
+    );
+}
+extern "C" {
+    pub fn lib_dumpvfile(
+        fd: cty::c_int,
+        msg: *const cty::c_char,
+        iov: *const iovec,
+        iovcnt: cty::c_int,
+    );
+}
+extern "C" {
+    pub fn up_get_icache_linesize() -> usize;
+}
+extern "C" {
+    pub fn up_get_icache_size() -> usize;
+}
+extern "C" {
+    pub fn up_enable_icache();
+}
+extern "C" {
+    pub fn up_disable_icache();
+}
+extern "C" {
+    pub fn up_invalidate_icache(start: usize, end: usize);
+}
+extern "C" {
+    pub fn up_invalidate_icache_all();
+}
+extern "C" {
+    pub fn up_get_dcache_linesize() -> usize;
+}
+extern "C" {
+    pub fn up_get_dcache_size() -> usize;
+}
+extern "C" {
+    pub fn up_enable_dcache();
+}
+extern "C" {
+    pub fn up_disable_dcache();
+}
+extern "C" {
+    pub fn up_invalidate_dcache(start: usize, end: usize);
+}
+extern "C" {
+    pub fn up_invalidate_dcache_all();
+}
+extern "C" {
+    pub fn up_clean_dcache(start: usize, end: usize);
+}
+extern "C" {
+    pub fn up_clean_dcache_all();
+}
+extern "C" {
+    pub fn up_flush_dcache(start: usize, end: usize);
+}
+extern "C" {
+    pub fn up_flush_dcache_all();
+}
+extern "C" {
+    pub fn up_coherent_dcache(addr: usize, len: usize);
+}
+#[doc = " Public Types"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct sigset_s {
+    pub _elem: [u32; 2usize],
+}
+#[doc = " Public Types"]
+pub type sigset_t = sigset_s;
+pub type sig_atomic_t = cty::c_int;
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub union sigval {
+    pub sival_int: cty::c_int,
+    pub sival_ptr: *mut cty::c_void,
+}
+pub type sigev_notify_function_t = ::core::option::Option<unsafe extern "C" fn(value: sigval)>;
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct sigevent {
+    pub sigev_notify: u8,
+    pub sigev_signo: u8,
+    pub sigev_value: sigval,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct siginfo {
+    pub si_signo: u8,
+    pub si_code: u8,
+    pub si_errno: u8,
+    pub si_value: sigval,
+    pub si_user: *mut cty::c_void,
+}
+pub type siginfo_t = siginfo;
+pub type _sa_handler_t = ::core::option::Option<unsafe extern "C" fn(signo: cty::c_int)>;
+pub type _sa_sigaction_t = ::core::option::Option<
+    unsafe extern "C" fn(signo: cty::c_int, siginfo: *mut siginfo_t, context: *mut cty::c_void),
+>;
+pub type sighandler_t = _sa_handler_t;
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct sigaction {
+    pub sa_u: sigaction__bindgen_ty_1,
+    pub sa_mask: sigset_t,
+    pub sa_flags: cty::c_int,
+    pub sa_user: *mut cty::c_void,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub union sigaction__bindgen_ty_1 {
+    pub _sa_handler: _sa_handler_t,
+    pub _sa_sigaction: _sa_sigaction_t,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct stack_t {
+    pub ss_sp: *mut cty::c_void,
+    pub ss_flags: cty::c_int,
+    pub ss_size: usize,
+}
+extern "C" {
+    pub fn kill(pid: pid_t, signo: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn killpg(pgrp: pid_t, signo: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn tgkill(pid: pid_t, tid: pid_t, signo: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn psignal(signum: cty::c_int, message: *const cty::c_char);
+}
+extern "C" {
+    pub fn psiginfo(pinfo: *const siginfo_t, message: *const cty::c_char);
+}
+extern "C" {
+    pub fn raise(signo: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigaction(signo: cty::c_int, act: *const sigaction, oact: *mut sigaction) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigaddset(set: *mut sigset_t, signo: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigandset(
+        dest: *mut sigset_t,
+        left: *const sigset_t,
+        right: *const sigset_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigdelset(set: *mut sigset_t, signo: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigemptyset(set: *mut sigset_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigfillset(set: *mut sigset_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn sighold(signo: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigisemptyset(set: *mut sigset_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigismember(set: *const sigset_t, signo: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigignore(signo: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn signal(signo: cty::c_int, func: _sa_handler_t) -> _sa_handler_t;
+}
+extern "C" {
+    pub fn sigorset(
+        dest: *mut sigset_t,
+        left: *const sigset_t,
+        right: *const sigset_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigpause(signo: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigpending(set: *mut sigset_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigprocmask(how: cty::c_int, set: *const sigset_t, oset: *mut sigset_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigqueue(pid: cty::c_int, signo: cty::c_int, value: sigval) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigrelse(signo: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigset(signo: cty::c_int, func: _sa_handler_t) -> _sa_handler_t;
+}
+extern "C" {
+    pub fn sigwait(set: *const sigset_t, sig: *mut cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigtimedwait(
+        set: *const sigset_t,
+        value: *mut siginfo,
+        timeout: *const timespec,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigsuspend(sigmask: *const sigset_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigwaitinfo(set: *const sigset_t, value: *mut siginfo) -> cty::c_int;
+}
+extern "C" {
+    pub fn sigaltstack(ss: *const stack_t, oss: *mut stack_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn siginterrupt(signo: cty::c_int, flag: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Public Function Prototypes"]
+    pub fn fork() -> pid_t;
+}
+extern "C" {
+    pub fn vfork() -> cty::c_int;
+}
+extern "C" {
+    pub fn getpid() -> pid_t;
+}
+extern "C" {
+    pub fn getpgid(pid: pid_t) -> pid_t;
+}
+extern "C" {
+    pub fn getpgrp() -> pid_t;
+}
+extern "C" {
+    pub fn gettid() -> pid_t;
+}
+extern "C" {
+    pub fn getppid() -> pid_t;
+}
+extern "C" {
+    pub fn _exit(status: cty::c_int) -> !;
+}
+extern "C" {
+    pub fn sleep(seconds: cty::c_uint) -> cty::c_uint;
+}
+extern "C" {
+    pub fn usleep(usec: useconds_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pause() -> cty::c_int;
+}
+extern "C" {
+    pub fn nice(inc: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn daemon(nochdir: cty::c_int, noclose: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn close(fd: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn dup(fd: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn dup2(fd1: cty::c_int, fd2: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn dup3(fd1: cty::c_int, fd2: cty::c_int, flags: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn fsync(fd: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn lseek(fd: cty::c_int, offset: off_t, whence: cty::c_int) -> off_t;
+}
+extern "C" {
+    pub fn read(fd: cty::c_int, buf: *mut cty::c_void, nbytes: usize) -> isize;
+}
+extern "C" {
+    pub fn write(fd: cty::c_int, buf: *const cty::c_void, nbytes: usize) -> isize;
+}
+extern "C" {
+    pub fn pread(fd: cty::c_int, buf: *mut cty::c_void, nbytes: usize, offset: off_t) -> isize;
+}
+extern "C" {
+    pub fn pwrite(fd: cty::c_int, buf: *const cty::c_void, nbytes: usize, offset: off_t) -> isize;
+}
+extern "C" {
+    pub fn ftruncate(fd: cty::c_int, length: off_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn fchown(fd: cty::c_int, owner: uid_t, group: gid_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn isatty(fd: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn ttyname(fd: cty::c_int) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn ttyname_r(fd: cty::c_int, buf: *mut cty::c_char, buflen: usize) -> cty::c_int;
+}
+extern "C" {
+    pub fn pipe2(pipefd: *mut cty::c_int, flags: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn alarm(seconds: cty::c_uint) -> cty::c_uint;
+}
+extern "C" {
+    pub fn chdir(path: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn fchdir(fd: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn getcwd(buf: *mut cty::c_char, size: usize) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn access(path: *const cty::c_char, amode: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn faccessat(
+        dirfd: cty::c_int,
+        path: *const cty::c_char,
+        mode: cty::c_int,
+        flags: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn rmdir(pathname: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn unlink(pathname: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn unlinkat(
+        dirfd: cty::c_int,
+        pathname: *const cty::c_char,
+        flags: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn truncate(path: *const cty::c_char, length: off_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn link(path1: *const cty::c_char, path2: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn linkat(
+        olddirfd: cty::c_int,
+        path1: *const cty::c_char,
+        newdirfd: cty::c_int,
+        path2: *const cty::c_char,
+        flags: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn symlink(path1: *const cty::c_char, path2: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn symlinkat(
+        path1: *const cty::c_char,
+        dirfd: cty::c_int,
+        path2: *const cty::c_char,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn readlink(path: *const cty::c_char, buf: *mut cty::c_char, bufsize: usize) -> isize;
+}
+extern "C" {
+    pub fn readlinkat(
+        dirfd: cty::c_int,
+        path: *const cty::c_char,
+        buf: *mut cty::c_char,
+        bufsize: usize,
+    ) -> isize;
+}
+extern "C" {
+    pub fn chown(path: *const cty::c_char, owner: uid_t, group: gid_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn lchown(path: *const cty::c_char, owner: uid_t, group: gid_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn fchownat(
+        dirfd: cty::c_int,
+        path: *const cty::c_char,
+        owner: uid_t,
+        group: gid_t,
+        flags: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn swab(src: *const cty::c_void, dest: *mut cty::c_void, nbytes: isize);
+}
+extern "C" {
+    pub fn getopt(
+        argc: cty::c_int,
+        argv: *const *mut cty::c_char,
+        optstring: *const cty::c_char,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn getoptargp() -> *mut *mut cty::c_char;
+}
+extern "C" {
+    pub fn getopterrp() -> *mut cty::c_int;
+}
+extern "C" {
+    pub fn getoptindp() -> *mut cty::c_int;
+}
+extern "C" {
+    pub fn getoptoptp() -> *mut cty::c_int;
+}
+extern "C" {
+    pub fn gethostname(name: *mut cty::c_char, namelen: usize) -> cty::c_int;
+}
+extern "C" {
+    pub fn sethostname(name: *const cty::c_char, namelen: usize) -> cty::c_int;
+}
+extern "C" {
+    pub fn sysconf(name: cty::c_int) -> cty::c_long;
+}
+extern "C" {
+    pub fn fpathconf(fildes: cty::c_int, name: cty::c_int) -> cty::c_long;
+}
+extern "C" {
+    pub fn pathconf(path: *const cty::c_char, name: cty::c_int) -> cty::c_long;
+}
+extern "C" {
+    pub fn setuid(uid: uid_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn getuid() -> uid_t;
+}
+extern "C" {
+    pub fn setgid(gid: gid_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn getgid() -> gid_t;
+}
+extern "C" {
+    pub fn seteuid(uid: uid_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn geteuid() -> uid_t;
+}
+extern "C" {
+    pub fn setegid(gid: gid_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn getegid() -> gid_t;
+}
+extern "C" {
+    pub fn setreuid(ruid: uid_t, euid: uid_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn setregid(rgid: gid_t, egid: gid_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn getentropy(buffer: *mut cty::c_void, length: usize) -> cty::c_int;
+}
+extern "C" {
+    pub fn sync();
+}
+extern "C" {
+    pub fn syncfs(fd: cty::c_int) -> cty::c_int;
+}
+pub type pthread_key_t = cty::c_int;
+pub type pthread_addr_t = *mut cty::c_void;
+pub type pthread_startroutine_t =
+    ::core::option::Option<unsafe extern "C" fn(arg1: pthread_addr_t) -> pthread_addr_t>;
+pub type pthread_func_t = pthread_startroutine_t;
+pub type pthread_trampoline_t = ::core::option::Option<
+    unsafe extern "C" fn(arg1: pthread_startroutine_t, arg2: pthread_addr_t),
+>;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pthread_attr_s {
+    pub priority: u8,
+    pub policy: u8,
+    pub inheritsched: u8,
+    pub detachstate: u8,
+    pub stackaddr: *mut cty::c_void,
+    pub stacksize: usize,
+}
+pub type pthread_attr_t = pthread_attr_s;
+pub type pthread_t = pid_t;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pthread_condattr_s {
+    pub pshared: cty::c_int,
+    pub clockid: clockid_t,
+}
+pub type pthread_condattr_t = pthread_condattr_s;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pthread_cond_s {
+    pub sem: sem_t,
+    pub clockid: clockid_t,
+}
+pub type pthread_cond_t = pthread_cond_s;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pthread_mutexattr_s {
+    pub _bitfield_align_1: [u8; 0],
+    pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
+}
+impl pthread_mutexattr_s {
+    #[inline]
+    pub fn pshared(&self) -> u8 {
+        unsafe { ::core::mem::transmute(self._bitfield_1.get(0usize, 1u8) as u8) }
+    }
+    #[inline]
+    pub fn set_pshared(&mut self, val: u8) {
+        unsafe {
+            let val: u8 = ::core::mem::transmute(val);
+            self._bitfield_1.set(0usize, 1u8, val as u64)
+        }
+    }
+    #[inline]
+    pub fn new_bitfield_1(pshared: u8) -> __BindgenBitfieldUnit<[u8; 1usize]> {
+        let mut __bindgen_bitfield_unit: __BindgenBitfieldUnit<[u8; 1usize]> = Default::default();
+        __bindgen_bitfield_unit.set(0usize, 1u8, {
+            let pshared: u8 = unsafe { ::core::mem::transmute(pshared) };
+            pshared as u64
+        });
+        __bindgen_bitfield_unit
+    }
+}
+pub type pthread_mutexattr_t = pthread_mutexattr_s;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pthread_mutex_s {
+    pub flink: *mut pthread_mutex_s,
+    pub sem: sem_t,
+    pub pid: pid_t,
+    pub flags: u8,
+}
+pub type pthread_mutex_t = pthread_mutex_s;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pthread_barrierattr_s {
+    pub pshared: cty::c_int,
+}
+pub type pthread_barrierattr_t = pthread_barrierattr_s;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pthread_barrier_s {
+    pub sem: sem_t,
+    pub count: cty::c_uint,
+}
+pub type pthread_barrier_t = pthread_barrier_s;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pthread_once_s {
+    pub done: bool,
+    pub mutex: pthread_mutex_t,
+}
+pub type pthread_once_t = pthread_once_s;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pthread_rwlockattr_s {
+    pub pshared: cty::c_int,
+}
+pub type pthread_rwlockattr_t = pthread_rwlockattr_s;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pthread_rwlock_s {
+    pub lock: pthread_mutex_t,
+    pub cv: pthread_cond_t,
+    pub num_readers: cty::c_uint,
+    pub num_writers: cty::c_uint,
+    pub write_in_progress: bool,
+}
+pub type pthread_rwlock_t = pthread_rwlock_s;
+extern "C" {
+    #[doc = " Public Function Prototypes"]
+    pub fn pthread_attr_init(attr: *mut pthread_attr_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_destroy(attr: *mut pthread_attr_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_setschedpolicy(attr: *mut pthread_attr_t, policy: cty::c_int)
+        -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_getschedpolicy(
+        attr: *const pthread_attr_t,
+        policy: *mut cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_setschedparam(
+        attr: *mut pthread_attr_t,
+        param: *const sched_param,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_getschedparam(
+        attr: *const pthread_attr_t,
+        param: *mut sched_param,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_setinheritsched(
+        attr: *mut pthread_attr_t,
+        inheritsched: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_getinheritsched(
+        attr: *const pthread_attr_t,
+        inheritsched: *mut cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_getdetachstate(
+        attr: *const pthread_attr_t,
+        detachstate: *mut cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_setdetachstate(
+        attr: *mut pthread_attr_t,
+        detachstate: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_setstackaddr(
+        attr: *mut pthread_attr_t,
+        stackaddr: *mut cty::c_void,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_getstackaddr(
+        attr: *const pthread_attr_t,
+        stackaddr: *mut *mut cty::c_void,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_setstacksize(attr: *mut pthread_attr_t, stacksize: usize) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_getstacksize(
+        attr: *const pthread_attr_t,
+        stacksize: *mut usize,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_setstack(
+        attr: *mut pthread_attr_t,
+        stackaddr: *mut cty::c_void,
+        stacksize: usize,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_getstack(
+        attr: *const pthread_attr_t,
+        stackaddr: *mut *mut cty::c_void,
+        stacksize: *mut usize,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_setscope(attr: *mut pthread_attr_t, scope: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_attr_getscope(attr: *const pthread_attr_t, scope: *mut cty::c_int)
+        -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_setname_np(thread: pthread_t, name: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_getname_np(thread: pthread_t, name: *mut cty::c_char, len: usize) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_get_stackaddr_np(thread: pthread_t) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn pthread_get_stacksize_np(thread: pthread_t) -> isize;
+}
+extern "C" {
+    pub fn pthread_create(
+        thread: *mut pthread_t,
+        attr: *const pthread_attr_t,
+        startroutine: pthread_startroutine_t,
+        arg: pthread_addr_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_detach(thread: pthread_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_exit(value: pthread_addr_t) -> !;
+}
+extern "C" {
+    pub fn pthread_cancel(thread: pthread_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_setcancelstate(state: cty::c_int, oldstate: *mut cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_setcanceltype(type_: cty::c_int, oldtype: *mut cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_testcancel();
+}
+extern "C" {
+    pub fn pthread_join(thread: pthread_t, value: *mut pthread_addr_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_yield();
+}
+extern "C" {
+    pub fn pthread_getschedparam(
+        thread: pthread_t,
+        policy: *mut cty::c_int,
+        param: *mut sched_param,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_setschedparam(
+        thread: pthread_t,
+        policy: cty::c_int,
+        param: *const sched_param,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_setschedprio(thread: pthread_t, prio: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_key_create(
+        key: *mut pthread_key_t,
+        destructor: ::core::option::Option<unsafe extern "C" fn(arg1: *mut cty::c_void)>,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_setspecific(key: pthread_key_t, value: *const cty::c_void) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_getspecific(key: pthread_key_t) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn pthread_key_delete(key: pthread_key_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutexattr_init(attr: *mut pthread_mutexattr_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutexattr_destroy(attr: *mut pthread_mutexattr_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutexattr_getpshared(
+        attr: *const pthread_mutexattr_t,
+        pshared: *mut cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutexattr_setpshared(
+        attr: *mut pthread_mutexattr_t,
+        pshared: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutexattr_gettype(
+        attr: *const pthread_mutexattr_t,
+        type_: *mut cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutexattr_settype(
+        attr: *mut pthread_mutexattr_t,
+        type_: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutexattr_getprotocol(
+        attr: *const pthread_mutexattr_t,
+        protocol: *mut cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutexattr_setprotocol(
+        attr: *mut pthread_mutexattr_t,
+        protocol: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutexattr_getrobust(
+        attr: *const pthread_mutexattr_t,
+        robust: *mut cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutexattr_setrobust(
+        attr: *mut pthread_mutexattr_t,
+        robust: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutex_init(
+        mutex: *mut pthread_mutex_t,
+        attr: *const pthread_mutexattr_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutex_destroy(mutex: *mut pthread_mutex_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutex_lock(mutex: *mut pthread_mutex_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutex_timedlock(
+        mutex: *mut pthread_mutex_t,
+        abs_timeout: *const timespec,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutex_trylock(mutex: *mut pthread_mutex_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutex_unlock(mutex: *mut pthread_mutex_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_mutex_consistent(mutex: *mut pthread_mutex_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_condattr_init(attr: *mut pthread_condattr_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_condattr_destroy(attr: *mut pthread_condattr_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_condattr_getpshared(
+        attr: *const pthread_condattr_t,
+        pshared: *mut cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_condattr_setpshared(
+        attr: *mut pthread_condattr_t,
+        pshared: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_condattr_getclock(
+        attr: *const pthread_condattr_t,
+        clock_id: *mut clockid_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_condattr_setclock(
+        attr: *mut pthread_condattr_t,
+        clock_id: clockid_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_cond_init(
+        cond: *mut pthread_cond_t,
+        attr: *const pthread_condattr_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_cond_destroy(cond: *mut pthread_cond_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_cond_broadcast(cond: *mut pthread_cond_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_cond_signal(cond: *mut pthread_cond_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_cond_wait(cond: *mut pthread_cond_t, mutex: *mut pthread_mutex_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_cond_timedwait(
+        cond: *mut pthread_cond_t,
+        mutex: *mut pthread_mutex_t,
+        abstime: *const timespec,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_cond_clockwait(
+        cond: *mut pthread_cond_t,
+        mutex: *mut pthread_mutex_t,
+        clockid: clockid_t,
+        abstime: *const timespec,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_barrierattr_destroy(attr: *mut pthread_barrierattr_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_barrierattr_init(attr: *mut pthread_barrierattr_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_barrierattr_getpshared(
+        attr: *const pthread_barrierattr_t,
+        pshared: *mut cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_barrierattr_setpshared(
+        attr: *mut pthread_barrierattr_t,
+        pshared: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_barrier_destroy(barrier: *mut pthread_barrier_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_barrier_init(
+        barrier: *mut pthread_barrier_t,
+        attr: *const pthread_barrierattr_t,
+        count: cty::c_uint,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_barrier_wait(barrier: *mut pthread_barrier_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_once(
+        once_control: *mut pthread_once_t,
+        init_routine: ::core::option::Option<unsafe extern "C" fn()>,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_rwlockattr_init(attr: *mut pthread_rwlockattr_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_rwlockattr_destroy(attr: *mut pthread_rwlockattr_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_rwlockattr_getpshared(
+        attr: *const pthread_rwlockattr_t,
+        pshared: *mut cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_rwlockattr_setpshared(
+        attr: *mut pthread_rwlockattr_t,
+        pshared: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_rwlock_destroy(rw_lock: *mut pthread_rwlock_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_rwlock_init(
+        rw_lock: *mut pthread_rwlock_t,
+        attr: *const pthread_rwlockattr_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_rwlock_rdlock(lock: *mut pthread_rwlock_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_rwlock_timedrdlock(
+        lock: *mut pthread_rwlock_t,
+        abstime: *const timespec,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_rwlock_clockrdlock(
+        lock: *mut pthread_rwlock_t,
+        clockid: clockid_t,
+        abstime: *const timespec,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_rwlock_tryrdlock(lock: *mut pthread_rwlock_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_rwlock_wrlock(lock: *mut pthread_rwlock_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_rwlock_timedwrlock(
+        lock: *mut pthread_rwlock_t,
+        abstime: *const timespec,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_rwlock_clockwrlock(
+        lock: *mut pthread_rwlock_t,
+        clockid: clockid_t,
+        abstime: *const timespec,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_rwlock_trywrlock(lock: *mut pthread_rwlock_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_rwlock_unlock(lock: *mut pthread_rwlock_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_kill(thread: pthread_t, sig: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_sigmask(
+        how: cty::c_int,
+        set: *const sigset_t,
+        oset: *mut sigset_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_getcpuclockid(thread_id: pthread_t, clock_id: *mut clockid_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn pthread_atfork(
+        prepare: ::core::option::Option<unsafe extern "C" fn()>,
+        parent: ::core::option::Option<unsafe extern "C" fn()>,
+        child: ::core::option::Option<unsafe extern "C" fn()>,
+    ) -> cty::c_int;
+}
+pub type wdparm_t = usize;
+pub type wdentry_t = ::core::option::Option<unsafe extern "C" fn(arg: wdparm_t)>;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct wdog_s {
+    pub next: *mut wdog_s,
+    pub arg: wdparm_t,
+    pub func: wdentry_t,
+    pub lag: sclock_t,
+}
+extern "C" {
+    #[doc = " Name: wd_start\n\n Description:\n   This function adds a watchdog timer to the active timer queue.  The\n   specified watchdog function at 'wdentry' will be called from the\n   interrupt level after the specified number of ticks has elapsed.\n   Watchdog timers may be started from the interrupt level.\n\n   Watchdog timers execute in the address environment that was in effect\n   when wd_start() is called.\n\n   Watchdog timers execute only once.\n\n   To replace either the timeout delay or the function to be executed,\n   call wd_start again with the same wdog; only the most recent wdStart()\n   on a given watchdog ID has any effect.\n\n Input Parameters:\n   wdog     - Watchdog ID\n   delay    - Delay count in clock ticks\n   wdentry  - Function to call on timeout\n   arg      - Parameter to pass to wdentry.\n\n   NOTE:  The parameter must be of type wdparm_t.\n\n Returned Value:\n   Zero (OK) is returned on success; a negated errno value is return to\n   indicate the nature of any failure.\n\n Assumptions:\n   The watchdog routine runs in the context of the timer interrupt handler\n   and is subject to all ISR restrictions.\n"]
+    pub fn wd_start(
+        wdog: *mut wdog_s,
+        delay: sclock_t,
+        wdentry: wdentry_t,
+        arg: wdparm_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: wd_cancel\n\n Description:\n   This function cancels a currently running watchdog timer. Watchdog\n   timers may be cancelled from the interrupt level.\n\n Input Parameters:\n   wdog - ID of the watchdog to cancel.\n\n Returned Value:\n   Zero (OK) is returned on success;  A negated errno value is returned to\n   indicate the nature of any failure.\n"]
+    pub fn wd_cancel(wdog: *mut wdog_s) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: wd_gettime\n\n Description:\n   This function returns the time remaining before the specified watchdog\n   timer expires.\n\n Input Parameters:\n   wdog - watchdog ID\n\n Returned Value:\n   The time in system ticks remaining until the watchdog time expires.\n   Zero means either that wdog is not valid or that the wdog has already\n   expired.\n"]
+    pub fn wd_gettime(wdog: *mut wdog_s) -> sclock_t;
+}
+pub type worker_t = ::core::option::Option<unsafe extern "C" fn(arg: *mut cty::c_void)>;
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct work_s {
+    pub u: work_s__bindgen_ty_1,
+    pub worker: worker_t,
+    pub arg: *mut cty::c_void,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub union work_s__bindgen_ty_1 {
+    pub s: work_s__bindgen_ty_1__bindgen_ty_1,
+    pub timer: wdog_s,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct work_s__bindgen_ty_1__bindgen_ty_1 {
+    pub dq: dq_entry_s,
+    pub qtime: clock_t,
+}
+pub const work_evtype_e_WORK_IOB_AVAIL: work_evtype_e = 1;
+pub const work_evtype_e_WORK_NET_DOWN: work_evtype_e = 2;
+pub const work_evtype_e_WORK_TCP_READAHEAD: work_evtype_e = 3;
+pub const work_evtype_e_WORK_TCP_WRITEBUFFER: work_evtype_e = 4;
+pub const work_evtype_e_WORK_TCP_DISCONNECT: work_evtype_e = 5;
+pub const work_evtype_e_WORK_UDP_READAHEAD: work_evtype_e = 6;
+pub const work_evtype_e_WORK_UDP_WRITEBUFFER: work_evtype_e = 7;
+pub const work_evtype_e_WORK_NETLINK_RESPONSE: work_evtype_e = 8;
+pub const work_evtype_e_WORK_CAN_READAHEAD: work_evtype_e = 9;
+pub const work_evtype_e_WORK_USB_MSC_CONNECT: work_evtype_e = 10;
+pub const work_evtype_e_WORK_USB_MSC_DISCONNECT: work_evtype_e = 11;
+pub type work_evtype_e = cty::c_uint;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct work_notifier_s {
+    pub evtype: u8,
+    pub qid: u8,
+    pub qualifier: *mut cty::c_void,
+    pub arg: *mut cty::c_void,
+    pub worker: worker_t,
+}
+pub type work_foreach_t =
+    ::core::option::Option<unsafe extern "C" fn(tid: cty::c_int, arg: *mut cty::c_void)>;
+extern "C" {
+    #[doc = " Name: work_queue\n\n Description:\n   Queue work to be performed at a later time.  All queued work will be\n   performed on the worker thread of execution (not the caller's).\n\n   The work structure is allocated and must be initialized to all zero by\n   the caller.  Otherwise, the work structure is completely managed by the\n   work queue logic.  The caller should never modify the contents of the\n   work queue structure directly.  If work_queue() is called before the\n   previous work has been performed and removed from the queue, then any\n   pending work will be canceled and lost.\n\n Input Parameters:\n   qid    - The work queue ID\n   work   - The work structure to queue\n   worker - The worker callback to be invoked.  The callback will be\n            invoked on the worker thread of execution.\n   arg    - The argument that will be passed to the worker callback when\n            it is invoked.\n   delay  - Delay (in clock ticks) from the time queue until the worker\n            is invoked. Zero means to perform the work immediately.\n\n Returned Value:\n   Zero on success, a negated errno on failure\n"]
+    pub fn work_queue(
+        qid: cty::c_int,
+        work: *mut work_s,
+        worker: worker_t,
+        arg: *mut cty::c_void,
+        delay: clock_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: work_cancel\n\n Description:\n   Cancel previously queued work.  This removes work from the work queue.\n   After work has been cancelled, it may be requeued by calling\n   work_queue() again.\n\n Input Parameters:\n   qid    - The work queue ID\n   work   - The previously queued work structure to cancel\n\n Returned Value:\n   Zero on success, a negated errno on failure\n\n   -ENOENT - There is no such work queued.\n   -EINVAL - An invalid work queue was specified\n"]
+    pub fn work_cancel(qid: cty::c_int, work: *mut work_s) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: work_cancel_sync\n\n Description:\n   Blocked cancel previously queued user-mode work.  This removes work\n   from the user mode work queue.  After work has been cancelled, it may\n   be requeued by calling work_queue() again.\n\n Input Parameters:\n   qid    - The work queue ID (must be HPWORK or LPWORK)\n   work   - The previously queued work structure to cancel\n\n Returned Value:\n   Zero (OK) on success, a negated errno on failure.  This error may be\n   reported:\n\n   -ENOENT - There is no such work queued.\n   -EINVAL - An invalid work queue was specified\n"]
+    pub fn work_cancel_sync(qid: cty::c_int, work: *mut work_s) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: work_foreach\n\n Description:\n   Enumerate over each work thread and provide the tid of each task to a\n   user callback functions.\n\n Input Parameters:\n   qid     - The work queue ID\n   handler - The function to be called with the pid of each task\n   arg     - The function callback\n\n Returned Value:\n   None\n"]
+    pub fn work_foreach(qid: cty::c_int, handler: work_foreach_t, arg: *mut cty::c_void);
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct dirent {
+    pub d_type: u8,
+    pub d_name: [cty::c_char; 33usize],
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct DIR {
+    pub fd: cty::c_int,
+    pub entry: dirent,
+}
+extern "C" {
+    pub fn closedir(dirp: *mut DIR) -> cty::c_int;
+}
+extern "C" {
+    pub fn opendir(path: *const cty::c_char) -> *mut DIR;
+}
+extern "C" {
+    pub fn fdopendir(fd: cty::c_int) -> *mut DIR;
+}
+extern "C" {
+    pub fn readdir(dirp: *mut DIR) -> *mut dirent;
+}
+extern "C" {
+    pub fn readdir_r(dirp: *mut DIR, entry: *mut dirent, result: *mut *mut dirent) -> cty::c_int;
+}
+extern "C" {
+    pub fn rewinddir(dirp: *mut DIR);
+}
+extern "C" {
+    pub fn seekdir(dirp: *mut DIR, loc: off_t);
+}
+extern "C" {
+    pub fn telldir(dirp: *mut DIR) -> off_t;
+}
+extern "C" {
+    pub fn scandir(
+        path: *const cty::c_char,
+        namelist: *mut *mut *mut dirent,
+        filter: ::core::option::Option<unsafe extern "C" fn(arg1: *const dirent) -> cty::c_int>,
+        compar: ::core::option::Option<
+            unsafe extern "C" fn(arg1: *mut *const dirent, arg2: *mut *const dirent) -> cty::c_int,
+        >,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn alphasort(a: *mut *const dirent, b: *mut *const dirent) -> cty::c_int;
+}
+extern "C" {
+    pub fn versionsort(a: *mut *const dirent, b: *mut *const dirent) -> cty::c_int;
+}
+extern "C" {
+    pub fn dirfd(dirp: *mut DIR) -> cty::c_int;
+}
+pub type spinlock_t = u8;
+extern "C" {
+    pub fn up_testset(lock: *mut spinlock_t) -> spinlock_t;
+}
+extern "C" {
+    #[doc = " Name: spin_lock\n\n Description:\n   If this CPU does not already hold the spinlock, then loop until the\n   spinlock is successfully locked.\n\n   This implementation is non-reentrant and is prone to deadlocks in\n   the case that any logic on the same CPU attempts to take the lock\n   more than once.\n\n Input Parameters:\n   lock - A reference to the spinlock object to lock.\n\n Returned Value:\n   None.  When the function returns, the spinlock was successfully locked\n   by this CPU.\n\n Assumptions:\n   Not running at the interrupt level.\n"]
+    pub fn spin_lock(lock: *mut spinlock_t);
+}
+extern "C" {
+    #[doc = " Name: spin_lock_wo_note\n\n Description:\n   If this CPU does not already hold the spinlock, then loop until the\n   spinlock is successfully locked.\n\n   This implementation is the same as the above spin_lock() except that\n   it does not perform instrumentation logic.\n\n Input Parameters:\n   lock - A reference to the spinlock object to lock.\n\n Returned Value:\n   None.  When the function returns, the spinlock was successfully locked\n   by this CPU.\n\n Assumptions:\n   Not running at the interrupt level.\n"]
+    pub fn spin_lock_wo_note(lock: *mut spinlock_t);
+}
+extern "C" {
+    #[doc = " Name: spin_trylock\n\n Description:\n   Try once to lock the spinlock.  Do not wait if the spinlock is already\n   locked.\n\n Input Parameters:\n   lock - A reference to the spinlock object to lock.\n\n Returned Value:\n   SP_LOCKED   - Failure, the spinlock was already locked\n   SP_UNLOCKED - Success, the spinlock was successfully locked\n\n Assumptions:\n   Not running at the interrupt level.\n"]
+    pub fn spin_trylock(lock: *mut spinlock_t) -> bool;
+}
+extern "C" {
+    #[doc = " Name: spin_trylock_wo_note\n\n Description:\n   Try once to lock the spinlock.  Do not wait if the spinlock is already\n   locked.\n\n   This implementation is the same as the above spin_trylock() except that\n   it does not perform instrumentation logic.\n\n Input Parameters:\n   lock - A reference to the spinlock object to lock.\n\n Returned Value:\n   SP_LOCKED   - Failure, the spinlock was already locked\n   SP_UNLOCKED - Success, the spinlock was successfully locked\n\n Assumptions:\n   Not running at the interrupt level.\n"]
+    pub fn spin_trylock_wo_note(lock: *mut spinlock_t) -> bool;
+}
+extern "C" {
+    #[doc = " Name: spin_unlock_wo_note\n\n Description:\n   Release one count on a non-reentrant spinlock.\n\n   This implementation is the same as the above spin_unlock() except that\n   it does not perform instrumentation logic.\n\n Input Parameters:\n   lock - A reference to the spinlock object to unlock.\n\n Returned Value:\n   None.\n\n Assumptions:\n   Not running at the interrupt level.\n"]
+    pub fn spin_unlock_wo_note(lock: *mut spinlock_t);
+}
+#[doc = " Public Types"]
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct mm_map_entry_s {
+    pub flink: *mut mm_map_entry,
+    pub vaddr: *mut cty::c_void,
+    pub length: usize,
+    pub offset: off_t,
+    pub prot: cty::c_int,
+    pub flags: cty::c_int,
+    pub priv_: mm_map_entry_s__bindgen_ty_1,
+    pub munmap: ::core::option::Option<
+        unsafe extern "C" fn(
+            group: *mut task_group_s,
+            entry: *mut mm_map_entry_s,
+            start: *mut cty::c_void,
+            length: usize,
+        ) -> cty::c_int,
+    >,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub union mm_map_entry_s__bindgen_ty_1 {
+    pub p: *mut cty::c_void,
+    pub i: cty::c_int,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct mm_map_s {
+    pub mm_map_sq: sq_queue_t,
+    pub map_count: usize,
+    pub mm_map_mutex: rmutex_t,
+}
+extern "C" {
+    #[doc = " Name: mm_map_lock\n\n Description:\n   Get exclusive access current task_group's mm_map\n\n Input Parameters:\n   None\n\n Returned Value:\n   OK on success\n   A negated errno value on failure\n"]
+    pub fn mm_map_lock() -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: mm_map_unlock\n\n Description:\n   Relinquish exclusive access to current task_group's mm_map\n\n Input Parameters:\n   None\n\n Returned Value:\n   None\n"]
+    pub fn mm_map_unlock();
+}
+extern "C" {
+    #[doc = " Name: mm_map_initialize\n\n Description:\n   Initialization function, called only by group_initialize\n\n Input Parameters:\n   mm     - Pointer to the mm_map structure to be initialized\n   kernel - Indicates whether we are initializing a kernel task\n\n Returned Value:\n   None\n"]
+    pub fn mm_map_initialize(mm: *mut mm_map_s, kernel: bool);
+}
+extern "C" {
+    #[doc = " Name: mm_map_destroy\n\n Description:\n   Uninitialization function, called only by group_release\n\n Input Parameters:\n   mm - Pointer to the mm_map structure to be initialized\n\n Returned Value:\n   None\n"]
+    pub fn mm_map_destroy(mm: *mut mm_map_s);
+}
+extern "C" {
+    #[doc = " Name: mm_map_add\n\n Description:\n   Adds a virtual memory area into the list of mappings\n\n Input Parameters:\n   mm    - A pointer to mm_map_s, which describes the virtual memory area\n   entry - A pointer to mm_map_entry_s, mapping info to be added\n\n Returned Value:\n   OK        Added successfully\n   -EINVAL:  Invalid attempt to get the semaphore\n   -EINTR:   The wait was interrupted by the receipt of a signal.\n   -ENOMEM:  Out of memory\n"]
+    pub fn mm_map_add(mm: *mut mm_map_s, entry: *mut mm_map_entry_s) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: mm_map_next\n\n Description:\n   Returns the next mapping in the list, following the argument.\n   Can be used to iterate through all the mappings. Returns the first\n   mapping when the argument \"entry\" is NULL.\n\n Input Parameters:\n   mm    - A pointer to mm_map_s, which describes the virtual memory area\n   entry - Pointer to a single mapping in this task group or NULL to get\n           the first one\n\n Returned Value:\n   Pointer to the next mapping\n"]
+    pub fn mm_map_next(mm: *mut mm_map_s, entry: *const mm_map_entry_s) -> *mut mm_map_entry_s;
+}
+extern "C" {
+    #[doc = " Name: mm_map_find\n\n Description:\n   Find the first mapping matching address and length\n\n Input Parameters:\n   mm     - A pointer to mm_map_s, which describes the virtual memory area\n   vaddr  - Start address of the mapped area\n   length - Length of the mapping\n\n Returned Value:\n   Pointer to the mapping, NULL if not found\n"]
+    pub fn mm_map_find(
+        mm: *mut mm_map_s,
+        vaddr: *const cty::c_void,
+        length: usize,
+    ) -> *mut mm_map_entry_s;
+}
+extern "C" {
+    #[doc = " Name: mm_map_remove\n\n Description:\n   Removes a virtual memory area from the list of mappings\n   Sets the given pointer argument to NULL after successful removal\n\n Input Parameters:\n   mm      - Pointer to the list of entries, from which the entry is\n             removed. If passed mm is NULL, the function doesn't do\n             anything, but just returns OK.\n\n   entry   - Pointer to the entry to be removed. If the passed entry is\n             NULL the function doesn't do anything but just returns OK\n\n Returned Value:\n   OK:       Removed successfully\n   -EINVAL:  Invalid attempt to get the semaphore\n   -EINTR:   The wait was interrupted by the receipt of a signal.\n   -ENOENT:  Memory area not found\n"]
+    pub fn mm_map_remove(mm: *mut mm_map_s, entry: *mut mm_map_entry_s) -> cty::c_int;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct posix_spawnattr_s {
+    pub flags: u8,
+    pub priority: u8,
+    pub policy: u8,
+    pub sigmask: sigset_t,
+    pub stacksize: usize,
+    pub stackaddr: *mut cty::c_void,
+}
+pub type posix_spawnattr_t = posix_spawnattr_s;
+pub type posix_spawn_file_actions_t = *mut cty::c_void;
+extern "C" {
+    pub fn posix_spawn(
+        pid: *mut pid_t,
+        path: *const cty::c_char,
+        file_actions: *const posix_spawn_file_actions_t,
+        attr: *const posix_spawnattr_t,
+        argv: *const *mut cty::c_char,
+        envp: *const *mut cty::c_char,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn task_spawn(
+        name: *const cty::c_char,
+        entry: main_t,
+        file_actions: *const posix_spawn_file_actions_t,
+        attr: *const posix_spawnattr_t,
+        argv: *const *mut cty::c_char,
+        envp: *const *mut cty::c_char,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawn_file_actions_init(
+        file_actions: *mut posix_spawn_file_actions_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawn_file_actions_destroy(
+        file_actions: *mut posix_spawn_file_actions_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawn_file_actions_addclose(
+        file_actions: *mut posix_spawn_file_actions_t,
+        fd: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawn_file_actions_adddup2(
+        file_actions: *mut posix_spawn_file_actions_t,
+        fd1: cty::c_int,
+        fd2: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawn_file_actions_addopen(
+        file_actions: *mut posix_spawn_file_actions_t,
+        fd: cty::c_int,
+        path: *const cty::c_char,
+        oflags: cty::c_int,
+        mode: mode_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawnattr_init(attr: *mut posix_spawnattr_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawnattr_destroy(attr: *mut posix_spawnattr_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawnattr_getflags(
+        attr: *const posix_spawnattr_t,
+        flags: *mut cty::c_short,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawnattr_getschedparam(
+        attr: *const posix_spawnattr_t,
+        param: *mut sched_param,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawnattr_getschedpolicy(
+        attr: *const posix_spawnattr_t,
+        policy: *mut cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawnattr_getsigmask(
+        attr: *const posix_spawnattr_t,
+        sigmask: *mut sigset_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawnattr_setflags(
+        attr: *mut posix_spawnattr_t,
+        flags: cty::c_short,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawnattr_setschedparam(
+        attr: *mut posix_spawnattr_t,
+        param: *const sched_param,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawnattr_setschedpolicy(
+        attr: *mut posix_spawnattr_t,
+        policy: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawnattr_setsigmask(
+        attr: *mut posix_spawnattr_t,
+        sigmask: *const sigset_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawnattr_getstacksize(
+        attr: *const posix_spawnattr_t,
+        stacksize: *mut usize,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawnattr_setstacksize(
+        attr: *mut posix_spawnattr_t,
+        stacksize: usize,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawnattr_getstackaddr(
+        attr: *const posix_spawnattr_t,
+        stackaddr: *mut *mut cty::c_void,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn posix_spawnattr_setstackaddr(
+        attr: *mut posix_spawnattr_t,
+        stackaddr: *mut cty::c_void,
+    ) -> cty::c_int;
+}
+pub const spawn_file_actions_e_SPAWN_FILE_ACTION_NONE: spawn_file_actions_e = 0;
+pub const spawn_file_actions_e_SPAWN_FILE_ACTION_CLOSE: spawn_file_actions_e = 1;
+pub const spawn_file_actions_e_SPAWN_FILE_ACTION_DUP2: spawn_file_actions_e = 2;
+pub const spawn_file_actions_e_SPAWN_FILE_ACTION_OPEN: spawn_file_actions_e = 3;
+#[doc = " Type Definitions"]
+pub type spawn_file_actions_e = cty::c_uint;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct spawn_general_file_action_s {
+    pub flink: *mut spawn_general_file_action_s,
+    pub action: spawn_file_actions_e,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct spawn_close_file_action_s {
+    pub flink: *mut spawn_general_file_action_s,
+    pub action: spawn_file_actions_e,
+    pub fd: cty::c_int,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct spawn_dup2_file_action_s {
+    pub flink: *mut spawn_general_file_action_s,
+    pub action: spawn_file_actions_e,
+    pub fd1: cty::c_int,
+    pub fd2: cty::c_int,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct spawn_open_file_action_s {
+    pub flink: *mut spawn_general_file_action_s,
+    pub action: spawn_file_actions_e,
+    pub fd: cty::c_int,
+    pub oflags: cty::c_int,
+    pub mode: mode_t,
+    pub path: [cty::c_char; 1usize],
+}
+extern "C" {
+    pub fn add_file_action(
+        file_action: *mut posix_spawn_file_actions_t,
+        entry: *mut spawn_general_file_action_s,
+    );
+}
+extern "C" {
+    pub fn spawn_file_actions(
+        tcb: *mut tcb_s,
+        actions: *const posix_spawn_file_actions_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn spawn_file_is_duplicateable(
+        actions: *const posix_spawn_file_actions_t,
+        fd: cty::c_int,
+        cloexec: bool,
+    ) -> bool;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct stat {
+    _unused: [u8; 0],
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct statfs {
+    _unused: [u8; 0],
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pollfd {
+    _unused: [u8; 0],
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct mtd_dev_s {
+    _unused: [u8; 0],
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct fs_dirent_s {
+    pub fd_root: *mut inode,
+    pub fd_path: *mut cty::c_char,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct file_operations {
+    pub open: ::core::option::Option<unsafe extern "C" fn(filep: *mut file) -> cty::c_int>,
+    pub close: ::core::option::Option<unsafe extern "C" fn(filep: *mut file) -> cty::c_int>,
+    pub read: ::core::option::Option<
+        unsafe extern "C" fn(filep: *mut file, buffer: *mut cty::c_char, buflen: usize) -> isize,
+    >,
+    pub write: ::core::option::Option<
+        unsafe extern "C" fn(filep: *mut file, buffer: *const cty::c_char, buflen: usize) -> isize,
+    >,
+    pub seek: ::core::option::Option<
+        unsafe extern "C" fn(filep: *mut file, offset: off_t, whence: cty::c_int) -> off_t,
+    >,
+    pub ioctl: ::core::option::Option<
+        unsafe extern "C" fn(filep: *mut file, cmd: cty::c_int, arg: cty::c_ulong) -> cty::c_int,
+    >,
+    pub mmap: ::core::option::Option<
+        unsafe extern "C" fn(filep: *mut file, map: *mut mm_map_entry_s) -> cty::c_int,
+    >,
+    pub truncate:
+        ::core::option::Option<unsafe extern "C" fn(filep: *mut file, length: off_t) -> cty::c_int>,
+    pub poll: ::core::option::Option<
+        unsafe extern "C" fn(filep: *mut file, fds: *mut pollfd, setup: bool) -> cty::c_int,
+    >,
+    pub unlink: ::core::option::Option<unsafe extern "C" fn(inode: *mut inode) -> cty::c_int>,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct geometry {
+    pub geo_available: bool,
+    pub geo_mediachanged: bool,
+    pub geo_writeenabled: bool,
+    pub geo_nsectors: blkcnt_t,
+    pub geo_sectorsize: blksize_t,
+    pub geo_model: [cty::c_char; 33usize],
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct partition_info_s {
+    pub numsectors: usize,
+    pub sectorsize: usize,
+    pub startsector: off_t,
+    pub parent: [cty::c_char; 33usize],
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct block_operations {
+    pub open: ::core::option::Option<unsafe extern "C" fn(inode: *mut inode) -> cty::c_int>,
+    pub close: ::core::option::Option<unsafe extern "C" fn(inode: *mut inode) -> cty::c_int>,
+    pub read: ::core::option::Option<
+        unsafe extern "C" fn(
+            inode: *mut inode,
+            buffer: *mut cty::c_uchar,
+            start_sector: blkcnt_t,
+            nsectors: cty::c_uint,
+        ) -> isize,
+    >,
+    pub write: ::core::option::Option<
+        unsafe extern "C" fn(
+            inode: *mut inode,
+            buffer: *const cty::c_uchar,
+            start_sector: blkcnt_t,
+            nsectors: cty::c_uint,
+        ) -> isize,
+    >,
+    pub geometry: ::core::option::Option<
+        unsafe extern "C" fn(inode: *mut inode, geometry: *mut geometry) -> cty::c_int,
+    >,
+    pub ioctl: ::core::option::Option<
+        unsafe extern "C" fn(inode: *mut inode, cmd: cty::c_int, arg: cty::c_ulong) -> cty::c_int,
+    >,
+    pub unlink: ::core::option::Option<unsafe extern "C" fn(inode: *mut inode) -> cty::c_int>,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct mountpt_operations {
+    pub open: ::core::option::Option<
+        unsafe extern "C" fn(
+            filep: *mut file,
+            relpath: *const cty::c_char,
+            oflags: cty::c_int,
+            mode: mode_t,
+        ) -> cty::c_int,
+    >,
+    pub close: ::core::option::Option<unsafe extern "C" fn(filep: *mut file) -> cty::c_int>,
+    pub read: ::core::option::Option<
+        unsafe extern "C" fn(filep: *mut file, buffer: *mut cty::c_char, buflen: usize) -> isize,
+    >,
+    pub write: ::core::option::Option<
+        unsafe extern "C" fn(filep: *mut file, buffer: *const cty::c_char, buflen: usize) -> isize,
+    >,
+    pub seek: ::core::option::Option<
+        unsafe extern "C" fn(filep: *mut file, offset: off_t, whence: cty::c_int) -> off_t,
+    >,
+    pub ioctl: ::core::option::Option<
+        unsafe extern "C" fn(filep: *mut file, cmd: cty::c_int, arg: cty::c_ulong) -> cty::c_int,
+    >,
+    pub mmap: ::core::option::Option<
+        unsafe extern "C" fn(filep: *mut file, map: *mut mm_map_entry_s) -> cty::c_int,
+    >,
+    pub truncate:
+        ::core::option::Option<unsafe extern "C" fn(filep: *mut file, length: off_t) -> cty::c_int>,
+    pub poll: ::core::option::Option<
+        unsafe extern "C" fn(filep: *mut file, fds: *mut pollfd, setup: bool) -> cty::c_int,
+    >,
+    pub sync: ::core::option::Option<unsafe extern "C" fn(filep: *mut file) -> cty::c_int>,
+    pub dup: ::core::option::Option<
+        unsafe extern "C" fn(oldp: *const file, newp: *mut file) -> cty::c_int,
+    >,
+    pub fstat: ::core::option::Option<
+        unsafe extern "C" fn(filep: *const file, buf: *mut stat) -> cty::c_int,
+    >,
+    pub fchstat: ::core::option::Option<
+        unsafe extern "C" fn(filep: *const file, buf: *const stat, flags: cty::c_int) -> cty::c_int,
+    >,
+    pub opendir: ::core::option::Option<
+        unsafe extern "C" fn(
+            mountpt: *mut inode,
+            relpath: *const cty::c_char,
+            dir: *mut *mut fs_dirent_s,
+        ) -> cty::c_int,
+    >,
+    pub closedir: ::core::option::Option<
+        unsafe extern "C" fn(mountpt: *mut inode, dir: *mut fs_dirent_s) -> cty::c_int,
+    >,
+    pub readdir: ::core::option::Option<
+        unsafe extern "C" fn(
+            mountpt: *mut inode,
+            dir: *mut fs_dirent_s,
+            entry: *mut dirent,
+        ) -> cty::c_int,
+    >,
+    pub rewinddir: ::core::option::Option<
+        unsafe extern "C" fn(mountpt: *mut inode, dir: *mut fs_dirent_s) -> cty::c_int,
+    >,
+    pub bind: ::core::option::Option<
+        unsafe extern "C" fn(
+            blkdriver: *mut inode,
+            data: *const cty::c_void,
+            handle: *mut *mut cty::c_void,
+        ) -> cty::c_int,
+    >,
+    pub unbind: ::core::option::Option<
+        unsafe extern "C" fn(
+            handle: *mut cty::c_void,
+            blkdriver: *mut *mut inode,
+            flags: cty::c_uint,
+        ) -> cty::c_int,
+    >,
+    pub statfs: ::core::option::Option<
+        unsafe extern "C" fn(mountpt: *mut inode, buf: *mut statfs) -> cty::c_int,
+    >,
+    pub unlink: ::core::option::Option<
+        unsafe extern "C" fn(mountpt: *mut inode, relpath: *const cty::c_char) -> cty::c_int,
+    >,
+    pub mkdir: ::core::option::Option<
+        unsafe extern "C" fn(
+            mountpt: *mut inode,
+            relpath: *const cty::c_char,
+            mode: mode_t,
+        ) -> cty::c_int,
+    >,
+    pub rmdir: ::core::option::Option<
+        unsafe extern "C" fn(mountpt: *mut inode, relpath: *const cty::c_char) -> cty::c_int,
+    >,
+    pub rename: ::core::option::Option<
+        unsafe extern "C" fn(
+            mountpt: *mut inode,
+            oldrelpath: *const cty::c_char,
+            newrelpath: *const cty::c_char,
+        ) -> cty::c_int,
+    >,
+    pub stat: ::core::option::Option<
+        unsafe extern "C" fn(
+            mountpt: *mut inode,
+            relpath: *const cty::c_char,
+            buf: *mut stat,
+        ) -> cty::c_int,
+    >,
+    pub chstat: ::core::option::Option<
+        unsafe extern "C" fn(
+            mountpt: *mut inode,
+            relpath: *const cty::c_char,
+            buf: *const stat,
+            flags: cty::c_int,
+        ) -> cty::c_int,
+    >,
+    pub syncfs: ::core::option::Option<unsafe extern "C" fn(mountpt: *mut inode) -> cty::c_int>,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub union inode_ops_u {
+    pub i_ops: *const file_operations,
+    pub i_bops: *const block_operations,
+    pub i_mtd: *mut mtd_dev_s,
+    pub i_mops: *const mountpt_operations,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct inode {
+    pub i_parent: *mut inode,
+    pub i_peer: *mut inode,
+    pub i_child: *mut inode,
+    pub i_crefs: i16,
+    pub i_flags: u16,
+    pub u: inode_ops_u,
+    pub i_ino: ino_t,
+    pub i_private: *mut cty::c_void,
+    pub i_name: [cty::c_char; 1usize],
+}
+pub type cookie_read_function_t = ::core::option::Option<
+    unsafe extern "C" fn(cookie: *mut cty::c_void, buf: *mut cty::c_char, size: usize) -> isize,
+>;
+pub type cookie_write_function_t = ::core::option::Option<
+    unsafe extern "C" fn(cookie: *mut cty::c_void, buf: *const cty::c_char, size: usize) -> isize,
+>;
+pub type cookie_seek_function_t = ::core::option::Option<
+    unsafe extern "C" fn(cookie: *mut cty::c_void, offset: *mut off_t, whence: cty::c_int) -> off_t,
+>;
+pub type cookie_close_function_t =
+    ::core::option::Option<unsafe extern "C" fn(cookie: *mut cty::c_void) -> cty::c_int>;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct cookie_io_functions_t {
+    pub read: cookie_read_function_t,
+    pub write: cookie_write_function_t,
+    pub seek: cookie_seek_function_t,
+    pub close: cookie_close_function_t,
+}
+#[doc = " Public Type Definitions"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct file {
+    pub f_oflags: cty::c_int,
+    pub f_pos: off_t,
+    pub f_inode: *mut inode,
+    pub f_priv: *mut cty::c_void,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct filelist {
+    pub fl_lock: spinlock_t,
+    pub fl_rows: u8,
+    pub fl_files: *mut *mut file,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct file_struct {
+    pub fs_next: *mut file_struct,
+    pub fs_lock: rmutex_t,
+    pub fs_iofunc: cookie_io_functions_t,
+    pub fs_cookie: *mut cty::c_void,
+    pub fs_bufstart: *mut cty::c_char,
+    pub fs_bufend: *mut cty::c_char,
+    pub fs_bufpos: *mut cty::c_char,
+    pub fs_bufread: *mut cty::c_char,
+    pub fs_buffer: [cty::c_char; 64usize],
+    pub fs_oflags: u16,
+    pub fs_flags: u8,
+    pub fs_nungotten: u8,
+    pub fs_ungotten: [cty::c_char; 2usize],
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct streamlist {
+    pub sl_lock: mutex_t,
+    pub sl_std: [file_struct; 3usize],
+    pub sl_head: *mut file_struct,
+    pub sl_tail: *mut file_struct,
+}
+extern "C" {
+    #[doc = " Name: fs_initialize\n\n Description:\n   This is called from the OS initialization logic to configure the file\n   system.\n"]
+    pub fn fs_initialize();
+}
+extern "C" {
+    #[doc = " Name: register_driver\n\n Description:\n   Register a character driver inode the pseudo file system.\n\n Input Parameters:\n   path - The path to the inode to create\n   fops - The file operations structure\n   mode - Access privileges\n   priv - Private, user data that will be associated with the inode.\n\n Returned Value:\n   Zero on success (with the inode point in 'inode'); A negated errno\n   value is returned on a failure (all error values returned by\n   inode_reserve):\n\n   EINVAL - 'path' is invalid for this operation\n   EEXIST - An inode already exists at 'path'\n   ENOMEM - Failed to allocate in-memory resources for the operation\n"]
+    pub fn register_driver(
+        path: *const cty::c_char,
+        fops: *const file_operations,
+        mode: mode_t,
+        priv_: *mut cty::c_void,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn register_blockdriver(
+        path: *const cty::c_char,
+        bops: *const block_operations,
+        mode: mode_t,
+        priv_: *mut cty::c_void,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn register_blockpartition(
+        partition: *const cty::c_char,
+        mode: mode_t,
+        parent: *const cty::c_char,
+        firstsector: off_t,
+        nsectors: off_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: unregister_driver\n\n Description:\n   Remove the character driver inode at 'path' from the pseudo-file system\n"]
+    pub fn unregister_driver(path: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: unregister_blockdriver\n\n Description:\n   Remove the block driver inode at 'path' from the pseudo-file system\n"]
+    pub fn unregister_blockdriver(path: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn nx_mount(
+        source: *const cty::c_char,
+        target: *const cty::c_char,
+        filesystemtype: *const cty::c_char,
+        mountflags: cty::c_ulong,
+        data: *const cty::c_void,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nx_umount2(target: *const cty::c_char, flags: cty::c_uint) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: files_initlist\n\n Description:\n   Initializes the list of files for a new task\n"]
+    pub fn files_initlist(list: *mut filelist);
+}
+extern "C" {
+    #[doc = " Name: files_releaselist\n\n Description:\n   Release a reference to the file list\n"]
+    pub fn files_releaselist(list: *mut filelist);
+}
+extern "C" {
+    #[doc = " Name: files_countlist\n\n Description:\n   Get file count from file list\n\n Returned Value:\n   file count of file list\n"]
+    pub fn files_countlist(list: *mut filelist) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: files_duplist\n\n Description:\n   Duplicate parent task's file descriptors.\n\n Returned Value:\n   Zero (OK) is returned on success; a negated errno value is returned on\n   any failure.\n"]
+    pub fn files_duplist(
+        plist: *mut filelist,
+        clist: *mut filelist,
+        actions: *const posix_spawn_file_actions_t,
+        cloexec: bool,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: files_fget\n\n Description:\n   Get the instance of struct file from file list by file descriptor.\n\n Input Parameters:\n   list - The list of files for a task.\n   fd   - A valid descriptor between 0 and files_countlist(list).\n\n Returned Value:\n   Pointer to file structure of list[fd].\n"]
+    pub fn files_fget(list: *mut filelist, fd: cty::c_int) -> *mut file;
+}
+extern "C" {
+    #[doc = " Name: file_allocate_from_tcb\n\n Description:\n   Allocate a struct files instance and associate it with an inode\n   instance.\n\n Returned Value:\n     Returns the file descriptor == index into the files array on success;\n     a negated errno value is returned on any failure.\n"]
+    pub fn file_allocate_from_tcb(
+        tcb: *mut tcb_s,
+        inode: *mut inode,
+        oflags: cty::c_int,
+        pos: off_t,
+        priv_: *mut cty::c_void,
+        minfd: cty::c_int,
+        addref: bool,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: file_allocate\n\n Description:\n   Allocate a struct files instance and associate it with an inode\n   instance.\n\n Returned Value:\n     Returns the file descriptor == index into the files array on success;\n     a negated errno value is returned on any failure.\n"]
+    pub fn file_allocate(
+        inode: *mut inode,
+        oflags: cty::c_int,
+        pos: off_t,
+        priv_: *mut cty::c_void,
+        minfd: cty::c_int,
+        addref: bool,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: file_dup\n\n Description:\n   Equivalent to the standard dup() function except that it\n   accepts a struct file instance instead of a file descriptor.\n\n Returned Value:\n   Zero (OK) is returned on success; a negated errno value is returned on\n   any failure.\n"]
+    pub fn file_dup(filep: *mut file, minfd: cty::c_int, flags: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: file_dup2\n\n Description:\n   Assign an inode to a specific files structure.  This is the heart of\n   dup2.\n\n   Equivalent to the non-standard dup2() function except that it\n   accepts struct file instances instead of file descriptors.\n\n Returned Value:\n   Zero (OK) is returned on success; a negated errno value is return on\n   any failure.\n"]
+    pub fn file_dup2(filep1: *mut file, filep2: *mut file) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nx_dup2_from_tcb\n\n Description:\n   nx_dup2_from_tcb() is similar to the standard 'dup2' interface\n   except that is not a cancellation point and it does not modify the\n   errno variable.\n\n   nx_dup2_from_tcb() is an internal NuttX interface and should not be\n   called from applications.\n\n   Clone a file descriptor to a specific descriptor number.\n\n Returned Value:\n   fd2 is returned on success; a negated errno value is return on\n   any failure.\n"]
+    pub fn nx_dup2_from_tcb(tcb: *mut tcb_s, fd1: cty::c_int, fd2: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nx_dup2\n\n Description:\n   nx_dup2() is similar to the standard 'dup2' interface except that is\n   not a cancellation point and it does not modify the errno variable.\n\n   nx_dup2() is an internal NuttX interface and should not be called from\n   applications.\n\n Returned Value:\n   fd2 is returned on success; a negated errno value is return on\n   any failure.\n"]
+    pub fn nx_dup2(fd1: cty::c_int, fd2: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: file_dup3\n\n Description:\n   Assign an inode to a specific files structure.  This is the heart of\n   dup3.\n\n   Equivalent to the non-standard dup3() function except that it\n   accepts struct file instances instead of file descriptors.\n\n Returned Value:\n   Zero (OK) is returned on success; a negated errno value is return on\n   any failure.\n"]
+    pub fn file_dup3(filep1: *mut file, filep2: *mut file, flags: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: file_open\n\n Description:\n   file_open() is similar to the standard 'open' interface except that it\n   returns an instance of 'struct file' rather than a file descriptor.  It\n   also is not a cancellation point and does not modify the errno variable.\n\n Input Parameters:\n   filep  - The caller provided location in which to return the 'struct\n            file' instance.\n   path   - The full path to the file to be open.\n   oflags - open flags\n   ...    - Variable number of arguments, may include 'mode_t mode'\n\n Returned Value:\n   Zero (OK) is returned on success.  On failure, a negated errno value is\n   returned.\n"]
+    pub fn file_open(
+        filep: *mut file,
+        path: *const cty::c_char,
+        oflags: cty::c_int,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nx_open_from_tcb\n\n Description:\n   nx_open_from_tcb() is similar to the standard 'open' interface except\n   that it is not a cancellation point and it does not modify the errno\n   variable.\n\n   nx_open_from_tcb() is an internal NuttX interface and should not be\n   called from applications.\n\n Input Parameters:\n   tcb    - Address of the task's TCB\n   path   - The full path to the file to be opened.\n   oflags - open flags.\n   ...    - Variable number of arguments, may include 'mode_t mode'\n\n Returned Value:\n   The new file descriptor is returned on success; a negated errno value is\n   returned on any failure.\n"]
+    pub fn nx_open_from_tcb(
+        tcb: *mut tcb_s,
+        path: *const cty::c_char,
+        oflags: cty::c_int,
+        ...
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nx_open\n\n Description:\n   nx_open() is similar to the standard 'open' interface except that is is\n   not a cancellation point and it does not modify the errno variable.\n\n   nx_open() is an internal NuttX interface and should not be called\n   from applications.\n\n Returned Value:\n   The new file descriptor is returned on success; a negated errno value is\n   returned on any failure.\n"]
+    pub fn nx_open(path: *const cty::c_char, oflags: cty::c_int, ...) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: fs_getfilep\n\n Description:\n   Given a file descriptor, return the corresponding instance of struct\n   file.  NOTE that this function will currently fail if it is provided\n   with a socket descriptor.\n\n Input Parameters:\n   fd    - The file descriptor\n   filep - The location to return the struct file instance\n\n Returned Value:\n   Zero (OK) is returned on success; a negated errno value is returned on\n   any failure.\n"]
+    pub fn fs_getfilep(fd: cty::c_int, filep: *mut *mut file) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: file_close\n\n Description:\n   Close a file that was previously opened with file_open().\n\n Input Parameters:\n   filep - A pointer to a user provided memory location containing the\n           open file data returned by file_open().\n\n Returned Value:\n   Zero (OK) is returned on success; A negated errno value is returned on\n   any failure to indicate the nature of the failure.\n"]
+    pub fn file_close(filep: *mut file) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nx_close_from_tcb\n\n Description:\n   nx_close_from_tcb() is similar to the standard 'close' interface\n   except that is not a cancellation point and it does not modify the\n   errno variable.\n\n   nx_close_from_tcb() is an internal NuttX interface and should not\n   be called from applications.\n\n   Close an inode (if open)\n\n Returned Value:\n   Zero (OK) is returned on success; A negated errno value is returned on\n   on any failure.\n\n Assumptions:\n   Caller holds the list mutex because the file descriptor will be\n   freed.\n"]
+    pub fn nx_close_from_tcb(tcb: *mut tcb_s, fd: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nx_close\n\n Description:\n   nx_close() is similar to the standard 'close' interface except that is\n   not a cancellation point and it does not modify the errno variable.\n\n   nx_close() is an internal NuttX interface and should not be called from\n   applications.\n\n Returned Value:\n   The new file descriptor is returned on success; a negated errno value is\n   returned on any failure.\n"]
+    pub fn nx_close(fd: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: open_blockdriver\n\n Description:\n   Return the inode of the block driver specified by 'pathname'\n\n Input Parameters:\n   pathname - the full path to the block driver to be opened\n   mountflags - if MS_RDONLY is not set, then driver must support write\n     operations (see include/sys/mount.h)\n   ppinode - address of the location to return the inode reference\n\n Returned Value:\n   Returns zero on success or a negated errno on failure:\n\n   EINVAL  - pathname or pinode is NULL\n   ENOENT  - No block driver of this name is registered\n   ENOTBLK - The inode associated with the pathname is not a block driver\n   EACCESS - The MS_RDONLY option was not set but this driver does not\n     support write access\n"]
+    pub fn open_blockdriver(
+        pathname: *const cty::c_char,
+        mountflags: cty::c_int,
+        ppinode: *mut *mut inode,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: close_blockdriver\n\n Description:\n   Call the close method and release the inode\n\n Input Parameters:\n   inode - reference to the inode of a block driver opened by\n           open_blockdriver\n\n Returned Value:\n   Returns zero on success or a negated errno on failure:\n\n   EINVAL  - inode is NULL\n   ENOTBLK - The inode is not a block driver\n"]
+    pub fn close_blockdriver(inode: *mut inode) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: find_blockdriver\n\n Description:\n   Return the inode of the block driver specified by 'pathname'\n\n Input Parameters:\n   pathname   - The full path to the block driver to be located\n   mountflags - If MS_RDONLY is not set, then driver must support write\n                operations (see include/sys/mount.h)\n   ppinode    - Address of the location to return the inode reference\n\n Returned Value:\n   Returns zero on success or a negated errno on failure:\n\n   ENOENT  - No block driver of this name is registered\n   ENOTBLK - The inode associated with the pathname is not a block driver\n   EACCESS - The MS_RDONLY option was not set but this driver does not\n             support write access\n"]
+    pub fn find_blockdriver(
+        pathname: *const cty::c_char,
+        mountflags: cty::c_int,
+        ppinode: *mut *mut inode,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: find_mtddriver\n\n Description:\n   Return the inode of the named MTD driver specified by 'pathname'\n\n Input Parameters:\n   pathname   - the full path to the named MTD driver to be located\n   ppinode    - address of the location to return the inode reference\n\n Returned Value:\n   Returns zero on success or a negated errno on failure:\n\n   ENOENT  - No MTD driver of this name is registered\n   ENOTBLK - The inode associated with the pathname is not an MTD driver\n"]
+    pub fn find_mtddriver(pathname: *const cty::c_char, ppinode: *mut *mut inode) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: close_mtddriver\n\n Description:\n   Release the inode got by function find_mtddriver()\n\n Input Parameters:\n   pinode    - pointer to the inode\n\n Returned Value:\n   Returns zero on success or a negated errno on failure:\n\n   EINVAL  - inode is NULL\n"]
+    pub fn close_mtddriver(pinode: *mut inode) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: file_read\n\n Description:\n   file_read() is an internal OS interface.  It is functionally similar to\n   the standard read() interface except:\n\n    - It does not modify the errno variable,\n    - It is not a cancellation point,\n    - It does not handle socket descriptors, and\n    - It accepts a file structure instance instead of file descriptor.\n\n Input Parameters:\n   filep  - File structure instance\n   buf    - User-provided to save the data\n   nbytes - The maximum size of the user-provided buffer\n\n Returned Value:\n   The positive non-zero number of bytes read on success, 0 on if an\n   end-of-file condition, or a negated errno value on any failure.\n"]
+    pub fn file_read(filep: *mut file, buf: *mut cty::c_void, nbytes: usize) -> isize;
+}
+extern "C" {
+    #[doc = " Name: nx_read\n\n Description:\n   nx_read() is an internal OS interface.  It is functionally similar to\n   the standard read() interface except:\n\n    - It does not modify the errno variable, and\n    - It is not a cancellation point.\n\n Input Parameters:\n   fd     - File descriptor to read from\n   buf    - User-provided to save the data\n   nbytes - The maximum size of the user-provided buffer\n\n Returned Value:\n   The positive non-zero number of bytes read on success, 0 on if an\n   end-of-file condition, or a negated errno value on any failure.\n"]
+    pub fn nx_read(fd: cty::c_int, buf: *mut cty::c_void, nbytes: usize) -> isize;
+}
+extern "C" {
+    #[doc = " Name: file_write\n\n Description:\n   Equivalent to the standard write() function except that is accepts a\n   struct file instance instead of a file descriptor.  It is functionally\n   equivalent to write() except that in addition to the differences in\n   input parameters:\n\n  - It does not modify the errno variable,\n  - It is not a cancellation point, and\n  - It does not handle socket descriptors.\n\n Input Parameters:\n   filep  - Instance of struct file to use with the write\n   buf    - Data to write\n   nbytes - Length of data to write\n\n Returned Value:\n  On success, the number of bytes written are returned (zero indicates\n  nothing was written).  On any failure, a negated errno value is returned\n  (see comments withwrite() for a description of the appropriate errno\n  values).\n"]
+    pub fn file_write(filep: *mut file, buf: *const cty::c_void, nbytes: usize) -> isize;
+}
+extern "C" {
+    #[doc = " Name: nx_write\n\n Description:\n  nx_write() writes up to nbytes bytes to the file referenced by the file\n  descriptor fd from the buffer starting at buf.  nx_write() is an\n  internal OS function.  It is functionally equivalent to write() except\n  that:\n\n  - It does not modify the errno variable, and\n  - It is not a cancellation point.\n\n Input Parameters:\n   fd     - file descriptor (or socket descriptor) to write to\n   buf    - Data to write\n   nbytes - Length of data to write\n\n Returned Value:\n  On success, the number of bytes written are returned (zero indicates\n  nothing was written).  On any failure, a negated errno value is returned\n  (see comments with write() for a description of the appropriate errno\n   values).\n"]
+    pub fn nx_write(fd: cty::c_int, buf: *const cty::c_void, nbytes: usize) -> isize;
+}
+extern "C" {
+    #[doc = " Name: file_pread\n\n Description:\n   Equivalent to the standard pread function except that is accepts a\n   struct file instance instead of a file descriptor.  Currently used\n   only by aio_read();\n"]
+    pub fn file_pread(
+        filep: *mut file,
+        buf: *mut cty::c_void,
+        nbytes: usize,
+        offset: off_t,
+    ) -> isize;
+}
+extern "C" {
+    #[doc = " Name: file_pwrite\n\n Description:\n   Equivalent to the standard pwrite function except that is accepts a\n   struct file instance instead of a file descriptor.  Currently used\n   only by aio_write();\n"]
+    pub fn file_pwrite(
+        filep: *mut file,
+        buf: *const cty::c_void,
+        nbytes: usize,
+        offset: off_t,
+    ) -> isize;
+}
+extern "C" {
+    #[doc = " Name: file_sendfile\n\n Description:\n   Equivalent to the standard sendfile function except that is accepts a\n   struct file instance instead of a file descriptor.\n"]
+    pub fn file_sendfile(
+        outfile: *mut file,
+        infile: *mut file,
+        offset: *mut off_t,
+        count: usize,
+    ) -> isize;
+}
+extern "C" {
+    #[doc = " Name: file_seek\n\n Description:\n   Equivalent to the standard lseek() function except that is accepts a\n   struct file instance instead of a file descriptor.  Currently used\n   only by net_sendfile()\n"]
+    pub fn file_seek(filep: *mut file, offset: off_t, whence: cty::c_int) -> off_t;
+}
+extern "C" {
+    #[doc = " Name: nx_seek\n\n Description:\n  nx_seek() function repositions the offset of the open file associated\n  with the file descriptor fd to the argument 'offset' according to the\n  directive 'whence'.  nx_seek() is an internal OS function. It is\n  functionally equivalent to lseek() except that:\n\n  - It does not modify the errno variable, and\n  - It is not a cancellation point.\n"]
+    pub fn nx_seek(fd: cty::c_int, offset: off_t, whence: cty::c_int) -> off_t;
+}
+extern "C" {
+    #[doc = " Name: file_fsync\n\n Description:\n   Equivalent to the standard fsync() function except that is accepts a\n   struct file instance instead of a file descriptor and it does not set\n   the errno variable.\n"]
+    pub fn file_fsync(filep: *mut file) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: file_syncfs\n\n Description:\n   Equivalent to the standard syncsf() function except that is accepts a\n   struct file instance instead of a fd descriptor and it does not set\n   the errno variable\n"]
+    pub fn file_syncfs(filep: *mut file) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: file_truncate\n\n Description:\n   Equivalent to the standard ftruncate() function except that is accepts\n   a struct file instance instead of a file descriptor and it does not set\n   the errno variable.\n"]
+    pub fn file_truncate(filep: *mut file, length: off_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: file_mmap\n\n Description:\n   Equivalent to the standard mmap() function except that is accepts\n   a struct file instance instead of a file descriptor and it does not set\n   the errno variable.\n"]
+    pub fn file_mmap(
+        filep: *mut file,
+        start: *mut cty::c_void,
+        length: usize,
+        prot: cty::c_int,
+        flags: cty::c_int,
+        offset: off_t,
+        mapped: *mut *mut cty::c_void,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: file_mummap\n\n Description:\n   Equivalent to the standard mummap() function except it does not set\n   the errno variable.\n"]
+    pub fn file_munmap(start: *mut cty::c_void, length: usize) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: file_ioctl\n\n Description:\n   Perform device specific operations.\n\n Input Parameters:\n   file     File structure instance\n   req      The ioctl command\n   ap       The argument of the ioctl cmd\n\n Returned Value:\n   Returns a non-negative number on success;  A negated errno value is\n   returned on any failure (see comments ioctl() for a list of appropriate\n   errno values).\n"]
+    pub fn file_ioctl(filep: *mut file, req: cty::c_int, ...) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: file_fcntl\n\n Description:\n   Similar to the standard fcntl function except that is accepts a struct\n   struct file instance instead of a file descriptor.\n\n Input Parameters:\n   filep - Instance for struct file for the opened file.\n   cmd   - Identifies the operation to be performed.  Command specific\n           arguments may follow.\n\n Returned Value:\n   The nature of the return value depends on the command.  Non-negative\n   values indicate success.  Failures are reported as negated errno\n   values.\n"]
+    pub fn file_fcntl(filep: *mut file, cmd: cty::c_int, ...) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: file_poll\n\n Description:\n   Low-level poll operation based on struct file.  This is used both to (1)\n   support detached file, and also (2) by poll_fdsetup() to perform all\n   normal operations on file descriptors.\n\n Input Parameters:\n   file     File structure instance\n   fds   - The structure describing the events to be monitored, OR NULL if\n           this is a request to stop monitoring events.\n   setup - true: Setup up the poll; false: Teardown the poll\n\n Returned Value:\n  0: Success; Negated errno on failure\n"]
+    pub fn file_poll(filep: *mut file, fds: *mut pollfd, setup: bool) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: file_fstat\n\n Description:\n   file_fstat() is an internal OS interface.  It is functionally similar to\n   the standard fstat() interface except:\n\n    - It does not modify the errno variable,\n    - It is not a cancellation point,\n    - It does not handle socket descriptors, and\n    - It accepts a file structure instance instead of file descriptor.\n\n Input Parameters:\n   filep  - File structure instance\n   buf    - The caller provide location in which to return information\n            about the open file.\n\n Returned Value:\n   Upon successful completion, 0 shall be returned. Otherwise, -1 shall be\n   returned and errno set to indicate the error.\n"]
+    pub fn file_fstat(filep: *mut file, buf: *mut stat) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nx_fstat\n\n Description:\n   nx_fstat() is similar to the standard 'fstat' interface except that is\n   not a cancellation point and it does not modify the errno variable.\n\n   nx_fstat() is an internal NuttX interface and should not be called from\n   applications.\n\n Returned Value:\n   Zero is returned on success; a negated value is returned on any failure.\n"]
+    pub fn nx_fstat(fd: cty::c_int, buf: *mut stat) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nx_stat\n\n Description:\n   nx_stat() is similar to the standard 'stat' interface except that is\n   not a cancellation point and it does not modify the errno variable.\n\n   nx_stat() is an internal NuttX interface and should not be called from\n   applications.\n\n Returned Value:\n   Zero is returned on success; a negated value is returned on any failure.\n"]
+    pub fn nx_stat(path: *const cty::c_char, buf: *mut stat, resolve: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: file_fchstat\n\n Description:\n   file_fchstat() is an internal OS interface. It is functionally similar\n   to the combination of fchmod/fchown/futimens standard interface except:\n\n    - It does not modify the errno variable,\n    - It is not a cancellation point,\n    - It does not handle socket descriptors, and\n    - It accepts a file structure instance instead of file descriptor.\n\n Input Parameters:\n   filep  - File structure instance\n   buf    - The stat to be modified\n   flags  - The valid field in buf\n\n Returned Value:\n   Upon successful completion, 0 shall be returned. Otherwise, the\n   negative errno shall be returned to indicate the error.\n"]
+    pub fn file_fchstat(filep: *mut file, buf: *mut stat, flags: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nx_unlink\n\n Description:\n   nx_unlink() is similar to the standard 'unlink' interface except that\n   is not a cancellation point and it does not modify the errno variable.\n\n   nx_unlink() is an internal NuttX interface and should not be called\n   from applications.\n\n Returned Value:\n   Zero is returned on success; a negated value is returned on any failure.\n"]
+    pub fn nx_unlink(pathname: *const cty::c_char) -> cty::c_int;
+}
+pub const tstate_e_TSTATE_TASK_INVALID: tstate_e = 0;
+pub const tstate_e_TSTATE_TASK_PENDING: tstate_e = 1;
+pub const tstate_e_TSTATE_TASK_READYTORUN: tstate_e = 2;
+pub const tstate_e_TSTATE_TASK_RUNNING: tstate_e = 3;
+pub const tstate_e_TSTATE_TASK_INACTIVE: tstate_e = 4;
+pub const tstate_e_TSTATE_WAIT_SEM: tstate_e = 5;
+pub const tstate_e_TSTATE_WAIT_SIG: tstate_e = 6;
+pub const tstate_e_TSTATE_WAIT_MQNOTEMPTY: tstate_e = 7;
+pub const tstate_e_TSTATE_WAIT_MQNOTFULL: tstate_e = 8;
+pub const tstate_e_NUM_TASK_STATES: tstate_e = 9;
+pub type tstate_e = cty::c_uint;
+pub use self::tstate_e as tstate_t;
+pub type start_t = ::core::option::Option<unsafe extern "C" fn()>;
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub union entry_u {
+    pub pthread: pthread_startroutine_t,
+    pub main: main_t,
+}
+pub type entry_t = entry_u;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct stackinfo_s {
+    pub adj_stack_size: usize,
+    pub stack_alloc_ptr: *mut cty::c_void,
+    pub stack_base_ptr: *mut cty::c_void,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct task_info_s {
+    _unused: [u8; 0],
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct join_s {
+    _unused: [u8; 0],
+}
+#[doc = " Forward declarations"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct task_group_s {
+    pub flink: *mut task_group_s,
+    pub tg_pid: pid_t,
+    pub tg_ppid: pid_t,
+    pub tg_flags: u8,
+    pub tg_nmembers: u8,
+    pub tg_mxmembers: u8,
+    pub tg_members: *mut pid_t,
+    pub tg_nwaiters: u8,
+    pub tg_waitflags: u8,
+    pub tg_exitsem: sem_t,
+    pub tg_statloc: *mut cty::c_int,
+    pub tg_joinlock: mutex_t,
+    pub tg_joinhead: *mut join_s,
+    pub tg_jointail: *mut join_s,
+    pub tg_info: *mut task_info_s,
+    pub tg_sigactionq: sq_queue_t,
+    pub tg_sigpendingq: sq_queue_t,
+    pub tg_envp: *mut *mut cty::c_char,
+    pub tg_envc: isize,
+    pub itimer: timer_t,
+    pub tg_filelist: filelist,
+    pub tg_mm_map: mm_map_s,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct tcb_s {
+    pub flink: *mut tcb_s,
+    pub blink: *mut tcb_s,
+    pub group: *mut task_group_s,
+    pub pid: pid_t,
+    pub sched_priority: u8,
+    pub init_priority: u8,
+    pub start: start_t,
+    pub entry: entry_t,
+    pub task_state: u8,
+    pub flags: u16,
+    pub lockcount: i16,
+    pub errcode: i16,
+    pub timeslice: i32,
+    pub waitdog: wdog_s,
+    pub adj_stack_size: usize,
+    pub stack_alloc_ptr: *mut cty::c_void,
+    pub stack_base_ptr: *mut cty::c_void,
+    pub waitobj: *mut cty::c_void,
+    pub sigprocmask: sigset_t,
+    pub sigwaitmask: sigset_t,
+    pub sigpendactionq: sq_queue_t,
+    pub sigpostedq: sq_queue_t,
+    pub sigunbinfo: siginfo_t,
+    pub mhead: *mut pthread_mutex_s,
+    pub xcp: xcptcontext,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct task_tcb_s {
+    pub cmn: tcb_s,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct pthread_tcb_s {
+    pub cmn: tcb_s,
+    pub trampoline: pthread_trampoline_t,
+    pub arg: pthread_addr_t,
+    pub joininfo: *mut cty::c_void,
+    pub join_complete: bool,
+}
+#[repr(C, packed)]
+#[derive(Copy, Clone)]
+pub struct tcbinfo_s {
+    pub pid_off: u16,
+    pub state_off: u16,
+    pub pri_off: u16,
+    pub name_off: u16,
+    pub stack_off: u16,
+    pub stack_size_off: u16,
+    pub regs_off: u16,
+    pub regs_num: u16,
+    pub reg_off: tcbinfo_s__bindgen_ty_1,
+}
+#[repr(C, packed)]
+#[derive(Copy, Clone)]
+pub union tcbinfo_s__bindgen_ty_1 {
+    pub u: [u8; 8usize],
+    pub p: *const u16,
+}
+pub type nxsched_foreach_t =
+    ::core::option::Option<unsafe extern "C" fn(tcb: *mut tcb_s, arg: *mut cty::c_void)>;
+extern "C" {
+    pub static g_tcbinfo: tcbinfo_s;
+}
+extern "C" {
+    #[doc = " Name: nxsched_self\n\n Description:\n   Return the current threads TCB.  Basically, this function just wraps the\n   head of the ready-to-run list and manages access to the TCB from outside\n   of the sched/ sub-directory.\n"]
+    pub fn nxsched_self() -> *mut tcb_s;
+}
+extern "C" {
+    #[doc = " Name: nxsched_foreach\n\n Description:\n   Enumerate over each task and provide the TCB of each task to a user\n   callback functions.\n\n   NOTE:  This function examines the TCB and calls each handler within a\n   critical section.  However, that critical section is released and\n   reacquired for each TCB.  When it is released, there may be changes in\n   tasking.  If the caller requires absolute stability through the\n   traversal, then the caller should establish the critical section BEFORE\n   calling this function.\n\n Input Parameters:\n   handler - The function to be called with the TCB of\n     each task\n\n Returned Value:\n   None\n"]
+    pub fn nxsched_foreach(handler: nxsched_foreach_t, arg: *mut cty::c_void);
+}
+extern "C" {
+    #[doc = " Name: nxsched_get_tcb\n\n Description:\n   Given a task ID, this function will return the a pointer to the\n   corresponding TCB (or NULL if there is no such task ID).\n\n   NOTE:  This function holds a critical section while examining TCB data\n   data structures but releases that critical section before returning.\n   When it is released, the TCB may become unstable.  If the caller\n   requires absolute stability while using the TCB, then the caller\n   should establish the critical section BEFORE calling this function and\n   hold that critical section as long as necessary.\n"]
+    pub fn nxsched_get_tcb(pid: pid_t) -> *mut tcb_s;
+}
+extern "C" {
+    #[doc = " Name:  nxsched_releasepid\n\n Description:\n   When a task is destroyed, this function must be called to make its\n   process ID available for re-use.\n"]
+    pub fn nxsched_release_tcb(tcb: *mut tcb_s, ttype: u8) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsched_get_files_from_tcb\n\n Description:\n   Return a pointer to the file list from task context\n\n Input Parameters:\n   tcb - Address of the new task's TCB\n\n Returned Value:\n   A pointer to the errno.\n\n Assumptions:\n"]
+    pub fn nxsched_get_files_from_tcb(tcb: *mut tcb_s) -> *mut filelist;
+}
+extern "C" {
+    #[doc = " Name: nxsched_get_files\n\n Description:\n   Return a pointer to the file list for this thread\n\n Input Parameters:\n   None\n\n Returned Value:\n   A pointer to the errno.\n\n Assumptions:\n"]
+    pub fn nxsched_get_files() -> *mut filelist;
+}
+extern "C" {
+    #[doc = " Name: nxtask_init\n\n Description:\n   This function initializes a Task Control Block (TCB) in preparation for\n   starting a new thread.  It performs a subset of the functionality of\n   task_create()\n\n   Unlike task_create():\n     1. Allocate the TCB.  The pre-allocated TCB is passed in argv.\n     2. Allocate the stack.  The pre-allocated stack is passed in argv.\n     3. Activate the task. This must be done by calling nxtask_activate().\n\n   Certain fields of the pre-allocated TCB may be set to change the\n   nature of the created task.  For example:\n\n     - Task type may be set in the TCB flags to create kernel thread\n\n Input Parameters:\n   tcb        - Address of the new task's TCB\n   name       - Name of the new task (not used)\n   priority   - Priority of the new task\n   stack      - Start of the pre-allocated stack\n   stack_size - Size (in bytes) of the stack allocated\n   entry      - Application start point of the new task\n   argv       - A pointer to an array of input parameters.  The array\n                should be terminated with a NULL argv[] value. If no\n                parameters are required, argv may be NULL.\n   envp       - A pointer to the program's environment, envp may be NULL\n\n Returned Value:\n   OK on success; negative error value on failure appropriately.  (See\n   nxtask_setup_scheduler() for possible failure conditions).  On failure,\n   the caller is responsible for freeing the stack memory and for calling\n   nxsched_release_tcb() to free the TCB (which could be in most any\n   state).\n"]
+    pub fn nxtask_init(
+        tcb: *mut task_tcb_s,
+        name: *const cty::c_char,
+        priority: cty::c_int,
+        stack: *mut cty::c_void,
+        stack_size: u32,
+        entry: main_t,
+        argv: *const *mut cty::c_char,
+        envp: *const *mut cty::c_char,
+        actions: *const posix_spawn_file_actions_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxtask_uninit\n\n Description:\n   Undo all operations on a TCB performed by task_init() and release the\n   TCB by calling kmm_free().  This is intended primarily to support\n   error recovery operations after a successful call to task_init() such\n   was when a subsequent call to task_activate fails.\n\n   Caution:  Freeing of the TCB itself might be an unexpected side-effect.\n\n Input Parameters:\n   tcb - Address of the TCB initialized by task_init()\n\n Returned Value:\n   OK on success; negative error value on failure appropriately.\n"]
+    pub fn nxtask_uninit(tcb: *mut task_tcb_s);
+}
+extern "C" {
+    #[doc = " Name: nxtask_create\n\n Description:\n   This function creates and activates a new user task with a specified\n   priority and returns its system-assigned ID.\n\n   The entry address entry is the address of the \"main\" function of the\n   task.  This function will be called once the C environment has been\n   set up.  The specified function will be called with four arguments.\n   Should the specified routine return, a call to exit() will\n   automatically be made.\n\n   Note that four (and only four) arguments must be passed for the spawned\n   functions.\n\n   nxtask_create() is identical to the function task_create(), differing\n   only in its return value:  This function does not modify the errno\n   variable.  This is a non-standard, internal OS function and is not\n   intended for use by application logic.  Applications should use\n   task_create().\n\n Input Parameters:\n   name       - Name of the new task\n   priority   - Priority of the new task\n   stack_size - size (in bytes) of the stack needed\n   entry      - Entry point of a new task\n   arg        - A pointer to an array of input parameters.  The array\n                should be terminated with a NULL argv[] value. If no\n                parameters are required, argv may be NULL.\n   envp       - A pointer to an array of environment strings. Terminated\n                with a NULL entry.\n\n Returned Value:\n   Returns the positive, non-zero process ID of the new task or a negated\n   errno value to indicate the nature of any failure.  If memory is\n   insufficient or the task cannot be created -ENOMEM will be returned.\n"]
+    pub fn nxtask_create(
+        name: *const cty::c_char,
+        priority: cty::c_int,
+        stack_addr: *mut cty::c_void,
+        stack_size: cty::c_int,
+        entry: main_t,
+        argv: *const *mut cty::c_char,
+        envp: *const *mut cty::c_char,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxtask_delete\n\n Description:\n   This function causes a specified task to cease to exist.  Its stack and\n   TCB will be deallocated.\n\n   The logic in this function only deletes non-running tasks.  If the\n   'pid' parameter refers to the currently running task, then processing\n   is redirected to exit(). This can only happen if a task calls\n   nxtask_delete() in order to delete itself.\n\n   This function obeys the semantics of pthread cancellation:  task\n   deletion is deferred if cancellation is disabled or if deferred\n   cancellation is supported (with cancellation points enabled).\n\n Input Parameters:\n   pid - The task ID of the task to delete.  A pid of zero\n         signifies the calling task.\n\n Returned Value:\n   OK on success; or negated errno on failure\n"]
+    pub fn nxtask_delete(pid: pid_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxtask_activate\n\n Description:\n   This function activates tasks initialized by nxtask_setup_scheduler().\n   Without activation, a task is ineligible for execution by the\n   scheduler.\n\n Input Parameters:\n   tcb - The TCB for the task (same as the nxtask_init argument).\n\n Returned Value:\n   None\n"]
+    pub fn nxtask_activate(tcb: *mut tcb_s);
+}
+extern "C" {
+    pub fn nxtask_startup(entrypt: main_t, argc: cty::c_int, argv: *mut *mut cty::c_char);
+}
+extern "C" {
+    #[doc = " Internal fork support.  The overall sequence is:\n\n 1) User code calls fork().  fork() is provided in architecture-specific\n    code.\n 2) fork()and calls nxtask_setup_fork().\n 3) nxtask_setup_fork() allocates and configures the child task's TCB.\n    This consists of:\n    - Allocation of the child task's TCB.\n    - Initialization of file descriptors and streams\n    - Configuration of environment variables\n    - Allocate and initialize the stack\n    - Setup the input parameters for the task.\n    - Initialization of the TCB (including call to up_initial_state())\n 4) fork() provides any additional operating context. fork must:\n    - Initialize special values in any CPU registers that were not\n      already configured by up_initial_state()\n 5) fork() then calls nxtask_start_fork()\n 6) nxtask_start_fork() then executes the child thread.\n\n nxtask_abort_fork() may be called if an error occurs between\n steps 3 and 6.\n"]
+    pub fn nxtask_setup_fork(retaddr: start_t) -> *mut task_tcb_s;
+}
+extern "C" {
+    pub fn nxtask_start_fork(child: *mut task_tcb_s) -> pid_t;
+}
+extern "C" {
+    pub fn nxtask_abort_fork(child: *mut task_tcb_s, errcode: cty::c_int);
+}
+extern "C" {
+    #[doc = " Name: group_argvstr\n\n Description:\n   Safely read the contents of a task's argument vector, into a a safe\n   buffer. Function skips the process's name.\n\n Input Parameters:\n   tcb  - tcb of the task.\n   args - Output buffer for the argument vector.\n   size - Size of the buffer.\n\n Returned Value:\n   The actual string length that was written.\n"]
+    pub fn group_argvstr(tcb: *mut tcb_s, args: *mut cty::c_char, size: usize) -> usize;
+}
+extern "C" {
+    pub fn nxsched_resume_scheduler(tcb: *mut tcb_s);
+}
+extern "C" {
+    #[doc = " Name: nxsched_get_param\n\n Description:\n   This function gets the scheduling priority of the task specified by\n   pid.  It is identical in function, differing only in its return value:\n   This function does not modify the errno variable.\n\n   This is a non-standard, internal OS function and is not intended for\n   use by application logic.  Applications should use the standard\n   sched_getparam().\n\n Input Parameters:\n   pid - the task ID of the task.  If pid is zero, the priority\n     of the calling task is returned.\n   param - A structure whose member sched_priority is the integer\n     priority.  The task's priority is copied to the sched_priority\n     element of this structure.\n\n Returned Value:\n   0 (OK) if successful, otherwise a negated errno value is returned to\n   indicate the nature of the failure..\n\n   This function can fail if param is null (EINVAL) or if pid does\n   not correspond to any task (ESRCH).\n"]
+    pub fn nxsched_get_param(pid: pid_t, param: *mut sched_param) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name:  nxsched_set_param\n\n Description:\n   This function sets the priority of a specified task.  It is identical\n   to the function sched_setparam(), differing only in its return value:\n   This function does not modify the errno variable.\n\n   NOTE: Setting a task's priority to the same value has a similar effect\n   to sched_yield() -- The task will be moved to  after all other tasks\n   with the same priority.\n\n   This is a non-standard, internal OS function and is not intended for\n   use by application logic.  Applications should use the standard\n   sched_setparam().\n\n Input Parameters:\n   pid - the task ID of the task to reprioritize.  If pid is zero, the\n      priority of the calling task is changed.\n   param - A structure whose member sched_priority is the integer priority.\n      The range of valid priority numbers is from SCHED_PRIORITY_MIN\n      through SCHED_PRIORITY_MAX.\n\n Returned Value:\n   0 (OK) if successful, otherwise a negated errno value is returned to\n   indicate the nature of the failure..\n\n   EINVAL The parameter 'param' is invalid or does not make sense for the\n          current scheduling policy.\n   EPERM  The calling task does not have appropriate privileges.\n   ESRCH  The task whose ID is pid could not be found.\n"]
+    pub fn nxsched_set_param(pid: pid_t, param: *const sched_param) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsched_get_scheduler\n\n Description:\n   sched_getscheduler() returns the scheduling policy currently\n   applied to the task identified by pid.  If pid equals zero, the\n   policy of the calling task will be retrieved.\n\n   This functions is identical to the function sched_getscheduler(),\n   differing only in its return value:  This function does not modify\n   the errno variable.\n\n   This is a non-standard, internal OS function and is not intended for\n   use by application logic.  Applications should use the standard\n   sched_getscheduler().\n\n Input Parameters:\n   pid - the task ID of the task to query.  If pid is zero, the\n     calling task is queried.\n\n Returned Value:\n    On success, sched_getscheduler() returns the policy for the task\n    (either SCHED_FIFO or SCHED_RR).  On error,  a negated errno value\n    returned:\n\n      ESRCH  The task whose ID is pid could not be found.\n"]
+    pub fn nxsched_get_scheduler(pid: pid_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsched_set_scheduler\n\n Description:\n   nxsched_set_scheduler() sets both the scheduling policy and the priority\n   for the task identified by pid. If pid equals zero, the scheduler of\n   the calling task will be set.  The parameter 'param' holds the priority\n   of the thread under the new policy.\n\n   nxsched_set_scheduler() is identical to the function sched_getparam(),\n   differing only in its return value:  This function does not modify the\n    errno variable.\n\n   This is a non-standard, internal OS function and is not intended for\n   use by application logic.  Applications should use the standard\n   sched_getparam().\n\n Input Parameters:\n   pid - the task ID of the task to modify.  If pid is zero, the calling\n      task is modified.\n   policy - Scheduling policy requested (either SCHED_FIFO or SCHED_RR)\n   param - A structure whose member sched_priority is the new priority.\n      The range of valid priority numbers is from SCHED_PRIORITY_MIN\n      through SCHED_PRIORITY_MAX.\n\n Returned Value:\n   On success, nxsched_set_scheduler() returns OK (zero).  On error, a\n   negated errno value is returned:\n\n   EINVAL The scheduling policy is not one of the recognized policies.\n   ESRCH  The task whose ID is pid could not be found.\n"]
+    pub fn nxsched_set_scheduler(
+        pid: pid_t,
+        policy: cty::c_int,
+        param: *const sched_param,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsched_get_stackinfo\n\n Description:\n   Report information about a thread's stack allocation.\n\n Input Parameters:\n   pid       - Identifies the thread to query.  Zero is interpreted as the\n               the calling thread, -1 is interpreted as the calling task.\n   stackinfo - User-provided location to return the stack information.\n\n Returned Value:\n   Zero (OK) if successful.  Otherwise, a negated errno value is returned.\n\n     -ENOENT  Returned if pid does not refer to an active task\n     -EACCES  The calling thread does not have privileges to access the\n              stack of the thread associated with the pid.\n"]
+    pub fn nxsched_get_stackinfo(pid: pid_t, stackinfo: *mut stackinfo_s) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsched_get_stateinfo\n\n Description:\n   Report information about a thread's state\n\n Input Parameters:\n   tcb    - The TCB for the task (same as the nxtask_init argument).\n   state  - User-provided location to return the state information.\n   length - The size of the state\n"]
+    pub fn nxsched_get_stateinfo(tcb: *mut tcb_s, state: *mut cty::c_char, length: usize);
+}
+extern "C" {
+    pub fn nxsched_waitpid(pid: pid_t, stat_loc: *mut cty::c_int, options: cty::c_int) -> pid_t;
+}
+extern "C" {
+    #[doc = " Name: nxsched_gettid\n\n Description:\n   Get the thread ID of the currently executing thread.\n\n Input parameters:\n   None\n\n Returned Value:\n   On success, returns the thread ID of the calling process.\n"]
+    pub fn nxsched_gettid() -> pid_t;
+}
+extern "C" {
+    #[doc = " Name: nxsched_getpid\n\n Description:\n   Get the Process ID of the currently executing task.\n\n Input parameters:\n   None\n\n Returned Value:\n   Normally when called from user applications, nxsched_getpid() will\n   return the Process ID of the currently executing task. that is,\n   the main task for the task groups. There is no specification for\n   any errors returned from nxsched_getpid().\n"]
+    pub fn nxsched_getpid() -> pid_t;
+}
+extern "C" {
+    #[doc = " Name: nxsched_getppid\n\n Description:\n   Get the parent task ID of the currently executing task.\n\n Input parameters:\n   None\n\n Returned Value:\n   Normally when called from user applications, nxsched_getppid() will\n   return the parent task ID of the currently executing task, that is,\n   the task at the head of the ready-to-run list.\n   There is no specification for any errors returned from\n   nxsched_getppid().\n\n   nxsched_getppid(), however, may be called from within the OS in some\n   cases. There are certain situations during context switching when the\n   OS data structures are in flux and where the current task at the head\n   of the ready-to-run task list is not actually running.\n   In that case, nxsched_getppid() will return the error: -ESRCH\n"]
+    pub fn nxsched_getppid() -> pid_t;
+}
+extern "C" {
+    #[doc = " Name: nxsched_collect_deadlock\n\n Description:\n   Check if there is a deadlock and get the thread pid of the deadlock.\n\n Input parameters:\n   pid   - The array to store the thread pid of the deadlock.\n   count - The size of the pid array.\n\n Returned Value:\n   The number of thread deadlocks.\n"]
+    pub fn nxsched_collect_deadlock(pid: *mut pid_t, count: usize) -> usize;
+}
+#[doc = " Public Types"]
+pub type sig_deliver_t = ::core::option::Option<unsafe extern "C" fn(tcb: *mut tcb_s)>;
+pub type phy_enable_t = ::core::option::Option<unsafe extern "C" fn(enable: bool)>;
+pub type initializer_t = ::core::option::Option<unsafe extern "C" fn()>;
+pub type debug_callback_t = ::core::option::Option<
+    unsafe extern "C" fn(
+        type_: cty::c_int,
+        addr: *mut cty::c_void,
+        size: usize,
+        arg: *mut cty::c_void,
+    ),
+>;
+extern "C" {
+    pub static mut _sinit: [initializer_t; 0usize];
+}
+extern "C" {
+    pub static mut _einit: [initializer_t; 0usize];
+}
+extern "C" {
+    #[doc = " Name: up_fork\n\n Description:\n   The up_fork() function is the base of fork() function that provided in\n   libc, and fork() is implemented as a wrapper of up_fork() function.\n\n Returned Value:\n   Upon successful completion, up_fork() returns 0 to the child process\n   and returns the process ID of the child process to the parent process.\n   Otherwise, -1 is returned to the parent, no child process is created,\n   and errno is set to indicate the error.\n"]
+    pub fn up_fork() -> pid_t;
+}
+extern "C" {
+    #[doc = " Name: up_initialize\n\n Description:\n   up_initialize will be called once during OS initialization after the\n   basic OS services have been initialized.  The architecture specific\n   details of initializing the OS will be handled here.  Such things as\n   setting up interrupt service routines, starting the clock, and\n   registering device drivers are some of the things that are different\n   for each processor and hardware platform.\n\n   up_initialize is called after the OS initialized but before the initial\n   application has been started and before the libraries have been\n   initialized. OS services and driver services are available.\n"]
+    pub fn up_initialize();
+}
+extern "C" {
+    #[doc = " Name: up_systemreset\n\n Description:\n   The function up_systemreset() will reset the MCU.  Optional!\n   Availability of this function is dependent upon the architecture\n   support.\n"]
+    pub fn up_systemreset() -> !;
+}
+extern "C" {
+    #[doc = " Name: up_idle\n\n Description:\n   up_idle() is the logic that will be executed when there is no other\n   ready-to-run task.  This is processor idle time and will continue until\n   some interrupt occurs to cause a context switch from the idle task.\n\n   Processing in this state may be processor-specific. e.g.,\n   this is where power management operations might be performed.\n"]
+    pub fn up_idle();
+}
+extern "C" {
+    #[doc = " Name: up_initial_state\n\n Description:\n   A new thread is being started and a new TCB has been created.\n   This function is called to initialize the processor specific portions\n   of the new TCB.\n\n   This function must setup the initial architecture registers and/or\n   stack so that execution will begin at tcb->start on the next context\n   switch.\n"]
+    pub fn up_initial_state(tcb: *mut tcb_s);
+}
+extern "C" {
+    #[doc = " Name: up_create_stack\n\n Description:\n   Allocate a stack for a new thread and setup up stack-related information\n   in the TCB.\n\n   The following TCB fields must be initialized by this function:\n\n   - adj_stack_size: Stack size after adjustment for hardware, processor,\n     etc.  This value is retained only for debug purposes.\n   - stack_alloc_ptr: Pointer to allocated stack\n   - stack_base_ptr: Adjusted stack base pointer after the TLS Data and\n     Arguments has been removed from the stack allocation.\n\n Input Parameters:\n   - tcb: The TCB of new task\n   - stack_size:  The requested stack size.  At least this much\n     must be allocated.\n   - ttype:  The thread type.  This may be one of following (defined in\n     include/nuttx/sched.h):\n\n       TCB_FLAG_TTYPE_TASK     Normal user task\n       TCB_FLAG_TTYPE_PTHREAD  User pthread\n       TCB_FLAG_TTYPE_KERNEL   Kernel thread\n\n     This thread type is normally available in the flags field of the TCB,\n     however, there are certain contexts where the TCB may not be fully\n     initialized when up_create_stack is called.\n\n     If CONFIG_BUILD_PROTECTED or CONFIG_BUILD_KERNEL are is defined, then\n     this thread type may affect how the stack is allocated.  For example,\n     kernel thread stacks should be allocated from protected kernel memory.\n     Stacks for user tasks and threads must come from memory that is\n     accessible to user code.\n"]
+    pub fn up_create_stack(tcb: *mut tcb_s, stack_size: usize, ttype: u8) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: up_use_stack\n\n Description:\n   Setup stack-related information in the TCB using pre-allocated stack\n   memory.  This function is called only from nxtask_init() when a task or\n   kernel thread is started (never for pthreads).\n\n   The following TCB fields must be initialized:\n\n   - adj_stack_size: Stack size after adjustment for hardware,\n     processor, etc.  This value is retained only for debug\n     purposes.\n   - stack_alloc_ptr: Pointer to allocated stack\n   - stack_base_ptr: Adjusted stack base pointer after the TLS Data and\n     Arguments has been removed from the stack allocation.\n\n Input Parameters:\n   - tcb:  The TCB of new task\n   - stack:  The new stack to be used.\n   - stack_size:  The allocated stack size.\n\n   NOTE:  Unlike up_stack_create() and up_stack_release, this function\n   does not require the task type (ttype) parameter.  The TCB flags will\n   always be set to provide the task type to up_use_stack() if it needs\n   that information.\n"]
+    pub fn up_use_stack(tcb: *mut tcb_s, stack: *mut cty::c_void, stack_size: usize) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: up_stack_frame\n\n Description:\n   Allocate a stack frame in the TCB's stack to hold thread-specific data.\n   This function may be called any time after up_create_stack() or\n   up_use_stack() have been called but before the task has been started.\n\n   Thread data may be kept in the stack (instead of in the TCB) if it is\n   accessed by the user code directly.  This includes such things as\n   argv[].  The stack memory is guaranteed to be in the same protection\n   domain as the thread.\n\n   The following TCB fields will be re-initialized:\n\n   - adj_stack_size: Stack size after removal of the stack frame from\n     the stack\n   - stack_base_ptr: Adjusted stack base pointer after the TLS Data and\n     Arguments has been removed from the stack allocation.\n\n   Here is the diagram after some allocation(tls, arg):\n\n                   +-------------+ <-stack_alloc_ptr(lowest)\n                   |  TLS Data   |\n                   +-------------+\n                   |  Arguments  |\n  stack_base_ptr-> +-------------+\\\n                   |  Available  | +\n                   |    Stack    | |\n                |  |             | |\n                |  |             | +->adj_stack_size\n                v  |             | |\n                   |             | |\n                   |             | +\n                   +-------------+/\n\n Input Parameters:\n   - tcb:  The TCB of new task\n   - frame_size:  The size of the stack frame to allocate.\n\n  Returned Value:\n   - A pointer to bottom of the allocated stack frame.  NULL will be\n     returned on any failures.  The alignment of the returned value is\n     the same as the alignment of the stack itself.\n"]
+    pub fn up_stack_frame(tcb: *mut tcb_s, frame_size: usize) -> *mut cty::c_void;
+}
+extern "C" {
+    #[doc = " Name: up_release_stack\n\n Description:\n   A task has been stopped. Free all stack related resources retained in\n   the defunct TCB.\n\n Input Parameters:\n   - dtcb:  The TCB containing information about the stack to be released\n   - ttype:  The thread type.  This may be one of following (defined in\n     include/nuttx/sched.h):\n\n       TCB_FLAG_TTYPE_TASK     Normal user task\n       TCB_FLAG_TTYPE_PTHREAD  User pthread\n       TCB_FLAG_TTYPE_KERNEL   Kernel thread\n\n     This thread type is normally available in the flags field of the TCB,\n     however, there are certain error recovery contexts where the TCB may\n     not be fully initialized when up_release_stack is called.\n\n     If CONFIG_BUILD_PROTECTED or CONFIG_BUILD_KERNEL are defined, then\n     this thread type may affect how the stack is freed.  For example,\n     kernel thread stacks may have been allocated from protected kernel\n     memory.  Stacks for user tasks and threads must have come from memory\n     that is accessible to user code.\n\n Returned Value:\n   None\n"]
+    pub fn up_release_stack(dtcb: *mut tcb_s, ttype: u8);
+}
+extern "C" {
+    #[doc = " Name: up_switch_context\n\n Description:\n   A task is currently in the ready-to-run list but has been prepped\n   to execute. Restore its context, and start execution.\n\n   This function is called only from the NuttX scheduling\n   logic.  Interrupts will always be disabled when this\n   function is called.\n\n Input Parameters:\n   tcb: Refers to the head task of the ready-to-run list\n     which will be executed.\n   rtcb: Refers to the running task which will be blocked.\n"]
+    pub fn up_switch_context(tcb: *mut tcb_s, rtcb: *mut tcb_s);
+}
+extern "C" {
+    #[doc = " Name: up_exit\n\n Description:\n   This function causes the currently executing task to cease\n   to exist.  This is a special case of task_delete() where the task to\n   be deleted is the currently executing task.  It is more complex because\n   a context switch must be perform to the next ready to run task.\n\n   Unlike other UP APIs, this function may be called directly from user\n   programs in various states.  The implementation of this function should\n   disable interrupts before performing scheduling operations.\n"]
+    pub fn up_exit(status: cty::c_int) -> !;
+}
+extern "C" {
+    #[doc = " Name: up_dump_register\n\n Description:\n   Register dump may be handled in an architecture-specific way.\n"]
+    pub fn up_dump_register(regs: *mut cty::c_void);
+}
+extern "C" {
+    #[doc = " Name: up_backtrace\n\n Description:\n  up_backtrace()  returns  a backtrace for the TCB, in the array\n  pointed to by buffer.  A backtrace is the series of currently active\n  function calls for the program.  Each item in the array pointed to by\n  buffer is of type void *, and is the return address from the\n  corresponding stack frame.  The size argument specifies the maximum\n  number of addresses that can be stored in buffer.   If  the backtrace is\n  larger than size, then the addresses corresponding to the size most\n  recent function calls are returned; to obtain the complete backtrace,\n  make sure that buffer and size are large enough.\n\n Input Parameters:\n   tcb    - Address of the task's TCB, NULL means dump the running task\n   buffer - Return address from the corresponding stack frame\n   size   - Maximum number of addresses that can be stored in buffer\n   skip   - number of addresses to be skipped\n\n Returned Value:\n   up_backtrace() returns the number of addresses returned in buffer\n"]
+    pub fn up_backtrace(
+        tcb: *mut tcb_s,
+        buffer: *mut *mut cty::c_void,
+        size: cty::c_int,
+        skip: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: up_schedule_sigaction\n\n Description:\n   This function is called by the OS when one or more\n   signal handling actions have been queued for execution.\n   The architecture specific code must configure things so\n   that the 'sigdeliver' callback is executed on the thread\n   specified by 'tcb' as soon as possible.\n\n   This function may be called from interrupt handling logic.\n\n   This operation should not cause the task to be unblocked\n   nor should it cause any immediate execution of sigdeliver.\n   Typically, a few cases need to be considered:\n\n   (1) This function may be called from an interrupt handler\n       During interrupt processing, all xcptcontext structures\n       should be valid for all tasks.  That structure should\n       be modified to invoke sigdeliver() either on return\n       from (this) interrupt or on some subsequent context\n       switch to the recipient task.\n   (2) If not in an interrupt handler and the tcb is NOT\n       the currently executing task, then again just modify\n       the saved xcptcontext structure for the recipient\n       task so it will invoke sigdeliver when that task is\n       later resumed.\n   (3) If not in an interrupt handler and the tcb IS the\n       currently executing task -- just call the signal\n       handler now.\n"]
+    pub fn up_schedule_sigaction(tcb: *mut tcb_s, sigdeliver: sig_deliver_t);
+}
+extern "C" {
+    #[doc = " Name: up_allocate_heap\n\n Description:\n   This function will be called to dynamically set aside the heap region.\n\n   For the kernel build (CONFIG_BUILD_PROTECTED=y) with both kernel- and\n   user-space heaps (CONFIG_MM_KERNEL_HEAP=y), this function provides the\n   size of the unprotected, user-space heap.\n\n   If a protected kernel-space heap is provided, the kernel heap must be\n   allocated (and protected) by an analogous up_allocate_kheap().\n"]
+    pub fn up_allocate_heap(heap_start: *mut *mut cty::c_void, heap_size: *mut usize);
+}
+extern "C" {
+    #[doc = " Name: up_addrenv_pa_to_va\n\n Description:\n   Map phy address to virtual address.  Not supported by all architectures.\n\n   REVISIT:  Should this not then be conditional on having that\n   architecture-specific support?\n\n Input Parameters:\n   pa - The phy address to be mapped.\n\n Returned Value:\n   Virtual address on success; NULL on failure.\n"]
+    pub fn up_addrenv_pa_to_va(pa: usize) -> *mut cty::c_void;
+}
+extern "C" {
+    #[doc = " Name: up_addrenv_va_to_pa\n\n Description:\n   Map virtual address to phy address.  Not supported by all architectures.\n\n   REVISIT:  Should this not then be conditional on having that\n   architecture-specific support?\n\n Input Parameters:\n   va - The virtual address to be mapped.  Not supported by all\n        architectures.\n\n Returned Value:\n   Phy address on success; NULL on failure.\n"]
+    pub fn up_addrenv_va_to_pa(va: *mut cty::c_void) -> usize;
+}
+extern "C" {
+    #[doc = " Name: up_irqinitialize"]
+    pub fn up_irqinitialize();
+}
+extern "C" {
+    pub fn up_enable_irq(irq: cty::c_int);
+}
+extern "C" {
+    pub fn up_disable_irq(irq: cty::c_int);
+}
+extern "C" {
+    pub fn up_trigger_irq(irq: cty::c_int, cpuset: cpu_set_t);
+}
+extern "C" {
+    #[doc = " Function:  up_timer_initialize\n\n Description:\n   This function is called during start-up to initialize\n   the timer hardware.\n"]
+    pub fn up_timer_initialize();
+}
+extern "C" {
+    #[doc = " Name: up_getusrsp\n\n Input Parameters:\n   regs - regs to get sp\n\n Returned Value:\n   User stack pointer.\n"]
+    pub fn up_getusrsp(regs: *mut cty::c_void) -> usize;
+}
+extern "C" {
+    pub fn up_fetchadd32(addr: *mut i32, value: i32) -> i32;
+}
+extern "C" {
+    pub fn up_fetchadd16(addr: *mut i16, value: i16) -> i16;
+}
+extern "C" {
+    pub fn up_fetchadd8(addr: *mut i8, value: i8) -> i8;
+}
+extern "C" {
+    pub fn up_fetchsub32(addr: *mut i32, value: i32) -> i32;
+}
+extern "C" {
+    pub fn up_fetchsub16(addr: *mut i16, value: i16) -> i16;
+}
+extern "C" {
+    pub fn up_fetchsub8(addr: *mut i8, value: i8) -> i8;
+}
+extern "C" {
+    #[doc = " Name: up_cpu_idlestack\n\n Description:\n   Allocate a stack for the CPU[n] IDLE task (n > 0) if appropriate and\n   setup up stack-related information in the IDLE task's TCB.  This\n   function is always called before up_cpu_start().  This function is\n   only called for the CPU's initial IDLE task; up_create_task is used for\n   all normal tasks, pthreads, and kernel threads for all CPUs.\n\n   The initial IDLE task is a special case because the CPUs can be started\n   in different wans in different environments:\n\n   1. The CPU may already have been started and waiting in a low power\n      state for up_cpu_start().  In this case, the IDLE thread's stack\n      has already been allocated and is already in use.  Here\n      up_cpu_idlestack() only has to provide information about the\n      already allocated stack.\n\n   2. The CPU may be disabled but started when up_cpu_start() is called.\n      In this case, a new stack will need to be created for the IDLE\n      thread and this function is then equivalent to:\n\n      return up_create_stack(tcb, stack_size, TCB_FLAG_TTYPE_KERNEL);\n\n   The following TCB fields must be initialized by this function:\n\n   - adj_stack_size: Stack size after adjustment for hardware, processor,\n     etc.  This value is retained only for debug purposes.\n   - stack_alloc_ptr: Pointer to allocated stack\n   - stack_base_ptr: Adjusted stack base pointer after the TLS Data and\n     Arguments has been removed from the stack allocation.\n\n Input Parameters:\n   - cpu:         CPU index that indicates which CPU the IDLE task is\n                  being created for.\n   - tcb:         The TCB of new CPU IDLE task\n   - stack_size:  The requested stack size for the IDLE task.  At least\n                  this much must be allocated.  This should be\n                  CONFIG_IDLETHREAD_STACKSIZE.\n"]
+    pub fn up_cpu_idlestack(cpu: cty::c_int, tcb: *mut tcb_s, stack_size: usize) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: up_mdelay and up_udelay\n\n Description:\n   Some device drivers may require that the platform-specific logic\n   provides these timing loops for short delays.\n"]
+    pub fn up_mdelay(milliseconds: cty::c_uint);
+}
+extern "C" {
+    pub fn up_udelay(microseconds: useconds_t);
+}
+extern "C" {
+    pub fn nxsched_process_timer();
+}
+extern "C" {
+    #[doc = " Name: irq_dispatch\n\n Description:\n   This function must be called from the architecture-specific logic in\n   order to dispatch an interrupt to the appropriate, registered handling\n   logic.\n"]
+    pub fn irq_dispatch(irq: cty::c_int, context: *mut cty::c_void);
+}
+extern "C" {
+    pub fn up_check_tcbstack(tcb: *mut tcb_s) -> usize;
+}
+extern "C" {
+    #[doc = " Name: up_putc\n\n Description:\n   Output one character on the console\n"]
+    pub fn up_putc(ch: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn up_nputs(str_: *const cty::c_char, len: usize);
+}
+extern "C" {
+    #[doc = " Name: up_perf_*\n\n Description:\n   The first interface simply provides the current time value in unknown\n   units.  NOTE:  This function may be called early before the timer has\n   been initialized.  In that event, the function should just return a\n   start time of zero.\n\n   Nothing is assumed about the units of this time value.  The following\n   are assumed, however: (1) The time is an unsigned integer value, (2)\n   the time is monotonically increasing, and (3) the elapsed time (also\n   in unknown units) can be obtained by subtracting a start time from\n   the current time.\n\n   The second interface simple converts an elapsed time into well known\n   units.\n"]
+    pub fn up_perf_init(arg: *mut cty::c_void);
+}
+extern "C" {
+    pub fn up_perf_gettime() -> cty::c_ulong;
+}
+extern "C" {
+    pub fn up_perf_getfreq() -> cty::c_ulong;
+}
+extern "C" {
+    pub fn up_perf_convert(elapsed: cty::c_ulong, ts: *mut timespec);
+}
+extern "C" {
+    #[doc = " Name: up_show_cpuinfo\n\n Description:\n   This function will be called when reading /proc/cpufinfo.\n   This function should be implemented by each arch to show its cpuinfo.\n\n Input Parameters:\n   buf          - The address of the user's receive buffer.\n   buf_size     - The size (in bytes) of the user's receive buffer.\n   file_off     - The /proc/cpuinfo file offset.\n\n Returned Value:\n   The number of bytes actually transferred into the user's receive buffer.\n"]
+    pub fn up_show_cpuinfo(buf: *mut cty::c_char, buf_size: usize, file_off: off_t) -> isize;
+}
+extern "C" {
+    #[doc = " Name: up_saveusercontext\n\n Description:\n   Save the current thread context\n"]
+    pub fn up_saveusercontext(saveregs: *mut cty::c_void) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: up_debugpoint\n\n Description:\n   Add a debugpoint.\n\n Input Parameters:\n   type     - The debugpoint type. optional value:\n              DEBUGPOINT_WATCHPOINT_RO - Read only watchpoint.\n              DEBUGPOINT_WATCHPOINT_WO - Write only watchpoint.\n              DEBUGPOINT_WATCHPOINT_RW - Read and write watchpoint.\n              DEBUGPOINT_BREAKPOINT    - Breakpoint.\n              DEBUGPOINT_STEPPOINT     - Single step.\n   addr     - The address to be debugged.\n   size     - The watchpoint size. only for watchpoint.\n   callback - The callback function when debugpoint triggered.\n              if NULL, the debugpoint will be removed.\n   arg      - The argument of callback function.\n\n Returned Value:\n  Zero on success; a negated errno value on failure\n"]
+    pub fn up_debugpoint_add(
+        type_: cty::c_int,
+        addr: *mut cty::c_void,
+        size: usize,
+        callback: debug_callback_t,
+        arg: *mut cty::c_void,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: up_debugpoint_remove\n\n Description:\n   Remove a debugpoint.\n\n Input Parameters:\n   type     - The debugpoint type. optional value:\n              DEBUGPOINT_WATCHPOINT_RO - Read only watchpoint.\n              DEBUGPOINT_WATCHPOINT_WO - Write only watchpoint.\n              DEBUGPOINT_WATCHPOINT_RW - Read and write watchpoint.\n              DEBUGPOINT_BREAKPOINT    - Breakpoint.\n              DEBUGPOINT_STEPPOINT     - Single step.\n   addr     - The address to be debugged.\n   size     - The watchpoint size. only for watchpoint.\n\n Returned Value:\n  Zero on success; a negated errno value on failure\n"]
+    pub fn up_debugpoint_remove(
+        type_: cty::c_int,
+        addr: *mut cty::c_void,
+        size: usize,
+    ) -> cty::c_int;
+}
+#[doc = " Public Type Definitions"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct div_s {
+    pub quot: cty::c_int,
+    pub rem: cty::c_int,
+}
+#[doc = " Public Type Definitions"]
+pub type div_t = div_s;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct ldiv_s {
+    pub quot: cty::c_long,
+    pub rem: cty::c_long,
+}
+pub type ldiv_t = ldiv_s;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct lldiv_s {
+    pub quot: cty::c_long,
+    pub rem: cty::c_long,
+}
+pub type lldiv_t = lldiv_s;
+extern "C" {
+    pub fn srand(seed: cty::c_uint);
+}
+extern "C" {
+    pub fn rand() -> cty::c_int;
+}
+extern "C" {
+    pub fn rand_r(seedp: *mut cty::c_uint) -> cty::c_int;
+}
+extern "C" {
+    pub fn lcong48(param: *mut cty::c_ushort);
+}
+extern "C" {
+    pub fn seed48(seed16v: *mut cty::c_ushort) -> *mut cty::c_ushort;
+}
+extern "C" {
+    pub fn srand48(seedval: cty::c_long);
+}
+extern "C" {
+    pub fn jrand48(xsubi: *mut cty::c_ushort) -> cty::c_long;
+}
+extern "C" {
+    pub fn lrand48() -> cty::c_long;
+}
+extern "C" {
+    pub fn mrand48() -> cty::c_long;
+}
+extern "C" {
+    pub fn nrand48(xsubi: *mut cty::c_ushort) -> cty::c_long;
+}
+extern "C" {
+    pub fn drand48() -> f64;
+}
+extern "C" {
+    pub fn erand48(xsubi: *mut cty::c_ushort) -> f64;
+}
+extern "C" {
+    pub fn random() -> cty::c_long;
+}
+extern "C" {
+    pub fn get_environ_ptr() -> *mut *mut cty::c_char;
+}
+extern "C" {
+    pub fn getenv(name: *const cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn putenv(string: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn clearenv() -> cty::c_int;
+}
+extern "C" {
+    pub fn setenv(
+        name: *const cty::c_char,
+        value: *const cty::c_char,
+        overwrite: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn unsetenv(name: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn exit(status: cty::c_int) -> !;
+}
+extern "C" {
+    pub fn quick_exit(status: cty::c_int) -> !;
+}
+extern "C" {
+    pub fn abort() -> !;
+}
+extern "C" {
+    pub fn atexit(func: ::core::option::Option<unsafe extern "C" fn()>) -> cty::c_int;
+}
+extern "C" {
+    pub fn at_quick_exit(func: ::core::option::Option<unsafe extern "C" fn()>) -> cty::c_int;
+}
+extern "C" {
+    pub fn on_exit(
+        func: ::core::option::Option<
+            unsafe extern "C" fn(arg1: cty::c_int, arg2: *mut cty::c_void),
+        >,
+        arg: *mut cty::c_void,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn _Exit(status: cty::c_int) -> !;
+}
+extern "C" {
+    pub fn system(cmd: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn realpath(path: *const cty::c_char, resolved: *mut cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn strtol(
+        nptr: *const cty::c_char,
+        endptr: *mut *mut cty::c_char,
+        base: cty::c_int,
+    ) -> cty::c_long;
+}
+extern "C" {
+    pub fn strtoul(
+        nptr: *const cty::c_char,
+        endptr: *mut *mut cty::c_char,
+        base: cty::c_int,
+    ) -> cty::c_ulong;
+}
+extern "C" {
+    pub fn strtoll(
+        nptr: *const cty::c_char,
+        endptr: *mut *mut cty::c_char,
+        base: cty::c_int,
+    ) -> cty::c_longlong;
+}
+extern "C" {
+    pub fn strtoull(
+        nptr: *const cty::c_char,
+        endptr: *mut *mut cty::c_char,
+        base: cty::c_int,
+    ) -> cty::c_ulonglong;
+}
+extern "C" {
+    pub fn strtof(str_: *const cty::c_char, endptr: *mut *mut cty::c_char) -> f32;
+}
+extern "C" {
+    pub fn strtod(str_: *const cty::c_char, endptr: *mut *mut cty::c_char) -> f64;
+}
+extern "C" {
+    pub fn strtold(str_: *const cty::c_char, endptr: *mut *mut cty::c_char) -> f64;
+}
+extern "C" {
+    pub fn atoi(nptr: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn atol(nptr: *const cty::c_char) -> cty::c_long;
+}
+extern "C" {
+    pub fn atoll(nptr: *const cty::c_char) -> cty::c_longlong;
+}
+extern "C" {
+    pub fn atof(nptr: *const cty::c_char) -> f64;
+}
+extern "C" {
+    pub fn itoa(val: cty::c_int, str_: *mut cty::c_char, base: cty::c_int) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn mblen(s: *const cty::c_char, n: usize) -> cty::c_int;
+}
+extern "C" {
+    pub fn mbtowc(pwc: *mut wchar_t, s: *const cty::c_char, n: usize) -> cty::c_int;
+}
+extern "C" {
+    pub fn mbstowcs(dst: *mut wchar_t, src: *const cty::c_char, len: usize) -> usize;
+}
+extern "C" {
+    pub fn wctomb(s: *mut cty::c_char, wchar: wchar_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn wcstombs(dst: *mut cty::c_char, src: *const wchar_t, len: usize) -> usize;
+}
+extern "C" {
+    pub fn malloc(arg1: cty::c_uint) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn valloc(arg1: usize) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn free(arg1: *mut cty::c_void);
+}
+extern "C" {
+    pub fn realloc(arg1: *mut cty::c_void, arg2: cty::c_uint) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn memalign(arg1: usize, arg2: usize) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn zalloc(arg1: usize) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn calloc(arg1: cty::c_uint, arg2: cty::c_uint) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn aligned_alloc(arg1: usize, arg2: usize) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn posix_memalign(arg1: *mut *mut cty::c_void, arg2: usize, arg3: usize) -> cty::c_int;
+}
+extern "C" {
+    pub fn abs(j: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn labs(j: cty::c_long) -> cty::c_long;
+}
+extern "C" {
+    pub fn llabs(j: cty::c_longlong) -> cty::c_longlong;
+}
+extern "C" {
+    pub fn div(number: cty::c_int, denom: cty::c_int) -> div_t;
+}
+extern "C" {
+    pub fn ldiv(number: cty::c_long, denom: cty::c_long) -> ldiv_t;
+}
+extern "C" {
+    pub fn lldiv(number: cty::c_longlong, denom: cty::c_longlong) -> lldiv_t;
+}
+extern "C" {
+    pub fn mktemp(path_template: *mut cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn mkstemp(path_template: *mut cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    pub fn mkdtemp(path_template: *mut cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn qsort(
+        base: *mut cty::c_void,
+        nel: usize,
+        width: usize,
+        compar: ::core::option::Option<
+            unsafe extern "C" fn(arg1: *const cty::c_void, arg2: *const cty::c_void) -> cty::c_int,
+        >,
+    );
+}
+extern "C" {
+    pub fn bsearch(
+        key: *const cty::c_void,
+        base: *const cty::c_void,
+        nel: usize,
+        width: usize,
+        compar: ::core::option::Option<
+            unsafe extern "C" fn(arg1: *const cty::c_void, arg2: *const cty::c_void) -> cty::c_int,
+        >,
+    ) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn getprogname() -> *const cty::c_char;
+}
+extern "C" {
+    pub fn __cxa_atexit(
+        func: ::core::option::Option<unsafe extern "C" fn(arg1: *mut cty::c_void)>,
+        arg: *mut cty::c_void,
+        dso_handle: *mut cty::c_void,
+    ) -> cty::c_int;
+}
+#[doc = " Public Type Definitions"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct mallinfo {
+    pub arena: cty::c_int,
+    pub ordblks: cty::c_int,
+    pub aordblks: cty::c_int,
+    pub mxordblk: cty::c_int,
+    pub uordblks: cty::c_int,
+    pub fordblks: cty::c_int,
+    pub usmblks: cty::c_int,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct malltask {
+    pub pid: pid_t,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct mallinfo_task {
+    pub aordblks: cty::c_int,
+    pub uordblks: cty::c_int,
+}
+extern "C" {
+    pub fn mallopt(param: cty::c_int, value: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn mallinfo() -> mallinfo;
+}
+extern "C" {
+    pub fn malloc_size(ptr: *mut cty::c_void) -> usize;
+}
+extern "C" {
+    pub fn mallinfo_task(task: *const malltask) -> mallinfo_task;
+}
+#[doc = " Public Types"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct mm_heap_s {
+    _unused: [u8; 0],
+}
+extern "C" {
+    pub static mut g_mmheap: *mut mm_heap_s;
+}
+extern "C" {
+    #[doc = " Public Function Prototypes"]
+    pub fn mm_initialize(
+        name: *const cty::c_char,
+        heap_start: *mut cty::c_void,
+        heap_size: usize,
+    ) -> *mut mm_heap_s;
+}
+extern "C" {
+    pub fn mm_addregion(heap: *mut mm_heap_s, heapstart: *mut cty::c_void, heapsize: usize);
+}
+extern "C" {
+    pub fn mm_uninitialize(heap: *mut mm_heap_s);
+}
+extern "C" {
+    pub fn umm_initialize(heap_start: *mut cty::c_void, heap_size: usize);
+}
+extern "C" {
+    pub fn umm_addregion(heapstart: *mut cty::c_void, heapsize: usize);
+}
+extern "C" {
+    pub fn mm_malloc(heap: *mut mm_heap_s, size: usize) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn mm_malloc_size(heap: *mut mm_heap_s, mem: *mut cty::c_void) -> usize;
+}
+extern "C" {
+    pub fn mm_free(heap: *mut mm_heap_s, mem: *mut cty::c_void);
+}
+extern "C" {
+    pub fn mm_realloc(
+        heap: *mut mm_heap_s,
+        oldmem: *mut cty::c_void,
+        size: usize,
+    ) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn mm_calloc(heap: *mut mm_heap_s, n: usize, elem_size: usize) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn mm_zalloc(heap: *mut mm_heap_s, size: usize) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn mm_memalign(heap: *mut mm_heap_s, alignment: usize, size: usize) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn mm_heapmember(heap: *mut mm_heap_s, mem: *mut cty::c_void) -> bool;
+}
+extern "C" {
+    pub fn umm_heapmember(mem: *mut cty::c_void) -> bool;
+}
+extern "C" {
+    pub fn mm_brkaddr(heap: *mut mm_heap_s, region: cty::c_int) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn umm_brkaddr(region: cty::c_int) -> *mut cty::c_void;
+}
+extern "C" {
+    pub fn mm_extend(heap: *mut mm_heap_s, mem: *mut cty::c_void, size: usize, region: cty::c_int);
+}
+extern "C" {
+    pub fn umm_extend(mem: *mut cty::c_void, size: usize, region: cty::c_int);
+}
+extern "C" {
+    pub fn mm_mallinfo(heap: *mut mm_heap_s) -> mallinfo;
+}
+extern "C" {
+    pub fn mm_mallinfo_task(heap: *mut mm_heap_s, task: *const malltask) -> mallinfo_task;
+}
+extern "C" {
+    pub fn mm_memdump(heap: *mut mm_heap_s, dump: *const malltask);
+}
+extern "C" {
+    #[doc = " Name: kthread_create_with_stack\n\n Description:\n   This function creates and activates a kernel thread task with\n   kernel-mode privileges. It is identical to kthread_create() except\n   that it get the stack memory from caller.\n\n Input Parameters:\n   name       - Name of the new task\n   priority   - Priority of the new task\n   stack_addr - Stack buffer of the new task\n   stack_size - Stack size of the new task\n   entry      - Entry point of a new task\n   arg        - A pointer to an array of input parameters.  The array\n                should be terminated with a NULL argv[] value. If no\n                parameters are required, argv may be NULL.\n\n Returned Value:\n   Returns the positive, non-zero process ID of the new task or a negated\n   errno value to indicate the nature of any failure.  If memory is\n   insufficient or the task cannot be created -ENOMEM will be returned.\n"]
+    pub fn kthread_create_with_stack(
+        name: *const cty::c_char,
+        priority: cty::c_int,
+        stack_addr: *mut cty::c_void,
+        stack_size: cty::c_int,
+        entry: main_t,
+        argv: *const *mut cty::c_char,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: kthread_create\n\n Description:\n   This function creates and activates a kernel thread task with\n   kernel-mode privileges. It is identical to task_create() except\n   that it configures the newly started thread to run in kernel model.\n\n Input Parameters:\n   name       - Name of the new task\n   priority   - Priority of the new task\n   stack_size - size (in bytes) of the stack needed\n   entry      - Entry point of a new task\n   arg        - A pointer to an array of input parameters.  The array\n                should be terminated with a NULL argv[] value. If no\n                parameters are required, argv may be NULL.\n\n Returned Value:\n   Returns the positive, non-zero process ID of the new task or a negated\n   errno value to indicate the nature of any failure.  If memory is\n   insufficient or the task cannot be created -ENOMEM will be returned.\n"]
+    pub fn kthread_create(
+        name: *const cty::c_char,
+        priority: cty::c_int,
+        stack_size: cty::c_int,
+        entry: main_t,
+        argv: *const *mut cty::c_char,
+    ) -> cty::c_int;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct tasklist_s {
+    pub list: *mut dq_queue_t,
+    pub attr: u8,
+}
+extern "C" {
+    pub static mut g_readytorun: dq_queue_t;
+}
+extern "C" {
+    pub static mut g_running_tasks: [*mut tcb_s; 1usize];
+}
+extern "C" {
+    pub static mut g_pendingtasks: dq_queue_t;
+}
+extern "C" {
+    pub static mut g_waitingforsignal: dq_queue_t;
+}
+extern "C" {
+    pub static mut g_inactivetasks: dq_queue_t;
+}
+extern "C" {
+    pub static mut g_lastpid: pid_t;
+}
+extern "C" {
+    pub static mut g_pidhash: *mut *mut tcb_s;
+}
+extern "C" {
+    pub static mut g_npidhash: cty::c_int;
+}
+extern "C" {
+    pub static g_tasklisttable: [tasklist_s; 9usize];
+}
+extern "C" {
+    #[doc = " Name: nxthread_create\n\n Description:\n   This function creates and activates a new thread of the specified type\n   with a specified priority and returns its system-assigned ID.  It is the\n   internal, common implementation of task_create() and kthread_create().\n   See comments with task_create() for further information.\n\n Input Parameters:\n   name       - Name of the new task\n   ttype      - Type of the new task\n   priority   - Priority of the new task\n   stack_addr - Address of the stack needed\n   stack_size - Size (in bytes) of the stack needed\n   entry      - Entry point of a new task\n   arg        - A pointer to an array of input parameters.  The array\n                should be terminated with a NULL argv[] value. If no\n                parameters are required, argv may be NULL.\n   envp       - A pointer to an array of environment strings. Terminated\n                with a NULL entry.\n\n Returned Value:\n   Returns the positive, non-zero process ID of the new task or a negated\n   errno value to indicate the nature of any failure.  If memory is\n   insufficient or the task cannot be created -ENOMEM will be returned.\n"]
+    pub fn nxthread_create(
+        name: *const cty::c_char,
+        ttype: u8,
+        priority: cty::c_int,
+        stack_addr: *mut cty::c_void,
+        stack_size: cty::c_int,
+        entry: main_t,
+        argv: *const *mut cty::c_char,
+        envp: *const *mut cty::c_char,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nxsched_add_readytorun(rtrtcb: *mut tcb_s) -> bool;
+}
+extern "C" {
+    pub fn nxsched_remove_readytorun(rtrtcb: *mut tcb_s, merge: bool) -> bool;
+}
+extern "C" {
+    pub fn nxsched_add_prioritized(tcb: *mut tcb_s, list: *mut dq_queue_t) -> bool;
+}
+extern "C" {
+    pub fn nxsched_merge_prioritized(
+        list1: *mut dq_queue_t,
+        list2: *mut dq_queue_t,
+        task_state: u8,
+    );
+}
+extern "C" {
+    pub fn nxsched_merge_pending() -> bool;
+}
+extern "C" {
+    pub fn nxsched_add_blocked(btcb: *mut tcb_s, task_state: tstate_t);
+}
+extern "C" {
+    pub fn nxsched_remove_blocked(btcb: *mut tcb_s);
+}
+extern "C" {
+    pub fn nxsched_set_priority(tcb: *mut tcb_s, sched_priority: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn nxsched_reprioritize_rtr(tcb: *mut tcb_s, priority: cty::c_int) -> bool;
+}
+extern "C" {
+    pub fn nxsched_process_roundrobin(tcb: *mut tcb_s, ticks: u32, noswitches: bool) -> u32;
+}
+extern "C" {
+    pub fn nxsched_verify_tcb(tcb: *mut tcb_s) -> bool;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct tls_info_s {
+    _unused: [u8; 0],
+}
+extern "C" {
+    pub fn nxsched_get_tls(tcb: *mut tcb_s) -> *mut tls_info_s;
+}
+pub type foreachchild_t =
+    ::core::option::Option<unsafe extern "C" fn(pid: pid_t, arg: *mut cty::c_void) -> cty::c_int>;
+extern "C" {
+    pub static mut g_grouphead: *mut task_group_s;
+}
+extern "C" {
+    pub fn group_allocate(tcb: *mut task_tcb_s, ttype: u8) -> cty::c_int;
+}
+extern "C" {
+    pub fn group_initialize(tcb: *mut task_tcb_s);
+}
+extern "C" {
+    pub fn group_bind(tcb: *mut pthread_tcb_s) -> cty::c_int;
+}
+extern "C" {
+    pub fn group_join(tcb: *mut pthread_tcb_s) -> cty::c_int;
+}
+extern "C" {
+    pub fn group_leave(tcb: *mut tcb_s);
+}
+extern "C" {
+    pub fn group_drop(group: *mut task_group_s);
+}
+extern "C" {
+    pub fn group_add_waiter(group: *mut task_group_s);
+}
+extern "C" {
+    pub fn group_del_waiter(group: *mut task_group_s);
+}
+extern "C" {
+    pub fn group_findbypid(pid: pid_t) -> *mut task_group_s;
+}
+extern "C" {
+    pub fn group_foreachchild(
+        group: *mut task_group_s,
+        handler: foreachchild_t,
+        arg: *mut cty::c_void,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn group_kill_children(tcb: *mut tcb_s) -> cty::c_int;
+}
+extern "C" {
+    pub fn task_getgroup(pid: pid_t) -> *mut task_group_s;
+}
+extern "C" {
+    pub fn group_signal(group: *mut task_group_s, siginfo: *mut siginfo_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn group_setupidlefiles() -> cty::c_int;
+}
+extern "C" {
+    pub fn group_setuptaskfiles(
+        tcb: *mut task_tcb_s,
+        actions: *const posix_spawn_file_actions_t,
+        cloexec: bool,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nxtask_start();
+}
+extern "C" {
+    pub fn nxtask_setup_scheduler(
+        tcb: *mut task_tcb_s,
+        priority: cty::c_int,
+        start: start_t,
+        main: main_t,
+        ttype: u8,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nxtask_setup_arguments(
+        tcb: *mut task_tcb_s,
+        name: *const cty::c_char,
+        argv: *const *mut cty::c_char,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nxtask_exit() -> cty::c_int;
+}
+extern "C" {
+    pub fn nxtask_terminate(pid: pid_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn nxtask_exithook(tcb: *mut tcb_s, status: cty::c_int);
+}
+extern "C" {
+    pub fn nxtask_recover(tcb: *mut tcb_s);
+}
+extern "C" {
+    pub fn nxnotify_cancellation(tcb: *mut tcb_s) -> bool;
+}
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct usb_ctrlreq_s {
     _unused: [u8; 0],
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct mm_map_entry {
+    pub _address: u8,
 }
