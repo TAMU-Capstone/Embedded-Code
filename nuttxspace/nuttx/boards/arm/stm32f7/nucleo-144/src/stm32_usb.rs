@@ -24,8 +24,8 @@
 use crate::include::*; // I cannot tell how these two lines are different
 use crate::stm32_autoleds::board_autoled_initialize;
 use log::warn;
-use std::io::Error; //  redo these two using no_std
-use std::thread; //  redo these two using no_std
+use thiserror_no_std::Error;
+
 /****************************************************************************
  * Pre-processor Definitions
  ****************************************************************************/
@@ -179,7 +179,7 @@ cfg_if::cfg_if!{
     ret = usbhost_hub_initialize();
     if (ret < 0)
     {
-      eprintln!("ERROR: usbhost_hub_initialize failed: {}\n", ret);
+      #[error("ERROR: usbhost_hub_initialize failed: {}\n", ret)];
       return;
       }
     } /* CONFIG_USBHOST_HUB */
@@ -190,7 +190,7 @@ cfg_if::cfg_if!{
     ret = usbhost_msc_initialize();
     if (ret != OK)
     {
-      eprintln!("ERROR: Failed to register the mass storage class: {}\n", ret);
+      #[error("ERROR: Failed to register the mass storage class: {}\n", ret)];
       return;
     }
   } /* CONFIG_USBHOST_MSC */
@@ -203,7 +203,7 @@ cfg_if::cfg_if!{
     ret = usbhost_cdcacm_initialize();
     if (ret != OK)
       {
-        eprintln!("ERROR: Failed to register the CDC/ACM serial class: {}\n", ret);
+        #[error("ERROR: Failed to register the CDC/ACM serial class: {}\n", ret)];
       }
     } /* CONFIG_USBHOST_CDCACM */
 
@@ -215,7 +215,7 @@ cfg_if::cfg_if!{
     ret = usbhost_kbdinit();
     if (ret != OK)
       {
-        eprintln!("ERROR: Failed to register the HID keyboard class\n");
+        #[error("ERROR: Failed to register the HID keyboard class\n")];
       }
     }/*CONFIG_USBHOST_HIDKBD */
 
@@ -227,7 +227,7 @@ cfg_if::cfg_if!{
     ret = usbhost_mouse_init();
     if (ret != OK)
     {
-        eprintln!("ERROR: Failed to register the HID mouse class\n");
+        #[error("ERROR: Failed to register the HID mouse class\n")];
       }
     } /*CONFIG_USBHOST_HIDMOUSE */
 
