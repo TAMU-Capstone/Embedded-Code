@@ -23,7 +23,7 @@
  ****************************************************************************/
 use log::warn;
 use thiserror_no_std::Error;
-
+use crate::include::*;
 /****************************************************************************
  * Pre-processor Definitions
  ****************************************************************************/
@@ -73,7 +73,6 @@ cfg_if::cfg_if! { // https://docs.rs/cfg-if/latest/cfg_if/
     *   Wait for USB devices to be connected.
     *
     ****************************************************************************/
-cfg_if::cfg_if!{
 
   if #[cfg(CONFIG_USBHOST)]{
     extern "C" fn usbhost_waiter( argc: i32, argv: &[String]) -> i32
@@ -109,7 +108,6 @@ cfg_if::cfg_if!{
     /* Keep the compiler from complaining */
 
     return 0;
-  }
   }
 }
 
@@ -159,7 +157,6 @@ cfg_if::cfg_if!{
     ****************************************************************************/
 
 
-    cfg_if::cfg_if!{
      if( #[cfg(CONFIG_USBHOST)])
      {
 
@@ -276,7 +273,6 @@ unsafe{
       return Err(-libc::ENODEV); // throw ENODEV which is a standard c error for invalid enviourment ( i think? )
     }
   } /* CONFIG_USBHOST */
-  } /* end of cfg_if for CONFIG_USBHOST */
 
   /****************************************************************************
     * Name: stm32_usbhost_vbusdrive
@@ -307,7 +303,6 @@ unsafe{
     *
     ****************************************************************************/
 
-  cfg_if::cfg_if!{
     if( #[cfg(CONFIG_USBHOST)])
     {
       pub extern "C" fn stm32_usbhost_vbusdrive( iface :i32, enable: bool)
@@ -320,7 +315,6 @@ unsafe{
     }
   }
 } /* CONFIG_USBHOST */
-} /* cfg_if end for CONFIG_USBHOST */
 
   /****************************************************************************
     * Name: stm32_setup_overcurrent
@@ -339,8 +333,7 @@ unsafe{
     *
     ****************************************************************************/
 
-    cfg_if::cfg_if!{
-      if( #[cfg(CONFIG_USBHOST)])
+      if( #[cfg(CONFIG_USBHOST)] )
       {
         // reading line 1414 of binding.rs
         pub extern "C" fn stm32_setup_overcurrent( handler : c_int, arg: *mut cty::c_void) -> i32
@@ -350,7 +343,6 @@ unsafe{
           }
         }
       } /* CONFIG_USBHOST */
-      } /* cfg_if end for CONFIG_USBHOST */
 
   /****************************************************************************
     * Name:  stm32_usbsuspend
@@ -362,7 +354,6 @@ unsafe{
     *   shutdown clocks, power, etc. while the USB is suspended.
     *
     ****************************************************************************/
-    cfg_if::cfg_if!{
       if( #[cfg(CONFIG_USBDEV)])
       {
   pub extern "C" fn stm32_usbsuspend(struct usbdev_s *dev, resume : bool)
@@ -372,6 +363,29 @@ unsafe{
 
 
       } /* CONFIG_USBDEV */
-      } /* cfg_if end for CONFIG_USBDEV */
 }/* CONFIG_STM32F7_OTGFS */
+// else{
+// #[no_mangle]
+// pub extern "C" fn stm32_usbinitialize()
+// {
+//   // pub to allow boot to use this function
+//   /* The OTG FS has an internal soft pull-up.
+//     * No GPIO configuration is required
+//     */
+
+//   /* Configure the OTG FS VBUS sensing GPIO,
+//     * Power On, and Overcurrent GPIOs
+//     */
+//   if (cfg! (CONFIG_STM32F7_OTGFS))
+//   {
+//     unsafe{
+//       stm32_configgpio(GPIO_OTGFS_VBUS);
+//       stm32_configgpio(GPIO_OTGFS_PWRON);
+//       stm32_configgpio(GPIO_OTGFS_OVER);
+//     }
+//   }
+// }
+
 }
+
+
