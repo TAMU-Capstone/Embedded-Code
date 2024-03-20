@@ -57,27 +57,19 @@
     let mut ret: i32 = 0;
 
     //if CONFIG_I2C
-    #[cfg(CONFIG_I2C)]
+    if #[cfg(CONFIG_I2C)]
     {
         let mut i2c_bus: i32;
-        //pub struct i2c_master_s *i2c;
         //should I use Box? -- its a smart pointer
         let mut i2c = &mut i2c_master_s;
-        /*struct I2CMaster {
-            i2c: *mut i2c_master_s,
-        }*/
 
-        #[cfg(CONFIG_MPU60X0_I2C)]
+        if #[cfg(CONFIG_MPU60X0_I2C)]
         {
             let mut mpu_config = &mpu_config_s;
-            //pub mpu_config_s *mpu_config
-            /*struct I2CMaster {
-                mpu_config: *mpu_config_s,
-            }*/
         }
     }
 
-    #[cfg(CONFIG_FS_PROCFS)]
+    if #[cfg(CONFIG_FS_PROCFS)]
     {
         /* Mount the procfs file system */
         ret = nx_mount(None, STM32_PROCFS_MOUNTPOINT, "procfs", 0, None);
@@ -88,7 +80,7 @@
         }
     }
 
-    #[cfg(CONFIG_STM32_ROMFS)]
+    if #[cfg(CONFIG_STM32_ROMFS)]
     {
         /* Mount the romfs partition */
 
@@ -101,7 +93,7 @@
         }
     }
 
-    #[cfg(CONFIG_DEV_GPIO)]
+    if #[cfg(CONFIG_DEV_GPIO)]
     {
         /* Register the GPIO driver */
         ret = stm32_gpio_initialize();
@@ -112,7 +104,7 @@
         }
     }
     //TO-DO: CHECK TO SEE IF THIS IS CORRECT SYNTAX!!!
-    #[cfg(not(all(CONFIG_ARCH_LEDS)) && (CONFIG_USERLED_LOWER))]  //if cfg!(not(CONFIG_ARCH_LEDS)) && cfg!(CONFIG_USERLED_LOWER)
+    if #[cfg(all(not(CONFIG_ARCH_LEDS) && (CONFIG_USERLED_LOWER)))]
     {
         ret = userled_lower_initialize(LED_DRIVER_PATH);
         if ret < 0
@@ -121,7 +113,7 @@
         }
     }
 
-    #[cfg(CONFIG_ADC)]
+    if #[cfg(CONFIG_ADC)]
     {
         ret = stm32_adc_setup();
         if ret < 0
@@ -130,12 +122,12 @@
         }
     }
 
-    #[cfg(CONFIG_STM32F7_BBSRAM)]
+    if #[cfg(CONFIG_STM32F7_BBSRAM)]
     {
         pub stm32_bbsram_int();
     }
 
-    #[cfg(CONFIG_FAT_DMAMEMORY)]
+    if #[cfg(CONFIG_FAT_DMAMEMORY)]
     {
         //TO-DO: may need to use let and make variable and then compare
         if stm32_dma_alloc_init() < 0
@@ -144,7 +136,7 @@
         }
     }
 
-    #[cfg(CONFIG_NUCLEO_SPI_TEST)]
+    if #[cfg(CONFIG_NUCLEO_SPI_TEST)]
     {
         ret = stm32_spidev_bus_test();
         //there is if ret != OK
@@ -156,7 +148,7 @@
         }
     }
 
-    #[cfg(CONFIG_MMCSD)]
+    if #[cfg(CONFIG_MMCSD)]
     {
         ret = stm32_sdio_initialize();
         if ret != OK
@@ -166,7 +158,7 @@
         }
     }
 
-    #[cfg(CONFIG_PWM)]
+    if #[cfg(CONFIG_PWM)]
     {
         ret = stm32_pwm_setup();
         if ret < 0
@@ -175,16 +167,15 @@
         }
     }
 
-    #[cfg(CONFIG_SENSORS_QENCODER)]
+    if #[cfg(CONFIG_SENSORS_QENCODER)]
+    {
         //defines an array of size 9 and initializes it to 0
         let mut buf = [i32; 9] = [0; 9];
+    }
 
-    #[cfg(CONFIG_STM32F7_TIM1_QE)]
+    if #[cfg(CONFIG_STM32F7_TIM1_QE)]
     {
-        unsafe
-        {
-            snprintf(buf, buf.len(), "/dev/qe0");
-        }
+        snprintf(buf, buf.len(), "/dev/qe0");
         ret = stm32_qencoder_initialize(buf, 1);
         if ret < 0
         {
@@ -194,12 +185,9 @@
         }
     }
 
-    #[cfg(CONFIG_STM32F7_TIM3_QE)]
+    if #[cfg(CONFIG_STM32F7_TIM3_QE)]
     {
-        unsafe
-        {
-            snprintf(buf, buf.len(), "/dev/qe2");
-        }
+        snprintf(buf, buf.len(), "/dev/qe2");
         ret = stm32_qencoder_initialize(buf, 3);
         if ret < 0
         {
@@ -209,12 +197,9 @@
         }
     }
 
-    #[cfg(CONFIG_STM32F7_TIM4_QE)]
+    if #[cfg(CONFIG_STM32F7_TIM4_QE)]
     {
-        unsafe
-        {
-            snprintf(buf, buf.len(), "/dev/qe3");
-        }
+        snprintf(buf, buf.len(), "/dev/qe3");
         ret = stm32_qencoder_initialize(buf, 4);
         if ret < 0
         {
@@ -224,7 +209,7 @@
         }
     }
 
-    #[cfg(CONFIG_STM32F7_CAN_CHARDRIVER)]
+    if #[cfg(CONFIG_STM32F7_CAN_CHARDRIVER)]
     {
         ret = stm32_can_setup();
         if ret < 0
@@ -234,7 +219,7 @@
           }
     }
 
-    #[cfg(CONFIG_STM32F7_CAN_SOCKET)]
+    if #[cfg(CONFIG_STM32F7_CAN_SOCKET)]
     {
         ret = stm32_cansock_setup();
         if ret < 0
@@ -244,7 +229,7 @@
     }
 
     //TO-DO: Check if correct
-    #[cfg(all(CONFIG_I2C)) && (CONFIG_STM32F7_I2C1)]
+    if #[cfg(all(CONFIG_I2C && CONFIG_STM32F7_I2C1))]
     {
         i2c_bus = 1;
         i2c = stm32_i2cbus_initialize(i2c_bus);
@@ -255,7 +240,7 @@
         }
         else
         {
-            #[cfg(CONFIG_SYSTEM_I2CTOOL)]
+            if #[cfg(CONFIG_SYSTEM_I2CTOOL)]
             {
                 ret = i2c_register(i2c, i2c_bus);
             
@@ -265,7 +250,7 @@
                 }
             }
 
-            #[cfg(CONFIG_MPU60X0_I2C)]
+            if #[cfg(CONFIG_MPU60X0_I2C)]
             {
                 mpu_config = kmm_zalloc(sizeof(struct mpu_config_s));
                 if (mpu_config == NULL)
