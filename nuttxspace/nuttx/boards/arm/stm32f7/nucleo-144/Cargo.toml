@@ -20,6 +20,8 @@ panic = "abort"
 # Dependencies for our project
 [dependencies]
 cty = "0.2.2"
+cfg-if = "1.0"  # used throughout as a conditional dependencies
+log = "0.4.21"  # used to replicate warnings and errors at compile time
 
 # Build Dependencies for our project
 [build-dependencies]
