@@ -1044,6 +1044,109 @@ pub const GPIO_PIN12: u8 = 12;
 pub const GPIO_PIN13: u8 = 13;
 pub const GPIO_PIN14: u8 = 14;
 pub const GPIO_PIN15: u8 = 15;
+pub const _TIOCBASE: u16 = 256;
+pub const _WDIOCBASE: u16 = 512;
+pub const _FIOCBASE: u16 = 768;
+pub const _DIOCBASE: u16 = 1024;
+pub const _BIOCBASE: u16 = 1280;
+pub const _MTDIOCBASE: u16 = 1536;
+pub const _SIOCBASE: u16 = 1792;
+pub const _ARPIOCBASE: u16 = 2048;
+pub const _TSIOCBASE: u16 = 2304;
+pub const _SNIOCBASE: u16 = 2560;
+pub const _ANIOCBASE: u16 = 2816;
+pub const _PWMIOCBASE: u16 = 3072;
+pub const _CAIOCBASE: u16 = 3328;
+pub const _BATIOCBASE: u16 = 3584;
+pub const _QEIOCBASE: u16 = 3840;
+pub const _AUDIOIOCBASE: u16 = 4096;
+pub const _LCDIOCBASE: u16 = 4352;
+pub const _SLCDIOCBASE: u16 = 4608;
+pub const _CAPIOCBASE: u16 = 4864;
+pub const _WLCIOCBASE: u16 = 5120;
+pub const _CFGDIOCBASE: u16 = 5376;
+pub const _TCIOCBASE: u16 = 5632;
+pub const _JOYBASE: u16 = 5888;
+pub const _PIPEBASE: u16 = 6144;
+pub const _RTCBASE: u16 = 6400;
+pub const _RELAYBASE: u16 = 6656;
+pub const _CANBASE: u16 = 6912;
+pub const _BTNBASE: u16 = 7168;
+pub const _ULEDBASE: u16 = 7424;
+pub const _ZCBASE: u16 = 7680;
+pub const _LOOPBASE: u16 = 7936;
+pub const _MODEMBASE: u16 = 8192;
+pub const _I2CBASE: u16 = 8448;
+pub const _SPIBASE: u16 = 8704;
+pub const _GPIOBASE: u16 = 8960;
+pub const _CLIOCBASE: u16 = 9216;
+pub const _USBCBASE: u16 = 9472;
+pub const _MAC802154BASE: u16 = 9728;
+pub const _PWRBASE: u16 = 9984;
+pub const _FBIOCBASE: u16 = 10240;
+pub const _NXTERMBASE: u16 = 10496;
+pub const _RFIOCBASE: u16 = 10752;
+pub const _RPMSGBASE: u16 = 11008;
+pub const _NOTECTLBASE: u16 = 11264;
+pub const _NOTERAMBASE: u16 = 11520;
+pub const _RCIOCBASE: u16 = 11776;
+pub const _HIMEMBASE: u16 = 12032;
+pub const _EFUSEBASE: u16 = 12288;
+pub const _MTRIOBASE: u16 = 12544;
+pub const _MATHIOBASE: u16 = 12800;
+pub const _MMCSDIOBASE: u16 = 13056;
+pub const _BLUETOOTHBASE: u16 = 13312;
+pub const _PKTRADIOBASE: u16 = 13568;
+pub const _LTEBASE: u16 = 13824;
+pub const _VIDIOCBASE: u16 = 14080;
+pub const _CELLIOCBASE: u16 = 14336;
+pub const _MIPIDSIBASE: u16 = 14592;
+pub const _SEIOCBASE: u16 = 14848;
+pub const _SYSLOGBASE: u16 = 15360;
+pub const _STEPIOBASE: u16 = 15616;
+pub const _WLIOCBASE: u16 = 35584;
+pub const _BOARDBASE: u16 = 65280;
+pub const _IOC_MASK: u8 = 255;
+pub const TIOCPKT_FLUSHREAD: u8 = 1;
+pub const TIOCPKT_FLUSHWRITE: u8 = 2;
+pub const TIOCPKT_STOP: u8 = 4;
+pub const TIOCPKT_START: u8 = 8;
+pub const TIOCPKT_DOSTOP: u8 = 16;
+pub const TIOCPKT_NOSTOP: u8 = 32;
+pub const TIOCM_LE: u8 = 1;
+pub const TIOCM_DTR: u8 = 2;
+pub const TIOCM_RTS: u8 = 4;
+pub const TIOCM_ST: u8 = 8;
+pub const TIOCM_SR: u8 = 16;
+pub const TIOCM_CTS: u8 = 32;
+pub const TIOCM_CAR: u8 = 64;
+pub const TIOCM_CD: u8 = 64;
+pub const TIOCM_RNG: u8 = 128;
+pub const TIOCM_RI: u8 = 128;
+pub const TIOCM_DSR: u16 = 256;
+pub const SER_RS485_ENABLED: u8 = 1;
+pub const SER_RS485_RTS_ON_SEND: u8 = 2;
+pub const SER_RS485_RTS_AFTER_SEND: u8 = 4;
+pub const SER_RS485_RX_DURING_TX: u8 = 16;
+pub const SER_SINGLEWIRE_ENABLED: u8 = 1;
+pub const SER_SINGLEWIRE_PULL_SHIFT: u8 = 1;
+pub const SER_SINGLEWIRE_PULL_MASK: u8 = 6;
+pub const SER_SINGLEWIRE_PULL_DISABLE: u8 = 0;
+pub const SER_SINGLEWIRE_PULLUP: u8 = 2;
+pub const SER_SINGLEWIRE_PULLDOWN: u8 = 4;
+pub const SER_SINGLEWIRE_PUSHPULL: u8 = 8;
+pub const SER_INVERT_ENABLED_RX: u8 = 1;
+pub const SER_INVERT_ENABLED_TX: u8 = 2;
+pub const SER_SWAP_ENABLED: u8 = 1;
+pub const I2C_READBIT: u8 = 1;
+pub const I2C_M_READ: u8 = 1;
+pub const I2C_M_TEN: u8 = 2;
+pub const I2C_M_NOSTOP: u8 = 64;
+pub const I2C_M_NOSTART: u8 = 128;
+pub const I2C_SPEED_STANDARD: u32 = 100000;
+pub const I2C_SPEED_FAST: u32 = 400000;
+pub const I2C_SPEED_FAST_PLUS: u32 = 1000000;
+pub const I2C_SPEED_HIGH: u32 = 3400000;
 pub type _int8_t = cty::c_schar;
 pub type _uint8_t = cty::c_uchar;
 pub type _int16_t = cty::c_short;
@@ -1203,4 +1306,104 @@ extern "C" {
         func: xcpt_t,
         arg: *mut cty::c_void,
     ) -> cty::c_int;
+}
+#[doc = " Public Type Definitions"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct winsize {
+    pub ws_row: u16,
+    pub ws_col: u16,
+    pub ws_xpixel: u16,
+    pub ws_ypixel: u16,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct serial_rs485 {
+    pub flags: u32,
+    pub delay_rts_before_send: u32,
+    pub delay_rts_after_send: u32,
+}
+#[doc = " Public Type Definitions"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pipe_peek_s {
+    pub buf: *mut cty::c_void,
+    pub size: usize,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct i2c_ops_s {
+    pub transfer: ::core::option::Option<
+        unsafe extern "C" fn(
+            dev: *mut i2c_master_s,
+            msgs: *mut i2c_msg_s,
+            count: cty::c_int,
+        ) -> cty::c_int,
+    >,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct i2c_config_s {
+    pub frequency: u32,
+    pub address: u16,
+    pub addrlen: u8,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct i2c_msg_s {
+    pub frequency: u32,
+    pub addr: u16,
+    pub flags: u16,
+    pub buffer: *mut u8,
+    pub length: isize,
+}
+#[doc = " Public Types"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct i2c_master_s {
+    pub ops: *const i2c_ops_s,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct i2c_transfer_s {
+    pub msgv: *mut i2c_msg_s,
+    pub msgc: usize,
+}
+extern "C" {
+    #[doc = " Name: i2c_writeread\n\n Description:\n   Send a block of data on I2C followed by restarted read access.  This\n   provides a convenient wrapper to the transfer function.\n\n Input Parameters:\n   dev     - Device-specific state data\n   config  - Described the I2C configuration\n   wbuffer - A pointer to the read-only buffer of data to be written to\n             device\n   wbuflen - The number of bytes to send from the buffer\n   rbuffer - A pointer to a buffer of data to receive the data from the\n             device\n   rbuflen - The requested number of bytes to be read\n\n Returned Value:\n   0: success, <0: A negated errno\n"]
+    pub fn i2c_writeread(
+        dev: *mut i2c_master_s,
+        config: *const i2c_config_s,
+        wbuffer: *const u8,
+        wbuflen: cty::c_int,
+        rbuffer: *mut u8,
+        rbuflen: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: i2c_write\n\n Description:\n   Send a block of data on I2C. Each write operation will be an 'atomic'\n   operation in the sense that any other I2C actions will be serialized\n   and pend until this write completes.\n\n Input Parameters:\n   dev    - Device-specific state data\n   config  - Described the I2C configuration\n   buffer - A pointer to the read-only buffer of data to be written to\n            device\n   buflen - The number of bytes to send from the buffer\n\n Returned Value:\n   0: success, <0: A negated errno\n"]
+    pub fn i2c_write(
+        dev: *mut i2c_master_s,
+        config: *const i2c_config_s,
+        buffer: *const u8,
+        buflen: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: i2c_read\n\n Description:\n   Receive a block of data from I2C. Each read operation will be an\n   'atomic' operation in the sense that any other I2C actions will be\n   serialized and pend until this read completes.\n\n Input Parameters:\n   dev    - Device-specific state data\n   buffer - A pointer to a buffer of data to receive the data from the\n            device\n   buflen - The requested number of bytes to be read\n\n Returned Value:\n   0: success, <0: A negated errno\n"]
+    pub fn i2c_read(
+        dev: *mut i2c_master_s,
+        config: *const i2c_config_s,
+        buffer: *mut u8,
+        buflen: cty::c_int,
+    ) -> cty::c_int;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct mpu_config_s {
+    pub i2c: *mut i2c_master_s,
+    pub addr: cty::c_int,
+}
+extern "C" {
+    pub fn mpu60x0_register(path: *const cty::c_char, config: *mut mpu_config_s) -> cty::c_int;
 }

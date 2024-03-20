@@ -41,33 +41,6 @@
  *
  ****************************************************************************/
 
- //c signatures for the functions used
- /*extern "C" {
-    fn stm32_gpiowrite(pin: u32, state: bool);
-    fn nx_mount();
-    fn syslog();
-    fn stm32_romfs_initialize();
-    fn stm32_gpio_initialize();
-    fn userled_lower_initialize();
-    fn stm32_adc_setup();
-    fn stm32_bbsram_int();
-    fn stm32_dma_alloc_init();
-    fn stm32_spidev_bus_test();
-    fn stm32_sdio_initialize();
-    fn ferr();
-    fn stm32_pwm_setup();
-    fn snprintf();
-    fn stm32_qencoder_initialize();
-    fn stm32_can_setup();
-    fn stm32_cansock_setup();
-    fn stm32_i2cbus_initialize();
-    fn i2c_register();
-    fn kmm_zalloc();
-    fn sizeof();
-    fn mpu60x0_register();
-    fn UNUSED();
-  }*/
-
   //NULL in rust
   /*enum Option<T> {
     None,
