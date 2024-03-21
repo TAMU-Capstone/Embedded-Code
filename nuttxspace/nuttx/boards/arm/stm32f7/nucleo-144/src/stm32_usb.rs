@@ -21,9 +21,9 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
+use crate::include::*;
 use log::warn;
 use thiserror_no_std::Error;
-use crate::include::*;
 /****************************************************************************
  * Pre-processor Definitions
  ****************************************************************************/
@@ -169,71 +169,71 @@ cfg_if::cfg_if! { // https://docs.rs/cfg-if/latest/cfg_if/
           */
 
         println!("Register class drivers\n");
-  if #[cfg(CONFIG_USBHOST_HUB)]
-  {
+        if #[cfg(CONFIG_USBHOST_HUB)]
+        {
 
-    /* Initialize USB hub class support */
-    unsafe{
-      ret = usbhost_hub_initialize();
-    }
-    if (ret < 0)
-    {
-      #[error("ERROR: usbhost_hub_initialize failed: {}\n", ret)];
-      return;
-      }
-    } /* CONFIG_USBHOST_HUB */
+        /* Initialize USB hub class support */
+        unsafe{
+          ret = usbhost_hub_initialize();
+        }
+        if (ret < 0)
+        {
+          #[error("ERROR: usbhost_hub_initialize failed: {}\n", ret)];
+          return;
+          }
+        } /* CONFIG_USBHOST_HUB */
 
-  if(#[cfg(CONFIG_USBHOST_MSC)])
-  {
-    /* Register the USB mass storage class class */
-    unsafe{
-      ret = usbhost_msc_initialize();
-    }
-    if (ret != OK)
-    {
-      #[error("ERROR: Failed to register the mass storage class: {}\n", ret)];
-      return;
-    }
-  } /* CONFIG_USBHOST_MSC */
-
-  if( #[cfg(CONFIG_USBHOST_CDCACM)] )
-  {
-
-    /* Register the CDC/ACM serial class */
-    unsafe{
-      ret = usbhost_cdcacm_initialize();
-    }
-    if (ret != OK)
+      if(#[cfg(CONFIG_USBHOST_MSC)])
       {
-        #[error("ERROR: Failed to register the CDC/ACM serial class: {}\n", ret)];
+        /* Register the USB mass storage class class */
+        unsafe{
+          ret = usbhost_msc_initialize();
+        }
+        if (ret != OK)
+        {
+          #[error("ERROR: Failed to register the mass storage class: {}\n", ret)];
+          return;
+        }
+      } /* CONFIG_USBHOST_MSC */
+
+      if( #[cfg(CONFIG_USBHOST_CDCACM)] )
+      {
+
+      /* Register the CDC/ACM serial class */
+      unsafe{
+        ret = usbhost_cdcacm_initialize();
       }
+      if (ret != OK)
+        {
+          #[error("ERROR: Failed to register the CDC/ACM serial class: {}\n", ret)];
+        }
     } /* CONFIG_USBHOST_CDCACM */
 
-  if(#[cfg(CONFIG_USBHOST_HIDKBD)])
-  {
-
-    /* Initialize the HID keyboard class */
-unsafe{
-  ret = usbhost_kbdinit();
-}
-    if (ret != OK)
+      if(#[cfg(CONFIG_USBHOST_HIDKBD)])
       {
-        #[error("ERROR: Failed to register the HID keyboard class\n")];
-      }
-    }/*CONFIG_USBHOST_HIDKBD */
 
-  if(#[cfg(CONFIG_USBHOST_HIDMOUSE)])
-  {
-
-    /* Initialize the HID mouse class */
-    unsafe{
-      ret = usbhost_mouse_init();
-    }
-    if (ret != OK)
-    {
-        #[error("ERROR: Failed to register the HID mouse class\n")];
+      /* Initialize the HID keyboard class */
+      unsafe{
+        ret = usbhost_kbdinit();
       }
-    } /*CONFIG_USBHOST_HIDMOUSE */
+      if (ret != OK)
+        {
+          #[error("ERROR: Failed to register the HID keyboard class\n")];
+        }
+      }/*CONFIG_USBHOST_HIDKBD */
+
+      if(#[cfg(CONFIG_USBHOST_HIDMOUSE)])
+      {
+
+      /* Initialize the HID mouse class */
+      unsafe{
+        ret = usbhost_mouse_init();
+      }
+      if (ret != OK)
+      {
+          #[error("ERROR: Failed to register the HID mouse class\n")];
+        }
+      } /*CONFIG_USBHOST_HIDMOUSE */
 
     /* Then get an instance of the USB host interface */
 
@@ -244,32 +244,18 @@ unsafe{
     if (g_usbconn)
       {
         /* Start a thread to handle device connection. */
-
         println!("Start usbhost_waiter\n");
         unsafe{
           let usbhost_thread = kthread_create("usbhost", CONFIG_NUCLEO144_USBHOST_PRIO,
           CONFIG_NUCLEO_USBHOST_STACKSIZE,
           usbhost_waiter, NULL);
         }
-        /*
         // CONFIG_NUCLEO144_USBHOST_PRIO ->  is defined on line 48 of this file, this is defined to be static to prevent it from dropping out of scope
         // CONFIG_NUCLEO_USBHOST_STACKSIZE -> is defined on line 52 of this file,this is defined to be static to prevent it from dropping out of scope
         // Converted using https://github.com/torvalds/linux/blob/master/include/linux/kthread.h#L15
-        let usbhost_thread = thread::Builder::new() // declare a thread
-        .name("usbhost".into()) // with this name
-        .spawn(usbhost_waiter) // run on this function
-        .expect("Failed to create USB host thread"); // provide a error on failure
-      */
-        // CONFIG_NUCLEO144_USBHOST_PRIO and CONFIG_NUCLEO_USBHOST_STACKSIZE are not used as std::thread:Builder does not expose the stack size and priority parameters
-        /*
 
-        THIS COULD BE A POTENTIAL ISSUE!
-
-        */
         Ok(()) // we where successful in creating the thread if this is reached
-
       }
-
       return Err(-libc::ENODEV); // throw ENODEV which is a standard c error for invalid enviourment ( i think? )
     }
   } /* CONFIG_USBHOST */
@@ -306,14 +292,13 @@ unsafe{
     if( #[cfg(CONFIG_USBHOST)])
     {
       pub extern "C" fn stm32_usbhost_vbusdrive( iface :i32, enable: bool)
-  {
-    debug_assert_eq!(iface,0);
-
-    /* Set the Power Switch by driving the active low enable pin */
-    unsafe{
-      stm32_gpiowrite(GPIO_OTGFS_PWRON, !enable);
-    }
-  }
+      {
+         debug_assert_eq!(iface,0);
+         /* Set the Power Switch by driving the active low enable pin */
+         unsafe{
+           stm32_gpiowrite(GPIO_OTGFS_PWRON, !enable);
+         }
+       }
 } /* CONFIG_USBHOST */
 
   /****************************************************************************
@@ -356,36 +341,35 @@ unsafe{
     ****************************************************************************/
       if( #[cfg(CONFIG_USBDEV)])
       {
-  pub extern "C" fn stm32_usbsuspend(struct usbdev_s *dev, resume : bool)
-  {
-    println!("resume: {}\n", resume);
-  }
-
-
+         pub extern "C" fn stm32_usbsuspend(struct usbdev_s *dev, resume : bool)
+         {
+           println!("resume: {}\n", resume);
+         }
       } /* CONFIG_USBDEV */
 }/* CONFIG_STM32F7_OTGFS */
-// else{
-// #[no_mangle]
-// pub extern "C" fn stm32_usbinitialize()
-// {
-//   // pub to allow boot to use this function
-//   /* The OTG FS has an internal soft pull-up.
-//     * No GPIO configuration is required
-//     */
+else{
+#[no_mangle]
+pub extern "C" fn stm32_usbinitialize()
+{
 
-//   /* Configure the OTG FS VBUS sensing GPIO,
-//     * Power On, and Overcurrent GPIOs
-//     */
-//   if (cfg! (CONFIG_STM32F7_OTGFS))
-//   {
-//     unsafe{
-//       stm32_configgpio(GPIO_OTGFS_VBUS);
-//       stm32_configgpio(GPIO_OTGFS_PWRON);
-//       stm32_configgpio(GPIO_OTGFS_OVER);
-//     }
-//   }
-// }
+  // pub to allow boot to use this function
+  /* The OTG FS has an internal soft pull-up.
+    * No GPIO configuration is required
+    */
+
+  /* Configure the OTG FS VBUS sensing GPIO,
+    * Power On, and Overcurrent GPIOs
+    */
+  if (cfg! (CONFIG_STM32F7_OTGFS))
+  {
+    unsafe{
+      stm32_configgpio(0);
+      stm32_configgpio(0);
+      stm32_configgpio(0);
+    }
+  }
 
 }
 
-
+}
+}
