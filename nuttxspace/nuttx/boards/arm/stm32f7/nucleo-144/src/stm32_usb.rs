@@ -22,8 +22,8 @@
  * Included Files
  ****************************************************************************/
 use crate::include::*;
-use log::warn;
-use thiserror_no_std::Error;
+
+
 /****************************************************************************
  * Pre-processor Definitions
  ****************************************************************************/
@@ -360,7 +360,7 @@ pub extern "C" fn stm32_usbinitialize()
   /* Configure the OTG FS VBUS sensing GPIO,
     * Power On, and Overcurrent GPIOs
     */
-  if (cfg! (CONFIG_STM32F7_OTGFS))
+  if cfg! (CONFIG_STM32F7_OTGFS)
   {
     unsafe{
       stm32_configgpio(0);
