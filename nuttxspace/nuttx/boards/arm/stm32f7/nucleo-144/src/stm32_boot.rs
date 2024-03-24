@@ -21,32 +21,32 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
-use crate::include::*;
-use crate::stm32_autoleds::board_autoled_initialize;
-use crate::stm32_usb::stm32_usbinitialize;
-/****************************************************************************
- * Public Functions
- ****************************************************************************/
 
-/****************************************************************************
- * Name: stm32_boardinitialize
- *
- * Description:
- *   All STM32 architectures must provide the following entry point.
- *   This entry point is called early in the initialization -- after all
- *   memory has been configured and mapped but before any devices have been
- *   initialized.
- *
- ****************************************************************************/
-// https://doc.rust-lang.org/rust-by-example/attribute/cfg.html
-// #ifdef does not exist, therefor we will use cfg [ conditional configuration check ]
-fn stm32_boardinitialize() {
-    if cfg!(CONFIG_ARCH_LEDS) {
-        /* Configure on-board LEDs if LED support has been selected. */
-        unsafe {
-            board_autoled_initialize();
-        }
-    }
+ use crate::include::*; // I cannot tell how these two lines are different
+ use crate::stm32_autoleds::board_autoled_initialize;
+ use crate::stm32_usb::stm32_usbinitialize; // josh working on this now
+ /****************************************************************************
+  * Public Functions
+  ****************************************************************************/
+ 
+ /****************************************************************************
+  * Name: stm32_boardinitialize
+  *
+  * Description:
+  *   All STM32 architectures must provide the following entry point.
+  *   This entry point is called early in the initialization -- after all
+  *   memory has been configured and mapped but before any devices have been
+  *   initialized.
+  *
+  ****************************************************************************/
+ // https://doc.rust-lang.org/rust-by-example/attribute/cfg.html
+ // #ifdef does not exist, therefor we will use cfg [ conditional configuration check ]
+  fn stm32_boardinitialize()
+ {
+    if cfg!(CONFIG_ARCH_LEDS){
+       /* Configure on-board LEDs if LED support has been selected. */
+       board_autoled_initialize();
+      }
     // CONFIG_STM32F7_HOST is missing from files
     if cfg!(CONFIG_STM32F7_OTGFS) || cfg!(CONFIG_STM32F7_HOST) {
         unsafe {
