@@ -795,7 +795,7 @@ endif
 	$(call DELFILE, .config.old)
 	$(call DELFILE, .config.orig)
 	$(call DELFILE, .gdbinit)
-
+	rm -f $(TOPDIR)/boards/arm/stm32f7/nucleo-144/target/thumbv7em-none-eabi/debug/libnucleo_rs.a
 # Application housekeeping targets.  The APPDIR variable refers to the user
 # application directory.  A sample apps/ directory is included with NuttX,
 # however, this is not treated as part of NuttX and may be replaced with a
