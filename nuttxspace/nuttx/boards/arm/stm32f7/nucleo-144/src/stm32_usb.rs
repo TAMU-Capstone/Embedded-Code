@@ -34,7 +34,7 @@ cfg_if::cfg_if! {
     if ( cfg!(CONFIG_USBDEV) || cfg!(CONFIG_USBHOST) )
     {
       //https://stackoverflow.com/questions/45163024/whats-the-equivalent-of-a-c-preprocessor-like-define-for-an-array-length
-      const HAVE_USB: i32 = 1;
+      static HAVE_USB: i32 = 1;
     }
     else
     {
