@@ -14,8 +14,6 @@ pub mod stm32_autoleds;
 pub mod stm32_reset;
 pub mod stm32_usb;
 pub mod stm32_boot;
-mod bindings;
-
-mod stm32_autoleds;
-mod stm32_reset;
-mod stm32_appinitialize;
+pub mod bindings;
+pub mod stm32_autoleds;
+pub mod stm32_appinitialize;

@@ -10,7 +10,7 @@ pub const GPIO_LED_BLUE: u32 = GPIO_LD2;
 pub const GPIO_LED_RED: u32 = GPIO_LD3;
 
 
-// pub(crate) so it is read only?
+
 // Lias stuff for adc
 pub const ADC1_NCHANNELS: usize = 4;
 pub const G_CHANLIST: [u8; ADC1_NCHANNELS] = [3, 4, 10, 13];

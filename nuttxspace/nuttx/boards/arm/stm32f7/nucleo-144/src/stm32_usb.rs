@@ -22,13 +22,13 @@
  * Included Files
  ****************************************************************************/
 use crate::include::*;
-
+use crate::bindings::stm32_configgpio;
 
 /****************************************************************************
  * Pre-processor Definitions
  ****************************************************************************/
 
-cfg_if::cfg_if! { // https://docs.rs/cfg-if/latest/cfg_if/
+cfg_if::cfg_if! { 
   if #[cfg(CONFIG_STM32F7_OTGFS)]
   {
     if ( cfg!(CONFIG_USBDEV) || cfg!(CONFIG_USBHOST) )
