@@ -24,3 +24,7 @@ cty = "0.2.2"
 # Build Dependencies for our project
 [build-dependencies]
 bindgen = "0.69.4"
+
+# lia added need for adc
+cfg_if = "1.0.0"
+

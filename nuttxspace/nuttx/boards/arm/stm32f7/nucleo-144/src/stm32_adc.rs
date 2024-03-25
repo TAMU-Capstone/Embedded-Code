@@ -21,11 +21,7 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
- use crate::include::*;
- 
-
-//used Rust's #[cfg()] attributes, to include or exclude code based on configuration options of the adc's
-//In Rust, the #[cfg()] attribute is typically used with predefined configuration options or feature flags. These options are usually defined in the Cargo.toml file or as command-line arguments during compilation.
+ use crate::include::*; //update this
  
 
 /* in mod.rs
@@ -33,11 +29,6 @@ pub const ADC1_NCHANNELS: usize = 4;
 pub const G_CHANLIST: [u8; ADC1_NCHANNELS] = [3, 4, 10, 13];
 pub const G_PINLIST: [u32; ADC1_NCHANNELS] = [GPIO_ADC1_IN3, GPIO_ADC1_IN4, GPIO_ADC1_IN10, GPIO_ADC1_IN13];
 */
-
-
-// Skipped this portion for now undef excludes code based on configuration options of the adc 
-// In Rust, the #[cfg()] attribute is typically used with predefined configuration options or feature flags.
-// Need to  find where CONFIG_STM32F7_ADC code is defined so that it can be properly executed or excluded based on these conditional statements
 
 /* Up to 3 ADC interfaces are supported 
 #if STM32F7_NADC < 3
@@ -58,6 +49,18 @@ pub const G_PINLIST: [u32; ADC1_NCHANNELS] = [GPIO_ADC1_IN3, GPIO_ADC1_IN4, GPIO
 #endif
 */
 
+// allows you to conditionally include or exclude code based on multiple configuration conditions to be excluded from compilation
+#[cfg_if::cfg_if(not(STM32F7_NADC >= 3), then(not(CONFIG_STM32F7_ADC3)))]
+
+#[cfg_if::cfg_if(not(STM32F7_NADC >= 2), then(not(CONFIG_STM32F7_ADC2)))]
+
+#[cfg_if::cfg_if(not(STM32F7_NADC >= 1), then(not(CONFIG_STM32F7_ADC1)))]
+
+#[cfg(any(CONFIG_STM32F7_ADC1, CONFIG_STM32F7_ADC2, CONFIG_STM32F7_ADC3))]
+mod adc_config {
+    #[cfg(not(CONFIG_STM32F7_ADC1))]
+    println!("Channel information only available for ADC1");
+}
 
 /* The number of ADC channels in the conversion list */
 // #define ADC1_NCHANNELS 4
@@ -77,7 +80,7 @@ const ADC1_NCHANNELS: usize = 4;
     3, 4, 10, 13
     };
 */
-#[cfg(feature = "stm32f7_adc1")] // must define the feature in cargo.toml file others didnt do this so check this later #[cfg(ONFIG_STM32F7_ADC1)] <- format in other files
+#[cfg(CONFIG_STM32F7_ADC1)] 
 const G_CHANLIST: [u8; ADC1_NCHANNELS] = [3, 4, 10, 13];
 
 /* Configurations of pins used byte each ADC channels
@@ -104,15 +107,16 @@ const G_PINLIST: [u32; ADC1_NCHANNELS] = [
  * Public Functions
  ****************************************************************************/
 // these are the C function that need to be called in the Rust 
+#[no_mangle]
 extern "C" {
     fn stm32_configgpio(pin: u32);
 }
-
+#[no_mangle]
 // returns a pointer to the adc_dev_s structure.
 extern "C" {
     fn stm32_adc_initialize(adc_num: u8, chanlist: *const u8, channels: u8) -> *mut adc_dev_s;
 }
-
+#[no_mangle]
 extern "C" {
     fn adc_register(path: *const u8, adc: *mut adc_dev_s) -> i32;
 }
