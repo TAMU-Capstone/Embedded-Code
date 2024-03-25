@@ -1124,113 +1124,25 @@ pub const GPIO_PIN12: u8 = 12;
 pub const GPIO_PIN13: u8 = 13;
 pub const GPIO_PIN14: u8 = 14;
 pub const GPIO_PIN15: u8 = 15;
-pub const _TIOCBASE: u16 = 256;
-pub const _WDIOCBASE: u16 = 512;
-pub const _FIOCBASE: u16 = 768;
-pub const _DIOCBASE: u16 = 1024;
-pub const _BIOCBASE: u16 = 1280;
-pub const _MTDIOCBASE: u16 = 1536;
-pub const _SIOCBASE: u16 = 1792;
-pub const _ARPIOCBASE: u16 = 2048;
-pub const _TSIOCBASE: u16 = 2304;
-pub const _SNIOCBASE: u16 = 2560;
-pub const _ANIOCBASE: u16 = 2816;
-pub const _PWMIOCBASE: u16 = 3072;
-pub const _CAIOCBASE: u16 = 3328;
-pub const _BATIOCBASE: u16 = 3584;
-pub const _QEIOCBASE: u16 = 3840;
-pub const _AUDIOIOCBASE: u16 = 4096;
-pub const _LCDIOCBASE: u16 = 4352;
-pub const _SLCDIOCBASE: u16 = 4608;
-pub const _CAPIOCBASE: u16 = 4864;
-pub const _WLCIOCBASE: u16 = 5120;
-pub const _CFGDIOCBASE: u16 = 5376;
-pub const _TCIOCBASE: u16 = 5632;
-pub const _JOYBASE: u16 = 5888;
-pub const _PIPEBASE: u16 = 6144;
-pub const _RTCBASE: u16 = 6400;
-pub const _RELAYBASE: u16 = 6656;
-pub const _CANBASE: u16 = 6912;
-pub const _BTNBASE: u16 = 7168;
-pub const _ULEDBASE: u16 = 7424;
-pub const _ZCBASE: u16 = 7680;
-pub const _LOOPBASE: u16 = 7936;
-pub const _MODEMBASE: u16 = 8192;
-pub const _I2CBASE: u16 = 8448;
-pub const _SPIBASE: u16 = 8704;
-pub const _GPIOBASE: u16 = 8960;
-pub const _CLIOCBASE: u16 = 9216;
-pub const _USBCBASE: u16 = 9472;
-pub const _MAC802154BASE: u16 = 9728;
-pub const _PWRBASE: u16 = 9984;
-pub const _FBIOCBASE: u16 = 10240;
-pub const _NXTERMBASE: u16 = 10496;
-pub const _RFIOCBASE: u16 = 10752;
-pub const _RPMSGBASE: u16 = 11008;
-pub const _NOTECTLBASE: u16 = 11264;
-pub const _NOTERAMBASE: u16 = 11520;
-pub const _RCIOCBASE: u16 = 11776;
-pub const _HIMEMBASE: u16 = 12032;
-pub const _EFUSEBASE: u16 = 12288;
-pub const _MTRIOBASE: u16 = 12544;
-pub const _MATHIOBASE: u16 = 12800;
-pub const _MMCSDIOBASE: u16 = 13056;
-pub const _BLUETOOTHBASE: u16 = 13312;
-pub const _PKTRADIOBASE: u16 = 13568;
-pub const _LTEBASE: u16 = 13824;
-pub const _VIDIOCBASE: u16 = 14080;
-pub const _CELLIOCBASE: u16 = 14336;
-pub const _MIPIDSIBASE: u16 = 14592;
-pub const _SEIOCBASE: u16 = 14848;
-pub const _SYSLOGBASE: u16 = 15360;
-pub const _STEPIOBASE: u16 = 15616;
-pub const _WLIOCBASE: u16 = 35584;
-pub const _BOARDBASE: u16 = 65280;
-pub const _IOC_MASK: u8 = 255;
-pub const TIOCPKT_FLUSHREAD: u8 = 1;
-pub const TIOCPKT_FLUSHWRITE: u8 = 2;
-pub const TIOCPKT_STOP: u8 = 4;
-pub const TIOCPKT_START: u8 = 8;
-pub const TIOCPKT_DOSTOP: u8 = 16;
-pub const TIOCPKT_NOSTOP: u8 = 32;
-pub const TIOCM_LE: u8 = 1;
-pub const TIOCM_DTR: u8 = 2;
-pub const TIOCM_RTS: u8 = 4;
-pub const TIOCM_ST: u8 = 8;
-pub const TIOCM_SR: u8 = 16;
-pub const TIOCM_CTS: u8 = 32;
-pub const TIOCM_CAR: u8 = 64;
-pub const TIOCM_CD: u8 = 64;
-pub const TIOCM_RNG: u8 = 128;
-pub const TIOCM_RI: u8 = 128;
-pub const TIOCM_DSR: u16 = 256;
-pub const SER_RS485_ENABLED: u8 = 1;
-pub const SER_RS485_RTS_ON_SEND: u8 = 2;
-pub const SER_RS485_RTS_AFTER_SEND: u8 = 4;
-pub const SER_RS485_RX_DURING_TX: u8 = 16;
-pub const SER_SINGLEWIRE_ENABLED: u8 = 1;
-pub const SER_SINGLEWIRE_PULL_SHIFT: u8 = 1;
-pub const SER_SINGLEWIRE_PULL_MASK: u8 = 6;
-pub const SER_SINGLEWIRE_PULL_DISABLE: u8 = 0;
-pub const SER_SINGLEWIRE_PULLUP: u8 = 2;
-pub const SER_SINGLEWIRE_PULLDOWN: u8 = 4;
-pub const SER_SINGLEWIRE_PUSHPULL: u8 = 8;
-pub const SER_INVERT_ENABLED_RX: u8 = 1;
-pub const SER_INVERT_ENABLED_TX: u8 = 2;
-pub const SER_SWAP_ENABLED: u8 = 1;
-pub const I2C_READBIT: u8 = 1;
-pub const I2C_M_READ: u8 = 1;
-pub const I2C_M_TEN: u8 = 2;
-pub const I2C_M_NOSTOP: u8 = 64;
-pub const I2C_M_NOSTART: u8 = 128;
-pub const I2C_SPEED_STANDARD: u32 = 100000;
-pub const I2C_SPEED_FAST: u32 = 400000;
-pub const I2C_SPEED_FAST_PLUS: u32 = 1000000;
-pub const I2C_SPEED_HIGH: u32 = 3400000;
-pub const __DEBUG_ASSERT_FILE__: u8 = 0;
-pub const __DEBUG_ASSERT_LINE__: u8 = 0;
-pub const __ASSERT_FILE__: u8 = 0;
-pub const __ASSERT_LINE__: u8 = 0;
+pub const CLK_TCK: u8 = 100;
+pub const CLOCKS_PER_SEC: u8 = 100;
+pub const CLOCK_REALTIME: u8 = 0;
+pub const CLOCK_MONOTONIC: u8 = 1;
+pub const CLOCK_PROCESS_CPUTIME_ID: u8 = 2;
+pub const CLOCK_THREAD_CPUTIME_ID: u8 = 3;
+pub const CLOCK_BOOTTIME: u8 = 4;
+pub const TIMER_ABSTIME: u8 = 1;
+pub const TIME_UTC: u8 = 1;
+pub const SCHED_NORMAL: u8 = 0;
+pub const SCHED_OTHER: u8 = 0;
+pub const SCHED_FIFO: u8 = 1;
+pub const SCHED_RR: u8 = 2;
+pub const SCHED_SPORADIC: u8 = 3;
+pub const TASK_CANCEL_ENABLE: u8 = 0;
+pub const TASK_CANCEL_DISABLE: u8 = 1;
+pub const TASK_CANCEL_DEFERRED: u8 = 0;
+pub const TASK_CANCEL_ASYNCHRONOUS: u8 = 1;
+pub const PTHREAD_KEYS_MAX: u8 = 0;
 pub const EPERM: u8 = 1;
 pub const EPERM_STR: &[u8; 24] = b"Operation not permitted\0";
 pub const ENOENT: u8 = 2;
@@ -1512,661 +1424,6 @@ pub const ENOSHARE_STR: &[u8; 29] = b"No such host or network path\0";
 pub const ECASECLASH: u8 = 140;
 pub const ECASECLASH_STR: &[u8; 36] = b"Filename exists with different case\0";
 pub const __ELASTERROR: u16 = 2000;
-pub const CLK_TCK: u8 = 100;
-pub const CLOCKS_PER_SEC: u8 = 100;
-pub const CLOCK_REALTIME: u8 = 0;
-pub const CLOCK_MONOTONIC: u8 = 1;
-pub const CLOCK_PROCESS_CPUTIME_ID: u8 = 2;
-pub const CLOCK_THREAD_CPUTIME_ID: u8 = 3;
-pub const CLOCK_BOOTTIME: u8 = 4;
-pub const TIMER_ABSTIME: u8 = 1;
-pub const TIME_UTC: u8 = 1;
-pub const SEM_PRIO_NONE: u8 = 0;
-pub const SEM_PRIO_INHERIT: u8 = 1;
-pub const SEM_PRIO_PROTECT: u8 = 2;
-pub const SEM_PRIO_MASK: u8 = 3;
-pub const SEM_TYPE_MUTEX: u8 = 4;
-pub const __HAVE_KERNEL_GLOBALS: u8 = 1;
-pub const CLOCK_MASK: u8 = 7;
-pub const CLOCK_SHIFT: u8 = 3;
-pub const NSEC_PER_SEC: u32 = 1000000000;
-pub const USEC_PER_SEC: u32 = 1000000;
-pub const MSEC_PER_SEC: u16 = 1000;
-pub const DSEC_PER_SEC: u8 = 10;
-pub const HSEC_PER_SEC: u8 = 2;
-pub const NSEC_PER_HSEC: u32 = 500000000;
-pub const USEC_PER_HSEC: u32 = 500000;
-pub const MSEC_PER_HSEC: u16 = 500;
-pub const DSEC_PER_HSEC: u8 = 5;
-pub const NSEC_PER_DSEC: u32 = 100000000;
-pub const USEC_PER_DSEC: u32 = 100000;
-pub const MSEC_PER_DSEC: u8 = 100;
-pub const NSEC_PER_MSEC: u32 = 1000000;
-pub const USEC_PER_MSEC: u16 = 1000;
-pub const NSEC_PER_USEC: u16 = 1000;
-pub const SEC_PER_MIN: u8 = 60;
-pub const NSEC_PER_MIN: u64 = 60000000000;
-pub const USEC_PER_MIN: u32 = 60000000;
-pub const MSEC_PER_MIN: u16 = 60000;
-pub const DSEC_PER_MIN: u16 = 600;
-pub const HSEC_PER_MIN: u8 = 120;
-pub const MIN_PER_HOUR: u8 = 60;
-pub const NSEC_PER_HOUR: u64 = 3600000000000;
-pub const USEC_PER_HOUR: u32 = 3600000000;
-pub const MSEC_PER_HOUR: u32 = 3600000;
-pub const DSEC_PER_HOUR: u16 = 36000;
-pub const HSEC_PER_HOUR: u16 = 7200;
-pub const SEC_PER_HOUR: u16 = 3600;
-pub const HOURS_PER_DAY: u8 = 24;
-pub const SEC_PER_DAY: u32 = 86400;
-pub const USEC_PER_TICK: u16 = 10000;
-pub const TICK_PER_HOUR: u32 = 360000;
-pub const TICK_PER_MIN: u16 = 6000;
-pub const TICK_PER_SEC: u8 = 100;
-pub const TICK_PER_MSEC: u8 = 0;
-pub const TICK_PER_DSEC: u8 = 10;
-pub const TICK_PER_HSEC: u8 = 50;
-pub const MSEC_PER_TICK: u8 = 10;
-pub const NSEC_PER_TICK: u32 = 10000000;
-pub const INITIAL_SYSTEM_TIMER_TICKS: u8 = 0;
-pub const SECSPERMIN: u8 = 60;
-pub const MINSPERHOUR: u8 = 60;
-pub const HOURSPERDAY: u8 = 24;
-pub const DAYSPERWEEK: u8 = 7;
-pub const DAYSPERNYEAR: u16 = 365;
-pub const DAYSPERLYEAR: u16 = 366;
-pub const MONSPERYEAR: u8 = 12;
-pub const TM_SUNDAY: u8 = 0;
-pub const TM_MONDAY: u8 = 1;
-pub const TM_TUESDAY: u8 = 2;
-pub const TM_WEDNESDAY: u8 = 3;
-pub const TM_THURSDAY: u8 = 4;
-pub const TM_FRIDAY: u8 = 5;
-pub const TM_SATURDAY: u8 = 6;
-pub const TM_JANUARY: u8 = 0;
-pub const TM_FEBRUARY: u8 = 1;
-pub const TM_MARCH: u8 = 2;
-pub const TM_APRIL: u8 = 3;
-pub const TM_MAY: u8 = 4;
-pub const TM_JUNE: u8 = 5;
-pub const TM_JULY: u8 = 6;
-pub const TM_AUGUST: u8 = 7;
-pub const TM_SEPTEMBER: u8 = 8;
-pub const TM_OCTOBER: u8 = 9;
-pub const TM_NOVEMBER: u8 = 10;
-pub const TM_DECEMBER: u8 = 11;
-pub const TM_YEAR_BASE: u16 = 1900;
-pub const TM_WDAY_BASE: u8 = 1;
-pub const EPOCH_YEAR: u16 = 1970;
-pub const EPOCH_WDAY: u8 = 4;
-pub const USBHOST_DEVADDR_HASHSIZE: u8 = 8;
-pub const USBHOST_DEVADDR_HASHMASK: u8 = 7;
-pub const OTG_EPTYPE_CTRL: u8 = 0;
-pub const OTG_EPTYPE_ISOC: u8 = 1;
-pub const OTG_EPTYPE_BULK: u8 = 2;
-pub const OTG_EPTYPE_INTR: u8 = 3;
-pub const OTG_PID_DATA0: u8 = 0;
-pub const OTG_PID_DATA2: u8 = 1;
-pub const OTG_PID_DATA1: u8 = 2;
-pub const OTG_PID_MDATA: u8 = 3;
-pub const OTG_PID_SETUP: u8 = 3;
-pub const STM32_OTG_GOTGCTL_OFFSET: u8 = 0;
-pub const STM32_OTG_GOTGINT_OFFSET: u8 = 4;
-pub const STM32_OTG_GAHBCFG_OFFSET: u8 = 8;
-pub const STM32_OTG_GUSBCFG_OFFSET: u8 = 12;
-pub const STM32_OTG_GRSTCTL_OFFSET: u8 = 16;
-pub const STM32_OTG_GINTSTS_OFFSET: u8 = 20;
-pub const STM32_OTG_GINTMSK_OFFSET: u8 = 24;
-pub const STM32_OTG_GRXSTSR_OFFSET: u8 = 28;
-pub const STM32_OTG_GRXSTSP_OFFSET: u8 = 32;
-pub const STM32_OTG_GRXFSIZ_OFFSET: u8 = 36;
-pub const STM32_OTG_HNPTXFSIZ_OFFSET: u8 = 40;
-pub const STM32_OTG_DIEPTXF0_OFFSET: u8 = 40;
-pub const STM32_OTG_HNPTXSTS_OFFSET: u8 = 44;
-pub const STM32_OTG_GCCFG_OFFSET: u8 = 56;
-pub const STM32_OTG_CID_OFFSET: u8 = 60;
-pub const STM32_OTG_HPTXFSIZ_OFFSET: u16 = 256;
-pub const STM32_OTG_HCFG_OFFSET: u16 = 1024;
-pub const STM32_OTG_HFIR_OFFSET: u16 = 1028;
-pub const STM32_OTG_HFNUM_OFFSET: u16 = 1032;
-pub const STM32_OTG_HPTXSTS_OFFSET: u16 = 1040;
-pub const STM32_OTG_HAINT_OFFSET: u16 = 1044;
-pub const STM32_OTG_HAINTMSK_OFFSET: u16 = 1048;
-pub const STM32_OTG_HPRT_OFFSET: u16 = 1088;
-pub const STM32_OTG_HCCHAR_CHOFFSET: u8 = 0;
-pub const STM32_OTG_HCINT_CHOFFSET: u8 = 8;
-pub const STM32_OTG_HCINTMSK_CHOFFSET: u8 = 12;
-pub const STM32_OTG_HCTSIZ_CHOFFSET: u8 = 16;
-pub const STM32_OTG_DCFG_OFFSET: u16 = 2048;
-pub const STM32_OTG_DCTL_OFFSET: u16 = 2052;
-pub const STM32_OTG_DSTS_OFFSET: u16 = 2056;
-pub const STM32_OTG_DIEPMSK_OFFSET: u16 = 2064;
-pub const STM32_OTG_DOEPMSK_OFFSET: u16 = 2068;
-pub const STM32_OTG_DAINT_OFFSET: u16 = 2072;
-pub const STM32_OTG_DAINTMSK_OFFSET: u16 = 2076;
-pub const STM32_OTG_DVBUSDIS_OFFSET: u16 = 2088;
-pub const STM32_OTG_DVBUSPULSE_OFFSET: u16 = 2092;
-pub const STM32_OTG_DIEPEMPMSK_OFFSET: u16 = 2100;
-pub const STM32_OTG_DIEPCTL_EPOFFSET: u8 = 0;
-pub const STM32_OTG_DIEPINT_EPOFFSET: u8 = 8;
-pub const STM32_OTG_DIEPTSIZ_EPOFFSET: u8 = 16;
-pub const STM32_OTG_DTXFSTS_EPOFFSET: u8 = 24;
-pub const STM32_OTG_DOEPCTL_EPOFFSET: u8 = 0;
-pub const STM32_OTG_DOEPINT_EPOFFSET: u8 = 8;
-pub const STM32_OTG_PCGCCTL_OFFSET: u16 = 3584;
-pub const STM32_USBPHYC_PLL1_OFFSET: u8 = 0;
-pub const STM32_USBPHYC_TUNE_OFFSET: u8 = 12;
-pub const STM32_USBPHYC_LDO_OFFSET: u8 = 24;
-pub const OTG_GOTGCTL_SRQSCS: u8 = 1;
-pub const OTG_GOTGCTL_SRQ: u8 = 2;
-pub const OTG_GOTGCTL_VBVALOEN: u8 = 4;
-pub const OTG_GOTGCTL_VBVALOVAL: u8 = 8;
-pub const OTG_GOTGCTL_AVALOEN: u8 = 16;
-pub const OTG_GOTGCTL_AVALOVAL: u8 = 32;
-pub const OTG_GOTGCTL_BVALOEN: u8 = 64;
-pub const OTG_GOTGCTL_BVALOVAL: u8 = 128;
-pub const OTG_GOTGCTL_HNGSCS: u16 = 256;
-pub const OTG_GOTGCTL_HNPRQ: u16 = 512;
-pub const OTG_GOTGCTL_HSHNPEN: u16 = 1024;
-pub const OTG_GOTGCTL_DHNPEN: u16 = 2048;
-pub const OTG_GOTGCTL_EHEN: u16 = 4096;
-pub const OTG_GOTGCTL_CIDSTS: u32 = 65536;
-pub const OTG_GOTGCTL_DBCT: u32 = 131072;
-pub const OTG_GOTGCTL_ASVLD: u32 = 262144;
-pub const OTG_GOTGCTL_BSVLD: u32 = 524288;
-pub const OTG_GOTGCTL_OTGVER: u32 = 1048576;
-pub const OTG_GOTGINT_SEDET: u8 = 4;
-pub const OTG_GOTGINT_SRSSCHG: u16 = 256;
-pub const OTG_GOTGINT_HNSSCHG: u16 = 512;
-pub const OTG_GOTGINT_HNGDET: u32 = 131072;
-pub const OTG_GOTGINT_ADTOCHG: u32 = 262144;
-pub const OTG_GOTGINT_DBCDNE: u32 = 524288;
-pub const OTG_GOTGINT_IDCHNG: u32 = 1048576;
-pub const OTG_GAHBCFG_GINTMSK: u8 = 1;
-pub const OTG_GAHBCFG_TXFELVL: u8 = 128;
-pub const OTG_GAHBCFG_PTXFELVL: u16 = 256;
-pub const OTG_GUSBCFG_TOCAL_SHIFT: u8 = 0;
-pub const OTG_GUSBCFG_TOCAL_MASK: u8 = 7;
-pub const OTG_GUSBCFG_ULPISEL: u8 = 16;
-pub const OTG_GUSBCFG_PHYSEL: u8 = 64;
-pub const OTG_GUSBCFG_SRPCAP: u16 = 256;
-pub const OTG_GUSBCFG_HNPCAP: u16 = 512;
-pub const OTG_GUSBCFG_TRDT_SHIFT: u8 = 10;
-pub const OTG_GUSBCFG_TRDT_MASK: u16 = 15360;
-pub const OTG_GUSBCFG_PHYLPC: u16 = 32768;
-pub const OTG_GUSBCFG_ULPIFSLS: u32 = 131072;
-pub const OTG_GUSBCFG_ULPIAR: u32 = 262144;
-pub const OTG_GUSBCFG_ULPICSM: u32 = 524288;
-pub const OTG_GUSBCFG_ULPIEVBUSD: u32 = 1048576;
-pub const OTG_GUSBCFG_ULPIEVBUSI: u32 = 2097152;
-pub const OTG_GUSBCFG_TSDPS: u32 = 4194304;
-pub const OTG_GUSBCFG_PCCI: u32 = 8388608;
-pub const OTG_GUSBCFG_PTCI: u32 = 16777216;
-pub const OTG_GUSBCFG_ULPIIPD: u32 = 33554432;
-pub const OTG_GUSBCFG_FHMOD: u32 = 536870912;
-pub const OTG_GUSBCFG_FDMOD: u32 = 1073741824;
-pub const OTG_GRSTCTL_CSRST: u8 = 1;
-pub const OTG_GRSTCTL_HSRST: u8 = 2;
-pub const OTG_GRSTCTL_FCRST: u8 = 4;
-pub const OTG_GRSTCTL_RXFFLSH: u8 = 16;
-pub const OTG_GRSTCTL_TXFFLSH: u8 = 32;
-pub const OTG_GRSTCTL_TXFNUM_SHIFT: u8 = 6;
-pub const OTG_GRSTCTL_TXFNUM_MASK: u16 = 1984;
-pub const OTG_GRSTCTL_TXFNUM_HNONPER: u8 = 0;
-pub const OTG_GRSTCTL_TXFNUM_HPER: u8 = 64;
-pub const OTG_GRSTCTL_TXFNUM_HALL: u16 = 1024;
-pub const OTG_GRSTCTL_TXFNUM_DALL: u16 = 1024;
-pub const OTG_GRSTCTL_AHBIDL: u32 = 2147483648;
-pub const OTG_GINTSTS_CMOD: u8 = 1;
-pub const OTG_GINTSTS_DEVMODE: u8 = 0;
-pub const OTG_GINTSTS_HOSTMODE: u8 = 1;
-pub const OTG_GINT_MMIS: u8 = 2;
-pub const OTG_GINT_OTG: u8 = 4;
-pub const OTG_GINT_SOF: u8 = 8;
-pub const OTG_GINT_RXFLVL: u8 = 16;
-pub const OTG_GINT_NPTXFE: u8 = 32;
-pub const OTG_GINT_GINAKEFF: u8 = 64;
-pub const OTG_GINT_GONAKEFF: u8 = 128;
-pub const OTG_GINT_RES89: u16 = 768;
-pub const OTG_GINT_ESUSP: u16 = 1024;
-pub const OTG_GINT_USBSUSP: u16 = 2048;
-pub const OTG_GINT_USBRST: u16 = 4096;
-pub const OTG_GINT_ENUMDNE: u16 = 8192;
-pub const OTG_GINT_ISOODRP: u16 = 16384;
-pub const OTG_GINT_EOPF: u16 = 32768;
-pub const OTG_GINT_RES1617: u32 = 196608;
-pub const OTG_GINT_IEP: u32 = 262144;
-pub const OTG_GINT_OEP: u32 = 524288;
-pub const OTG_GINT_IISOIXFR: u32 = 1048576;
-pub const OTG_GINT_IISOOXFR: u32 = 2097152;
-pub const OTG_GINT_IPXFR: u32 = 2097152;
-pub const OTG_GINT_RES22: u32 = 4194304;
-pub const OTG_GINT_DATAFSUSP: u32 = 4194304;
-pub const OTG_GINT_RES23: u32 = 8388608;
-pub const OTG_GINT_RSTDET: u32 = 8388608;
-pub const OTG_GINT_HPRT: u32 = 16777216;
-pub const OTG_GINT_HC: u32 = 33554432;
-pub const OTG_GINT_PTXFE: u32 = 67108864;
-pub const OTG_GINT_LPMINT: u32 = 134217728;
-pub const OTG_GINT_RES27: u32 = 134217728;
-pub const OTG_GINT_CIDSCHG: u32 = 268435456;
-pub const OTG_GINT_DISC: u32 = 536870912;
-pub const OTG_GINT_SRQ: u32 = 1073741824;
-pub const OTG_GINT_WKUP: u32 = 2147483648;
-pub const OTG_GRXSTSH_CHNUM_SHIFT: u8 = 0;
-pub const OTG_GRXSTSH_CHNUM_MASK: u8 = 15;
-pub const OTG_GRXSTSH_BCNT_SHIFT: u8 = 4;
-pub const OTG_GRXSTSH_BCNT_MASK: u16 = 32752;
-pub const OTG_GRXSTSH_DPID_SHIFT: u8 = 15;
-pub const OTG_GRXSTSH_DPID_MASK: u32 = 98304;
-pub const OTG_GRXSTSH_DPID_DATA0: u8 = 0;
-pub const OTG_GRXSTSH_DPID_DATA2: u16 = 32768;
-pub const OTG_GRXSTSH_DPID_DATA1: u32 = 65536;
-pub const OTG_GRXSTSH_DPID_MDATA: u32 = 98304;
-pub const OTG_GRXSTSH_PKTSTS_SHIFT: u8 = 17;
-pub const OTG_GRXSTSH_PKTSTS_MASK: u32 = 1966080;
-pub const OTG_GRXSTSH_PKTSTS_INRECVD: u32 = 262144;
-pub const OTG_GRXSTSH_PKTSTS_INDONE: u32 = 393216;
-pub const OTG_GRXSTSH_PKTSTS_DTOGERR: u32 = 655360;
-pub const OTG_GRXSTSH_PKTSTS_HALTED: u32 = 917504;
-pub const OTG_GRXSTSD_EPNUM_SHIFT: u8 = 0;
-pub const OTG_GRXSTSD_EPNUM_MASK: u8 = 15;
-pub const OTG_GRXSTSD_BCNT_SHIFT: u8 = 4;
-pub const OTG_GRXSTSD_BCNT_MASK: u16 = 32752;
-pub const OTG_GRXSTSD_DPID_SHIFT: u8 = 15;
-pub const OTG_GRXSTSD_DPID_MASK: u32 = 98304;
-pub const OTG_GRXSTSD_DPID_DATA0: u8 = 0;
-pub const OTG_GRXSTSD_DPID_DATA2: u16 = 32768;
-pub const OTG_GRXSTSD_DPID_DATA1: u32 = 65536;
-pub const OTG_GRXSTSD_DPID_MDATA: u32 = 98304;
-pub const OTG_GRXSTSD_PKTSTS_SHIFT: u8 = 17;
-pub const OTG_GRXSTSD_PKTSTS_MASK: u32 = 1966080;
-pub const OTG_GRXSTSD_PKTSTS_OUTNAK: u32 = 131072;
-pub const OTG_GRXSTSD_PKTSTS_OUTRECVD: u32 = 262144;
-pub const OTG_GRXSTSD_PKTSTS_OUTDONE: u32 = 393216;
-pub const OTG_GRXSTSD_PKTSTS_SETUPDONE: u32 = 524288;
-pub const OTG_GRXSTSD_PKTSTS_SETUPRECVD: u32 = 786432;
-pub const OTG_GRXSTSD_FRMNUM_SHIFT: u8 = 21;
-pub const OTG_GRXSTSD_FRMNUM_MASK: u32 = 31457280;
-pub const OTG_GRXFSIZ_MASK: u16 = 65535;
-pub const OTG_HNPTXFSIZ_NPTXFSA_SHIFT: u8 = 0;
-pub const OTG_HNPTXFSIZ_NPTXFSA_MASK: u16 = 65535;
-pub const OTG_HNPTXFSIZ_NPTXFD_SHIFT: u8 = 16;
-pub const OTG_HNPTXFSIZ_NPTXFD_MASK: u32 = 4294901760;
-pub const OTG_HNPTXFSIZ_NPTXFD_MIN: u32 = 1048576;
-pub const OTG_HNPTXFSIZ_NPTXFD_MAX: u32 = 16777216;
-pub const OTG_DIEPTXF0_TX0FD_SHIFT: u8 = 0;
-pub const OTG_DIEPTXF0_TX0FD_MASK: u16 = 65535;
-pub const OTG_DIEPTXF0_TX0FSA_SHIFT: u8 = 16;
-pub const OTG_DIEPTXF0_TX0FSA_MASK: u32 = 4294901760;
-pub const OTG_DIEPTXF0_TX0FSA_MIN: u32 = 1048576;
-pub const OTG_DIEPTXF0_TX0FSA_MAX: u32 = 16777216;
-pub const OTG_HNPTXSTS_NPTXFSAV_SHIFT: u8 = 0;
-pub const OTG_HNPTXSTS_NPTXFSAV_MASK: u16 = 65535;
-pub const OTG_HNPTXSTS_NPTXFSAV_FULL: u8 = 0;
-pub const OTG_HNPTXSTS_NPTQXSAV_SHIFT: u8 = 16;
-pub const OTG_HNPTXSTS_NPTQXSAV_MASK: u32 = 16711680;
-pub const OTG_HNPTXSTS_NPTQXSAV_FULL: u8 = 0;
-pub const OTG_HNPTXSTS_NPTXQTOP_SHIFT: u8 = 24;
-pub const OTG_HNPTXSTS_NPTXQTOP_MASK: u32 = 2130706432;
-pub const OTG_HNPTXSTS_TERMINATE: u32 = 16777216;
-pub const OTG_HNPTXSTS_TYPE_SHIFT: u8 = 25;
-pub const OTG_HNPTXSTS_TYPE_MASK: u32 = 100663296;
-pub const OTG_HNPTXSTS_TYPE_INOUT: u8 = 0;
-pub const OTG_HNPTXSTS_TYPE_ZLP: u32 = 33554432;
-pub const OTG_HNPTXSTS_TYPE_HALT: u32 = 100663296;
-pub const OTG_HNPTXSTS_CHNUM_SHIFT: u8 = 27;
-pub const OTG_HNPTXSTS_CHNUM_MASK: u32 = 2013265920;
-pub const OTG_HNPTXSTS_EPNUM_SHIFT: u8 = 27;
-pub const OTG_HNPTXSTS_EPNUM_MASK: u32 = 2013265920;
-pub const OTG_GCCFG_PWRDWN: u32 = 65536;
-pub const OTG_GCCFG_VBDEN: u32 = 2097152;
-pub const OTG_GCCFG_PHYHSEN: u32 = 8388608;
-pub const OTG_HPTXFSIZ_PTXSA_SHIFT: u8 = 0;
-pub const OTG_HPTXFSIZ_PTXSA_MASK: u16 = 65535;
-pub const OTG_HPTXFSIZ_PTXFD_SHIFT: u8 = 16;
-pub const OTG_HPTXFSIZ_PTXFD_MASK: u32 = 4294901760;
-pub const OTG_DIEPTXF_INEPTXSA_SHIFT: u8 = 0;
-pub const OTG_DIEPTXF_INEPTXSA_MASK: u16 = 65535;
-pub const OTG_DIEPTXF_INEPTXFD_SHIFT: u8 = 16;
-pub const OTG_DIEPTXF_INEPTXFD_MASK: u32 = 4294901760;
-pub const OTG_DIEPTXF_INEPTXFD_MIN: u8 = 16;
-pub const OTG_HCFG_FSLSPCS_SHIFT: u8 = 0;
-pub const OTG_HCFG_FSLSPCS_MASK: u8 = 3;
-pub const OTG_HCFG_FSLSPCS_FS48MHz: u8 = 1;
-pub const OTG_HCFG_FSLSPCS_LS48MHz: u8 = 1;
-pub const OTG_HCFG_FSLSPCS_LS6MHz: u8 = 2;
-pub const OTG_HCFG_FSLSS: u8 = 4;
-pub const OTG_HFIR_MASK: u16 = 65535;
-pub const OTG_HFNUM_FRNUM_SHIFT: u8 = 0;
-pub const OTG_HFNUM_FRNUM_MASK: u16 = 65535;
-pub const OTG_HFNUM_FTREM_SHIFT: u8 = 16;
-pub const OTG_HFNUM_FTREM_MASK: u32 = 4294901760;
-pub const OTG_HPTXSTS_PTXFSAVL_SHIFT: u8 = 0;
-pub const OTG_HPTXSTS_PTXFSAVL_MASK: u16 = 65535;
-pub const OTG_HPTXSTS_PTXFSAVL_FULL: u8 = 0;
-pub const OTG_HPTXSTS_PTXQSAV_SHIFT: u8 = 16;
-pub const OTG_HPTXSTS_PTXQSAV_MASK: u32 = 16711680;
-pub const OTG_HPTXSTS_PTXQSAV_FULL: u8 = 0;
-pub const OTG_HPTXSTS_PTXQTOP_SHIFT: u8 = 24;
-pub const OTG_HPTXSTS_PTXQTOP_MASK: u32 = 2130706432;
-pub const OTG_HPTXSTS_TERMINATE: u32 = 16777216;
-pub const OTG_HPTXSTS_TYPE_SHIFT: u8 = 25;
-pub const OTG_HPTXSTS_TYPE_MASK: u32 = 100663296;
-pub const OTG_HPTXSTS_TYPE_INOUT: u8 = 0;
-pub const OTG_HPTXSTS_TYPE_ZLP: u32 = 33554432;
-pub const OTG_HPTXSTS_TYPE_HALT: u32 = 100663296;
-pub const OTG_HPTXSTS_EPNUM_SHIFT: u8 = 27;
-pub const OTG_HPTXSTS_EPNUM_MASK: u32 = 2013265920;
-pub const OTG_HPTXSTS_CHNUM_SHIFT: u8 = 27;
-pub const OTG_HPTXSTS_CHNUM_MASK: u32 = 2013265920;
-pub const OTG_HPTXSTS_ODD: u32 = 16777216;
-pub const OTG_HPRT_PCSTS: u8 = 1;
-pub const OTG_HPRT_PCDET: u8 = 2;
-pub const OTG_HPRT_PENA: u8 = 4;
-pub const OTG_HPRT_PENCHNG: u8 = 8;
-pub const OTG_HPRT_POCA: u8 = 16;
-pub const OTG_HPRT_POCCHNG: u8 = 32;
-pub const OTG_HPRT_PRES: u8 = 64;
-pub const OTG_HPRT_PSUSP: u8 = 128;
-pub const OTG_HPRT_PRST: u16 = 256;
-pub const OTG_HPRT_PLSTS_SHIFT: u8 = 10;
-pub const OTG_HPRT_PLSTS_MASK: u16 = 3072;
-pub const OTG_HPRT_PLSTS_DP: u16 = 1024;
-pub const OTG_HPRT_PLSTS_DM: u16 = 2048;
-pub const OTG_HPRT_PPWR: u16 = 4096;
-pub const OTG_HPRT_PTCTL_SHIFT: u8 = 13;
-pub const OTG_HPRT_PTCTL_MASK: u32 = 122880;
-pub const OTG_HPRT_PTCTL_DISABLED: u8 = 0;
-pub const OTG_HPRT_PTCTL_J: u16 = 8192;
-pub const OTG_HPRT_PTCTL_L: u16 = 16384;
-pub const OTG_HPRT_PTCTL_SE0_NAK: u16 = 24576;
-pub const OTG_HPRT_PTCTL_PACKET: u16 = 32768;
-pub const OTG_HPRT_PTCTL_FORCE: u16 = 40960;
-pub const OTG_HPRT_PSPD_SHIFT: u8 = 17;
-pub const OTG_HPRT_PSPD_MASK: u32 = 393216;
-pub const OTG_HPRT_PSPD_FS: u32 = 131072;
-pub const OTG_HPRT_PSPD_LS: u32 = 262144;
-pub const OTG_HCCHAR_MPSIZ_SHIFT: u8 = 0;
-pub const OTG_HCCHAR_MPSIZ_MASK: u16 = 2047;
-pub const OTG_HCCHAR_EPNUM_SHIFT: u8 = 11;
-pub const OTG_HCCHAR_EPNUM_MASK: u16 = 30720;
-pub const OTG_HCCHAR_EPDIR: u16 = 32768;
-pub const OTG_HCCHAR_EPDIR_OUT: u8 = 0;
-pub const OTG_HCCHAR_EPDIR_IN: u16 = 32768;
-pub const OTG_HCCHAR_LSDEV: u32 = 131072;
-pub const OTG_HCCHAR_EPTYP_SHIFT: u8 = 18;
-pub const OTG_HCCHAR_EPTYP_MASK: u32 = 786432;
-pub const OTG_HCCHAR_EPTYP_CTRL: u8 = 0;
-pub const OTG_HCCHAR_EPTYP_ISOC: u32 = 262144;
-pub const OTG_HCCHAR_EPTYP_BULK: u32 = 524288;
-pub const OTG_HCCHAR_EPTYP_INTR: u32 = 786432;
-pub const OTG_HCCHAR_MCNT_SHIFT: u8 = 20;
-pub const OTG_HCCHAR_MCNT_MASK: u32 = 3145728;
-pub const OTG_HCCHAR_DAD_SHIFT: u8 = 22;
-pub const OTG_HCCHAR_DAD_MASK: u32 = 532676608;
-pub const OTG_HCCHAR_ODDFRM: u32 = 536870912;
-pub const OTG_HCCHAR_CHDIS: u32 = 1073741824;
-pub const OTG_HCCHAR_CHENA: u32 = 2147483648;
-pub const OTG_HCINT_XFRC: u8 = 1;
-pub const OTG_HCINT_CHH: u8 = 2;
-pub const OTG_HCINT_STALL: u8 = 8;
-pub const OTG_HCINT_NAK: u8 = 16;
-pub const OTG_HCINT_ACK: u8 = 32;
-pub const OTG_HCINT_NYET: u8 = 64;
-pub const OTG_HCINT_TXERR: u8 = 128;
-pub const OTG_HCINT_BBERR: u16 = 256;
-pub const OTG_HCINT_FRMOR: u16 = 512;
-pub const OTG_HCINT_DTERR: u16 = 1024;
-pub const OTG_HCTSIZ_XFRSIZ_SHIFT: u8 = 0;
-pub const OTG_HCTSIZ_XFRSIZ_MASK: u32 = 524287;
-pub const OTG_HCTSIZ_PKTCNT_SHIFT: u8 = 19;
-pub const OTG_HCTSIZ_PKTCNT_MASK: u32 = 536346624;
-pub const OTG_HCTSIZ_DPID_SHIFT: u8 = 29;
-pub const OTG_HCTSIZ_DPID_MASK: u32 = 1610612736;
-pub const OTG_HCTSIZ_DPID_DATA0: u8 = 0;
-pub const OTG_HCTSIZ_DPID_DATA2: u32 = 536870912;
-pub const OTG_HCTSIZ_DPID_DATA1: u32 = 1073741824;
-pub const OTG_HCTSIZ_DPID_MDATA: u32 = 1610612736;
-pub const OTG_HCTSIZ_PID_SETUP: u32 = 1610612736;
-pub const OTG_DCFG_DSPD_SHIFT: u8 = 0;
-pub const OTG_DCFG_DSPD_MASK: u8 = 3;
-pub const OTG_DCFG_DSPD_HS: u8 = 0;
-pub const OTG_DCFG_DSPD_FS_USING_HS: u8 = 1;
-pub const OTG_DCFG_DSPD_FS: u8 = 3;
-pub const OTG_DCFG_NZLSOHSK: u8 = 4;
-pub const OTG_DCFG_DAD_SHIFT: u8 = 4;
-pub const OTG_DCFG_DAD_MASK: u16 = 2032;
-pub const OTG_DCFG_PFIVL_SHIFT: u8 = 11;
-pub const OTG_DCFG_PFIVL_MASK: u16 = 6144;
-pub const OTG_DCFG_PFIVL_80PCT: u8 = 0;
-pub const OTG_DCFG_PFIVL_85PCT: u16 = 2048;
-pub const OTG_DCFG_PFIVL_90PCT: u16 = 4096;
-pub const OTG_DCFG_PFIVL_95PCT: u16 = 6144;
-pub const OTG_TESTMODE_DISABLED: u8 = 0;
-pub const OTG_TESTMODE_J: u8 = 1;
-pub const OTG_TESTMODE_K: u8 = 2;
-pub const OTG_TESTMODE_SE0_NAK: u8 = 3;
-pub const OTG_TESTMODE_PACKET: u8 = 4;
-pub const OTG_TESTMODE_FORCE: u8 = 5;
-pub const OTG_DCTL_RWUSIG: u8 = 1;
-pub const OTG_DCTL_SDIS: u8 = 2;
-pub const OTG_DCTL_GINSTS: u8 = 4;
-pub const OTG_DCTL_GONSTS: u8 = 8;
-pub const OTG_DCTL_TCTL_SHIFT: u8 = 4;
-pub const OTG_DCTL_TCTL_MASK: u8 = 112;
-pub const OTG_DCTL_TCTL_DISABLED: u8 = 0;
-pub const OTG_DCTL_TCTL_J: u8 = 16;
-pub const OTG_DCTL_TCTL_K: u8 = 32;
-pub const OTG_DCTL_TCTL_SE0_NAK: u8 = 48;
-pub const OTG_DCTL_TCTL_PACKET: u8 = 64;
-pub const OTG_DCTL_TCTL_FORCE: u8 = 80;
-pub const OTG_DCTL_SGINAK: u8 = 128;
-pub const OTG_DCTL_CGINAK: u16 = 256;
-pub const OTG_DCTL_SGONAK: u16 = 512;
-pub const OTG_DCTL_CGONAK: u16 = 1024;
-pub const OTG_DCTL_POPRGDNE: u16 = 2048;
-pub const OTG_DSTS_SUSPSTS: u8 = 1;
-pub const OTG_DSTS_ENUMSPD_SHIFT: u8 = 1;
-pub const OTG_DSTS_ENUMSPD_MASK: u8 = 6;
-pub const OTG_DSTS_ENUMSPD_FS: u8 = 192;
-pub const OTG_DSTS_EERR: u8 = 8;
-pub const OTG_DSTS_SOFFN_SHIFT: u8 = 8;
-pub const OTG_DSTS_SOFFN_MASK: u32 = 4194048;
-pub const OTG_DSTS_SOFFN0: u16 = 256;
-pub const OTG_DSTS_SOFFN_EVEN: u8 = 0;
-pub const OTG_DSTS_SOFFN_ODD: u16 = 256;
-pub const OTG_DIEPMSK_XFRCM: u8 = 1;
-pub const OTG_DIEPMSK_EPDM: u8 = 2;
-pub const OTG_DIEPMSK_AHBERRM: u8 = 4;
-pub const OTG_DIEPMSK_TOM: u8 = 8;
-pub const OTG_DIEPMSK_ITTXFEMSK: u8 = 16;
-pub const OTG_DIEPMSK_INEPNMM: u8 = 32;
-pub const OTG_DIEPMSK_INEPNEM: u8 = 64;
-pub const OTG_DIEPMSK_TXFURM: u16 = 256;
-pub const OTG_DIEPMSK_NAKM: u16 = 8192;
-pub const OTG_DOEPMSK_XFRCM: u8 = 1;
-pub const OTG_DOEPMSK_EPDM: u8 = 2;
-pub const OTG_DOEPMSK_STUPM: u8 = 8;
-pub const OTG_DOEPMSK_OTEPDM: u8 = 16;
-pub const OTG_DAINT_IEP_SHIFT: u8 = 0;
-pub const OTG_DAINT_IEP_MASK: u16 = 65535;
-pub const OTG_DAINT_OEP_SHIFT: u8 = 16;
-pub const OTG_DAINT_OEP_MASK: u32 = 4294901760;
-pub const OTG_DVBUSDIS_MASK: u16 = 65535;
-pub const OTG_DVBUSPULSE_MASK: u16 = 4095;
-pub const OTG_DIEPCTL0_MPSIZ_SHIFT: u8 = 0;
-pub const OTG_DIEPCTL0_MPSIZ_MASK: u8 = 3;
-pub const OTG_DIEPCTL0_MPSIZ_64: u8 = 0;
-pub const OTG_DIEPCTL0_MPSIZ_32: u8 = 1;
-pub const OTG_DIEPCTL0_MPSIZ_16: u8 = 2;
-pub const OTG_DIEPCTL0_MPSIZ_8: u8 = 3;
-pub const OTG_DIEPCTL0_USBAEP: u16 = 32768;
-pub const OTG_DIEPCTL0_NAKSTS: u32 = 131072;
-pub const OTG_DIEPCTL0_EPTYP_SHIFT: u8 = 18;
-pub const OTG_DIEPCTL0_EPTYP_MASK: u32 = 786432;
-pub const OTG_DIEPCTL0_EPTYP_CTRL: u8 = 0;
-pub const OTG_DIEPCTL0_STALL: u32 = 2097152;
-pub const OTG_DIEPCTL0_TXFNUM_SHIFT: u8 = 22;
-pub const OTG_DIEPCTL0_TXFNUM_MASK: u32 = 62914560;
-pub const OTG_DIEPCTL0_CNAK: u32 = 67108864;
-pub const OTG_DIEPCTL0_SNAK: u32 = 134217728;
-pub const OTG_DIEPCTL0_EPDIS: u32 = 1073741824;
-pub const OTG_DIEPCTL0_EPENA: u32 = 2147483648;
-pub const OTG_DIEPCTL_MPSIZ_SHIFT: u8 = 0;
-pub const OTG_DIEPCTL_MPSIZ_MASK: u16 = 2047;
-pub const OTG_DIEPCTL_USBAEP: u16 = 32768;
-pub const OTG_DIEPCTL_EONUM: u32 = 65536;
-pub const OTG_DIEPCTL_EVEN: u8 = 0;
-pub const OTG_DIEPCTL_ODD: u32 = 65536;
-pub const OTG_DIEPCTL_DATA0: u8 = 0;
-pub const OTG_DIEPCTL_DATA1: u32 = 65536;
-pub const OTG_DIEPCTL_NAKSTS: u32 = 131072;
-pub const OTG_DIEPCTL_EPTYP_SHIFT: u8 = 18;
-pub const OTG_DIEPCTL_EPTYP_MASK: u32 = 786432;
-pub const OTG_DIEPCTL_EPTYP_CTRL: u8 = 0;
-pub const OTG_DIEPCTL_EPTYP_ISOC: u32 = 262144;
-pub const OTG_DIEPCTL_EPTYP_BULK: u32 = 524288;
-pub const OTG_DIEPCTL_EPTYP_INTR: u32 = 786432;
-pub const OTG_DIEPCTL_STALL: u32 = 2097152;
-pub const OTG_DIEPCTL_TXFNUM_SHIFT: u8 = 22;
-pub const OTG_DIEPCTL_TXFNUM_MASK: u32 = 62914560;
-pub const OTG_DIEPCTL_CNAK: u32 = 67108864;
-pub const OTG_DIEPCTL_SNAK: u32 = 134217728;
-pub const OTG_DIEPCTL_SD0PID: u32 = 268435456;
-pub const OTG_DIEPCTL_SEVNFRM: u32 = 268435456;
-pub const OTG_DIEPCTL_SODDFRM: u32 = 536870912;
-pub const OTG_DIEPCTL_EPDIS: u32 = 1073741824;
-pub const OTG_DIEPCTL_EPENA: u32 = 2147483648;
-pub const OTG_DIEPINT_XFRC: u8 = 1;
-pub const OTG_DIEPINT_EPDISD: u8 = 2;
-pub const OTG_DIEPINT_TOC: u8 = 8;
-pub const OTG_DIEPINT_ITTXFE: u8 = 16;
-pub const OTG_DIEPINT_INEPNE: u8 = 64;
-pub const OTG_DIEPINT_TXFE: u8 = 128;
-pub const OTG_DIEPTSIZ0_XFRSIZ_SHIFT: u8 = 0;
-pub const OTG_DIEPTSIZ0_XFRSIZ_MASK: u8 = 127;
-pub const OTG_DIEPTSIZ0_PKTCNT_SHIFT: u8 = 19;
-pub const OTG_DIEPTSIZ0_PKTCNT_MASK: u32 = 1572864;
-pub const OTG_DIEPTSIZ_XFRSIZ_SHIFT: u8 = 0;
-pub const OTG_DIEPTSIZ_XFRSIZ_MASK: u32 = 524287;
-pub const OTG_DIEPTSIZ_PKTCNT_SHIFT: u8 = 19;
-pub const OTG_DIEPTSIZ_PKTCNT_MASK: u32 = 536346624;
-pub const OTG_DIEPTSIZ_MCNT_SHIFT: u8 = 29;
-pub const OTG_DIEPTSIZ_MCNT_MASK: u32 = 1610612736;
-pub const OTG_DTXFSTS_MASK: u16 = 65535;
-pub const OTG_DOEPCTL0_MPSIZ_SHIFT: u8 = 0;
-pub const OTG_DOEPCTL0_MPSIZ_MASK: u8 = 3;
-pub const OTG_DOEPCTL0_MPSIZ_64: u8 = 0;
-pub const OTG_DOEPCTL0_MPSIZ_32: u8 = 1;
-pub const OTG_DOEPCTL0_MPSIZ_16: u8 = 2;
-pub const OTG_DOEPCTL0_MPSIZ_8: u8 = 3;
-pub const OTG_DOEPCTL0_USBAEP: u16 = 32768;
-pub const OTG_DOEPCTL0_NAKSTS: u32 = 131072;
-pub const OTG_DOEPCTL0_EPTYP_SHIFT: u8 = 18;
-pub const OTG_DOEPCTL0_EPTYP_MASK: u32 = 786432;
-pub const OTG_DOEPCTL0_EPTYP_CTRL: u8 = 0;
-pub const OTG_DOEPCTL0_SNPM: u32 = 1048576;
-pub const OTG_DOEPCTL0_STALL: u32 = 2097152;
-pub const OTG_DOEPCTL0_CNAK: u32 = 67108864;
-pub const OTG_DOEPCTL0_SNAK: u32 = 134217728;
-pub const OTG_DOEPCTL0_EPDIS: u32 = 1073741824;
-pub const OTG_DOEPCTL0_EPENA: u32 = 2147483648;
-pub const OTG_DOEPCTL_MPSIZ_SHIFT: u8 = 0;
-pub const OTG_DOEPCTL_MPSIZ_MASK: u16 = 2047;
-pub const OTG_DOEPCTL_USBAEP: u16 = 32768;
-pub const OTG_DOEPCTL_DPID: u32 = 65536;
-pub const OTG_DOEPCTL_DATA0: u8 = 0;
-pub const OTG_DOEPCTL_DATA1: u32 = 65536;
-pub const OTG_DOEPCTL_EONUM: u32 = 65536;
-pub const OTG_DOEPCTL_EVEN: u8 = 0;
-pub const OTG_DOEPCTL_ODD: u32 = 65536;
-pub const OTG_DOEPCTL_NAKSTS: u32 = 131072;
-pub const OTG_DOEPCTL_EPTYP_SHIFT: u8 = 18;
-pub const OTG_DOEPCTL_EPTYP_MASK: u32 = 786432;
-pub const OTG_DOEPCTL_EPTYP_CTRL: u8 = 0;
-pub const OTG_DOEPCTL_EPTYP_ISOC: u32 = 262144;
-pub const OTG_DOEPCTL_EPTYP_BULK: u32 = 524288;
-pub const OTG_DOEPCTL_EPTYP_INTR: u32 = 786432;
-pub const OTG_DOEPCTL_SNPM: u32 = 1048576;
-pub const OTG_DOEPCTL_STALL: u32 = 2097152;
-pub const OTG_DOEPCTL_CNAK: u32 = 67108864;
-pub const OTG_DOEPCTL_SNAK: u32 = 134217728;
-pub const OTG_DOEPCTL_SD0PID: u32 = 268435456;
-pub const OTG_DOEPCTL_SEVNFRM: u32 = 268435456;
-pub const OTG_DOEPCTL_SD1PID: u32 = 536870912;
-pub const OTG_DOEPCTL_SODDFRM: u32 = 536870912;
-pub const OTG_DOEPCTL_EPDIS: u32 = 1073741824;
-pub const OTG_DOEPCTL_EPENA: u32 = 2147483648;
-pub const OTG_DOEPINT_XFRC: u8 = 1;
-pub const OTG_DOEPINT_EPDISD: u8 = 2;
-pub const OTG_DOEPINT_SETUP: u8 = 8;
-pub const OTG_DOEPINT_OTEPDIS: u8 = 16;
-pub const OTG_DOEPINT_B2BSTUP: u8 = 64;
-pub const OTG_DOEPTSIZ0_XFRSIZ_SHIFT: u8 = 0;
-pub const OTG_DOEPTSIZ0_XFRSIZ_MASK: u8 = 127;
-pub const OTG_DOEPTSIZ0_PKTCNT: u32 = 524288;
-pub const OTG_DOEPTSIZ0_STUPCNT_SHIFT: u8 = 29;
-pub const OTG_DOEPTSIZ0_STUPCNT_MASK: u32 = 1610612736;
-pub const OTG_DOEPTSIZ_XFRSIZ_SHIFT: u8 = 0;
-pub const OTG_DOEPTSIZ_XFRSIZ_MASK: u32 = 524287;
-pub const OTG_DOEPTSIZ_PKTCNT_SHIFT: u8 = 19;
-pub const OTG_DOEPTSIZ_PKTCNT_MASK: u32 = 536346624;
-pub const OTG_DOEPTSIZ_STUPCNT_SHIFT: u8 = 29;
-pub const OTG_DOEPTSIZ_STUPCNT_MASK: u32 = 1610612736;
-pub const OTG_DOEPTSIZ_RXDPID_SHIFT: u8 = 29;
-pub const OTG_DOEPTSIZ_RXDPID_MASK: u32 = 1610612736;
-pub const OTG_DOEPTSIZ_RXDPID_DATA0: u8 = 0;
-pub const OTG_DOEPTSIZ_RXDPID_DATA2: u32 = 536870912;
-pub const OTG_DOEPTSIZ_RXDPID_DATA1: u32 = 1073741824;
-pub const OTG_DOEPTSIZ_RXDPID_MDATA: u32 = 1610612736;
-pub const OTG_PCGCCTL_STPPCLK: u8 = 1;
-pub const OTG_PCGCCTL_GATEHCLK: u8 = 2;
-pub const OTG_PCGCCTL_PHYSUSP: u8 = 16;
-pub const USBPHYC_PLL1_EN: u8 = 1;
-pub const USBPHYC_PLL1_SEL_SHIFT: u8 = 1;
-pub const USBPHYC_PLL1_SEL_12MHz: u8 = 0;
-pub const USBPHYC_PLL1_SEL_12_5MHz: u8 = 2;
-pub const USBPHYC_PLL1_SEL_12_5bMHz: u8 = 4;
-pub const USBPHYC_PLL1_SEL_16MHz: u8 = 6;
-pub const USBPHYC_PLL1_SEL_24MHz: u8 = 8;
-pub const USBPHYC_PLL1_SEL_25MHz: u8 = 10;
-pub const USBPHYC_PLL1_SEL_25bMHz: u8 = 12;
-pub const USBPHYC_TUNE_INCURREN: u8 = 1;
-pub const USBPHYC_TUNE_INCURRINT: u8 = 2;
-pub const USBPHYC_TUNE_LFSCAPEN: u8 = 4;
-pub const USBPHYC_TUNE_HSDRVSLEW: u8 = 8;
-pub const USBPHYC_TUNE_HSDRVDCLEV: u8 = 16;
-pub const USBPHYC_TUNE_HSDRVDCCUR: u8 = 32;
-pub const USBPHYC_TUNE_HSDRVCURINCR: u8 = 64;
-pub const USBPHYC_TUNE_FSDRVRFADJ: u8 = 128;
-pub const USBPHYC_TUNE_HSDRVRFRED: u16 = 256;
-pub const USBPHYC_TUNE_HSDRVCHKITRM_SHIFT: u8 = 9;
-pub const USBPHYC_TUNE_HSDRVCHKITRM_MASK: u16 = 7680;
-pub const USBPHYC_TUNE_HSDRVCHKZTRM_SHIFT: u8 = 13;
-pub const USBPHYC_TUNE_HSDRVCHKZTRM_MASK: u16 = 24576;
-pub const USBPHYC_TUNE_SQLCHCTL_SHIFT: u8 = 15;
-pub const USBPHYC_TUNE_SQLCHCTL_MASK: u32 = 98304;
-pub const USBPHYC_TUNE_HDRXGNEQEN: u32 = 131072;
-pub const USBPHYC_TUNE_STAGSEL: u32 = 262144;
-pub const USBPHYC_TUNE_HSFALLPREEM: u32 = 524288;
-pub const USBPHYC_TUNE_HSRXOFF_SHIFT: u8 = 20;
-pub const USBPHYC_TUNE_HSRXOFF_MASK: u32 = 3145728;
-pub const USBPHYC_TUNE_SHTCCTCTLPROT: u32 = 4194304;
-pub const USBPHYC_TUNE_SQLBYP: u32 = 8388608;
-pub const USBPHYC_LDO_USED: u8 = 1;
-pub const USBPHYC_LDO_STATUS: u8 = 2;
-pub const USBPHYC_LDO_ENABLE: u8 = 4;
-pub const SCHED_NORMAL: u8 = 0;
-pub const SCHED_OTHER: u8 = 0;
-pub const SCHED_FIFO: u8 = 1;
-pub const SCHED_RR: u8 = 2;
-pub const SCHED_SPORADIC: u8 = 3;
-pub const TASK_CANCEL_ENABLE: u8 = 0;
-pub const TASK_CANCEL_DISABLE: u8 = 1;
-pub const TASK_CANCEL_DEFERRED: u8 = 0;
-pub const TASK_CANCEL_ASYNCHRONOUS: u8 = 1;
-pub const PTHREAD_KEYS_MAX: u8 = 0;
 pub const __GNUC_VA_LIST: u8 = 1;
 pub const LOG_PID: u8 = 1;
 pub const LOG_CONS: u8 = 2;
@@ -2468,6 +1725,11 @@ pub const _SC_NPROCESSORS_ONLN: u8 = 126;
 pub const STDERR_FILENO: u8 = 2;
 pub const STDIN_FILENO: u8 = 0;
 pub const STDOUT_FILENO: u8 = 1;
+pub const SEM_PRIO_NONE: u8 = 0;
+pub const SEM_PRIO_INHERIT: u8 = 1;
+pub const SEM_PRIO_PROTECT: u8 = 2;
+pub const SEM_PRIO_MASK: u8 = 3;
+pub const SEM_TYPE_MUTEX: u8 = 4;
 pub const PTHREAD_PROCESS_PRIVATE: u8 = 0;
 pub const PTHREAD_PROCESS_SHARED: u8 = 1;
 pub const PTHREAD_MUTEX_NORMAL: u8 = 0;
@@ -2510,9 +1772,86 @@ pub const __PTHREAD_BARRIER_T_DEFINED: u8 = 1;
 pub const __PTHREAD_ONCE_T_DEFINED: u8 = 1;
 pub const __PTHREAD_RWLOCKATTR_T_DEFINED: u8 = 1;
 pub const __PTHREAD_RWLOCK_T_DEFINED: u8 = 1;
+pub const __HAVE_KERNEL_GLOBALS: u8 = 1;
+pub const CLOCK_MASK: u8 = 7;
+pub const CLOCK_SHIFT: u8 = 3;
+pub const NSEC_PER_SEC: u32 = 1000000000;
+pub const USEC_PER_SEC: u32 = 1000000;
+pub const MSEC_PER_SEC: u16 = 1000;
+pub const DSEC_PER_SEC: u8 = 10;
+pub const HSEC_PER_SEC: u8 = 2;
+pub const NSEC_PER_HSEC: u32 = 500000000;
+pub const USEC_PER_HSEC: u32 = 500000;
+pub const MSEC_PER_HSEC: u16 = 500;
+pub const DSEC_PER_HSEC: u8 = 5;
+pub const NSEC_PER_DSEC: u32 = 100000000;
+pub const USEC_PER_DSEC: u32 = 100000;
+pub const MSEC_PER_DSEC: u8 = 100;
+pub const NSEC_PER_MSEC: u32 = 1000000;
+pub const USEC_PER_MSEC: u16 = 1000;
+pub const NSEC_PER_USEC: u16 = 1000;
+pub const SEC_PER_MIN: u8 = 60;
+pub const NSEC_PER_MIN: u64 = 60000000000;
+pub const USEC_PER_MIN: u32 = 60000000;
+pub const MSEC_PER_MIN: u16 = 60000;
+pub const DSEC_PER_MIN: u16 = 600;
+pub const HSEC_PER_MIN: u8 = 120;
+pub const MIN_PER_HOUR: u8 = 60;
+pub const NSEC_PER_HOUR: u64 = 3600000000000;
+pub const USEC_PER_HOUR: u32 = 3600000000;
+pub const MSEC_PER_HOUR: u32 = 3600000;
+pub const DSEC_PER_HOUR: u16 = 36000;
+pub const HSEC_PER_HOUR: u16 = 7200;
+pub const SEC_PER_HOUR: u16 = 3600;
+pub const HOURS_PER_DAY: u8 = 24;
+pub const SEC_PER_DAY: u32 = 86400;
+pub const USEC_PER_TICK: u16 = 10000;
+pub const TICK_PER_HOUR: u32 = 360000;
+pub const TICK_PER_MIN: u16 = 6000;
+pub const TICK_PER_SEC: u8 = 100;
+pub const TICK_PER_MSEC: u8 = 0;
+pub const TICK_PER_DSEC: u8 = 10;
+pub const TICK_PER_HSEC: u8 = 50;
+pub const MSEC_PER_TICK: u8 = 10;
+pub const NSEC_PER_TICK: u32 = 10000000;
+pub const INITIAL_SYSTEM_TIMER_TICKS: u8 = 0;
+pub const SECSPERMIN: u8 = 60;
+pub const MINSPERHOUR: u8 = 60;
+pub const HOURSPERDAY: u8 = 24;
+pub const DAYSPERWEEK: u8 = 7;
+pub const DAYSPERNYEAR: u16 = 365;
+pub const DAYSPERLYEAR: u16 = 366;
+pub const MONSPERYEAR: u8 = 12;
+pub const TM_SUNDAY: u8 = 0;
+pub const TM_MONDAY: u8 = 1;
+pub const TM_TUESDAY: u8 = 2;
+pub const TM_WEDNESDAY: u8 = 3;
+pub const TM_THURSDAY: u8 = 4;
+pub const TM_FRIDAY: u8 = 5;
+pub const TM_SATURDAY: u8 = 6;
+pub const TM_JANUARY: u8 = 0;
+pub const TM_FEBRUARY: u8 = 1;
+pub const TM_MARCH: u8 = 2;
+pub const TM_APRIL: u8 = 3;
+pub const TM_MAY: u8 = 4;
+pub const TM_JUNE: u8 = 5;
+pub const TM_JULY: u8 = 6;
+pub const TM_AUGUST: u8 = 7;
+pub const TM_SEPTEMBER: u8 = 8;
+pub const TM_OCTOBER: u8 = 9;
+pub const TM_NOVEMBER: u8 = 10;
+pub const TM_DECEMBER: u8 = 11;
+pub const TM_YEAR_BASE: u16 = 1900;
+pub const TM_WDAY_BASE: u8 = 1;
+pub const EPOCH_YEAR: u16 = 1970;
+pub const EPOCH_WDAY: u8 = 4;
 pub const HPWORK: u8 = 0;
 pub const LPWORK: u8 = 0;
 pub const USRWORK: u8 = 0;
+pub const __DEBUG_ASSERT_FILE__: u8 = 0;
+pub const __DEBUG_ASSERT_LINE__: u8 = 0;
+pub const __ASSERT_FILE__: u8 = 0;
+pub const __ASSERT_LINE__: u8 = 0;
 pub const DT_UNKNOWN: u8 = 0;
 pub const DT_FIFO: u8 = 1;
 pub const DT_CHR: u8 = 2;
@@ -2626,352 +1965,6 @@ pub const TLIST_ATTR_PRIORITIZED: u8 = 1;
 pub const TLIST_ATTR_INDEXED: u8 = 2;
 pub const TLIST_ATTR_RUNNABLE: u8 = 4;
 pub const TLIST_ATTR_OFFSET: u8 = 8;
-pub const SPI_STATUS_PRESENT: u8 = 1;
-pub const SPI_STATUS_WRPROTECTED: u8 = 2;
-pub const POLLIN: u8 = 1;
-pub const POLLRDNORM: u8 = 1;
-pub const POLLRDBAND: u8 = 1;
-pub const POLLPRI: u8 = 2;
-pub const POLLOUT: u8 = 4;
-pub const POLLWRNORM: u8 = 4;
-pub const POLLWRBAND: u8 = 4;
-pub const POLLERR: u8 = 8;
-pub const POLLHUP: u8 = 16;
-pub const POLLRDHUP: u8 = 16;
-pub const POLLNVAL: u8 = 32;
-pub const POLLALWAYS: u32 = 65536;
-pub const CONFIG_ADC_FIFOSIZE: u8 = 8;
-pub const CONFIG_ADC_NPOLLWAITERS: u8 = 2;
-pub const STM32_ADC_SR_OFFSET: u8 = 0;
-pub const STM32_ADC_CR1_OFFSET: u8 = 4;
-pub const STM32_ADC_CR2_OFFSET: u8 = 8;
-pub const STM32_ADC_SMPR1_OFFSET: u8 = 12;
-pub const STM32_ADC_SMPR2_OFFSET: u8 = 16;
-pub const STM32_ADC_JOFR1_OFFSET: u8 = 20;
-pub const STM32_ADC_JOFR2_OFFSET: u8 = 24;
-pub const STM32_ADC_JOFR3_OFFSET: u8 = 28;
-pub const STM32_ADC_JOFR4_OFFSET: u8 = 32;
-pub const STM32_ADC_HTR_OFFSET: u8 = 36;
-pub const STM32_ADC_LTR_OFFSET: u8 = 40;
-pub const STM32_ADC_SQR1_OFFSET: u8 = 44;
-pub const STM32_ADC_SQR2_OFFSET: u8 = 48;
-pub const STM32_ADC_SQR3_OFFSET: u8 = 52;
-pub const STM32_ADC_JSQR_OFFSET: u8 = 56;
-pub const STM32_ADC_JDR1_OFFSET: u8 = 60;
-pub const STM32_ADC_JDR2_OFFSET: u8 = 64;
-pub const STM32_ADC_JDR3_OFFSET: u8 = 68;
-pub const STM32_ADC_JDR4_OFFSET: u8 = 72;
-pub const STM32_ADC_DR_OFFSET: u8 = 76;
-pub const STM32_ADC_CSR_OFFSET: u8 = 0;
-pub const STM32_ADC_CCR_OFFSET: u8 = 4;
-pub const STM32_ADC_CDR_OFFSET: u8 = 8;
-pub const STM32_ADC1_SR: u32 = 1073815552;
-pub const STM32_ADC1_CR1: u32 = 1073815556;
-pub const STM32_ADC1_CR2: u32 = 1073815560;
-pub const STM32_ADC1_SMPR1: u32 = 1073815564;
-pub const STM32_ADC1_SMPR2: u32 = 1073815568;
-pub const STM32_ADC1_JOFR1: u32 = 1073815572;
-pub const STM32_ADC1_JOFR2: u32 = 1073815576;
-pub const STM32_ADC1_JOFR3: u32 = 1073815580;
-pub const STM32_ADC1_JOFR4: u32 = 1073815584;
-pub const STM32_ADC1_HTR: u32 = 1073815588;
-pub const STM32_ADC1_LTR: u32 = 1073815592;
-pub const STM32_ADC1_SQR1: u32 = 1073815596;
-pub const STM32_ADC1_SQR2: u32 = 1073815600;
-pub const STM32_ADC1_SQR3: u32 = 1073815604;
-pub const STM32_ADC1_JSQR: u32 = 1073815608;
-pub const STM32_ADC1_JDR1: u32 = 1073815612;
-pub const STM32_ADC1_JDR2: u32 = 1073815616;
-pub const STM32_ADC1_JDR3: u32 = 1073815620;
-pub const STM32_ADC1_JDR4: u32 = 1073815624;
-pub const STM32_ADC1_DR: u32 = 1073815628;
-pub const STM32_ADC2_SR: u32 = 1073815808;
-pub const STM32_ADC2_CR1: u32 = 1073815812;
-pub const STM32_ADC2_CR2: u32 = 1073815816;
-pub const STM32_ADC2_SMPR1: u32 = 1073815820;
-pub const STM32_ADC2_SMPR2: u32 = 1073815824;
-pub const STM32_ADC2_JOFR1: u32 = 1073815828;
-pub const STM32_ADC2_JOFR2: u32 = 1073815832;
-pub const STM32_ADC2_JOFR3: u32 = 1073815836;
-pub const STM32_ADC2_JOFR4: u32 = 1073815840;
-pub const STM32_ADC2_HTR: u32 = 1073815844;
-pub const STM32_ADC2_LTR: u32 = 1073815848;
-pub const STM32_ADC2_SQR1: u32 = 1073815852;
-pub const STM32_ADC2_SQR2: u32 = 1073815856;
-pub const STM32_ADC2_SQR3: u32 = 1073815860;
-pub const STM32_ADC2_JSQR: u32 = 1073815864;
-pub const STM32_ADC2_JDR1: u32 = 1073815868;
-pub const STM32_ADC2_JDR2: u32 = 1073815872;
-pub const STM32_ADC2_JDR3: u32 = 1073815876;
-pub const STM32_ADC2_JDR4: u32 = 1073815880;
-pub const STM32_ADC2_DR: u32 = 1073815884;
-pub const STM32_ADC3_SR: u32 = 1073816064;
-pub const STM32_ADC3_CR1: u32 = 1073816068;
-pub const STM32_ADC3_CR2: u32 = 1073816072;
-pub const STM32_ADC3_SMPR1: u32 = 1073816076;
-pub const STM32_ADC3_SMPR2: u32 = 1073816080;
-pub const STM32_ADC3_JOFR1: u32 = 1073816084;
-pub const STM32_ADC3_JOFR2: u32 = 1073816088;
-pub const STM32_ADC3_JOFR3: u32 = 1073816092;
-pub const STM32_ADC3_JOFR4: u32 = 1073816096;
-pub const STM32_ADC3_HTR: u32 = 1073816100;
-pub const STM32_ADC3_LTR: u32 = 1073816104;
-pub const STM32_ADC3_SQR1: u32 = 1073816108;
-pub const STM32_ADC3_SQR2: u32 = 1073816112;
-pub const STM32_ADC3_SQR3: u32 = 1073816116;
-pub const STM32_ADC3_JSQR: u32 = 1073816120;
-pub const STM32_ADC3_JDR1: u32 = 1073816124;
-pub const STM32_ADC3_JDR2: u32 = 1073816128;
-pub const STM32_ADC3_JDR3: u32 = 1073816132;
-pub const STM32_ADC3_JDR4: u32 = 1073816136;
-pub const STM32_ADC3_DR: u32 = 1073816140;
-pub const STM32_ADC_CSR: u32 = 1073816320;
-pub const STM32_ADC_CCR: u32 = 1073816324;
-pub const STM32_ADC_CDR: u32 = 1073816328;
-pub const ADC_SR_AWD: u8 = 1;
-pub const ADC_SR_EOC: u8 = 2;
-pub const ADC_SR_JEOC: u8 = 4;
-pub const ADC_SR_JSTRT: u8 = 8;
-pub const ADC_SR_STRT: u8 = 16;
-pub const ADC_SR_OVR: u8 = 32;
-pub const ADC_CR1_AWDCH_SHIFT: u8 = 0;
-pub const ADC_CR1_AWDCH_MASK: u8 = 31;
-pub const ADC_CR1_EOCIE: u8 = 32;
-pub const ADC_CR1_AWDIE: u8 = 64;
-pub const ADC_CR1_JEOCIE: u8 = 128;
-pub const ADC_CR1_SCAN: u16 = 256;
-pub const ADC_CR1_AWDSGL: u16 = 512;
-pub const ADC_CR1_JAUTO: u16 = 1024;
-pub const ADC_CR1_DISCEN: u16 = 2048;
-pub const ADC_CR1_JDISCEN: u16 = 4096;
-pub const ADC_CR1_DISCNUM_SHIFT: u8 = 13;
-pub const ADC_CR1_DISCNUM_MASK: u16 = 57344;
-pub const ADC_CR1_JAWDEN: u32 = 4194304;
-pub const ADC_CR1_AWDEN: u32 = 8388608;
-pub const ADC_CR1_RES_SHIFT: u8 = 24;
-pub const ADC_CR1_RES_MASK: u32 = 50331648;
-pub const ADC_CR1_RES_12BIT: u8 = 0;
-pub const ADC_CR1_RES_10BIT: u32 = 16777216;
-pub const ADC_CR1_RES_8BIT: u32 = 33554432;
-pub const ADC_CR1_RES_6BIT: u32 = 50331648;
-pub const ADC_CR1_OVRIE: u32 = 67108864;
-pub const ADC_CR2_ADON: u8 = 1;
-pub const ADC_CR2_CONT: u8 = 2;
-pub const ADC_CR2_DMA: u16 = 256;
-pub const ADC_CR2_DDS: u16 = 512;
-pub const ADC_CR2_EOCS: u16 = 1024;
-pub const ADC_CR2_ALIGN: u16 = 2048;
-pub const ADC_CR2_JEXTSEL_SHIFT: u8 = 16;
-pub const ADC_CR2_JEXTSEL_MASK: u32 = 983040;
-pub const ADC_CR2_JEXTSEL_T1TRGO: u8 = 0;
-pub const ADC_CR2_JEXTSEL_T1CC4: u32 = 65536;
-pub const ADC_CR2_JEXTSEL_T2TRGO: u32 = 131072;
-pub const ADC_CR2_JEXTSEL_T2CC1: u32 = 196608;
-pub const ADC_CR2_JEXTSEL_T3CC4: u32 = 262144;
-pub const ADC_CR2_JEXTSEL_T4TRGO: u32 = 327680;
-pub const ADC_CR2_JEXTSEL_T8CC4: u32 = 458752;
-pub const ADC_CR2_JEXTSEL_T1TRGO2: u32 = 524288;
-pub const ADC_CR2_JEXTSEL_T8TRGO: u32 = 589824;
-pub const ADC_CR2_JEXTSEL_T8TRGO2: u32 = 655360;
-pub const ADC_CR2_JEXTSEL_T3CC3: u32 = 720896;
-pub const ADC_CR2_JEXTSEL_T5TRGO: u32 = 786432;
-pub const ADC_CR2_JEXTSEL_T3CC1: u32 = 851968;
-pub const ADC_CR2_JEXTSEL_T6TRGO: u32 = 917504;
-pub const ADC_CR2_JEXTEN_SHIFT: u8 = 20;
-pub const ADC_CR2_JEXTEN_MASK: u32 = 3145728;
-pub const ADC_CR2_JEXTEN_NONE: u8 = 0;
-pub const ADC_CR2_JEXTEN_RISING: u32 = 1048576;
-pub const ADC_CR2_JEXTEN_FALLING: u32 = 2097152;
-pub const ADC_CR2_JEXTEN_BOTH: u32 = 3145728;
-pub const ADC_CR2_JSWSTART: u32 = 4194304;
-pub const ADC_CR2_EXTSEL_SHIFT: u8 = 24;
-pub const ADC_CR2_EXTSEL_MASK: u32 = 251658240;
-pub const ADC_CR2_EXTSEL_T1CC1: u8 = 0;
-pub const ADC_CR2_EXTSEL_T1CC2: u32 = 16777216;
-pub const ADC_CR2_EXTSEL_T1CC3: u32 = 33554432;
-pub const ADC_CR2_EXTSEL_T2CC2: u32 = 50331648;
-pub const ADC_CR2_EXTSEL_T5TRGO: u32 = 67108864;
-pub const ADC_CR2_EXTSEL_T4CC4: u32 = 83886080;
-pub const ADC_CR2_EXTSEL_T3CC4: u32 = 100663296;
-pub const ADC_CR2_EXTSEL_T8TRGO: u32 = 117440512;
-pub const ADC_CR2_EXTSEL_T8TRGO2: u32 = 134217728;
-pub const ADC_CR2_EXTSEL_T1TRGO: u32 = 150994944;
-pub const ADC_CR2_EXTSEL_T1TRGO2: u32 = 167772160;
-pub const ADC_CR2_EXTSEL_T2TRGO: u32 = 184549376;
-pub const ADC_CR2_EXTSEL_T4TRGO: u32 = 201326592;
-pub const ADC_CR2_EXTSEL_T6TRGO: u32 = 218103808;
-pub const ADC_CR2_EXTSEL_EXTI11: u32 = 251658240;
-pub const ADC_CR2_EXTEN_SHIFT: u8 = 28;
-pub const ADC_CR2_EXTEN_MASK: u32 = 805306368;
-pub const ADC_CR2_EXTEN_NONE: u8 = 0;
-pub const ADC_CR2_EXTEN_RISING: u32 = 268435456;
-pub const ADC_CR2_EXTEN_FALLING: u32 = 536870912;
-pub const ADC_CR2_EXTEN_BOTH: u32 = 805306368;
-pub const ADC_CR2_SWSTART: u32 = 1073741824;
-pub const ADC_SMPR_3: u8 = 0;
-pub const ADC_SMPR_15: u8 = 1;
-pub const ADC_SMPR_28: u8 = 2;
-pub const ADC_SMPR_56: u8 = 3;
-pub const ADC_SMPR_84: u8 = 4;
-pub const ADC_SMPR_112: u8 = 5;
-pub const ADC_SMPR_144: u8 = 6;
-pub const ADC_SMPR_480: u8 = 7;
-pub const ADC_SMPR1_SMP10_SHIFT: u8 = 0;
-pub const ADC_SMPR1_SMP10_MASK: u8 = 7;
-pub const ADC_SMPR1_SMP11_SHIFT: u8 = 3;
-pub const ADC_SMPR1_SMP11_MASK: u8 = 56;
-pub const ADC_SMPR1_SMP12_SHIFT: u8 = 6;
-pub const ADC_SMPR1_SMP12_MASK: u16 = 448;
-pub const ADC_SMPR1_SMP13_SHIFT: u8 = 9;
-pub const ADC_SMPR1_SMP13_MASK: u16 = 3584;
-pub const ADC_SMPR1_SMP14_SHIFT: u8 = 12;
-pub const ADC_SMPR1_SMP14_MASK: u16 = 28672;
-pub const ADC_SMPR1_SMP15_SHIFT: u8 = 15;
-pub const ADC_SMPR1_SMP15_MASK: u32 = 229376;
-pub const ADC_SMPR1_SMP16_SHIFT: u8 = 18;
-pub const ADC_SMPR1_SMP16_MASK: u32 = 1835008;
-pub const ADC_SMPR1_SMP17_SHIFT: u8 = 21;
-pub const ADC_SMPR1_SMP17_MASK: u32 = 14680064;
-pub const ADC_SMPR1_SMP18_SHIFT: u8 = 24;
-pub const ADC_SMPR1_SMP18_MASK: u32 = 117440512;
-pub const ADC_SMPR2_SMP0_SHIFT: u8 = 0;
-pub const ADC_SMPR2_SMP0_MASK: u8 = 7;
-pub const ADC_SMPR2_SMP1_SHIFT: u8 = 3;
-pub const ADC_SMPR2_SMP1_MASK: u8 = 56;
-pub const ADC_SMPR2_SMP2_SHIFT: u8 = 6;
-pub const ADC_SMPR2_SMP2_MASK: u16 = 448;
-pub const ADC_SMPR2_SMP3_SHIFT: u8 = 9;
-pub const ADC_SMPR2_SMP3_MASK: u16 = 3584;
-pub const ADC_SMPR2_SMP4_SHIFT: u8 = 12;
-pub const ADC_SMPR2_SMP4_MASK: u16 = 28672;
-pub const ADC_SMPR2_SMP5_SHIFT: u8 = 15;
-pub const ADC_SMPR2_SMP5_MASK: u32 = 229376;
-pub const ADC_SMPR2_SMP6_SHIFT: u8 = 18;
-pub const ADC_SMPR2_SMP6_MASK: u32 = 1835008;
-pub const ADC_SMPR2_SMP7_SHIFT: u8 = 21;
-pub const ADC_SMPR2_SMP7_MASK: u32 = 14680064;
-pub const ADC_SMPR2_SMP8_SHIFT: u8 = 24;
-pub const ADC_SMPR2_SMP8_MASK: u32 = 117440512;
-pub const ADC_SMPR2_SMP9_SHIFT: u8 = 27;
-pub const ADC_SMPR2_SMP9_MASK: u32 = 939524096;
-pub const ADC_JOFR_SHIFT: u8 = 0;
-pub const ADC_JOFR_MASK: u16 = 4095;
-pub const ADC_HTR_SHIFT: u8 = 0;
-pub const ADC_HTR_MASK: u16 = 4095;
-pub const ADC_LTR_SHIFT: u8 = 0;
-pub const ADC_LTR_MASK: u16 = 4095;
-pub const ADC_SQR1_SQ13_SHIFT: u8 = 0;
-pub const ADC_SQR1_SQ13_MASK: u8 = 31;
-pub const ADC_SQR1_SQ14_SHIFT: u8 = 5;
-pub const ADC_SQR1_SQ14_MASK: u16 = 992;
-pub const ADC_SQR1_SQ15_SHIFT: u8 = 10;
-pub const ADC_SQR1_SQ15_MASK: u16 = 31744;
-pub const ADC_SQR1_SQ16_SHIFT: u8 = 15;
-pub const ADC_SQR1_SQ16_MASK: u32 = 1015808;
-pub const ADC_SQR1_L_SHIFT: u8 = 20;
-pub const ADC_SQR1_L_MASK: u32 = 15728640;
-pub const ADC_SQR1_RESERVED: u32 = 4278190080;
-pub const ADC_SQR1_FIRST: u8 = 13;
-pub const ADC_SQR1_LAST: u8 = 16;
-pub const ADC_SQR1_SQ_OFFSET: u8 = 0;
-pub const ADC_SQR2_SQ7_SHIFT: u8 = 0;
-pub const ADC_SQR2_SQ7_MASK: u8 = 31;
-pub const ADC_SQR2_SQ8_SHIFT: u8 = 5;
-pub const ADC_SQR2_SQ8_MASK: u16 = 992;
-pub const ADC_SQR2_SQ9_SHIFT: u8 = 10;
-pub const ADC_SQR2_SQ9_MASK: u16 = 31744;
-pub const ADC_SQR2_SQ10_SHIFT: u8 = 15;
-pub const ADC_SQR2_SQ10_MASK: u32 = 1015808;
-pub const ADC_SQR2_SQ11_SHIFT: u8 = 20;
-pub const ADC_SQR2_SQ11_MASK: u32 = 32505856;
-pub const ADC_SQR2_SQ12_SHIFT: u8 = 25;
-pub const ADC_SQR2_SQ12_MASK: u32 = 1040187392;
-pub const ADC_SQR2_RESERVED: u32 = 3221225472;
-pub const ADC_SQR2_FIRST: u8 = 7;
-pub const ADC_SQR2_LAST: u8 = 12;
-pub const ADC_SQR2_SQ_OFFSET: u8 = 0;
-pub const ADC_SQR3_SQ1_SHIFT: u8 = 0;
-pub const ADC_SQR3_SQ1_MASK: u8 = 31;
-pub const ADC_SQR3_SQ2_SHIFT: u8 = 5;
-pub const ADC_SQR3_SQ2_MASK: u16 = 992;
-pub const ADC_SQR3_SQ3_SHIFT: u8 = 10;
-pub const ADC_SQR3_SQ3_MASK: u16 = 31744;
-pub const ADC_SQR3_SQ4_SHIFT: u8 = 15;
-pub const ADC_SQR3_SQ4_MASK: u32 = 1015808;
-pub const ADC_SQR3_SQ5_SHIFT: u8 = 20;
-pub const ADC_SQR3_SQ5_MASK: u32 = 32505856;
-pub const ADC_SQR3_SQ6_SHIFT: u8 = 25;
-pub const ADC_SQR3_SQ6_MASK: u32 = 1040187392;
-pub const ADC_SQR3_RESERVED: u32 = 3221225472;
-pub const ADC_SQR3_FIRST: u8 = 1;
-pub const ADC_SQR3_LAST: u8 = 6;
-pub const ADC_SQR3_SQ_OFFSET: u8 = 0;
-pub const ADC_SQ_OFFSET: u8 = 5;
-pub const ADC_JSQR_JSQ1_SHIFT: u8 = 0;
-pub const ADC_JSQR_JSQ1_MASK: u8 = 31;
-pub const ADC_JSQR_JSQ2_SHIFT: u8 = 5;
-pub const ADC_JSQR_JSQ2_MASK: u16 = 992;
-pub const ADC_JSQR_JSQ3_SHIFT: u8 = 10;
-pub const ADC_JSQR_JSQ3_MASK: u16 = 31744;
-pub const ADC_JSQR_JSQ4_SHIFT: u8 = 15;
-pub const ADC_JSQR_JSQ4_MASK: u32 = 1015808;
-pub const ADC_JSQR_JSQ_SHIFT: u8 = 5;
-pub const ADC_JSQR_JL_SHIFT: u8 = 20;
-pub const ADC_JSQR_JL_MASK: u32 = 3145728;
-pub const ADC_JDR_JDATA_SHIFT: u8 = 0;
-pub const ADC_JDR_JDATA_MASK: u16 = 65535;
-pub const ADC_DR_RDATA_SHIFT: u8 = 0;
-pub const ADC_DR_RDATA_MASK: u16 = 65535;
-pub const ADC_CSR_AWD1: u8 = 1;
-pub const ADC_CSR_EOC1: u8 = 2;
-pub const ADC_CSR_JEOC1: u8 = 4;
-pub const ADC_CSR_JSTRT1: u8 = 8;
-pub const ADC_CSR_STRT1: u8 = 16;
-pub const ADC_CSR_OVR1: u8 = 32;
-pub const ADC_CSR_AWD2: u16 = 256;
-pub const ADC_CSR_EOC2: u16 = 512;
-pub const ADC_CSR_JEOC2: u16 = 1024;
-pub const ADC_CSR_JSTRT2: u16 = 2048;
-pub const ADC_CSR_STRT2: u16 = 4096;
-pub const ADC_CSR_OVR2: u16 = 8192;
-pub const ADC_CSR_AWD3: u32 = 65536;
-pub const ADC_CSR_EOC3: u32 = 131072;
-pub const ADC_CSR_JEOC3: u32 = 262144;
-pub const ADC_CSR_JSTRT3: u32 = 524288;
-pub const ADC_CSR_STRT3: u32 = 1048576;
-pub const ADC_CSR_OVR3: u32 = 2097152;
-pub const ADC_CCR_MULTI_SHIFT: u8 = 0;
-pub const ADC_CCR_MULTI_MASK: u8 = 31;
-pub const ADC_CCR_MULTI_NONE: u8 = 0;
-pub const ADC_CCR_MULTI_RSISM2: u8 = 1;
-pub const ADC_CCR_MULTI_RSATM2: u8 = 2;
-pub const ADC_CCR_MULTI_ISM2: u8 = 5;
-pub const ADC_CCR_MULTI_RSM2: u8 = 6;
-pub const ADC_CCR_MULTI_IM2: u8 = 7;
-pub const ADC_CCR_MULTI_ATM2: u8 = 9;
-pub const ADC_CCR_MULTI_RSISM3: u8 = 17;
-pub const ADC_CCR_MULTI_RSATM3: u8 = 18;
-pub const ADC_CCR_MULTI_ISM3: u8 = 21;
-pub const ADC_CCR_MULTI_RSM3: u8 = 22;
-pub const ADC_CCR_MULTI_IM3: u8 = 23;
-pub const ADC_CCR_MULTI_ATM3: u8 = 25;
-pub const ADC_CCR_DELAY_SHIFT: u8 = 8;
-pub const ADC_CCR_DELAY_MASK: u16 = 3840;
-pub const ADC_CCR_DDS: u16 = 8192;
-pub const ADC_CCR_DMA_SHIFT: u8 = 14;
-pub const ADC_CCR_DMA_MASK: u16 = 49152;
-pub const ADC_CCR_DMA_DISABLED: u8 = 0;
-pub const ADC_CCR_DMA_MODE1: u16 = 16384;
-pub const ADC_CCR_DMA_MODE2: u16 = 32768;
-pub const ADC_CCR_DMA_MODE3: u16 = 49152;
-pub const ADC_CCR_ADCPRE_SHIFT: u8 = 16;
-pub const ADC_CCR_ADCPRE_MASK: u32 = 196608;
-pub const ADC_CCR_ADCPRE_DIV2: u8 = 0;
-pub const ADC_CCR_ADCPRE_DIV4: u32 = 65536;
-pub const ADC_CCR_ADCPRE_DIV6: u32 = 131072;
-pub const ADC_CCR_ADCPRE_DIV8: u32 = 196608;
-pub const ADC_CCR_VBATE: u32 = 4194304;
-pub const ADC_CCR_TSVREFE: u32 = 8388608;
 pub type _int8_t = cty::c_schar;
 pub type _uint8_t = cty::c_uchar;
 pub type _int16_t = cty::c_short;
@@ -3130,796 +2123,6 @@ extern "C" {
         event: bool,
         func: xcpt_t,
         arg: *mut cty::c_void,
-    ) -> cty::c_int;
-}
-#[doc = " Public Type Definitions"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct winsize {
-    pub ws_row: u16,
-    pub ws_col: u16,
-    pub ws_xpixel: u16,
-    pub ws_ypixel: u16,
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct serial_rs485 {
-    pub flags: u32,
-    pub delay_rts_before_send: u32,
-    pub delay_rts_after_send: u32,
-}
-#[doc = " Public Type Definitions"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct pipe_peek_s {
-    pub buf: *mut cty::c_void,
-    pub size: usize,
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct i2c_ops_s {
-    pub transfer: ::core::option::Option<
-        unsafe extern "C" fn(
-            dev: *mut i2c_master_s,
-            msgs: *mut i2c_msg_s,
-            count: cty::c_int,
-        ) -> cty::c_int,
-    >,
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct i2c_config_s {
-    pub frequency: u32,
-    pub address: u16,
-    pub addrlen: u8,
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct i2c_msg_s {
-    pub frequency: u32,
-    pub addr: u16,
-    pub flags: u16,
-    pub buffer: *mut u8,
-    pub length: isize,
-}
-#[doc = " Public Types"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct i2c_master_s {
-    pub ops: *const i2c_ops_s,
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct i2c_transfer_s {
-    pub msgv: *mut i2c_msg_s,
-    pub msgc: usize,
-}
-extern "C" {
-    #[doc = " Name: i2c_writeread\n\n Description:\n   Send a block of data on I2C followed by restarted read access.  This\n   provides a convenient wrapper to the transfer function.\n\n Input Parameters:\n   dev     - Device-specific state data\n   config  - Described the I2C configuration\n   wbuffer - A pointer to the read-only buffer of data to be written to\n             device\n   wbuflen - The number of bytes to send from the buffer\n   rbuffer - A pointer to a buffer of data to receive the data from the\n             device\n   rbuflen - The requested number of bytes to be read\n\n Returned Value:\n   0: success, <0: A negated errno\n"]
-    pub fn i2c_writeread(
-        dev: *mut i2c_master_s,
-        config: *const i2c_config_s,
-        wbuffer: *const u8,
-        wbuflen: cty::c_int,
-        rbuffer: *mut u8,
-        rbuflen: cty::c_int,
-    ) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: i2c_write\n\n Description:\n   Send a block of data on I2C. Each write operation will be an 'atomic'\n   operation in the sense that any other I2C actions will be serialized\n   and pend until this write completes.\n\n Input Parameters:\n   dev    - Device-specific state data\n   config  - Described the I2C configuration\n   buffer - A pointer to the read-only buffer of data to be written to\n            device\n   buflen - The number of bytes to send from the buffer\n\n Returned Value:\n   0: success, <0: A negated errno\n"]
-    pub fn i2c_write(
-        dev: *mut i2c_master_s,
-        config: *const i2c_config_s,
-        buffer: *const u8,
-        buflen: cty::c_int,
-    ) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: i2c_read\n\n Description:\n   Receive a block of data from I2C. Each read operation will be an\n   'atomic' operation in the sense that any other I2C actions will be\n   serialized and pend until this read completes.\n\n Input Parameters:\n   dev    - Device-specific state data\n   buffer - A pointer to a buffer of data to receive the data from the\n            device\n   buflen - The requested number of bytes to be read\n\n Returned Value:\n   0: success, <0: A negated errno\n"]
-    pub fn i2c_read(
-        dev: *mut i2c_master_s,
-        config: *const i2c_config_s,
-        buffer: *mut u8,
-        buflen: cty::c_int,
-    ) -> cty::c_int;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct mpu_config_s {
-    pub i2c: *mut i2c_master_s,
-    pub addr: cty::c_int,
-}
-extern "C" {
-    pub fn mpu60x0_register(path: *const cty::c_char, config: *mut mpu_config_s) -> cty::c_int;
-}
-extern "C" {
-    pub fn _assert(
-        filename: *const cty::c_char,
-        linenum: cty::c_int,
-        msg: *const cty::c_char,
-        regs: *mut cty::c_void,
-    );
-}
-extern "C" {
-    pub fn __assert(
-        filename: *const cty::c_char,
-        linenum: cty::c_int,
-        msg: *const cty::c_char,
-    ) -> !;
-}
-extern "C" {
-    pub fn __errno() -> *mut cty::c_int;
-}
-#[doc = " Public Types"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct timespec {
-    pub tv_sec: time_t,
-    pub tv_nsec: cty::c_long,
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct tm {
-    pub tm_sec: cty::c_int,
-    pub tm_min: cty::c_int,
-    pub tm_hour: cty::c_int,
-    pub tm_mday: cty::c_int,
-    pub tm_mon: cty::c_int,
-    pub tm_year: cty::c_int,
-    pub tm_wday: cty::c_int,
-    pub tm_yday: cty::c_int,
-    pub tm_isdst: cty::c_int,
-    pub tm_gmtoff: cty::c_long,
-    pub tm_zone: *const cty::c_char,
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct itimerspec {
-    pub it_interval: timespec,
-    pub it_value: timespec,
-}
-extern "C" {
-    #[doc = " Public Function Prototypes"]
-    pub fn clock() -> clock_t;
-}
-extern "C" {
-    pub fn clock_settime(clockid: clockid_t, tp: *const timespec) -> cty::c_int;
-}
-extern "C" {
-    pub fn clock_gettime(clockid: clockid_t, tp: *mut timespec) -> cty::c_int;
-}
-extern "C" {
-    pub fn clock_getres(clockid: clockid_t, res: *mut timespec) -> cty::c_int;
-}
-extern "C" {
-    pub fn clock_getcpuclockid(pid: pid_t, clockid: *mut clockid_t) -> cty::c_int;
-}
-extern "C" {
-    pub fn timespec_get(t: *mut timespec, b: cty::c_int) -> cty::c_int;
-}
-extern "C" {
-    pub fn timegm(tp: *mut tm) -> time_t;
-}
-extern "C" {
-    pub fn mktime(tp: *mut tm) -> time_t;
-}
-extern "C" {
-    pub fn gmtime(timep: *const time_t) -> *mut tm;
-}
-extern "C" {
-    pub fn gmtime_r(timep: *const time_t, result: *mut tm) -> *mut tm;
-}
-extern "C" {
-    pub fn localtime(timep: *const time_t) -> *mut tm;
-}
-extern "C" {
-    pub fn localtime_r(timep: *const time_t, result: *mut tm) -> *mut tm;
-}
-extern "C" {
-    pub fn strftime(
-        s: *mut cty::c_char,
-        max: usize,
-        format: *const cty::c_char,
-        tm: *const tm,
-    ) -> usize;
-}
-extern "C" {
-    pub fn strptime(
-        s: *const cty::c_char,
-        format: *const cty::c_char,
-        tm: *mut tm,
-    ) -> *mut cty::c_char;
-}
-extern "C" {
-    pub fn asctime(tp: *const tm) -> *mut cty::c_char;
-}
-extern "C" {
-    pub fn asctime_r(tp: *const tm, buf: *mut cty::c_char) -> *mut cty::c_char;
-}
-extern "C" {
-    pub fn ctime(timep: *const time_t) -> *mut cty::c_char;
-}
-extern "C" {
-    pub fn ctime_r(timep: *const time_t, buf: *mut cty::c_char) -> *mut cty::c_char;
-}
-extern "C" {
-    pub fn time(timep: *mut time_t) -> time_t;
-}
-extern "C" {
-    pub fn difftime(time1: time_t, time0: time_t) -> f64;
-}
-extern "C" {
-    pub fn timer_create(
-        clockid: clockid_t,
-        evp: *mut sigevent,
-        timerid: *mut timer_t,
-    ) -> cty::c_int;
-}
-extern "C" {
-    pub fn timer_delete(timerid: timer_t) -> cty::c_int;
-}
-extern "C" {
-    pub fn timer_settime(
-        timerid: timer_t,
-        flags: cty::c_int,
-        value: *const itimerspec,
-        ovalue: *mut itimerspec,
-    ) -> cty::c_int;
-}
-extern "C" {
-    pub fn timer_gettime(timerid: timer_t, value: *mut itimerspec) -> cty::c_int;
-}
-extern "C" {
-    pub fn timer_getoverrun(timerid: timer_t) -> cty::c_int;
-}
-extern "C" {
-    pub fn clock_nanosleep(
-        clockid: clockid_t,
-        flags: cty::c_int,
-        rqtp: *const timespec,
-        rmtp: *mut timespec,
-    ) -> cty::c_int;
-}
-extern "C" {
-    pub fn nanosleep(rqtp: *const timespec, rmtp: *mut timespec) -> cty::c_int;
-}
-#[doc = " Public Type Definitions"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct sq_entry_s {
-    pub flink: *mut sq_entry_s,
-}
-#[doc = " Public Type Definitions"]
-pub type sq_entry_t = sq_entry_s;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct dq_entry_s {
-    pub flink: *mut dq_entry_s,
-    pub blink: *mut dq_entry_s,
-}
-pub type dq_entry_t = dq_entry_s;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct sq_queue_s {
-    pub head: *mut sq_entry_t,
-    pub tail: *mut sq_entry_t,
-}
-pub type sq_queue_t = sq_queue_s;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct dq_queue_s {
-    pub head: *mut dq_entry_t,
-    pub tail: *mut dq_entry_t,
-}
-pub type dq_queue_t = dq_queue_s;
-extern "C" {
-    pub fn sq_addafter(prev: *mut sq_entry_t, node: *mut sq_entry_t, queue: *mut sq_queue_t);
-}
-extern "C" {
-    pub fn dq_addafter(prev: *mut dq_entry_t, node: *mut dq_entry_t, queue: *mut dq_queue_t);
-}
-extern "C" {
-    pub fn sq_remafter(node: *mut sq_entry_t, queue: *mut sq_queue_t) -> *mut sq_entry_t;
-}
-extern "C" {
-    pub fn dq_remafter(node: *mut dq_entry_t, queue: *mut dq_queue_t) -> *mut dq_entry_t;
-}
-extern "C" {
-    pub fn sq_remlast(queue: *mut sq_queue_t) -> *mut sq_entry_t;
-}
-extern "C" {
-    pub fn dq_remlast(queue: *mut dq_queue_t) -> *mut dq_entry_t;
-}
-extern "C" {
-    pub fn sq_remfirst(queue: *mut sq_queue_t) -> *mut sq_entry_t;
-}
-extern "C" {
-    pub fn dq_remfirst(queue: *mut dq_queue_t) -> *mut dq_entry_t;
-}
-extern "C" {
-    pub fn sq_count(queue: *mut sq_queue_t) -> usize;
-}
-extern "C" {
-    pub fn dq_count(queue: *mut dq_queue_t) -> usize;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct sem_s {
-    pub semcount: i16,
-    pub flags: u8,
-    pub waitlist: dq_queue_t,
-}
-pub type sem_t = sem_s;
-extern "C" {
-    #[doc = " Public Function Prototypes"]
-    pub fn sem_init(sem: *mut sem_t, pshared: cty::c_int, value: cty::c_uint) -> cty::c_int;
-}
-extern "C" {
-    pub fn sem_destroy(sem: *mut sem_t) -> cty::c_int;
-}
-extern "C" {
-    pub fn sem_wait(sem: *mut sem_t) -> cty::c_int;
-}
-extern "C" {
-    pub fn sem_timedwait(sem: *mut sem_t, abstime: *const timespec) -> cty::c_int;
-}
-extern "C" {
-    pub fn sem_clockwait(
-        sem: *mut sem_t,
-        clockid: clockid_t,
-        abstime: *const timespec,
-    ) -> cty::c_int;
-}
-extern "C" {
-    pub fn sem_trywait(sem: *mut sem_t) -> cty::c_int;
-}
-extern "C" {
-    pub fn sem_post(sem: *mut sem_t) -> cty::c_int;
-}
-extern "C" {
-    pub fn sem_getvalue(sem: *mut sem_t, sval: *mut cty::c_int) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: sem_setprotocol\n\n Description:\n    Set semaphore protocol attribute.\n\n    One particularly important use of this function is when a semaphore\n    is used for inter-task communication like:\n\n      TASK A                 TASK B\n      sem_init(sem, 0, 0);\n      sem_wait(sem);\n                             sem_post(sem);\n      Awakens as holder\n\n    In this case priority inheritance can interfere with the operation of\n    the semaphore.  The problem is that when TASK A is restarted it is a\n    holder of the semaphore.  However, it never calls sem_post(sem) so it\n    becomes *permanently* a holder of the semaphore and may have its\n    priority boosted when any other task tries to acquire the semaphore.\n\n    The fix is to call sem_setprotocol(SEM_PRIO_NONE) immediately after\n    the sem_init() call so that there will be no priority inheritance\n    operations on this semaphore.\n\n Input Parameters:\n    sem      - A pointer to the semaphore whose attributes are to be\n               modified\n    protocol - The new protocol to use\n\n Returned Value:\n   This function is exposed as a non-standard application interface.  It\n   returns zero (OK) if successful.  Otherwise, -1 (ERROR) is returned and\n   the errno value is set appropriately.\n"]
-    pub fn sem_setprotocol(sem: *mut sem_t, protocol: cty::c_int) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: sem_getprotocol\n\n Description:\n    Return the value of the semaphore protocol attribute.\n\n Input Parameters:\n    sem      - A pointer to the semaphore whose attributes are to be\n               queried.\n    protocol - The user provided location in which to store the protocol\n               value.\n\n Returned Value:\n   This function is exposed as a non-standard application interface.  It\n   returns zero (OK) if successful.  Otherwise, -1 (ERROR) is returned and\n   the errno value is set appropriately.\n"]
-    pub fn sem_getprotocol(sem: *mut sem_t, protocol: *mut cty::c_int) -> cty::c_int;
-}
-pub type sclock_t = i32;
-extern "C" {
-    pub static mut g_system_ticks: clock_t;
-}
-extern "C" {
-    #[doc = " Name: clock_timespec_compare\n\n Description:\n    Return < 0 if time ts1 is before time ts2\n    Return > 0 if time ts2 is before time ts1\n    Return 0 if time ts1 is the same as time ts2\n"]
-    pub fn clock_timespec_compare(ts1: *const timespec, ts2: *const timespec) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name:  clock_timespec_add\n\n Description:\n   Add timespec ts1 to to2 and return the result in ts3\n\n Input Parameters:\n   ts1 and ts2: The two timespecs to be added\n   t23: The location to return the result (may be ts1 or ts2)\n\n Returned Value:\n   None\n"]
-    pub fn clock_timespec_add(ts1: *const timespec, ts2: *const timespec, ts3: *mut timespec);
-}
-extern "C" {
-    #[doc = " Name:  clock_timespec_subtract\n\n Description:\n   Subtract timespec ts2 from to1 and return the result in ts3.\n   Zero is returned if the time difference is negative.\n\n Input Parameters:\n   ts1 and ts2: The two timespecs to be subtracted (ts1 - ts2)\n   t23: The location to return the result (may be ts1 or ts2)\n\n Returned Value:\n   None\n"]
-    pub fn clock_timespec_subtract(ts1: *const timespec, ts2: *const timespec, ts3: *mut timespec);
-}
-extern "C" {
-    #[doc = " Name:  clock_isleapyear\n\n Description:\n    Return true if the specified year is a leap year\n"]
-    pub fn clock_isleapyear(year: cty::c_int) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name:  clock_daysbeforemonth\n\n Description:\n    Get the number of days that occurred before the beginning of the month.\n"]
-    pub fn clock_daysbeforemonth(month: cty::c_int, leapyear: bool) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name:  clock_dayoftheweek\n\n Description:\n    Get the day of the week\n\n Input Parameters:\n   mday  - The day of the month 1 - 31\n   month - The month of the year 1 - 12\n   year  - the year including the 1900\n\n Returned Value:\n   Zero based day of the week 0-6, 0 = Sunday, 1 = Monday... 6 = Saturday\n"]
-    pub fn clock_dayoftheweek(mday: cty::c_int, month: cty::c_int, year: cty::c_int) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name:  clock_calendar2utc\n\n Description:\n    Calendar/UTC conversion based on algorithms from p. 604\n    of Seidelman, P. K. 1992.  Explanatory Supplement to\n    the Astronomical Almanac.  University Science Books,\n    Mill Valley.\n"]
-    pub fn clock_calendar2utc(year: cty::c_int, month: cty::c_int, day: cty::c_int) -> time_t;
-}
-extern "C" {
-    #[doc = " Name: clock_time2ticks\n\n Description:\n   Return the given struct timespec as systime ticks.\n\n   NOTE:  This is an internal OS interface and should not be called from\n   application code.\n\n Input Parameters:\n   reltime - Pointer to the time presented as struct timespec\n\n Output Parameters:\n   ticks - Pointer to receive the time value presented as systime ticks\n\n Returned Value:\n   Always returns OK (0)\n"]
-    pub fn clock_time2ticks(reltime: *const timespec, ticks: *mut sclock_t) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: clock_ticks2time\n\n Description:\n   Return the given systime ticks as a struct timespec.\n\n   NOTE:  This is an internal OS interface and should not be called from\n   application code.\n\n Input Parameters:\n   ticks - Time presented as systime ticks\n\n Output Parameters:\n   reltime - Pointer to receive the time value presented as struct timespec\n\n Returned Value:\n   Always returns OK (0)\n"]
-    pub fn clock_ticks2time(ticks: sclock_t, reltime: *mut timespec) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: clock_systime_timespec\n\n Description:\n   Return the current value of the system timer counter as a struct\n   timespec.\n\n Input Parameters:\n   ts - Location to return the time\n\n Returned Value:\n   OK (0) on success; a negated errno value on failure.\n\n Assumptions:\n"]
-    pub fn clock_systime_timespec(ts: *mut timespec) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " perf_gettime"]
-    pub fn perf_gettime() -> clock_t;
-}
-extern "C" {
-    #[doc = " perf_convert"]
-    pub fn perf_convert(elapsed: clock_t, ts: *mut timespec);
-}
-extern "C" {
-    #[doc = " perf_gettfreq"]
-    pub fn perf_getfreq() -> cty::c_ulong;
-}
-extern "C" {
-    #[doc = " Name: nxsem_init\n\n Description:\n   This function initializes the UNNAMED semaphore sem. Following a\n   successful call to nxsem_init(), the semaphore may be used in subsequent\n   calls to nxsem_wait(), nxsem_post(), and nxsem_trywait().  The semaphore\n   remains usable until it is destroyed.\n\n   Only sem itself may be used for performing synchronization. The result\n   of referring to copies of sem in calls to sem_wait(), sem_trywait(),\n   sem_post(), and sem_destroy() is undefined.\n\n Input Parameters:\n   sem - Semaphore to be initialized\n   pshared - Process sharing (not used)\n   value - Semaphore initialization value\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
-    pub fn nxsem_init(sem: *mut sem_t, pshared: cty::c_int, value: cty::c_uint) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxsem_destroy\n\n Description:\n   This function is used to destroy the un-named semaphore indicated by\n   'sem'.  Only a semaphore that was created using nxsem_init() may be\n   destroyed using nxsem_destroy(); the effect of calling nxsem_destroy()\n   with a named semaphore is undefined.  The effect of subsequent use of\n   the semaphore sem is undefined until sem is re-initialized by another\n   call to nxsem_init().\n\n   The effect of destroying a semaphore upon which other processes are\n   currently blocked is undefined.\n\n Input Parameters:\n   sem - Semaphore to be destroyed.\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
-    pub fn nxsem_destroy(sem: *mut sem_t) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxsem_wait\n\n Description:\n   This function attempts to lock the semaphore referenced by 'sem'.  If\n   the semaphore value is (<=) zero, then the calling task will not return\n   until it successfully acquires the lock.\n\n   This is an internal OS interface.  It is functionally equivalent to\n   sem_wait except that:\n\n   - It is not a cancellation point, and\n   - It does not modify the errno value.\n\n Input Parameters:\n   sem - Semaphore descriptor.\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n\n     EINVAL - Invalid attempt to get the semaphore\n     EINTR  - The wait was interrupted by the receipt of a signal.\n"]
-    pub fn nxsem_wait(sem: *mut sem_t) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxsem_trywait\n\n Description:\n   This function locks the specified semaphore only if the semaphore is\n   currently not locked.  Otherwise, it locks the semaphore.  In either\n   case, the call returns without blocking.\n\n Input Parameters:\n   sem - the semaphore descriptor\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n\n     EINVAL - Invalid attempt to get the semaphore\n     EAGAIN - The semaphore is not available.\n\n Assumptions:\n"]
-    pub fn nxsem_trywait(sem: *mut sem_t) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxsem_timedwait\n\n Description:\n   This function will lock the semaphore referenced by sem as in the\n   sem_wait() function. However, if the semaphore cannot be locked without\n   waiting for another process or thread to unlock the semaphore by\n   performing a sem_post() function, this wait will be terminated when the\n   specified timeout expires.\n\n   The timeout will expire when the absolute time specified by abstime\n   passes, as measured by the clock on which timeouts are based (that is,\n   when the value of that clock equals or exceeds abstime), or if the\n   absolute time specified by abstime has already been passed at the\n   time of the call.\n\n   This is an internal OS interface.  It is functionally equivalent to\n   sem_wait except that:\n\n   - It is not a cancellation point, and\n   - It does not modify the errno value.\n\n Input Parameters:\n   sem     - Semaphore object\n   abstime - The absolute time to wait until a timeout is declared.\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   That may be one of:\n\n   EINVAL    The sem argument does not refer to a valid semaphore.  Or the\n             thread would have blocked, and the abstime parameter specified\n             a nanoseconds field value less than zero or greater than or\n             equal to 1000 million.\n   ETIMEDOUT The semaphore could not be locked before the specified timeout\n             expired.\n   EDEADLK   A deadlock condition was detected.\n   EINTR     A signal interrupted this function.\n   ECANCELED May be returned if the thread is canceled while waiting.\n"]
-    pub fn nxsem_timedwait(sem: *mut sem_t, abstime: *const timespec) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxsem_clockwait\n\n Description:\n   This function will lock the semaphore referenced by sem as in the\n   sem_wait() function. However, if the semaphore cannot be locked without\n   waiting for another process or thread to unlock the semaphore by\n   performing a sem_post() function, this wait will be terminated when the\n   specified timeout expires.\n\n   The timeout will expire when the absolute time specified by abstime\n   passes, as measured by the clock on which timeouts are based (that is,\n   when the value of that clock equals or exceeds abstime), or if the\n   absolute time specified by abstime has already been passed at the\n   time of the call.\n\n   This is an internal OS interface.  It is functionally equivalent to\n   sem_wait except that:\n\n   - It is not a cancellation point, and\n   - It does not modify the errno value.\n\n Input Parameters:\n   sem     - Semaphore object\n   clockid - The timing source to use in the conversion\n   abstime - The absolute time to wait until a timeout is declared.\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   That may be one of:\n\n   EINVAL    The sem argument does not refer to a valid semaphore.  Or the\n             thread would have blocked, and the abstime parameter specified\n             a nanoseconds field value less than zero or greater than or\n             equal to 1000 million.\n   ETIMEDOUT The semaphore could not be locked before the specified timeout\n             expired.\n   EDEADLK   A deadlock condition was detected.\n   EINTR     A signal interrupted this function.\n   ECANCELED May be returned if the thread is canceled while waiting.\n"]
-    pub fn nxsem_clockwait(
-        sem: *mut sem_t,
-        clockid: clockid_t,
-        abstime: *const timespec,
-    ) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxsem_tickwait\n\n Description:\n   This function is a lighter weight version of sem_timedwait().  It is\n   non-standard and intended only for use within the RTOS.\n\n Input Parameters:\n   sem     - Semaphore object\n   delay   - Ticks to wait from the start time until the semaphore is\n             posted.  If ticks is zero, then this function is equivalent\n             to sem_trywait().\n\n Returned Value:\n   This is an internal OS interface, not available to applications, and\n   hence follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure:\n\n     -ETIMEDOUT is returned on the timeout condition.\n     -ECANCELED may be returned if the thread is canceled while waiting.\n"]
-    pub fn nxsem_tickwait(sem: *mut sem_t, delay: u32) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxsem_post\n\n Description:\n   When a kernel thread has finished with a semaphore, it will call\n   nxsem_post().  This function unlocks the semaphore referenced by sem\n   by performing the semaphore unlock operation on that semaphore.\n\n   If the semaphore value resulting from this operation is positive, then\n   no tasks were blocked waiting for the semaphore to become unlocked; the\n   semaphore is simply incremented.\n\n   If the value of the semaphore resulting from this operation is zero,\n   then one of the tasks blocked waiting for the semaphore shall be\n   allowed to return successfully from its call to sem_wait().\n\n Input Parameters:\n   sem - Semaphore descriptor\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n\n Assumptions:\n   This function may be called from an interrupt handler.\n"]
-    pub fn nxsem_post(sem: *mut sem_t) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name:  nxsem_get_value\n\n Description:\n   This function updates the location referenced by 'sval' argument to\n   have the value of the semaphore referenced by 'sem' without effecting\n   the state of the semaphore.  The updated value represents the actual\n   semaphore value that occurred at some unspecified time during the call,\n   but may not reflect the actual value of the semaphore when it is\n   returned to the calling task.\n\n   If 'sem' is locked, the value return by nxsem_get_value() will either be\n   zero or a negative number whose absolute value represents the number\n   of tasks waiting for the semaphore.\n\n Input Parameters:\n   sem - Semaphore descriptor\n   sval - Buffer by which the value is returned\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
-    pub fn nxsem_get_value(sem: *mut sem_t, sval: *mut cty::c_int) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxsem_open\n\n Description:\n   This function establishes a connection between named semaphores and a\n   task.  Following a call to sem_open() with the semaphore name, the task\n   may reference the semaphore associated with name using the address\n   returned by this call.  The semaphore may be used in subsequent calls\n   to sem_wait(), sem_trywait(), and sem_post().  The semaphore remains\n   usable until the semaphore is closed by a successful call to\n   sem_close().\n\n   If a task makes multiple calls to sem_open() with the same name, then\n   the same semaphore address is returned (provided there have been no\n   calls to sem_unlink()).\n\n Input Parameters:\n   name  - Semaphore name\n   oflags - Semaphore creation options.  This may either or both of the\n     following bit settings.\n     oflags = 0:  Connect to the semaphore only if it already exists.\n     oflags = O_CREAT:  Connect to the semaphore if it exists, otherwise\n        create the semaphore.\n     oflags = O_CREAT|O_EXCL:  Create a new semaphore\n        unless one of this name already exists.\n   Optional parameters.  When the O_CREAT flag is specified, two optional\n     parameters are expected:\n     1. mode_t mode, and\n     2. unsigned int value.  This initial value of the semaphore. Valid\n        initial values of the semaphore must be less than or equal to\n        SEM_VALUE_MAX.\n\n Returned Value:\n   A pointer to sem_t or negated errno if unsuccessful.\n\n Assumptions:\n"]
-    pub fn nxsem_open(name: *const cty::c_char, oflags: cty::c_int, ...) -> *mut sem_t;
-}
-extern "C" {
-    #[doc = " Name:  nxsem_close\n\n Description:\n   This function is called to indicate that the calling task is finished\n   with the specified named semaphore, 'sem'.  The sem_close() deallocates\n   any system resources allocated by the system for this named semaphore.\n\n   If the semaphore has not been removed with a call to sem_unlink(), then\n   sem_close() has no effect on the named semaphore.  However, when the\n   named semaphore has been fully unlinked, the semaphore will vanish when\n   the last task closes it.\n\n Input Parameters:\n  sem - semaphore descriptor\n\n Returned Value:\n  0 (OK), or negated errno if unsuccessful.\n\n Assumptions:\n   - Care must be taken to avoid risking the deletion of a semaphore that\n     another calling task has already locked.\n   - sem_close must not be called for an un-named semaphore\n"]
-    pub fn nxsem_close(sem: *mut sem_t) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxsem_unlink\n\n Description:\n   This function removes the semaphore named by the input parameter 'name.'\n   If the semaphore named by 'name' is currently referenced by other task,\n   the sem_unlink() will have no effect on the state of the semaphore.  If\n   one or more processes have the semaphore open when sem_unlink() is\n   called, destruction of the semaphore will be postponed until all\n   references to the semaphore have been destroyed by calls of sem_close().\n\n Input Parameters:\n   name - Semaphore name\n\n Returned Value:\n  0 (OK), or negated errno if unsuccessful.\n\n Assumptions:\n"]
-    pub fn nxsem_unlink(name: *const cty::c_char) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxsem_reset\n\n Description:\n   Reset a semaphore count to a specific value.  This is similar to part\n   of the operation of nxsem_init().  But nxsem_reset() may need to wake up\n   tasks waiting on a count.  This kind of operation is sometimes required\n   within the OS (only) for certain error handling conditions.\n\n Input Parameters:\n   sem   - Semaphore descriptor to be reset\n   count - The requested semaphore count\n\n Returned Value:\n   This is an internal OS interface, not available to applications, and\n   hence follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
-    pub fn nxsem_reset(sem: *mut sem_t, count: i16) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxsem_set_protocol\n\n Description:\n    Set semaphore protocol attribute.\n\n    One particularly important use of this function is when a semaphore\n    is used for inter-task communication like:\n\n      TASK A                 TASK B\n      sem_init(sem, 0, 0);\n      sem_wait(sem);\n                             sem_post(sem);\n      Awakens as holder\n\n    In this case priority inheritance can interfere with the operation of\n    the semaphore.  The problem is that when TASK A is restarted it is a\n    holder of the semaphore.  However, it never calls sem_post(sem) so it\n    becomes *permanently* a holder of the semaphore and may have its\n    priority boosted when any other task tries to acquire the semaphore.\n\n    The fix is to call nxsem_set_protocol(SEM_PRIO_NONE) immediately after\n    the sem_init() call so that there will be no priority inheritance\n    operations on this semaphore.\n\n Input Parameters:\n    sem      - A pointer to the semaphore whose attributes are to be\n               modified\n    protocol - The new protocol to use\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
-    pub fn nxsem_set_protocol(sem: *mut sem_t, protocol: cty::c_int) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxsem_wait_uninterruptible\n\n Description:\n   This function is wrapped version of nxsem_wait(), which is\n   uninterruptible and convenient for use.\n\n Parameters:\n   sem - Semaphore descriptor.\n\n Return Value:\n   Zero(OK)  - On success\n   EINVAL    - Invalid attempt to get the semaphore\n   ECANCELED - May be returned if the thread is canceled while waiting.\n\n NOTE:  It is essential that callers of this function handle the\n ECANCELED error.  Correct handling is that the function should return the\n error and the error should propagate back up the calling tree to the\n cancellation point interface function where the thread termination will\n be handled gracefully\n"]
-    pub fn nxsem_wait_uninterruptible(sem: *mut sem_t) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxsem_timedwait_uninterruptible\n\n Description:\n   This function is wrapped version of nxsem_timedwait(), which is\n   uninterruptible and convenient for use.\n\n Input Parameters:\n   sem     - Semaphore object\n   abstime - The absolute time to wait until a timeout is declared.\n\n Returned Value:\n   EINVAL    The sem argument does not refer to a valid semaphore.  Or the\n             thread would have blocked, and the abstime parameter specified\n             a nanoseconds field value less than zero or greater than or\n             equal to 1000 million.\n   ETIMEDOUT The semaphore could not be locked before the specified timeout\n             expired.\n   EDEADLK   A deadlock condition was detected.\n   ECANCELED May be returned if the thread is canceled while waiting.\n\n NOTE:  It is essential that callers of this function handle the\n ECANCELED error.  Correct handling is that the function should return the\n error and the error should propagate back up the calling tree to the\n cancellation point interface function where the thread termination will\n be handled gracefully\n"]
-    pub fn nxsem_timedwait_uninterruptible(sem: *mut sem_t, abstime: *const timespec)
-        -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxsem_clockwait_uninterruptible\n\n Description:\n   This function is wrapped version of nxsem_clockwait(), which is\n   uninterruptible and convenient for use.\n\n Input Parameters:\n   sem     - Semaphore object\n   clockid - The timing source to use in the conversion\n   abstime - The absolute time to wait until a timeout is declared.\n\n Returned Value:\n   EINVAL    The sem argument does not refer to a valid semaphore.  Or the\n             thread would have blocked, and the abstime parameter specified\n             a nanoseconds field value less than zero or greater than or\n             equal to 1000 million.\n   ETIMEDOUT The semaphore could not be locked before the specified timeout\n             expired.\n   EDEADLK   A deadlock condition was detected.\n   ECANCELED May be returned if the thread is canceled while waiting.\n\n NOTE:  It is essential that callers of this function handle the\n ECANCELED error.  Correct handling is that the function should return the\n error and the error should propagate back up the calling tree to the\n cancellation point interface function where the thread termination will\n be handled gracefully\n"]
-    pub fn nxsem_clockwait_uninterruptible(
-        sem: *mut sem_t,
-        clockid: clockid_t,
-        abstime: *const timespec,
-    ) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxsem_tickwait_uninterruptible\n\n Description:\n   This function is wrapped version of nxsem_tickwait(), which is\n   uninterruptible and convenient for use.\n\n Input Parameters:\n   sem     - Semaphore object\n   delay   - Ticks to wait from the start time until the semaphore is\n             posted.  If ticks is zero, then this function is equivalent\n             to sem_trywait().\n\n Returned Value:\n   This is an internal OS interface, not available to applications, and\n   hence follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure:\n\n     -ETIMEDOUT is returned on the timeout condition.\n     -ECANCELED may be returned if the thread is canceled while waiting.\n\n NOTE:  It is essential that callers of this function handle the\n ECANCELED error.  Correct handling is that the function should return the\n error and the error should propagate back up the calling tree to the\n cancellation point interface function where the thread termination will\n be handled gracefully\n"]
-    pub fn nxsem_tickwait_uninterruptible(sem: *mut sem_t, delay: u32) -> cty::c_int;
-}
-#[doc = " Public Type Definitions"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct mutex_s {
-    pub sem: sem_t,
-    pub holder: pid_t,
-}
-#[doc = " Public Type Definitions"]
-pub type mutex_t = mutex_s;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct rmutex_s {
-    pub mutex: mutex_t,
-    pub count: cty::c_uint,
-}
-pub type rmutex_t = rmutex_s;
-extern "C" {
-    #[doc = " Name: nxmutex_init\n\n Description:\n   This function initializes the UNNAMED mutex. Following a\n   successful call to nxmutex_init(), the mutex may be used in subsequent\n   calls to nxmutex_lock(), nxmutex_unlock(), and nxmutex_trylock().  The\n   mutex remains usable until it is destroyed.\n\n Parameters:\n   mutex - Semaphore to be initialized\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
-    pub fn nxmutex_init(mutex: *mut mutex_t) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxmutex_destroy\n\n Description:\n   This function initializes the UNNAMED mutex. Following a\n   successful call to nxmutex_init(), the mutex may be used in subsequent\n   calls to nxmutex_lock(), nxmutex_unlock(), and nxmutex_trylock().  The\n   mutex remains usable until it is destroyed.\n\n Parameters:\n   mutex - Semaphore to be destroyed\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
-    pub fn nxmutex_destroy(mutex: *mut mutex_t) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxmutex_is_hold\n\n Description:\n   This function check whether the caller hold the mutex\n   referenced by 'mutex'.\n\n Parameters:\n   mutex - mutex descriptor.\n\n Return Value:\n"]
-    pub fn nxmutex_is_hold(mutex: *mut mutex_t) -> bool;
-}
-extern "C" {
-    #[doc = " Name: nxmutex_is_locked\n\n Description:\n   This function get the lock state the mutex referenced by 'mutex'.\n\n Parameters:\n   mutex - mutex descriptor.\n\n Return Value:\n"]
-    pub fn nxmutex_is_locked(mutex: *mut mutex_t) -> bool;
-}
-extern "C" {
-    #[doc = " Name: nxmutex_lock\n\n Description:\n   This function attempts to lock the mutex referenced by 'mutex'.  The\n   mutex is implemented with a semaphore, so if the semaphore value is\n   (<=) zero, then the calling task will not return until it successfully\n   acquires the lock.\n\n Parameters:\n   mutex - mutex descriptor.\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n"]
-    pub fn nxmutex_lock(mutex: *mut mutex_t) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxmutex_trylock\n\n Description:\n   This function locks the mutex only if the mutex is currently not locked.\n   If the mutex has been locked already, the call returns without blocking.\n\n Parameters:\n   mutex - mutex descriptor.\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n\n     -EINVAL - Invalid attempt to lock the mutex\n     -EAGAIN - The mutex is not available.\n"]
-    pub fn nxmutex_trylock(mutex: *mut mutex_t) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxmutex_timedlock\n\n Description:\n   This function attempts to lock the mutex .  If the mutex value\n   is (<=) zero,then the calling task will not return until it\n   successfully acquires the lock or timed out\n\n Input Parameters:\n   mutex   - Mutex object\n   timeout - The time when mutex lock timed out\n\n Returned Value:\n   OK        The mutex successfully acquires\n   EINVAL    The mutex argument does not refer to a valid mutex.  Or the\n             thread would have blocked, and the abstime parameter specified\n             a nanoseconds field value less than zero or greater than or\n             equal to 1000 million.\n   ETIMEDOUT The mutex could not be locked before the specified timeout\n             expired.\n   EDEADLK   A deadlock condition was detected.\n"]
-    pub fn nxmutex_timedlock(mutex: *mut mutex_t, timeout: cty::c_uint) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxmutex_unlock\n\n Description:\n   This function attempts to unlock the mutex referenced by 'mutex'.\n\n Parameters:\n   mutex - mutex descriptor.\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n\n Assumptions:\n   This function may be called from an interrupt handler.\n"]
-    pub fn nxmutex_unlock(mutex: *mut mutex_t) -> cty::c_int;
-}
-extern "C" {
-    pub fn nxmutex_reset(mutex: *mut mutex_t);
-}
-extern "C" {
-    #[doc = " Name: nxmutex_breaklock\n\n Description:\n   This function attempts to break the mutex\n\n Parameters:\n   mutex   - Mutex descriptor.\n   locked  - Is the mutex break success\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n"]
-    pub fn nxmutex_breaklock(mutex: *mut mutex_t, locked: *mut bool) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxmutex_restorelock\n\n Description:\n   This function attempts to restore the mutex.\n\n Parameters:\n   mutex   - mutex descriptor.\n   locked  - true: it's mean that the mutex is broke success\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure\n"]
-    pub fn nxmutex_restorelock(mutex: *mut mutex_t, locked: bool) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxrmutex_init\n\n Description:\n   This function initializes the UNNAMED recursive mutex. Following a\n   successful call to nxrmutex_init(), the recursive mutex may be used in\n   subsequent calls to nxrmutex_lock(), nxrmutex_unlock(),\n   and nxrmutex_trylock(). The recursive mutex remains usable\n   until it is destroyed.\n\n Parameters:\n   rmutex - Recursive mutex to be initialized\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
-    pub fn nxrmutex_init(rmutex: *mut rmutex_t) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxrmutex_destroy\n\n Description:\n   This function destroy the UNNAMED recursive mutex.\n\n Parameters:\n   rmutex - Recursive mutex to be destroyed\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
-    pub fn nxrmutex_destroy(rmutex: *mut rmutex_t) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxrmutex_is_hold\n\n Description:\n   This function check whether the caller hold the recursive mutex\n   referenced by 'rmutex'.\n\n Parameters:\n   rmutex - Recursive mutex descriptor.\n\n Return Value:\n"]
-    pub fn nxrmutex_is_hold(rmutex: *mut rmutex_t) -> bool;
-}
-extern "C" {
-    #[doc = " Name: nxrmutex_is_locked\n\n Description:\n   This function get the lock state the recursive mutex\n   referenced by 'rmutex'.\n\n Parameters:\n   rmutex - Recursive mutex descriptor.\n\n Return Value:\n"]
-    pub fn nxrmutex_is_locked(rmutex: *mut rmutex_t) -> bool;
-}
-extern "C" {
-    #[doc = " Name: nrxmutex_lock\n\n Description:\n   This function attempts to lock the recursive mutex referenced by\n   'rmutex'.The recursive mutex can be locked multiple times in the same\n   thread.\n\n Parameters:\n   rmutex - Recursive mutex descriptor.\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n"]
-    pub fn nxrmutex_lock(rmutex: *mut rmutex_t) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxrmutex_trylock\n\n Description:\n   This function locks the recursive mutex if the recursive mutex is\n   currently not locked or the same thread call.\n   If the recursive mutex is locked and other thread call it,\n   the call returns without blocking.\n\n Parameters:\n   rmutex - Recursive mutex descriptor.\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n\n     -EINVAL - Invalid attempt to lock the recursive mutex\n     -EAGAIN - The recursive mutex is not available.\n"]
-    pub fn nxrmutex_trylock(rmutex: *mut rmutex_t) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxrmutex_timedlock\n\n Description:\n   This function attempts to lock the mutex .  If the mutex value\n   is (<=) zero,then the calling task will not return until it\n   successfully acquires the lock or timed out\n\n Input Parameters:\n   rmutex  - Rmutex object\n   timeout - The time when mutex lock timed out\n\n Returned Value:\n   OK        The mutex successfully acquires\n   EINVAL    The mutex argument does not refer to a valid mutex.  Or the\n             thread would have blocked, and the abstime parameter specified\n             a nanoseconds field value less than zero or greater than or\n             equal to 1000 million.\n   ETIMEDOUT The mutex could not be locked before the specified timeout\n             expired.\n   EDEADLK   A deadlock condition was detected.\n   ECANCELED May be returned if the thread is canceled while waiting.\n"]
-    pub fn nxrmutex_timedlock(rmutex: *mut rmutex_t, timeout: cty::c_uint) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxrmutex_unlock\n\n Description:\n   This function attempts to unlock the recursive mutex\n   referenced by 'rmutex'.\n\n Parameters:\n   rmutex - Recursive mutex descriptor.\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n\n Assumptions:\n   This function may be called from an interrupt handler.\n"]
-    pub fn nxrmutex_unlock(rmutex: *mut rmutex_t) -> cty::c_int;
-}
-extern "C" {
-    pub fn nxrmutex_reset(rmutex: *mut rmutex_t);
-}
-extern "C" {
-    #[doc = " Name: nrxmutex_breaklock\n\n Description:\n   This function attempts to break the recursive mutex\n\n Parameters:\n   rmutex - Recursive mutex descriptor.\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n"]
-    pub fn nxrmutex_breaklock(rmutex: *mut rmutex_t, count: *mut cty::c_uint) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: nxrmutex_restorelock\n\n Description:\n   This function attempts to restore the recursive mutex.\n\n Parameters:\n   rmutex - Recursive mutex descriptor.\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n"]
-    pub fn nxrmutex_restorelock(rmutex: *mut rmutex_t, count: cty::c_uint) -> cty::c_int;
-}
-#[doc = " Public Types"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct usbhost_devaddr_s {
-    pub next: u8,
-    pub lock: mutex_t,
-    pub alloctab: [u32; 4usize],
-}
-extern "C" {
-    #[doc = " Name: usbhost_devaddr_initialize\n\n Description:\n   Initialize the caller provided struct usbhost_devaddr_s instance in\n   preparation for the management of device addresses on behalf of an root\n   hub port.\n\n Input Parameters:\n   devgen - A reference to a usbhost_devaddr_s structure.\n\n Returned Value:\n   On success, zero (OK) is returned. On a failure, a negated errno value\n   is returned indicating the nature of the failure.\n"]
-    pub fn usbhost_devaddr_initialize(devgen: *mut usbhost_devaddr_s) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: usbhost_devaddr_create\n\n Description:\n   Create a new unique device address for this hub port.\n\n Input Parameters:\n   hport - A reference to a hub port structure to which a device has been\n     newly connected and so is in need of a function address.\n\n Returned Value:\n   On success, a new device function address in the range 0x01 to 0x7f\n   is returned.  On failure, a negated errno value is returned.\n"]
-    pub fn usbhost_devaddr_create(hport: *mut usbhost_hubport_s) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: usbhost_devaddr_destroy\n\n Description:\n  Release a device address previously assigned by usbhost_devaddr_create().\n\n Input Parameters:\n  hport - A reference to a hub port structure from which a device has been\n     disconnected and so no longer needs the function address.\n  devaddr - The address to be released.\n\n Returned Value:\n   None\n"]
-    pub fn usbhost_devaddr_destroy(hport: *mut usbhost_hubport_s, devaddr: u8);
-}
-#[doc = " Public Types"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct usbhost_id_s {
-    pub base: u8,
-    pub subclass: u8,
-    pub proto: u8,
-    pub vid: u16,
-    pub pid: u16,
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct usbhost_registry_s {
-    pub flink: *mut usbhost_registry_s,
-    pub create: ::core::option::Option<
-        unsafe extern "C" fn(
-            hub: *mut usbhost_hubport_s,
-            id: *const usbhost_id_s,
-        ) -> *mut usbhost_class_s,
-    >,
-    pub nids: u8,
-    pub id: *const usbhost_id_s,
-}
-pub type usbhost_ep_t = *mut cty::c_void;
-#[doc = " Public Functions Definitions"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct usbhost_hubport_s {
-    pub drvr: *mut usbhost_driver_s,
-    pub devclass: *mut usbhost_class_s,
-    pub ep0: usbhost_ep_t,
-    pub connected: bool,
-    pub port: u8,
-    pub funcaddr: u8,
-    pub speed: u8,
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct usbhost_roothubport_s {
-    pub hport: usbhost_hubport_s,
-    pub pdevgen: *mut usbhost_devaddr_s,
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct usbhost_class_s {
-    pub hport: *mut usbhost_hubport_s,
-    pub connect: ::core::option::Option<
-        unsafe extern "C" fn(
-            devclass: *mut usbhost_class_s,
-            configdesc: *const u8,
-            desclen: cty::c_int,
-        ) -> cty::c_int,
-    >,
-    pub disconnected:
-        ::core::option::Option<unsafe extern "C" fn(devclass: *mut usbhost_class_s) -> cty::c_int>,
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct usbhost_epdesc_s {
-    pub hport: *mut usbhost_hubport_s,
-    pub addr: u8,
-    pub in_: bool,
-    pub xfrtype: u8,
-    pub interval: u8,
-    pub mxpacketsize: u16,
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct usbhost_connection_s {
-    pub wait: ::core::option::Option<
-        unsafe extern "C" fn(
-            conn: *mut usbhost_connection_s,
-            hport: *mut *mut usbhost_hubport_s,
-        ) -> cty::c_int,
-    >,
-    pub enumerate: ::core::option::Option<
-        unsafe extern "C" fn(
-            conn: *mut usbhost_connection_s,
-            hport: *mut usbhost_hubport_s,
-        ) -> cty::c_int,
-    >,
-}
-pub type usbhost_asynch_t =
-    ::core::option::Option<unsafe extern "C" fn(arg: *mut cty::c_void, result: isize)>;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct usbhost_driver_s {
-    pub ep0configure: ::core::option::Option<
-        unsafe extern "C" fn(
-            drvr: *mut usbhost_driver_s,
-            ep0: usbhost_ep_t,
-            funcaddr: u8,
-            speed: u8,
-            maxpacketsize: u16,
-        ) -> cty::c_int,
-    >,
-    pub epalloc: ::core::option::Option<
-        unsafe extern "C" fn(
-            drvr: *mut usbhost_driver_s,
-            epdesc: *const usbhost_epdesc_s,
-            ep: *mut usbhost_ep_t,
-        ) -> cty::c_int,
-    >,
-    pub epfree: ::core::option::Option<
-        unsafe extern "C" fn(drvr: *mut usbhost_driver_s, ep: usbhost_ep_t) -> cty::c_int,
-    >,
-    pub alloc: ::core::option::Option<
-        unsafe extern "C" fn(
-            drvr: *mut usbhost_driver_s,
-            buffer: *mut *mut u8,
-            maxlen: *mut usize,
-        ) -> cty::c_int,
-    >,
-    pub free: ::core::option::Option<
-        unsafe extern "C" fn(drvr: *mut usbhost_driver_s, buffer: *mut u8) -> cty::c_int,
-    >,
-    pub ioalloc: ::core::option::Option<
-        unsafe extern "C" fn(
-            drvr: *mut usbhost_driver_s,
-            buffer: *mut *mut u8,
-            buflen: usize,
-        ) -> cty::c_int,
-    >,
-    pub iofree: ::core::option::Option<
-        unsafe extern "C" fn(drvr: *mut usbhost_driver_s, buffer: *mut u8) -> cty::c_int,
-    >,
-    pub ctrlin: ::core::option::Option<
-        unsafe extern "C" fn(
-            drvr: *mut usbhost_driver_s,
-            ep0: usbhost_ep_t,
-            req: *mut usb_ctrlreq_s,
-            buffer: *mut u8,
-        ) -> cty::c_int,
-    >,
-    pub ctrlout: ::core::option::Option<
-        unsafe extern "C" fn(
-            drvr: *mut usbhost_driver_s,
-            ep0: usbhost_ep_t,
-            req: *const usb_ctrlreq_s,
-            buffer: *const u8,
-        ) -> cty::c_int,
-    >,
-    pub transfer: ::core::option::Option<
-        unsafe extern "C" fn(
-            drvr: *mut usbhost_driver_s,
-            ep: usbhost_ep_t,
-            buffer: *mut u8,
-            buflen: usize,
-        ) -> isize,
-    >,
-    pub cancel: ::core::option::Option<
-        unsafe extern "C" fn(drvr: *mut usbhost_driver_s, ep: usbhost_ep_t) -> cty::c_int,
-    >,
-    pub disconnect: ::core::option::Option<
-        unsafe extern "C" fn(drvr: *mut usbhost_driver_s, hport: *mut usbhost_hubport_s),
-    >,
-}
-extern "C" {
-    #[doc = " Name: usbhost_registerclass\n\n Description:\n   Register a USB host class implementation.  The caller provides an\n   instance of struct usbhost_registry_s that contains all of the\n   information that will be needed later to (1) associate the USB host\n   class implementation with a connected USB device, and (2) to obtain and\n   bind a struct usbhost_class_s instance for the device.\n\n Input Parameters:\n   devclass - An write-able instance of struct usbhost_registry_s that will\n     be maintained in a registry.\n\n Returned Value:\n   On success, this function will return zero (OK).  Otherwise, a negated\n   errno value is returned.\n"]
-    pub fn usbhost_registerclass(devclass: *mut usbhost_registry_s) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: usbhost_findclass\n\n Description:\n   Find a USB host class implementation previously registered by\n   usbhost_registerclass().  On success, an instance of struct\n   usbhost_registry_s will be returned.  That instance will contain all of\n   the information that will be needed to obtain and bind a struct\n   usbhost_class_s instance for the device.\n\n Input Parameters:\n   id - Identifies the USB device class that has connect to the USB host.\n\n Returned Value:\n   On success this function will return a non-NULL instance of struct\n   usbhost_registry_s.  NULL will be returned on failure.  This function\n   can only fail if (1) id is NULL, or (2) no USB host class is registered\n   that matches the device class ID.\n"]
-    pub fn usbhost_findclass(id: *const usbhost_id_s) -> *const usbhost_registry_s;
-}
-extern "C" {
-    #[doc = " Name: usbhost_wlaninit\n\n Description:\n   Initialize the USB WLAN class driver.  This function should be called\n   by platform-specific code in order to initialize and register support\n   for the USB host class device.\n\n Input Parameters:\n   None\n\n Returned Value:\n   On success this function will return zero (OK);  A negated errno value\n   will be returned on failure.\n"]
-    pub fn usbhost_wlaninit() -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: usbhost_enumerate\n\n Description:\n   This is a share-able implementation of most of the logic required by the\n   driver enumerate() method.  This logic within this method should be\n   common to all USB host drivers.\n\n   Enumerate the connected device.  As part of this enumeration process,\n   the driver will (1) get the device's configuration descriptor, (2)\n   extract the class ID info from the configuration descriptor, (3) call\n   usbhost_findclass() to find the class that supports this device, (4)\n   call the create() method on the struct usbhost_registry_s interface\n   to get a class instance, and finally (5) call the configdesc() method\n   of the struct usbhost_class_s interface.  After that, the class is in\n   charge of the sequence of operations.\n\n Input Parameters:\n   hub - The hub that manages the new class.\n   devclass - If the class driver for the device is successful located\n      and bound to the hub, the allocated class instance is returned into\n      this caller-provided memory location.\n\n Returned Value:\n   On success, zero (OK) is returned. On a failure, a negated errno value\n   is returned indicating the nature of the failure\n\n Assumptions:\n   - Only a single class bound to a single device is supported.\n   - Called from a single thread so no mutual exclusion is required.\n   - Never called from an interrupt handler.\n"]
-    pub fn usbhost_enumerate(
-        hub: *mut usbhost_hubport_s,
-        devclass: *mut *mut usbhost_class_s,
     ) -> cty::c_int;
 }
 #[doc = " Type Definitions"]
@@ -4145,6 +2348,139 @@ extern "C" {
         arg3: cty::c_uint,
     ) -> cty::c_int;
 }
+#[doc = " Public Types"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct timespec {
+    pub tv_sec: time_t,
+    pub tv_nsec: cty::c_long,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct tm {
+    pub tm_sec: cty::c_int,
+    pub tm_min: cty::c_int,
+    pub tm_hour: cty::c_int,
+    pub tm_mday: cty::c_int,
+    pub tm_mon: cty::c_int,
+    pub tm_year: cty::c_int,
+    pub tm_wday: cty::c_int,
+    pub tm_yday: cty::c_int,
+    pub tm_isdst: cty::c_int,
+    pub tm_gmtoff: cty::c_long,
+    pub tm_zone: *const cty::c_char,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct itimerspec {
+    pub it_interval: timespec,
+    pub it_value: timespec,
+}
+extern "C" {
+    #[doc = " Public Function Prototypes"]
+    pub fn clock() -> clock_t;
+}
+extern "C" {
+    pub fn clock_settime(clockid: clockid_t, tp: *const timespec) -> cty::c_int;
+}
+extern "C" {
+    pub fn clock_gettime(clockid: clockid_t, tp: *mut timespec) -> cty::c_int;
+}
+extern "C" {
+    pub fn clock_getres(clockid: clockid_t, res: *mut timespec) -> cty::c_int;
+}
+extern "C" {
+    pub fn clock_getcpuclockid(pid: pid_t, clockid: *mut clockid_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn timespec_get(t: *mut timespec, b: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn timegm(tp: *mut tm) -> time_t;
+}
+extern "C" {
+    pub fn mktime(tp: *mut tm) -> time_t;
+}
+extern "C" {
+    pub fn gmtime(timep: *const time_t) -> *mut tm;
+}
+extern "C" {
+    pub fn gmtime_r(timep: *const time_t, result: *mut tm) -> *mut tm;
+}
+extern "C" {
+    pub fn localtime(timep: *const time_t) -> *mut tm;
+}
+extern "C" {
+    pub fn localtime_r(timep: *const time_t, result: *mut tm) -> *mut tm;
+}
+extern "C" {
+    pub fn strftime(
+        s: *mut cty::c_char,
+        max: usize,
+        format: *const cty::c_char,
+        tm: *const tm,
+    ) -> usize;
+}
+extern "C" {
+    pub fn strptime(
+        s: *const cty::c_char,
+        format: *const cty::c_char,
+        tm: *mut tm,
+    ) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn asctime(tp: *const tm) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn asctime_r(tp: *const tm, buf: *mut cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn ctime(timep: *const time_t) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn ctime_r(timep: *const time_t, buf: *mut cty::c_char) -> *mut cty::c_char;
+}
+extern "C" {
+    pub fn time(timep: *mut time_t) -> time_t;
+}
+extern "C" {
+    pub fn difftime(time1: time_t, time0: time_t) -> f64;
+}
+extern "C" {
+    pub fn timer_create(
+        clockid: clockid_t,
+        evp: *mut sigevent,
+        timerid: *mut timer_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn timer_delete(timerid: timer_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn timer_settime(
+        timerid: timer_t,
+        flags: cty::c_int,
+        value: *const itimerspec,
+        ovalue: *mut itimerspec,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn timer_gettime(timerid: timer_t, value: *mut itimerspec) -> cty::c_int;
+}
+extern "C" {
+    pub fn timer_getoverrun(timerid: timer_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn clock_nanosleep(
+        clockid: clockid_t,
+        flags: cty::c_int,
+        rqtp: *const timespec,
+        rmtp: *mut timespec,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn nanosleep(rqtp: *const timespec, rmtp: *mut timespec) -> cty::c_int;
+}
 #[doc = " Public Type Definitions"]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -4224,6 +2560,9 @@ extern "C" {
 }
 extern "C" {
     pub fn sched_idletask() -> bool;
+}
+extern "C" {
+    pub fn __errno() -> *mut cty::c_int;
 }
 pub type va_list = u32;
 pub type __gnuc_va_list = u32;
@@ -4775,6 +3114,110 @@ extern "C" {
 extern "C" {
     pub fn syncfs(fd: cty::c_int) -> cty::c_int;
 }
+#[doc = " Public Type Definitions"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct sq_entry_s {
+    pub flink: *mut sq_entry_s,
+}
+#[doc = " Public Type Definitions"]
+pub type sq_entry_t = sq_entry_s;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct dq_entry_s {
+    pub flink: *mut dq_entry_s,
+    pub blink: *mut dq_entry_s,
+}
+pub type dq_entry_t = dq_entry_s;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct sq_queue_s {
+    pub head: *mut sq_entry_t,
+    pub tail: *mut sq_entry_t,
+}
+pub type sq_queue_t = sq_queue_s;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct dq_queue_s {
+    pub head: *mut dq_entry_t,
+    pub tail: *mut dq_entry_t,
+}
+pub type dq_queue_t = dq_queue_s;
+extern "C" {
+    pub fn sq_addafter(prev: *mut sq_entry_t, node: *mut sq_entry_t, queue: *mut sq_queue_t);
+}
+extern "C" {
+    pub fn dq_addafter(prev: *mut dq_entry_t, node: *mut dq_entry_t, queue: *mut dq_queue_t);
+}
+extern "C" {
+    pub fn sq_remafter(node: *mut sq_entry_t, queue: *mut sq_queue_t) -> *mut sq_entry_t;
+}
+extern "C" {
+    pub fn dq_remafter(node: *mut dq_entry_t, queue: *mut dq_queue_t) -> *mut dq_entry_t;
+}
+extern "C" {
+    pub fn sq_remlast(queue: *mut sq_queue_t) -> *mut sq_entry_t;
+}
+extern "C" {
+    pub fn dq_remlast(queue: *mut dq_queue_t) -> *mut dq_entry_t;
+}
+extern "C" {
+    pub fn sq_remfirst(queue: *mut sq_queue_t) -> *mut sq_entry_t;
+}
+extern "C" {
+    pub fn dq_remfirst(queue: *mut dq_queue_t) -> *mut dq_entry_t;
+}
+extern "C" {
+    pub fn sq_count(queue: *mut sq_queue_t) -> usize;
+}
+extern "C" {
+    pub fn dq_count(queue: *mut dq_queue_t) -> usize;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct sem_s {
+    pub semcount: i16,
+    pub flags: u8,
+    pub waitlist: dq_queue_t,
+}
+pub type sem_t = sem_s;
+extern "C" {
+    #[doc = " Public Function Prototypes"]
+    pub fn sem_init(sem: *mut sem_t, pshared: cty::c_int, value: cty::c_uint) -> cty::c_int;
+}
+extern "C" {
+    pub fn sem_destroy(sem: *mut sem_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn sem_wait(sem: *mut sem_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn sem_timedwait(sem: *mut sem_t, abstime: *const timespec) -> cty::c_int;
+}
+extern "C" {
+    pub fn sem_clockwait(
+        sem: *mut sem_t,
+        clockid: clockid_t,
+        abstime: *const timespec,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn sem_trywait(sem: *mut sem_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn sem_post(sem: *mut sem_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn sem_getvalue(sem: *mut sem_t, sval: *mut cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: sem_setprotocol\n\n Description:\n    Set semaphore protocol attribute.\n\n    One particularly important use of this function is when a semaphore\n    is used for inter-task communication like:\n\n      TASK A                 TASK B\n      sem_init(sem, 0, 0);\n      sem_wait(sem);\n                             sem_post(sem);\n      Awakens as holder\n\n    In this case priority inheritance can interfere with the operation of\n    the semaphore.  The problem is that when TASK A is restarted it is a\n    holder of the semaphore.  However, it never calls sem_post(sem) so it\n    becomes *permanently* a holder of the semaphore and may have its\n    priority boosted when any other task tries to acquire the semaphore.\n\n    The fix is to call sem_setprotocol(SEM_PRIO_NONE) immediately after\n    the sem_init() call so that there will be no priority inheritance\n    operations on this semaphore.\n\n Input Parameters:\n    sem      - A pointer to the semaphore whose attributes are to be\n               modified\n    protocol - The new protocol to use\n\n Returned Value:\n   This function is exposed as a non-standard application interface.  It\n   returns zero (OK) if successful.  Otherwise, -1 (ERROR) is returned and\n   the errno value is set appropriately.\n"]
+    pub fn sem_setprotocol(sem: *mut sem_t, protocol: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: sem_getprotocol\n\n Description:\n    Return the value of the semaphore protocol attribute.\n\n Input Parameters:\n    sem      - A pointer to the semaphore whose attributes are to be\n               queried.\n    protocol - The user provided location in which to store the protocol\n               value.\n\n Returned Value:\n   This function is exposed as a non-standard application interface.  It\n   returns zero (OK) if successful.  Otherwise, -1 (ERROR) is returned and\n   the errno value is set appropriately.\n"]
+    pub fn sem_getprotocol(sem: *mut sem_t, protocol: *mut cty::c_int) -> cty::c_int;
+}
 pub type pthread_key_t = cty::c_int;
 pub type pthread_addr_t = *mut cty::c_void;
 pub type pthread_startroutine_t =
@@ -5323,6 +3766,62 @@ extern "C" {
         child: ::core::option::Option<unsafe extern "C" fn()>,
     ) -> cty::c_int;
 }
+pub type sclock_t = i32;
+extern "C" {
+    pub static mut g_system_ticks: clock_t;
+}
+extern "C" {
+    #[doc = " Name: clock_timespec_compare\n\n Description:\n    Return < 0 if time ts1 is before time ts2\n    Return > 0 if time ts2 is before time ts1\n    Return 0 if time ts1 is the same as time ts2\n"]
+    pub fn clock_timespec_compare(ts1: *const timespec, ts2: *const timespec) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name:  clock_timespec_add\n\n Description:\n   Add timespec ts1 to to2 and return the result in ts3\n\n Input Parameters:\n   ts1 and ts2: The two timespecs to be added\n   t23: The location to return the result (may be ts1 or ts2)\n\n Returned Value:\n   None\n"]
+    pub fn clock_timespec_add(ts1: *const timespec, ts2: *const timespec, ts3: *mut timespec);
+}
+extern "C" {
+    #[doc = " Name:  clock_timespec_subtract\n\n Description:\n   Subtract timespec ts2 from to1 and return the result in ts3.\n   Zero is returned if the time difference is negative.\n\n Input Parameters:\n   ts1 and ts2: The two timespecs to be subtracted (ts1 - ts2)\n   t23: The location to return the result (may be ts1 or ts2)\n\n Returned Value:\n   None\n"]
+    pub fn clock_timespec_subtract(ts1: *const timespec, ts2: *const timespec, ts3: *mut timespec);
+}
+extern "C" {
+    #[doc = " Name:  clock_isleapyear\n\n Description:\n    Return true if the specified year is a leap year\n"]
+    pub fn clock_isleapyear(year: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name:  clock_daysbeforemonth\n\n Description:\n    Get the number of days that occurred before the beginning of the month.\n"]
+    pub fn clock_daysbeforemonth(month: cty::c_int, leapyear: bool) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name:  clock_dayoftheweek\n\n Description:\n    Get the day of the week\n\n Input Parameters:\n   mday  - The day of the month 1 - 31\n   month - The month of the year 1 - 12\n   year  - the year including the 1900\n\n Returned Value:\n   Zero based day of the week 0-6, 0 = Sunday, 1 = Monday... 6 = Saturday\n"]
+    pub fn clock_dayoftheweek(mday: cty::c_int, month: cty::c_int, year: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name:  clock_calendar2utc\n\n Description:\n    Calendar/UTC conversion based on algorithms from p. 604\n    of Seidelman, P. K. 1992.  Explanatory Supplement to\n    the Astronomical Almanac.  University Science Books,\n    Mill Valley.\n"]
+    pub fn clock_calendar2utc(year: cty::c_int, month: cty::c_int, day: cty::c_int) -> time_t;
+}
+extern "C" {
+    #[doc = " Name: clock_time2ticks\n\n Description:\n   Return the given struct timespec as systime ticks.\n\n   NOTE:  This is an internal OS interface and should not be called from\n   application code.\n\n Input Parameters:\n   reltime - Pointer to the time presented as struct timespec\n\n Output Parameters:\n   ticks - Pointer to receive the time value presented as systime ticks\n\n Returned Value:\n   Always returns OK (0)\n"]
+    pub fn clock_time2ticks(reltime: *const timespec, ticks: *mut sclock_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: clock_ticks2time\n\n Description:\n   Return the given systime ticks as a struct timespec.\n\n   NOTE:  This is an internal OS interface and should not be called from\n   application code.\n\n Input Parameters:\n   ticks - Time presented as systime ticks\n\n Output Parameters:\n   reltime - Pointer to receive the time value presented as struct timespec\n\n Returned Value:\n   Always returns OK (0)\n"]
+    pub fn clock_ticks2time(ticks: sclock_t, reltime: *mut timespec) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: clock_systime_timespec\n\n Description:\n   Return the current value of the system timer counter as a struct\n   timespec.\n\n Input Parameters:\n   ts - Location to return the time\n\n Returned Value:\n   OK (0) on success; a negated errno value on failure.\n\n Assumptions:\n"]
+    pub fn clock_systime_timespec(ts: *mut timespec) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " perf_gettime"]
+    pub fn perf_gettime() -> clock_t;
+}
+extern "C" {
+    #[doc = " perf_convert"]
+    pub fn perf_convert(elapsed: clock_t, ts: *mut timespec);
+}
+extern "C" {
+    #[doc = " perf_gettfreq"]
+    pub fn perf_getfreq() -> cty::c_ulong;
+}
 pub type wdparm_t = usize;
 pub type wdentry_t = ::core::option::Option<unsafe extern "C" fn(arg: wdparm_t)>;
 #[repr(C)]
@@ -5414,6 +3913,204 @@ extern "C" {
 extern "C" {
     #[doc = " Name: work_foreach\n\n Description:\n   Enumerate over each work thread and provide the tid of each task to a\n   user callback functions.\n\n Input Parameters:\n   qid     - The work queue ID\n   handler - The function to be called with the pid of each task\n   arg     - The function callback\n\n Returned Value:\n   None\n"]
     pub fn work_foreach(qid: cty::c_int, handler: work_foreach_t, arg: *mut cty::c_void);
+}
+extern "C" {
+    pub fn _assert(
+        filename: *const cty::c_char,
+        linenum: cty::c_int,
+        msg: *const cty::c_char,
+        regs: *mut cty::c_void,
+    );
+}
+extern "C" {
+    pub fn __assert(
+        filename: *const cty::c_char,
+        linenum: cty::c_int,
+        msg: *const cty::c_char,
+    ) -> !;
+}
+extern "C" {
+    #[doc = " Name: nxsem_init\n\n Description:\n   This function initializes the UNNAMED semaphore sem. Following a\n   successful call to nxsem_init(), the semaphore may be used in subsequent\n   calls to nxsem_wait(), nxsem_post(), and nxsem_trywait().  The semaphore\n   remains usable until it is destroyed.\n\n   Only sem itself may be used for performing synchronization. The result\n   of referring to copies of sem in calls to sem_wait(), sem_trywait(),\n   sem_post(), and sem_destroy() is undefined.\n\n Input Parameters:\n   sem - Semaphore to be initialized\n   pshared - Process sharing (not used)\n   value - Semaphore initialization value\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
+    pub fn nxsem_init(sem: *mut sem_t, pshared: cty::c_int, value: cty::c_uint) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsem_destroy\n\n Description:\n   This function is used to destroy the un-named semaphore indicated by\n   'sem'.  Only a semaphore that was created using nxsem_init() may be\n   destroyed using nxsem_destroy(); the effect of calling nxsem_destroy()\n   with a named semaphore is undefined.  The effect of subsequent use of\n   the semaphore sem is undefined until sem is re-initialized by another\n   call to nxsem_init().\n\n   The effect of destroying a semaphore upon which other processes are\n   currently blocked is undefined.\n\n Input Parameters:\n   sem - Semaphore to be destroyed.\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
+    pub fn nxsem_destroy(sem: *mut sem_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsem_wait\n\n Description:\n   This function attempts to lock the semaphore referenced by 'sem'.  If\n   the semaphore value is (<=) zero, then the calling task will not return\n   until it successfully acquires the lock.\n\n   This is an internal OS interface.  It is functionally equivalent to\n   sem_wait except that:\n\n   - It is not a cancellation point, and\n   - It does not modify the errno value.\n\n Input Parameters:\n   sem - Semaphore descriptor.\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n\n     EINVAL - Invalid attempt to get the semaphore\n     EINTR  - The wait was interrupted by the receipt of a signal.\n"]
+    pub fn nxsem_wait(sem: *mut sem_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsem_trywait\n\n Description:\n   This function locks the specified semaphore only if the semaphore is\n   currently not locked.  Otherwise, it locks the semaphore.  In either\n   case, the call returns without blocking.\n\n Input Parameters:\n   sem - the semaphore descriptor\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n\n     EINVAL - Invalid attempt to get the semaphore\n     EAGAIN - The semaphore is not available.\n\n Assumptions:\n"]
+    pub fn nxsem_trywait(sem: *mut sem_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsem_timedwait\n\n Description:\n   This function will lock the semaphore referenced by sem as in the\n   sem_wait() function. However, if the semaphore cannot be locked without\n   waiting for another process or thread to unlock the semaphore by\n   performing a sem_post() function, this wait will be terminated when the\n   specified timeout expires.\n\n   The timeout will expire when the absolute time specified by abstime\n   passes, as measured by the clock on which timeouts are based (that is,\n   when the value of that clock equals or exceeds abstime), or if the\n   absolute time specified by abstime has already been passed at the\n   time of the call.\n\n   This is an internal OS interface.  It is functionally equivalent to\n   sem_wait except that:\n\n   - It is not a cancellation point, and\n   - It does not modify the errno value.\n\n Input Parameters:\n   sem     - Semaphore object\n   abstime - The absolute time to wait until a timeout is declared.\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   That may be one of:\n\n   EINVAL    The sem argument does not refer to a valid semaphore.  Or the\n             thread would have blocked, and the abstime parameter specified\n             a nanoseconds field value less than zero or greater than or\n             equal to 1000 million.\n   ETIMEDOUT The semaphore could not be locked before the specified timeout\n             expired.\n   EDEADLK   A deadlock condition was detected.\n   EINTR     A signal interrupted this function.\n   ECANCELED May be returned if the thread is canceled while waiting.\n"]
+    pub fn nxsem_timedwait(sem: *mut sem_t, abstime: *const timespec) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsem_clockwait\n\n Description:\n   This function will lock the semaphore referenced by sem as in the\n   sem_wait() function. However, if the semaphore cannot be locked without\n   waiting for another process or thread to unlock the semaphore by\n   performing a sem_post() function, this wait will be terminated when the\n   specified timeout expires.\n\n   The timeout will expire when the absolute time specified by abstime\n   passes, as measured by the clock on which timeouts are based (that is,\n   when the value of that clock equals or exceeds abstime), or if the\n   absolute time specified by abstime has already been passed at the\n   time of the call.\n\n   This is an internal OS interface.  It is functionally equivalent to\n   sem_wait except that:\n\n   - It is not a cancellation point, and\n   - It does not modify the errno value.\n\n Input Parameters:\n   sem     - Semaphore object\n   clockid - The timing source to use in the conversion\n   abstime - The absolute time to wait until a timeout is declared.\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   That may be one of:\n\n   EINVAL    The sem argument does not refer to a valid semaphore.  Or the\n             thread would have blocked, and the abstime parameter specified\n             a nanoseconds field value less than zero or greater than or\n             equal to 1000 million.\n   ETIMEDOUT The semaphore could not be locked before the specified timeout\n             expired.\n   EDEADLK   A deadlock condition was detected.\n   EINTR     A signal interrupted this function.\n   ECANCELED May be returned if the thread is canceled while waiting.\n"]
+    pub fn nxsem_clockwait(
+        sem: *mut sem_t,
+        clockid: clockid_t,
+        abstime: *const timespec,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsem_tickwait\n\n Description:\n   This function is a lighter weight version of sem_timedwait().  It is\n   non-standard and intended only for use within the RTOS.\n\n Input Parameters:\n   sem     - Semaphore object\n   delay   - Ticks to wait from the start time until the semaphore is\n             posted.  If ticks is zero, then this function is equivalent\n             to sem_trywait().\n\n Returned Value:\n   This is an internal OS interface, not available to applications, and\n   hence follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure:\n\n     -ETIMEDOUT is returned on the timeout condition.\n     -ECANCELED may be returned if the thread is canceled while waiting.\n"]
+    pub fn nxsem_tickwait(sem: *mut sem_t, delay: u32) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsem_post\n\n Description:\n   When a kernel thread has finished with a semaphore, it will call\n   nxsem_post().  This function unlocks the semaphore referenced by sem\n   by performing the semaphore unlock operation on that semaphore.\n\n   If the semaphore value resulting from this operation is positive, then\n   no tasks were blocked waiting for the semaphore to become unlocked; the\n   semaphore is simply incremented.\n\n   If the value of the semaphore resulting from this operation is zero,\n   then one of the tasks blocked waiting for the semaphore shall be\n   allowed to return successfully from its call to sem_wait().\n\n Input Parameters:\n   sem - Semaphore descriptor\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n\n Assumptions:\n   This function may be called from an interrupt handler.\n"]
+    pub fn nxsem_post(sem: *mut sem_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name:  nxsem_get_value\n\n Description:\n   This function updates the location referenced by 'sval' argument to\n   have the value of the semaphore referenced by 'sem' without effecting\n   the state of the semaphore.  The updated value represents the actual\n   semaphore value that occurred at some unspecified time during the call,\n   but may not reflect the actual value of the semaphore when it is\n   returned to the calling task.\n\n   If 'sem' is locked, the value return by nxsem_get_value() will either be\n   zero or a negative number whose absolute value represents the number\n   of tasks waiting for the semaphore.\n\n Input Parameters:\n   sem - Semaphore descriptor\n   sval - Buffer by which the value is returned\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
+    pub fn nxsem_get_value(sem: *mut sem_t, sval: *mut cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsem_open\n\n Description:\n   This function establishes a connection between named semaphores and a\n   task.  Following a call to sem_open() with the semaphore name, the task\n   may reference the semaphore associated with name using the address\n   returned by this call.  The semaphore may be used in subsequent calls\n   to sem_wait(), sem_trywait(), and sem_post().  The semaphore remains\n   usable until the semaphore is closed by a successful call to\n   sem_close().\n\n   If a task makes multiple calls to sem_open() with the same name, then\n   the same semaphore address is returned (provided there have been no\n   calls to sem_unlink()).\n\n Input Parameters:\n   name  - Semaphore name\n   oflags - Semaphore creation options.  This may either or both of the\n     following bit settings.\n     oflags = 0:  Connect to the semaphore only if it already exists.\n     oflags = O_CREAT:  Connect to the semaphore if it exists, otherwise\n        create the semaphore.\n     oflags = O_CREAT|O_EXCL:  Create a new semaphore\n        unless one of this name already exists.\n   Optional parameters.  When the O_CREAT flag is specified, two optional\n     parameters are expected:\n     1. mode_t mode, and\n     2. unsigned int value.  This initial value of the semaphore. Valid\n        initial values of the semaphore must be less than or equal to\n        SEM_VALUE_MAX.\n\n Returned Value:\n   A pointer to sem_t or negated errno if unsuccessful.\n\n Assumptions:\n"]
+    pub fn nxsem_open(name: *const cty::c_char, oflags: cty::c_int, ...) -> *mut sem_t;
+}
+extern "C" {
+    #[doc = " Name:  nxsem_close\n\n Description:\n   This function is called to indicate that the calling task is finished\n   with the specified named semaphore, 'sem'.  The sem_close() deallocates\n   any system resources allocated by the system for this named semaphore.\n\n   If the semaphore has not been removed with a call to sem_unlink(), then\n   sem_close() has no effect on the named semaphore.  However, when the\n   named semaphore has been fully unlinked, the semaphore will vanish when\n   the last task closes it.\n\n Input Parameters:\n  sem - semaphore descriptor\n\n Returned Value:\n  0 (OK), or negated errno if unsuccessful.\n\n Assumptions:\n   - Care must be taken to avoid risking the deletion of a semaphore that\n     another calling task has already locked.\n   - sem_close must not be called for an un-named semaphore\n"]
+    pub fn nxsem_close(sem: *mut sem_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsem_unlink\n\n Description:\n   This function removes the semaphore named by the input parameter 'name.'\n   If the semaphore named by 'name' is currently referenced by other task,\n   the sem_unlink() will have no effect on the state of the semaphore.  If\n   one or more processes have the semaphore open when sem_unlink() is\n   called, destruction of the semaphore will be postponed until all\n   references to the semaphore have been destroyed by calls of sem_close().\n\n Input Parameters:\n   name - Semaphore name\n\n Returned Value:\n  0 (OK), or negated errno if unsuccessful.\n\n Assumptions:\n"]
+    pub fn nxsem_unlink(name: *const cty::c_char) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsem_reset\n\n Description:\n   Reset a semaphore count to a specific value.  This is similar to part\n   of the operation of nxsem_init().  But nxsem_reset() may need to wake up\n   tasks waiting on a count.  This kind of operation is sometimes required\n   within the OS (only) for certain error handling conditions.\n\n Input Parameters:\n   sem   - Semaphore descriptor to be reset\n   count - The requested semaphore count\n\n Returned Value:\n   This is an internal OS interface, not available to applications, and\n   hence follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
+    pub fn nxsem_reset(sem: *mut sem_t, count: i16) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsem_set_protocol\n\n Description:\n    Set semaphore protocol attribute.\n\n    One particularly important use of this function is when a semaphore\n    is used for inter-task communication like:\n\n      TASK A                 TASK B\n      sem_init(sem, 0, 0);\n      sem_wait(sem);\n                             sem_post(sem);\n      Awakens as holder\n\n    In this case priority inheritance can interfere with the operation of\n    the semaphore.  The problem is that when TASK A is restarted it is a\n    holder of the semaphore.  However, it never calls sem_post(sem) so it\n    becomes *permanently* a holder of the semaphore and may have its\n    priority boosted when any other task tries to acquire the semaphore.\n\n    The fix is to call nxsem_set_protocol(SEM_PRIO_NONE) immediately after\n    the sem_init() call so that there will be no priority inheritance\n    operations on this semaphore.\n\n Input Parameters:\n    sem      - A pointer to the semaphore whose attributes are to be\n               modified\n    protocol - The new protocol to use\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
+    pub fn nxsem_set_protocol(sem: *mut sem_t, protocol: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsem_wait_uninterruptible\n\n Description:\n   This function is wrapped version of nxsem_wait(), which is\n   uninterruptible and convenient for use.\n\n Parameters:\n   sem - Semaphore descriptor.\n\n Return Value:\n   Zero(OK)  - On success\n   EINVAL    - Invalid attempt to get the semaphore\n   ECANCELED - May be returned if the thread is canceled while waiting.\n\n NOTE:  It is essential that callers of this function handle the\n ECANCELED error.  Correct handling is that the function should return the\n error and the error should propagate back up the calling tree to the\n cancellation point interface function where the thread termination will\n be handled gracefully\n"]
+    pub fn nxsem_wait_uninterruptible(sem: *mut sem_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsem_timedwait_uninterruptible\n\n Description:\n   This function is wrapped version of nxsem_timedwait(), which is\n   uninterruptible and convenient for use.\n\n Input Parameters:\n   sem     - Semaphore object\n   abstime - The absolute time to wait until a timeout is declared.\n\n Returned Value:\n   EINVAL    The sem argument does not refer to a valid semaphore.  Or the\n             thread would have blocked, and the abstime parameter specified\n             a nanoseconds field value less than zero or greater than or\n             equal to 1000 million.\n   ETIMEDOUT The semaphore could not be locked before the specified timeout\n             expired.\n   EDEADLK   A deadlock condition was detected.\n   ECANCELED May be returned if the thread is canceled while waiting.\n\n NOTE:  It is essential that callers of this function handle the\n ECANCELED error.  Correct handling is that the function should return the\n error and the error should propagate back up the calling tree to the\n cancellation point interface function where the thread termination will\n be handled gracefully\n"]
+    pub fn nxsem_timedwait_uninterruptible(sem: *mut sem_t, abstime: *const timespec)
+        -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsem_clockwait_uninterruptible\n\n Description:\n   This function is wrapped version of nxsem_clockwait(), which is\n   uninterruptible and convenient for use.\n\n Input Parameters:\n   sem     - Semaphore object\n   clockid - The timing source to use in the conversion\n   abstime - The absolute time to wait until a timeout is declared.\n\n Returned Value:\n   EINVAL    The sem argument does not refer to a valid semaphore.  Or the\n             thread would have blocked, and the abstime parameter specified\n             a nanoseconds field value less than zero or greater than or\n             equal to 1000 million.\n   ETIMEDOUT The semaphore could not be locked before the specified timeout\n             expired.\n   EDEADLK   A deadlock condition was detected.\n   ECANCELED May be returned if the thread is canceled while waiting.\n\n NOTE:  It is essential that callers of this function handle the\n ECANCELED error.  Correct handling is that the function should return the\n error and the error should propagate back up the calling tree to the\n cancellation point interface function where the thread termination will\n be handled gracefully\n"]
+    pub fn nxsem_clockwait_uninterruptible(
+        sem: *mut sem_t,
+        clockid: clockid_t,
+        abstime: *const timespec,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxsem_tickwait_uninterruptible\n\n Description:\n   This function is wrapped version of nxsem_tickwait(), which is\n   uninterruptible and convenient for use.\n\n Input Parameters:\n   sem     - Semaphore object\n   delay   - Ticks to wait from the start time until the semaphore is\n             posted.  If ticks is zero, then this function is equivalent\n             to sem_trywait().\n\n Returned Value:\n   This is an internal OS interface, not available to applications, and\n   hence follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure:\n\n     -ETIMEDOUT is returned on the timeout condition.\n     -ECANCELED may be returned if the thread is canceled while waiting.\n\n NOTE:  It is essential that callers of this function handle the\n ECANCELED error.  Correct handling is that the function should return the\n error and the error should propagate back up the calling tree to the\n cancellation point interface function where the thread termination will\n be handled gracefully\n"]
+    pub fn nxsem_tickwait_uninterruptible(sem: *mut sem_t, delay: u32) -> cty::c_int;
+}
+#[doc = " Public Type Definitions"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct mutex_s {
+    pub sem: sem_t,
+    pub holder: pid_t,
+}
+#[doc = " Public Type Definitions"]
+pub type mutex_t = mutex_s;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct rmutex_s {
+    pub mutex: mutex_t,
+    pub count: cty::c_uint,
+}
+pub type rmutex_t = rmutex_s;
+extern "C" {
+    #[doc = " Name: nxmutex_init\n\n Description:\n   This function initializes the UNNAMED mutex. Following a\n   successful call to nxmutex_init(), the mutex may be used in subsequent\n   calls to nxmutex_lock(), nxmutex_unlock(), and nxmutex_trylock().  The\n   mutex remains usable until it is destroyed.\n\n Parameters:\n   mutex - Semaphore to be initialized\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
+    pub fn nxmutex_init(mutex: *mut mutex_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxmutex_destroy\n\n Description:\n   This function initializes the UNNAMED mutex. Following a\n   successful call to nxmutex_init(), the mutex may be used in subsequent\n   calls to nxmutex_lock(), nxmutex_unlock(), and nxmutex_trylock().  The\n   mutex remains usable until it is destroyed.\n\n Parameters:\n   mutex - Semaphore to be destroyed\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
+    pub fn nxmutex_destroy(mutex: *mut mutex_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxmutex_is_hold\n\n Description:\n   This function check whether the caller hold the mutex\n   referenced by 'mutex'.\n\n Parameters:\n   mutex - mutex descriptor.\n\n Return Value:\n"]
+    pub fn nxmutex_is_hold(mutex: *mut mutex_t) -> bool;
+}
+extern "C" {
+    #[doc = " Name: nxmutex_is_locked\n\n Description:\n   This function get the lock state the mutex referenced by 'mutex'.\n\n Parameters:\n   mutex - mutex descriptor.\n\n Return Value:\n"]
+    pub fn nxmutex_is_locked(mutex: *mut mutex_t) -> bool;
+}
+extern "C" {
+    #[doc = " Name: nxmutex_lock\n\n Description:\n   This function attempts to lock the mutex referenced by 'mutex'.  The\n   mutex is implemented with a semaphore, so if the semaphore value is\n   (<=) zero, then the calling task will not return until it successfully\n   acquires the lock.\n\n Parameters:\n   mutex - mutex descriptor.\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n"]
+    pub fn nxmutex_lock(mutex: *mut mutex_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxmutex_trylock\n\n Description:\n   This function locks the mutex only if the mutex is currently not locked.\n   If the mutex has been locked already, the call returns without blocking.\n\n Parameters:\n   mutex - mutex descriptor.\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n\n     -EINVAL - Invalid attempt to lock the mutex\n     -EAGAIN - The mutex is not available.\n"]
+    pub fn nxmutex_trylock(mutex: *mut mutex_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxmutex_timedlock\n\n Description:\n   This function attempts to lock the mutex .  If the mutex value\n   is (<=) zero,then the calling task will not return until it\n   successfully acquires the lock or timed out\n\n Input Parameters:\n   mutex   - Mutex object\n   timeout - The time when mutex lock timed out\n\n Returned Value:\n   OK        The mutex successfully acquires\n   EINVAL    The mutex argument does not refer to a valid mutex.  Or the\n             thread would have blocked, and the abstime parameter specified\n             a nanoseconds field value less than zero or greater than or\n             equal to 1000 million.\n   ETIMEDOUT The mutex could not be locked before the specified timeout\n             expired.\n   EDEADLK   A deadlock condition was detected.\n"]
+    pub fn nxmutex_timedlock(mutex: *mut mutex_t, timeout: cty::c_uint) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxmutex_unlock\n\n Description:\n   This function attempts to unlock the mutex referenced by 'mutex'.\n\n Parameters:\n   mutex - mutex descriptor.\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n\n Assumptions:\n   This function may be called from an interrupt handler.\n"]
+    pub fn nxmutex_unlock(mutex: *mut mutex_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn nxmutex_reset(mutex: *mut mutex_t);
+}
+extern "C" {
+    #[doc = " Name: nxmutex_breaklock\n\n Description:\n   This function attempts to break the mutex\n\n Parameters:\n   mutex   - Mutex descriptor.\n   locked  - Is the mutex break success\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n"]
+    pub fn nxmutex_breaklock(mutex: *mut mutex_t, locked: *mut bool) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxmutex_restorelock\n\n Description:\n   This function attempts to restore the mutex.\n\n Parameters:\n   mutex   - mutex descriptor.\n   locked  - true: it's mean that the mutex is broke success\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure\n"]
+    pub fn nxmutex_restorelock(mutex: *mut mutex_t, locked: bool) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxrmutex_init\n\n Description:\n   This function initializes the UNNAMED recursive mutex. Following a\n   successful call to nxrmutex_init(), the recursive mutex may be used in\n   subsequent calls to nxrmutex_lock(), nxrmutex_unlock(),\n   and nxrmutex_trylock(). The recursive mutex remains usable\n   until it is destroyed.\n\n Parameters:\n   rmutex - Recursive mutex to be initialized\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
+    pub fn nxrmutex_init(rmutex: *mut rmutex_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxrmutex_destroy\n\n Description:\n   This function destroy the UNNAMED recursive mutex.\n\n Parameters:\n   rmutex - Recursive mutex to be destroyed\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
+    pub fn nxrmutex_destroy(rmutex: *mut rmutex_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxrmutex_is_hold\n\n Description:\n   This function check whether the caller hold the recursive mutex\n   referenced by 'rmutex'.\n\n Parameters:\n   rmutex - Recursive mutex descriptor.\n\n Return Value:\n"]
+    pub fn nxrmutex_is_hold(rmutex: *mut rmutex_t) -> bool;
+}
+extern "C" {
+    #[doc = " Name: nxrmutex_is_locked\n\n Description:\n   This function get the lock state the recursive mutex\n   referenced by 'rmutex'.\n\n Parameters:\n   rmutex - Recursive mutex descriptor.\n\n Return Value:\n"]
+    pub fn nxrmutex_is_locked(rmutex: *mut rmutex_t) -> bool;
+}
+extern "C" {
+    #[doc = " Name: nrxmutex_lock\n\n Description:\n   This function attempts to lock the recursive mutex referenced by\n   'rmutex'.The recursive mutex can be locked multiple times in the same\n   thread.\n\n Parameters:\n   rmutex - Recursive mutex descriptor.\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n"]
+    pub fn nxrmutex_lock(rmutex: *mut rmutex_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxrmutex_trylock\n\n Description:\n   This function locks the recursive mutex if the recursive mutex is\n   currently not locked or the same thread call.\n   If the recursive mutex is locked and other thread call it,\n   the call returns without blocking.\n\n Parameters:\n   rmutex - Recursive mutex descriptor.\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n\n     -EINVAL - Invalid attempt to lock the recursive mutex\n     -EAGAIN - The recursive mutex is not available.\n"]
+    pub fn nxrmutex_trylock(rmutex: *mut rmutex_t) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxrmutex_timedlock\n\n Description:\n   This function attempts to lock the mutex .  If the mutex value\n   is (<=) zero,then the calling task will not return until it\n   successfully acquires the lock or timed out\n\n Input Parameters:\n   rmutex  - Rmutex object\n   timeout - The time when mutex lock timed out\n\n Returned Value:\n   OK        The mutex successfully acquires\n   EINVAL    The mutex argument does not refer to a valid mutex.  Or the\n             thread would have blocked, and the abstime parameter specified\n             a nanoseconds field value less than zero or greater than or\n             equal to 1000 million.\n   ETIMEDOUT The mutex could not be locked before the specified timeout\n             expired.\n   EDEADLK   A deadlock condition was detected.\n   ECANCELED May be returned if the thread is canceled while waiting.\n"]
+    pub fn nxrmutex_timedlock(rmutex: *mut rmutex_t, timeout: cty::c_uint) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxrmutex_unlock\n\n Description:\n   This function attempts to unlock the recursive mutex\n   referenced by 'rmutex'.\n\n Parameters:\n   rmutex - Recursive mutex descriptor.\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n\n Assumptions:\n   This function may be called from an interrupt handler.\n"]
+    pub fn nxrmutex_unlock(rmutex: *mut rmutex_t) -> cty::c_int;
+}
+extern "C" {
+    pub fn nxrmutex_reset(rmutex: *mut rmutex_t);
+}
+extern "C" {
+    #[doc = " Name: nrxmutex_breaklock\n\n Description:\n   This function attempts to break the recursive mutex\n\n Parameters:\n   rmutex - Recursive mutex descriptor.\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n"]
+    pub fn nxrmutex_breaklock(rmutex: *mut rmutex_t, count: *mut cty::c_uint) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: nxrmutex_restorelock\n\n Description:\n   This function attempts to restore the recursive mutex.\n\n Parameters:\n   rmutex - Recursive mutex descriptor.\n\n Return Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n   Possible returned errors:\n"]
+    pub fn nxrmutex_restorelock(rmutex: *mut rmutex_t, count: cty::c_uint) -> cty::c_int;
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -5769,6 +4466,11 @@ pub struct stat {
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct statfs {
+    _unused: [u8; 0],
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pollfd {
     _unused: [u8; 0],
 }
 #[repr(C)]
@@ -6412,6 +5114,7 @@ pub struct task_group_s {
     pub tg_filelist: filelist,
     pub tg_mm_map: mm_map_s,
 }
+#[doc = " Public Function Prototypes"]
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct tcb_s {
@@ -7210,6 +5913,7 @@ extern "C" {
         argv: *const *mut cty::c_char,
     ) -> cty::c_int;
 }
+#[doc = " Public Type Definitions"]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct tasklist_s {
@@ -7217,6 +5921,7 @@ pub struct tasklist_s {
     pub attr: u8,
 }
 extern "C" {
+    #[doc = " Public Data"]
     pub static mut g_readytorun: dq_queue_t;
 }
 extern "C" {
@@ -7244,7 +5949,7 @@ extern "C" {
     pub static g_tasklisttable: [tasklist_s; 9usize];
 }
 extern "C" {
-    #[doc = " Name: nxthread_create\n\n Description:\n   This function creates and activates a new thread of the specified type\n   with a specified priority and returns its system-assigned ID.  It is the\n   internal, common implementation of task_create() and kthread_create().\n   See comments with task_create() for further information.\n\n Input Parameters:\n   name       - Name of the new task\n   ttype      - Type of the new task\n   priority   - Priority of the new task\n   stack_addr - Address of the stack needed\n   stack_size - Size (in bytes) of the stack needed\n   entry      - Entry point of a new task\n   arg        - A pointer to an array of input parameters.  The array\n                should be terminated with a NULL argv[] value. If no\n                parameters are required, argv may be NULL.\n   envp       - A pointer to an array of environment strings. Terminated\n                with a NULL entry.\n\n Returned Value:\n   Returns the positive, non-zero process ID of the new task or a negated\n   errno value to indicate the nature of any failure.  If memory is\n   insufficient or the task cannot be created -ENOMEM will be returned.\n"]
+    #[doc = " Public Function Prototypes"]
     pub fn nxthread_create(
         name: *const cty::c_char,
         ttype: u8,
@@ -7301,6 +6006,7 @@ pub struct tls_info_s {
 extern "C" {
     pub fn nxsched_get_tls(tcb: *mut tcb_s) -> *mut tls_info_s;
 }
+#[doc = " Public Type Definitions"]
 pub type foreachchild_t =
     ::core::option::Option<unsafe extern "C" fn(pid: pid_t, arg: *mut cty::c_void) -> cty::c_int>;
 extern "C" {
@@ -7392,216 +6098,6 @@ extern "C" {
 }
 extern "C" {
     pub fn nxnotify_cancellation(tcb: *mut tcb_s) -> bool;
-}
-extern "C" {
-    #[doc = " Name: board_app_initialize\n\n Description:\n   Perform application specific initialization.  This function is never\n   called directly from application code, but only indirectly via the\n   (non-standard) boardctl() interface using the command BOARDIOC_INIT.\n\n Input Parameters:\n   arg - The boardctl() argument is passed to the board_app_initialize()\n         implementation without modification.  The argument has no\n         meaning to NuttX; the meaning of the argument is a contract\n         between the board-specific initialization logic and the\n         matching application logic.  The value could be such things as a\n         mode enumeration value, a set of DIP switch switch settings, a\n         pointer to configuration data read from a file or serial FLASH,\n         or whatever you would like to do with it.  Every implementation\n         should accept zero/NULL as a default configuration.\n\n Returned Value:\n   Zero (OK) is returned on success; a negated errno value is returned on\n   any failure to indicate the nature of the failure.\n"]
-    pub fn board_app_initialize(arg: usize) -> cty::c_int;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct fb_vtable_s {
-    _unused: [u8; 0],
-}
-extern "C" {
-    pub fn board_graphics_setup(devno: cty::c_uint) -> *mut fb_vtable_s;
-}
-extern "C" {
-    pub fn board_autoled_initialize();
-}
-extern "C" {
-    pub fn board_autoled_on(led: cty::c_int);
-}
-extern "C" {
-    pub fn board_autoled_off(led: cty::c_int);
-}
-extern "C" {
-    pub fn board_userled_initialize() -> u32;
-}
-extern "C" {
-    pub fn board_userled(led: cty::c_int, ledon: bool);
-}
-extern "C" {
-    pub fn board_userled_all(ledset: u32);
-}
-extern "C" {
-    pub fn board_button_initialize() -> u32;
-}
-extern "C" {
-    pub fn board_buttons() -> u32;
-}
-#[doc = " Public Types"]
-pub type spi_mediachange_t = ::core::option::Option<unsafe extern "C" fn(arg: *mut cty::c_void)>;
-pub const spi_devtype_e_SPIDEVTYPE_NONE: spi_devtype_e = 0;
-pub const spi_devtype_e_SPIDEVTYPE_MMCSD: spi_devtype_e = 1;
-pub const spi_devtype_e_SPIDEVTYPE_FLASH: spi_devtype_e = 2;
-pub const spi_devtype_e_SPIDEVTYPE_ETHERNET: spi_devtype_e = 3;
-pub const spi_devtype_e_SPIDEVTYPE_DISPLAY: spi_devtype_e = 4;
-pub const spi_devtype_e_SPIDEVTYPE_CAMERA: spi_devtype_e = 5;
-pub const spi_devtype_e_SPIDEVTYPE_WIRELESS: spi_devtype_e = 6;
-pub const spi_devtype_e_SPIDEVTYPE_TOUCHSCREEN: spi_devtype_e = 7;
-pub const spi_devtype_e_SPIDEVTYPE_EXPANDER: spi_devtype_e = 8;
-pub const spi_devtype_e_SPIDEVTYPE_MUX: spi_devtype_e = 9;
-pub const spi_devtype_e_SPIDEVTYPE_AUDIO_DATA: spi_devtype_e = 10;
-pub const spi_devtype_e_SPIDEVTYPE_AUDIO_CTRL: spi_devtype_e = 11;
-pub const spi_devtype_e_SPIDEVTYPE_EEPROM: spi_devtype_e = 12;
-pub const spi_devtype_e_SPIDEVTYPE_ACCELEROMETER: spi_devtype_e = 13;
-pub const spi_devtype_e_SPIDEVTYPE_BAROMETER: spi_devtype_e = 14;
-pub const spi_devtype_e_SPIDEVTYPE_TEMPERATURE: spi_devtype_e = 15;
-pub const spi_devtype_e_SPIDEVTYPE_IEEE802154: spi_devtype_e = 16;
-pub const spi_devtype_e_SPIDEVTYPE_CONTACTLESS: spi_devtype_e = 17;
-pub const spi_devtype_e_SPIDEVTYPE_CANBUS: spi_devtype_e = 18;
-pub const spi_devtype_e_SPIDEVTYPE_USBHOST: spi_devtype_e = 19;
-pub const spi_devtype_e_SPIDEVTYPE_LPWAN: spi_devtype_e = 20;
-pub const spi_devtype_e_SPIDEVTYPE_ADC: spi_devtype_e = 21;
-pub const spi_devtype_e_SPIDEVTYPE_MOTOR: spi_devtype_e = 22;
-pub const spi_devtype_e_SPIDEVTYPE_IMU: spi_devtype_e = 23;
-pub const spi_devtype_e_SPIDEVTYPE_USER: spi_devtype_e = 24;
-pub type spi_devtype_e = cty::c_uint;
-pub const spi_mode_e_SPIDEV_MODE0: spi_mode_e = 0;
-pub const spi_mode_e_SPIDEV_MODE1: spi_mode_e = 1;
-pub const spi_mode_e_SPIDEV_MODE2: spi_mode_e = 2;
-pub const spi_mode_e_SPIDEV_MODE3: spi_mode_e = 3;
-pub const spi_mode_e_SPIDEV_MODETI: spi_mode_e = 4;
-pub type spi_mode_e = cty::c_uint;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct spi_ops_s {
-    pub lock:
-        ::core::option::Option<unsafe extern "C" fn(dev: *mut spi_dev_s, lock: bool) -> cty::c_int>,
-    pub select: ::core::option::Option<
-        unsafe extern "C" fn(dev: *mut spi_dev_s, devid: u32, selected: bool),
-    >,
-    pub setfrequency:
-        ::core::option::Option<unsafe extern "C" fn(dev: *mut spi_dev_s, frequency: u32) -> u32>,
-    pub setmode:
-        ::core::option::Option<unsafe extern "C" fn(dev: *mut spi_dev_s, mode: spi_mode_e)>,
-    pub setbits:
-        ::core::option::Option<unsafe extern "C" fn(dev: *mut spi_dev_s, nbits: cty::c_int)>,
-    pub status: ::core::option::Option<unsafe extern "C" fn(dev: *mut spi_dev_s, devid: u32) -> u8>,
-    pub send: ::core::option::Option<unsafe extern "C" fn(dev: *mut spi_dev_s, wd: u32) -> u32>,
-    pub exchange: ::core::option::Option<
-        unsafe extern "C" fn(
-            dev: *mut spi_dev_s,
-            txbuffer: *const cty::c_void,
-            rxbuffer: *mut cty::c_void,
-            nwords: usize,
-        ),
-    >,
-    pub registercallback: ::core::option::Option<
-        unsafe extern "C" fn(
-            dev: *mut spi_dev_s,
-            callback: spi_mediachange_t,
-            arg: *mut cty::c_void,
-        ) -> cty::c_int,
-    >,
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct spi_dev_s {
-    pub ops: *const spi_ops_s,
-}
-#[doc = " Public Type Definitions"]
-pub type nfds_t = cty::c_uint;
-pub type pollevent_t = u32;
-pub type pollcb_t = ::core::option::Option<unsafe extern "C" fn(fds: *mut pollfd)>;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct pollfd {
-    pub fd: cty::c_int,
-    pub events: pollevent_t,
-    pub revents: pollevent_t,
-    pub arg: *mut cty::c_void,
-    pub cb: pollcb_t,
-    pub priv_: *mut cty::c_void,
-}
-extern "C" {
-    #[doc = " Public Function Prototypes"]
-    pub fn poll(fds: *mut pollfd, nfds: nfds_t, timeout: cty::c_int) -> cty::c_int;
-}
-extern "C" {
-    pub fn ppoll(
-        fds: *mut pollfd,
-        nfds: nfds_t,
-        timeout_ts: *const timespec,
-        sigmask: *const sigset_t,
-    ) -> cty::c_int;
-}
-extern "C" {
-    pub fn poll_fdsetup(fd: cty::c_int, fds: *mut pollfd, setup: bool) -> cty::c_int;
-}
-extern "C" {
-    pub fn poll_default_cb(fds: *mut pollfd);
-}
-extern "C" {
-    pub fn poll_notify(afds: *mut *mut pollfd, nfds: cty::c_int, eventset: pollevent_t);
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct adc_callback_s {
-    pub au_receive: ::core::option::Option<
-        unsafe extern "C" fn(dev: *mut adc_dev_s, ch: u8, data: i32) -> cty::c_int,
-    >,
-    pub au_reset: ::core::option::Option<unsafe extern "C" fn(dev: *mut adc_dev_s) -> cty::c_int>,
-}
-#[repr(C, packed)]
-#[derive(Debug, Copy, Clone)]
-pub struct adc_msg_s {
-    pub am_channel: u8,
-    pub am_data: i32,
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct adc_fifo_s {
-    pub af_sem: sem_t,
-    pub af_head: u8,
-    pub af_tail: u8,
-    pub af_buffer: [adc_msg_s; 8usize],
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct adc_ops_s {
-    pub ao_bind: ::core::option::Option<
-        unsafe extern "C" fn(dev: *mut adc_dev_s, callback: *const adc_callback_s) -> cty::c_int,
-    >,
-    pub ao_reset: ::core::option::Option<unsafe extern "C" fn(dev: *mut adc_dev_s)>,
-    pub ao_setup: ::core::option::Option<unsafe extern "C" fn(dev: *mut adc_dev_s) -> cty::c_int>,
-    pub ao_shutdown: ::core::option::Option<unsafe extern "C" fn(dev: *mut adc_dev_s)>,
-    pub ao_rxint: ::core::option::Option<unsafe extern "C" fn(dev: *mut adc_dev_s, enable: bool)>,
-    pub ao_ioctl: ::core::option::Option<
-        unsafe extern "C" fn(dev: *mut adc_dev_s, cmd: cty::c_int, arg: cty::c_ulong) -> cty::c_int,
-    >,
-}
-#[doc = " Public Types"]
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct adc_dev_s {
-    pub ad_ops: *const adc_ops_s,
-    pub ad_priv: *mut cty::c_void,
-}
-extern "C" {
-    #[doc = " Name: adc_register\n\n Description:\n   Register a ADC driver. This function binds an instance of a \"lower half\"\n   ADC driver with the \"upper half\" ADC device and registers that device\n   so that can be used by application code.\n\n Input Parameters:\n   path - The full path to the driver to be registers in the NuttX pseudo-\n     filesystem.  The recommended convention is to name all PWM drivers\n     as \"/dev/adc\", \"/dev/adc1\", etc.  where the driver path differs only\n     in the \"minor\" number at the end of the device name.\n   dev - A pointer to an instance of lower half ADC driver.  This instance\n     is bound to the upper half ADC driver and must persists as long as the\n     upper half driver driver persists.\n\n Returned Value:\n   Zero on success; a negated errno value on failure.\n"]
-    pub fn adc_register(path: *const cty::c_char, dev: *mut adc_dev_s) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: up_ads1255initialize\n\n Description:\n   Initialize the TI ADS 125X lower half driver\n"]
-    pub fn up_ads1255initialize(spi: *mut spi_dev_s, devno: cty::c_uint) -> *mut adc_dev_s;
-}
-extern "C" {
-    #[doc = " Name: lmp92001_adc_initialize\n\n Description:\n   Initialize ADC\n\n Input Parameters:\n   I2C Port number\n   Device address\n\n Returned Value:\n   Valid LM92001 device structure reference on success; a NULL on failure\n"]
-    pub fn lmp92001_adc_initialize(i2c: *mut i2c_master_s, addr: u8) -> *mut adc_dev_s;
-}
-extern "C" {
-    #[doc = " Name: ads7828_initialize\n\n Description:\n   Initialize ADC\n\n Input Parameters:\n   i2c - Pointer to a valid I2C master struct.\n   addr - I2C device address.\n\n Returned Value:\n   Valid ADS7828 device structure reference on success; a NULL on failure\n"]
-    pub fn ads7828_initialize(i2c: *mut i2c_master_s, addr: u8) -> *mut adc_dev_s;
-}
-extern "C" {
-    #[doc = " Name: max1161x_initialize\n\n Description:\n   Initialize ADC\n\n Input Parameters:\n   i2c - Pointer to a valid I2C master struct.\n\n Returned Value:\n   Valid MX1161X device structure reference on success; a NULL on failure\n"]
-    pub fn max1161x_initialize(i2c: *mut i2c_master_s) -> *mut adc_dev_s;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct usb_ctrlreq_s {
-    _unused: [u8; 0],
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
