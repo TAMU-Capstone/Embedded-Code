@@ -21,7 +21,7 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
-
+use crate::bindings::*;
 cfg_if::cfg_if! {
 
    if #[cfg(CONFIG_SPI)]
@@ -623,49 +623,9 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
 } // defined(CONFIG_SPI)
 else{
   // considering creating a empty config that will catch and allow this to be a fake preprocessor
-  /*
   pub extern "C" fn stm32_spidev_initialize()
   {
     /* Configure SPI CS GPIO for output */
-    
-    if cfg!(CONFIG_STM32F7_SPI1){
-      for i in g_spi1gpio.iter()
-   {
-     if *i != 0
-     {
-      unsafe{
-        stm32_configgpio(*i);
-        }
       }
-    }
-  } //CONFIG_STM32F7_SPI1
-
- if cfg!(CONFIG_STM32F7_SPI2)
- {
-  for i in g_spi2gpio.iter()
-   {
-     if *i != 0
-     {
-      unsafe{
-        stm32_configgpio(*i);
-        }
-      }
-    }
-  } // CONFIG_STM32F7_SPI2
-
-  if cfg!(CONFIG_STM32F7_SPI3)
-  {
-    for i in g_spi3gpio.iter()
-     {
-       if *i != 0
-       {
-         unsafe{
-          stm32_configgpio(*i);
-          }
-        }
-      }
-    } // CONFIG_STM32F7_SPI3
-  }
-  */
 }
 } // if_cfg
