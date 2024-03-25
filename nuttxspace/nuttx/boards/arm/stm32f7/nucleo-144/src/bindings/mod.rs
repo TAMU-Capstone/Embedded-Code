@@ -14,3 +14,5 @@ pub const GPIO_LED_RED: u32 = GPIO_LD3;
 // Lias stuff for adc
 pub const ADC1_NCHANNELS: usize = 4;
 pub const G_CHANLIST: [u8; ADC1_NCHANNELS] = [3, 4, 10, 13];
+pub const ADC1_NCHANNELS: [u32; ADC1_NCHANNELS] = [GPIO_ADC1_IN3, GPIO_ADC1_IN4, GPIO_ADC1_IN10, GPIO_ADC1_IN13];
+
