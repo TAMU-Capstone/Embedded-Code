@@ -23,6 +23,7 @@ cty = "0.2.2"
 cfg-if = "1.0"  # used throughout as a conditional dependencies
 log = "0.4.21"  # used to replicate warnings and errors at compile time
 thiserror-no-std = "2.0.2" # no std version of throwing errors
+lazy_static = "1.4.0" #lazy static for statically defined variables
 
 # Build Dependencies for our project
 [build-dependencies]
