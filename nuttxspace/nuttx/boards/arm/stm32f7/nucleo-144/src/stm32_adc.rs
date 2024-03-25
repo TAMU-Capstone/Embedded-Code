@@ -21,7 +21,7 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
- use crate::include::*;
+ use crate::bindings::*;
  
 
 //used Rust's #[cfg()] attributes, to include or exclude code based on configuration options of the adc's
