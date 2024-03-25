@@ -2561,9 +2561,7 @@ extern "C" {
 extern "C" {
     pub fn sched_idletask() -> bool;
 }
-extern "C" {
-    pub fn __errno() -> *mut cty::c_int;
-}
+#[doc = " Public Types"]
 pub type va_list = u32;
 pub type __gnuc_va_list = u32;
 extern "C" {
