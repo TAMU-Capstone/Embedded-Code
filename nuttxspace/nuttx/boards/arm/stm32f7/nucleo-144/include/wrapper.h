@@ -16,3 +16,4 @@
 #include "../../../../arch/arm/src/stm32f7/hardware/stm32_adc.h" // used in stm32_adc
 #include "../../../../arch/arm/src/stm32f7/hardware/stm32f72xx73xx_pinmap_legacy.h" // used in stm32_adc
 #include "../../../../../include/nuttx/lib/stdarg.h" //used in usb for struct declaration
+#include "../../../../arch/arm64/include/stdarg.h" // used in stdarg.h for va list declaration 

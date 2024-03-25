@@ -1,0 +1,291 @@
+./syscall/syscall.csv:82:"nx_vsyslog","nuttx/syslog/syslog.h","","int","int","FAR const IPTR char *","FAR va_list *"
+./fs/mount/fs_procfs_mount.c:174:  va_list ap;
+Binary file ./fs/libfs.a matches
+Binary file ./fs/fs_ioctl.o matches
+Binary file ./fs/mq_open.o matches
+./fs/mqueue/mq_open.c:158:                         int oflags, mode_t umask, va_list ap,
+./fs/mqueue/mq_open.c:347:static mqd_t nxmq_vopen(FAR const char *mq_name, int oflags, va_list ap)
+./fs/mqueue/mq_open.c:414:  va_list ap;
+./fs/mqueue/mq_open.c:460:  va_list ap;
+./fs/mqueue/mq_open.c:501:  va_list ap;
+./fs/semaphore/sem_open.c:146:      va_list ap;
+Binary file ./fs/fs_open.o matches
+./fs/procfs/fs_procfsutil.c:143:  va_list ap;
+./fs/procfs/fs_procfsutil.c:175:  va_list ap;
+./fs/vfs/fs_open.c:118:                      int oflags, mode_t umask, va_list ap)
+./fs/vfs/fs_open.c:292:                    FAR const char *path, int oflags, va_list ap)
+./fs/vfs/fs_open.c:346:  va_list ap;
+./fs/vfs/fs_open.c:382:  va_list ap;
+./fs/vfs/fs_open.c:417:  va_list ap;
+./fs/vfs/fs_open.c:443:  va_list ap;
+./fs/vfs/fs_ioctl.c:43:static int file_vioctl(FAR struct file *filep, int req, va_list ap)
+./fs/vfs/fs_ioctl.c:188:  va_list ap;
+./fs/vfs/fs_ioctl.c:231:  va_list ap;
+./fs/vfs/fs_fcntl.c:47:static int file_vfcntl(FAR struct file *filep, int cmd, va_list ap)
+./fs/vfs/fs_fcntl.c:263:  va_list ap;
+./fs/vfs/fs_fcntl.c:302:  va_list ap;
+Binary file ./fs/fs_fcntl.o matches
+./net/netdev/netdev_ioctl.c:1793:int psock_vioctl(FAR struct socket *psock, int cmd, va_list ap)
+./net/netdev/netdev_ioctl.c:1902:  va_list ap;
+./net/procfs/net_procfs_route.c:241:  va_list ap;
+./arch/risc-v/src/bl602/bl602_os_hal.c:555:      va_list arg;
+./arch/risc-v/src/bl602/bl602_os_hal.c:1533:                             va_list args)
+./arch/risc-v/src/bl602/bl602_os_hal.c:1584:      va_list list;
+./arch/risc-v/src/esp32c3-legacy/esp32c3_wifi_adapter.c:338:                           const char *format, va_list args)
+./arch/risc-v/src/esp32c3-legacy/esp32c3_wifi_adapter.c:3392:                           const char *format, va_list args)
+./arch/risc-v/src/esp32c3-legacy/esp32c3_wifi_adapter.c:3437:  va_list list;
+./arch/risc-v/src/esp32c3-legacy/esp32c3_wifi_adapter.c:4282:  va_list arg;
+./arch/risc-v/src/esp32c3-legacy/esp32c3_wifi_adapter.c:4309:  va_list arg;
+./arch/risc-v/src/esp32c3-legacy/esp32c3_wifi_adapter.c:4337:  va_list arg;
+./arch/risc-v/src/esp32c3-legacy/esp32c3_wifi_adapter.c:4369:  va_list arg;
+./arch/risc-v/src/esp32c3-legacy/esp32c3_ble_adapter.c:1707:  va_list arg;
+./arch/risc-v/src/esp32c3-legacy/rom/esp32c3_libc_stubs.h:85:                          const char *, size_t len), va_list * ap);
+./arch/risc-v/src/esp32c3-legacy/rom/esp32c3_libc_stubs.h:87:                          va_list *ap);
+./arch/risc-v/include/stdarg.h:43:typedef __builtin_va_list va_list;
+./arch/misoc/include/stdarg.h:43:typedef __builtin_va_list va_list;
+./arch/sim/src/sim/posix/sim_hostmisc.c:128:  va_list vars;
+./arch/arm64/include/stdarg.h:43:typedef __builtin_va_list va_list;
+./arch/xtensa/src/esp32/esp32_wireless.c:388:  va_list arg;
+./arch/xtensa/src/esp32/esp32_wifi_adapter.c:316:                           const char *format, va_list args)
+./arch/xtensa/src/esp32/esp32_wifi_adapter.c:3220:                           const char *format, va_list args)
+./arch/xtensa/src/esp32/esp32_wifi_adapter.c:3265:  va_list list;
+./arch/xtensa/src/esp32/esp32_wifi_adapter.c:4131:  va_list arg;
+./arch/xtensa/src/esp32/rom/esp32_libc_stubs.h:103:                       const char *, size_t len), va_list * ap);
+./arch/xtensa/src/esp32/rom/esp32_libc_stubs.h:105:                      va_list *ap);
+./arch/xtensa/src/esp32/esp32_ble_adapter.c:2195:  va_list arg;
+./arch/xtensa/src/esp32/esp32_ble_adapter.c:2208:  va_list arg;
+./arch/xtensa/src/esp32s3/esp32s3_wifi_adapter.c:300:                                   const char *format, va_list args);
+./arch/xtensa/src/esp32s3/esp32s3_wifi_adapter.c:3278:                                   const char *format, va_list args)
+./arch/xtensa/src/esp32s3/esp32s3_wifi_adapter.c:3332:      va_list list;
+./arch/xtensa/src/esp32s3/esp32s3_wifi_adapter.c:4329:  va_list arg;
+./arch/xtensa/src/esp32s3/esp32s3_wifi_adapter.c:4360:  va_list arg;
+./arch/xtensa/src/esp32s3/esp32s3_wifi_adapter.c:4391:  va_list arg;
+./arch/xtensa/src/esp32s3/rom/esp32s3_libc_stubs.h:103:                         const char *, size_t len), va_list * ap);
+./arch/xtensa/src/esp32s3/rom/esp32s3_libc_stubs.h:105:                         va_list *ap);
+./arch/xtensa/src/esp32s3/esp32s3_wireless.c:349:  va_list arg;
+./arch/xtensa/src/esp32s2/rom/esp32s2_libc_stubs.h:103:                       const char *, size_t len), va_list * ap);
+./arch/xtensa/src/esp32s2/rom/esp32s2_libc_stubs.h:105:                      va_list *ap);
+./arch/xtensa/include/stdarg.h:43:typedef __builtin_va_list va_list;
+./arch/arm/src/nrf91/nrf91_modem_os.c:514:  va_list ap;
+./arch/arm/src/rtl8720c/amebaz_depend.c:43:  va_list ap;
+./arch/arm/src/phy62xx/my_printf.c:187:static void log_vsprintf(std_putc putc, const char *fmt, va_list args)
+./arch/arm/src/phy62xx/my_printf.c:444:  va_list args;
+./arch/arm/src/phy62xx/log.h:128:void log_vsprintf(std_putc putc, const char *fmt, va_list args)
+./arch/arm/include/stdarg.h:43:typedef __builtin_va_list va_list;
+./include/err.h:64:void vwarn(FAR const char *fmt, va_list ap) printf_like(1, 0);
+./include/err.h:69:void vwarnx(FAR const char *fmt, va_list ap) printf_like(1, 0);
+./include/err.h:74:void verr(int status, FAR const char *fmt, va_list ap) printf_like(2, 0);
+./include/err.h:76:void verrx(int status, FAR const char *fmt, va_list ap) printf_like(2, 0);
+./include/wchar.h:171:int               vfwprintf(FILE *, FAR const wchar_t *, va_list);
+./include/wchar.h:172:int               vfwscanf(FILE *, FAR const wchar_t *, va_list);
+./include/wchar.h:173:int               vwprintf(FAR const wchar_t *, va_list);
+./include/wchar.h:174:int               vwscanf(FAR const wchar_t *, va_list);
+./include/wchar.h:176:                      va_list);
+./include/wchar.h:178:                      va_list);
+./include/nuttx/net/net.h:1272:int psock_vioctl(FAR struct socket *psock, int cmd, va_list ap);
+./include/nuttx/note/note_driver.h:84:                             int nr, int argc, va_list *ap);
+./include/nuttx/note/note_driver.h:98:                       FAR const char *fmt, va_list va) printf_like(3, 0);
+./include/nuttx/note/note_driver.h:100:                        FAR const char *fmt, va_list va) printf_like(3, 0);
+./include/nuttx/syslog/syslog.h:369: *   filtering has already been performed and the va_list parameter is
+./include/nuttx/syslog/syslog.h:370: *   passed by reference.  That is because the va_list is a structure in
+./include/nuttx/syslog/syslog.h:376:int nx_vsyslog(int priority, FAR const IPTR char *src, FAR va_list *ap);
+./include/nuttx/streams.h:718:                          FAR const IPTR char *fmt, va_list ap)
+./include/nuttx/streams.h:731:                 FAR const IPTR char *src, va_list ap) printf_like(2, 0);
+./include/nuttx/streams.h:743:               FAR const IPTR char *src, va_list ap) scanf_like(3, 0);
+./include/nuttx/sched_note.h:544:                           va_list va) printf_like(3, 0);
+./include/nuttx/sched_note.h:546:                            va_list va) printf_like(3, 0);
+./include/syslog.h:207:void vsyslog(int priority, FAR const IPTR char *fmt, va_list ap)
+./include/obstack.h:458:int obstack_vprintf(FAR struct obstack *h, FAR const char *fmt, va_list ap)
+./include/stdio.h:117:  FAR va_list *va;
+./include/stdio.h:222:int    vasprintf(FAR char **ptr, FAR const IPTR char *fmt, va_list ap)
+./include/stdio.h:225:                va_list ap) printf_like(2, 0);
+./include/stdio.h:226:int    vfscanf(FAR FILE *stream, FAR const IPTR char *fmt, va_list ap)
+./include/stdio.h:228:int    vprintf(FAR const IPTR char *fmt, va_list ap) printf_like(1, 0);
+./include/stdio.h:229:int    vscanf(FAR const IPTR char *fmt, va_list ap) scanf_like(1, 0);
+./include/stdio.h:231:                 va_list ap) printf_like(3, 0);
+./include/stdio.h:232:int    vsprintf(FAR char *buf, FAR const IPTR char *fmt, va_list ap)
+./include/stdio.h:234:int    vsscanf(FAR const char *buf, FAR const IPTR char *fmt, va_list ap)
+./include/stdio.h:246:int    vdprintf(int fd, FAR const IPTR char *fmt, va_list ap)
+./include/stdio.h:300:                                          va_list ap)
+./include/stdio.h:308:                                        va_list ap)
+./drivers/clk/clk.c:172:  va_list ap;
+./drivers/note/note_driver.c:1184:  va_list ap;
+./drivers/note/note_driver.c:1202:      va_list copy;
+./drivers/note/note_driver.c:1437:                           FAR const char *fmt, va_list va)
+./drivers/note/note_driver.c:1490:                            FAR const char *fmt, va_list va)
+./drivers/note/note_driver.c:1709:  va_list va;
+./drivers/note/note_driver.c:1718:  va_list va;
+./drivers/note/notesnap_driver.c:102:                                   int argc, FAR va_list *ap);
+./drivers/note/notesnap_driver.c:328:                                   int argc, FAR va_list *ap)
+./drivers/syslog/vsyslog.c:75: *   filtering has already been performed and the va_list parameter is
+./drivers/syslog/vsyslog.c:76: *   passed by reference.  That is because the va_list is a structure in
+./drivers/syslog/vsyslog.c:82:int nx_vsyslog(int priority, FAR const IPTR char *fmt, FAR va_list *ap)
+./drivers/video/goldfish_camera.c:211:  va_list ap;
+./drivers/segger/note_sysview.c:72:                                       int nr, int argc, va_list *ap);
+./drivers/segger/note_sysview.c:280:                                       int argc, va_list *ap)
+Binary file ./drivers/vsyslog.o matches
+Binary file ./drivers/libdrivers.a matches
+./drivers/usbmonitor/usbmonitor.c:130:  va_list ap;
+./drivers/usbdev/usbdev_trace.c:87:  va_list ap;
+./sched/Kconfig:1282:			void sched_note_vprintf(FAR const char *fmt, va_list va);
+./sched/Kconfig:1283:			void sched_note_vbprintf(uint32_t module, uint8_t event, FAR const char *fmt, va_list va);
+./sched/task/task_prctl.c:64:  va_list ap;
+Binary file ./sched/libsched.a matches
+Binary file ./sched/task_prctl.o matches
+./sched/misc/assert.c:104:  va_list ap;
+./libs/libc/wchar/lib_swprintf.c:42:              va_list ap)
+./libs/libc/wchar/lib_swprintf.c:63:  va_list ap;
+./libs/libc/obstack/lib_obstack_printf.c:57:  va_list ap;
+./libs/libc/obstack/lib_obstack_vprintf.c:86:int obstack_vprintf(FAR struct obstack *h, FAR const char *fmt, va_list ap)
+./libs/libc/syslog/lib_syslog.c:51:void vsyslog(int priority, FAR const IPTR char *fmt, va_list ap)
+./libs/libc/syslog/lib_syslog.c:59:       * NOTE:  The va_list parameter is passed by reference.  That is
+./libs/libc/syslog/lib_syslog.c:60:       * because the va_list is a structure in some compilers and passing
+./libs/libc/syslog/lib_syslog.c:65:      va_list copy;
+./libs/libc/syslog/lib_syslog.c:95:  va_list ap;
+./libs/libc/semaphore/sem_open.c:82:  va_list ap;
+./libs/libc/stdio/lib_printf.c:39:  va_list ap;
+./libs/libc/stdio/lib_vdprintf.c:51:int vdprintf(int fd, FAR const IPTR char *fmt, va_list ap)
+./libs/libc/stdio/lib_vsprintf.c:39:int vsprintf(FAR char *dest, FAR const IPTR char *src, va_list ap)
+./libs/libc/stdio/lib_snprintf.c:49:  va_list ap;
+./libs/libc/stdio/lib_vsnprintf.c:41:              va_list ap)
+./libs/libc/stdio/lib_libsprintf.c:39:  va_list ap;
+./libs/libc/stdio/lib_sprintf.c:39:  va_list ap;
+./libs/libc/stdio/lib_vasprintf.c:58:int vasprintf(FAR char **ptr, FAR const IPTR char *fmt, va_list ap)
+./libs/libc/stdio/lib_vasprintf.c:63:  /* On some architectures, va_list is really a pointer to a structure on
+./libs/libc/stdio/lib_vasprintf.c:64:   * the stack. And the va_arg builtin will modify that instance of va_list.
+./libs/libc/stdio/lib_vasprintf.c:65:   * Since vasprintf traverse the parameters in the va_list twice, the
+./libs/libc/stdio/lib_vasprintf.c:66:   * va_list will be altered in this first cases and the second usage will
+./libs/libc/stdio/lib_vasprintf.c:71:  va_list ap2;
+./libs/libc/stdio/lib_asprintf.c:54:  va_list ap;
+./libs/libc/stdio/lib_vsscanf.c:41:int vsscanf(FAR const char *buf, FAR const IPTR char *fmt, va_list ap)
+./libs/libc/stdio/lib_libvsprintf.c:151:                             FAR const IPTR char *fmt, va_list ap)
+./libs/libc/stdio/lib_libvsprintf.c:160:                             FAR const IPTR char *fmt, va_list ap)
+./libs/libc/stdio/lib_libvsprintf.c:1122:                      va_list copy;
+./libs/libc/stdio/lib_libvsprintf.c:1324:                 FAR const IPTR char *fmt, va_list ap)
+./libs/libc/stdio/lib_libvsprintf.c:1381:  va_list ap;
+./libs/libc/stdio/lib_libvsprintf.c:1403:                          FAR const IPTR char *fmt, va_list ap)
+./libs/libc/stdio/lib_fprintf.c:37:  va_list ap;
+./libs/libc/stdio/lib_vfscanf.c:41:int vfscanf(FAR FILE *stream, FAR const IPTR char *fmt, va_list ap)
+./libs/libc/stdio/lib_fscanf.c:39:  va_list ap;
+./libs/libc/stdio/lib_scanf.c:38:  va_list ap;
+./libs/libc/stdio/lib_vscanf.c:35:int vscanf(FAR const IPTR char *fmt, va_list ap)
+./libs/libc/stdio/lib_dprintf.c:37:  va_list ap;
+./libs/libc/stdio/lib_vprintf.c:37:int vprintf(FAR const IPTR char *fmt, va_list ap)
+./libs/libc/stdio/lib_vfprintf.c:35:int vfprintf(FAR FILE *stream, FAR const IPTR char *fmt, va_list ap)
+./libs/libc/stdio/lib_libvscanf.c:203:               FAR const IPTR char *fmt, va_list ap)
+./libs/libc/stdio/lib_sscanf.c:40:  va_list ap;
+Binary file ./libs/libc/bin/lib_syslog.o matches
+Binary file ./libs/libc/bin/lib_vdprintf.o matches
+Binary file ./libs/libc/bin/lib_libsprintf.o matches
+Binary file ./libs/libc/bin/lib_asprintf.o matches
+Binary file ./libs/libc/bin/lib_dumpvbuffer.o matches
+Binary file ./libs/libc/bin/lib_dprintf.o matches
+Binary file ./libs/libc/bin/lib_snprintf.o matches
+Binary file ./libs/libc/bin/lib_fprintf.o matches
+Binary file ./libs/libc/bin/lib_vasprintf.o matches
+Binary file ./libs/libc/bin/lib_err.o matches
+Binary file ./libs/libc/bin/lib_swprintf.o matches
+Binary file ./libs/libc/bin/lib_vscanf.o matches
+Binary file ./libs/libc/bin/lib_sscanf.o matches
+Binary file ./libs/libc/bin/lib_vsnprintf.o matches
+Binary file ./libs/libc/bin/lib_scanf.o matches
+Binary file ./libs/libc/bin/lib_obstack_vprintf.o matches
+Binary file ./libs/libc/bin/lib_openat.o matches
+Binary file ./libs/libc/bin/lib_libvsprintf.o matches
+Binary file ./libs/libc/bin/lib_libvscanf.o matches
+Binary file ./libs/libc/bin/lib_vsprintf.o matches
+Binary file ./libs/libc/bin/lib_sprintf.o matches
+Binary file ./libs/libc/bin/lib_vprintf.o matches
+Binary file ./libs/libc/bin/lib_vsscanf.o matches
+Binary file ./libs/libc/bin/lib_printf.o matches
+Binary file ./libs/libc/bin/lib_vfprintf.o matches
+Binary file ./libs/libc/bin/lib_obstack_printf.o matches
+Binary file ./libs/libc/bin/lib_vfscanf.o matches
+Binary file ./libs/libc/bin/lib_fscanf.o matches
+./libs/libc/libc.csv:338:"vasprintf","stdio.h","","int","FAR char **","FAR const IPTR char *","va_list"
+./libs/libc/libc.csv:340:"vfprintf","stdio.h","defined(CONFIG_FILE_STREAM)","int","FAR FILE *","FAR const IPTR char *","va_list"
+./libs/libc/libc.csv:341:"vprintf","stdio.h","","int","FAR const IPTR char *","va_list"
+./libs/libc/libc.csv:342:"vscanf","stdio.h","defined(CONFIG_FILE_STREAM)","int","FAR const IPTR char *","va_list"
+./libs/libc/libc.csv:343:"vsnprintf","stdio.h","","int","FAR char *","size_t","FAR const IPTR char *","va_list"
+./libs/libc/libc.csv:344:"vsprintf","stdio.h","","int","FAR char *","FAR const IPTR char *","va_list"
+./libs/libc/libc.csv:345:"vsscanf","stdio.h","","int","FAR const char *","FAR const IPTR char *","va_list"
+./libs/libc/libc.csv:346:"vsyslog","syslog.h","","void","int","FAR const IPTR char *","va_list"
+./libs/libc/unistd/lib_execl.c:121:  va_list ap;
+./libs/libc/unistd/lib_execle.c:122:  va_list ap;
+Binary file ./libs/libc/libc.a matches
+./libs/libc/misc/lib_debug.c:50:  va_list ap;
+./libs/libc/misc/lib_debug.c:61:  va_list ap;
+./libs/libc/misc/lib_debug.c:72:  va_list ap;
+./libs/libc/misc/lib_debug.c:83:  va_list ap;
+./libs/libc/misc/lib_dumpvbuffer.c:81:  va_list ap;
+./libs/libc/misc/lib_dumpvbuffer.c:99:  va_list ap;
+./libs/libc/misc/lib_openat.c:79:      va_list ap;
+./libs/libc/misc/lib_err.c:39:    va_list ap;            \
+./libs/libc/misc/lib_err.c:53:void vwarn(FAR const char *fmt, va_list ap)
+./libs/libc/misc/lib_err.c:59:  va_list copy;
+./libs/libc/misc/lib_err.c:86:void vwarnx(FAR const char *fmt, va_list ap)
+./libs/libc/misc/lib_err.c:91:  va_list copy;
+./libs/libc/misc/lib_err.c:135:void verr(int status, FAR const char *fmt, va_list ap)
+./libs/libc/misc/lib_err.c:145:void verrx(int status, FAR const char *fmt, va_list ap)
+./Documentation/ReleaseNotes/NuttX-7.7:336:- avsprintf(): Fix a bug in usage of va_list on x86. On x86,
+./Documentation/ReleaseNotes/NuttX-7.7:337:va_list is a pointer to a single copy on the stack. avsprintf()
+./Documentation/ReleaseNotes/NuttX-7.7:338:calls lib_vsprintf() twice and so traverses the va_list twice using
+./Documentation/reference/user/10_filesystem.rst:302:  int    vprintf(FAR const char *s, va_list ap);
+./Documentation/reference/user/10_filesystem.rst:303:  int    vfprintf(FAR FILE *stream, FAR const char *s, va_list ap);
+./Documentation/reference/user/10_filesystem.rst:304:  int    vsprintf(FAR char *buf, FAR const char *s, va_list ap);
+./Documentation/reference/user/10_filesystem.rst:305:  int    vasprintf(FAR char **ptr, FAR const char *fmt, va_list ap);
+./Documentation/reference/user/10_filesystem.rst:306:  int    vsnprintf(FAR char *buf, size_t size, FAR const char *format, va_list ap);
+./Documentation/reference/user/10_filesystem.rst:307:  int    vsscanf(FAR char *buf, FAR const char *s, va_list ap);
+./Documentation/reference/user/10_filesystem.rst:318:  int    vdprintf(int fd, FAR const char *fmt, va_list ap);
+./Documentation/reference/user/13_logging.rst:29:.. c:function:: void vsyslog(int priority, const char *fmt, va_list ap)
+./Documentation/components/drivers/special/syslog.rst:27:.. c::function:: void vsyslog(int priority, FAR const IPTR char *src, va_list ap);
+./Documentation/components/syscall.rst:149:using the non- variadic form of the OS interface that accepts a ``va_list``
+./Documentation/platforms/arm64/qemu/boards/qemu-armv8a/README.txt:286:into the va_list object in case there were actual float arguments from
+./Documentation/platforms/arm64/qemu/boards/qemu-armv8a/README.txt:302:a clue for FPU performance analysis. va_list object is using for many C code to
+./audio/audio_comp.c:942:  va_list ap;
+./boards/renesas/sh1/us7032evb1/shterm/shterm.c:122:  va_list ap;
+./boards/arm/stm32f7/nucleo-144/src/bindings/generated.rs:4228:pub type va_list = u32;
+./boards/arm/stm32f7/nucleo-144/src/bindings/generated.rs:4229:pub type __gnuc_va_list = u32;
+./boards/arm/stm32f7/nucleo-144/src/bindings/generated.rs:4235:    pub fn vsyslog(priority: cty::c_int, fmt: *const cty::c_char, ap: va_list);
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/deps/libbindgen-0e6d2a92b6aa5ee7.rlib matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/deps/libbindgen-4285d00ed0ac4a9e.rmeta matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/deps/libbindgen-2b8018d727ac535c.rlib matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/deps/libbindgen-9f5bb36a568885d9.rlib matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/deps/libbindgen-9f5bb36a568885d9.rmeta matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/deps/libbindgen-a65caf2936fd5203.rlib matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/deps/libbindgen-4285d00ed0ac4a9e.rlib matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/deps/libbindgen-2b8018d727ac535c.rmeta matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/deps/libbindgen-0e6d2a92b6aa5ee7.rmeta matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/deps/libbindgen-a65caf2936fd5203.rmeta matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/build/large-board-b37f692989b04c52/build_script_build-b37f692989b04c52 matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/build/large-board-b37f692989b04c52/build-script-build matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/build/large-board-dcbd12b6a2a53aee/build-script-build matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/build/large-board-dcbd12b6a2a53aee/build_script_build-dcbd12b6a2a53aee matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/build/large-board-860fc5614f9fa37b/build_script_build-860fc5614f9fa37b matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/build/large-board-860fc5614f9fa37b/build-script-build matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/build/large-board-6da69be3b5c337c6/build_script_build-6da69be3b5c337c6 matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/build/large-board-6da69be3b5c337c6/build-script-build matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/build/large-board-8b5c1bc6dcca553e/build-script-build matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/debug/build/large-board-8b5c1bc6dcca553e/build_script_build-8b5c1bc6dcca553e matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/thumbv7em-none-eabi/debug/libnucleo_rs.a matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/thumbv7em-none-eabi/debug/deps/libnucleo_rs-8afcfcd528223799.a matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/thumbv7em-none-eabi/debug/deps/libnucleo_rs-9e53ebb33778c875.a matches
+Binary file ./boards/arm/stm32f7/nucleo-144/target/thumbv7em-none-eabi/debug/deps/libnucleo_rs-60d6d97c1393b57d.a matches
+./boards/z16/z16f/z16f2800100zcog/tools/zneo-zdsii-5_0_1-variadic-func-fix.patch:22:+  FAR const char *fmt, va_list ap);
+./boards/z16/z16f/z16f2800100zcog/tools/zneo-zdsii-5_0_1-variadic-func-fix.patch:39:+static int nsh_consolevoutput(FAR struct nsh_vtbl_s *vtbl, FAR const char *fmt, va_list ap)
+./boards/z16/z16f/z16f2800100zcog/tools/zneo-zdsii-5_0_1-variadic-func-fix.patch:83:+  va_list ap;
+./boards/z16/z16f/z16f2800100zcog/tools/zneo-zdsii-5_0_1-variadic-func-fix.patch:125:+  int (*voutput)(FAR struct nsh_vtbl_s *vtbl, FAR const char *fmt, va_list ap);
+./tools/mksyscall.c:277:      fprintf(stream, "  va_list ap;\n");
+./tools/mksyscall.c:718:      fprintf(stream, "  va_list ap;\n");
+./tools/incdir.c:213:  va_list ap;
+./tools/kconfig2html.c:250:  va_list ap;
+./tools/kconfig2html.c:270:  va_list ap;
+./tools/kconfig2html.c:287:  va_list ap;
+./tools/kconfig2html.c:304:  va_list ap;
+./tools/kconfig2html.c:321:  va_list ap;
+./tools/configure.c:255:  va_list ap;
+Binary file ./staging/libfs.a matches
+Binary file ./staging/libapps.a matches
+Binary file ./staging/libdrivers.a matches
+Binary file ./staging/libsched.a matches
+Binary file ./staging/libc.a matches

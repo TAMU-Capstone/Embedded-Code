@@ -4225,6 +4225,7 @@ extern "C" {
 extern "C" {
     pub fn sched_idletask() -> bool;
 }
+#[doc = " Public Types"]
 pub type va_list = u32;
 pub type __gnuc_va_list = u32;
 extern "C" {
