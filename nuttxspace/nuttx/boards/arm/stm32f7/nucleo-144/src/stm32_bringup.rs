@@ -21,11 +21,37 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
- use crate::include::*;
+use crate::include::*;
+use crate::bindings::LOG_ERR;
 
- /****************************************************************************
- * Public Functions
- ****************************************************************************/
+/****************************************************************************
+* Public Functions
+****************************************************************************/
+/*extern "C" {
+    fn stm32_gpiowrite(pin: u32, state: bool);
+    fn nx_mount(state: None, , state: String, state: i32, );
+    fn syslog(_status: String, state: String);
+    fn stm32_romfs_initialize();
+    fn stm32_gpio_initialize();
+    fn userled_lower_initialize(state);
+    fn stm32_adc_setup();
+    fn stm32_bbsram_int();
+    fn stm32_dma_alloc_init();
+    fn stm32_spidev_bus_test();
+    fn stm32_sdio_initialize();
+    fn ferr(state: String, state: i32);
+    fn stm32_pwm_setup();
+    fn snprintf();
+    fn stm32_qencoder_initialize(buf, state: i32);
+    fn stm32_can_setup();
+    fn stm32_cansock_setup();
+    fn stm32_i2cbus_initialize(i2c_bus);
+    fn i2c_register();
+    fn kmm_zalloc(state: i32);
+    fn sizeof();
+    fn mpu60x0_register(state: String, struct);
+    fn UNUSED(state: i32);
+}*/
 
 /****************************************************************************
  * Name: stm32_bringup
@@ -57,30 +83,30 @@
     let mut ret: i32 = 0;
 
     //if CONFIG_I2C
-    if #[cfg(CONFIG_I2C)]
+    if cfg!(CONFIG_I2C)
     {
         let mut i2c_bus: i32;
         //should I use Box? -- its a smart pointer
         let mut i2c = &mut i2c_master_s;
 
-        if #[cfg(CONFIG_MPU60X0_I2C)]
+        if cfg!(CONFIG_MPU60X0_I2C)
         {
             let mut mpu_config = &mpu_config_s;
         }
     }
 
-    if #[cfg(CONFIG_FS_PROCFS)]
+    if cfg!(CONFIG_FS_PROCFS)
     {
         /* Mount the procfs file system */
         ret = nx_mount(None, STM32_PROCFS_MOUNTPOINT, "procfs", 0, None);
         if ret < 0
         {
-            syslog(LOG_ERR, "ERROR: Failed to mount procfs at %s: %d\n",
-            STM32_PROCFS_MOUNTPOINT, ret);
+            pub fn syslog(LOG_ERR, "ERROR: Failed to mount procfs at %s: %d\n",
+            STM32_PROCFS_MOUNTPOINT, ret: i32);
         }
     }
 
-    if #[cfg(CONFIG_STM32_ROMFS)]
+    if cfg!(CONFIG_STM32_ROMFS)
     {
         /* Mount the romfs partition */
 
@@ -88,186 +114,180 @@
 
         if ret < 0
         {
-            syslog(LOG_ERR, "ERROR: Failed to mount romfs at %s: %d\n",
-            CONFIG_STM32_ROMFS_MOUNTPOINT, ret);
+            pub fn syslog(LOG_ERR, "ERROR: Failed to mount romfs at %s: %d\n", CONFIG_STM32_ROMFS_MOUNTPOINT, ret: i32);
         }
     }
 
-    if #[cfg(CONFIG_DEV_GPIO)]
+    if cfg!(CONFIG_DEV_GPIO)
     {
         /* Register the GPIO driver */
         ret = stm32_gpio_initialize();
         if ret < 0
         {
-            syslog(LOG_ERR, "Failed to initialize GPIO Driver: %d\n", ret);
+            pub fn syslog(LOG_ERR, "Failed to initialize GPIO Driver: %d\n", ret: i32);
             return ret;
         }
     }
-    //TO-DO: CHECK TO SEE IF THIS IS CORRECT SYNTAX!!!
-    if #[cfg(all(not(CONFIG_ARCH_LEDS) && (CONFIG_USERLED_LOWER)))]
+
+    if cfg!(not(CONFIG_ARCH_LEDS)) && cfg!(CONFIG_USERLED_LOWER)
     {
         ret = userled_lower_initialize(LED_DRIVER_PATH);
         if ret < 0
         {
-            syslog(LOG_ERR, "ERROR: userled_lower_initialize() failed: {}\n", ret);
+            pub fn syslog(LOG_ERR, "ERROR: userled_lower_initialize() failed: {}\n", ret: i32);
         }
     }
 
-    if #[cfg(CONFIG_ADC)]
+    if cfg!(CONFIG_ADC)
     {
         ret = stm32_adc_setup();
         if ret < 0
         {
-            syslog(LOG_ERR, "ERROR: stm32_adc_setup failed: %d\n", ret);
+            pub fn syslog(LOG_ERR, "ERROR: stm32_adc_setup failed: %d\n", ret: i32);
         }
     }
 
-    if #[cfg(CONFIG_STM32F7_BBSRAM)]
+    if cfg!(CONFIG_STM32F7_BBSRAM)
     {
-        pub stm32_bbsram_int();
+        pub fn stm32_bbsram_int();
     }
 
-    if #[cfg(CONFIG_FAT_DMAMEMORY)]
+    if cfg!(CONFIG_FAT_DMAMEMORY)
     {
         //TO-DO: may need to use let and make variable and then compare
         if stm32_dma_alloc_init() < 0
         {
-            syslog(LOG_ERR, "DMA alloc FAILED");
+            pub fn syslog(LOG_ERR, "DMA alloc FAILED");
         }
     }
 
-    if #[cfg(CONFIG_NUCLEO_SPI_TEST)]
+    if cfg!(CONFIG_NUCLEO_SPI_TEST)
     {
         ret = stm32_spidev_bus_test();
         //there is if ret != OK
         if ret != OK
         {
-            syslog(LOG_ERR, "ERROR: Failed to initialize SPI interfaces: %d\n",
-            ret);
+            pub fn syslog(LOG_ERR, "ERROR: Failed to initialize SPI interfaces: %d\n", ret: i32);
             return ret;
         }
     }
 
-    if #[cfg(CONFIG_MMCSD)]
+    if cfg!(CONFIG_MMCSD)
     {
         ret = stm32_sdio_initialize();
         if ret != OK
         {
-            ferr("ERROR: Failed to initialize MMC/SD driver: %d\n", ret);
+            pub fn ferr("ERROR: Failed to initialize MMC/SD driver: %d\n", ret: i32);
             return ret;
         }
     }
 
-    if #[cfg(CONFIG_PWM)]
+    if cfg!(CONFIG_PWM)
     {
         ret = stm32_pwm_setup();
         if ret < 0
         {
-            syslog(LOG_ERR, "ERROR: stm32_pwm_setup() failed: %d\n", ret);
+            pub fn syslog(LOG_ERR, "ERROR: stm32_pwm_setup() failed: %d\n", ret: i32);
         }
     }
 
-    if #[cfg(CONFIG_SENSORS_QENCODER)]
+    if cfg!(CONFIG_SENSORS_QENCODER)
     {
         //defines an array of size 9 and initializes it to 0
         let mut buf = [i32; 9] = [0; 9];
     }
 
-    if #[cfg(CONFIG_STM32F7_TIM1_QE)]
+    if cfg!(CONFIG_STM32F7_TIM1_QE)
     {
-        snprintf(buf, buf.len(), "/dev/qe0");
+        pub fn snprintf(buf, buf.len(), "/dev/qe0");
         ret = stm32_qencoder_initialize(buf, 1);
         if ret < 0
         {
-            syslog(LOG_ERR, "ERROR: Failed to register the qencoder: %d\n",
-            ret);
-         return ret;
+            pub fn syslog(LOG_ERR, "ERROR: Failed to register the qencoder: %d\n", ret: i32);
+            return ret;
         }
     }
 
-    if #[cfg(CONFIG_STM32F7_TIM3_QE)]
+    if cfg!(CONFIG_STM32F7_TIM3_QE)
     {
-        snprintf(buf, buf.len(), "/dev/qe2");
+        pub fn snprintf(buf, buf.len(), "/dev/qe2");
         ret = stm32_qencoder_initialize(buf, 3);
         if ret < 0
         {
-            syslog(LOG_ERR, "ERROR: Failed to register the qencoder: %d\n",
-            ret);
-         return ret;
+            pub fn syslog(LOG_ERR, "ERROR: Failed to register the qencoder: %d\n", ret: i32);
+            return ret;
         }
     }
 
-    if #[cfg(CONFIG_STM32F7_TIM4_QE)]
+    if cfg!(CONFIG_STM32F7_TIM4_QE)
     {
-        snprintf(buf, buf.len(), "/dev/qe3");
+        pub fn snprintf(buf, buf.len(), "/dev/qe3");
         ret = stm32_qencoder_initialize(buf, 4);
         if ret < 0
         {
-            syslog(LOG_ERR, "ERROR: Failed to register the qencoder: %d\n",
-            ret);
+            pub fn syslog(LOG_ERR, "ERROR: Failed to register the qencoder: %d\n", ret: i32);
          return ret;
         }
     }
 
-    if #[cfg(CONFIG_STM32F7_CAN_CHARDRIVER)]
+    if cfg!(CONFIG_STM32F7_CAN_CHARDRIVER)
     {
         ret = stm32_can_setup();
         if ret < 0
-          {
-            syslog(LOG_ERR, "ERROR: stm32f7_can_setup failed: %d\n", ret);
+        {
+            pub fn syslog(LOG_ERR, "ERROR: stm32f7_can_setup failed: %d\n", ret: i32);
             return ret;
-          }
+        }
     }
 
-    if #[cfg(CONFIG_STM32F7_CAN_SOCKET)]
+    if cfg!(CONFIG_STM32F7_CAN_SOCKET)
     {
         ret = stm32_cansock_setup();
         if ret < 0
-          {
-            syslog(LOG_ERR, "ERROR: stm32_cansock_setup failed: %d\n", ret);
-          }
+        {
+            pub fn syslog(LOG_ERR, "ERROR: stm32_cansock_setup failed: %d\n", ret: i32);
+        }
     }
 
-    //TO-DO: Check if correct
-    if #[cfg(all(CONFIG_I2C && CONFIG_STM32F7_I2C1))]
+    if cfg!(CONFIG_I2C) && cfg!(CONFIG_STM32F7_I2C1)
     {
         i2c_bus = 1;
         i2c = stm32_i2cbus_initialize(i2c_bus);
 
         if i2c == None
         {
-            syslog(LOG_ERR, "ERROR: Failed to get I2C%d interface\n", i2c_bus);
+            pub fn syslog(LOG_ERR, "ERROR: Failed to get I2C%d interface\n", i2c_bus);
         }
         else
         {
-            if #[cfg(CONFIG_SYSTEM_I2CTOOL)]
+            if cfg!(CONFIG_SYSTEM_I2CTOOL)
             {
                 ret = i2c_register(i2c, i2c_bus);
             
                 if ret < 0
                 {
-                    syslog(LOG_ERR, "ERROR: Failed to register I2C%d driver: %d\n", i2c_bus, ret);
+                    pub fn syslog(LOG_ERR, "ERROR: Failed to register I2C%d driver: %d\n", i2c_bus, ret: i32);
                 }
             }
 
-            if #[cfg(CONFIG_MPU60X0_I2C)]
+            if cfg!(CONFIG_MPU60X0_I2C)
             {
                 mpu_config = kmm_zalloc(sizeof(struct mpu_config_s));
-                if (mpu_config == NULL)
+                if mpu_config == None
                 {
-                  syslog(LOG_ERR, "ERROR: Failed to allocate mpu60x0 driver\n");
+                    pub fn syslog(LOG_ERR, "ERROR: Failed to allocate mpu60x0 driver\n");
                 }
                 else
                 {
                   mpu_config->i2c = i2c;
                   mpu_config->addr = 0x68;
-                  mpu60x0_register("/dev/imu0", mpu_config);
+                  pub fn mpu60x0_register("/dev/imu0", mpu_config);
                 }
             }
         }
     }
 
-    UNUSED(ret);
+    pub fn UNUSED(ret: i32);
     return OK;
 
   }
