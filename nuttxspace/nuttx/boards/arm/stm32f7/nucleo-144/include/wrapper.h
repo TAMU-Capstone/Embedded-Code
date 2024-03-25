@@ -24,5 +24,5 @@
 // the ones i could find for adc
 #include "../../../../include/nuttx/analog/adc.h"
 #include "../../../../arch/arm/src/stm32f7/hardware/stm32_adc.h"
-
+#include "../../../../arch/arm/src/stm32f7/hardware/stm32f72xx73xx_pinmap_legacy.h"
 
