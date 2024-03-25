@@ -13,4 +13,4 @@ mod include;
 
 mod stm32_autoleds;
 mod stm32_reset;
-mod bringup;
+mod stm32_bringup;
