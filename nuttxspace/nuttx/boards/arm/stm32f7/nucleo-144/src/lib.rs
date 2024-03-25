@@ -8,9 +8,12 @@ fn panic(_info: &PanicInfo) -> ! {
     loop {}
 }
 
-
 mod include;
-
-mod stm32_autoleds;
-mod stm32_reset;
-mod stm32_bringup;
+pub mod stm32_autoleds;
+pub mod stm32_reset;
+pub mod stm32_usb;
+pub mod stm32_boot;
+pub mod bindings;
+pub mod stm32_spi;
+pub mod stm32_bringup;
+pub mod stm32_appinitialize;

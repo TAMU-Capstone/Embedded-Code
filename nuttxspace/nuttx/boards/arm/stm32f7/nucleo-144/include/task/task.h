@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32f7/nucleo-144/src/stm32_reset.c
+ * sched/task/task.h
  *
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -18,42 +18,44 @@
  *
  ****************************************************************************/
 
+#ifndef __SCHED_TASK_TASK_H
+#define __SCHED_TASK_TASK_H
+
 /****************************************************************************
  * Included Files
  ****************************************************************************/
-use cty;
-use crate::bindings::up_systemreset;
+
+#include <nuttx/config.h>
+#include <nuttx/compiler.h>
+
+#include <sys/types.h>
+#include <stdbool.h>
+
+#include <nuttx/sched.h>
 
 /****************************************************************************
- * Public Functions
+ * Public Function Prototypes
  ****************************************************************************/
 
-/****************************************************************************
- * Name: board_reset
- *
- * Description:
- *   Reset board.  Support for this function is required by board-level
- *   logic if CONFIG_BOARDCTL_RESET is selected.
- *
- * Input Parameters:
- *   status - Status information provided with the reset event.  This
- *            meaning of this status information is board-specific.  If not
- *            used by a board, the value zero may be provided in calls to
- *            board_reset().
- *
- * Returned Value:
- *   If this function returns, then it was not possible to power-off the
- *   board due to some constraints.  The return value int this case is a
- *   board-specific reason for the failure to shutdown.
- *
- ****************************************************************************/
+struct tcb_s; /* Forward reference */
 
-#[no_mangle]
-pub extern "C" fn board_reset(_status: i8) -> cty::c_int {
-    unsafe {
-        up_systemreset();
-    }
-    return 0;
-}
+/* Task start-up */
 
-/* CONFIG_BOARDCTL_RESET */
+void nxtask_start(void);
+int  nxtask_setup_scheduler(FAR struct task_tcb_s *tcb, int priority,
+       start_t start, main_t main, uint8_t ttype);
+int  nxtask_setup_arguments(FAR struct task_tcb_s *tcb,
+       FAR const char *name, FAR char * const argv[]);
+
+/* Task exit */
+
+int  nxtask_exit(void);
+int  nxtask_terminate(pid_t pid);
+void nxtask_exithook(FAR struct tcb_s *tcb, int status);
+void nxtask_recover(FAR struct tcb_s *tcb);
+
+/* Cancellation points */
+
+bool nxnotify_cancellation(FAR struct tcb_s *tcb);
+
+#endif /* __SCHED_TASK_TASK_H */
