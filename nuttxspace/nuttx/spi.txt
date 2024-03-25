@@ -1,0 +1,1422 @@
+./arch/risc-v/src/mpfs/mpfs_spi.c:412:  spiinfo("devid: %u, CS: %s\n", devid, selected ? "select" : "free");
+./arch/risc-v/src/mpfs/mpfs_spi.c:492:  spiinfo("frequency=%u, actual=%u\n", priv->frequency, priv->actual);
+./arch/risc-v/src/mpfs/mpfs_spi.c:521:  spiinfo("mode=%d\n", mode);
+./arch/risc-v/src/mpfs/mpfs_spi.c:573:  spiinfo("nbits=%d\n", nbits);
+./arch/risc-v/src/mpfs/mpfs_spi.c:895:      spiinfo("Message timed out\n");
+./arch/risc-v/src/mpfs/mpfs_spi.c:969:  spiinfo("send=%x and recv=%x\n", wd, val);
+./arch/risc-v/src/mpfs/mpfs_spi.c:1138:  spiinfo("txbuffer=%p nwords=%lu\n", txbuffer, nwords);
+./arch/risc-v/src/mpfs/mpfs_spi.c:1166:  spiinfo("rxbuffer=%p nwords=%lu\n", rxbuffer, nwords);
+./arch/risc-v/src/mpfs/mpfs_spi.c:1263:  spiinfo("irq status=%x\n", status);
+./arch/risc-v/src/mpfs/mpfs_corespi.c:505:  spiinfo("devid: %u, CS: %s\n", devid, selected ? "select" : "free");
+./arch/risc-v/src/mpfs/mpfs_corespi.c:555:  spiinfo("frequency=%u, actual=%u\n", priv->frequency, priv->actual);
+./arch/risc-v/src/mpfs/mpfs_corespi.c:923:      spiinfo("Message timed out\n");
+./arch/risc-v/src/mpfs/mpfs_corespi.c:996:  spiinfo("send=%x and recv=%x\n", wd, val);
+./arch/risc-v/src/mpfs/mpfs_corespi.c:1161:  spiinfo("txbuffer=%p nwords=%lu\n", txbuffer, nwords);
+./arch/risc-v/src/mpfs/mpfs_corespi.c:1189:  spiinfo("rxbuffer=%p nwords=%lu\n", rxbuffer, nwords);
+./arch/risc-v/src/mpfs/mpfs_corespi.c:1284:  spiinfo("irq status=%x\n", status);
+./arch/risc-v/src/bl602/bl602_spi.c:260:  spiinfo("RX interrupt fired with status %u\n", status);
+./arch/risc-v/src/bl602/bl602_spi.c:275:  spiinfo("TX interrupt fired with status %u\n", status);
+./arch/risc-v/src/bl602/bl602_spi.c:491:  spiinfo("devid: %lu, CS: %s\n", devid, selected ? "select" : "free");
+./arch/risc-v/src/bl602/bl602_spi.c:562:  spiinfo("frequency=%lu, actual=%lu\n", priv->frequency, priv->actual);
+./arch/risc-v/src/bl602/bl602_spi.c:618:  spiinfo("mode=%d\n", mode);
+./arch/risc-v/src/bl602/bl602_spi.c:673:  spiinfo("nbits=%d\n", nbits);
+./arch/risc-v/src/bl602/bl602_spi.c:760:  spiinfo("devid: %" PRIu32 " CMD: %s\n", devid, cmd ? "command" :
+./arch/risc-v/src/bl602/bl602_spi.c:1144:  spiinfo("send=%lx and recv=%lx\n", wd, val);
+./arch/risc-v/src/bl602/bl602_spi.c:1340:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/risc-v/src/bl602/bl602_spi.c:1368:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi_slave.c:419:  spiinfo("mode=%d\n", mode);
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi_slave.c:502:  spiinfo("nbits=%d\n", nbits);
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi_slave.c:965:  spiinfo("ctrlr=%p\n", ctrlr);
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi_slave.c:1113:  spiinfo("ctrlr=%p dev=%p mode=%d nbits=%d\n", ctrlr, dev, mode, nbits);
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi_slave.c:1177:  spiinfo("Unbinding %p\n", priv->dev);
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi_slave.c:1235:  spiinfo("ctrlr=%p, data=%p, num_bytes=%zu\n", ctrlr, data, num_bytes);
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi_slave.c:1289:  spiinfo("ctrlr=%p\n", ctrlr);
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi_slave.c:1322:  spiinfo("ctrlr=%p\n", ctrlr);
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi_slave.c:1356:  spiinfo("ctrlr=%p\n", ctrlr);
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi.c:463:  spiinfo("devid: %08" PRIx32 " CS: %s\n",
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi.c:584:  spiinfo("frequency=%" PRIu32 ", actual=%" PRIu32 "\n",
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi.c:610:  spiinfo("mode=%d\n", mode);
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi.c:678:  spiinfo("nbits=%d\n", nbits);
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi.c:745:  spiinfo("nwords=%" PRIu32 "\n", nwords);
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi.c:863:  spiinfo("send=0x%" PRIx32 " and recv=0x%" PRIx32 "\n", wd, val);
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi.c:948:          spiinfo("send=0x%" PRIx32 " data_reg=0x%" PRIxPTR "\n",
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi.c:1001:              spiinfo("recv=0x%" PRIx32 " data_reg=0x%" PRIxPTR "\n",
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi.c:1088:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/risc-v/src/esp32c3-legacy/esp32c3_spi.c:1117:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/z80/src/ez80/ez80_spi.c:203:     spiinfo("frequency: %lu\n", (unsigned long)frequency);
+./arch/z80/src/ez80/ez80_spi.c:266:      spiinfo("mode: %d\n", (int)mode);
+./arch/z80/src/ez80/ez80_spi.c:415:  spiinfo("cmd: %04" PRIx32 " resp: %02x\n", wd, response);
+./arch/z80/src/ez80/ez80_spi.c:448:  spiinfo("txbuffer: %p rxbuffer: %p nwords: %lu\n",
+./arch/z80/src/ez80/ez80_spi.c:508:  spiinfo("buffer: %p buflen: %lu\n", buffer, (unsigned long)nwords);
+./arch/z80/src/ez80/ez80_spi.c:550:  spiinfo("buffer: %p buflen: %lu\n", buffer, (unsigned long)nwords);
+./arch/avr/src/avr/avr_spi.c:239:  spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/avr/src/avr/avr_spi.c:379:  spiinfo("nwords: %d\n", nwords);
+./arch/avr/src/avr/avr_spi.c:411:  spiinfo("nwords: %d\n", nwords);
+./arch/renesas/src/rx65n/rx65n_rspi_sw.c:443:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./arch/renesas/src/rx65n/rx65n_rspi_sw.c:462:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./arch/renesas/src/rx65n/rx65n_rspi_sw.c:481:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./arch/renesas/src/rx65n/rx65n_rspi_sw.c:520:  spiinfo("INFO: Registering rspi0 device\n");
+./arch/renesas/src/rx65n/rx65n_rspi_sw.c:529:  spiinfo("INFO: Registering rspi1 device\n");
+./arch/renesas/src/rx65n/rx65n_rspi_sw.c:538:  spiinfo("INFO: Registering rspi2 device\n");
+./arch/renesas/src/rx65n/rx65n_rspi.c:552:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./arch/renesas/src/rx65n/rx65n_rspi.c:571:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./arch/renesas/src/rx65n/rx65n_rspi.c:590:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./arch/renesas/src/rx65n/rx65n_rspi.c:629:  spiinfo("INFO: Registering rspi0 device\n");
+./arch/renesas/src/rx65n/rx65n_rspi.c:638:  spiinfo("INFO: Registering rspi1 device\n");
+./arch/renesas/src/rx65n/rx65n_rspi.c:647:  spiinfo("INFO: Registering rspi2 device\n");
+./arch/xtensa/src/esp32/esp32_spi_slave.c:517:  spiinfo("mode=%d\n", mode);
+./arch/xtensa/src/esp32/esp32_spi_slave.c:640:  spiinfo("nbits=%d\n", nbits);
+./arch/xtensa/src/esp32/esp32_spi_slave.c:1100:  spiinfo("dev=%p mode=%d nbits=%d\n", dev, mode, nbits);
+./arch/xtensa/src/esp32/esp32_spi_slave.c:1154:  spiinfo("Unbinding %p\n", priv->dev);
+./arch/xtensa/src/esp32/esp32_spi_slave.c:1208:  spiinfo("spi_enqueue(ctrlr=%p, data=%p, nwords=%d)\n",
+./arch/xtensa/src/esp32/esp32_spi_slave.c:1264:  spiinfo("spi_qfull(ctrlr=%p)\n", ctrlr);
+./arch/xtensa/src/esp32/esp32_spi.c:568:  spiinfo("devid: %08" PRIx32 " CS: %s\n",
+./arch/xtensa/src/esp32/esp32_spi.c:662:  spiinfo("frequency=%d, actual=%d\n", priv->frequency, priv->actual);
+./arch/xtensa/src/esp32/esp32_spi.c:690:  spiinfo("mode=%d\n", mode);
+./arch/xtensa/src/esp32/esp32_spi.c:768:  spiinfo("nbits=%d\n", nbits);
+./arch/xtensa/src/esp32/esp32_spi.c:1015:  spiinfo("send=0x%" PRIx32 " and recv=0x%" PRIx32 "\n", wd, val);
+./arch/xtensa/src/esp32/esp32_spi.c:1105:          spiinfo("send=0x%" PRIx32 " data_reg=0x%" PRIx32 "\n",
+./arch/xtensa/src/esp32/esp32_spi.c:1152:              spiinfo("recv=0x%" PRIx32 " data_reg=0x%" PRIx32 "\n",
+./arch/xtensa/src/esp32/esp32_spi.c:1241:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/xtensa/src/esp32/esp32_spi.c:1270:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/xtensa/src/esp32s3/esp32s3_qspi.c:586:  spiinfo("frequency=%" PRIu32 ", actual=%" PRIu32 "\n",
+./arch/xtensa/src/esp32s3/esp32s3_qspi.c:614:  spiinfo("mode=%d\n", mode);
+./arch/xtensa/src/esp32s3/esp32s3_qspi.c:684:  spiinfo("nbits=%d\n", nbits);
+./arch/xtensa/src/esp32s3/esp32s3_spi.c:596:  spiinfo("devid: %08" PRIx32 " CS: %s\n",
+./arch/xtensa/src/esp32s3/esp32s3_spi.c:717:  spiinfo("frequency=%" PRIu32 ", actual=%" PRIu32 "\n",
+./arch/xtensa/src/esp32s3/esp32s3_spi.c:743:  spiinfo("mode=%d\n", mode);
+./arch/xtensa/src/esp32s3/esp32s3_spi.c:813:  spiinfo("nbits=%d\n", nbits);
+./arch/xtensa/src/esp32s3/esp32s3_spi.c:880:  spiinfo("nwords=%" PRIu32 "\n", nwords);
+./arch/xtensa/src/esp32s3/esp32s3_spi.c:1028:  spiinfo("send=0x%" PRIx32 " and recv=0x%" PRIx32 "\n", wd, val);
+./arch/xtensa/src/esp32s3/esp32s3_spi.c:1121:          spiinfo("send=0x%" PRIx32 " data_reg=0x%" PRIxPTR "\n",
+./arch/xtensa/src/esp32s3/esp32s3_spi.c:1179:              spiinfo("recv=0x%" PRIx32 " data_reg=0x%" PRIxPTR "\n",
+./arch/xtensa/src/esp32s3/esp32s3_spi.c:1266:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/xtensa/src/esp32s3/esp32s3_spi.c:1295:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/xtensa/src/esp32s3/esp32s3_spi_slave.c:586:  spiinfo("mode=%d\n", mode);
+./arch/xtensa/src/esp32s3/esp32s3_spi_slave.c:669:  spiinfo("nbits=%d\n", nbits);
+./arch/xtensa/src/esp32s3/esp32s3_spi_slave.c:1306:  spiinfo("ctrlr=%p\n", ctrlr);
+./arch/xtensa/src/esp32s3/esp32s3_spi_slave.c:1444:  spiinfo("ctrlr=%p dev=%p mode=%d nbits=%d\n", ctrlr, dev, mode, nbits);
+./arch/xtensa/src/esp32s3/esp32s3_spi_slave.c:1516:  spiinfo("Unbinding %p\n", priv->dev);
+./arch/xtensa/src/esp32s3/esp32s3_spi_slave.c:1574:  spiinfo("ctrlr=%p, data=%p, num_bytes=%zu\n", ctrlr, data, num_bytes);
+./arch/xtensa/src/esp32s3/esp32s3_spi_slave.c:1628:  spiinfo("ctrlr=%p\n", ctrlr);
+./arch/xtensa/src/esp32s3/esp32s3_spi_slave.c:1661:  spiinfo("ctrlr=%p\n", ctrlr);
+./arch/xtensa/src/esp32s3/esp32s3_spi_slave.c:1695:  spiinfo("ctrlr=%p\n", ctrlr);
+./arch/xtensa/src/esp32s2/esp32s2_spi_slave.c:507:  spiinfo("mode=%d\n", mode);
+./arch/xtensa/src/esp32s2/esp32s2_spi_slave.c:590:  spiinfo("nbits=%d\n", nbits);
+./arch/xtensa/src/esp32s2/esp32s2_spi_slave.c:1166:  spiinfo("ctrlr=%p\n", ctrlr);
+./arch/xtensa/src/esp32s2/esp32s2_spi_slave.c:1297:  spiinfo("ctrlr=%p dev=%p mode=%d nbits=%d\n", ctrlr, dev, mode, nbits);
+./arch/xtensa/src/esp32s2/esp32s2_spi_slave.c:1369:  spiinfo("Unbinding %p\n", priv->dev);
+./arch/xtensa/src/esp32s2/esp32s2_spi_slave.c:1428:  spiinfo("ctrlr=%p, data=%p, num_bytes=%zu\n", ctrlr, data, num_bytes);
+./arch/xtensa/src/esp32s2/esp32s2_spi_slave.c:1482:  spiinfo("ctrlr=%p\n", ctrlr);
+./arch/xtensa/src/esp32s2/esp32s2_spi_slave.c:1515:  spiinfo("ctrlr=%p\n", ctrlr);
+./arch/xtensa/src/esp32s2/esp32s2_spi_slave.c:1549:  spiinfo("ctrlr=%p\n", ctrlr);
+./arch/xtensa/src/esp32s2/esp32s2_spi.c:638:  spiinfo("devid: %08" PRIx32 " CS: %s\n",
+./arch/xtensa/src/esp32s2/esp32s2_spi.c:760:  spiinfo("frequency=%" PRIu32 ", actual=%" PRIu32 "\n",
+./arch/xtensa/src/esp32s2/esp32s2_spi.c:787:  spiinfo("mode=%d\n", mode);
+./arch/xtensa/src/esp32s2/esp32s2_spi.c:858:  spiinfo("nbits=%d\n", nbits);
+./arch/xtensa/src/esp32s2/esp32s2_spi.c:966:  spiinfo("nwords=%" PRIu32 "\n", nwords);
+./arch/xtensa/src/esp32s2/esp32s2_spi.c:1142:  spiinfo("send=0x%" PRIx32 " and recv=0x%" PRIx32 "\n", wd, val);
+./arch/xtensa/src/esp32s2/esp32s2_spi.c:1228:          spiinfo("send=0x%" PRIx32 " data_reg=0x%" PRIxPTR "\n",
+./arch/xtensa/src/esp32s2/esp32s2_spi.c:1276:              spiinfo("recv=0x%" PRIx32 " data_reg=0x%" PRIxPTR "\n",
+./arch/xtensa/src/esp32s2/esp32s2_spi.c:1363:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/xtensa/src/esp32s2/esp32s2_spi.c:1392:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/xmc4/xmc4_spi.c:568:          spiinfo("...[Repeats %d times]...\n", spi->ntimes);
+./arch/arm/src/xmc4/xmc4_spi.c:602:      spiinfo("%08x->%08x\n", address, value);
+./arch/arm/src/xmc4/xmc4_spi.c:625:      spiinfo("%08x<-%08x\n", address, value);
+./arch/arm/src/xmc4/xmc4_spi.c:650:  spiinfo("%s:\n", msg);
+./arch/arm/src/xmc4/xmc4_spi.c:651:  spiinfo("   KSCFG:%08x    FDR:%08x     BRG:%08x\n",
+./arch/arm/src/xmc4/xmc4_spi.c:655:  spiinfo("    INPR:%08x  DX0CR:%08x   DX1CR:%08x\n",
+./arch/arm/src/xmc4/xmc4_spi.c:659:  spiinfo("   DX2CR:%08x  DX3CR:%08x   DX4CR:%08x\n",
+./arch/arm/src/xmc4/xmc4_spi.c:663:  spiinfo("   DX5CR:%08x   SCTR:%08x    TCSR:%08x\n",
+./arch/arm/src/xmc4/xmc4_spi.c:667:  spiinfo("     PCR:%08x    CCR:%08x    CMTR:%08x\n",
+./arch/arm/src/xmc4/xmc4_spi.c:671:  spiinfo("     PSR:%08x   PSCR:%08x  RBUFSR:%08x\n",
+./arch/arm/src/xmc4/xmc4_spi.c:675:  spiinfo("RBUF01SR:%08x    FMR:%08x   TRBSR:%08x\n",
+./arch/arm/src/xmc4/xmc4_spi.c:679:  spiinfo("   TBCTR:%08x  RBCTR:%08x  TRBPTR:%08x\n",
+./arch/arm/src/xmc4/xmc4_spi.c:683:  spiinfo("   TRBSR:%08x TRBSCR:%08x   OUTDR:%08x\n",
+./arch/arm/src/xmc4/xmc4_spi.c:1055:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/xmc4/xmc4_spi.c:1092:  spiinfo("selected=%d\n", selected);
+./arch/arm/src/xmc4/xmc4_spi.c:1132:  spiinfo("cs=%d frequency=%d\n", spics->cs, frequency);
+./arch/arm/src/xmc4/xmc4_spi.c:1156:  spiinfo("Frequency configured to %d\n", frequency);
+./arch/arm/src/xmc4/xmc4_spi.c:1182:  spiinfo("cs=%d mode=%d\n", spics->cs, mode);
+./arch/arm/src/xmc4/xmc4_spi.c:1225:      spiinfo("USIC BRG = %08x\n", regval);
+./arch/arm/src/xmc4/xmc4_spi.c:1254:  spiinfo("cs=%d nbits=%d\n", spics->cs, nbits);
+./arch/arm/src/xmc4/xmc4_spi.c:1268:      spiinfo("SCTR = %08x\n", regval);
+./arch/arm/src/xmc4/xmc4_spi.c:1306:  spiinfo("Sent %02x received %02x\n", txbyte, rxbyte);
+./arch/arm/src/xmc4/xmc4_spi.c:1354:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/xmc4/xmc4_spi.c:1475:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/xmc4/xmc4_spi.c:1788:  spiinfo("channel: %d\n", channel);
+./arch/arm/src/samd2l2/sam_spi.c:546:          spiinfo("...[Repeats %d times]...\n", priv->ntimes);
+./arch/arm/src/samd2l2/sam_spi.c:579:      spiinfo("%08x->%02x\n", regaddr, regval);
+./arch/arm/src/samd2l2/sam_spi.c:602:      spiinfo("%08x<-%02x\n", regaddr, regval);
+./arch/arm/src/samd2l2/sam_spi.c:625:      spiinfo("%08x->%04x\n", regaddr, regval);
+./arch/arm/src/samd2l2/sam_spi.c:648:      spiinfo("%08x<-%04x\n", regaddr, regval);
+./arch/arm/src/samd2l2/sam_spi.c:671:      spiinfo("%08x->%08x\n", regaddr, regval);
+./arch/arm/src/samd2l2/sam_spi.c:694:      spiinfo("%08x<-%08x\n", regaddr, regval);
+./arch/arm/src/samd2l2/sam_spi.c:719:  spiinfo("%s:\n", msg);
+./arch/arm/src/samd2l2/sam_spi.c:720:  spiinfo("   CTRLA:%08x CTRLB:%08x DBGCTRL:%02x\n",
+./arch/arm/src/samd2l2/sam_spi.c:724:  spiinfo("    BAUD:%02x       INTEN:%02x       INTFLAG:%02x\n",
+./arch/arm/src/samd2l2/sam_spi.c:728:  spiinfo("  STATUS:%04x      ADDR:%08x\n",
+./arch/arm/src/samd2l2/sam_spi.c:817:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/samd2l2/sam_spi.c:853:  spiinfo("sercom=%d frequency=%d\n", priv->sercom, frequency);
+./arch/arm/src/samd2l2/sam_spi.c:936:  spiinfo("Frequency %d->%d\n", frequency, actual);
+./arch/arm/src/samd2l2/sam_spi.c:960:  spiinfo("sercom=%d mode=%d\n", priv->sercom, mode);
+./arch/arm/src/samd2l2/sam_spi.c:1027:  spiinfo("sercom=%d nbits=%d\n", priv->sercom, nbits);
+./arch/arm/src/samd2l2/sam_spi.c:1084:  spiinfo("Sent %02x received %02x\n", txbyte, rxbyte);
+./arch/arm/src/samd2l2/sam_spi.c:1159:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/samd2l2/sam_spi.c:1197:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/samd2l2/sam_spi.c:1474:  spiinfo("port: %d\n", port);
+./arch/arm/src/stm32wl5/stm32wl5_spi.c:881:  spiinfo("CR1 (0x%lx) = 0x%04x\n", priv->spibase + STM32WL5_SPI_CR1_OFFSET,
+./arch/arm/src/stm32wl5/stm32wl5_spi.c:909:  spiinfo("CR2 (0x%lx) = 0x%04x\n", priv->spibase + STM32WL5_SPI_CR2_OFFSET,
+./arch/arm/src/stm32wl5/stm32wl5_spi.c:1044:      spiinfo("Frequency %" PRIu32 "->%" PRIu32 "\n", frequency, actual);
+./arch/arm/src/stm32wl5/stm32wl5_spi.c:1074:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/stm32wl5/stm32wl5_spi.c:1184:      spiinfo("nbits=%d (previous val %d)\n", nbits, priv->nbits);
+./arch/arm/src/stm32wl5/stm32wl5_spi.c:1213:      spiinfo("nbits=%d (CR2 has proper value, no need to update)\n", nbits);
+./arch/arm/src/stm32wl5/stm32wl5_spi.c:1245:  spiinfo("features=%08x\n", features);
+./arch/arm/src/stm32wl5/stm32wl5_spi.c:1317:  spiinfo("Sent: %04" PRIx32 " Return: %04" PRIx32
+./arch/arm/src/stm32wl5/stm32wl5_spi.c:1363:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/stm32wl5/stm32wl5_spi.c:1510:      spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n",
+./arch/arm/src/stm32wl5/stm32wl5_spi.c:1646:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/stm32wl5/stm32wl5_spi.c:1676:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/at32/at32_spi.c:1099:      spiinfo("Frequency %" PRIu32 "->%" PRIu32 "\n", frequency, actual);
+./arch/arm/src/at32/at32_spi.c:1129:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/at32/at32_spi.c:1228:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/at32/at32_spi.c:1292:  spiinfo("features=%08x\n", features);
+./arch/arm/src/at32/at32_spi.c:1368:  spiinfo("Sent: %04" PRIx32 " Return: %04" PRIx32
+./arch/arm/src/at32/at32_spi.c:1415:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/at32/at32_spi.c:1562:      spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n",
+./arch/arm/src/at32/at32_spi.c:1702:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/at32/at32_spi.c:1731:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/nrf91/nrf91_spi.c:864:  spiinfo("Frequency %" PRId32 "\n", frequency);
+./arch/arm/src/nrf91/nrf91_spi.c:891:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/nrf91/nrf91_spi.c:1001:  spiinfo("features=%08x\n", features);
+./arch/arm/src/nrf91/nrf91_spi.c:1223:  spiinfo("txbuffer=%p nwords=%zu\n", txbuffer, nwords);
+./arch/arm/src/nrf91/nrf91_spi.c:1249:  spiinfo("txbuffer=%p nwords=%zu\n", rxbuffer, nwords);
+./arch/arm/src/tiva/common/tiva_ssi.c:456:  spiinfo("CR1: %08" PRIx32 "\n", regval);
+./arch/arm/src/tiva/common/tiva_ssi.c:483:  spiinfo("CR1: %08" PRIx32 "\n", regval);
+./arch/arm/src/tiva/common/tiva_ssi.c:505:  spiinfo("TX: ->0xffff\n");
+./arch/arm/src/tiva/common/tiva_ssi.c:512:  spiinfo("TX: %p->%04x\n", ptr, *ptr);
+./arch/arm/src/tiva/common/tiva_ssi.c:520:  spiinfo("TX: %p->%02x\n", ptr, *ptr);
+./arch/arm/src/tiva/common/tiva_ssi.c:546:  spiinfo("RX: discard %04x\n", regval);
+./arch/arm/src/tiva/common/tiva_ssi.c:556:  spiinfo("RX: %p<-%04x\n", ptr, *ptr);
+./arch/arm/src/tiva/common/tiva_ssi.c:564:  spiinfo("RX: %p<-%02x\n", ptr, *ptr);
+./arch/arm/src/tiva/common/tiva_ssi.c:814:  spiinfo("txbuffer: %p rxbuffer: %p nwords: %d\n",
+./arch/arm/src/tiva/common/tiva_ssi.c:856:  spiinfo("ntxwords: %d nrxwords: %d nwords: %d SR: %08x\n",
+./arch/arm/src/tiva/common/tiva_ssi.c:870:  spiinfo("ntxwords: %d nrxwords: %d nwords: %d SR: %08x IM: %08x\n",
+./arch/arm/src/tiva/common/tiva_ssi.c:880:  spiinfo("Waiting for transfer complete\n");
+./arch/arm/src/tiva/common/tiva_ssi.c:888:  spiinfo("Transfer complete\n");
+./arch/arm/src/tiva/common/tiva_ssi.c:1004:  spiinfo("ntxwords: %d nrxwords: %d nwords: %d SR: %08x\n",
+./arch/arm/src/tiva/common/tiva_ssi.c:1016:  spiinfo("ntxwords: %d nrxwords: %d nwords: %d SR: %08x IM: %08x\n",
+./arch/arm/src/tiva/common/tiva_ssi.c:1031:      spiinfo("Transfer complete\n");
+./arch/arm/src/tiva/common/tiva_ssi.c:1104:  spiinfo("frequency: %" PRId32 "\n", frequency);
+./arch/arm/src/tiva/common/tiva_ssi.c:1174:      spiinfo("CR0: %08" PRIx32 " CPSR: %08" PRIx32 "\n", regval, cpsdvsr);
+./arch/arm/src/tiva/common/tiva_ssi.c:1232:  spiinfo("mode: %d\n", mode);
+./arch/arm/src/tiva/common/tiva_ssi.c:1269:      spiinfo("CR0: %08" PRIx32 "\n", regval);
+./arch/arm/src/tiva/common/tiva_ssi.c:1313:  spiinfo("nbits: %d\n", nbits);
+./arch/arm/src/tiva/common/tiva_ssi.c:1321:      spiinfo("CR0: %08" PRIx32 "\n", regval);
+./arch/arm/src/tiva/common/tiva_ssi.c:1485:  spiinfo("port: %d\n", port);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:398:          spiinfo("...[Repeats %d times]...\n", priv->ntimes);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:432:      spiinfo("%08x->%08x\n", address, value);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:455:      spiinfo("%08x<-%08x\n", address, value);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:481:  spiinfo("%s:\n", msg);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:490:  spiinfo("CR:%08x\n", regval);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:491:  spiinfo("  EN:%1d ABORT:%1d DMAEN:%1d TCEN:%1d SSHIFT:%1d\n"
+./arch/arm/src/stm32l4/stm32l4_qspi.c:511:  spiinfo("DCR:%08x\n", regval);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:512:  spiinfo("  CKMODE:%1d CSHT:%d FSIZE:%d\n",
+./arch/arm/src/stm32l4/stm32l4_qspi.c:518:  spiinfo("CCR:%08x\n", regval);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:519:  spiinfo("   INST:%02x IMODE:%d ADMODE:%d ADSIZE:%d ABMODE:%d\n"
+./arch/arm/src/stm32l4/stm32l4_qspi.c:535:  spiinfo("SR:%08x\n", regval);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:536:  spiinfo("  TEF:%1d TCF:%1d FTF:%1d SMF:%1d TOF:%1d BUSY:%1d FLEVEL:%d\n",
+./arch/arm/src/stm32l4/stm32l4_qspi.c:546:  spiinfo("    CR:%08x   DCR:%08x   CCR:%08x    SR:%08x\n",
+./arch/arm/src/stm32l4/stm32l4_qspi.c:551:  spiinfo("   DLR:%08x   ABR:%08x PSMKR:%08x PSMAR:%08x\n",
+./arch/arm/src/stm32l4/stm32l4_qspi.c:556:  spiinfo("   PIR:%08x  LPTR:%08x\n",
+./arch/arm/src/stm32l4/stm32l4_qspi.c:568:  spiinfo("%s:\n", msg);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:571:  spiinfo("E_MODER:%08x\n", regval);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:574:  spiinfo("E_OTYPER:%08x\n", regval);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:577:  spiinfo("E_OSPEED:%08x\n", regval);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:580:  spiinfo("E_PUPDR:%08x\n", regval);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:583:  spiinfo("E_AFRL:%08x\n", regval);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:586:  spiinfo("E_AFRH:%08x\n", regval);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:699:  spiinfo("Transfer:\n");
+./arch/arm/src/stm32l4/stm32l4_qspi.c:700:  spiinfo("  flags: %02x\n", cmdinfo->flags);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:701:  spiinfo("  cmd: %04x\n", cmdinfo->cmd);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:705:      spiinfo("  address/length: %08lx/%d\n",
+./arch/arm/src/stm32l4/stm32l4_qspi.c:711:      spiinfo("  %s Data:\n",
+./arch/arm/src/stm32l4/stm32l4_qspi.c:713:      spiinfo("    buffer/length: %p/%d\n",
+./arch/arm/src/stm32l4/stm32l4_qspi.c:827:  spiinfo("Transfer:\n");
+./arch/arm/src/stm32l4/stm32l4_qspi.c:828:  spiinfo("  flags: %02x\n", meminfo->flags);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:829:  spiinfo("  cmd: %04x\n", meminfo->cmd);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:830:  spiinfo("  address/length: %08lx/%d\n",
+./arch/arm/src/stm32l4/stm32l4_qspi.c:832:  spiinfo("  %s Data:\n",
+./arch/arm/src/stm32l4/stm32l4_qspi.c:834:  spiinfo("    buffer/length: %p/%d\n", meminfo->buffer, meminfo->buflen);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:1704:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:1748:  spiinfo("frequency=%" PRId32 "\n", frequency);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:1802:  spiinfo("prescaler=%" PRId32 " actual=%" PRId32 "\n", prescaler, actual);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:1809:  spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:1843:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:1873:          spiinfo("unsupported mode=%d\n", mode);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:1880:      spiinfo("DCR=%08" PRIx32 "\n", regval);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:1910:      spiinfo("unsupported nbits=%d\n", nbits);
+./arch/arm/src/stm32l4/stm32l4_qspi.c:2457:  spiinfo("intf: %d\n", intf);
+./arch/arm/src/stm32l4/stm32l4_spi.c:1064:      spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/stm32l4/stm32l4_spi.c:1094:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/stm32l4/stm32l4_spi.c:1162:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/stm32l4/stm32l4_spi.c:1234:  spiinfo("features=%08x\n", features);
+./arch/arm/src/stm32l4/stm32l4_spi.c:1321:      spiinfo("Sent: %04" PRIx32 " Return: %04" PRIx32
+./arch/arm/src/stm32l4/stm32l4_spi.c:1326:      spiinfo("Sent: %02" PRIx32 " Return: %02" PRIx32
+./arch/arm/src/stm32l4/stm32l4_spi.c:1368:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/stm32l4/stm32l4_spi.c:1485:      spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n",
+./arch/arm/src/stm32l4/stm32l4_spi.c:1595:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/stm32l4/stm32l4_spi.c:1625:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/imxrt/imxrt_lpspi.c:1107:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/imxrt/imxrt_lpspi.c:1193:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/imxrt/imxrt_lpspi.c:1258:  spiinfo("features=%08x\n", features);
+./arch/arm/src/imxrt/imxrt_lpspi.c:1321:  spiinfo(
+./arch/arm/src/imxrt/imxrt_lpspi.c:1364:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/imxrt/imxrt_lpspi.c:1472:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/imxrt/imxrt_lpspi.c:1613:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/imxrt/imxrt_lpspi.c:1642:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/imxrt/imxrt_flexspi.c:1115:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/lpc43xx/lpc43_spi.c:252:  spiinfo("Frequency %d->%d\n", frequency, actual);
+./arch/arm/src/lpc43xx/lpc43_spi.c:418:  spiinfo("nwords: %d\n", nwords);
+./arch/arm/src/lpc43xx/lpc43_spi.c:465:  spiinfo("nwords: %d\n", nwords);
+./arch/arm/src/lpc43xx/lpc43_ssp.c:348:  spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/lpc43xx/lpc43_ssp.c:376:      spiinfo("Setting mode to %d.\n", mode);
+./arch/arm/src/lpc43xx/lpc43_ssp.c:440:      spiinfo("Setting bits per word to %d.\n", nbits);
+./arch/arm/src/lpc43xx/lpc43_ssp.c:448:      spiinfo("SSP Control Register 0 (CR0) after setting"
+./arch/arm/src/lpc43xx/lpc43_ssp.c:495:  spiinfo("%04" PRIx32 "->%04" PRIx32 "\n", wd, regval);
+./arch/arm/src/lpc43xx/lpc43_ssp.c:546:  spiinfo("nwords: %d\n", nwords);
+./arch/arm/src/lpc43xx/lpc43_ssp.c:558:      spiinfo("TX: rxpending: %" PRId32 " nwords: %d\n", rxpending, nwords);
+./arch/arm/src/lpc43xx/lpc43_ssp.c:583:      spiinfo("RX: rxpending: %" PRId32 "\n", rxpending);
+./arch/arm/src/stm32h7/stm32_spi.c:1070:  spiinfo("CR1: 0x%08" PRIx32 " CFG1: 0x%08" PRIx32
+./arch/arm/src/stm32h7/stm32_spi.c:1075:  spiinfo("IER: 0x%08" PRIx32 " SR: 0x%08" PRIx32
+./arch/arm/src/stm32h7/stm32_spi.c:1573:      spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/stm32h7/stm32_spi.c:1651:  spiinfo("mode=%" PRIx32 "\n", (uint32_t) mode);
+./arch/arm/src/stm32h7/stm32_spi.c:1729:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/stm32h7/stm32_spi.c:1791:  spiinfo("features=%08" PRIx8 "\n", features);
+./arch/arm/src/stm32h7/stm32_spi.c:1896:      spiinfo("Sent: %04" PRIx32 " Return: %04" PRIx32 " Status: %02" PRIx32
+./arch/arm/src/stm32h7/stm32_spi.c:1901:      spiinfo("Sent: %02" PRIx32 " Return: %02" PRIx32 " Status: %02" PRIx32
+./arch/arm/src/stm32h7/stm32_spi.c:1944:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/stm32h7/stm32_spi.c:2184:      spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n",
+./arch/arm/src/stm32h7/stm32_spi.c:2328:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/stm32h7/stm32_spi.c:2358:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/stm32h7/stm32_spi_slave.c:665:  spiinfo("CR1: 0x%08x CFG1: 0x%08x CFG2: 0x%08x\n",
+./arch/arm/src/stm32h7/stm32_spi_slave.c:669:  spiinfo("IER: 0x%08x SR: 0x%08x I2SCFGR: 0x%08x\n",
+./arch/arm/src/stm32h7/stm32_spi_slave.c:973:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/stm32h7/stm32_spi_slave.c:1038:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/stm32h7/stm32_spi_slave.c:1106:  spiinfo("dev=%p mode=%d nbits=%d\n", sdv, mode, nbits);
+./arch/arm/src/stm32h7/stm32_spi_slave.c:1263:  spiinfo("Unbinding %p\n", priv->dev);
+./arch/arm/src/stm32h7/stm32_qspi.c:425:          spiinfo("...[Repeats %d times]...\n", priv->ntimes);
+./arch/arm/src/stm32h7/stm32_qspi.c:459:      spiinfo("%08x->%08x\n", address, value);
+./arch/arm/src/stm32h7/stm32_qspi.c:482:      spiinfo("%08x<-%08x\n", address, value);
+./arch/arm/src/stm32h7/stm32_qspi.c:507:  spiinfo("%s:\n", msg);
+./arch/arm/src/stm32h7/stm32_qspi.c:517:  spiinfo("CR:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:518:  spiinfo("  EN:%1d ABORT:%1d DMAEN:%1d TCEN:%1d SSHIFT:%1d\n"
+./arch/arm/src/stm32h7/stm32_qspi.c:538:  spiinfo("DCR:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:539:  spiinfo("  CKMODE:%1d CSHT:%d FSIZE:%d\n",
+./arch/arm/src/stm32h7/stm32_qspi.c:545:  spiinfo("CCR:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:546:  spiinfo("   INST:%02x IMODE:%d ADMODE:%d ADSIZE:%d ABMODE:%d\n"
+./arch/arm/src/stm32h7/stm32_qspi.c:562:  spiinfo("SR:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:563:  spiinfo("  TEF:%1d TCF:%1d FTF:%1d SMF:%1d TOF:%1d BUSY:%1d FLEVEL:%d\n",
+./arch/arm/src/stm32h7/stm32_qspi.c:573:  spiinfo("    CR:%08x   DCR:%08x   CCR:%08x    SR:%08x\n",
+./arch/arm/src/stm32h7/stm32_qspi.c:578:  spiinfo("   DLR:%08x   ABR:%08x PSMKR:%08x PSMAR:%08x\n",
+./arch/arm/src/stm32h7/stm32_qspi.c:583:  spiinfo("   PIR:%08x  LPTR:%08x\n",
+./arch/arm/src/stm32h7/stm32_qspi.c:594:  spiinfo("%s:\n", msg);
+./arch/arm/src/stm32h7/stm32_qspi.c:599:  spiinfo("B_MODER:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:602:  spiinfo("B_OTYPER:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:605:  spiinfo("B_OSPEED:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:608:  spiinfo("B_PUPDR:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:611:  spiinfo("B_AFRL:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:614:  spiinfo("B_AFRH:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:619:  spiinfo("D_MODER:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:622:  spiinfo("D_OTYPER:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:625:  spiinfo("D_OSPEED:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:628:  spiinfo("D_PUPDR:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:631:  spiinfo("D_AFRL:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:634:  spiinfo("D_AFRH:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:639:  spiinfo("E_MODER:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:642:  spiinfo("E_OTYPER:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:645:  spiinfo("E_OSPEED:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:648:  spiinfo("E_PUPDR:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:651:  spiinfo("E_AFRL:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:654:  spiinfo("E_AFRH:%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:767:  spiinfo("Transfer:\n");
+./arch/arm/src/stm32h7/stm32_qspi.c:768:  spiinfo("  flags: %02x\n", cmdinfo->flags);
+./arch/arm/src/stm32h7/stm32_qspi.c:769:  spiinfo("  cmd: %04x\n", cmdinfo->cmd);
+./arch/arm/src/stm32h7/stm32_qspi.c:773:      spiinfo("  address/length: %08lx/%d\n",
+./arch/arm/src/stm32h7/stm32_qspi.c:779:      spiinfo("  %s Data:\n",
+./arch/arm/src/stm32h7/stm32_qspi.c:781:      spiinfo("    buffer/length: %p/%d\n",
+./arch/arm/src/stm32h7/stm32_qspi.c:907:  spiinfo("Transfer:\n");
+./arch/arm/src/stm32h7/stm32_qspi.c:908:  spiinfo("  flags: %02x\n", meminfo->flags);
+./arch/arm/src/stm32h7/stm32_qspi.c:909:  spiinfo("  cmd: %04x\n", meminfo->cmd);
+./arch/arm/src/stm32h7/stm32_qspi.c:910:  spiinfo("  address/length: %08lx/%d\n",
+./arch/arm/src/stm32h7/stm32_qspi.c:912:  spiinfo("  %s Data:\n", QSPIMEM_ISWRITE(meminfo->flags) ?
+./arch/arm/src/stm32h7/stm32_qspi.c:914:  spiinfo("    buffer/length: %p/%d\n", meminfo->buffer, meminfo->buflen);
+./arch/arm/src/stm32h7/stm32_qspi.c:1808:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/stm32h7/stm32_qspi.c:1854:  spiinfo("frequency=%d\n", frequency);
+./arch/arm/src/stm32h7/stm32_qspi.c:1908:  spiinfo("prescaler=%d actual=%d\n", prescaler, actual);
+./arch/arm/src/stm32h7/stm32_qspi.c:1915:  spiinfo("Frequency %d->%d\n", frequency, actual);
+./arch/arm/src/stm32h7/stm32_qspi.c:1949:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/stm32h7/stm32_qspi.c:1979:          spiinfo("unsupported mode=%d\n", mode);
+./arch/arm/src/stm32h7/stm32_qspi.c:1986:      spiinfo("DCR=%08x\n", regval);
+./arch/arm/src/stm32h7/stm32_qspi.c:2016:      spiinfo("unsupported nbits=%d\n", nbits);
+./arch/arm/src/stm32h7/stm32_qspi.c:2571:  spiinfo("intf: %d\n", intf);
+./arch/arm/src/stm32l5/stm32l5_spi.c:1062:      spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/stm32l5/stm32l5_spi.c:1092:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/stm32l5/stm32l5_spi.c:1161:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/stm32l5/stm32l5_spi.c:1233:  spiinfo("features=%08x\n", features);
+./arch/arm/src/stm32l5/stm32l5_spi.c:1320:      spiinfo("Sent: %04" PRIx32 " Return: %04" PRIx32
+./arch/arm/src/stm32l5/stm32l5_spi.c:1325:      spiinfo("Sent: %02" PRIx32 " Return: %02" PRIx32
+./arch/arm/src/stm32l5/stm32l5_spi.c:1367:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/stm32l5/stm32l5_spi.c:1483:      spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer,
+./arch/arm/src/stm32l5/stm32l5_spi.c:1588:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/stm32l5/stm32l5_spi.c:1617:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/lc823450/lc823450_spi.c:199:  spiinfo("Frequency %" PRId32 " -> %ld\n",
+./arch/arm/src/lpc2378/lpc23xx_spi.c:281:  spiinfo("Frequency %d->%d\n", frequency, actual);
+./arch/arm/src/lpc2378/lpc23xx_spi.c:449:  spiinfo("nwords: %d\n", nwords);
+./arch/arm/src/lpc2378/lpc23xx_spi.c:496:  spiinfo("nwords: %d\n", nwords);
+./arch/arm/src/s32k1xx/s32k1xx_lpspi.c:914:  spiinfo("devid: %" PRId32 ", CS: hardware-controlled\n", devid);
+./arch/arm/src/s32k1xx/s32k1xx_lpspi.c:1055:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/s32k1xx/s32k1xx_lpspi.c:1144:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/s32k1xx/s32k1xx_lpspi.c:1214:  spiinfo("features=%08x\n", features);
+./arch/arm/src/s32k1xx/s32k1xx_lpspi.c:1278:  spiinfo("Sent: %04" PRIx32 " Return: %04" PRIx32
+./arch/arm/src/s32k1xx/s32k1xx_lpspi.c:1335:  spiinfo("Sent: %04" PRIx32 " %04" PRIx32 " Return: %04"
+./arch/arm/src/s32k1xx/s32k1xx_lpspi.c:1381:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/s32k1xx/s32k1xx_lpspi.c:1659:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/s32k1xx/s32k1xx_lpspi.c:1792:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/s32k1xx/s32k1xx_lpspi.c:1822:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/stm32f0l0g0/stm32_spi.c:1151:      spiinfo("Frequency %" PRId32 "->% " PRId32 "\n", frequency, actual);
+./arch/arm/src/stm32f0l0g0/stm32_spi.c:1181:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/stm32f0l0g0/stm32_spi.c:1249:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/stm32f0l0g0/stm32_spi.c:1345:  spiinfo("features=%08x\n", features);
+./arch/arm/src/stm32f0l0g0/stm32_spi.c:1437:  spiinfo("Sent: %04" PRIx32 " Return: %04" PRIx32
+./arch/arm/src/stm32f0l0g0/stm32_spi.c:1477:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/stm32f0l0g0/stm32_spi.c:1608:      spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n",
+./arch/arm/src/stm32f0l0g0/stm32_spi.c:1717:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/stm32f0l0g0/stm32_spi.c:1746:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/gd32f4/gd32f4xx_spi.c:1162:  spiinfo("Frequency %" PRIu32 "->%" PRIu32 "\n", frequency, actual);
+./arch/arm/src/gd32f4/gd32f4xx_spi.c:1192:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/gd32f4/gd32f4xx_spi.c:1267:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/gd32f4/gd32f4xx_spi.c:1324:  spiinfo("features=%08x\n", features);
+./arch/arm/src/gd32f4/gd32f4xx_spi.c:1386:  spiinfo("Sent: %02" PRIx16 " Return: %04" PRIx32
+./arch/arm/src/gd32f4/gd32f4xx_spi.c:1461:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/gd32f4/gd32f4xx_spi.c:1584:      spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n",
+./arch/arm/src/gd32f4/gd32f4xx_spi.c:1719:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/gd32f4/gd32f4xx_spi.c:1749:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/nrf52/nrf52_qspi.c:206:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/nrf52/nrf52_qspi.c:242:  spiinfo("frequency=%ld\n", frequency);
+./arch/arm/src/nrf52/nrf52_qspi.c:287:  spiinfo("Frequency %ld->%ld\n", frequency, actual);
+./arch/arm/src/nrf52/nrf52_qspi.c:313:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/nrf52/nrf52_qspi.c:338:              spiinfo("unsupported mode=%d\n", mode);
+./arch/arm/src/nrf52/nrf52_qspi.c:379:      spiinfo("unsupported nbits=%d\n", nbits);
+./arch/arm/src/nrf52/nrf52_qspi.c:896:  spiinfo("intf: %d\n", intf);
+./arch/arm/src/nrf52/nrf52_spi.c:798:  spiinfo("Frequency %" PRId32 "\n", frequency);
+./arch/arm/src/nrf52/nrf52_spi.c:825:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/nrf52/nrf52_spi.c:935:  spiinfo("features=%08x\n", features);
+./arch/arm/src/nrf52/nrf52_spi.c:1236:  spiinfo("txbuffer=%p nwords=%zu\n", txbuffer, nwords);
+./arch/arm/src/nrf52/nrf52_spi.c:1262:  spiinfo("txbuffer=%p nwords=%zu\n", rxbuffer, nwords);
+./arch/arm/src/sama5/sam_qspi.c:418:          spiinfo("...[Repeats %d times]...\n", priv->ntimes);
+./arch/arm/src/sama5/sam_qspi.c:452:      spiinfo("%08x->%08x\n", address, value);
+./arch/arm/src/sama5/sam_qspi.c:475:      spiinfo("%08x<-%08x\n", address, value);
+./arch/arm/src/sama5/sam_qspi.c:500:  spiinfo("%s:\n", msg);
+./arch/arm/src/sama5/sam_qspi.c:501:  spiinfo("    MR:%08x   SR:%08x  IMR:%08x  SCR:%08x\n",
+./arch/arm/src/sama5/sam_qspi.c:506:  spiinfo("   IAR:%08x  ICR:%08x  IFR:%08x  SMR:%08x\n",
+./arch/arm/src/sama5/sam_qspi.c:511:  spiinfo("  WPCR:%08x WPSR:%08x\n",
+./arch/arm/src/sama5/sam_qspi.c:1099:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/sama5/sam_qspi.c:1140:  spiinfo("frequency=%"PRIu32"\n", frequency);
+./arch/arm/src/sama5/sam_qspi.c:1230:  spiinfo("SCBR=%"PRIu32" actual=%"PRIu32"\n", scbr, actual);
+./arch/arm/src/sama5/sam_qspi.c:1237:  spiinfo("Frequency %"PRIu32"->%"PRIu32"\n", frequency, actual);
+./arch/arm/src/sama5/sam_qspi.c:1261:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/sama5/sam_qspi.c:1303:      spiinfo("SCR=%08"PRIx32"\n", regval);
+./arch/arm/src/sama5/sam_qspi.c:1331:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/sama5/sam_qspi.c:1346:      spiinfo("MR=%08"PRIx32"\n", regval);
+./arch/arm/src/sama5/sam_qspi.c:1381:  spiinfo("Transfer:\n");
+./arch/arm/src/sama5/sam_qspi.c:1382:  spiinfo("  flags: %02x\n", cmdinfo->flags);
+./arch/arm/src/sama5/sam_qspi.c:1383:  spiinfo("  cmd: %04x\n", cmdinfo->cmd);
+./arch/arm/src/sama5/sam_qspi.c:1387:      spiinfo("  address/length: %08lx/%d\n",
+./arch/arm/src/sama5/sam_qspi.c:1393:      spiinfo("  %s Data:\n",
+./arch/arm/src/sama5/sam_qspi.c:1395:      spiinfo("    buffer/length: %p/%d\n",
+./arch/arm/src/sama5/sam_qspi.c:1601:  spiinfo("Transfer:\n");
+./arch/arm/src/sama5/sam_qspi.c:1602:  spiinfo("  flags: %02x\n", meminfo->flags);
+./arch/arm/src/sama5/sam_qspi.c:1603:  spiinfo("  cmd: %04x\n", meminfo->cmd);
+./arch/arm/src/sama5/sam_qspi.c:1604:  spiinfo("  address/length: %08lx/%d\n",
+./arch/arm/src/sama5/sam_qspi.c:1606:  spiinfo("  %s Data:\n",
+./arch/arm/src/sama5/sam_qspi.c:1608:  spiinfo("    buffer/length: %p/%"PRIu32"\n",
+./arch/arm/src/sama5/sam_qspi.c:1777:  spiinfo("intf: %d\n", intf);
+./arch/arm/src/sama5/sam_flexcom_spi.c:549:          spiinfo("...[Repeats %d times]...\n", flex_spi->ntimes);
+./arch/arm/src/sama5/sam_flexcom_spi.c:583:      spiinfo("%08" PRIx32 "->%08" PRIx32 "\n", address, value);
+./arch/arm/src/sama5/sam_flexcom_spi.c:606:      spiinfo("%08" PRIx32 "<-%08" PRIx32 "\n", address, value);
+./arch/arm/src/sama5/sam_flexcom_spi.c:632:  spiinfo("%s:\n", msg);
+./arch/arm/src/sama5/sam_flexcom_spi.c:633:  spiinfo("    MR:%08x   SR:%08x  IMR:%08x\n",
+./arch/arm/src/sama5/sam_flexcom_spi.c:637:  spiinfo("  CSR0:%08x CSR1:%08x \n",
+./arch/arm/src/sama5/sam_flexcom_spi.c:640:  spiinfo("  WPMR:%08x WPSR:%08x\n",
+./arch/arm/src/sama5/sam_flexcom_spi.c:1035:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/sama5/sam_flexcom_spi.c:1072:  spiinfo("selected=%d\n", selected);
+./arch/arm/src/sama5/sam_flexcom_spi.c:1075:      spiinfo("cs=%d\n", flex_spics->cs);
+./arch/arm/src/sama5/sam_flexcom_spi.c:1130:  spiinfo("cs=%d frequency=%" PRId32 "\n", flex_spics->cs, freq);
+./arch/arm/src/sama5/sam_flexcom_spi.c:1204:  spiinfo("csr[offset=%02x]=%08" PRIx32 " actual=%" PRId32 "\n",
+./arch/arm/src/sama5/sam_flexcom_spi.c:1212:  spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", freq, actual);
+./arch/arm/src/sama5/sam_flexcom_spi.c:1238:  spiinfo("cs=%d mode=%d\n", flex_spics->cs, mode);
+./arch/arm/src/sama5/sam_flexcom_spi.c:1281:      spiinfo("csr[offset=%02x]=%08" PRIx32 "\n", offset, regval);
+./arch/arm/src/sama5/sam_flexcom_spi.c:1311:  spiinfo("cs=%d nbits=%d\n", flex_spics->cs, nbits);
+./arch/arm/src/sama5/sam_flexcom_spi.c:1333:      spiinfo("csr[offset=%02x]=%08" PRIx32 "\n", offset, regval);
+./arch/arm/src/sama5/sam_flexcom_spi.c:1373:  spiinfo("Sent %02x received %02x\n", txbyte, rxbyte);
+./arch/arm/src/sama5/sam_flexcom_spi.c:1422:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/sama5/sam_flexcom_spi.c:1544:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/sama5/sam_flexcom_spi.c:1836:  spiinfo("port: %d flex_csno: %d spino: %d\n", port, flex_csno, flex_spino);
+./arch/arm/src/sama5/sam_flexcom_spi.c:2117:  spiinfo("csr[offset=%02x]=%08" PRIx32 "\n", offset, regval);
+./arch/arm/src/sama5/sam_spi.c:423:          spiinfo("...[Repeats %d times]...\n", spi->ntimes);
+./arch/arm/src/sama5/sam_spi.c:457:      spiinfo("%" PRIx32 "->%" PRIx32 "\n", address, value);
+./arch/arm/src/sama5/sam_spi.c:480:      spiinfo("%" PRIx32 "<-%" PRIx32 "\n", address, value);
+./arch/arm/src/sama5/sam_spi.c:505:  spiinfo("%s:\n", msg);
+./arch/arm/src/sama5/sam_spi.c:506:  spiinfo("    MR:%" PRIx32 "   SR:%" PRIx32 "  IMR:%" PRIx32 "\n",
+./arch/arm/src/sama5/sam_spi.c:510:  spiinfo("  CSR0:%" PRIx32 " CSR1:%" PRIx32 " CSR2:%" PRIx32 " CSR3:%" \
+./arch/arm/src/sama5/sam_spi.c:516:  spiinfo("  WPCR:%" PRIx32 " WPSR:%" PRIx32 "\n",
+./arch/arm/src/sama5/sam_spi.c:881:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/sama5/sam_spi.c:920:  spiinfo("selected=%d\n", selected);
+./arch/arm/src/sama5/sam_spi.c:923:      spiinfo("cs=%d\n", spics->cs);
+./arch/arm/src/sama5/sam_spi.c:978:  spiinfo("cs=%d frequency=%" PRId32 "\n", spics->cs, frequency);
+./arch/arm/src/sama5/sam_spi.c:1060:  spiinfo("csr[offset=%02x]=%" PRIx32 " actual=%" PRId32 "\n",
+./arch/arm/src/sama5/sam_spi.c:1068:  spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/sama5/sam_spi.c:1103:  spiinfo("cs=%u startdelay=%" PRIu32 "\n", spics->cs, startdelay);
+./arch/arm/src/sama5/sam_spi.c:1104:  spiinfo("cs=%u stopdelay=%" PRIu32 "\n", spics->cs, stopdelay);
+./arch/arm/src/sama5/sam_spi.c:1105:  spiinfo("cs=%u csdelay=%" PRIu32 "\n", spics->cs, csdelay);
+./arch/arm/src/sama5/sam_spi.c:1106:  spiinfo("cs=%u ifdelay=%" PRIu32 "\n", spics->cs, ifdelay);
+./arch/arm/src/sama5/sam_spi.c:1228:  spiinfo("cs=%d mode=%d\n", spics->cs, mode);
+./arch/arm/src/sama5/sam_spi.c:1271:      spiinfo("csr[offset=%02x]=%" PRIx32 "\n", offset, regval);
+./arch/arm/src/sama5/sam_spi.c:1301:  spiinfo("cs=%d nbits=%d\n", spics->cs, nbits);
+./arch/arm/src/sama5/sam_spi.c:1323:      spiinfo("csr[offset=%02x]=%" PRIx32 "\n", offset, regval);
+./arch/arm/src/sama5/sam_spi.c:1363:  spiinfo("Sent %02x received %02x\n", txbyte, rxbyte);
+./arch/arm/src/sama5/sam_spi.c:1409:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/sama5/sam_spi.c:1529:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/sama5/sam_spi.c:1818:  spiinfo("port: %d csno: %d spino: %d\n", port, csno, spino);
+./arch/arm/src/sama5/sam_spi.c:2025:  spiinfo("csr[offset=%02x]=%" PRIx32 "\n", offset, regval);
+./arch/arm/src/stm32/stm32_spi.c:1378:      spiinfo("Frequency %" PRIu32 "->%" PRIu32 "\n", frequency, actual);
+./arch/arm/src/stm32/stm32_spi.c:1408:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/stm32/stm32_spi.c:1507:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/stm32/stm32_spi.c:1602:  spiinfo("features=%08x\n", features);
+./arch/arm/src/stm32/stm32_spi.c:1674:  spiinfo("Sent: %04" PRIx32 " Return: %04" PRIx32
+./arch/arm/src/stm32/stm32_spi.c:1720:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/stm32/stm32_spi.c:1867:      spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n",
+./arch/arm/src/stm32/stm32_spi.c:2003:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/stm32/stm32_spi.c:2033:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/samd5e5/sam_spi.c:642:          spiinfo("...[Repeats %d times]...\n", priv->ntimes);
+./arch/arm/src/samd5e5/sam_spi.c:675:      spiinfo("%08x->%02x\n", regaddr, regval);
+./arch/arm/src/samd5e5/sam_spi.c:698:      spiinfo("%08x<-%02x\n", regaddr, regval);
+./arch/arm/src/samd5e5/sam_spi.c:721:      spiinfo("%08x->%04x\n", regaddr, regval);
+./arch/arm/src/samd5e5/sam_spi.c:744:      spiinfo("%08x<-%04x\n", regaddr, regval);
+./arch/arm/src/samd5e5/sam_spi.c:767:      spiinfo("%08x->%08x\n", regaddr, regval);
+./arch/arm/src/samd5e5/sam_spi.c:790:      spiinfo("%08x<-%08x\n", regaddr, regval);
+./arch/arm/src/samd5e5/sam_spi.c:815:  spiinfo("%s:\n", msg);
+./arch/arm/src/samd5e5/sam_spi.c:816:  spiinfo("   CTRLA:%08x CTRLB:%08x DBGCTRL:%02x\n",
+./arch/arm/src/samd5e5/sam_spi.c:820:  spiinfo("    BAUD:%02x       INTEN:%02x       INTFLAG:%02x\n",
+./arch/arm/src/samd5e5/sam_spi.c:824:  spiinfo("  STATUS:%04x      ADDR:%08x\n",
+./arch/arm/src/samd5e5/sam_spi.c:913:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/samd5e5/sam_spi.c:949:  spiinfo("sercom=%d frequency=%d\n", priv->sercom, frequency);
+./arch/arm/src/samd5e5/sam_spi.c:1032:  spiinfo("Frequency %d->%d\n", frequency, actual);
+./arch/arm/src/samd5e5/sam_spi.c:1056:  spiinfo("sercom=%d mode=%d\n", priv->sercom, mode);
+./arch/arm/src/samd5e5/sam_spi.c:1123:  spiinfo("sercom=%d nbits=%d\n", priv->sercom, nbits);
+./arch/arm/src/samd5e5/sam_spi.c:1180:  spiinfo("Sent %02x received %02x\n", txbyte, rxbyte);
+./arch/arm/src/samd5e5/sam_spi.c:1255:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/samd5e5/sam_spi.c:1293:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/samd5e5/sam_spi.c:1559:  spiinfo("port: %d\n", port);
+./arch/arm/src/kinetis/kinetis_spi.c:784:  spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, priv->actual);
+./arch/arm/src/kinetis/kinetis_spi.c:808:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/kinetis/kinetis_spi.c:916:  spiinfo("features=%08x\n", features);
+./arch/arm/src/kinetis/kinetis_spi.c:1056:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/kinetis/kinetis_spi.c:1154:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/kinetis/kinetis_spi.c:1304:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/kinetis/kinetis_spi.c:1333:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/stm32wb/stm32wb_spi.c:1001:      spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/stm32wb/stm32wb_spi.c:1031:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/stm32wb/stm32wb_spi.c:1099:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/stm32wb/stm32wb_spi.c:1170:  spiinfo("features=%08x\n", features);
+./arch/arm/src/stm32wb/stm32wb_spi.c:1257:      spiinfo("Sent: %04" PRIx32 " Return: %04" PRIx32
+./arch/arm/src/stm32wb/stm32wb_spi.c:1262:      spiinfo("Sent: %02" PRIx32 " Return: %02" PRIx32
+./arch/arm/src/stm32wb/stm32wb_spi.c:1304:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/stm32wb/stm32wb_spi.c:1421:      spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer,
+./arch/arm/src/stm32wb/stm32wb_spi.c:1530:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/stm32wb/stm32wb_spi.c:1559:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/rp2040/rp2040_spi.c:396:  spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/rp2040/rp2040_spi.c:551:  spiinfo("%04" PRIx32 "->%04" PRIx32 "\n", wd, regval);
+./arch/arm/src/rp2040/rp2040_spi.c:613:      spiinfo("TX: rxpending: %" PRId32 " nwords: %d\n", rxpending, nwords);
+./arch/arm/src/rp2040/rp2040_spi.c:640:      spiinfo("RX: rxpending: %" PRId32 "\n", rxpending);
+./arch/arm/src/lpc17xx_40xx/lpc17_40_spi.c:261:  spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/lpc17xx_40xx/lpc17_40_spi.c:427:  spiinfo("nwords: %d\n", nwords);
+./arch/arm/src/lpc17xx_40xx/lpc17_40_spi.c:474:  spiinfo("nwords: %d\n", nwords);
+./arch/arm/src/lpc17xx_40xx/lpc17_40_ssp.c:454:  spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/lpc17xx_40xx/lpc17_40_ssp.c:595:  spiinfo("%04" PRId32 "->%04" PRId32 "\n", wd, regval);
+./arch/arm/src/lpc17xx_40xx/lpc17_40_ssp.c:635:  spiinfo("nwords: %d\n", nwords);
+./arch/arm/src/lpc17xx_40xx/lpc17_40_ssp.c:664:  spiinfo("discarding\n");
+./arch/arm/src/lpc17xx_40xx/lpc17_40_ssp.c:730:  spiinfo("nwords: %zd\n", nwords);
+./arch/arm/src/lpc17xx_40xx/lpc17_40_ssp.c:740:      spiinfo("TX: rxpending: %" PRId32 " nwords: %zd\n", rxpending, nwords);
+./arch/arm/src/lpc17xx_40xx/lpc17_40_ssp.c:753:      spiinfo("RX: rxpending: %" PRId32 "\n", rxpending);
+./arch/arm/src/samv7/sam_qspi_spi.c:258:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/samv7/sam_qspi_spi.c:323:  spiinfo("frequency=%ld\n", frequency);
+./arch/arm/src/samv7/sam_qspi_spi.c:388:  spiinfo("SCBR=%ld actual=%ld\n", scbr, actual);
+./arch/arm/src/samv7/sam_qspi_spi.c:395:  spiinfo("Frequency %ld->%ld\n", frequency, actual);
+./arch/arm/src/samv7/sam_qspi_spi.c:420:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/samv7/sam_qspi_spi.c:490:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/samv7/sam_qspi_spi.c:540:      spiinfo("Sent %02x received %02x\n", txbyte, rxbyte);
+./arch/arm/src/samv7/sam_qspi_spi.c:552:      spiinfo("Sent %02x received %02x\n", txword, rxword);
+./arch/arm/src/samv7/sam_qspi_spi.c:589:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/samv7/sam_qspi_spi.c:773:  spiinfo("intf: %d\n", intf);
+./arch/arm/src/samv7/sam_spi_slave.c:261:          spiinfo("...[Repeats %d times]...\n", priv->ntimes);
+./arch/arm/src/samv7/sam_spi_slave.c:294:      spiinfo("%08x->%08x\n", address, value);
+./arch/arm/src/samv7/sam_spi_slave.c:317:      spiinfo("%08x<-%08x\n", address, value);
+./arch/arm/src/samv7/sam_spi_slave.c:342:  spiinfo("%s:\n", msg);
+./arch/arm/src/samv7/sam_spi_slave.c:343:  spiinfo("    MR:%08x   SR:%08x  IMR:%08x\n",
+./arch/arm/src/samv7/sam_spi_slave.c:347:  spiinfo("  CSR0:%08x CSR1:%08x CSR2:%08x CSR3:%08x\n",
+./arch/arm/src/samv7/sam_spi_slave.c:352:  spiinfo("  WPCR:%08x WPSR:%08x\n",
+./arch/arm/src/samv7/sam_spi_slave.c:623:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/samv7/sam_spi_slave.c:665:      spiinfo("csr0=%08x\n", regval);
+./arch/arm/src/samv7/sam_spi_slave.c:692:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/samv7/sam_spi_slave.c:706:      spiinfo("csr0=%08x\n", regval);
+./arch/arm/src/samv7/sam_spi_slave.c:748:  spiinfo("dev=%p mode=%d nbits=%d\n", sdv, mode, nbits);
+./arch/arm/src/samv7/sam_spi_slave.c:860:  spiinfo("Unbinding %p\n", priv->dev);
+./arch/arm/src/samv7/sam_spi_slave.c:921:  spiinfo("data=%04x\n", *(const uint16_t *)data);
+./arch/arm/src/samv7/sam_spi_slave.c:1052:  spiinfo("data=%04x\n", data);
+./arch/arm/src/samv7/sam_spi_slave.c:1097:  spiinfo("port: %d spino: %d\n", port, spino);
+./arch/arm/src/samv7/sam_spi_slave.c:1211:  spiinfo("csr[offset=%02x]=%08x\n", offset, regval);
+./arch/arm/src/samv7/sam_qspi.c:375:          spiinfo("...[Repeats %d times]...\n", priv->ntimes);
+./arch/arm/src/samv7/sam_qspi.c:409:      spiinfo("%08x->%08x\n", address, value);
+./arch/arm/src/samv7/sam_qspi.c:432:      spiinfo("%08x<-%08x\n", address, value);
+./arch/arm/src/samv7/sam_qspi.c:457:  spiinfo("%s:\n", msg);
+./arch/arm/src/samv7/sam_qspi.c:458:  spiinfo("    MR:%08x   SR:%08x  IMR:%08x  SCR:%08x\n",
+./arch/arm/src/samv7/sam_qspi.c:463:  spiinfo("   IAR:%08x  ICR:%08x  IFR:%08x  SMR:%08x\n",
+./arch/arm/src/samv7/sam_qspi.c:468:  spiinfo("  WPCR:%08x WPSR:%08x\n",
+./arch/arm/src/samv7/sam_qspi.c:1054:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/samv7/sam_qspi.c:1095:  spiinfo("frequency=%"PRIu32"\n", frequency);
+./arch/arm/src/samv7/sam_qspi.c:1185:  spiinfo("SCBR=%"PRIu32" actual=%"PRIu32"\n", scbr, actual);
+./arch/arm/src/samv7/sam_qspi.c:1192:  spiinfo("Frequency %"PRIu32"->%"PRIu32"\n", frequency, actual);
+./arch/arm/src/samv7/sam_qspi.c:1216:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/samv7/sam_qspi.c:1258:      spiinfo("SCR=%08"PRIx32"\n", regval);
+./arch/arm/src/samv7/sam_qspi.c:1286:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/samv7/sam_qspi.c:1301:      spiinfo("MR=%08"PRIx32"\n", regval);
+./arch/arm/src/samv7/sam_qspi.c:1336:  spiinfo("Transfer:\n");
+./arch/arm/src/samv7/sam_qspi.c:1337:  spiinfo("  flags: %02x\n", cmdinfo->flags);
+./arch/arm/src/samv7/sam_qspi.c:1338:  spiinfo("  cmd: %04x\n", cmdinfo->cmd);
+./arch/arm/src/samv7/sam_qspi.c:1342:      spiinfo("  address/length: %08lx/%d\n",
+./arch/arm/src/samv7/sam_qspi.c:1348:      spiinfo("  %s Data:\n",
+./arch/arm/src/samv7/sam_qspi.c:1350:      spiinfo("    buffer/length: %p/%d\n",
+./arch/arm/src/samv7/sam_qspi.c:1546:  spiinfo("Transfer:\n");
+./arch/arm/src/samv7/sam_qspi.c:1547:  spiinfo("  flags: %02x\n", meminfo->flags);
+./arch/arm/src/samv7/sam_qspi.c:1548:  spiinfo("  cmd: %04x\n", meminfo->cmd);
+./arch/arm/src/samv7/sam_qspi.c:1549:  spiinfo("  address/length: %08lx/%d\n",
+./arch/arm/src/samv7/sam_qspi.c:1551:  spiinfo("  %s Data:\n",
+./arch/arm/src/samv7/sam_qspi.c:1553:  spiinfo("    buffer/length: %p/%"PRIu32"\n",
+./arch/arm/src/samv7/sam_qspi.c:1722:  spiinfo("intf: %d\n", intf);
+./arch/arm/src/samv7/sam_serial_spi.c:288:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/samv7/sam_serial_spi.c:327:  spiinfo("Chip select %d\n", selected);
+./arch/arm/src/samv7/sam_serial_spi.c:364:  spiinfo("frequency=%ld\n", frequency);
+./arch/arm/src/samv7/sam_serial_spi.c:430:  spiinfo("Frequency %ld->%ld\n", priv->frequency, actual);
+./arch/arm/src/samv7/sam_serial_spi.c:459:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/samv7/sam_serial_spi.c:527:  spiinfo("Only 8 bit transfer is supported on USART SPI.\n");
+./arch/arm/src/samv7/sam_serial_spi.c:609:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/samv7/sam_serial_spi.c:750:  spiinfo("Initializing USART%d as SPI\n", port);
+./arch/arm/src/samv7/sam_spi.c:432:          spiinfo("...[Repeats %d times]...\n", spi->ntimes);
+./arch/arm/src/samv7/sam_spi.c:466:      spiinfo("%08x->%08x\n", address, value);
+./arch/arm/src/samv7/sam_spi.c:489:      spiinfo("%08x<-%08x\n", address, value);
+./arch/arm/src/samv7/sam_spi.c:514:  spiinfo("%s:\n", msg);
+./arch/arm/src/samv7/sam_spi.c:515:  spiinfo("    MR:%08x   SR:%08x  IMR:%08x\n",
+./arch/arm/src/samv7/sam_spi.c:519:  spiinfo("  CSR0:%08x CSR1:%08x CSR2:%08x CSR3:%08x\n",
+./arch/arm/src/samv7/sam_spi.c:524:  spiinfo("  WPCR:%08x WPSR:%08x\n",
+./arch/arm/src/samv7/sam_spi.c:904:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/samv7/sam_spi.c:943:  spiinfo("selected=%d\n", selected);
+./arch/arm/src/samv7/sam_spi.c:946:      spiinfo("cs=%d\n", spics->cs);
+./arch/arm/src/samv7/sam_spi.c:1012:  spiinfo("cs=%d frequency=%" PRId32 "\n", spics->cs, frequency);
+./arch/arm/src/samv7/sam_spi.c:1085:  spiinfo("csr[offset=%02x]=%08" PRIx32 " actual=%" PRId32 "\n",
+./arch/arm/src/samv7/sam_spi.c:1093:  spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/samv7/sam_spi.c:1128:  spiinfo("cs=%u startdelay=%" PRIu32 "\n", spics->cs, startdelay);
+./arch/arm/src/samv7/sam_spi.c:1129:  spiinfo("cs=%u stopdelay=%" PRIu32 "\n", spics->cs, stopdelay);
+./arch/arm/src/samv7/sam_spi.c:1130:  spiinfo("cs=%u csdelay=%" PRIu32 "\n", spics->cs, csdelay);
+./arch/arm/src/samv7/sam_spi.c:1131:  spiinfo("cs=%u ifdelay=%" PRIu32 "\n", spics->cs, ifdelay);
+./arch/arm/src/samv7/sam_spi.c:1311:  spiinfo("cs=%d mode=%d\n", spics->cs, mode);
+./arch/arm/src/samv7/sam_spi.c:1354:      spiinfo("csr[offset=%02x]=%08" PRIx32 "\n", offset, regval);
+./arch/arm/src/samv7/sam_spi.c:1384:  spiinfo("cs=%d nbits=%d\n", spics->cs, nbits);
+./arch/arm/src/samv7/sam_spi.c:1399:      spiinfo("csr[offset=%02x]=%08" PRIx32 "\n", offset, regval);
+./arch/arm/src/samv7/sam_spi.c:1437:      spiinfo("Sent %02x received %02x\n", txbyte, rxbyte);
+./arch/arm/src/samv7/sam_spi.c:1449:      spiinfo("Sent %02x received %02x\n", txword, rxword);
+./arch/arm/src/samv7/sam_spi.c:1500:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/samv7/sam_spi.c:1695:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/samv7/sam_spi.c:2007:  spiinfo("port: %d csno: %d spino: %d\n", port, csno, spino);
+./arch/arm/src/samv7/sam_spi.c:2181:  spiinfo("csr[offset=%02x]=%08" PRIx32 "\n", offset, regval);
+./arch/arm/src/kl/kl_spi.c:344:  spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/kl/kl_spi.c:368:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/kl/kl_spi.c:500:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/kl/kl_spi.c:567:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/kl/kl_spi.c:596:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/mx8mp/mx8mp_ecspi.c:439:  spiinfo("Source clock:   %lu", clock);
+./arch/arm/src/mx8mp/mx8mp_ecspi.c:440:  spiinfo("Requested freq: %lu", frequency);
+./arch/arm/src/mx8mp/mx8mp_ecspi.c:441:  spiinfo("pre_divider:    %u",  pre_div);
+./arch/arm/src/mx8mp/mx8mp_ecspi.c:442:  spiinfo("post_divider:   %u",  post_div);
+./arch/arm/src/mx8mp/mx8mp_ecspi.c:443:  spiinfo("Actual freq:    %lu", priv->actual);
+./arch/arm/src/mx8mp/mx8mp_ecspi.c:478:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/mx8mp/mx8mp_ecspi.c:556:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/mx8mp/mx8mp_ecspi.c:602:  spiinfo("Sent: %04" PRIx32 " Return: %04" PRIx32
+./arch/arm/src/stm32f7/stm32_spi.c:1369:      spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/stm32f7/stm32_spi.c:1402:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/stm32f7/stm32_spi.c:1498:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/stm32f7/stm32_spi.c:1569:  spiinfo("features=%08x\n", features);
+./arch/arm/src/stm32f7/stm32_spi.c:1656:      spiinfo("Sent: %04" PRIx32 " Return: %04" PRIx32
+./arch/arm/src/stm32f7/stm32_spi.c:1662:      spiinfo("Sent: %02" PRIx32 " Return: %02" PRIx32
+./arch/arm/src/stm32f7/stm32_spi.c:1706:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/stm32f7/stm32_spi.c:1863:      spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n",
+./arch/arm/src/stm32f7/stm32_spi.c:2012:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/stm32f7/stm32_spi.c:2041:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/stm32f7/stm32_qspi.c:400:          spiinfo("...[Repeats %d times]...\n", priv->ntimes);
+./arch/arm/src/stm32f7/stm32_qspi.c:434:      spiinfo("%08x->%08x\n", address, value);
+./arch/arm/src/stm32f7/stm32_qspi.c:457:      spiinfo("%08x<-%08x\n", address, value);
+./arch/arm/src/stm32f7/stm32_qspi.c:483:  spiinfo("%s:\n", msg);
+./arch/arm/src/stm32f7/stm32_qspi.c:492:  spiinfo("CR:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:493:  spiinfo("  EN:%1d ABORT:%1d DMAEN:%1d TCEN:%1d SSHIFT:%1d\n"
+./arch/arm/src/stm32f7/stm32_qspi.c:513:  spiinfo("DCR:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:514:  spiinfo("  CKMODE:%1d CSHT:%d FSIZE:%d\n",
+./arch/arm/src/stm32f7/stm32_qspi.c:520:  spiinfo("CCR:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:521:  spiinfo("   INST:%02x IMODE:%d ADMODE:%d ADSIZE:%d ABMODE:%d\n"
+./arch/arm/src/stm32f7/stm32_qspi.c:537:  spiinfo("SR:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:538:  spiinfo("  TEF:%1d TCF:%1d FTF:%1d SMF:%1d TOF:%1d BUSY:%1d FLEVEL:%d\n",
+./arch/arm/src/stm32f7/stm32_qspi.c:548:  spiinfo("    CR:%08x   DCR:%08x   CCR:%08x    SR:%08x\n",
+./arch/arm/src/stm32f7/stm32_qspi.c:553:  spiinfo("   DLR:%08x   ABR:%08x PSMKR:%08x PSMAR:%08x\n",
+./arch/arm/src/stm32f7/stm32_qspi.c:558:  spiinfo("   PIR:%08x  LPTR:%08x\n",
+./arch/arm/src/stm32f7/stm32_qspi.c:570:  spiinfo("%s:\n", msg);
+./arch/arm/src/stm32f7/stm32_qspi.c:575:  spiinfo("B_MODER:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:578:  spiinfo("B_OTYPER:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:581:  spiinfo("B_OSPEED:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:584:  spiinfo("B_PUPDR:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:587:  spiinfo("B_AFRL:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:590:  spiinfo("B_AFRH:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:595:  spiinfo("D_MODER:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:598:  spiinfo("D_OTYPER:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:601:  spiinfo("D_OSPEED:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:604:  spiinfo("D_PUPDR:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:607:  spiinfo("D_AFRL:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:610:  spiinfo("D_AFRH:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:615:  spiinfo("E_MODER:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:618:  spiinfo("E_OTYPER:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:621:  spiinfo("E_OSPEED:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:624:  spiinfo("E_PUPDR:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:627:  spiinfo("E_AFRL:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:630:  spiinfo("E_AFRH:%08x\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:743:  spiinfo("Transfer:\n");
+./arch/arm/src/stm32f7/stm32_qspi.c:744:  spiinfo("  flags: %02x\n", cmdinfo->flags);
+./arch/arm/src/stm32f7/stm32_qspi.c:745:  spiinfo("  cmd: %04x\n", cmdinfo->cmd);
+./arch/arm/src/stm32f7/stm32_qspi.c:749:      spiinfo("  address/length: %08lx/%d\n",
+./arch/arm/src/stm32f7/stm32_qspi.c:755:      spiinfo("  %s Data:\n",
+./arch/arm/src/stm32f7/stm32_qspi.c:757:      spiinfo("    buffer/length: %p/%d\n",
+./arch/arm/src/stm32f7/stm32_qspi.c:871:  spiinfo("Transfer:\n");
+./arch/arm/src/stm32f7/stm32_qspi.c:872:  spiinfo("  flags: %02x\n", meminfo->flags);
+./arch/arm/src/stm32f7/stm32_qspi.c:873:  spiinfo("  cmd: %04x\n", meminfo->cmd);
+./arch/arm/src/stm32f7/stm32_qspi.c:874:  spiinfo("  address/length: %08lx/%d\n",
+./arch/arm/src/stm32f7/stm32_qspi.c:876:  spiinfo("  %s Data:\n",
+./arch/arm/src/stm32f7/stm32_qspi.c:878:  spiinfo("    buffer/length: %p/%d\n", meminfo->buffer, meminfo->buflen);
+./arch/arm/src/stm32f7/stm32_qspi.c:1756:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/stm32f7/stm32_qspi.c:1800:  spiinfo("frequency=%" PRId32 "\n", frequency);
+./arch/arm/src/stm32f7/stm32_qspi.c:1854:  spiinfo("prescaler=%" PRId32 " actual=%" PRId32 "\n", prescaler, actual);
+./arch/arm/src/stm32f7/stm32_qspi.c:1861:  spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/stm32f7/stm32_qspi.c:1895:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/stm32f7/stm32_qspi.c:1925:          spiinfo("unsupported mode=%d\n", mode);
+./arch/arm/src/stm32f7/stm32_qspi.c:1932:      spiinfo("DCR=%08" PRIx32 "\n", regval);
+./arch/arm/src/stm32f7/stm32_qspi.c:1962:      spiinfo("unsupported nbits=%d\n", nbits);
+./arch/arm/src/stm32f7/stm32_qspi.c:2517:  spiinfo("intf: %d\n", intf);
+./arch/arm/src/efm32/efm32_spi.c:875:      spiinfo("frequency=%u actual=%u\n", frequency, actual);
+./arch/arm/src/efm32/efm32_spi.c:910:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/efm32/efm32_spi.c:979:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/efm32/efm32_spi.c:1087:  spiinfo("features=%08x\n", features);
+./arch/arm/src/efm32/efm32_spi.c:1241:  spiinfo("Sent: %04x Return: %04x\n", wd, ret);
+./arch/arm/src/efm32/efm32_spi.c:1282:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/efm32/efm32_spi.c:1448:      spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n",
+./arch/arm/src/efm32/efm32_spi.c:1514:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/efm32/efm32_spi.c:1543:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/cxd56xx/cxd56_spi.c:496:  spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/cxd56xx/cxd56_spi.c:702:  spiinfo("%04" PRIx32 "->%04" PRIx32 "\n", wd, regval);
+./arch/arm/src/cxd56xx/cxd56_spi.c:796:      spiinfo("TX: rxpending: %" PRId32 " nwords: %d\n", rxpending, nwords);
+./arch/arm/src/cxd56xx/cxd56_spi.c:821:      spiinfo("RX: rxpending: %" PRId32 "\n", rxpending);
+./arch/arm/src/sam34/sam_spi.c:417:          spiinfo("...[Repeats %d times]...\n", spi->ntimes);
+./arch/arm/src/sam34/sam_spi.c:451:      spiinfo("%08x->%08x\n", address, value);
+./arch/arm/src/sam34/sam_spi.c:474:      spiinfo("%08x<-%08x\n", address, value);
+./arch/arm/src/sam34/sam_spi.c:499:  spiinfo("%s:\n", msg);
+./arch/arm/src/sam34/sam_spi.c:500:  spiinfo("    MR:%08x   SR:%08x  IMR:%08x\n",
+./arch/arm/src/sam34/sam_spi.c:504:  spiinfo("  CSR0:%08x CSR1:%08x CSR2:%08x CSR3:%08x\n",
+./arch/arm/src/sam34/sam_spi.c:509:  spiinfo("  WPCR:%08x WPSR:%08x\n",
+./arch/arm/src/sam34/sam_spi.c:874:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/sam34/sam_spi.c:913:  spiinfo("selected=%d\n", selected);
+./arch/arm/src/sam34/sam_spi.c:916:      spiinfo("cs=%d\n", spics->cs);
+./arch/arm/src/sam34/sam_spi.c:971:  spiinfo("cs=%d frequency=%" PRId32 "\n", spics->cs, frequency);
+./arch/arm/src/sam34/sam_spi.c:1044:  spiinfo("csr[offset=%02x]=%08" PRIx32 " actual=%" PRId32 "\n",
+./arch/arm/src/sam34/sam_spi.c:1052:  spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/sam34/sam_spi.c:1078:  spiinfo("cs=%d mode=%d\n", spics->cs, mode);
+./arch/arm/src/sam34/sam_spi.c:1121:      spiinfo("csr[offset=%02x]=%08" PRIx32 "\n", offset, regval);
+./arch/arm/src/sam34/sam_spi.c:1151:  spiinfo("cs=%d nbits=%d\n", spics->cs, nbits);
+./arch/arm/src/sam34/sam_spi.c:1166:      spiinfo("csr[offset=%02x]=%08" PRIx32 "\n", offset, regval);
+./arch/arm/src/sam34/sam_spi.c:1206:  spiinfo("Sent %02x received %02x\n", txbyte, rxbyte);
+./arch/arm/src/sam34/sam_spi.c:1254:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n",
+./arch/arm/src/sam34/sam_spi.c:1401:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n",
+./arch/arm/src/sam34/sam_spi.c:1717:  spiinfo("port: %d csno: %d spino: %d\n", port, csno, spino);
+./arch/arm/src/sam34/sam_spi.c:1882:  spiinfo("csr[offset=%02x]=%08" PRIx32 "\n", offset, regval);
+./arch/arm/src/max326xx/max32660/max32660_spim.c:1004:      spiinfo("Frequency %d->%d\n", frequency, actual);
+./arch/arm/src/max326xx/max32660/max32660_spim.c:1034:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/max326xx/max32660/max32660_spim.c:1097:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/max326xx/max32660/max32660_spim.c:1164:  spiinfo("wd=%04u\n", wd);
+./arch/arm/src/max326xx/max32660/max32660_spim.c:1199:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/max326xx/max32660/max32660_spim.c:1346:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/max326xx/max32660/max32660_spim.c:1375:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/lpc54xx/lpc54_spi_master.c:1355:  spiinfo("Frequency %d->%d\n", frequency, actual);
+./arch/arm/src/lpc54xx/lpc54_spi_master.c:1591:  spiinfo("buffer=%p nwords=%d\n", buffer, nwords);
+./arch/arm/src/lpc54xx/lpc54_spi_master.c:1638:  spiinfo("buffer=%p nwords=%d\n", buffer, nwords);
+./arch/arm/src/nrf53/nrf53_qspi.c:216:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/nrf53/nrf53_qspi.c:252:  spiinfo("frequency=%ld\n", frequency);
+./arch/arm/src/nrf53/nrf53_qspi.c:297:  spiinfo("Frequency %ld->%ld\n", frequency, actual);
+./arch/arm/src/nrf53/nrf53_qspi.c:323:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/nrf53/nrf53_qspi.c:348:              spiinfo("unsupported mode=%d\n", mode);
+./arch/arm/src/nrf53/nrf53_qspi.c:389:      spiinfo("unsupported nbits=%d\n", nbits);
+./arch/arm/src/nrf53/nrf53_qspi.c:906:  spiinfo("intf: %d\n", intf);
+./arch/arm/src/nrf53/nrf53_spi.c:864:  spiinfo("Frequency %" PRId32 "\n", frequency);
+./arch/arm/src/nrf53/nrf53_spi.c:891:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/nrf53/nrf53_spi.c:1001:  spiinfo("features=%08x\n", features);
+./arch/arm/src/nrf53/nrf53_spi.c:1223:  spiinfo("txbuffer=%p nwords=%zu\n", txbuffer, nwords);
+./arch/arm/src/nrf53/nrf53_spi.c:1249:  spiinfo("txbuffer=%p nwords=%zu\n", rxbuffer, nwords);
+./arch/arm/src/lpc31xx/lpc31_spi.c:207:          spiinfo("...[Repeats %d times]...\n", g_ntimes);
+./arch/arm/src/lpc31xx/lpc31_spi.c:240:      spiinfo("%08x<-%08x\n", address, value);
+./arch/arm/src/lpc31xx/lpc31_spi.c:267:      spiinfo("%08x->%08x\n", address, value);
+./arch/arm/src/lpc31xx/lpc31_spi.c:951:  spiinfo("PINS: %08x MODE0: %08x MODE1: %08x\n",
+./arch/arm/src/stm32u5/stm32_spi.c:805:  spiinfo("CR1: 0x%08" PRIx32 " CFG1: 0x%08" PRIx32
+./arch/arm/src/stm32u5/stm32_spi.c:810:  spiinfo("IER: 0x%08" PRIx32 " SR: 0x%08" PRIx32 "\n",
+./arch/arm/src/stm32u5/stm32_spi.c:1306:      spiinfo("Frequency %" PRId32 "->%" PRId32 "\n", frequency, actual);
+./arch/arm/src/stm32u5/stm32_spi.c:1384:  spiinfo("mode=%" PRIx32 "\n", (uint32_t) mode);
+./arch/arm/src/stm32u5/stm32_spi.c:1462:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/stm32u5/stm32_spi.c:1524:  spiinfo("features=%08" PRIx8 "\n", features);
+./arch/arm/src/stm32u5/stm32_spi.c:1629:      spiinfo("Sent: %04" PRIx32 " Return: %04" PRIx32 " Status: %02" PRIx32
+./arch/arm/src/stm32u5/stm32_spi.c:1634:      spiinfo("Sent: %02" PRIx32 " Return: %02" PRIx32 " Status: %02" PRIx32
+./arch/arm/src/stm32u5/stm32_spi.c:1677:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/stm32u5/stm32_spi.c:1917:      spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n",
+./arch/arm/src/stm32u5/stm32_spi.c:2061:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/stm32u5/stm32_spi.c:2091:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/s32k3xx/s32k3xx_lpspi.c:1120:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/s32k3xx/s32k3xx_lpspi.c:1209:  spiinfo("nbits=%d\n", nbits);
+./arch/arm/src/s32k3xx/s32k3xx_lpspi.c:1279:  spiinfo("features=%08x\n", features);
+./arch/arm/src/s32k3xx/s32k3xx_lpspi.c:1343:  spiinfo("Sent: %04" PRIx32 " Return: %04" PRIx32
+./arch/arm/src/s32k3xx/s32k3xx_lpspi.c:1398:  spiinfo("Sent: %04" PRIx32 " %04" PRIx32 " Return: %04"
+./arch/arm/src/s32k3xx/s32k3xx_lpspi.c:1443:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/s32k3xx/s32k3xx_lpspi.c:1715:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/arm/src/s32k3xx/s32k3xx_lpspi.c:1856:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./arch/arm/src/s32k3xx/s32k3xx_lpspi.c:1885:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./arch/arm/src/s32k3xx/s32k3xx_fs26.c:249:  spiinfo("Received %08" PRIx32 "\n", retval);
+./arch/arm/src/s32k3xx/s32k3xx_fs26.c:319:  spiinfo("%02x->%04" PRIx32 "\n", regaddr, retval);
+./arch/arm/src/s32k3xx/s32k3xx_qspi.c:317:  spiinfo("%s:\n", msg);
+./arch/arm/src/s32k3xx/s32k3xx_qspi.c:514:  spiinfo("Transfer:\n");
+./arch/arm/src/s32k3xx/s32k3xx_qspi.c:515:  spiinfo("  flags: %02x\n", cmdinfo->flags);
+./arch/arm/src/s32k3xx/s32k3xx_qspi.c:516:  spiinfo("  cmd: %04x\n", cmdinfo->cmd);
+./arch/arm/src/s32k3xx/s32k3xx_qspi.c:520:      spiinfo("  address/length: %08lx/%d\n",
+./arch/arm/src/s32k3xx/s32k3xx_qspi.c:526:      spiinfo("  %s Data:\n",
+./arch/arm/src/s32k3xx/s32k3xx_qspi.c:528:      spiinfo("    buffer/length: %p/%d\n",
+./arch/arm/src/s32k3xx/s32k3xx_qspi.c:939:  spiinfo("Transmit: %" PRIu32 " size: %" PRIu32 "\n",
+./arch/arm/src/s32k3xx/s32k3xx_qspi.c:1105:  spiinfo("lock=%d\n", lock);
+./arch/arm/src/s32k3xx/s32k3xx_qspi.c:1179:  spiinfo("mode=%d\n", mode);
+./arch/arm/src/s32k3xx/s32k3xx_qspi.c:1205:          spiinfo("unsupported mode=%d\n", mode);
+./arch/arm/src/s32k3xx/s32k3xx_qspi.c:1211:      spiinfo("DCR=%08" PRIx32 "\n", regval);
+./arch/arm/src/s32k3xx/s32k3xx_qspi.c:1241:      spiinfo("unsupported nbits=%d\n", nbits);
+./arch/arm/src/s32k3xx/s32k3xx_qspi.c:1759:  spiinfo("intf: %d\n", intf);
+./arch/mips/src/pic32mx/pic32mx_spi.c:467:  spiinfo("Old frequency: %" PRId32 " actual: %" PRId32
+./arch/mips/src/pic32mx/pic32mx_spi.c:505:  spiinfo("PBCLOCK: %d frequency: %" PRId32 " divisor: %" PRId32
+./arch/mips/src/pic32mx/pic32mx_spi.c:521:  spiinfo("New frequency: %" PRId32 " Actual: %" PRId32 "\n",
+./arch/mips/src/pic32mx/pic32mx_spi.c:546:  spiinfo("Old mode: %d New mode: %d\n", priv->mode, mode);
+./arch/mips/src/pic32mx/pic32mx_spi.c:608:      spiinfo("CON: %08" PRIx32 "\n", regval);
+./arch/mips/src/pic32mx/pic32mx_spi.c:638:  spiinfo("Old nbits: %d New nbits: %d\n", priv->nbits, nbits);
+./arch/mips/src/pic32mx/pic32mx_spi.c:669:      spiinfo("CON: %08" PRIx32 "\n", regval);
+./arch/mips/src/pic32mx/pic32mx_spi.c:699:  spiinfo("wd: %04" PRIx32 "\n", wd);
+./arch/mips/src/pic32mx/pic32mx_spi.c:754:  spiinfo("nwords: %d\n", nwords);
+./arch/mips/src/pic32mx/pic32mx_spi.c:814:  spiinfo("nwords: %d\n", nwords);
+./arch/mips/src/pic32mx/pic32mx_spi.c:872:  spiinfo("port: %d\n", port);
+./arch/mips/src/pic32mx/pic32mx_spi.c:963:  spiinfo("CON: %08" PRIx32 "\n", regval);
+./arch/mips/src/pic32mz/pic32mz_spi.c:606:          spiinfo("...[Repeats %d times]...\n", priv->ntimes);
+./arch/mips/src/pic32mz/pic32mz_spi.c:656:      spiinfo("%08lx->%08lx\n",
+./arch/mips/src/pic32mz/pic32mz_spi.c:698:      spiinfo("%08lx<-%08lx\n",
+./arch/mips/src/pic32mz/pic32mz_spi.c:1050:  spiinfo("nbytes: %d\n", nbytes);
+./arch/mips/src/pic32mz/pic32mz_spi.c:1125:  spiinfo("nwords: %d\n", nwords);
+./arch/mips/src/pic32mz/pic32mz_spi.c:1467:      spiinfo("Sent %04x received %04x\n", txword, rxword);
+./arch/mips/src/pic32mz/pic32mz_spi.c:1481:      spiinfo("Sent %02x received %02x\n", txbyte, rxbyte);
+./arch/mips/src/pic32mz/pic32mz_spi.c:1568:      spiinfo("Non DMA transfer will be performed\n");
+./arch/mips/src/pic32mz/pic32mz_spi.c:1573:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/mips/src/pic32mz/pic32mz_spi.c:1837:      spiinfo("DMA Transfer success\n");
+./arch/mips/src/pic32mz/pic32mz_spi.c:1945:  spiinfo("port: %d\n", port);
+./arch/mips/src/pic32mz/pic32mz_spi.c:2096:  spiinfo("CON: %08" PRIx32 "\n", regval);
+./arch/z16/src/z16f/z16f_espi.c:300:  spiinfo("%s:\n", msg);
+./arch/z16/src/z16f/z16f_espi.c:301:  spiinfo("   DCR: %02x  CTL: %02x MODE: %02x STAT: %02x\n",
+./arch/z16/src/z16f/z16f_espi.c:304:  spiinfo(" STATE: %02x   BR: %02x %02x\n",
+./arch/z16/src/z16f/z16f_espi.c:366:  spiinfo("lock=%d\n", lock);
+./arch/z16/src/z16f/z16f_espi.c:401:  spiinfo("frequency=%d\n", frequency);
+./arch/z16/src/z16f/z16f_espi.c:434:  spiinfo("BR=%04x actual=%ld\n", (unsigned int)brg, (long)actual);
+./arch/z16/src/z16f/z16f_espi.c:441:  spiinfo("Frequency %d->%d\n", frequency, actual);
+./arch/z16/src/z16f/z16f_espi.c:465:  spiinfo("mode=%d\n", mode);
+./arch/z16/src/z16f/z16f_espi.c:507:      spiinfo("ESPI CTL: %02x\n", regval);
+./arch/z16/src/z16f/z16f_espi.c:535:  spiinfo("nbits=%d\n", nbits);
+./arch/z16/src/z16f/z16f_espi.c:555:      spiinfo("ESPI MODE: %02x\n", regval);
+./arch/z16/src/z16f/z16f_espi.c:595:  spiinfo("Sent %02x received %02x\n", txbyte, rxbyte);
+./arch/z16/src/z16f/z16f_espi.c:628:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./arch/z16/src/z16f/z16f_espi.c:790:  spiinfo("port: %d\n", port);
+./include/nuttx/spi/spi_bitbang.c:246:  spiinfo("mode=%d\n", mode);
+./include/debug.h:756:#  define spiinfo     _info
+./include/debug.h:758:#  define spiinfo     _none
+./include/debug.h:1175:#  define spiinfodumpbuffer(m,b,n) infodumpbuffer(m,b,n)
+./include/debug.h:1178:#  define spiinfodumpbuffer(m,b,n)
+./drivers/analog/pga11x.c:110:  spiinfo("MODE: %d BITS: 8 Frequency: %d\n",
+./drivers/analog/pga11x.c:136:  spiinfo("Locking\n");
+./drivers/analog/pga11x.c:171:  spiinfo("Unlocking\n");
+./drivers/analog/pga11x.c:196:  spiinfo("Send %04x\n", word);
+./drivers/analog/pga11x.c:238:  spiinfo("Received %02x %02x\n", msb, lsb);
+./drivers/analog/pga11x.c:266:  spiinfo("cmd %04x\n", cmd);
+./drivers/analog/pga11x.c:280:  spiinfo("U1 cmd: %04x U2 cmd: %04x\n", u1cmd, u2cmd);
+./drivers/analog/pga11x.c:317:  spiinfo("Entry\n");
+./drivers/analog/pga11x.c:354:  spiinfo("channel: %d gain: %d\n", settings->channel, settings->gain);
+./drivers/analog/pga11x.c:372:  spiinfo("U1 channel: %d gain: %d\n", settings->u1.channel,
+./drivers/analog/pga11x.c:374:  spiinfo("U1 channel: %d gain: %d\n", settings->u1.channel,
+./drivers/analog/pga11x.c:421:  spiinfo("channel: %d gain: %d\n", settings->channel, settings->gain);
+./drivers/analog/pga11x.c:474:  spiinfo("Entry\n");
+./drivers/analog/pga11x.c:502:  spiinfo("Returning %04x %04x\n", u2value, u1value);
+./drivers/analog/pga11x.c:516:  spiinfo("Entry\n");
+./drivers/analog/pga11x.c:541:  spiinfo("Returning: %04x\n", value);
+./drivers/analog/pga11x.c:615:  spiinfo("Entry\n");
+./drivers/analog/pga11x.c:651:  spiinfo("Entry\n");
+./drivers/analog/pga11x.c:691:  spiinfo("Entry\n");
+./drivers/analog/pga11x.c:730:  spiinfo("Entry\n");
+./drivers/spi/spi_bitbang.c:161:  spiinfo("lock=%d\n", lock);
+./drivers/spi/spi_bitbang.c:195:  spiinfo("devid=%" PRIu32 " selected=%d\n", devid, selected);
+./drivers/spi/spi_bitbang.c:223:  spiinfo("frequency=%" PRIu32 " holdtime=%" PRIu32 " actual=%" PRIu32 "\n",
+./drivers/spi/spi_bitbang.c:249:  spiinfo("mode=%d exchange=%p\n", mode, priv->exchange);
+./drivers/spi/spi_bitbang.c:272:  spiinfo("nbits=%d\n", nbits);
+./drivers/spi/spi_bitbang.c:276:  spiinfo("nbits=%d\n", nbits);
+./drivers/spi/spi_bitbang.c:336:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%d\n", txbuffer, rxbuffer, nwords);
+./drivers/spi/spi_driver.c:228:  spiinfo("cmd=%d arg=%lu\n", cmd, arg);
+./drivers/spi/spi_flash.c:524:  spiinfo("txbuffer=%p rxbuffer=%p nwords=%zu\n", txbuffer, rxbuffer, nwords);
+./drivers/spi/spi_flash.c:582:  spiinfo("txbuffer=%p nwords=%d\n", txbuffer, nwords);
+./drivers/spi/spi_flash.c:611:  spiinfo("rxbuffer=%p nwords=%d\n", rxbuffer, nwords);
+./drivers/spi/spi_slave_driver.c:180:  spiinfo("filep: %p\n", filep);
+./drivers/spi/spi_slave_driver.c:235:  spiinfo("filep: %p\n", filep);
+./drivers/spi/spi_slave_driver.c:308:  spiinfo("filep=%p buffer=%p buflen=%zu\n", filep, buffer, buflen);
+./drivers/spi/spi_slave_driver.c:334:          spiinfo("All words retrieved!\n");
+./drivers/spi/spi_slave_driver.c:338:          spiinfo("%zu words left in the buffer\n", remaining_words);
+./drivers/spi/spi_slave_driver.c:399:  spiinfo("filep=%p buffer=%p buflen=%zu\n", filep, buffer, buflen);
+./drivers/spi/spi_slave_driver.c:439:  spiinfo("%zu bytes enqueued\n", enqueued_bytes);
+./drivers/spi/spi_slave_driver.c:583:  spiinfo("sdev: %p CS: %s\n", dev, selected ? "select" : "free");
+./drivers/spi/spi_slave_driver.c:614:  spiinfo("sdev: %p CMD: %s\n", dev, data ? "data" : "command");
+./drivers/spi/spi_slave_driver.c:813:  spiinfo("SPI Slave driver loaded successfully!\n");
+./boards/risc-v/esp32c3-legacy/common/src/esp32c3_board_spi.c:77:  spiinfo("devid: %" PRIu32 " CMD: %s\n", devid, cmd ? "command" :
+./boards/risc-v/esp32c3-legacy/common/src/esp32c3_board_spislavedev.c:62:  spiinfo("Initializing /dev/spislv%d...\n", bus);
+./boards/avr/at90usb/teensy-2.0/src/at90usb_spi.c:132:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/avr/at90usb/teensy-2.0/src/at90usb_spi.c:166:  spiinfo("Returning %02x\n", ret);
+./boards/xtensa/esp32/esp32-sparrow-kit/src/esp32_mmcsd.c:82:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/xtensa/esp32/esp32-ethernet-kit/src/esp32_mmcsd.c:82:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/xtensa/esp32/ttgo_t_display_esp32/src/esp32_mmcsd.c:82:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/xtensa/esp32/esp32-audio-kit/src/esp32_mmcsd.c:82:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/xtensa/esp32/common/src/esp32_board_spi.c:116:  spiinfo("devid: %" PRIu32 " CMD: %s\n", devid, cmd ? "command" :
+./boards/xtensa/esp32/common/src/esp32_board_spi.c:145:  spiinfo("devid: %" PRIu32 " CMD: %s\n", devid, cmd ? "command" :
+./boards/xtensa/esp32/common/src/esp32_board_spidev.c:52:  spiinfo("Initializing /dev/spi%d...\n", port);
+./boards/xtensa/esp32/esp32-lyrat/src/esp32_mmcsd.c:82:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/xtensa/esp32/ttgo_eink5_v2/src/esp32_mmcsd.c:82:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/xtensa/esp32/esp32-wrover-kit/src/esp32_mmcsd.c:82:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/xtensa/esp32/esp32-devkitc/src/esp32_mmcsd.c:82:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/xtensa/esp32s3/esp32s3-eye/src/esp32s3_board_spi.c:78:  spiinfo("devid: %" PRIu32 " CMD: %s\n", devid, cmd ? "command" :
+./boards/xtensa/esp32s3/esp32s3-eye/src/esp32s3_board_spi.c:120:  spiinfo("devid: %" PRIu32 " CMD: %s\n", devid, cmd ? "command" :
+./boards/xtensa/esp32s3/esp32s3-devkit/src/esp32s3_board_spi.c:78:  spiinfo("devid: %" PRIu32 " CMD: %s\n", devid, cmd ? "command" :
+./boards/xtensa/esp32s3/esp32s3-devkit/src/esp32s3_board_spi.c:120:  spiinfo("devid: %" PRIu32 " CMD: %s\n", devid, cmd ? "command" :
+./boards/xtensa/esp32s3/esp32s3-box/src/esp32s3_board_spi.c:78:  spiinfo("devid: %" PRIu32 " CMD: %s\n", devid, cmd ? "command" :
+./boards/xtensa/esp32s3/esp32s3-box/src/esp32s3_board_spi.c:120:  spiinfo("devid: %" PRIu32 " CMD: %s\n", devid, cmd ? "command" :
+./boards/xtensa/esp32s3/common/src/esp32s3_board_spidev.c:59:  spiinfo("Initializing /dev/spi%d...\n", port);
+./boards/xtensa/esp32s3/esp32s3-lcd-ev/src/esp32s3_board_spi.c:78:  spiinfo("devid: %" PRIu32 " CMD: %s\n", devid, cmd ? "command" :
+./boards/xtensa/esp32s3/esp32s3-lcd-ev/src/esp32s3_board_spi.c:120:  spiinfo("devid: %" PRIu32 " CMD: %s\n", devid, cmd ? "command" :
+./boards/xtensa/esp32s2/common/src/esp32s2_board_spislavedev.c:62:  spiinfo("Initializing /dev/spislv%d...\n", bus);
+./boards/xtensa/esp32s2/common/src/esp32s2_board_spi.c:77:  spiinfo("devid: %" PRIu32 " CMD: %s\n", devid, cmd ? "command" :
+./boards/xtensa/esp32s2/common/src/esp32s2_board_spi.c:119:  spiinfo("devid: %" PRIu32 " CMD: %s\n", devid, cmd ? "command" :
+./boards/arm/xmc4/xmc4800-relax/src/xmc4_spi.c:136:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/xmc4/xmc4800-relax/src/xmc4_spi.c:145:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/xmc4/xmc4800-relax/src/xmc4_spi.c:154:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/xmc4/xmc4800-relax/src/xmc4_spi.c:163:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/xmc4/xmc4800-relax/src/xmc4_spi.c:172:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/xmc4/xmc4500-relax/src/xmc4_spi.c:131:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/xmc4/xmc4500-relax/src/xmc4_spi.c:140:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/xmc4/xmc4500-relax/src/xmc4_spi.c:149:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/xmc4/xmc4500-relax/src/xmc4_spi.c:165:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/xmc4/xmc4700-relax/src/xmc4_spi.c:136:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/xmc4/xmc4700-relax/src/xmc4_spi.c:145:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/xmc4/xmc4700-relax/src/xmc4_spi.c:154:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/xmc4/xmc4700-relax/src/xmc4_spi.c:163:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/xmc4/xmc4700-relax/src/xmc4_spi.c:172:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32wl5/nucleo-wl55jc/src/stm32_spi.c:82:  spiinfo("Preparing additional lines for SSD1680 device\n");
+./boards/arm/stm32wl5/nucleo-wl55jc/src/stm32_spi.c:128:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./boards/arm/stm32wl5/nucleo-wl55jc/src/stm32_spi.c:183:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./boards/arm/tiva/lm4f120-launchpad/src/lm4f_ssi.c:94:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/tiva/lm4f120-launchpad/src/lm4f_ssi.c:102:  spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/tiva/lm3s8962-ek/src/lm_ssi.c:102:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/tiva/lm3s8962-ek/src/lm_ssi.c:126:  spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/tiva/launchxl-cc1310/src/cc1310_ssi.c:92:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/tiva/launchxl-cc1310/src/cc1310_ssi.c:100:  spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/tiva/lm3s6965-ek/src/lm_ssi.c:101:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/tiva/lm3s6965-ek/src/lm_ssi.c:125:  spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/tiva/launchxl-cc1312r1/src/cc1312_ssi.c:92:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/tiva/launchxl-cc1312r1/src/cc1312_ssi.c:100:  spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/tiva/lm3s6432-s2e/src/lm_ssi.c:97:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/tiva/lm3s6432-s2e/src/lm_ssi.c:113:  spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/tiva/ekk-lm3s9b96/src/lm_ssi.c:98:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/tiva/ekk-lm3s9b96/src/lm_ssi.c:121:  spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/tiva/eagle100/src/lm_ssi.c:99:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/tiva/eagle100/src/lm_ssi.c:113:  spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/tiva/tm4c123g-launchpad/src/tm4c_ssi.c:96:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/tiva/tm4c123g-launchpad/src/tm4c_ssi.c:109:  spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/tiva/dk-tm4c129x/src/tm4c_ssi.c:94:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/tiva/dk-tm4c129x/src/tm4c_ssi.c:102:  spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/stm32l4/nucleo-l496zg/src/stm32_spi.c:265:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/nucleo-l496zg/src/stm32_spi.c:286:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/nucleo-l496zg/src/stm32_spi.c:307:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/stm32l4r9ai-disco/src/stm32_spi.c:154:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/stm32l4r9ai-disco/src/stm32_spi.c:175:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/stm32l4r9ai-disco/src/stm32_spi.c:189:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/nucleo-l452re/src/stm32_spi.c:125:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/nucleo-l452re/src/stm32_spi.c:146:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/nucleo-l452re/src/stm32_spi.c:160:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/b-l475e-iot01a/src/stm32_spi.c:153:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/b-l475e-iot01a/src/stm32_spi.c:167:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/b-l475e-iot01a/src/stm32_spi.c:181:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/stm32l476-mdk/src/stm32_spi.c:118:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/stm32l476-mdk/src/stm32_spi.c:132:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/stm32l476-mdk/src/stm32_spi.c:146:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/nucleo-l476rg/src/stm32_spi.c:136:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/nucleo-l476rg/src/stm32_spi.c:173:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/nucleo-l476rg/src/stm32_spi.c:194:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/nucleo-l476rg/src/stm32_spimmcsd.c:79:  spiinfo("INFO: Registering spi1 device\n");
+./boards/arm/stm32l4/nucleo-l476rg/src/stm32_spimmcsd.c:113:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/arm/stm32l4/stm32l476vg-disco/src/stm32_spi.c:141:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/stm32l476vg-disco/src/stm32_spi.c:162:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/stm32l476vg-disco/src/stm32_spi.c:176:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32l4/nucleo-l432kc/src/stm32_spi.c:109:      spiinfo("INFO: SPI port 1 initialized\n");
+./boards/arm/stm32l4/nucleo-l432kc/src/stm32_spi.c:129:      spiinfo("INFO: SPI port 2 initialized\n");
+./boards/arm/stm32l4/nucleo-l432kc/src/stm32_spi.c:166:  spiinfo("devid: %08X CS: %s\n", (int)devid,
+./boards/arm/stm32l4/nucleo-l432kc/src/stm32_spi.c:187:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1064-evk/src/imxrt_spi.c:98:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1064-evk/src/imxrt_spi.c:114:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1064-evk/src/imxrt_spi.c:130:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1064-evk/src/imxrt_spi.c:146:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1064-evk/src/imxrt_mmcsd_spi.c:85:  spiinfo("INFO: Registering spi1 device\n");
+./boards/arm/imxrt/imxrt1064-evk/src/imxrt_mmcsd_spi.c:120:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/arm/imxrt/teensy-4.x/src/imxrt_spi.c:98:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/teensy-4.x/src/imxrt_spi.c:114:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/teensy-4.x/src/imxrt_spi.c:130:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/teensy-4.x/src/imxrt_spi.c:146:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1060-evk/src/imxrt_spi.c:99:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1060-evk/src/imxrt_spi.c:115:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1060-evk/src/imxrt_spi.c:131:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1060-evk/src/imxrt_spi.c:147:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1060-evk/src/imxrt_mmcsd_spi.c:83:  spiinfo("INFO: Registering spi1 device\n");
+./boards/arm/imxrt/imxrt1060-evk/src/imxrt_mmcsd_spi.c:118:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/arm/imxrt/imxrt1020-evk/src/imxrt_spi.c:98:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1020-evk/src/imxrt_spi.c:114:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1020-evk/src/imxrt_spi.c:130:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1020-evk/src/imxrt_spi.c:146:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1170-evk/src/imxrt_spi.c:114:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1170-evk/src/imxrt_spi.c:130:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1170-evk/src/imxrt_spi.c:146:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1170-evk/src/imxrt_spi.c:162:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1170-evk/src/imxrt_spi.c:178:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1170-evk/src/imxrt_spi.c:194:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1170-evk/src/imxrt_spi.c:208:  spiinfo("INFO: Registering spi6 device\n");
+./boards/arm/imxrt/imxrt1170-evk/src/imxrt_mmcsd_spi.c:85:  spiinfo("INFO: Registering spi1 device\n");
+./boards/arm/imxrt/imxrt1170-evk/src/imxrt_mmcsd_spi.c:120:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/arm/imxrt/imxrt1050-evk/src/imxrt_spi.c:98:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1050-evk/src/imxrt_spi.c:114:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1050-evk/src/imxrt_spi.c:130:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1050-evk/src/imxrt_spi.c:146:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/imxrt/imxrt1050-evk/src/imxrt_mmcsd_spi.c:83:  spiinfo("INFO: Registering spi1 device\n");
+./boards/arm/imxrt/imxrt1050-evk/src/imxrt_mmcsd_spi.c:118:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/arm/lpc43xx/bambino-200e/src/lpc43_ssp.c:92:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc43xx/bambino-200e/src/lpc43_ssp.c:144:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/stm32h7/nucleo-h743zi/src/stm32_spi.c:65:  spiinfo("Configure GPIO for SPI3/CS\n");
+./boards/arm/stm32h7/nucleo-h743zi/src/stm32_spi.c:113:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/stm32h7/nucleo-h743zi/src/stm32_spi.c:127:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/stm32h7/nucleo-h743zi/src/stm32_spi.c:145:        spiinfo("nRF24L01 device %s\n",
+./boards/arm/stm32h7/nucleo-h743zi/src/stm32_spi.c:197:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/stm32h7/nucleo-h743zi/src/stm32_spi.c:211:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/stm32h7/nucleo-h743zi/src/stm32_spi.c:225:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/stm32h7/stm32h747i-disco/src/stm32_spi.c:96:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/stm32h7/stm32h747i-disco/src/stm32_spi.c:110:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/stm32h7/stm32h747i-disco/src/stm32_spi.c:148:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/stm32h7/stm32h747i-disco/src/stm32_spi.c:162:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/stm32h7/stm32h747i-disco/src/stm32_spi.c:176:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/s32k1xx/s32k148evb/src/s32k1xx_spi.c:176:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k1xx/s32k148evb/src/s32k1xx_spi.c:194:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k1xx/s32k148evb/src/s32k1xx_spi.c:212:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k1xx/s32k144evb/src/s32k1xx_spi.c:176:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k1xx/s32k144evb/src/s32k1xx_spi.c:194:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k1xx/s32k144evb/src/s32k1xx_spi.c:212:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k1xx/ucans32k146/src/s32k1xx_spi.c:176:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k1xx/ucans32k146/src/s32k1xx_spi.c:194:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k1xx/ucans32k146/src/s32k1xx_spi.c:212:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k1xx/s32k118evb/src/s32k1xx_spi.c:150:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k1xx/s32k118evb/src/s32k1xx_spi.c:168:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k1xx/s32k146evb/src/s32k1xx_spi.c:176:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k1xx/s32k146evb/src/s32k1xx_spi.c:194:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k1xx/s32k146evb/src/s32k1xx_spi.c:212:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/stm32f0l0g0/b-l072z-lrwan1/src/stm32_spi.c:84:  spiinfo("Configure GPIO for SX127X SPI1/CS\n");
+./boards/arm/stm32f0l0g0/b-l072z-lrwan1/src/stm32_spi.c:122:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f0l0g0/b-l072z-lrwan1/src/stm32_spi.c:130:          spiinfo("SX127X device %s\n",
+./boards/arm/stm32f0l0g0/b-l072z-lrwan1/src/stm32_spi.c:175:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f0l0g0/stm32g071b-disco/src/stm32_spi.c:115:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./boards/arm/stm32f0l0g0/stm32g071b-disco/src/stm32_spi.c:136:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./boards/arm/stm32f0l0g0/stm32g071b-disco/src/stm32_spi.c:150:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./boards/arm/stm32f0l0g0/nucleo-f091rc/src/stm32_spi.c:85:  spiinfo("Configure GPIO for SX127X SPI1/CS\n");
+./boards/arm/stm32f0l0g0/nucleo-f091rc/src/stm32_spi.c:124:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f0l0g0/nucleo-f091rc/src/stm32_spi.c:132:          spiinfo("SX127X device %s\n",
+./boards/arm/stm32f0l0g0/nucleo-f091rc/src/stm32_spi.c:177:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f0l0g0/nucleo-l073rz/src/stm32_spi.c:85:  spiinfo("Configure GPIO for NRF24L01 SPI1/CS\n");
+./boards/arm/stm32f0l0g0/nucleo-l073rz/src/stm32_spi.c:94:  spiinfo("Configure GPIO for SX127X SPI1/CS\n");
+./boards/arm/stm32f0l0g0/nucleo-l073rz/src/stm32_spi.c:142:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f0l0g0/nucleo-l073rz/src/stm32_spi.c:150:          spiinfo("nRF24L01 device %s\n",
+./boards/arm/stm32f0l0g0/nucleo-l073rz/src/stm32_spi.c:163:          spiinfo("SX127X device %s\n",
+./boards/arm/stm32f0l0g0/nucleo-l073rz/src/stm32_spi.c:216:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/gd32f4/gd32f450zk-eval/src/gd32f4xx_spi.c:123:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f450zk-eval/src/gd32f4xx_spi.c:139:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f450zk-eval/src/gd32f4xx_spi.c:155:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f450zk-eval/src/gd32f4xx_spi.c:171:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f450zk-eval/src/gd32f4xx_spi.c:187:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f450zk-eval/src/gd32f4xx_spi.c:203:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f470zk-eval/src/gd32f4xx_spi.c:123:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f470zk-eval/src/gd32f4xx_spi.c:139:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f470zk-eval/src/gd32f4xx_spi.c:155:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f470zk-eval/src/gd32f4xx_spi.c:171:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f470zk-eval/src/gd32f4xx_spi.c:187:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f470zk-eval/src/gd32f4xx_spi.c:203:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f470ik-eval/src/gd32f4xx_spi.c:123:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f470ik-eval/src/gd32f4xx_spi.c:139:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f470ik-eval/src/gd32f4xx_spi.c:155:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f470ik-eval/src/gd32f4xx_spi.c:171:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f470ik-eval/src/gd32f4xx_spi.c:187:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/gd32f4/gd32f470ik-eval/src/gd32f4xx_spi.c:203:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/nrf52/nrf52840-dk/src/nrf52_spi.c:62:  spiinfo("Configure GPIO for SX127X SPI1/CS\n");
+./boards/arm/nrf52/nrf52840-dk/src/nrf52_spi.c:100:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/nrf52/nrf52840-dk/src/nrf52_spi.c:108:          spiinfo("SX127X device %s\n",
+./boards/arm/nrf52/nrf52840-dk/src/nrf52_spi.c:153:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/nrf52/nrf52840-dk/src/nrf52_spi.c:167:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/nrf52/nrf52840-dk/src/nrf52_spi.c:181:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/stm32/stm32f3discovery/src/stm32_spi.c:94:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm32f3discovery/src/stm32_spi.c:110:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm32f3discovery/src/stm32_spi.c:124:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/nucleo-f4x1re/src/stm32_spi.c:133:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./boards/arm/stm32/nucleo-f4x1re/src/stm32_spi.c:168:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./boards/arm/stm32/nucleo-f4x1re/src/stm32_spi.c:182:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./boards/arm/stm32/stm32_tiny/src/stm32_spi.c:66:  spiinfo("Configure GPIO for SPI2/CS\n");
+./boards/arm/stm32/stm32_tiny/src/stm32_spi.c:118:      spiinfo("nRF24L01 device %s\n", selected ? "asserted" : "de-asserted");
+./boards/arm/stm32/nucleo-f429zi/src/stm32_spi.c:266:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/nucleo-f429zi/src/stm32_spi.c:287:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/nucleo-f429zi/src/stm32_spi.c:308:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/nucleo-f429zi/src/stm32_spi.c:327:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/nucleo-f429zi/src/stm32_spi.c:341:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/nucleo-f429zi/src/stm32_spi.c:355:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/photon/src/stm32_spi.c:90:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/photon/src/stm32_spi.c:104:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/photon/src/stm32_spi.c:118:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm3220g-eval/src/stm32_spi.c:90:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm3220g-eval/src/stm32_spi.c:104:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm3220g-eval/src/stm32_spi.c:118:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/maple/src/stm32_spi.c:95:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm3210e-eval/src/stm32_spi.c:99:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm3210e-eval/src/stm32_spi.c:120:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm3210e-eval/src/stm32_spi.c:134:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/olimex-stm32-p107/src/stm32_spi.c:102:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/shenzhou/src/stm32_spi.c:110:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/shenzhou/src/stm32_spi.c:148:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/cloudctrl/src/stm32_spi.c:104:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/cloudctrl/src/stm32_spi.c:127:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm3240g-eval/src/stm32_spi.c:89:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm3240g-eval/src/stm32_spi.c:103:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm3240g-eval/src/stm32_spi.c:117:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm32f103-minimum/src/stm32_mmcsd.c:79:  spiinfo("INFO: Registering spi1 device\n");
+./boards/arm/stm32/stm32f103-minimum/src/stm32_mmcsd.c:112:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/arm/stm32/omnibusf4/src/stm32_mmcsd.c:101:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/arm/stm32/omnibusf4/src/stm32_spi.c:101:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/omnibusf4/src/stm32_spi.c:119:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/omnibusf4/src/stm32_spi.c:139:  spiinfo("devid: %d %s\n",
+./boards/arm/stm32/nucleo-f446re/src/stm32_spi.c:138:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/nucleo-f446re/src/stm32_spi.c:159:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/nucleo-f446re/src/stm32_spi.c:173:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/common/src/stm32_lis3dsh.c:105:      spiinfo("Failed to initialize SPI port\n");
+./boards/arm/stm32/stm32butterfly2/src/stm32_mmcsd.c:87:  spiinfo("INFO: Running card detect thread\n");
+./boards/arm/stm32/stm32butterfly2/src/stm32_mmcsd.c:91:      spiinfo("INFO: Card has been inserted, initializing\n");
+./boards/arm/stm32/stm32butterfly2/src/stm32_mmcsd.c:152:  spiinfo("INFO: Registering spi1 device\n");
+./boards/arm/stm32/stm32butterfly2/src/stm32_mmcsd.c:172:  spiinfo("INFO: Initializing mmcsd card\n");
+./boards/arm/stm32/stm32butterfly2/src/stm32_mmcsd.c:199:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/arm/stm32/stm32butterfly2/src/stm32_spi.c:50:  spiinfo("INFO: Initializing spi gpio pins\n");
+./boards/arm/stm32/stm32butterfly2/src/stm32_spi.c:66:  spiinfo("INFO: Selecting spi dev: %" PRId32 ", state: %d\n",
+./boards/arm/stm32/stm32butterfly2/src/stm32_spi.c:84:  spiinfo("INFO: Requesting info from spi dev: %" PRId32 "\n", devid);
+./boards/arm/stm32/viewtool-stm32f107/src/stm32_spi.c:117:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/viewtool-stm32f107/src/stm32_spi.c:153:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/viewtool-stm32f107/src/stm32_spi.c:198:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/fire-stm32v2/src/stm32_spi.c:123:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/fire-stm32v2/src/stm32_spi.c:162:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/hymini-stm32v/src/stm32_spi.c:66:  spiinfo("Configure GPIO for SPI1/CS\n");
+./boards/arm/stm32/hymini-stm32v/src/stm32_spi.c:101:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/hymini-stm32v/src/stm32_spi.c:122:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/hymini-stm32v/src/stm32_spi.c:136:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm32ldiscovery/src/stm32_spi.c:94:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm32ldiscovery/src/stm32_spi.c:110:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm32ldiscovery/src/stm32_spi.c:124:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/nucleo-l152re/src/stm32_spisd.c:105:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/arm/stm32/nucleo-l152re/src/stm32_spi.c:166:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./boards/arm/stm32/nucleo-l152re/src/stm32_spi.c:195:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./boards/arm/stm32/nucleo-l152re/src/stm32_spi.c:209:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./boards/arm/stm32/nucleo-f303re/src/stm32_spi.c:92:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/nucleo-f303re/src/stm32_spi.c:113:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/nucleo-f303re/src/stm32_spi.c:127:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm32f4discovery/src/stm32_mmcsd.c:102:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/arm/stm32/stm32f4discovery/src/stm32_spi.c:131:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./boards/arm/stm32/stm32f4discovery/src/stm32_spi.c:205:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./boards/arm/stm32/stm32f4discovery/src/stm32_spi.c:250:  spiinfo("devid: %d CS: %s\n", (int)devid, selected ? "assert" :
+./boards/arm/stm32/olimexino-stm32/src/stm32_spi.c:97:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/olimexino-stm32/src/stm32_spi.c:115:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/olimexino-stm32/src/stm32_spi.c:137:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/olimex-stm32-p407/src/stm32_spi.c:92:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/olimex-stm32-p407/src/stm32_spi.c:106:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/olimex-stm32-p407/src/stm32_spi.c:120:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm32f429i-disco/src/stm32_spi.c:108:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm32f429i-disco/src/stm32_spi.c:123:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm32f429i-disco/src/stm32_spi.c:137:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/stm32f429i-disco/src/stm32_spi.c:169:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/clicker2-stm32/src/stm32_mmcsd.c:395:  spiinfo("INFO: Registering spi2 device\n");
+./boards/arm/stm32/clicker2-stm32/src/stm32_mmcsd.c:413:  spiinfo("INFO: Registering spi3 device\n");
+./boards/arm/stm32/clicker2-stm32/src/stm32_spi.c:100:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/clicker2-stm32/src/stm32_spi.c:114:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/clicker2-stm32/src/stm32_spi.c:167:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/odrive36/src/stm32_spi.c:97:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/odrive36/src/stm32_spi.c:111:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/odrive36/src/stm32_spi.c:124:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/mikroe-stm32f4/src/stm32_spi.c:111:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/mikroe-stm32f4/src/stm32_spi.c:174:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32/mikroe-stm32f4/src/stm32_spi.c:188:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/kinetis/freedom-k28f/src/k28_spi.c:93:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/freedom-k28f/src/k28_spi.c:109:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/freedom-k28f/src/k28_spi.c:125:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/freedom-k66f/src/k66_spi.c:100:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/freedom-k66f/src/k66_spi.c:116:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/freedom-k66f/src/k66_spi.c:132:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/twr-k60n512/src/k60_spi.c:90:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/twr-k60n512/src/k60_spi.c:106:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/twr-k60n512/src/k60_spi.c:122:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/freedom-k64f/src/k64_spi.c:97:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/freedom-k64f/src/k64_spi.c:113:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/freedom-k64f/src/k64_spi.c:129:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/teensy-3.x/src/k20_spi.c:92:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/teensy-3.x/src/k20_spi.c:108:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/teensy-3.x/src/k20_spi.c:124:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/kwikstik-k40/src/k40_spi.c:92:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/kwikstik-k40/src/k40_spi.c:108:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kinetis/kwikstik-k40/src/k40_spi.c:124:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/rp2040/common/src/rp2040_spidev.c:51:  spiinfo("Initializing /dev/spi%d..\n", port);
+./boards/arm/rp2040/common/src/rp2040_spi.c:74:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/rp2040/common/src/rp2040_spi.c:115:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/lpcxpresso-lpc1768/src/lpc17_40_ssp.c:124:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/lpcxpresso-lpc1768/src/lpc17_40_ssp.c:135:  spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/lpc17xx_40xx/lpcxpresso-lpc1768/src/lpc17_40_ssp.c:144:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/lpcxpresso-lpc1768/src/lpc17_40_ssp.c:174:          spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/lpc17xx_40xx/lpcxpresso-lpc1768/src/lpc17_40_ssp.c:179:  spiinfo("Returning zero\n");
+./boards/arm/lpc17xx_40xx/u-blox-c027/src/lpc17_40_ssp.c:113:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/u-blox-c027/src/lpc17_40_ssp.c:124:  spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/lpc17xx_40xx/u-blox-c027/src/lpc17_40_ssp.c:133:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/u-blox-c027/src/lpc17_40_ssp.c:163:          spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/lpc17xx_40xx/u-blox-c027/src/lpc17_40_ssp.c:168:  spiinfo("Returning zero\n");
+./boards/arm/lpc17xx_40xx/zkit-arm-1769/src/lpc17_40_spi.c:111:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/zkit-arm-1769/src/lpc17_40_spi.c:133:          spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/lpc17xx_40xx/zkit-arm-1769/src/lpc17_40_spi.c:138:  spiinfo("Returning zero\n");
+./boards/arm/lpc17xx_40xx/zkit-arm-1769/src/lpc17_40_ssp.c:114:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/zkit-arm-1769/src/lpc17_40_ssp.c:125:  spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/lpc17xx_40xx/zkit-arm-1769/src/lpc17_40_ssp.c:150:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/zkit-arm-1769/src/lpc17_40_ssp.c:170:      spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/lpc17xx_40xx/zkit-arm-1769/src/lpc17_40_ssp.c:174:  spiinfo("Returning zero\n");
+./boards/arm/lpc17xx_40xx/lx_cpu/src/lpc17_40_ssp.c:122:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/lpc17xx_40xx/lx_cpu/src/lpc17_40_ssp.c:128:  spiinfo("Returning nothing\n");
+./boards/arm/lpc17xx_40xx/lx_cpu/src/lpc17_40_ssp.c:138:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/lpc17xx_40xx/lx_cpu/src/lpc17_40_ssp.c:152:  spiinfo("Returning nothing\n");
+./boards/arm/lpc17xx_40xx/lx_cpu/src/lpc17_40_ssp.c:161:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/lpc17xx_40xx/lx_cpu/src/lpc17_40_ssp.c:167:  spiinfo("Returning nothing\n");
+./boards/arm/lpc17xx_40xx/lpc4088-devkit/src/lpc17_40_ssp.c:123:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/lpc4088-devkit/src/lpc17_40_ssp.c:129:  spiinfo("Returning nothing\n");
+./boards/arm/lpc17xx_40xx/lpc4088-devkit/src/lpc17_40_ssp.c:138:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/lpc4088-devkit/src/lpc17_40_ssp.c:152:  spiinfo("Returning nothing\n");
+./boards/arm/lpc17xx_40xx/lpc4088-devkit/src/lpc17_40_ssp.c:161:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/lpc4088-devkit/src/lpc17_40_ssp.c:167:  spiinfo("Returning nothing\n");
+./boards/arm/lpc17xx_40xx/open1788/src/lpc17_40_ssp.c:122:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/open1788/src/lpc17_40_ssp.c:128:  spiinfo("Returning nothing\n");
+./boards/arm/lpc17xx_40xx/open1788/src/lpc17_40_ssp.c:137:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/open1788/src/lpc17_40_ssp.c:151:  spiinfo("Returning nothing\n");
+./boards/arm/lpc17xx_40xx/open1788/src/lpc17_40_ssp.c:160:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/open1788/src/lpc17_40_ssp.c:166:  spiinfo("Returning nothing\n");
+./boards/arm/lpc17xx_40xx/pnev5180b/src/lpc17_40_spi.c:89:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/lpc17xx_40xx/pnev5180b/src/lpc17_40_spi.c:95:  spiinfo("devid: %d\n", (int)devid);
+./boards/arm/lpc17xx_40xx/olimex-lpc1766stk/src/lpc17_40_ssp.c:264:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/olimex-lpc1766stk/src/lpc17_40_ssp.c:278:  spiinfo("Returning nothing\n");
+./boards/arm/lpc17xx_40xx/olimex-lpc1766stk/src/lpc17_40_ssp.c:287:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/olimex-lpc1766stk/src/lpc17_40_ssp.c:301:  spiinfo("Returning SPI_STATUS_PRESENT\n");
+./boards/arm/lpc17xx_40xx/lpc4088-quickstart/src/lpc17_40_ssp.c:122:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/lpc4088-quickstart/src/lpc17_40_ssp.c:128:  spiinfo("Returning nothing\n");
+./boards/arm/lpc17xx_40xx/lpc4088-quickstart/src/lpc17_40_ssp.c:137:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/lpc4088-quickstart/src/lpc17_40_ssp.c:143:  spiinfo("Returning nothing\n");
+./boards/arm/lpc17xx_40xx/lpc4088-quickstart/src/lpc17_40_ssp.c:152:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc17xx_40xx/lpc4088-quickstart/src/lpc17_40_ssp.c:158:  spiinfo("Returning nothing\n");
+./boards/arm/samv7/samv71-xult/src/sam_spi.c:161:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/samv7/samv71-xult/src/sam_spi.c:194:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/samv7/same70-qmtech/src/sam_spi.c:136:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/samv7/same70-qmtech/src/sam_spi.c:144:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/samv7/same70-xplained/src/sam_spi.c:146:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/samv7/same70-xplained/src/sam_spi.c:186:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/kl/teensy-lc/src/kl_spi.c:124:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/kl/teensy-lc/src/kl_spi.c:133:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/kl/freedom-kl25z/src/kl_spi.c:126:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/kl/freedom-kl25z/src/kl_spi.c:144:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/kl/freedom-kl26z/src/kl_spi.c:124:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/kl/freedom-kl26z/src/kl_spi.c:133:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/mx8mp/verdin-mx8mp/src/mx8mp_spi.c:59:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/mx8mp/verdin-mx8mp/src/mx8mp_spi.c:82:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/mx8mp/verdin-mx8mp/src/mx8mp_spi.c:105:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/mx8mp/verdin-mx8mp/src/mx8mp_spidev.c:57:  spiinfo("Initializing /dev/spi%d..\n", port);
+./boards/arm/stm32f7/stm32f777zit6-meadow/src/stm32_spi.c:92:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f777zit6-meadow/src/stm32_spi.c:106:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f777zit6-meadow/src/stm32_spi.c:122:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f777zit6-meadow/src/stm32_spi.c:136:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f777zit6-meadow/src/stm32_spi.c:150:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/nucleo-144/src/stm32_spi.rs:336:   spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/nucleo-144/src/stm32_spi.rs:357:   spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/nucleo-144/src/stm32_spi.rs:378:   spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/nucleo-144/src/stm32_spi.rs:397:   spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/nucleo-144/src/stm32_spi.rs:411:   spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/nucleo-144/src/stm32_spi.rs:425:   spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/nucleo-144/src/stm32_spi.c:266:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/nucleo-144/src/stm32_spi.c:287:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/nucleo-144/src/stm32_spi.c:308:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/nucleo-144/src/stm32_spi.c:327:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/nucleo-144/src/stm32_spi.c:341:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/nucleo-144/src/stm32_spi.c:355:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f746g-disco/src/stm32_spi.c:92:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f746g-disco/src/stm32_spi.c:106:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f746g-disco/src/stm32_spi.c:120:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f746g-disco/src/stm32_spi.c:134:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f746g-disco/src/stm32_spi.c:148:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f746-ws/src/stm32_spi.c:92:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f746-ws/src/stm32_spi.c:106:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f746-ws/src/stm32_spi.c:120:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f746-ws/src/stm32_spi.c:134:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f746-ws/src/stm32_spi.c:148:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f746-ws/src/stm32_spi.c:162:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f769i-disco/src/stm32_spi.c:92:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f769i-disco/src/stm32_spi.c:106:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f769i-disco/src/stm32_spi.c:120:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f769i-disco/src/stm32_spi.c:134:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/stm32f7/stm32f769i-disco/src/stm32_spi.c:148:  spiinfo("devid: %d CS: %s\n",
+./boards/arm/lpc214x/mcu123-lpc214x/src/lpc2148_spi1.c:207:      spiinfo("CS asserted\n");
+./boards/arm/lpc214x/mcu123-lpc214x/src/lpc2148_spi1.c:214:      spiinfo("CS de-asserted\n");
+./boards/arm/lpc214x/mcu123-lpc214x/src/lpc2148_spi1.c:272:  spiinfo("Frequency %" PRId32 "->%" PRId32 "\n",
+./boards/arm/lpc214x/mcu123-lpc214x/src/lpc2148_spi1.c:298:  spiinfo("Return SPI_STATUS_PRESENT\n");
+./boards/arm/lpc214x/mcu123-lpc214x/src/lpc2148_spi1.c:369:  spiinfo("%04" PRIx32 "->%04x\n", wd, regval);
+./boards/arm/lpc214x/mcu123-lpc214x/src/lpc2148_spi1.c:401:  spiinfo("nwords: %d\n", nwords);
+./boards/arm/lpc214x/mcu123-lpc214x/src/lpc2148_spi1.c:418:  spiinfo("discarding\n");
+./boards/arm/lpc214x/mcu123-lpc214x/src/lpc2148_spi1.c:477:  spiinfo("nwords: %d\n", nwords);
+./boards/arm/lpc214x/mcu123-lpc214x/src/lpc2148_spi1.c:486:      spiinfo("TX: rxpending: %" PRId32 " nwords: %d\n", rxpending, nwords);
+./boards/arm/lpc214x/mcu123-lpc214x/src/lpc2148_spi1.c:497:      spiinfo("RX: rxpending: %" PRId32 "\n", rxpending);
+./boards/arm/lpc214x/zp214xpa/src/lpc2148_spi1.c:223:      spiinfo("CS asserted: %08" PRIx32 "->%08" PRIx32 "\n",
+./boards/arm/lpc214x/zp214xpa/src/lpc2148_spi1.c:233:      spiinfo("CS de-asserted: %08" PRIx32 "->%08" PRIx32 "\n", regval,
+./boards/arm/lpc214x/zp214xpa/src/lpc2148_spi1.c:292:  spiinfo("Frequency %" PRId32 "->%" PRId32 "\n",
+./boards/arm/lpc214x/zp214xpa/src/lpc2148_spi1.c:314:  spiinfo("Return 0\n");
+./boards/arm/lpc214x/zp214xpa/src/lpc2148_spi1.c:372:      spiinfo("Command: %08" PRIx32 "->%08" PRIx32 "\n",
+./boards/arm/lpc214x/zp214xpa/src/lpc2148_spi1.c:382:      spiinfo("Data: %08" PRIx32 "->%08" PRIx32 "\n",
+./boards/arm/lpc214x/zp214xpa/src/lpc2148_spi1.c:426:  spiinfo("%04" PRIx32 "->%04x\n", wd, regval);
+./boards/arm/lpc214x/zp214xpa/src/lpc2148_spi1.c:458:  spiinfo("nwords: %d\n", nwords);
+./boards/arm/lpc214x/zp214xpa/src/lpc2148_spi1.c:475:  spiinfo("discarding\n");
+./boards/arm/lpc214x/zp214xpa/src/lpc2148_spi1.c:533:  spiinfo("nwords: %d\n", nwords);
+./boards/arm/lpc214x/zp214xpa/src/lpc2148_spi1.c:542:      spiinfo("TX: rxpending: %" PRId32 " nwords: %d\n", rxpending, nwords);
+./boards/arm/lpc214x/zp214xpa/src/lpc2148_spi1.c:553:      spiinfo("RX: rxpending: %" PRId32 "\n", rxpending);
+./boards/arm/lpc214x/zp214xpa/src/lpc2148_spi1.c:633:  spiinfo("CS Pin Config: PINSEL1: %08" PRIx32
+./boards/arm/cxd56xx/spresense/src/cxd56_spi.c:75:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/cxd56xx/spresense/src/cxd56_spi.c:89:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/cxd56xx/spresense/src/cxd56_spi.c:120:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/cxd56xx/spresense/src/cxd56_spi.c:139:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/sam34/flipnclick-sam3x/src/sam_spi0.c:128:  spiinfo("devid: %08x CS: %s\n",
+./boards/arm/sam34/flipnclick-sam3x/src/sam_spi0.c:159:  spiinfo("Returning nothing\n");
+./boards/arm/sam34/flipnclick-sam3x/src/sam_spi0.c:190:  spiinfo("devid: %08x %s\n", (unsigned int)devid, cmd ? "cmd" : "data");
+./boards/arm/sam34/arduino-due/src/sam_spidev.c:37:  spiinfo("devid: %08x CS: %s\n",
+./boards/arm/sam34/arduino-due/src/sam_spidev.c:44:  spiinfo("Returning nothing\n");
+./boards/arm/max326xx/max32660-evsys/src/max326_spi.c:94:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/max326xx/max32660-evsys/src/max326_spi.c:108:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/max326xx/max32660-evsys/src/max326_mmcsd.c:97:  spiinfo("INFO:  SPI callback\n");
+./boards/arm/max326xx/max32660-evsys/src/max326_mmcsd.c:132:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/arm/tms570/tms570ls31x-usb-kit/src/tms570_sdmmc.c:79:  spiinfo("INFO: Registering spi1 device\n");
+./boards/arm/tms570/tms570ls31x-usb-kit/src/tms570_sdmmc.c:112:  spiinfo("INFO: mmcsd card has been initialized successfully\n");
+./boards/arm/lpc31xx/olimex-lpc-h3131/src/lpc31_spi.c:96:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc31xx/ea3152/src/lpc31_spi.c:95:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/lpc31xx/ea3131/src/lpc31_spi.c:94:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/arm/stm32u5/nucleo-u5a5zj-q/src/stm32_spi.c:100:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/stm32u5/nucleo-u5a5zj-q/src/stm32_spi.c:116:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/stm32u5/nucleo-u5a5zj-q/src/stm32_spi.c:130:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/stm32u5/b-u585i-iot02a/src/stm32_spi.c:100:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/stm32u5/b-u585i-iot02a/src/stm32_spi.c:116:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/stm32u5/b-u585i-iot02a/src/stm32_spi.c:130:  spiinfo("devid: %08lx CS: %s\n",
+./boards/arm/s32k3xx/mr-canhubk3/src/s32k3xx_spi.c:293:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k3xx/mr-canhubk3/src/s32k3xx_spi.c:311:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k3xx/mr-canhubk3/src/s32k3xx_spi.c:329:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k3xx/mr-canhubk3/src/s32k3xx_spi.c:347:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k3xx/mr-canhubk3/src/s32k3xx_spi.c:365:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k3xx/s32k344evb/src/s32k3xx_spi.c:265:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k3xx/s32k344evb/src/s32k3xx_spi.c:283:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k3xx/s32k344evb/src/s32k3xx_spi.c:301:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k3xx/s32k344evb/src/s32k3xx_spi.c:319:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k3xx/s32k344evb/src/s32k3xx_spi.c:337:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/arm/s32k3xx/s32k344evb/src/s32k3xx_spi.c:355:  spiinfo("devid: %" PRId32 ", CS: %s\n", devid,
+./boards/mips/pic32mx/mirtoo/src/pic32_spi2.c:152:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mx/sure-pic32mx/src/pic32mx_spi.c:169:  spiinfo("devid: %d CS: %s\n",
+./boards/mips/pic32mx/sure-pic32mx/src/pic32mx_spi.c:230:  spiinfo("Returning %d\n", ret);
+./boards/mips/pic32mx/pic32mx7mmb/src/pic32_spi.c:125:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mx/pic32mx7mmb/src/pic32_spi.c:155:  spiinfo("Returning %02x\n", ret);
+./boards/mips/pic32mx/pic32mx7mmb/src/pic32_spi.c:172:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mx/pic32mx7mmb/src/pic32_spi.c:179:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mx/pic32mx7mmb/src/pic32_spi.c:197:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mx/pic32mx7mmb/src/pic32_spi.c:204:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mx/pic32mx7mmb/src/pic32_spi.c:222:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mx/pic32mx7mmb/src/pic32_spi.c:229:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mx/pic32mx-starterkit/src/pic32mx_spi.c:99:  spiinfo("devid: %d CS: %s\n",
+./boards/mips/pic32mx/pic32mx-starterkit/src/pic32mx_spi.c:106:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mx/pic32mx-starterkit/src/pic32mx_spi.c:125:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mx/pic32mx-starterkit/src/pic32mx_spi.c:132:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mx/pic32mx-starterkit/src/pic32mx_spi.c:150:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mx/pic32mx-starterkit/src/pic32mx_spi.c:157:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mx/pic32mx-starterkit/src/pic32mx_spi.c:175:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mx/pic32mx-starterkit/src/pic32mx_spi.c:182:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/pic32mz-starterkit/src/pic32mz_spi.c:96:  spiinfo("devid: %d CS: %s\n",
+./boards/mips/pic32mz/pic32mz-starterkit/src/pic32mz_spi.c:103:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/pic32mz-starterkit/src/pic32mz_spi.c:121:  spiinfo("devid: %d CS: %s\n",
+./boards/mips/pic32mz/pic32mz-starterkit/src/pic32mz_spi.c:128:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/pic32mz-starterkit/src/pic32mz_spi.c:146:  spiinfo("devid: %d CS: %s\n",
+./boards/mips/pic32mz/pic32mz-starterkit/src/pic32mz_spi.c:153:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/pic32mz-starterkit/src/pic32mz_spi.c:171:  spiinfo("devid: %d CS: %s\n",
+./boards/mips/pic32mz/pic32mz-starterkit/src/pic32mz_spi.c:178:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/pic32mz-starterkit/src/pic32mz_spi.c:196:  spiinfo("devid: %d CS: %s\n",
+./boards/mips/pic32mz/pic32mz-starterkit/src/pic32mz_spi.c:203:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/pic32mz-starterkit/src/pic32mz_spi.c:222:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mz/pic32mz-starterkit/src/pic32mz_spi.c:229:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/chipkit-wifire/src/pic32mz_spi.c:95:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mz/chipkit-wifire/src/pic32mz_spi.c:101:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/chipkit-wifire/src/pic32mz_spi.c:117:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mz/chipkit-wifire/src/pic32mz_spi.c:123:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/chipkit-wifire/src/pic32mz_spi.c:139:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mz/chipkit-wifire/src/pic32mz_spi.c:145:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/chipkit-wifire/src/pic32mz_spi.c:161:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mz/chipkit-wifire/src/pic32mz_spi.c:167:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/chipkit-wifire/src/pic32mz_spi.c:183:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mz/chipkit-wifire/src/pic32mz_spi.c:189:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/chipkit-wifire/src/pic32mz_spi.c:207:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mz/chipkit-wifire/src/pic32mz_spi.c:214:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/flipnclick-pic32mz/src/pic32mz_spi.c:102:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mz/flipnclick-pic32mz/src/pic32mz_spi.c:120:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/flipnclick-pic32mz/src/pic32mz_spi.c:148:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mz/flipnclick-pic32mz/src/pic32mz_spi.c:166:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/flipnclick-pic32mz/src/pic32mz_spi.c:194:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mz/flipnclick-pic32mz/src/pic32mz_spi.c:200:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/flipnclick-pic32mz/src/pic32mz_spi.c:216:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mz/flipnclick-pic32mz/src/pic32mz_spi.c:222:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/flipnclick-pic32mz/src/pic32mz_spi.c:238:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mz/flipnclick-pic32mz/src/pic32mz_spi.c:244:  spiinfo("Returning nothing\n");
+./boards/mips/pic32mz/flipnclick-pic32mz/src/pic32mz_spi.c:262:  spiinfo("devid: %d CS: %s\n", (int)devid,
+./boards/mips/pic32mz/flipnclick-pic32mz/src/pic32mz_spi.c:269:  spiinfo("Returning nothing\n");

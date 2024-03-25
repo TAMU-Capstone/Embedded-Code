@@ -22,15 +22,16 @@
  * Included Files
  ****************************************************************************/
 
- use crate::include::*; // I cannot tell how these two lines are different
- cfg_if::cfg_if!{
+use crate::bindings::*;
+use cty;
+cfg_if::cfg_if! {
 
    if #[cfg(CONFIG_SPI)]
-{   
+{
    /****************************************************************************
   * Pre-processor Definitions
   ****************************************************************************/
- 
+
  if ( cfg!(CONFIG_NUCLEO_SPI1_TEST) )
  {
 
@@ -54,7 +55,7 @@
    #[error("No CONFIG_NUCLEO_SPI1_TEST_MODEx defined")];
   }
 } // CONFIG_NUCLEO_SPI1_TEST
- 
+
  if ( cfg!(CONFIG_NUCLEO_SPI2_TEST) )
  {
    if ( cfg!(CONFIG_NUCLEO_SPI2_TEST_MODE0) )
@@ -78,7 +79,7 @@
      #[error("No CONFIG_NUCLEO_SPI2_TEST_MODEx defined")];
     }
 } // CONFIG_NUCLEO_SPI2_TEST
- 
+
  if ( cfg!(CONFIG_NUCLEO_SPI3_TEST) )
  {
      if ( cfg!(CONFIG_NUCLEO_SPI3_TEST_MODE0) )
@@ -102,117 +103,148 @@
    #[error("No CONFIG_NUCLEO_SPI3_TEST_MODEx defined")];
   }
 } // CONFIG_NUCLEO_SPI3_TEST
- 
+
  /****************************************************************************
   * Private Data
   ****************************************************************************/
- 
+
  if (cfg!(CONFIG_STM32F7_SPI1))
  {
-  let mut gpio_array = [0; 4];
+  let mut g_spi1gpio = [0; 4];
   if (cfg!(GPIO_SPI1_CS0))
   {
-    gpio_array[0] = GPIO_SPI1_CS0;
+    g_spi1gpio[0] = GPIO_SPI1_CS0;
   }
   else
   {
-    gpio_array[0] = 0;
+    g_spi1gpio[0] = 0;
   }
   if (cfg! (GPIO_SPI1_CS1) )
   {
-    gpio_array[1] = GPIO_SPI1_CS1;
+    g_spi1gpio[1] = GPIO_SPI1_CS1;
   }
   else
   {
-    gpio_array[1] = 0;
+    g_spi1gpio[1] = 0;
   }
  if (cfg! (GPIO_SPI1_CS2) )
  {
-   gpio_array[2] = GPIO_SPI1_CS2;
+   g_spi1gpio[2] = GPIO_SPI1_CS2;
   }
   else
   {
-    gpio_array[2] = GPIO_SPI1_CS2;
+    g_spi1gpio[2] = GPIO_SPI1_CS2;
   }
   if (cfg!(GPIO_SPI1_CS3))
   {
 
-    gpio_array[3] = GPIO_SPI1_CS3;
+    g_spi1gpio[3] = GPIO_SPI1_CS3;
   }
   else
   {
-    gpio_array[3] = 0;
+    g_spi1gpio[3] = 0;
   }
  } // CONFIG_STM32F7_SPI1
- 
- #if defined(CONFIG_STM32F7_SPI2)
- static const uint32_t g_spi2gpio[] =
- {
- #  if defined(GPIO_SPI2_CS0)
-   GPIO_SPI2_CS0,
- #  else
-   0,
- #  endif
- #  if defined(GPIO_SPI2_CS1)
-   GPIO_SPI2_CS1,
- #  else
-   0,
- #  endif
- #  if defined(GPIO_SPI2_CS2)
-   GPIO_SPI2_CS2,
- #  else
-   0,
- #  endif
- #  if defined(GPIO_SPI2_CS3)
-   GPIO_SPI2_CS3
- #  else
-   0
- #  endif
-};
-#endif
 
- #if defined(CONFIG_STM32F7_SPI3)
- static const uint32_t g_spi3gpio[] =
+ if (cfg!(CONFIG_STM32F7_SPI2))
  {
- #  if defined(GPIO_SPI3_CS0)
- GPIO_SPI3_CS0,
- #  else
- 0,
- #  endif
- #  if defined(GPIO_SPI3_CS1)
- GPIO_SPI3_CS1,
- #  else
-   0,
-   #  endif
- #  if defined(GPIO_SPI3_CS2)
-   GPIO_SPI3_CS2,
- #  else
-   0,
- #  endif
- #  if defined(GPIO_SPI3_CS3)
-   GPIO_SPI3_CS3
- #  else
-   0
- #  endif
- };
- #endif
- 
- #if defined(CONFIG_NUCLEO_SPI_TEST)
- #  if defined(CONFIG_STM32F7_SPI1)
- struct spi_dev_s *spi1;
- #  endif
- #  if defined(CONFIG_STM32F7_SPI2)
- struct spi_dev_s *spi2;
- #  endif
- #  if defined(CONFIG_STM32F7_SPI3)
- struct spi_dev_s *spi3;
- #  endif
- #endif
- 
+  let mut g_spi2gpio = [0; 4];
+  if (cfg!(GPIO_SPI2_CS0))
+  {
+    g_spi2gpio[0] = GPIO_SPI2_CS0;
+  }
+  else
+  {
+    g_spi2gpio[0] = 0;
+  }
+  if (cfg! (GPIO_SPI2_CS1) )
+  {
+    g_spi2gpio[1] = GPIO_SPI2_CS1;
+  }
+  else
+  {
+    g_spi2gpio[1] = 0;
+  }
+ if (cfg! (GPIO_SPI2_CS2) )
+ {
+   g_spi2gpio[2] = GPIO_SPI2_CS2;
+  }
+  else
+  {
+    g_spi2gpio[2] = GPIO_SPI2_CS2;
+  }
+  if (cfg!(GPIO_SPI2_CS3))
+  {
+
+    g_spi2gpio[3] = GPIO_SPI2_CS3;
+  }
+  else
+  {
+    g_spi2gpio[3] = 0;
+  }
+ } // CONFIG_STM32F7_SPI2
+
+ if (cfg!(CONFIG_STM32F7_SPI3))
+ {
+  let mut g_spi3gpio = [0; 4];
+  if (cfg!(GPIO_SPI3_CS0))
+  {
+    g_spi3gpio[0] = GPIO_SPI3_CS0;
+  }
+  else
+  {
+    g_spi3gpio[0] = 0;
+  }
+  if (cfg! (GPIO_SPI3_CS1) )
+  {
+    g_spi3gpio[1] = GPIO_SPI3_CS1;
+  }
+  else
+  {
+    g_spi3gpio[1] = 0;
+  }
+ if (cfg! (GPIO_SPI3_CS2) )
+ {
+   g_spi3gpio[2] = GPIO_SPI3_CS2;
+  }
+  else
+  {
+    g_spi3gpio[2] = GPIO_SPI3_CS2;
+  }
+  if (cfg!(GPIO_SPI3_CS3))
+  {
+
+    g_spi3gpio[3] = GPIO_SPI3_CS3;
+  }
+  else
+  {
+    g_spi3gpio[3] = 0;
+  }
+ } // CONFIG_STM32F7_SPI3
+
+ if (cfg!(CONFIG_NUCLEO_SPI_TEST))
+ {
+   if (cfg!(CONFIG_STM32F7_SPI1))
+   {
+          // DONT TRUST THIS STRUGGLING TO FIND A SOLID LIFT AND SHIFT HERE
+     let mut spi1: *mut spi_dev_s;
+    }
+    if (cfg! (CONFIG_STM32F7_SPI2));
+    {
+            // DONT TRUST THIS STRUGGLING TO FIND A SOLID LIFT AND SHIFT HERE
+      let mut spi2: *mut spi_dev_s;
+    }
+    if (cfg!(CONFIG_STM32F7_SPI3))
+    {
+            // DONT TRUST THIS STRUGGLING TO FIND A SOLID LIFT AND SHIFT HERE
+      let mut spi3: *mut spi_dev_s;
+    }
+}// CONFIG_NUCLEO_SPI_TEST
+
  /****************************************************************************
   * Public Functions
   ****************************************************************************/
- 
+
  /****************************************************************************
   * Name: stm32_spidev_initialize
   *
@@ -220,42 +252,53 @@
   *   Called to configure SPI chip select GPIO pins for the Nucleo-144 board.
   *
   ****************************************************************************/
- 
- void weak_function stm32_spidev_initialize(void)
+
+
+// weak function used here, no rust equivalent, hoping to ignore but I really think this wont work
+
+
+
+pub extern "C" fn stm32_spidev_initialize()
  {
    /* Configure SPI CS GPIO for output */
- 
- #if defined(CONFIG_STM32F7_SPI1)
-   for (int i = 0; i < nitems(g_spi1gpio); i++)
+
+ if(cfg!(CONFIG_STM32F7_SPI1)){
+  for i in g_spi1gpio.iter();
+   {
+     if (*i != 0)
      {
-       if (g_spi1gpio[i] != 0)
-         {
-           stm32_configgpio(g_spi1gpio[i]);
-         }
-     }
- #endif
- 
- #if defined(CONFIG_STM32F7_SPI2)
-   for (int i = 0; i < nitems(g_spi2gpio); i++)
+      unsafe{
+        stm32_configgpio(*i);
+        }
+      }
+    }
+  } //CONFIG_STM32F7_SPI1
+
+ if(cfg!(CONFIG_STM32F7_SPI2)){
+  for i in g_spi2gpio.iter();
+   {
+     if (*i != 0)
      {
-       if (g_spi2gpio[i] != 0)
-         {
-           stm32_configgpio(g_spi2gpio[i]);
-         }
-     }
- #endif
- 
- #if defined(CONFIG_STM32F7_SPI3)
-   for (int i = 0; i < nitems(g_spi3gpio); i++)
+      unsafe{
+        stm32_configgpio(*i);
+        }
+      }
+    }
+  } // CONFIG_STM32F7_SPI2
+
+  if(cfg!(CONFIG_STM32F7_SPI3)){
+    for i in g_spi3gpio.iter();
      {
-       if (g_spi3gpio[i] != 0)
-         {
-           stm32_configgpio(g_spi3gpio[i]);
-         }
-     }
- #endif
+       if (*i != 0)
+       {
+        unsafe{
+          stm32_configgpio(*i);
+          }
+        }
+      }
+    } // CONFIG_STM32F7_SPI3
  }
- 
+
  /****************************************************************************
   * Name:  stm32_spi1/2/3/4/5/6select and stm32_spi1/2/3/4/5/6status
   *
@@ -282,112 +325,142 @@
   *      the SPI MMC/SD driver).
   *
   ****************************************************************************/
-  
-  #ifdef CONFIG_STM32F7_SPI1
- void stm32_spi1select(struct spi_dev_s *dev,
-                       uint32_t devid, bool selected)
+
+  if(#[cfg!(CONFIG_STM32F7_SPI1)])
+  {
+
+    pub extern "C" fn stm32_spi1select( dev: *mut spi_dev_s, devid : uint32_t , select : bool )
+      {
+        unsafe{
+          let index : _uint32_t = SPIDEVID_INDEX(devid);
+        }
+        unsafe{
+          spiinfo("devid: %d CS: %s\n",
+          (int)devid, selected ? "assert" : "de-assert");
+        }
+
+        if (g_spi1gpio[index] != 0)
+          {
+            unsafe{
+              stm32_gpiowrite(g_spi1gpio[index], !selected);
+            }
+          }
+      }
+
+ fn stm32_spi1status(dev : *mut spi_dev_s , devid : _uint32_t ) -> __uint8_t
  {
-   uint32_t index = SPIDEVID_INDEX(devid);
- 
-   spiinfo("devid: %d CS: %s\n",
-           (int)devid, selected ? "assert" : "de-assert");
- 
-   if (g_spi1gpio[index] != 0)
-     {
-       stm32_gpiowrite(g_spi1gpio[index], !selected);
-     }
+  return 0;
  }
- 
- uint8_t stm32_spi1status(struct spi_dev_s *dev, uint32_t devid)
+} // CONFIG_STM32F7_SPI1
+
+ if(#[cfg(CONFIG_STM32F7_SPI2)])
  {
-   return 0;
- }
- #endif
- 
- #ifdef CONFIG_STM32F7_SPI2
- void stm32_spi2select(struct spi_dev_s *dev,
-                       uint32_t devid, bool selected)
+
+   extern "C" fn stm32_spi2select( dev : *mut spi_dev_s,
+     devid : uint32_t, selected : bool)
  {
-   uint32_t index = SPIDEVID_INDEX(devid);
- 
-   spiinfo("devid: %d CS: %s\n",
-           (int)devid, selected ? "assert" : "de-assert");
- 
+    unsafe{
+      let index : uint32_t = SPIDEVID_INDEX(devid);
+    }
+    unsafe{
+      spiinfo("devid: %d CS: %s\n",
+              (int)devid, selected ? "assert" : "de-assert");
+    }
+
    if (g_spi2gpio[index] != 0)
      {
+      unsafe{
+        stm32_gpiowrite(g_spi2gpio[index], !selected);
+      }
+     }
+ }
+
+ fn stm32_spi2status(dev : *mut spi_dev_s , devid : _uint32_t ) -> __uint8_t
+ {
+  return 0;
+ }
+} // CONFIG_STM32F7_SPI2
+  
+if(#[cfg(CONFIG_STM32F7_SPI3)])
+{
+
+  extern "C" fn stm32_spi3select( dev : *mut spi_dev_s,
+    devid : uint32_t, selected : bool)
+{
+   unsafe{
+     let index : uint32_t = SPIDEVID_INDEX(devid);
+   }
+   unsafe{
+     spiinfo("devid: %d CS: %s\n",
+             (int)devid, selected ? "assert" : "de-assert");
+   }
+
+  if (g_spi3gpio[index] != 0)
+    {
+     unsafe{
        stm32_gpiowrite(g_spi2gpio[index], !selected);
      }
+    }
+}
+
+fn stm32_spi3status(dev : *mut spi_dev_s , devid : _uint32_t ) -> __uint8_t
+{
+ return 0;
+}
+} // CONFIG_STM32F7_SPI3
+
+ if(#[cfg(CONFIG_STM32F7_SPI4)]){
+
+   extern "C" fn stm32_spi4select( dev : * mut spi_dev_s,
+    devid : uint32_t, selected : bool)
+    {
+      unsafe{
+        spiinfo("devid: %d CS: %s\n",
+                (int)devid, selected ? "assert" : "de-assert");
+      }
  }
- 
- uint8_t stm32_spi2status(struct spi_dev_s *dev, uint32_t devid)
+
+ fn stm32_spi4status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
  {
    return 0;
- }
- #endif
- 
- #ifdef CONFIG_STM32F7_SPI3
- void stm32_spi3select(struct spi_dev_s *dev,
-                       uint32_t devid, bool selected)
- {
-   uint32_t index = SPIDEVID_INDEX(devid);
- 
-   spiinfo("devid: %d CS: %s\n",
-           (int)devid, selected ? "assert" : "de-assert");
- 
-   if (g_spi3gpio[index] != 0)
-     {
-       stm32_gpiowrite(g_spi3gpio[index], !selected);
+  }
+} // CONFIG_STM32F7_SPI4
+
+if(#[cfg(CONFIG_STM32F7_SPI5)]){
+
+  extern "C" fn stm32_spi5select( dev : * mut spi_dev_s,
+   devid : uint32_t, selected : bool)
+   {
+     unsafe{
+       spiinfo("devid: %d CS: %s\n",
+               (int)devid, selected ? "assert" : "de-assert");
      }
+}
+
+fn stm32_spi5status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
+{
+  return 0;
  }
- 
- uint8_t stm32_spi3status(struct spi_dev_s *dev, uint32_t devid)
- {
-   return 0;
+} // CONFIG_STM32F7_SPI5
+
+if(#[cfg(CONFIG_STM32F7_SPI6)]){
+
+  extern "C" fn stm32_spi6select( dev : * mut spi_dev_s,
+   devid : uint32_t, selected : bool)
+   {
+     unsafe{
+       spiinfo("devid: %d CS: %s\n",
+               (int)devid, selected ? "assert" : "de-assert");
+     }
+}
+
+fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
+{
+  return 0;
  }
- #endif
- 
- #ifdef CONFIG_STM32F7_SPI4
- void stm32_spi4select(struct spi_dev_s *dev,
-                       uint32_t devid, bool selected)
- {
-   spiinfo("devid: %d CS: %s\n",
-           (int)devid, selected ? "assert" : "de-assert");
- }
- 
- uint8_t stm32_spi4status(struct spi_dev_s *dev, uint32_t devid)
- {
-   return 0;
- }
- #endif
- 
- #ifdef CONFIG_STM32F7_SPI5
- void stm32_spi5select(struct spi_dev_s *dev,
-                       uint32_t devid, bool selected)
- {
-   spiinfo("devid: %d CS: %s\n",
-           (int)devid, selected ? "assert" : "de-assert");
- }
- 
- uint8_t stm32_spi5status(struct spi_dev_s *dev, uint32_t devid)
- {
-   return 0;
- }
- #endif
- 
- #ifdef CONFIG_STM32F7_SPI6
- void stm32_spi6select(struct spi_dev_s *dev,
-                       uint32_t devid, bool selected)
- {
-   spiinfo("devid: %d CS: %s\n",
-           (int)devid, selected ? "assert" : "de-assert");
- }
- 
- uint8_t stm32_spi6status(struct spi_dev_s *dev, uint32_t devid)
- {
-   return 0;
- }
- #endif
- 
+} // CONFIG_STM32F7_SPI6
+
+
  /****************************************************************************
   * Name: stm32_spi1/2/3/4/5/6cmddata
   *
@@ -410,70 +483,85 @@
   *   None
   *
   ****************************************************************************/
-  
- #ifdef CONFIG_SPI_CMDDATA
- #ifdef CONFIG_STM32F7_SPI1
- int stm32_spi1cmddata(struct spi_dev_s *dev, uint32_t devid, bool cmd)
+
+ if #[cfg( CONFIG_SPI_CMDDATA )]
  {
-   return -ENODEV;
- }
- #endif
- 
- #ifdef CONFIG_STM32F7_SPI2
- int stm32_spi2cmddata(struct spi_dev_s *dev, uint32_t devid, bool cmd)
+   if #[cfg(CONFIG_STM32F7_SPI1)]
+   {
+
+    fnt stm32_spi1cmddata(dev: *mut spi_dev_s , devid : uint32_td, cm : boold -> i32)
+     {
+       return -ENODEV;
+      }
+    }
+
+ if #[cfg(CONFIG_STM32F7_SPI2)]
  {
-   return -ENODEV;
+
+   ifnstm32_spi2cmddata(dev: *mut spi_dev_s, devid, : uint32_t bmd) : bool
+ -> i32   {
+     return -ENODEV;
+    }
   }
- #endif
- 
- #ifdef CONFIG_STM32F7_SPI3
- int stm32_spi3cmddata(struct spi_dev_s *dev, uint32_t devid, bool cmd)
+
+ if #[cfg(CONFIG_STM32F7_SPI3)]
  {
-   return -ENODEV;
+
+   ifnstm32_spi3cmddata(dev: *mut spi_dev_s, devid, : uint32_t bmd) : bool
+ -> i32   {
+     return -ENODEV;
+    }
   }
-  #endif
   
- #ifdef CONFIG_STM32F7_SPI4
- int stm32_spi4cmddata(struct spi_dev_s *dev, uint32_t devid, bool cmd)
+  if #[cfg(CONFIG_STM32F7_SPI4)]
+  {
+
+    fn stm32_spi4cmddata(dev: *mut spi_dev_s, devid : uint32_t, cmd : bool) -> i32
+    {
+      return -ENODEV;
+    }
+  }
+  
+  if #[cfg(CONFIG_STM32F7_SPI5)]
+  {
+
+    fn stm32_spi5cmddata(dev: *mut spi_dev_s, devid : uint32_t, cmd : bool) -> i32
+    {
+      return -ENODEV;
+    }
+  }
+  
+  if #[cfg(CONFIG_STM32F7_SPI6)]
+  {
+
+    fn stm32_spi6cmddata(dev: *mut spi_dev_s, devid : uint32_t, cmd : bool) -> i32
+    {
+      return -ENODEV;
+    }
+  }
+  
+} // CONFIG_SPI_CMDDATA
+  
+ if (#cfg(CONFIG_NUCLEO_SPI_TEST))
  {
-   return -ENODEV;
- }
- #endif
- 
- #ifdef CONFIG_STM32F7_SPI5
- int stm32_spi5cmddata(struct spi_dev_s *dev, uint32_t devid, bool cmd)
- {
-   return -ENODEV;
- }
- #endif
- 
- #ifdef CONFIG_STM32F7_SPI6
- int stm32_spi6cmddata(struct spi_dev_s *dev, uint32_t devid, bool cmd)
- {
-   return -ENODEV;
- }
- #endif
- 
- #endif /* CONFIG_SPI_CMDDATA */
- 
- #if defined(CONFIG_NUCLEO_SPI_TEST)
- int stm32_spidev_bus_test(void)
- {
+
+   int stm32_spidev_bus_test(void)
+   {
    /* Configure and test SPI- */
- 
+
    uint8_t *tx = (uint8_t *)CONFIG_NUCLEO_SPI_TEST_MESSAGE;
- 
+
  #if defined(CONFIG_NUCLEO_SPI1_TEST)
    spi1 = stm32_spibus_initialize(1);
- 
+
    if (!spi1)
      {
        syslog(LOG_ERR, "ERROR Failed to initialize SPI port 1\n");
        return -ENODEV;
      }
- 
+
    /* Default SPI1 to NUCLEO_SPI1_FREQ and mode */
- 
+
    SPI_SETFREQUENCY(spi1, CONFIG_NUCLEO_SPI1_TEST_FREQ);
    SPI_SETBITS(spi1, CONFIG_NUCLEO_SPI1_TEST_BITS);
    SPI_SETMODE(spi1, CONFIG_NUCLEO_SPI1_TEST_MODE);
@@ -482,41 +570,40 @@
  
  #if defined(CONFIG_NUCLEO_SPI2_TEST)
    spi2 = stm32_spibus_initialize(2);
- 
+
    if (!spi2)
      {
        syslog(LOG_ERR, "ERROR Failed to initialize SPI port 2\n");
        return -ENODEV;
      }
- 
+
    /* Default SPI2 to NUCLEO_SPI2_FREQ and mode */
- 
+
    SPI_SETFREQUENCY(spi2, CONFIG_NUCLEO_SPI2_TEST_FREQ);
    SPI_SETBITS(spi2, CONFIG_NUCLEO_SPI2_TEST_BITS);
    SPI_SETMODE(spi2, CONFIG_NUCLEO_SPI2_TEST_MODE);
    SPI_EXCHANGE(spi2, tx, NULL, nitems(CONFIG_NUCLEO_SPI_TEST_MESSAGE));
- #endif
- 
- #if defined(CONFIG_NUCLEO_SPI3_TEST)
+   #endif
+   
+   #if defined(CONFIG_NUCLEO_SPI3_TEST)
    spi3 = stm32_spibus_initialize(3);
- 
+
    if (!spi3)
      {
        syslog(LOG_ERR, "ERROR Failed to initialize SPI port 2\n");
        return -ENODEV;
      }
- 
+
    /* Default SPI3 to NUCLEO_SPI3_FREQ and mode */
- 
+
    SPI_SETFREQUENCY(spi3, CONFIG_NUCLEO_SPI3_TEST_FREQ);
    SPI_SETBITS(spi3, CONFIG_NUCLEO_SPI3_TEST_BITS);
    SPI_SETMODE(spi3, CONFIG_NUCLEO_SPI3_TEST_MODE);
    SPI_EXCHANGE(spi3, tx, NULL, nitems(CONFIG_NUCLEO_SPI_TEST_MESSAGE));
- #endif
- 
+   #endif
+   
    return OK;
- }
- #endif /* NUCLEO_SPI_TEST */
-} // defined(CONFIG_SPI) 
-} // if_cfg 
- 
+  }
+} // CONFIG_NUCLEO_SPI_TEST
+} // defined(CONFIG_SPI)
+} // if_cfg
