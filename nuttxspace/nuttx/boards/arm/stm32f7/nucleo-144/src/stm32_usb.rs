@@ -21,8 +21,7 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
-use crate::include::*;
-use crate::bindings::stm32_configgpio;
+use crate::bindings::*;
 
 /****************************************************************************
  * Pre-processor Definitions
@@ -77,7 +76,8 @@ cfg_if::cfg_if! {
   if #[cfg(CONFIG_USBHOST)]{
     extern "C" fn usbhost_waiter( argc: i32, argv: &[String]) -> i32
     {
-      struct usbhost_hubport_s *hport;
+      // DONT TRUST THIS STRUGGLING TO FIND A SOLID LIFT AND SHIFT HERE
+      let mut hport: *mut usbhost_hubport_s;
 
     println!("Running\n");
     loop
@@ -169,7 +169,7 @@ cfg_if::cfg_if! {
           */
 
         println!("Register class drivers\n");
-        if #[cfg(CONFIG_USBHOST_HUB)]
+        if ( cfg!(CONFIG_USBHOST_HUB))
         {
 
         /* Initialize USB hub class support */
@@ -183,7 +183,7 @@ cfg_if::cfg_if! {
           }
         } /* CONFIG_USBHOST_HUB */
 
-      if(#[cfg(CONFIG_USBHOST_MSC)])
+      if(cfg!(CONFIG_USBHOST_MSC))
       {
         /* Register the USB mass storage class class */
         unsafe{
@@ -196,7 +196,7 @@ cfg_if::cfg_if! {
         }
       } /* CONFIG_USBHOST_MSC */
 
-      if( #[cfg(CONFIG_USBHOST_CDCACM)] )
+      if( cfg!(CONFIG_USBHOST_CDCACM) )
       {
 
       /* Register the CDC/ACM serial class */
@@ -209,7 +209,7 @@ cfg_if::cfg_if! {
         }
     } /* CONFIG_USBHOST_CDCACM */
 
-      if(#[cfg(CONFIG_USBHOST_HIDKBD)])
+      if(cfg!(CONFIG_USBHOST_HIDKBD))
       {
 
       /* Initialize the HID keyboard class */
@@ -222,7 +222,7 @@ cfg_if::cfg_if! {
         }
       }/*CONFIG_USBHOST_HIDKBD */
 
-      if(#[cfg(CONFIG_USBHOST_HIDMOUSE)])
+      if(cfg!(CONFIG_USBHOST_HIDMOUSE))
       {
 
       /* Initialize the HID mouse class */
@@ -256,7 +256,7 @@ cfg_if::cfg_if! {
 
         Ok(()) // we where successful in creating the thread if this is reached
       }
-      return Err(-libc::ENODEV); // throw ENODEV which is a standard c error for invalid enviourment ( i think? )
+      return -ENOEXEC; // throw ENOEXEC which is a standard c error for invalid enviourment ( i think? )
     }
   } /* CONFIG_USBHOST */
 

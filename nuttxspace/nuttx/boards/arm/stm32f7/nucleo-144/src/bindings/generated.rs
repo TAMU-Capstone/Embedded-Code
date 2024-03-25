@@ -2626,6 +2626,8 @@ pub const TLIST_ATTR_PRIORITIZED: u8 = 1;
 pub const TLIST_ATTR_INDEXED: u8 = 2;
 pub const TLIST_ATTR_RUNNABLE: u8 = 4;
 pub const TLIST_ATTR_OFFSET: u8 = 8;
+pub const SPI_STATUS_PRESENT: u8 = 1;
+pub const SPI_STATUS_WRPROTECTED: u8 = 2;
 pub const POLLIN: u8 = 1;
 pub const POLLRDNORM: u8 = 1;
 pub const POLLRDBAND: u8 = 1;
@@ -2638,8 +2640,6 @@ pub const POLLHUP: u8 = 16;
 pub const POLLRDHUP: u8 = 16;
 pub const POLLNVAL: u8 = 32;
 pub const POLLALWAYS: u32 = 65536;
-pub const SPI_STATUS_PRESENT: u8 = 1;
-pub const SPI_STATUS_WRPROTECTED: u8 = 2;
 pub const CONFIG_ADC_FIFOSIZE: u8 = 8;
 pub const CONFIG_ADC_NPOLLWAITERS: u8 = 2;
 pub const STM32_ADC_SR_OFFSET: u8 = 0;
@@ -7429,41 +7429,6 @@ extern "C" {
 extern "C" {
     pub fn board_buttons() -> u32;
 }
-#[doc = " Public Type Definitions"]
-pub type nfds_t = cty::c_uint;
-pub type pollevent_t = u32;
-pub type pollcb_t = ::core::option::Option<unsafe extern "C" fn(fds: *mut pollfd)>;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct pollfd {
-    pub fd: cty::c_int,
-    pub events: pollevent_t,
-    pub revents: pollevent_t,
-    pub arg: *mut cty::c_void,
-    pub cb: pollcb_t,
-    pub priv_: *mut cty::c_void,
-}
-extern "C" {
-    #[doc = " Public Function Prototypes"]
-    pub fn poll(fds: *mut pollfd, nfds: nfds_t, timeout: cty::c_int) -> cty::c_int;
-}
-extern "C" {
-    pub fn ppoll(
-        fds: *mut pollfd,
-        nfds: nfds_t,
-        timeout_ts: *const timespec,
-        sigmask: *const sigset_t,
-    ) -> cty::c_int;
-}
-extern "C" {
-    pub fn poll_fdsetup(fd: cty::c_int, fds: *mut pollfd, setup: bool) -> cty::c_int;
-}
-extern "C" {
-    pub fn poll_default_cb(fds: *mut pollfd);
-}
-extern "C" {
-    pub fn poll_notify(afds: *mut *mut pollfd, nfds: cty::c_int, eventset: pollevent_t);
-}
 #[doc = " Public Types"]
 pub type spi_mediachange_t = ::core::option::Option<unsafe extern "C" fn(arg: *mut cty::c_void)>;
 pub const spi_devtype_e_SPIDEVTYPE_NONE: spi_devtype_e = 0;
@@ -7534,6 +7499,41 @@ pub struct spi_ops_s {
 #[derive(Debug, Copy, Clone)]
 pub struct spi_dev_s {
     pub ops: *const spi_ops_s,
+}
+#[doc = " Public Type Definitions"]
+pub type nfds_t = cty::c_uint;
+pub type pollevent_t = u32;
+pub type pollcb_t = ::core::option::Option<unsafe extern "C" fn(fds: *mut pollfd)>;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pollfd {
+    pub fd: cty::c_int,
+    pub events: pollevent_t,
+    pub revents: pollevent_t,
+    pub arg: *mut cty::c_void,
+    pub cb: pollcb_t,
+    pub priv_: *mut cty::c_void,
+}
+extern "C" {
+    #[doc = " Public Function Prototypes"]
+    pub fn poll(fds: *mut pollfd, nfds: nfds_t, timeout: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn ppoll(
+        fds: *mut pollfd,
+        nfds: nfds_t,
+        timeout_ts: *const timespec,
+        sigmask: *const sigset_t,
+    ) -> cty::c_int;
+}
+extern "C" {
+    pub fn poll_fdsetup(fd: cty::c_int, fds: *mut pollfd, setup: bool) -> cty::c_int;
+}
+extern "C" {
+    pub fn poll_default_cb(fds: *mut pollfd);
+}
+extern "C" {
+    pub fn poll_notify(afds: *mut *mut pollfd, nfds: cty::c_int, eventset: pollevent_t);
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]

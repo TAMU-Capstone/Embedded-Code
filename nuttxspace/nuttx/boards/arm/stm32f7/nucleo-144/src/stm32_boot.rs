@@ -21,10 +21,9 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
-
- use crate::include::*; // I cannot tell how these two lines are different
+  use crate::bindings::*;
  use crate::stm32_autoleds::board_autoled_initialize;
- use crate::stm32_usb::stm32_usbinitialize; // josh working on this now
+ use crate::stm32_usb::stm32_usbinitialize; 
  /****************************************************************************
   * Public Functions
   ****************************************************************************/
@@ -49,16 +48,12 @@
       }
     // CONFIG_STM32F7_HOST is missing from files
     if cfg!(CONFIG_STM32F7_OTGFS) || cfg!(CONFIG_STM32F7_HOST) {
-        unsafe {
             stm32_usbinitialize();
-        }
     }
 
     if cfg!(CONFIG_SPI) {
         /* Configure SPI chip selects */
-        unsafe{
           stm32_spidev_initialize();
-        }
     }
 }
 
