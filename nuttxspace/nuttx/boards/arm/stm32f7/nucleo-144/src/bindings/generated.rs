@@ -547,7 +547,43 @@ pub const SDIO_SLOTNO: u8 = 0;
 pub const BOARD_NGPIOIN: u8 = 4;
 pub const BOARD_NGPIOOUT: u8 = 10;
 pub const BOARD_NGPIOINT: u8 = 1;
+pub const __GNUC_VA_LIST: u8 = 1;
 pub const __bool_true_false_are_defined: u8 = 1;
+pub const LOG_PID: u8 = 1;
+pub const LOG_CONS: u8 = 2;
+pub const LOG_ODELAY: u8 = 4;
+pub const LOG_NDELAY: u8 = 8;
+pub const LOG_NOWAIT: u8 = 16;
+pub const LOG_PERROR: u8 = 32;
+pub const LOG_AUTH: u8 = 0;
+pub const LOG_AUTHPRIV: u8 = 0;
+pub const LOG_CRON: u8 = 0;
+pub const LOG_DAEMON: u8 = 0;
+pub const LOG_FTP: u8 = 0;
+pub const LOG_KERN: u8 = 0;
+pub const LOG_LOCAL0: u8 = 0;
+pub const LOG_LOCAL1: u8 = 0;
+pub const LOG_LOCAL2: u8 = 0;
+pub const LOG_LOCAL3: u8 = 0;
+pub const LOG_LOCAL4: u8 = 0;
+pub const LOG_LOCAL5: u8 = 0;
+pub const LOG_LOCAL6: u8 = 0;
+pub const LOG_LOCAL7: u8 = 0;
+pub const LOG_LPR: u8 = 0;
+pub const LOG_MAIL: u8 = 0;
+pub const LOG_NEWS: u8 = 0;
+pub const LOG_SYSLOG: u8 = 0;
+pub const LOG_USER: u8 = 0;
+pub const LOG_UUCP: u8 = 0;
+pub const LOG_EMERG: u8 = 0;
+pub const LOG_ALERT: u8 = 1;
+pub const LOG_CRIT: u8 = 2;
+pub const LOG_ERR: u8 = 3;
+pub const LOG_WARNING: u8 = 4;
+pub const LOG_NOTICE: u8 = 5;
+pub const LOG_INFO: u8 = 6;
+pub const LOG_DEBUG: u8 = 7;
+pub const LOG_ALL: u8 = 255;
 pub const TRUE: u8 = 1;
 pub const FALSE: u8 = 0;
 pub const SEEK_SET: u8 = 0;
@@ -558,6 +594,311 @@ pub const SCHED_PRIORITY_MAX: u8 = 255;
 pub const SCHED_PRIORITY_DEFAULT: u8 = 100;
 pub const SCHED_PRIORITY_MIN: u8 = 1;
 pub const SCHED_PRIORITY_IDLE: u8 = 0;
+pub const EXTRA_FMT: &[u8; 5] = b"%s: \0";
+pub const CLK_TCK: u8 = 100;
+pub const CLOCKS_PER_SEC: u8 = 100;
+pub const CLOCK_REALTIME: u8 = 0;
+pub const CLOCK_MONOTONIC: u8 = 1;
+pub const CLOCK_PROCESS_CPUTIME_ID: u8 = 2;
+pub const CLOCK_THREAD_CPUTIME_ID: u8 = 3;
+pub const CLOCK_BOOTTIME: u8 = 4;
+pub const TIMER_ABSTIME: u8 = 1;
+pub const TIME_UTC: u8 = 1;
+pub const SCHED_NORMAL: u8 = 0;
+pub const SCHED_OTHER: u8 = 0;
+pub const SCHED_FIFO: u8 = 1;
+pub const SCHED_RR: u8 = 2;
+pub const SCHED_SPORADIC: u8 = 3;
+pub const TASK_CANCEL_ENABLE: u8 = 0;
+pub const TASK_CANCEL_DISABLE: u8 = 1;
+pub const TASK_CANCEL_DEFERRED: u8 = 0;
+pub const TASK_CANCEL_ASYNCHRONOUS: u8 = 1;
+pub const PTHREAD_KEYS_MAX: u8 = 0;
+pub const EPERM: u8 = 1;
+pub const EPERM_STR: &[u8; 24] = b"Operation not permitted\0";
+pub const ENOENT: u8 = 2;
+pub const ENOENT_STR: &[u8; 26] = b"No such file or directory\0";
+pub const ESRCH: u8 = 3;
+pub const ESRCH_STR: &[u8; 16] = b"No such process\0";
+pub const EINTR: u8 = 4;
+pub const EINTR_STR: &[u8; 24] = b"Interrupted system call\0";
+pub const EIO: u8 = 5;
+pub const EIO_STR: &[u8; 10] = b"I/O error\0";
+pub const ENXIO: u8 = 6;
+pub const ENXIO_STR: &[u8; 26] = b"No such device or address\0";
+pub const E2BIG: u8 = 7;
+pub const E2BIG_STR: &[u8; 18] = b"Arg list too long\0";
+pub const ENOEXEC: u8 = 8;
+pub const ENOEXEC_STR: &[u8; 18] = b"Exec format error\0";
+pub const EBADF: u8 = 9;
+pub const EBADF_STR: &[u8; 16] = b"Bad file number\0";
+pub const ECHILD: u8 = 10;
+pub const ECHILD_STR: &[u8; 19] = b"No child processes\0";
+pub const EAGAIN: u8 = 11;
+pub const EAGAIN_STR: &[u8; 10] = b"Try again\0";
+pub const ENOMEM: u8 = 12;
+pub const ENOMEM_STR: &[u8; 14] = b"Out of memory\0";
+pub const EACCES: u8 = 13;
+pub const EACCES_STR: &[u8; 18] = b"Permission denied\0";
+pub const EFAULT: u8 = 14;
+pub const EFAULT_STR: &[u8; 12] = b"Bad address\0";
+pub const ENOTBLK: u8 = 15;
+pub const ENOTBLK_STR: &[u8; 22] = b"Block device required\0";
+pub const EBUSY: u8 = 16;
+pub const EBUSY_STR: &[u8; 24] = b"Device or resource busy\0";
+pub const EEXIST: u8 = 17;
+pub const EEXIST_STR: &[u8; 12] = b"File exists\0";
+pub const EXDEV: u8 = 18;
+pub const EXDEV_STR: &[u8; 18] = b"Cross-device link\0";
+pub const ENODEV: u8 = 19;
+pub const ENODEV_STR: &[u8; 15] = b"No such device\0";
+pub const ENOTDIR: u8 = 20;
+pub const ENOTDIR_STR: &[u8; 16] = b"Not a directory\0";
+pub const EISDIR: u8 = 21;
+pub const EISDIR_STR: &[u8; 15] = b"Is a directory\0";
+pub const EINVAL: u8 = 22;
+pub const EINVAL_STR: &[u8; 17] = b"Invalid argument\0";
+pub const ENFILE: u8 = 23;
+pub const ENFILE_STR: &[u8; 20] = b"File table overflow\0";
+pub const EMFILE: u8 = 24;
+pub const EMFILE_STR: &[u8; 20] = b"Too many open files\0";
+pub const ENOTTY: u8 = 25;
+pub const ENOTTY_STR: &[u8; 17] = b"Not a typewriter\0";
+pub const ETXTBSY: u8 = 26;
+pub const ETXTBSY_STR: &[u8; 15] = b"Text file busy\0";
+pub const EFBIG: u8 = 27;
+pub const EFBIG_STR: &[u8; 15] = b"File too large\0";
+pub const ENOSPC: u8 = 28;
+pub const ENOSPC_STR: &[u8; 24] = b"No space left on device\0";
+pub const ESPIPE: u8 = 29;
+pub const ESPIPE_STR: &[u8; 13] = b"Illegal seek\0";
+pub const EROFS: u8 = 30;
+pub const EROFS_STR: &[u8; 22] = b"Read-only file system\0";
+pub const EMLINK: u8 = 31;
+pub const EMLINK_STR: &[u8; 15] = b"Too many links\0";
+pub const EPIPE: u8 = 32;
+pub const EPIPE_STR: &[u8; 12] = b"Broken pipe\0";
+pub const EDOM: u8 = 33;
+pub const EDOM_STR: &[u8; 36] = b"Math argument out of domain of func\0";
+pub const ERANGE: u8 = 34;
+pub const ERANGE_STR: &[u8; 30] = b"Math result not representable\0";
+pub const EDEADLK: u8 = 35;
+pub const EDEADLK_STR: &[u8; 30] = b"Resource deadlock would occur\0";
+pub const ENAMETOOLONG: u8 = 36;
+pub const ENAMETOOLONG_STR: &[u8; 19] = b"File name too long\0";
+pub const ENOLCK: u8 = 37;
+pub const ENOLCK_STR: &[u8; 26] = b"No record locks available\0";
+pub const ENOSYS: u8 = 38;
+pub const ENOSYS_STR: &[u8; 27] = b"Invalid system call number\0";
+pub const ENOTEMPTY: u8 = 39;
+pub const ENOTEMPTY_STR: &[u8; 20] = b"Directory not empty\0";
+pub const ELOOP: u8 = 40;
+pub const ELOOP_STR: &[u8; 36] = b"Too many symbolic links encountered\0";
+pub const EWOULDBLOCK: u8 = 11;
+pub const EWOULDBLOCK_STR: &[u8; 22] = b"Operation would block\0";
+pub const ENOMSG: u8 = 42;
+pub const ENOMSG_STR: &[u8; 27] = b"No message of desired type\0";
+pub const EIDRM: u8 = 43;
+pub const EIDRM_STR: &[u8; 19] = b"Identifier removed\0";
+pub const ECHRNG: u8 = 44;
+pub const ECHRNG_STR: &[u8; 28] = b"Channel number out of range\0";
+pub const EL2NSYNC: u8 = 45;
+pub const EL2NSYNC_STR: &[u8; 25] = b"Level 2 not synchronized\0";
+pub const EL3HLT: u8 = 46;
+pub const EL3HLT_STR: &[u8; 15] = b"Level 3 halted\0";
+pub const EL3RST: u8 = 47;
+pub const EL3RST_STR: &[u8; 14] = b"Level 3 reset\0";
+pub const ELNRNG: u8 = 48;
+pub const ELNRNG_STR: &[u8; 25] = b"Link number out of range\0";
+pub const EUNATCH: u8 = 49;
+pub const EUNATCH_STR: &[u8; 29] = b"Protocol driver not attached\0";
+pub const ENOCSI: u8 = 50;
+pub const ENOCSI_STR: &[u8; 27] = b"No CSI structure available\0";
+pub const EL2HLT: u8 = 51;
+pub const EL2HLT_STR: &[u8; 15] = b"Level 2 halted\0";
+pub const EBADE: u8 = 52;
+pub const EBADE_STR: &[u8; 17] = b"Invalid exchange\0";
+pub const EBADR: u8 = 53;
+pub const EBADR_STR: &[u8; 27] = b"Invalid request descriptor\0";
+pub const EXFULL: u8 = 54;
+pub const EXFULL_STR: &[u8; 14] = b"Exchange full\0";
+pub const ENOANO: u8 = 55;
+pub const ENOANO_STR: &[u8; 9] = b"No anode\0";
+pub const EBADRQC: u8 = 56;
+pub const EBADRQC_STR: &[u8; 21] = b"Invalid request code\0";
+pub const EBADSLT: u8 = 57;
+pub const EBADSLT_STR: &[u8; 13] = b"Invalid slot\0";
+pub const EDEADLOCK: u8 = 35;
+pub const EDEADLOCK_STR: &[u8; 28] = b"File locking deadlock error\0";
+pub const EBFONT: u8 = 59;
+pub const EBFONT_STR: &[u8; 21] = b"Bad font file format\0";
+pub const ENOSTR: u8 = 60;
+pub const ENOSTR_STR: &[u8; 20] = b"Device not a stream\0";
+pub const ENODATA: u8 = 61;
+pub const ENODATA_STR: &[u8; 18] = b"No data available\0";
+pub const ETIME: u8 = 62;
+pub const ETIME_STR: &[u8; 14] = b"Timer expired\0";
+pub const ENOSR: u8 = 63;
+pub const ENOSR_STR: &[u8; 25] = b"Out of streams resources\0";
+pub const ENONET: u8 = 64;
+pub const ENONET_STR: &[u8; 30] = b"Machine is not on the network\0";
+pub const ENOPKG: u8 = 65;
+pub const ENOPKG_STR: &[u8; 22] = b"Package not installed\0";
+pub const EREMOTE: u8 = 66;
+pub const EREMOTE_STR: &[u8; 17] = b"Object is remote\0";
+pub const ENOLINK: u8 = 67;
+pub const ENOLINK_STR: &[u8; 22] = b"Link has been severed\0";
+pub const EADV: u8 = 68;
+pub const EADV_STR: &[u8; 16] = b"Advertise error\0";
+pub const ESRMNT: u8 = 69;
+pub const ESRMNT_STR: &[u8; 14] = b"Srmount error\0";
+pub const ECOMM: u8 = 70;
+pub const ECOMM_STR: &[u8; 28] = b"Communication error on send\0";
+pub const EPROTO: u8 = 71;
+pub const EPROTO_STR: &[u8; 15] = b"Protocol error\0";
+pub const EMULTIHOP: u8 = 72;
+pub const EMULTIHOP_STR: &[u8; 19] = b"Multihop attempted\0";
+pub const EDOTDOT: u8 = 73;
+pub const EDOTDOT_STR: &[u8; 19] = b"RFS specific error\0";
+pub const EBADMSG: u8 = 74;
+pub const EBADMSG_STR: &[u8; 19] = b"Not a data message\0";
+pub const EOVERFLOW: u8 = 75;
+pub const EOVERFLOW_STR: &[u8; 38] = b"Value too large for defined data type\0";
+pub const ENOTUNIQ: u8 = 76;
+pub const ENOTUNIQ_STR: &[u8; 27] = b"Name not unique on network\0";
+pub const EBADFD: u8 = 77;
+pub const EBADFD_STR: &[u8; 29] = b"File descriptor in bad state\0";
+pub const EREMCHG: u8 = 78;
+pub const EREMCHG_STR: &[u8; 23] = b"Remote address changed\0";
+pub const ELIBACC: u8 = 79;
+pub const ELIBACC_STR: &[u8; 39] = b"Can not access a needed shared library\0";
+pub const ELIBBAD: u8 = 80;
+pub const ELIBBAD_STR: &[u8; 37] = b"Accessing a corrupted shared library\0";
+pub const ELIBSCN: u8 = 81;
+pub const ELIBSCN_STR: &[u8; 32] = b".lib section in a.out corrupted\0";
+pub const ELIBMAX: u8 = 82;
+pub const ELIBMAX_STR: &[u8; 48] = b"Attempting to link in too many shared libraries\0";
+pub const ELIBEXEC: u8 = 83;
+pub const ELIBEXEC_STR: &[u8; 38] = b"Cannot exec a shared library directly\0";
+pub const EILSEQ: u8 = 84;
+pub const EILSEQ_STR: &[u8; 22] = b"Illegal byte sequence\0";
+pub const ERESTART: u8 = 85;
+pub const ERESTART_STR: &[u8; 44] = b"Interrupted system call should be restarted\0";
+pub const ESTRPIPE: u8 = 86;
+pub const ESTRPIPE_STR: &[u8; 19] = b"Streams pipe error\0";
+pub const EUSERS: u8 = 87;
+pub const EUSERS_STR: &[u8; 15] = b"Too many users\0";
+pub const ENOTSOCK: u8 = 88;
+pub const ENOTSOCK_STR: &[u8; 31] = b"Socket operation on non-socket\0";
+pub const EDESTADDRREQ: u8 = 89;
+pub const EDESTADDRREQ_STR: &[u8; 29] = b"Destination address required\0";
+pub const EMSGSIZE: u8 = 90;
+pub const EMSGSIZE_STR: &[u8; 17] = b"Message too long\0";
+pub const EPROTOTYPE: u8 = 91;
+pub const EPROTOTYPE_STR: &[u8; 31] = b"Protocol wrong type for socket\0";
+pub const ENOPROTOOPT: u8 = 92;
+pub const ENOPROTOOPT_STR: &[u8; 23] = b"Protocol not available\0";
+pub const EPROTONOSUPPORT: u8 = 93;
+pub const EPROTONOSUPPORT_STR: &[u8; 23] = b"Protocol not supported\0";
+pub const ESOCKTNOSUPPORT: u8 = 94;
+pub const ESOCKTNOSUPPORT_STR: &[u8; 26] = b"Socket type not supported\0";
+pub const EOPNOTSUPP: u8 = 95;
+pub const EOPNOTSUPP_STR: &[u8; 46] = b"Operation not supported on transport endpoint\0";
+pub const EPFNOSUPPORT: u8 = 96;
+pub const EPFNOSUPPORT_STR: &[u8; 30] = b"Protocol family not supported\0";
+pub const EAFNOSUPPORT: u8 = 97;
+pub const EAFNOSUPPORT_STR: &[u8; 41] = b"Address family not supported by protocol\0";
+pub const EADDRINUSE: u8 = 98;
+pub const EADDRINUSE_STR: &[u8; 23] = b"Address already in use\0";
+pub const EADDRNOTAVAIL: u8 = 99;
+pub const EADDRNOTAVAIL_STR: &[u8; 32] = b"Cannot assign requested address\0";
+pub const ENETDOWN: u8 = 100;
+pub const ENETDOWN_STR: &[u8; 16] = b"Network is down\0";
+pub const ENETUNREACH: u8 = 101;
+pub const ENETUNREACH_STR: &[u8; 23] = b"Network is unreachable\0";
+pub const ENETRESET: u8 = 102;
+pub const ENETRESET_STR: &[u8; 44] = b"Network dropped connection because of reset\0";
+pub const ECONNABORTED: u8 = 103;
+pub const ECONNABORTED_STR: &[u8; 33] = b"Software caused connection abort\0";
+pub const ECONNRESET: u8 = 104;
+pub const ECONNRESET_STR: &[u8; 25] = b"Connection reset by peer\0";
+pub const ENOBUFS: u8 = 105;
+pub const ENOBUFS_STR: &[u8; 26] = b"No buffer space available\0";
+pub const EISCONN: u8 = 106;
+pub const EISCONN_STR: &[u8; 40] = b"Transport endpoint is already connected\0";
+pub const ENOTCONN: u8 = 107;
+pub const ENOTCONN_STR: &[u8; 36] = b"Transport endpoint is not connected\0";
+pub const ESHUTDOWN: u8 = 108;
+pub const ESHUTDOWN_STR: &[u8; 46] = b"Cannot send after transport endpoint shutdown\0";
+pub const ETOOMANYREFS: u8 = 109;
+pub const ETOOMANYREFS_STR: &[u8; 35] = b"Too many references: cannot splice\0";
+pub const ETIMEDOUT: u8 = 110;
+pub const ETIMEDOUT_STR: &[u8; 21] = b"Connection timed out\0";
+pub const ECONNREFUSED: u8 = 111;
+pub const ECONNREFUSED_STR: &[u8; 19] = b"Connection refused\0";
+pub const EHOSTDOWN: u8 = 112;
+pub const EHOSTDOWN_STR: &[u8; 13] = b"Host is down\0";
+pub const EHOSTUNREACH: u8 = 113;
+pub const EHOSTUNREACH_STR: &[u8; 17] = b"No route to host\0";
+pub const EALREADY: u8 = 114;
+pub const EALREADY_STR: &[u8; 30] = b"Operation already in progress\0";
+pub const EINPROGRESS: u8 = 115;
+pub const EINPROGRESS_STR: &[u8; 26] = b"Operation now in progress\0";
+pub const ESTALE: u8 = 116;
+pub const ESTALE_STR: &[u8; 18] = b"Stale file handle\0";
+pub const EUCLEAN: u8 = 117;
+pub const EUCLEAN_STR: &[u8; 25] = b"Structure needs cleaning\0";
+pub const ENOTNAM: u8 = 118;
+pub const ENOTNAM_STR: &[u8; 28] = b"Not a XENIX named type file\0";
+pub const ENAVAIL: u8 = 119;
+pub const ENAVAIL_STR: &[u8; 30] = b"No XENIX semaphores available\0";
+pub const EISNAM: u8 = 120;
+pub const EISNAM_STR: &[u8; 21] = b"Is a named type file\0";
+pub const EREMOTEIO: u8 = 121;
+pub const EREMOTEIO_STR: &[u8; 17] = b"Remote I/O error\0";
+pub const EDQUOT: u8 = 122;
+pub const EDQUOT_STR: &[u8; 15] = b"Quota exceeded\0";
+pub const ENOMEDIUM: u8 = 123;
+pub const ENOMEDIUM_STR: &[u8; 16] = b"No medium found\0";
+pub const EMEDIUMTYPE: u8 = 124;
+pub const EMEDIUMTYPE_STR: &[u8; 18] = b"Wrong medium type\0";
+pub const ECANCELED: u8 = 125;
+pub const ECANCELED_STR: &[u8; 20] = b"Operation cancelled\0";
+pub const ENOKEY: u8 = 126;
+pub const ENOKEY_STR: &[u8; 27] = b"Required key not available\0";
+pub const EKEYEXPIRED: u8 = 127;
+pub const EKEYEXPIRED_STR: &[u8; 16] = b"Key has expired\0";
+pub const EKEYREVOKED: u8 = 128;
+pub const EKEYREVOKED_STR: &[u8; 21] = b"Key has been revoked\0";
+pub const EKEYREJECTED: u8 = 129;
+pub const EKEYREJECTED_STR: &[u8; 28] = b"Key was rejected by service\0";
+pub const EOWNERDEAD: u8 = 130;
+pub const EOWNERDEAD_STR: &[u8; 20] = b"Previous owner died\0";
+pub const ENOTRECOVERABLE: u8 = 131;
+pub const ENOTRECOVERABLE_STR: &[u8; 22] = b"State not recoverable\0";
+pub const ERFKILL: u8 = 132;
+pub const ERFKILL_STR: &[u8; 38] = b"Operation not possible due to RF-kill\0";
+pub const EHWPOISON: u8 = 133;
+pub const EHWPOISON_STR: &[u8; 31] = b"Memory page has hardware error\0";
+pub const ELBIN: u8 = 134;
+pub const ELBIN_STR: &[u8; 16] = b"Inode is remote\0";
+pub const EFTYPE: u8 = 135;
+pub const EFTYPE_STR: &[u8; 34] = b"Inappropriate file type or format\0";
+pub const ENMFILE: u8 = 136;
+pub const ENMFILE_STR: &[u8; 14] = b"No more files\0";
+pub const EPROCLIM: u8 = 137;
+pub const EPROCLIM_STR: &[u8; 42] = b"Limit would be exceeded by attempted fork\0";
+pub const ENOTSUP: u8 = 138;
+pub const ENOTSUP_STR: &[u8; 14] = b"Not supported\0";
+pub const ENOSHARE: u8 = 139;
+pub const ENOSHARE_STR: &[u8; 29] = b"No such host or network path\0";
+pub const ECASECLASH: u8 = 140;
+pub const ECASECLASH_STR: &[u8; 36] = b"Filename exists with different case\0";
+pub const __ELASTERROR: u16 = 2000;
+pub const __DEBUG_ASSERT_FILE__: u8 = 0;
+pub const __DEBUG_ASSERT_LINE__: u8 = 0;
+pub const __ASSERT_FILE__: u8 = 0;
+pub const __ASSERT_LINE__: u8 = 0;
 pub const STM32_IRQ_RESERVED: u8 = 0;
 pub const STM32_IRQ_NMI: u8 = 2;
 pub const STM32_IRQ_HARDFAULT: u8 = 3;
@@ -1124,343 +1465,6 @@ pub const GPIO_PIN12: u8 = 12;
 pub const GPIO_PIN13: u8 = 13;
 pub const GPIO_PIN14: u8 = 14;
 pub const GPIO_PIN15: u8 = 15;
-pub const CLK_TCK: u8 = 100;
-pub const CLOCKS_PER_SEC: u8 = 100;
-pub const CLOCK_REALTIME: u8 = 0;
-pub const CLOCK_MONOTONIC: u8 = 1;
-pub const CLOCK_PROCESS_CPUTIME_ID: u8 = 2;
-pub const CLOCK_THREAD_CPUTIME_ID: u8 = 3;
-pub const CLOCK_BOOTTIME: u8 = 4;
-pub const TIMER_ABSTIME: u8 = 1;
-pub const TIME_UTC: u8 = 1;
-pub const SCHED_NORMAL: u8 = 0;
-pub const SCHED_OTHER: u8 = 0;
-pub const SCHED_FIFO: u8 = 1;
-pub const SCHED_RR: u8 = 2;
-pub const SCHED_SPORADIC: u8 = 3;
-pub const TASK_CANCEL_ENABLE: u8 = 0;
-pub const TASK_CANCEL_DISABLE: u8 = 1;
-pub const TASK_CANCEL_DEFERRED: u8 = 0;
-pub const TASK_CANCEL_ASYNCHRONOUS: u8 = 1;
-pub const PTHREAD_KEYS_MAX: u8 = 0;
-pub const EPERM: u8 = 1;
-pub const EPERM_STR: &[u8; 24] = b"Operation not permitted\0";
-pub const ENOENT: u8 = 2;
-pub const ENOENT_STR: &[u8; 26] = b"No such file or directory\0";
-pub const ESRCH: u8 = 3;
-pub const ESRCH_STR: &[u8; 16] = b"No such process\0";
-pub const EINTR: u8 = 4;
-pub const EINTR_STR: &[u8; 24] = b"Interrupted system call\0";
-pub const EIO: u8 = 5;
-pub const EIO_STR: &[u8; 10] = b"I/O error\0";
-pub const ENXIO: u8 = 6;
-pub const ENXIO_STR: &[u8; 26] = b"No such device or address\0";
-pub const E2BIG: u8 = 7;
-pub const E2BIG_STR: &[u8; 18] = b"Arg list too long\0";
-pub const ENOEXEC: u8 = 8;
-pub const ENOEXEC_STR: &[u8; 18] = b"Exec format error\0";
-pub const EBADF: u8 = 9;
-pub const EBADF_STR: &[u8; 16] = b"Bad file number\0";
-pub const ECHILD: u8 = 10;
-pub const ECHILD_STR: &[u8; 19] = b"No child processes\0";
-pub const EAGAIN: u8 = 11;
-pub const EAGAIN_STR: &[u8; 10] = b"Try again\0";
-pub const ENOMEM: u8 = 12;
-pub const ENOMEM_STR: &[u8; 14] = b"Out of memory\0";
-pub const EACCES: u8 = 13;
-pub const EACCES_STR: &[u8; 18] = b"Permission denied\0";
-pub const EFAULT: u8 = 14;
-pub const EFAULT_STR: &[u8; 12] = b"Bad address\0";
-pub const ENOTBLK: u8 = 15;
-pub const ENOTBLK_STR: &[u8; 22] = b"Block device required\0";
-pub const EBUSY: u8 = 16;
-pub const EBUSY_STR: &[u8; 24] = b"Device or resource busy\0";
-pub const EEXIST: u8 = 17;
-pub const EEXIST_STR: &[u8; 12] = b"File exists\0";
-pub const EXDEV: u8 = 18;
-pub const EXDEV_STR: &[u8; 18] = b"Cross-device link\0";
-pub const ENODEV: u8 = 19;
-pub const ENODEV_STR: &[u8; 15] = b"No such device\0";
-pub const ENOTDIR: u8 = 20;
-pub const ENOTDIR_STR: &[u8; 16] = b"Not a directory\0";
-pub const EISDIR: u8 = 21;
-pub const EISDIR_STR: &[u8; 15] = b"Is a directory\0";
-pub const EINVAL: u8 = 22;
-pub const EINVAL_STR: &[u8; 17] = b"Invalid argument\0";
-pub const ENFILE: u8 = 23;
-pub const ENFILE_STR: &[u8; 20] = b"File table overflow\0";
-pub const EMFILE: u8 = 24;
-pub const EMFILE_STR: &[u8; 20] = b"Too many open files\0";
-pub const ENOTTY: u8 = 25;
-pub const ENOTTY_STR: &[u8; 17] = b"Not a typewriter\0";
-pub const ETXTBSY: u8 = 26;
-pub const ETXTBSY_STR: &[u8; 15] = b"Text file busy\0";
-pub const EFBIG: u8 = 27;
-pub const EFBIG_STR: &[u8; 15] = b"File too large\0";
-pub const ENOSPC: u8 = 28;
-pub const ENOSPC_STR: &[u8; 24] = b"No space left on device\0";
-pub const ESPIPE: u8 = 29;
-pub const ESPIPE_STR: &[u8; 13] = b"Illegal seek\0";
-pub const EROFS: u8 = 30;
-pub const EROFS_STR: &[u8; 22] = b"Read-only file system\0";
-pub const EMLINK: u8 = 31;
-pub const EMLINK_STR: &[u8; 15] = b"Too many links\0";
-pub const EPIPE: u8 = 32;
-pub const EPIPE_STR: &[u8; 12] = b"Broken pipe\0";
-pub const EDOM: u8 = 33;
-pub const EDOM_STR: &[u8; 36] = b"Math argument out of domain of func\0";
-pub const ERANGE: u8 = 34;
-pub const ERANGE_STR: &[u8; 30] = b"Math result not representable\0";
-pub const EDEADLK: u8 = 35;
-pub const EDEADLK_STR: &[u8; 30] = b"Resource deadlock would occur\0";
-pub const ENAMETOOLONG: u8 = 36;
-pub const ENAMETOOLONG_STR: &[u8; 19] = b"File name too long\0";
-pub const ENOLCK: u8 = 37;
-pub const ENOLCK_STR: &[u8; 26] = b"No record locks available\0";
-pub const ENOSYS: u8 = 38;
-pub const ENOSYS_STR: &[u8; 27] = b"Invalid system call number\0";
-pub const ENOTEMPTY: u8 = 39;
-pub const ENOTEMPTY_STR: &[u8; 20] = b"Directory not empty\0";
-pub const ELOOP: u8 = 40;
-pub const ELOOP_STR: &[u8; 36] = b"Too many symbolic links encountered\0";
-pub const EWOULDBLOCK: u8 = 11;
-pub const EWOULDBLOCK_STR: &[u8; 22] = b"Operation would block\0";
-pub const ENOMSG: u8 = 42;
-pub const ENOMSG_STR: &[u8; 27] = b"No message of desired type\0";
-pub const EIDRM: u8 = 43;
-pub const EIDRM_STR: &[u8; 19] = b"Identifier removed\0";
-pub const ECHRNG: u8 = 44;
-pub const ECHRNG_STR: &[u8; 28] = b"Channel number out of range\0";
-pub const EL2NSYNC: u8 = 45;
-pub const EL2NSYNC_STR: &[u8; 25] = b"Level 2 not synchronized\0";
-pub const EL3HLT: u8 = 46;
-pub const EL3HLT_STR: &[u8; 15] = b"Level 3 halted\0";
-pub const EL3RST: u8 = 47;
-pub const EL3RST_STR: &[u8; 14] = b"Level 3 reset\0";
-pub const ELNRNG: u8 = 48;
-pub const ELNRNG_STR: &[u8; 25] = b"Link number out of range\0";
-pub const EUNATCH: u8 = 49;
-pub const EUNATCH_STR: &[u8; 29] = b"Protocol driver not attached\0";
-pub const ENOCSI: u8 = 50;
-pub const ENOCSI_STR: &[u8; 27] = b"No CSI structure available\0";
-pub const EL2HLT: u8 = 51;
-pub const EL2HLT_STR: &[u8; 15] = b"Level 2 halted\0";
-pub const EBADE: u8 = 52;
-pub const EBADE_STR: &[u8; 17] = b"Invalid exchange\0";
-pub const EBADR: u8 = 53;
-pub const EBADR_STR: &[u8; 27] = b"Invalid request descriptor\0";
-pub const EXFULL: u8 = 54;
-pub const EXFULL_STR: &[u8; 14] = b"Exchange full\0";
-pub const ENOANO: u8 = 55;
-pub const ENOANO_STR: &[u8; 9] = b"No anode\0";
-pub const EBADRQC: u8 = 56;
-pub const EBADRQC_STR: &[u8; 21] = b"Invalid request code\0";
-pub const EBADSLT: u8 = 57;
-pub const EBADSLT_STR: &[u8; 13] = b"Invalid slot\0";
-pub const EDEADLOCK: u8 = 35;
-pub const EDEADLOCK_STR: &[u8; 28] = b"File locking deadlock error\0";
-pub const EBFONT: u8 = 59;
-pub const EBFONT_STR: &[u8; 21] = b"Bad font file format\0";
-pub const ENOSTR: u8 = 60;
-pub const ENOSTR_STR: &[u8; 20] = b"Device not a stream\0";
-pub const ENODATA: u8 = 61;
-pub const ENODATA_STR: &[u8; 18] = b"No data available\0";
-pub const ETIME: u8 = 62;
-pub const ETIME_STR: &[u8; 14] = b"Timer expired\0";
-pub const ENOSR: u8 = 63;
-pub const ENOSR_STR: &[u8; 25] = b"Out of streams resources\0";
-pub const ENONET: u8 = 64;
-pub const ENONET_STR: &[u8; 30] = b"Machine is not on the network\0";
-pub const ENOPKG: u8 = 65;
-pub const ENOPKG_STR: &[u8; 22] = b"Package not installed\0";
-pub const EREMOTE: u8 = 66;
-pub const EREMOTE_STR: &[u8; 17] = b"Object is remote\0";
-pub const ENOLINK: u8 = 67;
-pub const ENOLINK_STR: &[u8; 22] = b"Link has been severed\0";
-pub const EADV: u8 = 68;
-pub const EADV_STR: &[u8; 16] = b"Advertise error\0";
-pub const ESRMNT: u8 = 69;
-pub const ESRMNT_STR: &[u8; 14] = b"Srmount error\0";
-pub const ECOMM: u8 = 70;
-pub const ECOMM_STR: &[u8; 28] = b"Communication error on send\0";
-pub const EPROTO: u8 = 71;
-pub const EPROTO_STR: &[u8; 15] = b"Protocol error\0";
-pub const EMULTIHOP: u8 = 72;
-pub const EMULTIHOP_STR: &[u8; 19] = b"Multihop attempted\0";
-pub const EDOTDOT: u8 = 73;
-pub const EDOTDOT_STR: &[u8; 19] = b"RFS specific error\0";
-pub const EBADMSG: u8 = 74;
-pub const EBADMSG_STR: &[u8; 19] = b"Not a data message\0";
-pub const EOVERFLOW: u8 = 75;
-pub const EOVERFLOW_STR: &[u8; 38] = b"Value too large for defined data type\0";
-pub const ENOTUNIQ: u8 = 76;
-pub const ENOTUNIQ_STR: &[u8; 27] = b"Name not unique on network\0";
-pub const EBADFD: u8 = 77;
-pub const EBADFD_STR: &[u8; 29] = b"File descriptor in bad state\0";
-pub const EREMCHG: u8 = 78;
-pub const EREMCHG_STR: &[u8; 23] = b"Remote address changed\0";
-pub const ELIBACC: u8 = 79;
-pub const ELIBACC_STR: &[u8; 39] = b"Can not access a needed shared library\0";
-pub const ELIBBAD: u8 = 80;
-pub const ELIBBAD_STR: &[u8; 37] = b"Accessing a corrupted shared library\0";
-pub const ELIBSCN: u8 = 81;
-pub const ELIBSCN_STR: &[u8; 32] = b".lib section in a.out corrupted\0";
-pub const ELIBMAX: u8 = 82;
-pub const ELIBMAX_STR: &[u8; 48] = b"Attempting to link in too many shared libraries\0";
-pub const ELIBEXEC: u8 = 83;
-pub const ELIBEXEC_STR: &[u8; 38] = b"Cannot exec a shared library directly\0";
-pub const EILSEQ: u8 = 84;
-pub const EILSEQ_STR: &[u8; 22] = b"Illegal byte sequence\0";
-pub const ERESTART: u8 = 85;
-pub const ERESTART_STR: &[u8; 44] = b"Interrupted system call should be restarted\0";
-pub const ESTRPIPE: u8 = 86;
-pub const ESTRPIPE_STR: &[u8; 19] = b"Streams pipe error\0";
-pub const EUSERS: u8 = 87;
-pub const EUSERS_STR: &[u8; 15] = b"Too many users\0";
-pub const ENOTSOCK: u8 = 88;
-pub const ENOTSOCK_STR: &[u8; 31] = b"Socket operation on non-socket\0";
-pub const EDESTADDRREQ: u8 = 89;
-pub const EDESTADDRREQ_STR: &[u8; 29] = b"Destination address required\0";
-pub const EMSGSIZE: u8 = 90;
-pub const EMSGSIZE_STR: &[u8; 17] = b"Message too long\0";
-pub const EPROTOTYPE: u8 = 91;
-pub const EPROTOTYPE_STR: &[u8; 31] = b"Protocol wrong type for socket\0";
-pub const ENOPROTOOPT: u8 = 92;
-pub const ENOPROTOOPT_STR: &[u8; 23] = b"Protocol not available\0";
-pub const EPROTONOSUPPORT: u8 = 93;
-pub const EPROTONOSUPPORT_STR: &[u8; 23] = b"Protocol not supported\0";
-pub const ESOCKTNOSUPPORT: u8 = 94;
-pub const ESOCKTNOSUPPORT_STR: &[u8; 26] = b"Socket type not supported\0";
-pub const EOPNOTSUPP: u8 = 95;
-pub const EOPNOTSUPP_STR: &[u8; 46] = b"Operation not supported on transport endpoint\0";
-pub const EPFNOSUPPORT: u8 = 96;
-pub const EPFNOSUPPORT_STR: &[u8; 30] = b"Protocol family not supported\0";
-pub const EAFNOSUPPORT: u8 = 97;
-pub const EAFNOSUPPORT_STR: &[u8; 41] = b"Address family not supported by protocol\0";
-pub const EADDRINUSE: u8 = 98;
-pub const EADDRINUSE_STR: &[u8; 23] = b"Address already in use\0";
-pub const EADDRNOTAVAIL: u8 = 99;
-pub const EADDRNOTAVAIL_STR: &[u8; 32] = b"Cannot assign requested address\0";
-pub const ENETDOWN: u8 = 100;
-pub const ENETDOWN_STR: &[u8; 16] = b"Network is down\0";
-pub const ENETUNREACH: u8 = 101;
-pub const ENETUNREACH_STR: &[u8; 23] = b"Network is unreachable\0";
-pub const ENETRESET: u8 = 102;
-pub const ENETRESET_STR: &[u8; 44] = b"Network dropped connection because of reset\0";
-pub const ECONNABORTED: u8 = 103;
-pub const ECONNABORTED_STR: &[u8; 33] = b"Software caused connection abort\0";
-pub const ECONNRESET: u8 = 104;
-pub const ECONNRESET_STR: &[u8; 25] = b"Connection reset by peer\0";
-pub const ENOBUFS: u8 = 105;
-pub const ENOBUFS_STR: &[u8; 26] = b"No buffer space available\0";
-pub const EISCONN: u8 = 106;
-pub const EISCONN_STR: &[u8; 40] = b"Transport endpoint is already connected\0";
-pub const ENOTCONN: u8 = 107;
-pub const ENOTCONN_STR: &[u8; 36] = b"Transport endpoint is not connected\0";
-pub const ESHUTDOWN: u8 = 108;
-pub const ESHUTDOWN_STR: &[u8; 46] = b"Cannot send after transport endpoint shutdown\0";
-pub const ETOOMANYREFS: u8 = 109;
-pub const ETOOMANYREFS_STR: &[u8; 35] = b"Too many references: cannot splice\0";
-pub const ETIMEDOUT: u8 = 110;
-pub const ETIMEDOUT_STR: &[u8; 21] = b"Connection timed out\0";
-pub const ECONNREFUSED: u8 = 111;
-pub const ECONNREFUSED_STR: &[u8; 19] = b"Connection refused\0";
-pub const EHOSTDOWN: u8 = 112;
-pub const EHOSTDOWN_STR: &[u8; 13] = b"Host is down\0";
-pub const EHOSTUNREACH: u8 = 113;
-pub const EHOSTUNREACH_STR: &[u8; 17] = b"No route to host\0";
-pub const EALREADY: u8 = 114;
-pub const EALREADY_STR: &[u8; 30] = b"Operation already in progress\0";
-pub const EINPROGRESS: u8 = 115;
-pub const EINPROGRESS_STR: &[u8; 26] = b"Operation now in progress\0";
-pub const ESTALE: u8 = 116;
-pub const ESTALE_STR: &[u8; 18] = b"Stale file handle\0";
-pub const EUCLEAN: u8 = 117;
-pub const EUCLEAN_STR: &[u8; 25] = b"Structure needs cleaning\0";
-pub const ENOTNAM: u8 = 118;
-pub const ENOTNAM_STR: &[u8; 28] = b"Not a XENIX named type file\0";
-pub const ENAVAIL: u8 = 119;
-pub const ENAVAIL_STR: &[u8; 30] = b"No XENIX semaphores available\0";
-pub const EISNAM: u8 = 120;
-pub const EISNAM_STR: &[u8; 21] = b"Is a named type file\0";
-pub const EREMOTEIO: u8 = 121;
-pub const EREMOTEIO_STR: &[u8; 17] = b"Remote I/O error\0";
-pub const EDQUOT: u8 = 122;
-pub const EDQUOT_STR: &[u8; 15] = b"Quota exceeded\0";
-pub const ENOMEDIUM: u8 = 123;
-pub const ENOMEDIUM_STR: &[u8; 16] = b"No medium found\0";
-pub const EMEDIUMTYPE: u8 = 124;
-pub const EMEDIUMTYPE_STR: &[u8; 18] = b"Wrong medium type\0";
-pub const ECANCELED: u8 = 125;
-pub const ECANCELED_STR: &[u8; 20] = b"Operation cancelled\0";
-pub const ENOKEY: u8 = 126;
-pub const ENOKEY_STR: &[u8; 27] = b"Required key not available\0";
-pub const EKEYEXPIRED: u8 = 127;
-pub const EKEYEXPIRED_STR: &[u8; 16] = b"Key has expired\0";
-pub const EKEYREVOKED: u8 = 128;
-pub const EKEYREVOKED_STR: &[u8; 21] = b"Key has been revoked\0";
-pub const EKEYREJECTED: u8 = 129;
-pub const EKEYREJECTED_STR: &[u8; 28] = b"Key was rejected by service\0";
-pub const EOWNERDEAD: u8 = 130;
-pub const EOWNERDEAD_STR: &[u8; 20] = b"Previous owner died\0";
-pub const ENOTRECOVERABLE: u8 = 131;
-pub const ENOTRECOVERABLE_STR: &[u8; 22] = b"State not recoverable\0";
-pub const ERFKILL: u8 = 132;
-pub const ERFKILL_STR: &[u8; 38] = b"Operation not possible due to RF-kill\0";
-pub const EHWPOISON: u8 = 133;
-pub const EHWPOISON_STR: &[u8; 31] = b"Memory page has hardware error\0";
-pub const ELBIN: u8 = 134;
-pub const ELBIN_STR: &[u8; 16] = b"Inode is remote\0";
-pub const EFTYPE: u8 = 135;
-pub const EFTYPE_STR: &[u8; 34] = b"Inappropriate file type or format\0";
-pub const ENMFILE: u8 = 136;
-pub const ENMFILE_STR: &[u8; 14] = b"No more files\0";
-pub const EPROCLIM: u8 = 137;
-pub const EPROCLIM_STR: &[u8; 42] = b"Limit would be exceeded by attempted fork\0";
-pub const ENOTSUP: u8 = 138;
-pub const ENOTSUP_STR: &[u8; 14] = b"Not supported\0";
-pub const ENOSHARE: u8 = 139;
-pub const ENOSHARE_STR: &[u8; 29] = b"No such host or network path\0";
-pub const ECASECLASH: u8 = 140;
-pub const ECASECLASH_STR: &[u8; 36] = b"Filename exists with different case\0";
-pub const __ELASTERROR: u16 = 2000;
-pub const __GNUC_VA_LIST: u8 = 1;
-pub const LOG_PID: u8 = 1;
-pub const LOG_CONS: u8 = 2;
-pub const LOG_ODELAY: u8 = 4;
-pub const LOG_NDELAY: u8 = 8;
-pub const LOG_NOWAIT: u8 = 16;
-pub const LOG_PERROR: u8 = 32;
-pub const LOG_AUTH: u8 = 0;
-pub const LOG_AUTHPRIV: u8 = 0;
-pub const LOG_CRON: u8 = 0;
-pub const LOG_DAEMON: u8 = 0;
-pub const LOG_FTP: u8 = 0;
-pub const LOG_KERN: u8 = 0;
-pub const LOG_LOCAL0: u8 = 0;
-pub const LOG_LOCAL1: u8 = 0;
-pub const LOG_LOCAL2: u8 = 0;
-pub const LOG_LOCAL3: u8 = 0;
-pub const LOG_LOCAL4: u8 = 0;
-pub const LOG_LOCAL5: u8 = 0;
-pub const LOG_LOCAL6: u8 = 0;
-pub const LOG_LOCAL7: u8 = 0;
-pub const LOG_LPR: u8 = 0;
-pub const LOG_MAIL: u8 = 0;
-pub const LOG_NEWS: u8 = 0;
-pub const LOG_SYSLOG: u8 = 0;
-pub const LOG_USER: u8 = 0;
-pub const LOG_UUCP: u8 = 0;
-pub const LOG_EMERG: u8 = 0;
-pub const LOG_ALERT: u8 = 1;
-pub const LOG_CRIT: u8 = 2;
-pub const LOG_ERR: u8 = 3;
-pub const LOG_WARNING: u8 = 4;
-pub const LOG_NOTICE: u8 = 5;
-pub const LOG_INFO: u8 = 6;
-pub const LOG_DEBUG: u8 = 7;
-pub const LOG_ALL: u8 = 255;
-pub const EXTRA_FMT: &[u8; 5] = b"%s: \0";
 pub const MIN_SIGNO: u8 = 1;
 pub const MAX_SIGNO: u8 = 63;
 pub const SIGSTDMIN: u8 = 1;
@@ -1848,10 +1852,6 @@ pub const EPOCH_WDAY: u8 = 4;
 pub const HPWORK: u8 = 0;
 pub const LPWORK: u8 = 0;
 pub const USRWORK: u8 = 0;
-pub const __DEBUG_ASSERT_FILE__: u8 = 0;
-pub const __DEBUG_ASSERT_LINE__: u8 = 0;
-pub const __ASSERT_FILE__: u8 = 0;
-pub const __ASSERT_LINE__: u8 = 0;
 pub const DT_UNKNOWN: u8 = 0;
 pub const DT_FIFO: u8 = 1;
 pub const DT_CHR: u8 = 2;
@@ -1949,6 +1949,109 @@ pub const DEBUGPOINT_WATCHPOINT_WO: u8 = 2;
 pub const DEBUGPOINT_WATCHPOINT_RW: u8 = 3;
 pub const DEBUGPOINT_BREAKPOINT: u8 = 4;
 pub const DEBUGPOINT_STEPPOINT: u8 = 5;
+pub const _TIOCBASE: u16 = 256;
+pub const _WDIOCBASE: u16 = 512;
+pub const _FIOCBASE: u16 = 768;
+pub const _DIOCBASE: u16 = 1024;
+pub const _BIOCBASE: u16 = 1280;
+pub const _MTDIOCBASE: u16 = 1536;
+pub const _SIOCBASE: u16 = 1792;
+pub const _ARPIOCBASE: u16 = 2048;
+pub const _TSIOCBASE: u16 = 2304;
+pub const _SNIOCBASE: u16 = 2560;
+pub const _ANIOCBASE: u16 = 2816;
+pub const _PWMIOCBASE: u16 = 3072;
+pub const _CAIOCBASE: u16 = 3328;
+pub const _BATIOCBASE: u16 = 3584;
+pub const _QEIOCBASE: u16 = 3840;
+pub const _AUDIOIOCBASE: u16 = 4096;
+pub const _LCDIOCBASE: u16 = 4352;
+pub const _SLCDIOCBASE: u16 = 4608;
+pub const _CAPIOCBASE: u16 = 4864;
+pub const _WLCIOCBASE: u16 = 5120;
+pub const _CFGDIOCBASE: u16 = 5376;
+pub const _TCIOCBASE: u16 = 5632;
+pub const _JOYBASE: u16 = 5888;
+pub const _PIPEBASE: u16 = 6144;
+pub const _RTCBASE: u16 = 6400;
+pub const _RELAYBASE: u16 = 6656;
+pub const _CANBASE: u16 = 6912;
+pub const _BTNBASE: u16 = 7168;
+pub const _ULEDBASE: u16 = 7424;
+pub const _ZCBASE: u16 = 7680;
+pub const _LOOPBASE: u16 = 7936;
+pub const _MODEMBASE: u16 = 8192;
+pub const _I2CBASE: u16 = 8448;
+pub const _SPIBASE: u16 = 8704;
+pub const _GPIOBASE: u16 = 8960;
+pub const _CLIOCBASE: u16 = 9216;
+pub const _USBCBASE: u16 = 9472;
+pub const _MAC802154BASE: u16 = 9728;
+pub const _PWRBASE: u16 = 9984;
+pub const _FBIOCBASE: u16 = 10240;
+pub const _NXTERMBASE: u16 = 10496;
+pub const _RFIOCBASE: u16 = 10752;
+pub const _RPMSGBASE: u16 = 11008;
+pub const _NOTECTLBASE: u16 = 11264;
+pub const _NOTERAMBASE: u16 = 11520;
+pub const _RCIOCBASE: u16 = 11776;
+pub const _HIMEMBASE: u16 = 12032;
+pub const _EFUSEBASE: u16 = 12288;
+pub const _MTRIOBASE: u16 = 12544;
+pub const _MATHIOBASE: u16 = 12800;
+pub const _MMCSDIOBASE: u16 = 13056;
+pub const _BLUETOOTHBASE: u16 = 13312;
+pub const _PKTRADIOBASE: u16 = 13568;
+pub const _LTEBASE: u16 = 13824;
+pub const _VIDIOCBASE: u16 = 14080;
+pub const _CELLIOCBASE: u16 = 14336;
+pub const _MIPIDSIBASE: u16 = 14592;
+pub const _SEIOCBASE: u16 = 14848;
+pub const _SYSLOGBASE: u16 = 15360;
+pub const _STEPIOBASE: u16 = 15616;
+pub const _WLIOCBASE: u16 = 35584;
+pub const _BOARDBASE: u16 = 65280;
+pub const _IOC_MASK: u8 = 255;
+pub const TIOCPKT_FLUSHREAD: u8 = 1;
+pub const TIOCPKT_FLUSHWRITE: u8 = 2;
+pub const TIOCPKT_STOP: u8 = 4;
+pub const TIOCPKT_START: u8 = 8;
+pub const TIOCPKT_DOSTOP: u8 = 16;
+pub const TIOCPKT_NOSTOP: u8 = 32;
+pub const TIOCM_LE: u8 = 1;
+pub const TIOCM_DTR: u8 = 2;
+pub const TIOCM_RTS: u8 = 4;
+pub const TIOCM_ST: u8 = 8;
+pub const TIOCM_SR: u8 = 16;
+pub const TIOCM_CTS: u8 = 32;
+pub const TIOCM_CAR: u8 = 64;
+pub const TIOCM_CD: u8 = 64;
+pub const TIOCM_RNG: u8 = 128;
+pub const TIOCM_RI: u8 = 128;
+pub const TIOCM_DSR: u16 = 256;
+pub const SER_RS485_ENABLED: u8 = 1;
+pub const SER_RS485_RTS_ON_SEND: u8 = 2;
+pub const SER_RS485_RTS_AFTER_SEND: u8 = 4;
+pub const SER_RS485_RX_DURING_TX: u8 = 16;
+pub const SER_SINGLEWIRE_ENABLED: u8 = 1;
+pub const SER_SINGLEWIRE_PULL_SHIFT: u8 = 1;
+pub const SER_SINGLEWIRE_PULL_MASK: u8 = 6;
+pub const SER_SINGLEWIRE_PULL_DISABLE: u8 = 0;
+pub const SER_SINGLEWIRE_PULLUP: u8 = 2;
+pub const SER_SINGLEWIRE_PULLDOWN: u8 = 4;
+pub const SER_SINGLEWIRE_PUSHPULL: u8 = 8;
+pub const SER_INVERT_ENABLED_RX: u8 = 1;
+pub const SER_INVERT_ENABLED_TX: u8 = 2;
+pub const SER_SWAP_ENABLED: u8 = 1;
+pub const I2C_READBIT: u8 = 1;
+pub const I2C_M_READ: u8 = 1;
+pub const I2C_M_TEN: u8 = 2;
+pub const I2C_M_NOSTOP: u8 = 64;
+pub const I2C_M_NOSTART: u8 = 128;
+pub const I2C_SPEED_STANDARD: u32 = 100000;
+pub const I2C_SPEED_FAST: u32 = 400000;
+pub const I2C_SPEED_FAST_PLUS: u32 = 1000000;
+pub const I2C_SPEED_HIGH: u32 = 3400000;
 pub const EXIT_SUCCESS: u8 = 0;
 pub const EXIT_FAILURE: u8 = 1;
 pub const RAND_MAX: u32 = 2147483647;
@@ -1961,10 +2064,926 @@ pub const M_CHECK_ACTION: i8 = -5;
 pub const M_PERTURB: i8 = -6;
 pub const M_ARENA_TEST: i8 = -7;
 pub const M_ARENA_MAX: i8 = -8;
-pub const TLIST_ATTR_PRIORITIZED: u8 = 1;
-pub const TLIST_ATTR_INDEXED: u8 = 2;
-pub const TLIST_ATTR_RUNNABLE: u8 = 4;
-pub const TLIST_ATTR_OFFSET: u8 = 8;
+pub const OTG_EPTYPE_CTRL: u8 = 0;
+pub const OTG_EPTYPE_ISOC: u8 = 1;
+pub const OTG_EPTYPE_BULK: u8 = 2;
+pub const OTG_EPTYPE_INTR: u8 = 3;
+pub const OTG_PID_DATA0: u8 = 0;
+pub const OTG_PID_DATA2: u8 = 1;
+pub const OTG_PID_DATA1: u8 = 2;
+pub const OTG_PID_MDATA: u8 = 3;
+pub const OTG_PID_SETUP: u8 = 3;
+pub const STM32_OTG_GOTGCTL_OFFSET: u8 = 0;
+pub const STM32_OTG_GOTGINT_OFFSET: u8 = 4;
+pub const STM32_OTG_GAHBCFG_OFFSET: u8 = 8;
+pub const STM32_OTG_GUSBCFG_OFFSET: u8 = 12;
+pub const STM32_OTG_GRSTCTL_OFFSET: u8 = 16;
+pub const STM32_OTG_GINTSTS_OFFSET: u8 = 20;
+pub const STM32_OTG_GINTMSK_OFFSET: u8 = 24;
+pub const STM32_OTG_GRXSTSR_OFFSET: u8 = 28;
+pub const STM32_OTG_GRXSTSP_OFFSET: u8 = 32;
+pub const STM32_OTG_GRXFSIZ_OFFSET: u8 = 36;
+pub const STM32_OTG_HNPTXFSIZ_OFFSET: u8 = 40;
+pub const STM32_OTG_DIEPTXF0_OFFSET: u8 = 40;
+pub const STM32_OTG_HNPTXSTS_OFFSET: u8 = 44;
+pub const STM32_OTG_GCCFG_OFFSET: u8 = 56;
+pub const STM32_OTG_CID_OFFSET: u8 = 60;
+pub const STM32_OTG_HPTXFSIZ_OFFSET: u16 = 256;
+pub const STM32_OTG_HCFG_OFFSET: u16 = 1024;
+pub const STM32_OTG_HFIR_OFFSET: u16 = 1028;
+pub const STM32_OTG_HFNUM_OFFSET: u16 = 1032;
+pub const STM32_OTG_HPTXSTS_OFFSET: u16 = 1040;
+pub const STM32_OTG_HAINT_OFFSET: u16 = 1044;
+pub const STM32_OTG_HAINTMSK_OFFSET: u16 = 1048;
+pub const STM32_OTG_HPRT_OFFSET: u16 = 1088;
+pub const STM32_OTG_HCCHAR_CHOFFSET: u8 = 0;
+pub const STM32_OTG_HCINT_CHOFFSET: u8 = 8;
+pub const STM32_OTG_HCINTMSK_CHOFFSET: u8 = 12;
+pub const STM32_OTG_HCTSIZ_CHOFFSET: u8 = 16;
+pub const STM32_OTG_DCFG_OFFSET: u16 = 2048;
+pub const STM32_OTG_DCTL_OFFSET: u16 = 2052;
+pub const STM32_OTG_DSTS_OFFSET: u16 = 2056;
+pub const STM32_OTG_DIEPMSK_OFFSET: u16 = 2064;
+pub const STM32_OTG_DOEPMSK_OFFSET: u16 = 2068;
+pub const STM32_OTG_DAINT_OFFSET: u16 = 2072;
+pub const STM32_OTG_DAINTMSK_OFFSET: u16 = 2076;
+pub const STM32_OTG_DVBUSDIS_OFFSET: u16 = 2088;
+pub const STM32_OTG_DVBUSPULSE_OFFSET: u16 = 2092;
+pub const STM32_OTG_DIEPEMPMSK_OFFSET: u16 = 2100;
+pub const STM32_OTG_DIEPCTL_EPOFFSET: u8 = 0;
+pub const STM32_OTG_DIEPINT_EPOFFSET: u8 = 8;
+pub const STM32_OTG_DIEPTSIZ_EPOFFSET: u8 = 16;
+pub const STM32_OTG_DTXFSTS_EPOFFSET: u8 = 24;
+pub const STM32_OTG_DOEPCTL_EPOFFSET: u8 = 0;
+pub const STM32_OTG_DOEPINT_EPOFFSET: u8 = 8;
+pub const STM32_OTG_PCGCCTL_OFFSET: u16 = 3584;
+pub const STM32_USBPHYC_PLL1_OFFSET: u8 = 0;
+pub const STM32_USBPHYC_TUNE_OFFSET: u8 = 12;
+pub const STM32_USBPHYC_LDO_OFFSET: u8 = 24;
+pub const OTG_GOTGCTL_SRQSCS: u8 = 1;
+pub const OTG_GOTGCTL_SRQ: u8 = 2;
+pub const OTG_GOTGCTL_VBVALOEN: u8 = 4;
+pub const OTG_GOTGCTL_VBVALOVAL: u8 = 8;
+pub const OTG_GOTGCTL_AVALOEN: u8 = 16;
+pub const OTG_GOTGCTL_AVALOVAL: u8 = 32;
+pub const OTG_GOTGCTL_BVALOEN: u8 = 64;
+pub const OTG_GOTGCTL_BVALOVAL: u8 = 128;
+pub const OTG_GOTGCTL_HNGSCS: u16 = 256;
+pub const OTG_GOTGCTL_HNPRQ: u16 = 512;
+pub const OTG_GOTGCTL_HSHNPEN: u16 = 1024;
+pub const OTG_GOTGCTL_DHNPEN: u16 = 2048;
+pub const OTG_GOTGCTL_EHEN: u16 = 4096;
+pub const OTG_GOTGCTL_CIDSTS: u32 = 65536;
+pub const OTG_GOTGCTL_DBCT: u32 = 131072;
+pub const OTG_GOTGCTL_ASVLD: u32 = 262144;
+pub const OTG_GOTGCTL_BSVLD: u32 = 524288;
+pub const OTG_GOTGCTL_OTGVER: u32 = 1048576;
+pub const OTG_GOTGINT_SEDET: u8 = 4;
+pub const OTG_GOTGINT_SRSSCHG: u16 = 256;
+pub const OTG_GOTGINT_HNSSCHG: u16 = 512;
+pub const OTG_GOTGINT_HNGDET: u32 = 131072;
+pub const OTG_GOTGINT_ADTOCHG: u32 = 262144;
+pub const OTG_GOTGINT_DBCDNE: u32 = 524288;
+pub const OTG_GOTGINT_IDCHNG: u32 = 1048576;
+pub const OTG_GAHBCFG_GINTMSK: u8 = 1;
+pub const OTG_GAHBCFG_TXFELVL: u8 = 128;
+pub const OTG_GAHBCFG_PTXFELVL: u16 = 256;
+pub const OTG_GUSBCFG_TOCAL_SHIFT: u8 = 0;
+pub const OTG_GUSBCFG_TOCAL_MASK: u8 = 7;
+pub const OTG_GUSBCFG_ULPISEL: u8 = 16;
+pub const OTG_GUSBCFG_PHYSEL: u8 = 64;
+pub const OTG_GUSBCFG_SRPCAP: u16 = 256;
+pub const OTG_GUSBCFG_HNPCAP: u16 = 512;
+pub const OTG_GUSBCFG_TRDT_SHIFT: u8 = 10;
+pub const OTG_GUSBCFG_TRDT_MASK: u16 = 15360;
+pub const OTG_GUSBCFG_PHYLPC: u16 = 32768;
+pub const OTG_GUSBCFG_ULPIFSLS: u32 = 131072;
+pub const OTG_GUSBCFG_ULPIAR: u32 = 262144;
+pub const OTG_GUSBCFG_ULPICSM: u32 = 524288;
+pub const OTG_GUSBCFG_ULPIEVBUSD: u32 = 1048576;
+pub const OTG_GUSBCFG_ULPIEVBUSI: u32 = 2097152;
+pub const OTG_GUSBCFG_TSDPS: u32 = 4194304;
+pub const OTG_GUSBCFG_PCCI: u32 = 8388608;
+pub const OTG_GUSBCFG_PTCI: u32 = 16777216;
+pub const OTG_GUSBCFG_ULPIIPD: u32 = 33554432;
+pub const OTG_GUSBCFG_FHMOD: u32 = 536870912;
+pub const OTG_GUSBCFG_FDMOD: u32 = 1073741824;
+pub const OTG_GRSTCTL_CSRST: u8 = 1;
+pub const OTG_GRSTCTL_HSRST: u8 = 2;
+pub const OTG_GRSTCTL_FCRST: u8 = 4;
+pub const OTG_GRSTCTL_RXFFLSH: u8 = 16;
+pub const OTG_GRSTCTL_TXFFLSH: u8 = 32;
+pub const OTG_GRSTCTL_TXFNUM_SHIFT: u8 = 6;
+pub const OTG_GRSTCTL_TXFNUM_MASK: u16 = 1984;
+pub const OTG_GRSTCTL_TXFNUM_HNONPER: u8 = 0;
+pub const OTG_GRSTCTL_TXFNUM_HPER: u8 = 64;
+pub const OTG_GRSTCTL_TXFNUM_HALL: u16 = 1024;
+pub const OTG_GRSTCTL_TXFNUM_DALL: u16 = 1024;
+pub const OTG_GRSTCTL_AHBIDL: u32 = 2147483648;
+pub const OTG_GINTSTS_CMOD: u8 = 1;
+pub const OTG_GINTSTS_DEVMODE: u8 = 0;
+pub const OTG_GINTSTS_HOSTMODE: u8 = 1;
+pub const OTG_GINT_MMIS: u8 = 2;
+pub const OTG_GINT_OTG: u8 = 4;
+pub const OTG_GINT_SOF: u8 = 8;
+pub const OTG_GINT_RXFLVL: u8 = 16;
+pub const OTG_GINT_NPTXFE: u8 = 32;
+pub const OTG_GINT_GINAKEFF: u8 = 64;
+pub const OTG_GINT_GONAKEFF: u8 = 128;
+pub const OTG_GINT_RES89: u16 = 768;
+pub const OTG_GINT_ESUSP: u16 = 1024;
+pub const OTG_GINT_USBSUSP: u16 = 2048;
+pub const OTG_GINT_USBRST: u16 = 4096;
+pub const OTG_GINT_ENUMDNE: u16 = 8192;
+pub const OTG_GINT_ISOODRP: u16 = 16384;
+pub const OTG_GINT_EOPF: u16 = 32768;
+pub const OTG_GINT_RES1617: u32 = 196608;
+pub const OTG_GINT_IEP: u32 = 262144;
+pub const OTG_GINT_OEP: u32 = 524288;
+pub const OTG_GINT_IISOIXFR: u32 = 1048576;
+pub const OTG_GINT_IISOOXFR: u32 = 2097152;
+pub const OTG_GINT_IPXFR: u32 = 2097152;
+pub const OTG_GINT_RES22: u32 = 4194304;
+pub const OTG_GINT_DATAFSUSP: u32 = 4194304;
+pub const OTG_GINT_RES23: u32 = 8388608;
+pub const OTG_GINT_RSTDET: u32 = 8388608;
+pub const OTG_GINT_HPRT: u32 = 16777216;
+pub const OTG_GINT_HC: u32 = 33554432;
+pub const OTG_GINT_PTXFE: u32 = 67108864;
+pub const OTG_GINT_LPMINT: u32 = 134217728;
+pub const OTG_GINT_RES27: u32 = 134217728;
+pub const OTG_GINT_CIDSCHG: u32 = 268435456;
+pub const OTG_GINT_DISC: u32 = 536870912;
+pub const OTG_GINT_SRQ: u32 = 1073741824;
+pub const OTG_GINT_WKUP: u32 = 2147483648;
+pub const OTG_GRXSTSH_CHNUM_SHIFT: u8 = 0;
+pub const OTG_GRXSTSH_CHNUM_MASK: u8 = 15;
+pub const OTG_GRXSTSH_BCNT_SHIFT: u8 = 4;
+pub const OTG_GRXSTSH_BCNT_MASK: u16 = 32752;
+pub const OTG_GRXSTSH_DPID_SHIFT: u8 = 15;
+pub const OTG_GRXSTSH_DPID_MASK: u32 = 98304;
+pub const OTG_GRXSTSH_DPID_DATA0: u8 = 0;
+pub const OTG_GRXSTSH_DPID_DATA2: u16 = 32768;
+pub const OTG_GRXSTSH_DPID_DATA1: u32 = 65536;
+pub const OTG_GRXSTSH_DPID_MDATA: u32 = 98304;
+pub const OTG_GRXSTSH_PKTSTS_SHIFT: u8 = 17;
+pub const OTG_GRXSTSH_PKTSTS_MASK: u32 = 1966080;
+pub const OTG_GRXSTSH_PKTSTS_INRECVD: u32 = 262144;
+pub const OTG_GRXSTSH_PKTSTS_INDONE: u32 = 393216;
+pub const OTG_GRXSTSH_PKTSTS_DTOGERR: u32 = 655360;
+pub const OTG_GRXSTSH_PKTSTS_HALTED: u32 = 917504;
+pub const OTG_GRXSTSD_EPNUM_SHIFT: u8 = 0;
+pub const OTG_GRXSTSD_EPNUM_MASK: u8 = 15;
+pub const OTG_GRXSTSD_BCNT_SHIFT: u8 = 4;
+pub const OTG_GRXSTSD_BCNT_MASK: u16 = 32752;
+pub const OTG_GRXSTSD_DPID_SHIFT: u8 = 15;
+pub const OTG_GRXSTSD_DPID_MASK: u32 = 98304;
+pub const OTG_GRXSTSD_DPID_DATA0: u8 = 0;
+pub const OTG_GRXSTSD_DPID_DATA2: u16 = 32768;
+pub const OTG_GRXSTSD_DPID_DATA1: u32 = 65536;
+pub const OTG_GRXSTSD_DPID_MDATA: u32 = 98304;
+pub const OTG_GRXSTSD_PKTSTS_SHIFT: u8 = 17;
+pub const OTG_GRXSTSD_PKTSTS_MASK: u32 = 1966080;
+pub const OTG_GRXSTSD_PKTSTS_OUTNAK: u32 = 131072;
+pub const OTG_GRXSTSD_PKTSTS_OUTRECVD: u32 = 262144;
+pub const OTG_GRXSTSD_PKTSTS_OUTDONE: u32 = 393216;
+pub const OTG_GRXSTSD_PKTSTS_SETUPDONE: u32 = 524288;
+pub const OTG_GRXSTSD_PKTSTS_SETUPRECVD: u32 = 786432;
+pub const OTG_GRXSTSD_FRMNUM_SHIFT: u8 = 21;
+pub const OTG_GRXSTSD_FRMNUM_MASK: u32 = 31457280;
+pub const OTG_GRXFSIZ_MASK: u16 = 65535;
+pub const OTG_HNPTXFSIZ_NPTXFSA_SHIFT: u8 = 0;
+pub const OTG_HNPTXFSIZ_NPTXFSA_MASK: u16 = 65535;
+pub const OTG_HNPTXFSIZ_NPTXFD_SHIFT: u8 = 16;
+pub const OTG_HNPTXFSIZ_NPTXFD_MASK: u32 = 4294901760;
+pub const OTG_HNPTXFSIZ_NPTXFD_MIN: u32 = 1048576;
+pub const OTG_HNPTXFSIZ_NPTXFD_MAX: u32 = 16777216;
+pub const OTG_DIEPTXF0_TX0FD_SHIFT: u8 = 0;
+pub const OTG_DIEPTXF0_TX0FD_MASK: u16 = 65535;
+pub const OTG_DIEPTXF0_TX0FSA_SHIFT: u8 = 16;
+pub const OTG_DIEPTXF0_TX0FSA_MASK: u32 = 4294901760;
+pub const OTG_DIEPTXF0_TX0FSA_MIN: u32 = 1048576;
+pub const OTG_DIEPTXF0_TX0FSA_MAX: u32 = 16777216;
+pub const OTG_HNPTXSTS_NPTXFSAV_SHIFT: u8 = 0;
+pub const OTG_HNPTXSTS_NPTXFSAV_MASK: u16 = 65535;
+pub const OTG_HNPTXSTS_NPTXFSAV_FULL: u8 = 0;
+pub const OTG_HNPTXSTS_NPTQXSAV_SHIFT: u8 = 16;
+pub const OTG_HNPTXSTS_NPTQXSAV_MASK: u32 = 16711680;
+pub const OTG_HNPTXSTS_NPTQXSAV_FULL: u8 = 0;
+pub const OTG_HNPTXSTS_NPTXQTOP_SHIFT: u8 = 24;
+pub const OTG_HNPTXSTS_NPTXQTOP_MASK: u32 = 2130706432;
+pub const OTG_HNPTXSTS_TERMINATE: u32 = 16777216;
+pub const OTG_HNPTXSTS_TYPE_SHIFT: u8 = 25;
+pub const OTG_HNPTXSTS_TYPE_MASK: u32 = 100663296;
+pub const OTG_HNPTXSTS_TYPE_INOUT: u8 = 0;
+pub const OTG_HNPTXSTS_TYPE_ZLP: u32 = 33554432;
+pub const OTG_HNPTXSTS_TYPE_HALT: u32 = 100663296;
+pub const OTG_HNPTXSTS_CHNUM_SHIFT: u8 = 27;
+pub const OTG_HNPTXSTS_CHNUM_MASK: u32 = 2013265920;
+pub const OTG_HNPTXSTS_EPNUM_SHIFT: u8 = 27;
+pub const OTG_HNPTXSTS_EPNUM_MASK: u32 = 2013265920;
+pub const OTG_GCCFG_PWRDWN: u32 = 65536;
+pub const OTG_GCCFG_VBDEN: u32 = 2097152;
+pub const OTG_GCCFG_PHYHSEN: u32 = 8388608;
+pub const OTG_HPTXFSIZ_PTXSA_SHIFT: u8 = 0;
+pub const OTG_HPTXFSIZ_PTXSA_MASK: u16 = 65535;
+pub const OTG_HPTXFSIZ_PTXFD_SHIFT: u8 = 16;
+pub const OTG_HPTXFSIZ_PTXFD_MASK: u32 = 4294901760;
+pub const OTG_DIEPTXF_INEPTXSA_SHIFT: u8 = 0;
+pub const OTG_DIEPTXF_INEPTXSA_MASK: u16 = 65535;
+pub const OTG_DIEPTXF_INEPTXFD_SHIFT: u8 = 16;
+pub const OTG_DIEPTXF_INEPTXFD_MASK: u32 = 4294901760;
+pub const OTG_DIEPTXF_INEPTXFD_MIN: u8 = 16;
+pub const OTG_HCFG_FSLSPCS_SHIFT: u8 = 0;
+pub const OTG_HCFG_FSLSPCS_MASK: u8 = 3;
+pub const OTG_HCFG_FSLSPCS_FS48MHz: u8 = 1;
+pub const OTG_HCFG_FSLSPCS_LS48MHz: u8 = 1;
+pub const OTG_HCFG_FSLSPCS_LS6MHz: u8 = 2;
+pub const OTG_HCFG_FSLSS: u8 = 4;
+pub const OTG_HFIR_MASK: u16 = 65535;
+pub const OTG_HFNUM_FRNUM_SHIFT: u8 = 0;
+pub const OTG_HFNUM_FRNUM_MASK: u16 = 65535;
+pub const OTG_HFNUM_FTREM_SHIFT: u8 = 16;
+pub const OTG_HFNUM_FTREM_MASK: u32 = 4294901760;
+pub const OTG_HPTXSTS_PTXFSAVL_SHIFT: u8 = 0;
+pub const OTG_HPTXSTS_PTXFSAVL_MASK: u16 = 65535;
+pub const OTG_HPTXSTS_PTXFSAVL_FULL: u8 = 0;
+pub const OTG_HPTXSTS_PTXQSAV_SHIFT: u8 = 16;
+pub const OTG_HPTXSTS_PTXQSAV_MASK: u32 = 16711680;
+pub const OTG_HPTXSTS_PTXQSAV_FULL: u8 = 0;
+pub const OTG_HPTXSTS_PTXQTOP_SHIFT: u8 = 24;
+pub const OTG_HPTXSTS_PTXQTOP_MASK: u32 = 2130706432;
+pub const OTG_HPTXSTS_TERMINATE: u32 = 16777216;
+pub const OTG_HPTXSTS_TYPE_SHIFT: u8 = 25;
+pub const OTG_HPTXSTS_TYPE_MASK: u32 = 100663296;
+pub const OTG_HPTXSTS_TYPE_INOUT: u8 = 0;
+pub const OTG_HPTXSTS_TYPE_ZLP: u32 = 33554432;
+pub const OTG_HPTXSTS_TYPE_HALT: u32 = 100663296;
+pub const OTG_HPTXSTS_EPNUM_SHIFT: u8 = 27;
+pub const OTG_HPTXSTS_EPNUM_MASK: u32 = 2013265920;
+pub const OTG_HPTXSTS_CHNUM_SHIFT: u8 = 27;
+pub const OTG_HPTXSTS_CHNUM_MASK: u32 = 2013265920;
+pub const OTG_HPTXSTS_ODD: u32 = 16777216;
+pub const OTG_HPRT_PCSTS: u8 = 1;
+pub const OTG_HPRT_PCDET: u8 = 2;
+pub const OTG_HPRT_PENA: u8 = 4;
+pub const OTG_HPRT_PENCHNG: u8 = 8;
+pub const OTG_HPRT_POCA: u8 = 16;
+pub const OTG_HPRT_POCCHNG: u8 = 32;
+pub const OTG_HPRT_PRES: u8 = 64;
+pub const OTG_HPRT_PSUSP: u8 = 128;
+pub const OTG_HPRT_PRST: u16 = 256;
+pub const OTG_HPRT_PLSTS_SHIFT: u8 = 10;
+pub const OTG_HPRT_PLSTS_MASK: u16 = 3072;
+pub const OTG_HPRT_PLSTS_DP: u16 = 1024;
+pub const OTG_HPRT_PLSTS_DM: u16 = 2048;
+pub const OTG_HPRT_PPWR: u16 = 4096;
+pub const OTG_HPRT_PTCTL_SHIFT: u8 = 13;
+pub const OTG_HPRT_PTCTL_MASK: u32 = 122880;
+pub const OTG_HPRT_PTCTL_DISABLED: u8 = 0;
+pub const OTG_HPRT_PTCTL_J: u16 = 8192;
+pub const OTG_HPRT_PTCTL_L: u16 = 16384;
+pub const OTG_HPRT_PTCTL_SE0_NAK: u16 = 24576;
+pub const OTG_HPRT_PTCTL_PACKET: u16 = 32768;
+pub const OTG_HPRT_PTCTL_FORCE: u16 = 40960;
+pub const OTG_HPRT_PSPD_SHIFT: u8 = 17;
+pub const OTG_HPRT_PSPD_MASK: u32 = 393216;
+pub const OTG_HPRT_PSPD_FS: u32 = 131072;
+pub const OTG_HPRT_PSPD_LS: u32 = 262144;
+pub const OTG_HCCHAR_MPSIZ_SHIFT: u8 = 0;
+pub const OTG_HCCHAR_MPSIZ_MASK: u16 = 2047;
+pub const OTG_HCCHAR_EPNUM_SHIFT: u8 = 11;
+pub const OTG_HCCHAR_EPNUM_MASK: u16 = 30720;
+pub const OTG_HCCHAR_EPDIR: u16 = 32768;
+pub const OTG_HCCHAR_EPDIR_OUT: u8 = 0;
+pub const OTG_HCCHAR_EPDIR_IN: u16 = 32768;
+pub const OTG_HCCHAR_LSDEV: u32 = 131072;
+pub const OTG_HCCHAR_EPTYP_SHIFT: u8 = 18;
+pub const OTG_HCCHAR_EPTYP_MASK: u32 = 786432;
+pub const OTG_HCCHAR_EPTYP_CTRL: u8 = 0;
+pub const OTG_HCCHAR_EPTYP_ISOC: u32 = 262144;
+pub const OTG_HCCHAR_EPTYP_BULK: u32 = 524288;
+pub const OTG_HCCHAR_EPTYP_INTR: u32 = 786432;
+pub const OTG_HCCHAR_MCNT_SHIFT: u8 = 20;
+pub const OTG_HCCHAR_MCNT_MASK: u32 = 3145728;
+pub const OTG_HCCHAR_DAD_SHIFT: u8 = 22;
+pub const OTG_HCCHAR_DAD_MASK: u32 = 532676608;
+pub const OTG_HCCHAR_ODDFRM: u32 = 536870912;
+pub const OTG_HCCHAR_CHDIS: u32 = 1073741824;
+pub const OTG_HCCHAR_CHENA: u32 = 2147483648;
+pub const OTG_HCINT_XFRC: u8 = 1;
+pub const OTG_HCINT_CHH: u8 = 2;
+pub const OTG_HCINT_STALL: u8 = 8;
+pub const OTG_HCINT_NAK: u8 = 16;
+pub const OTG_HCINT_ACK: u8 = 32;
+pub const OTG_HCINT_NYET: u8 = 64;
+pub const OTG_HCINT_TXERR: u8 = 128;
+pub const OTG_HCINT_BBERR: u16 = 256;
+pub const OTG_HCINT_FRMOR: u16 = 512;
+pub const OTG_HCINT_DTERR: u16 = 1024;
+pub const OTG_HCTSIZ_XFRSIZ_SHIFT: u8 = 0;
+pub const OTG_HCTSIZ_XFRSIZ_MASK: u32 = 524287;
+pub const OTG_HCTSIZ_PKTCNT_SHIFT: u8 = 19;
+pub const OTG_HCTSIZ_PKTCNT_MASK: u32 = 536346624;
+pub const OTG_HCTSIZ_DPID_SHIFT: u8 = 29;
+pub const OTG_HCTSIZ_DPID_MASK: u32 = 1610612736;
+pub const OTG_HCTSIZ_DPID_DATA0: u8 = 0;
+pub const OTG_HCTSIZ_DPID_DATA2: u32 = 536870912;
+pub const OTG_HCTSIZ_DPID_DATA1: u32 = 1073741824;
+pub const OTG_HCTSIZ_DPID_MDATA: u32 = 1610612736;
+pub const OTG_HCTSIZ_PID_SETUP: u32 = 1610612736;
+pub const OTG_DCFG_DSPD_SHIFT: u8 = 0;
+pub const OTG_DCFG_DSPD_MASK: u8 = 3;
+pub const OTG_DCFG_DSPD_HS: u8 = 0;
+pub const OTG_DCFG_DSPD_FS_USING_HS: u8 = 1;
+pub const OTG_DCFG_DSPD_FS: u8 = 3;
+pub const OTG_DCFG_NZLSOHSK: u8 = 4;
+pub const OTG_DCFG_DAD_SHIFT: u8 = 4;
+pub const OTG_DCFG_DAD_MASK: u16 = 2032;
+pub const OTG_DCFG_PFIVL_SHIFT: u8 = 11;
+pub const OTG_DCFG_PFIVL_MASK: u16 = 6144;
+pub const OTG_DCFG_PFIVL_80PCT: u8 = 0;
+pub const OTG_DCFG_PFIVL_85PCT: u16 = 2048;
+pub const OTG_DCFG_PFIVL_90PCT: u16 = 4096;
+pub const OTG_DCFG_PFIVL_95PCT: u16 = 6144;
+pub const OTG_TESTMODE_DISABLED: u8 = 0;
+pub const OTG_TESTMODE_J: u8 = 1;
+pub const OTG_TESTMODE_K: u8 = 2;
+pub const OTG_TESTMODE_SE0_NAK: u8 = 3;
+pub const OTG_TESTMODE_PACKET: u8 = 4;
+pub const OTG_TESTMODE_FORCE: u8 = 5;
+pub const OTG_DCTL_RWUSIG: u8 = 1;
+pub const OTG_DCTL_SDIS: u8 = 2;
+pub const OTG_DCTL_GINSTS: u8 = 4;
+pub const OTG_DCTL_GONSTS: u8 = 8;
+pub const OTG_DCTL_TCTL_SHIFT: u8 = 4;
+pub const OTG_DCTL_TCTL_MASK: u8 = 112;
+pub const OTG_DCTL_TCTL_DISABLED: u8 = 0;
+pub const OTG_DCTL_TCTL_J: u8 = 16;
+pub const OTG_DCTL_TCTL_K: u8 = 32;
+pub const OTG_DCTL_TCTL_SE0_NAK: u8 = 48;
+pub const OTG_DCTL_TCTL_PACKET: u8 = 64;
+pub const OTG_DCTL_TCTL_FORCE: u8 = 80;
+pub const OTG_DCTL_SGINAK: u8 = 128;
+pub const OTG_DCTL_CGINAK: u16 = 256;
+pub const OTG_DCTL_SGONAK: u16 = 512;
+pub const OTG_DCTL_CGONAK: u16 = 1024;
+pub const OTG_DCTL_POPRGDNE: u16 = 2048;
+pub const OTG_DSTS_SUSPSTS: u8 = 1;
+pub const OTG_DSTS_ENUMSPD_SHIFT: u8 = 1;
+pub const OTG_DSTS_ENUMSPD_MASK: u8 = 6;
+pub const OTG_DSTS_ENUMSPD_FS: u8 = 192;
+pub const OTG_DSTS_EERR: u8 = 8;
+pub const OTG_DSTS_SOFFN_SHIFT: u8 = 8;
+pub const OTG_DSTS_SOFFN_MASK: u32 = 4194048;
+pub const OTG_DSTS_SOFFN0: u16 = 256;
+pub const OTG_DSTS_SOFFN_EVEN: u8 = 0;
+pub const OTG_DSTS_SOFFN_ODD: u16 = 256;
+pub const OTG_DIEPMSK_XFRCM: u8 = 1;
+pub const OTG_DIEPMSK_EPDM: u8 = 2;
+pub const OTG_DIEPMSK_AHBERRM: u8 = 4;
+pub const OTG_DIEPMSK_TOM: u8 = 8;
+pub const OTG_DIEPMSK_ITTXFEMSK: u8 = 16;
+pub const OTG_DIEPMSK_INEPNMM: u8 = 32;
+pub const OTG_DIEPMSK_INEPNEM: u8 = 64;
+pub const OTG_DIEPMSK_TXFURM: u16 = 256;
+pub const OTG_DIEPMSK_NAKM: u16 = 8192;
+pub const OTG_DOEPMSK_XFRCM: u8 = 1;
+pub const OTG_DOEPMSK_EPDM: u8 = 2;
+pub const OTG_DOEPMSK_STUPM: u8 = 8;
+pub const OTG_DOEPMSK_OTEPDM: u8 = 16;
+pub const OTG_DAINT_IEP_SHIFT: u8 = 0;
+pub const OTG_DAINT_IEP_MASK: u16 = 65535;
+pub const OTG_DAINT_OEP_SHIFT: u8 = 16;
+pub const OTG_DAINT_OEP_MASK: u32 = 4294901760;
+pub const OTG_DVBUSDIS_MASK: u16 = 65535;
+pub const OTG_DVBUSPULSE_MASK: u16 = 4095;
+pub const OTG_DIEPCTL0_MPSIZ_SHIFT: u8 = 0;
+pub const OTG_DIEPCTL0_MPSIZ_MASK: u8 = 3;
+pub const OTG_DIEPCTL0_MPSIZ_64: u8 = 0;
+pub const OTG_DIEPCTL0_MPSIZ_32: u8 = 1;
+pub const OTG_DIEPCTL0_MPSIZ_16: u8 = 2;
+pub const OTG_DIEPCTL0_MPSIZ_8: u8 = 3;
+pub const OTG_DIEPCTL0_USBAEP: u16 = 32768;
+pub const OTG_DIEPCTL0_NAKSTS: u32 = 131072;
+pub const OTG_DIEPCTL0_EPTYP_SHIFT: u8 = 18;
+pub const OTG_DIEPCTL0_EPTYP_MASK: u32 = 786432;
+pub const OTG_DIEPCTL0_EPTYP_CTRL: u8 = 0;
+pub const OTG_DIEPCTL0_STALL: u32 = 2097152;
+pub const OTG_DIEPCTL0_TXFNUM_SHIFT: u8 = 22;
+pub const OTG_DIEPCTL0_TXFNUM_MASK: u32 = 62914560;
+pub const OTG_DIEPCTL0_CNAK: u32 = 67108864;
+pub const OTG_DIEPCTL0_SNAK: u32 = 134217728;
+pub const OTG_DIEPCTL0_EPDIS: u32 = 1073741824;
+pub const OTG_DIEPCTL0_EPENA: u32 = 2147483648;
+pub const OTG_DIEPCTL_MPSIZ_SHIFT: u8 = 0;
+pub const OTG_DIEPCTL_MPSIZ_MASK: u16 = 2047;
+pub const OTG_DIEPCTL_USBAEP: u16 = 32768;
+pub const OTG_DIEPCTL_EONUM: u32 = 65536;
+pub const OTG_DIEPCTL_EVEN: u8 = 0;
+pub const OTG_DIEPCTL_ODD: u32 = 65536;
+pub const OTG_DIEPCTL_DATA0: u8 = 0;
+pub const OTG_DIEPCTL_DATA1: u32 = 65536;
+pub const OTG_DIEPCTL_NAKSTS: u32 = 131072;
+pub const OTG_DIEPCTL_EPTYP_SHIFT: u8 = 18;
+pub const OTG_DIEPCTL_EPTYP_MASK: u32 = 786432;
+pub const OTG_DIEPCTL_EPTYP_CTRL: u8 = 0;
+pub const OTG_DIEPCTL_EPTYP_ISOC: u32 = 262144;
+pub const OTG_DIEPCTL_EPTYP_BULK: u32 = 524288;
+pub const OTG_DIEPCTL_EPTYP_INTR: u32 = 786432;
+pub const OTG_DIEPCTL_STALL: u32 = 2097152;
+pub const OTG_DIEPCTL_TXFNUM_SHIFT: u8 = 22;
+pub const OTG_DIEPCTL_TXFNUM_MASK: u32 = 62914560;
+pub const OTG_DIEPCTL_CNAK: u32 = 67108864;
+pub const OTG_DIEPCTL_SNAK: u32 = 134217728;
+pub const OTG_DIEPCTL_SD0PID: u32 = 268435456;
+pub const OTG_DIEPCTL_SEVNFRM: u32 = 268435456;
+pub const OTG_DIEPCTL_SODDFRM: u32 = 536870912;
+pub const OTG_DIEPCTL_EPDIS: u32 = 1073741824;
+pub const OTG_DIEPCTL_EPENA: u32 = 2147483648;
+pub const OTG_DIEPINT_XFRC: u8 = 1;
+pub const OTG_DIEPINT_EPDISD: u8 = 2;
+pub const OTG_DIEPINT_TOC: u8 = 8;
+pub const OTG_DIEPINT_ITTXFE: u8 = 16;
+pub const OTG_DIEPINT_INEPNE: u8 = 64;
+pub const OTG_DIEPINT_TXFE: u8 = 128;
+pub const OTG_DIEPTSIZ0_XFRSIZ_SHIFT: u8 = 0;
+pub const OTG_DIEPTSIZ0_XFRSIZ_MASK: u8 = 127;
+pub const OTG_DIEPTSIZ0_PKTCNT_SHIFT: u8 = 19;
+pub const OTG_DIEPTSIZ0_PKTCNT_MASK: u32 = 1572864;
+pub const OTG_DIEPTSIZ_XFRSIZ_SHIFT: u8 = 0;
+pub const OTG_DIEPTSIZ_XFRSIZ_MASK: u32 = 524287;
+pub const OTG_DIEPTSIZ_PKTCNT_SHIFT: u8 = 19;
+pub const OTG_DIEPTSIZ_PKTCNT_MASK: u32 = 536346624;
+pub const OTG_DIEPTSIZ_MCNT_SHIFT: u8 = 29;
+pub const OTG_DIEPTSIZ_MCNT_MASK: u32 = 1610612736;
+pub const OTG_DTXFSTS_MASK: u16 = 65535;
+pub const OTG_DOEPCTL0_MPSIZ_SHIFT: u8 = 0;
+pub const OTG_DOEPCTL0_MPSIZ_MASK: u8 = 3;
+pub const OTG_DOEPCTL0_MPSIZ_64: u8 = 0;
+pub const OTG_DOEPCTL0_MPSIZ_32: u8 = 1;
+pub const OTG_DOEPCTL0_MPSIZ_16: u8 = 2;
+pub const OTG_DOEPCTL0_MPSIZ_8: u8 = 3;
+pub const OTG_DOEPCTL0_USBAEP: u16 = 32768;
+pub const OTG_DOEPCTL0_NAKSTS: u32 = 131072;
+pub const OTG_DOEPCTL0_EPTYP_SHIFT: u8 = 18;
+pub const OTG_DOEPCTL0_EPTYP_MASK: u32 = 786432;
+pub const OTG_DOEPCTL0_EPTYP_CTRL: u8 = 0;
+pub const OTG_DOEPCTL0_SNPM: u32 = 1048576;
+pub const OTG_DOEPCTL0_STALL: u32 = 2097152;
+pub const OTG_DOEPCTL0_CNAK: u32 = 67108864;
+pub const OTG_DOEPCTL0_SNAK: u32 = 134217728;
+pub const OTG_DOEPCTL0_EPDIS: u32 = 1073741824;
+pub const OTG_DOEPCTL0_EPENA: u32 = 2147483648;
+pub const OTG_DOEPCTL_MPSIZ_SHIFT: u8 = 0;
+pub const OTG_DOEPCTL_MPSIZ_MASK: u16 = 2047;
+pub const OTG_DOEPCTL_USBAEP: u16 = 32768;
+pub const OTG_DOEPCTL_DPID: u32 = 65536;
+pub const OTG_DOEPCTL_DATA0: u8 = 0;
+pub const OTG_DOEPCTL_DATA1: u32 = 65536;
+pub const OTG_DOEPCTL_EONUM: u32 = 65536;
+pub const OTG_DOEPCTL_EVEN: u8 = 0;
+pub const OTG_DOEPCTL_ODD: u32 = 65536;
+pub const OTG_DOEPCTL_NAKSTS: u32 = 131072;
+pub const OTG_DOEPCTL_EPTYP_SHIFT: u8 = 18;
+pub const OTG_DOEPCTL_EPTYP_MASK: u32 = 786432;
+pub const OTG_DOEPCTL_EPTYP_CTRL: u8 = 0;
+pub const OTG_DOEPCTL_EPTYP_ISOC: u32 = 262144;
+pub const OTG_DOEPCTL_EPTYP_BULK: u32 = 524288;
+pub const OTG_DOEPCTL_EPTYP_INTR: u32 = 786432;
+pub const OTG_DOEPCTL_SNPM: u32 = 1048576;
+pub const OTG_DOEPCTL_STALL: u32 = 2097152;
+pub const OTG_DOEPCTL_CNAK: u32 = 67108864;
+pub const OTG_DOEPCTL_SNAK: u32 = 134217728;
+pub const OTG_DOEPCTL_SD0PID: u32 = 268435456;
+pub const OTG_DOEPCTL_SEVNFRM: u32 = 268435456;
+pub const OTG_DOEPCTL_SD1PID: u32 = 536870912;
+pub const OTG_DOEPCTL_SODDFRM: u32 = 536870912;
+pub const OTG_DOEPCTL_EPDIS: u32 = 1073741824;
+pub const OTG_DOEPCTL_EPENA: u32 = 2147483648;
+pub const OTG_DOEPINT_XFRC: u8 = 1;
+pub const OTG_DOEPINT_EPDISD: u8 = 2;
+pub const OTG_DOEPINT_SETUP: u8 = 8;
+pub const OTG_DOEPINT_OTEPDIS: u8 = 16;
+pub const OTG_DOEPINT_B2BSTUP: u8 = 64;
+pub const OTG_DOEPTSIZ0_XFRSIZ_SHIFT: u8 = 0;
+pub const OTG_DOEPTSIZ0_XFRSIZ_MASK: u8 = 127;
+pub const OTG_DOEPTSIZ0_PKTCNT: u32 = 524288;
+pub const OTG_DOEPTSIZ0_STUPCNT_SHIFT: u8 = 29;
+pub const OTG_DOEPTSIZ0_STUPCNT_MASK: u32 = 1610612736;
+pub const OTG_DOEPTSIZ_XFRSIZ_SHIFT: u8 = 0;
+pub const OTG_DOEPTSIZ_XFRSIZ_MASK: u32 = 524287;
+pub const OTG_DOEPTSIZ_PKTCNT_SHIFT: u8 = 19;
+pub const OTG_DOEPTSIZ_PKTCNT_MASK: u32 = 536346624;
+pub const OTG_DOEPTSIZ_STUPCNT_SHIFT: u8 = 29;
+pub const OTG_DOEPTSIZ_STUPCNT_MASK: u32 = 1610612736;
+pub const OTG_DOEPTSIZ_RXDPID_SHIFT: u8 = 29;
+pub const OTG_DOEPTSIZ_RXDPID_MASK: u32 = 1610612736;
+pub const OTG_DOEPTSIZ_RXDPID_DATA0: u8 = 0;
+pub const OTG_DOEPTSIZ_RXDPID_DATA2: u32 = 536870912;
+pub const OTG_DOEPTSIZ_RXDPID_DATA1: u32 = 1073741824;
+pub const OTG_DOEPTSIZ_RXDPID_MDATA: u32 = 1610612736;
+pub const OTG_PCGCCTL_STPPCLK: u8 = 1;
+pub const OTG_PCGCCTL_GATEHCLK: u8 = 2;
+pub const OTG_PCGCCTL_PHYSUSP: u8 = 16;
+pub const USBPHYC_PLL1_EN: u8 = 1;
+pub const USBPHYC_PLL1_SEL_SHIFT: u8 = 1;
+pub const USBPHYC_PLL1_SEL_12MHz: u8 = 0;
+pub const USBPHYC_PLL1_SEL_12_5MHz: u8 = 2;
+pub const USBPHYC_PLL1_SEL_12_5bMHz: u8 = 4;
+pub const USBPHYC_PLL1_SEL_16MHz: u8 = 6;
+pub const USBPHYC_PLL1_SEL_24MHz: u8 = 8;
+pub const USBPHYC_PLL1_SEL_25MHz: u8 = 10;
+pub const USBPHYC_PLL1_SEL_25bMHz: u8 = 12;
+pub const USBPHYC_TUNE_INCURREN: u8 = 1;
+pub const USBPHYC_TUNE_INCURRINT: u8 = 2;
+pub const USBPHYC_TUNE_LFSCAPEN: u8 = 4;
+pub const USBPHYC_TUNE_HSDRVSLEW: u8 = 8;
+pub const USBPHYC_TUNE_HSDRVDCLEV: u8 = 16;
+pub const USBPHYC_TUNE_HSDRVDCCUR: u8 = 32;
+pub const USBPHYC_TUNE_HSDRVCURINCR: u8 = 64;
+pub const USBPHYC_TUNE_FSDRVRFADJ: u8 = 128;
+pub const USBPHYC_TUNE_HSDRVRFRED: u16 = 256;
+pub const USBPHYC_TUNE_HSDRVCHKITRM_SHIFT: u8 = 9;
+pub const USBPHYC_TUNE_HSDRVCHKITRM_MASK: u16 = 7680;
+pub const USBPHYC_TUNE_HSDRVCHKZTRM_SHIFT: u8 = 13;
+pub const USBPHYC_TUNE_HSDRVCHKZTRM_MASK: u16 = 24576;
+pub const USBPHYC_TUNE_SQLCHCTL_SHIFT: u8 = 15;
+pub const USBPHYC_TUNE_SQLCHCTL_MASK: u32 = 98304;
+pub const USBPHYC_TUNE_HDRXGNEQEN: u32 = 131072;
+pub const USBPHYC_TUNE_STAGSEL: u32 = 262144;
+pub const USBPHYC_TUNE_HSFALLPREEM: u32 = 524288;
+pub const USBPHYC_TUNE_HSRXOFF_SHIFT: u8 = 20;
+pub const USBPHYC_TUNE_HSRXOFF_MASK: u32 = 3145728;
+pub const USBPHYC_TUNE_SHTCCTCTLPROT: u32 = 4194304;
+pub const USBPHYC_TUNE_SQLBYP: u32 = 8388608;
+pub const USBPHYC_LDO_USED: u8 = 1;
+pub const USBPHYC_LDO_STATUS: u8 = 2;
+pub const USBPHYC_LDO_ENABLE: u8 = 4;
+pub const USBHOST_DEVADDR_HASHSIZE: u8 = 8;
+pub const USBHOST_DEVADDR_HASHMASK: u8 = 7;
+pub const POLLIN: u8 = 1;
+pub const POLLRDNORM: u8 = 1;
+pub const POLLRDBAND: u8 = 1;
+pub const POLLPRI: u8 = 2;
+pub const POLLOUT: u8 = 4;
+pub const POLLWRNORM: u8 = 4;
+pub const POLLWRBAND: u8 = 4;
+pub const POLLERR: u8 = 8;
+pub const POLLHUP: u8 = 16;
+pub const POLLRDHUP: u8 = 16;
+pub const POLLNVAL: u8 = 32;
+pub const POLLALWAYS: u32 = 65536;
+pub const SPI_STATUS_PRESENT: u8 = 1;
+pub const SPI_STATUS_WRPROTECTED: u8 = 2;
+pub const CONFIG_ADC_FIFOSIZE: u8 = 8;
+pub const CONFIG_ADC_NPOLLWAITERS: u8 = 2;
+pub const STM32_ADC_SR_OFFSET: u8 = 0;
+pub const STM32_ADC_CR1_OFFSET: u8 = 4;
+pub const STM32_ADC_CR2_OFFSET: u8 = 8;
+pub const STM32_ADC_SMPR1_OFFSET: u8 = 12;
+pub const STM32_ADC_SMPR2_OFFSET: u8 = 16;
+pub const STM32_ADC_JOFR1_OFFSET: u8 = 20;
+pub const STM32_ADC_JOFR2_OFFSET: u8 = 24;
+pub const STM32_ADC_JOFR3_OFFSET: u8 = 28;
+pub const STM32_ADC_JOFR4_OFFSET: u8 = 32;
+pub const STM32_ADC_HTR_OFFSET: u8 = 36;
+pub const STM32_ADC_LTR_OFFSET: u8 = 40;
+pub const STM32_ADC_SQR1_OFFSET: u8 = 44;
+pub const STM32_ADC_SQR2_OFFSET: u8 = 48;
+pub const STM32_ADC_SQR3_OFFSET: u8 = 52;
+pub const STM32_ADC_JSQR_OFFSET: u8 = 56;
+pub const STM32_ADC_JDR1_OFFSET: u8 = 60;
+pub const STM32_ADC_JDR2_OFFSET: u8 = 64;
+pub const STM32_ADC_JDR3_OFFSET: u8 = 68;
+pub const STM32_ADC_JDR4_OFFSET: u8 = 72;
+pub const STM32_ADC_DR_OFFSET: u8 = 76;
+pub const STM32_ADC_CSR_OFFSET: u8 = 0;
+pub const STM32_ADC_CCR_OFFSET: u8 = 4;
+pub const STM32_ADC_CDR_OFFSET: u8 = 8;
+pub const STM32_ADC1_SR: u32 = 1073815552;
+pub const STM32_ADC1_CR1: u32 = 1073815556;
+pub const STM32_ADC1_CR2: u32 = 1073815560;
+pub const STM32_ADC1_SMPR1: u32 = 1073815564;
+pub const STM32_ADC1_SMPR2: u32 = 1073815568;
+pub const STM32_ADC1_JOFR1: u32 = 1073815572;
+pub const STM32_ADC1_JOFR2: u32 = 1073815576;
+pub const STM32_ADC1_JOFR3: u32 = 1073815580;
+pub const STM32_ADC1_JOFR4: u32 = 1073815584;
+pub const STM32_ADC1_HTR: u32 = 1073815588;
+pub const STM32_ADC1_LTR: u32 = 1073815592;
+pub const STM32_ADC1_SQR1: u32 = 1073815596;
+pub const STM32_ADC1_SQR2: u32 = 1073815600;
+pub const STM32_ADC1_SQR3: u32 = 1073815604;
+pub const STM32_ADC1_JSQR: u32 = 1073815608;
+pub const STM32_ADC1_JDR1: u32 = 1073815612;
+pub const STM32_ADC1_JDR2: u32 = 1073815616;
+pub const STM32_ADC1_JDR3: u32 = 1073815620;
+pub const STM32_ADC1_JDR4: u32 = 1073815624;
+pub const STM32_ADC1_DR: u32 = 1073815628;
+pub const STM32_ADC2_SR: u32 = 1073815808;
+pub const STM32_ADC2_CR1: u32 = 1073815812;
+pub const STM32_ADC2_CR2: u32 = 1073815816;
+pub const STM32_ADC2_SMPR1: u32 = 1073815820;
+pub const STM32_ADC2_SMPR2: u32 = 1073815824;
+pub const STM32_ADC2_JOFR1: u32 = 1073815828;
+pub const STM32_ADC2_JOFR2: u32 = 1073815832;
+pub const STM32_ADC2_JOFR3: u32 = 1073815836;
+pub const STM32_ADC2_JOFR4: u32 = 1073815840;
+pub const STM32_ADC2_HTR: u32 = 1073815844;
+pub const STM32_ADC2_LTR: u32 = 1073815848;
+pub const STM32_ADC2_SQR1: u32 = 1073815852;
+pub const STM32_ADC2_SQR2: u32 = 1073815856;
+pub const STM32_ADC2_SQR3: u32 = 1073815860;
+pub const STM32_ADC2_JSQR: u32 = 1073815864;
+pub const STM32_ADC2_JDR1: u32 = 1073815868;
+pub const STM32_ADC2_JDR2: u32 = 1073815872;
+pub const STM32_ADC2_JDR3: u32 = 1073815876;
+pub const STM32_ADC2_JDR4: u32 = 1073815880;
+pub const STM32_ADC2_DR: u32 = 1073815884;
+pub const STM32_ADC3_SR: u32 = 1073816064;
+pub const STM32_ADC3_CR1: u32 = 1073816068;
+pub const STM32_ADC3_CR2: u32 = 1073816072;
+pub const STM32_ADC3_SMPR1: u32 = 1073816076;
+pub const STM32_ADC3_SMPR2: u32 = 1073816080;
+pub const STM32_ADC3_JOFR1: u32 = 1073816084;
+pub const STM32_ADC3_JOFR2: u32 = 1073816088;
+pub const STM32_ADC3_JOFR3: u32 = 1073816092;
+pub const STM32_ADC3_JOFR4: u32 = 1073816096;
+pub const STM32_ADC3_HTR: u32 = 1073816100;
+pub const STM32_ADC3_LTR: u32 = 1073816104;
+pub const STM32_ADC3_SQR1: u32 = 1073816108;
+pub const STM32_ADC3_SQR2: u32 = 1073816112;
+pub const STM32_ADC3_SQR3: u32 = 1073816116;
+pub const STM32_ADC3_JSQR: u32 = 1073816120;
+pub const STM32_ADC3_JDR1: u32 = 1073816124;
+pub const STM32_ADC3_JDR2: u32 = 1073816128;
+pub const STM32_ADC3_JDR3: u32 = 1073816132;
+pub const STM32_ADC3_JDR4: u32 = 1073816136;
+pub const STM32_ADC3_DR: u32 = 1073816140;
+pub const STM32_ADC_CSR: u32 = 1073816320;
+pub const STM32_ADC_CCR: u32 = 1073816324;
+pub const STM32_ADC_CDR: u32 = 1073816328;
+pub const ADC_SR_AWD: u8 = 1;
+pub const ADC_SR_EOC: u8 = 2;
+pub const ADC_SR_JEOC: u8 = 4;
+pub const ADC_SR_JSTRT: u8 = 8;
+pub const ADC_SR_STRT: u8 = 16;
+pub const ADC_SR_OVR: u8 = 32;
+pub const ADC_CR1_AWDCH_SHIFT: u8 = 0;
+pub const ADC_CR1_AWDCH_MASK: u8 = 31;
+pub const ADC_CR1_EOCIE: u8 = 32;
+pub const ADC_CR1_AWDIE: u8 = 64;
+pub const ADC_CR1_JEOCIE: u8 = 128;
+pub const ADC_CR1_SCAN: u16 = 256;
+pub const ADC_CR1_AWDSGL: u16 = 512;
+pub const ADC_CR1_JAUTO: u16 = 1024;
+pub const ADC_CR1_DISCEN: u16 = 2048;
+pub const ADC_CR1_JDISCEN: u16 = 4096;
+pub const ADC_CR1_DISCNUM_SHIFT: u8 = 13;
+pub const ADC_CR1_DISCNUM_MASK: u16 = 57344;
+pub const ADC_CR1_JAWDEN: u32 = 4194304;
+pub const ADC_CR1_AWDEN: u32 = 8388608;
+pub const ADC_CR1_RES_SHIFT: u8 = 24;
+pub const ADC_CR1_RES_MASK: u32 = 50331648;
+pub const ADC_CR1_RES_12BIT: u8 = 0;
+pub const ADC_CR1_RES_10BIT: u32 = 16777216;
+pub const ADC_CR1_RES_8BIT: u32 = 33554432;
+pub const ADC_CR1_RES_6BIT: u32 = 50331648;
+pub const ADC_CR1_OVRIE: u32 = 67108864;
+pub const ADC_CR2_ADON: u8 = 1;
+pub const ADC_CR2_CONT: u8 = 2;
+pub const ADC_CR2_DMA: u16 = 256;
+pub const ADC_CR2_DDS: u16 = 512;
+pub const ADC_CR2_EOCS: u16 = 1024;
+pub const ADC_CR2_ALIGN: u16 = 2048;
+pub const ADC_CR2_JEXTSEL_SHIFT: u8 = 16;
+pub const ADC_CR2_JEXTSEL_MASK: u32 = 983040;
+pub const ADC_CR2_JEXTSEL_T1TRGO: u8 = 0;
+pub const ADC_CR2_JEXTSEL_T1CC4: u32 = 65536;
+pub const ADC_CR2_JEXTSEL_T2TRGO: u32 = 131072;
+pub const ADC_CR2_JEXTSEL_T2CC1: u32 = 196608;
+pub const ADC_CR2_JEXTSEL_T3CC4: u32 = 262144;
+pub const ADC_CR2_JEXTSEL_T4TRGO: u32 = 327680;
+pub const ADC_CR2_JEXTSEL_T8CC4: u32 = 458752;
+pub const ADC_CR2_JEXTSEL_T1TRGO2: u32 = 524288;
+pub const ADC_CR2_JEXTSEL_T8TRGO: u32 = 589824;
+pub const ADC_CR2_JEXTSEL_T8TRGO2: u32 = 655360;
+pub const ADC_CR2_JEXTSEL_T3CC3: u32 = 720896;
+pub const ADC_CR2_JEXTSEL_T5TRGO: u32 = 786432;
+pub const ADC_CR2_JEXTSEL_T3CC1: u32 = 851968;
+pub const ADC_CR2_JEXTSEL_T6TRGO: u32 = 917504;
+pub const ADC_CR2_JEXTEN_SHIFT: u8 = 20;
+pub const ADC_CR2_JEXTEN_MASK: u32 = 3145728;
+pub const ADC_CR2_JEXTEN_NONE: u8 = 0;
+pub const ADC_CR2_JEXTEN_RISING: u32 = 1048576;
+pub const ADC_CR2_JEXTEN_FALLING: u32 = 2097152;
+pub const ADC_CR2_JEXTEN_BOTH: u32 = 3145728;
+pub const ADC_CR2_JSWSTART: u32 = 4194304;
+pub const ADC_CR2_EXTSEL_SHIFT: u8 = 24;
+pub const ADC_CR2_EXTSEL_MASK: u32 = 251658240;
+pub const ADC_CR2_EXTSEL_T1CC1: u8 = 0;
+pub const ADC_CR2_EXTSEL_T1CC2: u32 = 16777216;
+pub const ADC_CR2_EXTSEL_T1CC3: u32 = 33554432;
+pub const ADC_CR2_EXTSEL_T2CC2: u32 = 50331648;
+pub const ADC_CR2_EXTSEL_T5TRGO: u32 = 67108864;
+pub const ADC_CR2_EXTSEL_T4CC4: u32 = 83886080;
+pub const ADC_CR2_EXTSEL_T3CC4: u32 = 100663296;
+pub const ADC_CR2_EXTSEL_T8TRGO: u32 = 117440512;
+pub const ADC_CR2_EXTSEL_T8TRGO2: u32 = 134217728;
+pub const ADC_CR2_EXTSEL_T1TRGO: u32 = 150994944;
+pub const ADC_CR2_EXTSEL_T1TRGO2: u32 = 167772160;
+pub const ADC_CR2_EXTSEL_T2TRGO: u32 = 184549376;
+pub const ADC_CR2_EXTSEL_T4TRGO: u32 = 201326592;
+pub const ADC_CR2_EXTSEL_T6TRGO: u32 = 218103808;
+pub const ADC_CR2_EXTSEL_EXTI11: u32 = 251658240;
+pub const ADC_CR2_EXTEN_SHIFT: u8 = 28;
+pub const ADC_CR2_EXTEN_MASK: u32 = 805306368;
+pub const ADC_CR2_EXTEN_NONE: u8 = 0;
+pub const ADC_CR2_EXTEN_RISING: u32 = 268435456;
+pub const ADC_CR2_EXTEN_FALLING: u32 = 536870912;
+pub const ADC_CR2_EXTEN_BOTH: u32 = 805306368;
+pub const ADC_CR2_SWSTART: u32 = 1073741824;
+pub const ADC_SMPR_3: u8 = 0;
+pub const ADC_SMPR_15: u8 = 1;
+pub const ADC_SMPR_28: u8 = 2;
+pub const ADC_SMPR_56: u8 = 3;
+pub const ADC_SMPR_84: u8 = 4;
+pub const ADC_SMPR_112: u8 = 5;
+pub const ADC_SMPR_144: u8 = 6;
+pub const ADC_SMPR_480: u8 = 7;
+pub const ADC_SMPR1_SMP10_SHIFT: u8 = 0;
+pub const ADC_SMPR1_SMP10_MASK: u8 = 7;
+pub const ADC_SMPR1_SMP11_SHIFT: u8 = 3;
+pub const ADC_SMPR1_SMP11_MASK: u8 = 56;
+pub const ADC_SMPR1_SMP12_SHIFT: u8 = 6;
+pub const ADC_SMPR1_SMP12_MASK: u16 = 448;
+pub const ADC_SMPR1_SMP13_SHIFT: u8 = 9;
+pub const ADC_SMPR1_SMP13_MASK: u16 = 3584;
+pub const ADC_SMPR1_SMP14_SHIFT: u8 = 12;
+pub const ADC_SMPR1_SMP14_MASK: u16 = 28672;
+pub const ADC_SMPR1_SMP15_SHIFT: u8 = 15;
+pub const ADC_SMPR1_SMP15_MASK: u32 = 229376;
+pub const ADC_SMPR1_SMP16_SHIFT: u8 = 18;
+pub const ADC_SMPR1_SMP16_MASK: u32 = 1835008;
+pub const ADC_SMPR1_SMP17_SHIFT: u8 = 21;
+pub const ADC_SMPR1_SMP17_MASK: u32 = 14680064;
+pub const ADC_SMPR1_SMP18_SHIFT: u8 = 24;
+pub const ADC_SMPR1_SMP18_MASK: u32 = 117440512;
+pub const ADC_SMPR2_SMP0_SHIFT: u8 = 0;
+pub const ADC_SMPR2_SMP0_MASK: u8 = 7;
+pub const ADC_SMPR2_SMP1_SHIFT: u8 = 3;
+pub const ADC_SMPR2_SMP1_MASK: u8 = 56;
+pub const ADC_SMPR2_SMP2_SHIFT: u8 = 6;
+pub const ADC_SMPR2_SMP2_MASK: u16 = 448;
+pub const ADC_SMPR2_SMP3_SHIFT: u8 = 9;
+pub const ADC_SMPR2_SMP3_MASK: u16 = 3584;
+pub const ADC_SMPR2_SMP4_SHIFT: u8 = 12;
+pub const ADC_SMPR2_SMP4_MASK: u16 = 28672;
+pub const ADC_SMPR2_SMP5_SHIFT: u8 = 15;
+pub const ADC_SMPR2_SMP5_MASK: u32 = 229376;
+pub const ADC_SMPR2_SMP6_SHIFT: u8 = 18;
+pub const ADC_SMPR2_SMP6_MASK: u32 = 1835008;
+pub const ADC_SMPR2_SMP7_SHIFT: u8 = 21;
+pub const ADC_SMPR2_SMP7_MASK: u32 = 14680064;
+pub const ADC_SMPR2_SMP8_SHIFT: u8 = 24;
+pub const ADC_SMPR2_SMP8_MASK: u32 = 117440512;
+pub const ADC_SMPR2_SMP9_SHIFT: u8 = 27;
+pub const ADC_SMPR2_SMP9_MASK: u32 = 939524096;
+pub const ADC_JOFR_SHIFT: u8 = 0;
+pub const ADC_JOFR_MASK: u16 = 4095;
+pub const ADC_HTR_SHIFT: u8 = 0;
+pub const ADC_HTR_MASK: u16 = 4095;
+pub const ADC_LTR_SHIFT: u8 = 0;
+pub const ADC_LTR_MASK: u16 = 4095;
+pub const ADC_SQR1_SQ13_SHIFT: u8 = 0;
+pub const ADC_SQR1_SQ13_MASK: u8 = 31;
+pub const ADC_SQR1_SQ14_SHIFT: u8 = 5;
+pub const ADC_SQR1_SQ14_MASK: u16 = 992;
+pub const ADC_SQR1_SQ15_SHIFT: u8 = 10;
+pub const ADC_SQR1_SQ15_MASK: u16 = 31744;
+pub const ADC_SQR1_SQ16_SHIFT: u8 = 15;
+pub const ADC_SQR1_SQ16_MASK: u32 = 1015808;
+pub const ADC_SQR1_L_SHIFT: u8 = 20;
+pub const ADC_SQR1_L_MASK: u32 = 15728640;
+pub const ADC_SQR1_RESERVED: u32 = 4278190080;
+pub const ADC_SQR1_FIRST: u8 = 13;
+pub const ADC_SQR1_LAST: u8 = 16;
+pub const ADC_SQR1_SQ_OFFSET: u8 = 0;
+pub const ADC_SQR2_SQ7_SHIFT: u8 = 0;
+pub const ADC_SQR2_SQ7_MASK: u8 = 31;
+pub const ADC_SQR2_SQ8_SHIFT: u8 = 5;
+pub const ADC_SQR2_SQ8_MASK: u16 = 992;
+pub const ADC_SQR2_SQ9_SHIFT: u8 = 10;
+pub const ADC_SQR2_SQ9_MASK: u16 = 31744;
+pub const ADC_SQR2_SQ10_SHIFT: u8 = 15;
+pub const ADC_SQR2_SQ10_MASK: u32 = 1015808;
+pub const ADC_SQR2_SQ11_SHIFT: u8 = 20;
+pub const ADC_SQR2_SQ11_MASK: u32 = 32505856;
+pub const ADC_SQR2_SQ12_SHIFT: u8 = 25;
+pub const ADC_SQR2_SQ12_MASK: u32 = 1040187392;
+pub const ADC_SQR2_RESERVED: u32 = 3221225472;
+pub const ADC_SQR2_FIRST: u8 = 7;
+pub const ADC_SQR2_LAST: u8 = 12;
+pub const ADC_SQR2_SQ_OFFSET: u8 = 0;
+pub const ADC_SQR3_SQ1_SHIFT: u8 = 0;
+pub const ADC_SQR3_SQ1_MASK: u8 = 31;
+pub const ADC_SQR3_SQ2_SHIFT: u8 = 5;
+pub const ADC_SQR3_SQ2_MASK: u16 = 992;
+pub const ADC_SQR3_SQ3_SHIFT: u8 = 10;
+pub const ADC_SQR3_SQ3_MASK: u16 = 31744;
+pub const ADC_SQR3_SQ4_SHIFT: u8 = 15;
+pub const ADC_SQR3_SQ4_MASK: u32 = 1015808;
+pub const ADC_SQR3_SQ5_SHIFT: u8 = 20;
+pub const ADC_SQR3_SQ5_MASK: u32 = 32505856;
+pub const ADC_SQR3_SQ6_SHIFT: u8 = 25;
+pub const ADC_SQR3_SQ6_MASK: u32 = 1040187392;
+pub const ADC_SQR3_RESERVED: u32 = 3221225472;
+pub const ADC_SQR3_FIRST: u8 = 1;
+pub const ADC_SQR3_LAST: u8 = 6;
+pub const ADC_SQR3_SQ_OFFSET: u8 = 0;
+pub const ADC_SQ_OFFSET: u8 = 5;
+pub const ADC_JSQR_JSQ1_SHIFT: u8 = 0;
+pub const ADC_JSQR_JSQ1_MASK: u8 = 31;
+pub const ADC_JSQR_JSQ2_SHIFT: u8 = 5;
+pub const ADC_JSQR_JSQ2_MASK: u16 = 992;
+pub const ADC_JSQR_JSQ3_SHIFT: u8 = 10;
+pub const ADC_JSQR_JSQ3_MASK: u16 = 31744;
+pub const ADC_JSQR_JSQ4_SHIFT: u8 = 15;
+pub const ADC_JSQR_JSQ4_MASK: u32 = 1015808;
+pub const ADC_JSQR_JSQ_SHIFT: u8 = 5;
+pub const ADC_JSQR_JL_SHIFT: u8 = 20;
+pub const ADC_JSQR_JL_MASK: u32 = 3145728;
+pub const ADC_JDR_JDATA_SHIFT: u8 = 0;
+pub const ADC_JDR_JDATA_MASK: u16 = 65535;
+pub const ADC_DR_RDATA_SHIFT: u8 = 0;
+pub const ADC_DR_RDATA_MASK: u16 = 65535;
+pub const ADC_CSR_AWD1: u8 = 1;
+pub const ADC_CSR_EOC1: u8 = 2;
+pub const ADC_CSR_JEOC1: u8 = 4;
+pub const ADC_CSR_JSTRT1: u8 = 8;
+pub const ADC_CSR_STRT1: u8 = 16;
+pub const ADC_CSR_OVR1: u8 = 32;
+pub const ADC_CSR_AWD2: u16 = 256;
+pub const ADC_CSR_EOC2: u16 = 512;
+pub const ADC_CSR_JEOC2: u16 = 1024;
+pub const ADC_CSR_JSTRT2: u16 = 2048;
+pub const ADC_CSR_STRT2: u16 = 4096;
+pub const ADC_CSR_OVR2: u16 = 8192;
+pub const ADC_CSR_AWD3: u32 = 65536;
+pub const ADC_CSR_EOC3: u32 = 131072;
+pub const ADC_CSR_JEOC3: u32 = 262144;
+pub const ADC_CSR_JSTRT3: u32 = 524288;
+pub const ADC_CSR_STRT3: u32 = 1048576;
+pub const ADC_CSR_OVR3: u32 = 2097152;
+pub const ADC_CCR_MULTI_SHIFT: u8 = 0;
+pub const ADC_CCR_MULTI_MASK: u8 = 31;
+pub const ADC_CCR_MULTI_NONE: u8 = 0;
+pub const ADC_CCR_MULTI_RSISM2: u8 = 1;
+pub const ADC_CCR_MULTI_RSATM2: u8 = 2;
+pub const ADC_CCR_MULTI_ISM2: u8 = 5;
+pub const ADC_CCR_MULTI_RSM2: u8 = 6;
+pub const ADC_CCR_MULTI_IM2: u8 = 7;
+pub const ADC_CCR_MULTI_ATM2: u8 = 9;
+pub const ADC_CCR_MULTI_RSISM3: u8 = 17;
+pub const ADC_CCR_MULTI_RSATM3: u8 = 18;
+pub const ADC_CCR_MULTI_ISM3: u8 = 21;
+pub const ADC_CCR_MULTI_RSM3: u8 = 22;
+pub const ADC_CCR_MULTI_IM3: u8 = 23;
+pub const ADC_CCR_MULTI_ATM3: u8 = 25;
+pub const ADC_CCR_DELAY_SHIFT: u8 = 8;
+pub const ADC_CCR_DELAY_MASK: u16 = 3840;
+pub const ADC_CCR_DDS: u16 = 8192;
+pub const ADC_CCR_DMA_SHIFT: u8 = 14;
+pub const ADC_CCR_DMA_MASK: u16 = 49152;
+pub const ADC_CCR_DMA_DISABLED: u8 = 0;
+pub const ADC_CCR_DMA_MODE1: u16 = 16384;
+pub const ADC_CCR_DMA_MODE2: u16 = 32768;
+pub const ADC_CCR_DMA_MODE3: u16 = 49152;
+pub const ADC_CCR_ADCPRE_SHIFT: u8 = 16;
+pub const ADC_CCR_ADCPRE_MASK: u32 = 196608;
+pub const ADC_CCR_ADCPRE_DIV2: u8 = 0;
+pub const ADC_CCR_ADCPRE_DIV4: u32 = 65536;
+pub const ADC_CCR_ADCPRE_DIV6: u32 = 131072;
+pub const ADC_CCR_ADCPRE_DIV8: u32 = 196608;
+pub const ADC_CCR_VBATE: u32 = 4194304;
+pub const ADC_CCR_TSVREFE: u32 = 8388608;
+pub const STM32_ADC_DMAREG_OFFSET: u8 = 8;
+pub const ADC_DMAREG_DMA: u16 = 256;
+pub const STM32_ADC_EXTREG_OFFSET: u8 = 8;
+pub const ADC_EXTREG_EXTSEL_MASK: u32 = 251658240;
+pub const ADC_EXTREG_EXTSEL_SHIFT: u8 = 24;
+pub const STM32_ADC_JEXTREG_OFFSET: u8 = 8;
+pub const ADC_JEXTREG_JEXTSEL_MASK: u32 = 983040;
+pub const ADC_EXTREG_JEXTSEL_SHIFT: u8 = 16;
+pub const STM32_ADC_ISR_OFFSET: u8 = 0;
+pub const STM32_ADC_IER_OFFSET: u8 = 4;
+pub const ADC_EXTREG_EXTEN_MASK: u32 = 805306368;
+pub const ADC_EXTREG_EXTEN_NONE: u8 = 0;
+pub const ADC_EXTREG_EXTEN_DEFAULT: u32 = 268435456;
+pub const ADC_JEXTREG_JEXTEN_MASK: u32 = 3145728;
+pub const ADC_JEXTREG_JEXTEN_NONE: u8 = 0;
+pub const ADC_JEXTREG_JEXTEN_DEFAULT: u32 = 1048576;
 pub type _int8_t = cty::c_schar;
 pub type _uint8_t = cty::c_uchar;
 pub type _int16_t = cty::c_short;
@@ -2011,6 +3030,19 @@ extern "C" {
 extern "C" {
     #[doc = " Name: stm32_dma_alloc_init\n\n Description:\n   Called to create a FAT DMA allocator\n\n Returned Value:\n   0 on success or -ENOMEM\n"]
     pub fn stm32_dma_alloc_init();
+}
+pub type va_list = u32;
+pub type __gnuc_va_list = u32;
+extern "C" {
+    #[doc = " Name: syslog and vsyslog\n\n Description:\n   syslog() generates a log message. The priority argument is formed by\n   ORing the facility and the level values (see include/syslog.h). The\n   remaining arguments are a format, as in printf and any arguments to the\n   format.\n\n   The NuttX implementation does not support any special formatting\n   characters beyond those supported by printf.\n\n   The function vsyslog() performs the same task as syslog() with the\n   difference that it takes a set of arguments which have been obtained\n   using the stdarg variable argument list macros.\n"]
+    pub fn syslog(priority: cty::c_int, fmt: *const cty::c_char, ...);
+}
+extern "C" {
+    pub fn vsyslog(priority: cty::c_int, fmt: *const cty::c_char, ap: va_list);
+}
+extern "C" {
+    #[doc = " Name: setlogmask\n\n Description:\n   The setlogmask() function sets the logmask and returns the previous\n   mask. If the mask argument is 0, the current logmask is not modified.\n\n   The SYSLOG priorities are: LOG_EMERG, LOG_ALERT, LOG_CRIT, LOG_ERR,\n   LOG_WARNING, LOG_NOTICE, LOG_INFO, and LOG_DEBUG.  The bit corresponding\n   to a priority p is LOG_MASK(p); LOG_UPTO(p) provides the mask of all\n   priorities in the above list up to and including p.\n\n   Per OpenGroup.org \"If the maskpri argument is 0, the current log mask\n   is not modified.\"  In this implementation, the value zero is permitted\n   in order to disable all syslog levels.\n\n   NOTE:  setlogmask is not a thread-safe, re-entrant function.  Concurrent\n   use of setlogmask() will have undefined behavior.\n\n   REVISIT: Per POSIX the syslog mask should be a per-process value but in\n   NuttX, the scope of the mask is dependent on the nature of the build:\n\n   Flat Build:  There is one, global SYSLOG mask that controls all output.\n   Protected Build:  There are two SYSLOG masks.  One within the kernel\n     that controls only kernel output.  And one in user-space that controls\n     only user SYSLOG output.\n   Kernel Build:  The kernel build is compliant with the POSIX requirement:\n     There will be one mask for for each user process, controlling the\n     SYSLOG output only form that process.  There will be a separate mask\n     accessible only in the kernel code to control kernel SYSLOG output.\n"]
+    pub fn setlogmask(mask: cty::c_int) -> cty::c_int;
 }
 pub type mode_t = cty::c_uint;
 pub type rsize_t = _size_t;
@@ -2068,62 +3100,79 @@ pub type _bindgen_ty_1 = cty::c_int;
 extern "C" {
     pub fn nsh_main(argc: cty::c_int, argv: *mut *mut cty::c_char) -> cty::c_int;
 }
+#[doc = " Public Types"]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
-pub struct xcptcontext {
-    pub sigdeliver: *mut cty::c_void,
-    pub saved_regs: *mut u32,
-    pub regs: *mut u32,
+pub struct iovec {
+    pub iov_base: *mut cty::c_void,
+    pub iov_len: usize,
 }
 extern "C" {
-    #[doc = " Public Data"]
-    pub static mut g_current_regs: [*mut u32; 1usize];
+    #[doc = " Name: readv()\n\n Description:\n   The readv() function is equivalent to read(), except as described below.\n   The readv() function places the input data into the 'iovcnt' buffers\n   specified by the members of the 'iov' array: iov[0], iov[1], ...,\n   iov['iovcnt'-1].  The 'iovcnt' argument is valid if greater than 0 and\n   less than or equal to IOV_MAX as defined in limits.h.\n\n   Each iovec entry specifies the base address and length of an area in\n   memory where data should be placed.  The readv() function will always\n   fill an area completely before proceeding to the next.\n\n   TODO: pon successful completion, readv() will mark for update the\n   st_atime field of the file.\n\n Input Parameters:\n   filedes - The open file descriptor for the file to be read\n   iov     - Array of read buffer descriptors\n   iovcnt  - Number of elements in iov[]\n\n Returned Value:\n   Upon successful completion, readv() will return a non-negative integer\n   indicating the number of bytes actually read.  Otherwise, the functions\n   will return -1 and set errno to indicate the error.  See read() for the\n   list of returned errno values.  In addition, the readv() function will\n   fail if:\n\n    EINVAL.\n      The sum of the iov_len values in the iov array overflowed an ssize_t\n      or The 'iovcnt' argument was less than or equal to 0, or greater than\n      IOV_MAX (Not implemented).\n"]
+    pub fn readv(fildes: cty::c_int, iov: *const iovec, iovcnt: cty::c_int) -> isize;
 }
-pub type irq_t = u8;
-pub type xcpt_t = ::core::option::Option<
-    unsafe extern "C" fn(
-        irq: cty::c_int,
-        context: *mut cty::c_void,
-        arg: *mut cty::c_void,
-    ) -> cty::c_int,
+extern "C" {
+    #[doc = " Name: writev()\n\n Description:\n   The writev() function is equivalent to write(), except as described\n   below. The writev() function will gather output data from the 'iovcnt'\n   buffers specified by the members of the 'iov' array: iov[0], iov[1],\n   ..., iov[iovcnt-1]. The 'iovcnt' argument is valid if greater than 0\n   and less than or equal to IOV_MAX, as defined in limits.h.\n\n   Each iovec entry specifies the base address and length of an area in\n   memory from which data should be written. The writev() function always\n   writes a complete area before proceeding to the next.\n\n   If 'filedes' refers to a regular file and all of the iov_len members in\n   the array pointed to by iov are 0, writev() will return 0 and have no\n   other effect. For other file types, the behavior is unspecified.\n\n   TODO: If the sum of the iov_len values is greater than SSIZE_MAX, the\n   operation will fail and no data will be transferred.\n\n Input Parameters:\n   filedes - The open file descriptor for the file to be read\n   iov     - Array of read buffer descriptors\n   iovcnt  - Number of elements in iov[]\n\n Returned Value:\n   Upon successful completion, writev() shall return the number of bytes\n   actually written. Otherwise, it shall return a value of -1, the file-\n   pointer shall remain unchanged, and errno shall be set to indicate an\n   error. See write for the list of returned errno values. In addition,\n   the readv() function will fail if:\n\n    EINVAL.\n      The sum of the iov_len values in the iov array overflowed an ssize_t\n      or The 'iovcnt' argument was less than or equal to 0, or greater than\n      IOV_MAX (Not implemented).\n"]
+    pub fn writev(fildes: cty::c_int, iov: *const iovec, iovcnt: cty::c_int) -> isize;
+}
+extern "C" {
+    pub fn preadv(
+        fildes: cty::c_int,
+        iov: *const iovec,
+        iovcnt: cty::c_int,
+        offset: off_t,
+    ) -> isize;
+}
+extern "C" {
+    pub fn pwritev(
+        fildes: cty::c_int,
+        iov: *const iovec,
+        iovcnt: cty::c_int,
+        offset: off_t,
+    ) -> isize;
+}
+pub type lib_dump_handler_t = ::core::option::Option<
+    unsafe extern "C" fn(arg: *mut cty::c_void, fmt: *const cty::c_char, ...),
 >;
 extern "C" {
-    #[doc = " Name: irq_attach\n\n Description:\n   Configure the IRQ subsystem so that IRQ number 'irq' is dispatched to\n   'isr' with argument 'arg'\n"]
-    pub fn irq_attach(irq: cty::c_int, isr: xcpt_t, arg: *mut cty::c_void) -> cty::c_int;
-}
-extern "C" {
-    pub static g_gpiobase: [u32; 11usize];
-}
-extern "C" {
-    #[doc = " Name: stm32_configgpio\n\n Description:\n   Configure a GPIO pin based on bit-encoded description of the pin.\n   Once it is configured as Alternative (GPIO_ALT|GPIO_CNF_AFPP|...)\n   function, it must be unconfigured with stm32_unconfiggpio() with\n   the same cfgset first before it can be set to non-alternative function.\n\n Returned Value:\n   OK on success\n   ERROR on invalid port, or when pin is locked as ALT function.\n"]
-    pub fn stm32_configgpio(cfgset: u32) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: stm32_unconfiggpio\n\n Description:\n   Unconfigure a GPIO pin based on bit-encoded description of the pin, set\n   it into default HiZ state (and possibly mark it's unused) and unlock it\n   whether it was previously selected as alternative function\n   (GPIO_ALT|GPIO_CNF_AFPP|...).\n\n   This is a safety function and prevents hardware from shocks, as\n   unexpected write to the Timer Channel Output GPIO to fixed '1' or '0'\n   while it should operate in PWM mode could produce excessive on-board\n   currents and trigger over-current/alarm function.\n\n Returned Value:\n  OK on success\n  ERROR on invalid port\n"]
-    pub fn stm32_unconfiggpio(cfgset: u32) -> cty::c_int;
-}
-extern "C" {
-    #[doc = " Name: stm32_gpiowrite\n\n Description:\n   Write one or zero to the selected GPIO pin\n"]
-    pub fn stm32_gpiowrite(pinset: u32, value: bool);
-}
-extern "C" {
-    #[doc = " Name: stm32_gpioread\n\n Description:\n   Read one or zero from the selected GPIO pin\n"]
-    pub fn stm32_gpioread(pinset: u32) -> bool;
-}
-extern "C" {
-    #[doc = " Name: stm32_iocompensation\n\n Description:\n   Enable I/O compensation.\n\n   By default the I/O compensation cell is not used. However when the I/O\n   output buffer speed is configured in 50 MHz or 100 MHz mode, it is\n   recommended to use the compensation cell for slew rate control on I/O\n   tf(IO)out)/tr(IO)out commutation to reduce the I/O noise on power\n   supply.\n\n   The I/O compensation cell can be used only when the supply voltage\n   ranges from 2.4 to 3.6 V.\n\n Input Parameters:\n   None\n\n Returned Value:\n   None\n"]
-    pub fn stm32_iocompensation();
-}
-extern "C" {
-    #[doc = " Name: stm32_gpiosetevent\n\n Description:\n   Sets/clears GPIO based event and interrupt triggers.\n\n Input Parameters:\n  - pinset:      GPIO pin configuration\n  - risingedge:  Enables interrupt on rising edges\n  - fallingedge: Enables interrupt on falling edges\n  - event:       Generate event when set\n  - func:        When non-NULL, generate interrupt\n  - arg:         Argument passed to the interrupt callback\n\n Returned Value:\n   Zero (OK) on success; a negated errno value on failure indicating the\n   nature of the failure.\n"]
-    pub fn stm32_gpiosetevent(
-        pinset: u32,
-        risingedge: bool,
-        fallingedge: bool,
-        event: bool,
-        func: xcpt_t,
+    pub fn lib_dumphandler(
+        msg: *const cty::c_char,
+        buffer: *const u8,
+        buflen: cty::c_uint,
+        handler: lib_dump_handler_t,
         arg: *mut cty::c_void,
-    ) -> cty::c_int;
+    );
+}
+extern "C" {
+    pub fn lib_dumpvhandler(
+        msg: *const cty::c_char,
+        iov: *const iovec,
+        iovcnt: cty::c_int,
+        handler: lib_dump_handler_t,
+        arg: *mut cty::c_void,
+    );
+}
+extern "C" {
+    pub fn lib_dumpbuffer(msg: *const cty::c_char, buffer: *const u8, buflen: cty::c_uint);
+}
+extern "C" {
+    pub fn lib_dumpvbuffer(msg: *const cty::c_char, iov: *const iovec, iovcnt: cty::c_int);
+}
+extern "C" {
+    pub fn lib_dumpfile(
+        fd: cty::c_int,
+        msg: *const cty::c_char,
+        buffer: *const u8,
+        buflen: cty::c_uint,
+    );
+}
+extern "C" {
+    pub fn lib_dumpvfile(
+        fd: cty::c_int,
+        msg: *const cty::c_char,
+        iov: *const iovec,
+        iovcnt: cty::c_int,
+    );
 }
 #[doc = " Type Definitions"]
 #[repr(C)]
@@ -2564,92 +3613,77 @@ extern "C" {
 extern "C" {
     pub fn __errno() -> *mut cty::c_int;
 }
-pub type va_list = u32;
-pub type __gnuc_va_list = u32;
 extern "C" {
-    #[doc = " Name: syslog and vsyslog\n\n Description:\n   syslog() generates a log message. The priority argument is formed by\n   ORing the facility and the level values (see include/syslog.h). The\n   remaining arguments are a format, as in printf and any arguments to the\n   format.\n\n   The NuttX implementation does not support any special formatting\n   characters beyond those supported by printf.\n\n   The function vsyslog() performs the same task as syslog() with the\n   difference that it takes a set of arguments which have been obtained\n   using the stdarg variable argument list macros.\n"]
-    pub fn syslog(priority: cty::c_int, fmt: *const cty::c_char, ...);
+    pub fn _assert(
+        filename: *const cty::c_char,
+        linenum: cty::c_int,
+        msg: *const cty::c_char,
+        regs: *mut cty::c_void,
+    );
 }
 extern "C" {
-    pub fn vsyslog(priority: cty::c_int, fmt: *const cty::c_char, ap: va_list);
+    pub fn __assert(
+        filename: *const cty::c_char,
+        linenum: cty::c_int,
+        msg: *const cty::c_char,
+    ) -> !;
 }
-extern "C" {
-    #[doc = " Name: setlogmask\n\n Description:\n   The setlogmask() function sets the logmask and returns the previous\n   mask. If the mask argument is 0, the current logmask is not modified.\n\n   The SYSLOG priorities are: LOG_EMERG, LOG_ALERT, LOG_CRIT, LOG_ERR,\n   LOG_WARNING, LOG_NOTICE, LOG_INFO, and LOG_DEBUG.  The bit corresponding\n   to a priority p is LOG_MASK(p); LOG_UPTO(p) provides the mask of all\n   priorities in the above list up to and including p.\n\n   Per OpenGroup.org \"If the maskpri argument is 0, the current log mask\n   is not modified.\"  In this implementation, the value zero is permitted\n   in order to disable all syslog levels.\n\n   NOTE:  setlogmask is not a thread-safe, re-entrant function.  Concurrent\n   use of setlogmask() will have undefined behavior.\n\n   REVISIT: Per POSIX the syslog mask should be a per-process value but in\n   NuttX, the scope of the mask is dependent on the nature of the build:\n\n   Flat Build:  There is one, global SYSLOG mask that controls all output.\n   Protected Build:  There are two SYSLOG masks.  One within the kernel\n     that controls only kernel output.  And one in user-space that controls\n     only user SYSLOG output.\n   Kernel Build:  The kernel build is compliant with the POSIX requirement:\n     There will be one mask for for each user process, controlling the\n     SYSLOG output only form that process.  There will be a separate mask\n     accessible only in the kernel code to control kernel SYSLOG output.\n"]
-    pub fn setlogmask(mask: cty::c_int) -> cty::c_int;
-}
-#[doc = " Public Types"]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
-pub struct iovec {
-    pub iov_base: *mut cty::c_void,
-    pub iov_len: usize,
+pub struct xcptcontext {
+    pub sigdeliver: *mut cty::c_void,
+    pub saved_regs: *mut u32,
+    pub regs: *mut u32,
 }
 extern "C" {
-    #[doc = " Name: readv()\n\n Description:\n   The readv() function is equivalent to read(), except as described below.\n   The readv() function places the input data into the 'iovcnt' buffers\n   specified by the members of the 'iov' array: iov[0], iov[1], ...,\n   iov['iovcnt'-1].  The 'iovcnt' argument is valid if greater than 0 and\n   less than or equal to IOV_MAX as defined in limits.h.\n\n   Each iovec entry specifies the base address and length of an area in\n   memory where data should be placed.  The readv() function will always\n   fill an area completely before proceeding to the next.\n\n   TODO: pon successful completion, readv() will mark for update the\n   st_atime field of the file.\n\n Input Parameters:\n   filedes - The open file descriptor for the file to be read\n   iov     - Array of read buffer descriptors\n   iovcnt  - Number of elements in iov[]\n\n Returned Value:\n   Upon successful completion, readv() will return a non-negative integer\n   indicating the number of bytes actually read.  Otherwise, the functions\n   will return -1 and set errno to indicate the error.  See read() for the\n   list of returned errno values.  In addition, the readv() function will\n   fail if:\n\n    EINVAL.\n      The sum of the iov_len values in the iov array overflowed an ssize_t\n      or The 'iovcnt' argument was less than or equal to 0, or greater than\n      IOV_MAX (Not implemented).\n"]
-    pub fn readv(fildes: cty::c_int, iov: *const iovec, iovcnt: cty::c_int) -> isize;
+    #[doc = " Public Data"]
+    pub static mut g_current_regs: [*mut u32; 1usize];
 }
-extern "C" {
-    #[doc = " Name: writev()\n\n Description:\n   The writev() function is equivalent to write(), except as described\n   below. The writev() function will gather output data from the 'iovcnt'\n   buffers specified by the members of the 'iov' array: iov[0], iov[1],\n   ..., iov[iovcnt-1]. The 'iovcnt' argument is valid if greater than 0\n   and less than or equal to IOV_MAX, as defined in limits.h.\n\n   Each iovec entry specifies the base address and length of an area in\n   memory from which data should be written. The writev() function always\n   writes a complete area before proceeding to the next.\n\n   If 'filedes' refers to a regular file and all of the iov_len members in\n   the array pointed to by iov are 0, writev() will return 0 and have no\n   other effect. For other file types, the behavior is unspecified.\n\n   TODO: If the sum of the iov_len values is greater than SSIZE_MAX, the\n   operation will fail and no data will be transferred.\n\n Input Parameters:\n   filedes - The open file descriptor for the file to be read\n   iov     - Array of read buffer descriptors\n   iovcnt  - Number of elements in iov[]\n\n Returned Value:\n   Upon successful completion, writev() shall return the number of bytes\n   actually written. Otherwise, it shall return a value of -1, the file-\n   pointer shall remain unchanged, and errno shall be set to indicate an\n   error. See write for the list of returned errno values. In addition,\n   the readv() function will fail if:\n\n    EINVAL.\n      The sum of the iov_len values in the iov array overflowed an ssize_t\n      or The 'iovcnt' argument was less than or equal to 0, or greater than\n      IOV_MAX (Not implemented).\n"]
-    pub fn writev(fildes: cty::c_int, iov: *const iovec, iovcnt: cty::c_int) -> isize;
-}
-extern "C" {
-    pub fn preadv(
-        fildes: cty::c_int,
-        iov: *const iovec,
-        iovcnt: cty::c_int,
-        offset: off_t,
-    ) -> isize;
-}
-extern "C" {
-    pub fn pwritev(
-        fildes: cty::c_int,
-        iov: *const iovec,
-        iovcnt: cty::c_int,
-        offset: off_t,
-    ) -> isize;
-}
-pub type lib_dump_handler_t = ::core::option::Option<
-    unsafe extern "C" fn(arg: *mut cty::c_void, fmt: *const cty::c_char, ...),
+pub type irq_t = u8;
+pub type xcpt_t = ::core::option::Option<
+    unsafe extern "C" fn(
+        irq: cty::c_int,
+        context: *mut cty::c_void,
+        arg: *mut cty::c_void,
+    ) -> cty::c_int,
 >;
 extern "C" {
-    pub fn lib_dumphandler(
-        msg: *const cty::c_char,
-        buffer: *const u8,
-        buflen: cty::c_uint,
-        handler: lib_dump_handler_t,
+    #[doc = " Name: irq_attach\n\n Description:\n   Configure the IRQ subsystem so that IRQ number 'irq' is dispatched to\n   'isr' with argument 'arg'\n"]
+    pub fn irq_attach(irq: cty::c_int, isr: xcpt_t, arg: *mut cty::c_void) -> cty::c_int;
+}
+extern "C" {
+    pub static g_gpiobase: [u32; 11usize];
+}
+extern "C" {
+    #[doc = " Name: stm32_configgpio\n\n Description:\n   Configure a GPIO pin based on bit-encoded description of the pin.\n   Once it is configured as Alternative (GPIO_ALT|GPIO_CNF_AFPP|...)\n   function, it must be unconfigured with stm32_unconfiggpio() with\n   the same cfgset first before it can be set to non-alternative function.\n\n Returned Value:\n   OK on success\n   ERROR on invalid port, or when pin is locked as ALT function.\n"]
+    pub fn stm32_configgpio(cfgset: u32) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: stm32_unconfiggpio\n\n Description:\n   Unconfigure a GPIO pin based on bit-encoded description of the pin, set\n   it into default HiZ state (and possibly mark it's unused) and unlock it\n   whether it was previously selected as alternative function\n   (GPIO_ALT|GPIO_CNF_AFPP|...).\n\n   This is a safety function and prevents hardware from shocks, as\n   unexpected write to the Timer Channel Output GPIO to fixed '1' or '0'\n   while it should operate in PWM mode could produce excessive on-board\n   currents and trigger over-current/alarm function.\n\n Returned Value:\n  OK on success\n  ERROR on invalid port\n"]
+    pub fn stm32_unconfiggpio(cfgset: u32) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: stm32_gpiowrite\n\n Description:\n   Write one or zero to the selected GPIO pin\n"]
+    pub fn stm32_gpiowrite(pinset: u32, value: bool);
+}
+extern "C" {
+    #[doc = " Name: stm32_gpioread\n\n Description:\n   Read one or zero from the selected GPIO pin\n"]
+    pub fn stm32_gpioread(pinset: u32) -> bool;
+}
+extern "C" {
+    #[doc = " Name: stm32_iocompensation\n\n Description:\n   Enable I/O compensation.\n\n   By default the I/O compensation cell is not used. However when the I/O\n   output buffer speed is configured in 50 MHz or 100 MHz mode, it is\n   recommended to use the compensation cell for slew rate control on I/O\n   tf(IO)out)/tr(IO)out commutation to reduce the I/O noise on power\n   supply.\n\n   The I/O compensation cell can be used only when the supply voltage\n   ranges from 2.4 to 3.6 V.\n\n Input Parameters:\n   None\n\n Returned Value:\n   None\n"]
+    pub fn stm32_iocompensation();
+}
+extern "C" {
+    #[doc = " Name: stm32_gpiosetevent\n\n Description:\n   Sets/clears GPIO based event and interrupt triggers.\n\n Input Parameters:\n  - pinset:      GPIO pin configuration\n  - risingedge:  Enables interrupt on rising edges\n  - fallingedge: Enables interrupt on falling edges\n  - event:       Generate event when set\n  - func:        When non-NULL, generate interrupt\n  - arg:         Argument passed to the interrupt callback\n\n Returned Value:\n   Zero (OK) on success; a negated errno value on failure indicating the\n   nature of the failure.\n"]
+    pub fn stm32_gpiosetevent(
+        pinset: u32,
+        risingedge: bool,
+        fallingedge: bool,
+        event: bool,
+        func: xcpt_t,
         arg: *mut cty::c_void,
-    );
-}
-extern "C" {
-    pub fn lib_dumpvhandler(
-        msg: *const cty::c_char,
-        iov: *const iovec,
-        iovcnt: cty::c_int,
-        handler: lib_dump_handler_t,
-        arg: *mut cty::c_void,
-    );
-}
-extern "C" {
-    pub fn lib_dumpbuffer(msg: *const cty::c_char, buffer: *const u8, buflen: cty::c_uint);
-}
-extern "C" {
-    pub fn lib_dumpvbuffer(msg: *const cty::c_char, iov: *const iovec, iovcnt: cty::c_int);
-}
-extern "C" {
-    pub fn lib_dumpfile(
-        fd: cty::c_int,
-        msg: *const cty::c_char,
-        buffer: *const u8,
-        buflen: cty::c_uint,
-    );
-}
-extern "C" {
-    pub fn lib_dumpvfile(
-        fd: cty::c_int,
-        msg: *const cty::c_char,
-        iov: *const iovec,
-        iovcnt: cty::c_int,
-    );
+    ) -> cty::c_int;
 }
 extern "C" {
     pub fn up_get_icache_linesize() -> usize;
@@ -3915,21 +4949,6 @@ extern "C" {
     pub fn work_foreach(qid: cty::c_int, handler: work_foreach_t, arg: *mut cty::c_void);
 }
 extern "C" {
-    pub fn _assert(
-        filename: *const cty::c_char,
-        linenum: cty::c_int,
-        msg: *const cty::c_char,
-        regs: *mut cty::c_void,
-    );
-}
-extern "C" {
-    pub fn __assert(
-        filename: *const cty::c_char,
-        linenum: cty::c_int,
-        msg: *const cty::c_char,
-    ) -> !;
-}
-extern "C" {
     #[doc = " Name: nxsem_init\n\n Description:\n   This function initializes the UNNAMED semaphore sem. Following a\n   successful call to nxsem_init(), the semaphore may be used in subsequent\n   calls to nxsem_wait(), nxsem_post(), and nxsem_trywait().  The semaphore\n   remains usable until it is destroyed.\n\n   Only sem itself may be used for performing synchronization. The result\n   of referring to copies of sem in calls to sem_wait(), sem_trywait(),\n   sem_post(), and sem_destroy() is undefined.\n\n Input Parameters:\n   sem - Semaphore to be initialized\n   pshared - Process sharing (not used)\n   value - Semaphore initialization value\n\n Returned Value:\n   This is an internal OS interface and should not be used by applications.\n   It follows the NuttX internal error return policy:  Zero (OK) is\n   returned on success.  A negated errno value is returned on failure.\n"]
     pub fn nxsem_init(sem: *mut sem_t, pshared: cty::c_int, value: cty::c_uint) -> cty::c_int;
 }
@@ -4466,11 +5485,6 @@ pub struct stat {
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct statfs {
-    _unused: [u8; 0],
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct pollfd {
     _unused: [u8; 0],
 }
 #[repr(C)]
@@ -5114,7 +6128,6 @@ pub struct task_group_s {
     pub tg_filelist: filelist,
     pub tg_mm_map: mm_map_s,
 }
-#[doc = " Public Function Prototypes"]
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct tcb_s {
@@ -5508,6 +6521,127 @@ extern "C" {
         size: usize,
     ) -> cty::c_int;
 }
+extern "C" {
+    #[doc = " Name: kthread_create_with_stack\n\n Description:\n   This function creates and activates a kernel thread task with\n   kernel-mode privileges. It is identical to kthread_create() except\n   that it get the stack memory from caller.\n\n Input Parameters:\n   name       - Name of the new task\n   priority   - Priority of the new task\n   stack_addr - Stack buffer of the new task\n   stack_size - Stack size of the new task\n   entry      - Entry point of a new task\n   arg        - A pointer to an array of input parameters.  The array\n                should be terminated with a NULL argv[] value. If no\n                parameters are required, argv may be NULL.\n\n Returned Value:\n   Returns the positive, non-zero process ID of the new task or a negated\n   errno value to indicate the nature of any failure.  If memory is\n   insufficient or the task cannot be created -ENOMEM will be returned.\n"]
+    pub fn kthread_create_with_stack(
+        name: *const cty::c_char,
+        priority: cty::c_int,
+        stack_addr: *mut cty::c_void,
+        stack_size: cty::c_int,
+        entry: main_t,
+        argv: *const *mut cty::c_char,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: kthread_create\n\n Description:\n   This function creates and activates a kernel thread task with\n   kernel-mode privileges. It is identical to task_create() except\n   that it configures the newly started thread to run in kernel model.\n\n Input Parameters:\n   name       - Name of the new task\n   priority   - Priority of the new task\n   stack_size - size (in bytes) of the stack needed\n   entry      - Entry point of a new task\n   arg        - A pointer to an array of input parameters.  The array\n                should be terminated with a NULL argv[] value. If no\n                parameters are required, argv may be NULL.\n\n Returned Value:\n   Returns the positive, non-zero process ID of the new task or a negated\n   errno value to indicate the nature of any failure.  If memory is\n   insufficient or the task cannot be created -ENOMEM will be returned.\n"]
+    pub fn kthread_create(
+        name: *const cty::c_char,
+        priority: cty::c_int,
+        stack_size: cty::c_int,
+        entry: main_t,
+        argv: *const *mut cty::c_char,
+    ) -> cty::c_int;
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct mpu_config_s {
+    pub i2c: *mut i2c_master_s,
+    pub addr: cty::c_int,
+}
+extern "C" {
+    pub fn mpu60x0_register(path: *const cty::c_char, config: *mut mpu_config_s) -> cty::c_int;
+}
+#[doc = " Public Type Definitions"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct winsize {
+    pub ws_row: u16,
+    pub ws_col: u16,
+    pub ws_xpixel: u16,
+    pub ws_ypixel: u16,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct serial_rs485 {
+    pub flags: u32,
+    pub delay_rts_before_send: u32,
+    pub delay_rts_after_send: u32,
+}
+#[doc = " Public Type Definitions"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct pipe_peek_s {
+    pub buf: *mut cty::c_void,
+    pub size: usize,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct i2c_ops_s {
+    pub transfer: ::core::option::Option<
+        unsafe extern "C" fn(
+            dev: *mut i2c_master_s,
+            msgs: *mut i2c_msg_s,
+            count: cty::c_int,
+        ) -> cty::c_int,
+    >,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct i2c_config_s {
+    pub frequency: u32,
+    pub address: u16,
+    pub addrlen: u8,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct i2c_msg_s {
+    pub frequency: u32,
+    pub addr: u16,
+    pub flags: u16,
+    pub buffer: *mut u8,
+    pub length: isize,
+}
+#[doc = " Public Types"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct i2c_master_s {
+    pub ops: *const i2c_ops_s,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct i2c_transfer_s {
+    pub msgv: *mut i2c_msg_s,
+    pub msgc: usize,
+}
+extern "C" {
+    #[doc = " Name: i2c_writeread\n\n Description:\n   Send a block of data on I2C followed by restarted read access.  This\n   provides a convenient wrapper to the transfer function.\n\n Input Parameters:\n   dev     - Device-specific state data\n   config  - Described the I2C configuration\n   wbuffer - A pointer to the read-only buffer of data to be written to\n             device\n   wbuflen - The number of bytes to send from the buffer\n   rbuffer - A pointer to a buffer of data to receive the data from the\n             device\n   rbuflen - The requested number of bytes to be read\n\n Returned Value:\n   0: success, <0: A negated errno\n"]
+    pub fn i2c_writeread(
+        dev: *mut i2c_master_s,
+        config: *const i2c_config_s,
+        wbuffer: *const u8,
+        wbuflen: cty::c_int,
+        rbuffer: *mut u8,
+        rbuflen: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: i2c_write\n\n Description:\n   Send a block of data on I2C. Each write operation will be an 'atomic'\n   operation in the sense that any other I2C actions will be serialized\n   and pend until this write completes.\n\n Input Parameters:\n   dev    - Device-specific state data\n   config  - Described the I2C configuration\n   buffer - A pointer to the read-only buffer of data to be written to\n            device\n   buflen - The number of bytes to send from the buffer\n\n Returned Value:\n   0: success, <0: A negated errno\n"]
+    pub fn i2c_write(
+        dev: *mut i2c_master_s,
+        config: *const i2c_config_s,
+        buffer: *const u8,
+        buflen: cty::c_int,
+    ) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: i2c_read\n\n Description:\n   Receive a block of data from I2C. Each read operation will be an\n   'atomic' operation in the sense that any other I2C actions will be\n   serialized and pend until this read completes.\n\n Input Parameters:\n   dev    - Device-specific state data\n   buffer - A pointer to a buffer of data to receive the data from the\n            device\n   buflen - The requested number of bytes to be read\n\n Returned Value:\n   0: success, <0: A negated errno\n"]
+    pub fn i2c_read(
+        dev: *mut i2c_master_s,
+        config: *const i2c_config_s,
+        buffer: *mut u8,
+        buflen: cty::c_int,
+    ) -> cty::c_int;
+}
 #[doc = " Public Type Definitions"]
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -5892,215 +7026,378 @@ extern "C" {
 extern "C" {
     pub fn mm_memdump(heap: *mut mm_heap_s, dump: *const malltask);
 }
-extern "C" {
-    #[doc = " Name: kthread_create_with_stack\n\n Description:\n   This function creates and activates a kernel thread task with\n   kernel-mode privileges. It is identical to kthread_create() except\n   that it get the stack memory from caller.\n\n Input Parameters:\n   name       - Name of the new task\n   priority   - Priority of the new task\n   stack_addr - Stack buffer of the new task\n   stack_size - Stack size of the new task\n   entry      - Entry point of a new task\n   arg        - A pointer to an array of input parameters.  The array\n                should be terminated with a NULL argv[] value. If no\n                parameters are required, argv may be NULL.\n\n Returned Value:\n   Returns the positive, non-zero process ID of the new task or a negated\n   errno value to indicate the nature of any failure.  If memory is\n   insufficient or the task cannot be created -ENOMEM will be returned.\n"]
-    pub fn kthread_create_with_stack(
-        name: *const cty::c_char,
-        priority: cty::c_int,
-        stack_addr: *mut cty::c_void,
-        stack_size: cty::c_int,
-        entry: main_t,
-        argv: *const *mut cty::c_char,
-    ) -> cty::c_int;
+#[doc = " Public Types"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct usbhost_devaddr_s {
+    pub next: u8,
+    pub lock: mutex_t,
+    pub alloctab: [u32; 4usize],
 }
 extern "C" {
-    #[doc = " Name: kthread_create\n\n Description:\n   This function creates and activates a kernel thread task with\n   kernel-mode privileges. It is identical to task_create() except\n   that it configures the newly started thread to run in kernel model.\n\n Input Parameters:\n   name       - Name of the new task\n   priority   - Priority of the new task\n   stack_size - size (in bytes) of the stack needed\n   entry      - Entry point of a new task\n   arg        - A pointer to an array of input parameters.  The array\n                should be terminated with a NULL argv[] value. If no\n                parameters are required, argv may be NULL.\n\n Returned Value:\n   Returns the positive, non-zero process ID of the new task or a negated\n   errno value to indicate the nature of any failure.  If memory is\n   insufficient or the task cannot be created -ENOMEM will be returned.\n"]
-    pub fn kthread_create(
-        name: *const cty::c_char,
-        priority: cty::c_int,
-        stack_size: cty::c_int,
-        entry: main_t,
-        argv: *const *mut cty::c_char,
+    #[doc = " Name: usbhost_devaddr_initialize\n\n Description:\n   Initialize the caller provided struct usbhost_devaddr_s instance in\n   preparation for the management of device addresses on behalf of an root\n   hub port.\n\n Input Parameters:\n   devgen - A reference to a usbhost_devaddr_s structure.\n\n Returned Value:\n   On success, zero (OK) is returned. On a failure, a negated errno value\n   is returned indicating the nature of the failure.\n"]
+    pub fn usbhost_devaddr_initialize(devgen: *mut usbhost_devaddr_s) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: usbhost_devaddr_create\n\n Description:\n   Create a new unique device address for this hub port.\n\n Input Parameters:\n   hport - A reference to a hub port structure to which a device has been\n     newly connected and so is in need of a function address.\n\n Returned Value:\n   On success, a new device function address in the range 0x01 to 0x7f\n   is returned.  On failure, a negated errno value is returned.\n"]
+    pub fn usbhost_devaddr_create(hport: *mut usbhost_hubport_s) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: usbhost_devaddr_destroy\n\n Description:\n  Release a device address previously assigned by usbhost_devaddr_create().\n\n Input Parameters:\n  hport - A reference to a hub port structure from which a device has been\n     disconnected and so no longer needs the function address.\n  devaddr - The address to be released.\n\n Returned Value:\n   None\n"]
+    pub fn usbhost_devaddr_destroy(hport: *mut usbhost_hubport_s, devaddr: u8);
+}
+#[doc = " Public Types"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct usbhost_id_s {
+    pub base: u8,
+    pub subclass: u8,
+    pub proto: u8,
+    pub vid: u16,
+    pub pid: u16,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct usbhost_registry_s {
+    pub flink: *mut usbhost_registry_s,
+    pub create: ::core::option::Option<
+        unsafe extern "C" fn(
+            hub: *mut usbhost_hubport_s,
+            id: *const usbhost_id_s,
+        ) -> *mut usbhost_class_s,
+    >,
+    pub nids: u8,
+    pub id: *const usbhost_id_s,
+}
+pub type usbhost_ep_t = *mut cty::c_void;
+#[doc = " Public Functions Definitions"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct usbhost_hubport_s {
+    pub drvr: *mut usbhost_driver_s,
+    pub devclass: *mut usbhost_class_s,
+    pub ep0: usbhost_ep_t,
+    pub connected: bool,
+    pub port: u8,
+    pub funcaddr: u8,
+    pub speed: u8,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct usbhost_roothubport_s {
+    pub hport: usbhost_hubport_s,
+    pub pdevgen: *mut usbhost_devaddr_s,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct usbhost_class_s {
+    pub hport: *mut usbhost_hubport_s,
+    pub connect: ::core::option::Option<
+        unsafe extern "C" fn(
+            devclass: *mut usbhost_class_s,
+            configdesc: *const u8,
+            desclen: cty::c_int,
+        ) -> cty::c_int,
+    >,
+    pub disconnected:
+        ::core::option::Option<unsafe extern "C" fn(devclass: *mut usbhost_class_s) -> cty::c_int>,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct usbhost_epdesc_s {
+    pub hport: *mut usbhost_hubport_s,
+    pub addr: u8,
+    pub in_: bool,
+    pub xfrtype: u8,
+    pub interval: u8,
+    pub mxpacketsize: u16,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct usbhost_connection_s {
+    pub wait: ::core::option::Option<
+        unsafe extern "C" fn(
+            conn: *mut usbhost_connection_s,
+            hport: *mut *mut usbhost_hubport_s,
+        ) -> cty::c_int,
+    >,
+    pub enumerate: ::core::option::Option<
+        unsafe extern "C" fn(
+            conn: *mut usbhost_connection_s,
+            hport: *mut usbhost_hubport_s,
+        ) -> cty::c_int,
+    >,
+}
+pub type usbhost_asynch_t =
+    ::core::option::Option<unsafe extern "C" fn(arg: *mut cty::c_void, result: isize)>;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct usbhost_driver_s {
+    pub ep0configure: ::core::option::Option<
+        unsafe extern "C" fn(
+            drvr: *mut usbhost_driver_s,
+            ep0: usbhost_ep_t,
+            funcaddr: u8,
+            speed: u8,
+            maxpacketsize: u16,
+        ) -> cty::c_int,
+    >,
+    pub epalloc: ::core::option::Option<
+        unsafe extern "C" fn(
+            drvr: *mut usbhost_driver_s,
+            epdesc: *const usbhost_epdesc_s,
+            ep: *mut usbhost_ep_t,
+        ) -> cty::c_int,
+    >,
+    pub epfree: ::core::option::Option<
+        unsafe extern "C" fn(drvr: *mut usbhost_driver_s, ep: usbhost_ep_t) -> cty::c_int,
+    >,
+    pub alloc: ::core::option::Option<
+        unsafe extern "C" fn(
+            drvr: *mut usbhost_driver_s,
+            buffer: *mut *mut u8,
+            maxlen: *mut usize,
+        ) -> cty::c_int,
+    >,
+    pub free: ::core::option::Option<
+        unsafe extern "C" fn(drvr: *mut usbhost_driver_s, buffer: *mut u8) -> cty::c_int,
+    >,
+    pub ioalloc: ::core::option::Option<
+        unsafe extern "C" fn(
+            drvr: *mut usbhost_driver_s,
+            buffer: *mut *mut u8,
+            buflen: usize,
+        ) -> cty::c_int,
+    >,
+    pub iofree: ::core::option::Option<
+        unsafe extern "C" fn(drvr: *mut usbhost_driver_s, buffer: *mut u8) -> cty::c_int,
+    >,
+    pub ctrlin: ::core::option::Option<
+        unsafe extern "C" fn(
+            drvr: *mut usbhost_driver_s,
+            ep0: usbhost_ep_t,
+            req: *mut usb_ctrlreq_s,
+            buffer: *mut u8,
+        ) -> cty::c_int,
+    >,
+    pub ctrlout: ::core::option::Option<
+        unsafe extern "C" fn(
+            drvr: *mut usbhost_driver_s,
+            ep0: usbhost_ep_t,
+            req: *const usb_ctrlreq_s,
+            buffer: *const u8,
+        ) -> cty::c_int,
+    >,
+    pub transfer: ::core::option::Option<
+        unsafe extern "C" fn(
+            drvr: *mut usbhost_driver_s,
+            ep: usbhost_ep_t,
+            buffer: *mut u8,
+            buflen: usize,
+        ) -> isize,
+    >,
+    pub cancel: ::core::option::Option<
+        unsafe extern "C" fn(drvr: *mut usbhost_driver_s, ep: usbhost_ep_t) -> cty::c_int,
+    >,
+    pub disconnect: ::core::option::Option<
+        unsafe extern "C" fn(drvr: *mut usbhost_driver_s, hport: *mut usbhost_hubport_s),
+    >,
+}
+extern "C" {
+    #[doc = " Name: usbhost_registerclass\n\n Description:\n   Register a USB host class implementation.  The caller provides an\n   instance of struct usbhost_registry_s that contains all of the\n   information that will be needed later to (1) associate the USB host\n   class implementation with a connected USB device, and (2) to obtain and\n   bind a struct usbhost_class_s instance for the device.\n\n Input Parameters:\n   devclass - An write-able instance of struct usbhost_registry_s that will\n     be maintained in a registry.\n\n Returned Value:\n   On success, this function will return zero (OK).  Otherwise, a negated\n   errno value is returned.\n"]
+    pub fn usbhost_registerclass(devclass: *mut usbhost_registry_s) -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: usbhost_findclass\n\n Description:\n   Find a USB host class implementation previously registered by\n   usbhost_registerclass().  On success, an instance of struct\n   usbhost_registry_s will be returned.  That instance will contain all of\n   the information that will be needed to obtain and bind a struct\n   usbhost_class_s instance for the device.\n\n Input Parameters:\n   id - Identifies the USB device class that has connect to the USB host.\n\n Returned Value:\n   On success this function will return a non-NULL instance of struct\n   usbhost_registry_s.  NULL will be returned on failure.  This function\n   can only fail if (1) id is NULL, or (2) no USB host class is registered\n   that matches the device class ID.\n"]
+    pub fn usbhost_findclass(id: *const usbhost_id_s) -> *const usbhost_registry_s;
+}
+extern "C" {
+    #[doc = " Name: usbhost_wlaninit\n\n Description:\n   Initialize the USB WLAN class driver.  This function should be called\n   by platform-specific code in order to initialize and register support\n   for the USB host class device.\n\n Input Parameters:\n   None\n\n Returned Value:\n   On success this function will return zero (OK);  A negated errno value\n   will be returned on failure.\n"]
+    pub fn usbhost_wlaninit() -> cty::c_int;
+}
+extern "C" {
+    #[doc = " Name: usbhost_enumerate\n\n Description:\n   This is a share-able implementation of most of the logic required by the\n   driver enumerate() method.  This logic within this method should be\n   common to all USB host drivers.\n\n   Enumerate the connected device.  As part of this enumeration process,\n   the driver will (1) get the device's configuration descriptor, (2)\n   extract the class ID info from the configuration descriptor, (3) call\n   usbhost_findclass() to find the class that supports this device, (4)\n   call the create() method on the struct usbhost_registry_s interface\n   to get a class instance, and finally (5) call the configdesc() method\n   of the struct usbhost_class_s interface.  After that, the class is in\n   charge of the sequence of operations.\n\n Input Parameters:\n   hub - The hub that manages the new class.\n   devclass - If the class driver for the device is successful located\n      and bound to the hub, the allocated class instance is returned into\n      this caller-provided memory location.\n\n Returned Value:\n   On success, zero (OK) is returned. On a failure, a negated errno value\n   is returned indicating the nature of the failure\n\n Assumptions:\n   - Only a single class bound to a single device is supported.\n   - Called from a single thread so no mutual exclusion is required.\n   - Never called from an interrupt handler.\n"]
+    pub fn usbhost_enumerate(
+        hub: *mut usbhost_hubport_s,
+        devclass: *mut *mut usbhost_class_s,
     ) -> cty::c_int;
 }
 #[doc = " Public Type Definitions"]
+pub type nfds_t = cty::c_uint;
+pub type pollevent_t = u32;
+pub type pollcb_t = ::core::option::Option<unsafe extern "C" fn(fds: *mut pollfd)>;
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
-pub struct tasklist_s {
-    pub list: *mut dq_queue_t,
-    pub attr: u8,
-}
-extern "C" {
-    #[doc = " Public Data"]
-    pub static mut g_readytorun: dq_queue_t;
-}
-extern "C" {
-    pub static mut g_running_tasks: [*mut tcb_s; 1usize];
-}
-extern "C" {
-    pub static mut g_pendingtasks: dq_queue_t;
-}
-extern "C" {
-    pub static mut g_waitingforsignal: dq_queue_t;
-}
-extern "C" {
-    pub static mut g_inactivetasks: dq_queue_t;
-}
-extern "C" {
-    pub static mut g_lastpid: pid_t;
-}
-extern "C" {
-    pub static mut g_pidhash: *mut *mut tcb_s;
-}
-extern "C" {
-    pub static mut g_npidhash: cty::c_int;
-}
-extern "C" {
-    pub static g_tasklisttable: [tasklist_s; 9usize];
+pub struct pollfd {
+    pub fd: cty::c_int,
+    pub events: pollevent_t,
+    pub revents: pollevent_t,
+    pub arg: *mut cty::c_void,
+    pub cb: pollcb_t,
+    pub priv_: *mut cty::c_void,
 }
 extern "C" {
     #[doc = " Public Function Prototypes"]
-    pub fn nxthread_create(
-        name: *const cty::c_char,
-        ttype: u8,
-        priority: cty::c_int,
-        stack_addr: *mut cty::c_void,
-        stack_size: cty::c_int,
-        entry: main_t,
-        argv: *const *mut cty::c_char,
-        envp: *const *mut cty::c_char,
+    pub fn poll(fds: *mut pollfd, nfds: nfds_t, timeout: cty::c_int) -> cty::c_int;
+}
+extern "C" {
+    pub fn ppoll(
+        fds: *mut pollfd,
+        nfds: nfds_t,
+        timeout_ts: *const timespec,
+        sigmask: *const sigset_t,
     ) -> cty::c_int;
 }
 extern "C" {
-    pub fn nxsched_add_readytorun(rtrtcb: *mut tcb_s) -> bool;
+    pub fn poll_fdsetup(fd: cty::c_int, fds: *mut pollfd, setup: bool) -> cty::c_int;
 }
 extern "C" {
-    pub fn nxsched_remove_readytorun(rtrtcb: *mut tcb_s, merge: bool) -> bool;
+    pub fn poll_default_cb(fds: *mut pollfd);
 }
 extern "C" {
-    pub fn nxsched_add_prioritized(tcb: *mut tcb_s, list: *mut dq_queue_t) -> bool;
+    pub fn poll_notify(afds: *mut *mut pollfd, nfds: cty::c_int, eventset: pollevent_t);
 }
-extern "C" {
-    pub fn nxsched_merge_prioritized(
-        list1: *mut dq_queue_t,
-        list2: *mut dq_queue_t,
-        task_state: u8,
-    );
-}
-extern "C" {
-    pub fn nxsched_merge_pending() -> bool;
-}
-extern "C" {
-    pub fn nxsched_add_blocked(btcb: *mut tcb_s, task_state: tstate_t);
-}
-extern "C" {
-    pub fn nxsched_remove_blocked(btcb: *mut tcb_s);
-}
-extern "C" {
-    pub fn nxsched_set_priority(tcb: *mut tcb_s, sched_priority: cty::c_int) -> cty::c_int;
-}
-extern "C" {
-    pub fn nxsched_reprioritize_rtr(tcb: *mut tcb_s, priority: cty::c_int) -> bool;
-}
-extern "C" {
-    pub fn nxsched_process_roundrobin(tcb: *mut tcb_s, ticks: u32, noswitches: bool) -> u32;
-}
-extern "C" {
-    pub fn nxsched_verify_tcb(tcb: *mut tcb_s) -> bool;
+#[doc = " Public Types"]
+pub type spi_mediachange_t = ::core::option::Option<unsafe extern "C" fn(arg: *mut cty::c_void)>;
+pub const spi_devtype_e_SPIDEVTYPE_NONE: spi_devtype_e = 0;
+pub const spi_devtype_e_SPIDEVTYPE_MMCSD: spi_devtype_e = 1;
+pub const spi_devtype_e_SPIDEVTYPE_FLASH: spi_devtype_e = 2;
+pub const spi_devtype_e_SPIDEVTYPE_ETHERNET: spi_devtype_e = 3;
+pub const spi_devtype_e_SPIDEVTYPE_DISPLAY: spi_devtype_e = 4;
+pub const spi_devtype_e_SPIDEVTYPE_CAMERA: spi_devtype_e = 5;
+pub const spi_devtype_e_SPIDEVTYPE_WIRELESS: spi_devtype_e = 6;
+pub const spi_devtype_e_SPIDEVTYPE_TOUCHSCREEN: spi_devtype_e = 7;
+pub const spi_devtype_e_SPIDEVTYPE_EXPANDER: spi_devtype_e = 8;
+pub const spi_devtype_e_SPIDEVTYPE_MUX: spi_devtype_e = 9;
+pub const spi_devtype_e_SPIDEVTYPE_AUDIO_DATA: spi_devtype_e = 10;
+pub const spi_devtype_e_SPIDEVTYPE_AUDIO_CTRL: spi_devtype_e = 11;
+pub const spi_devtype_e_SPIDEVTYPE_EEPROM: spi_devtype_e = 12;
+pub const spi_devtype_e_SPIDEVTYPE_ACCELEROMETER: spi_devtype_e = 13;
+pub const spi_devtype_e_SPIDEVTYPE_BAROMETER: spi_devtype_e = 14;
+pub const spi_devtype_e_SPIDEVTYPE_TEMPERATURE: spi_devtype_e = 15;
+pub const spi_devtype_e_SPIDEVTYPE_IEEE802154: spi_devtype_e = 16;
+pub const spi_devtype_e_SPIDEVTYPE_CONTACTLESS: spi_devtype_e = 17;
+pub const spi_devtype_e_SPIDEVTYPE_CANBUS: spi_devtype_e = 18;
+pub const spi_devtype_e_SPIDEVTYPE_USBHOST: spi_devtype_e = 19;
+pub const spi_devtype_e_SPIDEVTYPE_LPWAN: spi_devtype_e = 20;
+pub const spi_devtype_e_SPIDEVTYPE_ADC: spi_devtype_e = 21;
+pub const spi_devtype_e_SPIDEVTYPE_MOTOR: spi_devtype_e = 22;
+pub const spi_devtype_e_SPIDEVTYPE_IMU: spi_devtype_e = 23;
+pub const spi_devtype_e_SPIDEVTYPE_USER: spi_devtype_e = 24;
+pub type spi_devtype_e = cty::c_uint;
+pub const spi_mode_e_SPIDEV_MODE0: spi_mode_e = 0;
+pub const spi_mode_e_SPIDEV_MODE1: spi_mode_e = 1;
+pub const spi_mode_e_SPIDEV_MODE2: spi_mode_e = 2;
+pub const spi_mode_e_SPIDEV_MODE3: spi_mode_e = 3;
+pub const spi_mode_e_SPIDEV_MODETI: spi_mode_e = 4;
+pub type spi_mode_e = cty::c_uint;
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct spi_ops_s {
+    pub lock:
+        ::core::option::Option<unsafe extern "C" fn(dev: *mut spi_dev_s, lock: bool) -> cty::c_int>,
+    pub select: ::core::option::Option<
+        unsafe extern "C" fn(dev: *mut spi_dev_s, devid: u32, selected: bool),
+    >,
+    pub setfrequency:
+        ::core::option::Option<unsafe extern "C" fn(dev: *mut spi_dev_s, frequency: u32) -> u32>,
+    pub setmode:
+        ::core::option::Option<unsafe extern "C" fn(dev: *mut spi_dev_s, mode: spi_mode_e)>,
+    pub setbits:
+        ::core::option::Option<unsafe extern "C" fn(dev: *mut spi_dev_s, nbits: cty::c_int)>,
+    pub status: ::core::option::Option<unsafe extern "C" fn(dev: *mut spi_dev_s, devid: u32) -> u8>,
+    pub send: ::core::option::Option<unsafe extern "C" fn(dev: *mut spi_dev_s, wd: u32) -> u32>,
+    pub exchange: ::core::option::Option<
+        unsafe extern "C" fn(
+            dev: *mut spi_dev_s,
+            txbuffer: *const cty::c_void,
+            rxbuffer: *mut cty::c_void,
+            nwords: usize,
+        ),
+    >,
+    pub registercallback: ::core::option::Option<
+        unsafe extern "C" fn(
+            dev: *mut spi_dev_s,
+            callback: spi_mediachange_t,
+            arg: *mut cty::c_void,
+        ) -> cty::c_int,
+    >,
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
-pub struct tls_info_s {
-    _unused: [u8; 0],
+pub struct spi_dev_s {
+    pub ops: *const spi_ops_s,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct adc_callback_s {
+    pub au_receive: ::core::option::Option<
+        unsafe extern "C" fn(dev: *mut adc_dev_s, ch: u8, data: i32) -> cty::c_int,
+    >,
+    pub au_reset: ::core::option::Option<unsafe extern "C" fn(dev: *mut adc_dev_s) -> cty::c_int>,
+}
+#[repr(C, packed)]
+#[derive(Debug, Copy, Clone)]
+pub struct adc_msg_s {
+    pub am_channel: u8,
+    pub am_data: i32,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct adc_fifo_s {
+    pub af_sem: sem_t,
+    pub af_head: u8,
+    pub af_tail: u8,
+    pub af_buffer: [adc_msg_s; 8usize],
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct adc_ops_s {
+    pub ao_bind: ::core::option::Option<
+        unsafe extern "C" fn(dev: *mut adc_dev_s, callback: *const adc_callback_s) -> cty::c_int,
+    >,
+    pub ao_reset: ::core::option::Option<unsafe extern "C" fn(dev: *mut adc_dev_s)>,
+    pub ao_setup: ::core::option::Option<unsafe extern "C" fn(dev: *mut adc_dev_s) -> cty::c_int>,
+    pub ao_shutdown: ::core::option::Option<unsafe extern "C" fn(dev: *mut adc_dev_s)>,
+    pub ao_rxint: ::core::option::Option<unsafe extern "C" fn(dev: *mut adc_dev_s, enable: bool)>,
+    pub ao_ioctl: ::core::option::Option<
+        unsafe extern "C" fn(dev: *mut adc_dev_s, cmd: cty::c_int, arg: cty::c_ulong) -> cty::c_int,
+    >,
+}
+#[doc = " Public Types"]
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct adc_dev_s {
+    pub ad_ops: *const adc_ops_s,
+    pub ad_priv: *mut cty::c_void,
 }
 extern "C" {
-    pub fn nxsched_get_tls(tcb: *mut tcb_s) -> *mut tls_info_s;
-}
-#[doc = " Public Type Definitions"]
-pub type foreachchild_t =
-    ::core::option::Option<unsafe extern "C" fn(pid: pid_t, arg: *mut cty::c_void) -> cty::c_int>;
-extern "C" {
-    pub static mut g_grouphead: *mut task_group_s;
+    #[doc = " Name: adc_register\n\n Description:\n   Register a ADC driver. This function binds an instance of a \"lower half\"\n   ADC driver with the \"upper half\" ADC device and registers that device\n   so that can be used by application code.\n\n Input Parameters:\n   path - The full path to the driver to be registers in the NuttX pseudo-\n     filesystem.  The recommended convention is to name all PWM drivers\n     as \"/dev/adc\", \"/dev/adc1\", etc.  where the driver path differs only\n     in the \"minor\" number at the end of the device name.\n   dev - A pointer to an instance of lower half ADC driver.  This instance\n     is bound to the upper half ADC driver and must persists as long as the\n     upper half driver driver persists.\n\n Returned Value:\n   Zero on success; a negated errno value on failure.\n"]
+    pub fn adc_register(path: *const cty::c_char, dev: *mut adc_dev_s) -> cty::c_int;
 }
 extern "C" {
-    pub fn group_allocate(tcb: *mut task_tcb_s, ttype: u8) -> cty::c_int;
+    #[doc = " Name: up_ads1255initialize\n\n Description:\n   Initialize the TI ADS 125X lower half driver\n"]
+    pub fn up_ads1255initialize(spi: *mut spi_dev_s, devno: cty::c_uint) -> *mut adc_dev_s;
 }
 extern "C" {
-    pub fn group_initialize(tcb: *mut task_tcb_s);
+    #[doc = " Name: lmp92001_adc_initialize\n\n Description:\n   Initialize ADC\n\n Input Parameters:\n   I2C Port number\n   Device address\n\n Returned Value:\n   Valid LM92001 device structure reference on success; a NULL on failure\n"]
+    pub fn lmp92001_adc_initialize(i2c: *mut i2c_master_s, addr: u8) -> *mut adc_dev_s;
 }
 extern "C" {
-    pub fn group_bind(tcb: *mut pthread_tcb_s) -> cty::c_int;
+    #[doc = " Name: ads7828_initialize\n\n Description:\n   Initialize ADC\n\n Input Parameters:\n   i2c - Pointer to a valid I2C master struct.\n   addr - I2C device address.\n\n Returned Value:\n   Valid ADS7828 device structure reference on success; a NULL on failure\n"]
+    pub fn ads7828_initialize(i2c: *mut i2c_master_s, addr: u8) -> *mut adc_dev_s;
 }
 extern "C" {
-    pub fn group_join(tcb: *mut pthread_tcb_s) -> cty::c_int;
-}
-extern "C" {
-    pub fn group_leave(tcb: *mut tcb_s);
-}
-extern "C" {
-    pub fn group_drop(group: *mut task_group_s);
-}
-extern "C" {
-    pub fn group_add_waiter(group: *mut task_group_s);
-}
-extern "C" {
-    pub fn group_del_waiter(group: *mut task_group_s);
-}
-extern "C" {
-    pub fn group_findbypid(pid: pid_t) -> *mut task_group_s;
-}
-extern "C" {
-    pub fn group_foreachchild(
-        group: *mut task_group_s,
-        handler: foreachchild_t,
-        arg: *mut cty::c_void,
-    ) -> cty::c_int;
-}
-extern "C" {
-    pub fn group_kill_children(tcb: *mut tcb_s) -> cty::c_int;
-}
-extern "C" {
-    pub fn task_getgroup(pid: pid_t) -> *mut task_group_s;
-}
-extern "C" {
-    pub fn group_signal(group: *mut task_group_s, siginfo: *mut siginfo_t) -> cty::c_int;
-}
-extern "C" {
-    pub fn group_setupidlefiles() -> cty::c_int;
-}
-extern "C" {
-    pub fn group_setuptaskfiles(
-        tcb: *mut task_tcb_s,
-        actions: *const posix_spawn_file_actions_t,
-        cloexec: bool,
-    ) -> cty::c_int;
-}
-extern "C" {
-    pub fn nxtask_start();
-}
-extern "C" {
-    pub fn nxtask_setup_scheduler(
-        tcb: *mut task_tcb_s,
-        priority: cty::c_int,
-        start: start_t,
-        main: main_t,
-        ttype: u8,
-    ) -> cty::c_int;
-}
-extern "C" {
-    pub fn nxtask_setup_arguments(
-        tcb: *mut task_tcb_s,
-        name: *const cty::c_char,
-        argv: *const *mut cty::c_char,
-    ) -> cty::c_int;
-}
-extern "C" {
-    pub fn nxtask_exit() -> cty::c_int;
-}
-extern "C" {
-    pub fn nxtask_terminate(pid: pid_t) -> cty::c_int;
-}
-extern "C" {
-    pub fn nxtask_exithook(tcb: *mut tcb_s, status: cty::c_int);
-}
-extern "C" {
-    pub fn nxtask_recover(tcb: *mut tcb_s);
-}
-extern "C" {
-    pub fn nxnotify_cancellation(tcb: *mut tcb_s) -> bool;
+    #[doc = " Name: max1161x_initialize\n\n Description:\n   Initialize ADC\n\n Input Parameters:\n   i2c - Pointer to a valid I2C master struct.\n\n Returned Value:\n   Valid MX1161X device structure reference on success; a NULL on failure\n"]
+    pub fn max1161x_initialize(i2c: *mut i2c_master_s) -> *mut adc_dev_s;
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
 pub struct mm_map_entry {
     pub _address: u8,
+}
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct usb_ctrlreq_s {
+    _unused: [u8; 0],
 }

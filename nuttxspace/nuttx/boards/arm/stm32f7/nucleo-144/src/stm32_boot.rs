@@ -21,7 +21,7 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
- use crate::bindings::*;
+//  use crate::bindings::*;
  use crate::stm32_autoleds::board_autoled_initialize;
  use crate::stm32_usb::stm32_usbinitialize;
  use crate::stm32_spi::stm32_spidev_initialize;
@@ -42,7 +42,9 @@
   ****************************************************************************/
  // https://doc.rust-lang.org/rust-by-example/attribute/cfg.html
  // #ifdef does not exist, therefor we will use cfg [ conditional configuration check ]
-  fn stm32_boardinitialize()
+
+#[no_mangle]
+pub extern "C" fn stm32_boardinitialize()
  {
     if cfg!(CONFIG_ARCH_LEDS){
        /* Configure on-board LEDs if LED support has been selected. */
@@ -50,14 +52,11 @@
       }
     // CONFIG_STM32F7_HOST is missing from files
     if cfg!(CONFIG_STM32F7_OTGFS) || cfg!(CONFIG_STM32F7_HOST) {
-            stm32_usbinitialize();
+        stm32_usbinitialize();
     }
-
     if cfg!(CONFIG_SPI) {
         /* Configure SPI chip selects */
-        unsafe{
-          stm32_spidev_initialize();
-        }
+        stm32_spidev_initialize();
     }
 }
 
@@ -79,5 +78,5 @@
 #[cfg(CONFIG_BOARD_LATE_INITIALIZE)]
 fn board_late_initialize() {
     /* Perform board-specific initialization */
-      stm32_bringup();
+    stm32_bringup();
 }
