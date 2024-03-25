@@ -53,7 +53,7 @@ pub extern "C" fn board_reset(_status: i8) -> cty::c_int {
     unsafe {
         up_systemreset();
     }
-    return 0;
+    // return 0;
 }
 
 /* CONFIG_BOARDCTL_RESET */

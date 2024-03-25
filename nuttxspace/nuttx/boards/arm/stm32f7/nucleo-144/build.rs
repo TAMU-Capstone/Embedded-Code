@@ -7,7 +7,8 @@ fn main() {
     
     let paths = [
         "../../../../include/",
-        "../../../../arch/arm/src/stm32f7/",
+        "../../../../arch/arm/src/stm32f7/",        // stm32_gpio.h, 
+        "../../../../sched/",                       // task/task_create.c, 
         "../../../../arch/arm/src/stm32f7/hardware/",
     ].map(|dir| PathBuf::from(dir).canonicalize().unwrap());
 
