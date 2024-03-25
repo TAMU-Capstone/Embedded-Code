@@ -380,7 +380,7 @@ pub extern "C" fn stm32_spidev_initialize()
   return 0;
  }
 } // CONFIG_STM32F7_SPI2
-  
+
 if(#[cfg(CONFIG_STM32F7_SPI3)])
 {
 
@@ -512,7 +512,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
      return -ENODEV;
     }
   }
-  
+
   if #[cfg(CONFIG_STM32F7_SPI4)]
   {
 
@@ -521,7 +521,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
       return -ENODEV;
     }
   }
-  
+
   if #[cfg(CONFIG_STM32F7_SPI5)]
   {
 
@@ -530,7 +530,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
       return -ENODEV;
     }
   }
-  
+
   if #[cfg(CONFIG_STM32F7_SPI6)]
   {
 
@@ -539,71 +539,132 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
       return -ENODEV;
     }
   }
-  
+
 } // CONFIG_SPI_CMDDATA
-  
+
  if (#cfg(CONFIG_NUCLEO_SPI_TEST))
  {
 
-   int stm32_spidev_bus_test(void)
+   fn stm32_spidev_bus_test() -> i32
    {
    /* Configure and test SPI- */
+    unsafe{
+      let tx : *mux uint8_t  = CONFIG_NUCLEO_SPI_TEST_MESSAGE as *mux uint8_t;
+    }
 
-   uint8_t *tx = (uint8_t *)CONFIG_NUCLEO_SPI_TEST_MESSAGE;
-
- #if defined(CONFIG_NUCLEO_SPI1_TEST)
-   spi1 = stm32_spibus_initialize(1);
+ if (#[cfg(CONFIG_NUCLEO_SPI1_TEST)]){
+  unsafe{
+    spi1 = stm32_spibus_initialize(1);
+  }
 
    if (!spi1)
-     {
-       syslog(LOG_ERR, "ERROR Failed to initialize SPI port 1\n");
-       return -ENODEV;
-     }
+   {
+    unsafe{
+      syslog(LOG_ERR, "ERROR Failed to initialize SPI port 1\n");
+    }
+     return -ENODEV;
+    }
 
    /* Default SPI1 to NUCLEO_SPI1_FREQ and mode */
+    unsafe{
+      SPI_SETFREQUENCY(spi1, CONFIG_NUCLEO_SPI1_TEST_FREQ);
+      SPI_SETBITS(spi1, CONFIG_NUCLEO_SPI1_TEST_BITS);
+      SPI_SETMODE(spi1, CONFIG_NUCLEO_SPI1_TEST_MODE);
+      SPI_EXCHANGE(spi1, tx, NULL, nitems(CONFIG_NUCLEO_SPI_TEST_MESSAGE));
+    }
+} // CONFIG_NUCLEO_SPI1_TEST
 
-   SPI_SETFREQUENCY(spi1, CONFIG_NUCLEO_SPI1_TEST_FREQ);
-   SPI_SETBITS(spi1, CONFIG_NUCLEO_SPI1_TEST_BITS);
-   SPI_SETMODE(spi1, CONFIG_NUCLEO_SPI1_TEST_MODE);
-   SPI_EXCHANGE(spi1, tx, NULL, nitems(CONFIG_NUCLEO_SPI_TEST_MESSAGE));
- #endif
- 
- #if defined(CONFIG_NUCLEO_SPI2_TEST)
-   spi2 = stm32_spibus_initialize(2);
-
+ if (#[cfg(CONFIG_NUCLEO_SPI2_TEST)])
+ {
+  unsafe{
+    spi2 = stm32_spibus_initialize(2);
+  }
+   
    if (!spi2)
      {
-       syslog(LOG_ERR, "ERROR Failed to initialize SPI port 2\n");
+      unsafe{
+        syslog(LOG_ERR, "ERROR Failed to initialize SPI port 2\n");
+      }
        return -ENODEV;
-     }
-
-   /* Default SPI2 to NUCLEO_SPI2_FREQ and mode */
-
-   SPI_SETFREQUENCY(spi2, CONFIG_NUCLEO_SPI2_TEST_FREQ);
-   SPI_SETBITS(spi2, CONFIG_NUCLEO_SPI2_TEST_BITS);
-   SPI_SETMODE(spi2, CONFIG_NUCLEO_SPI2_TEST_MODE);
-   SPI_EXCHANGE(spi2, tx, NULL, nitems(CONFIG_NUCLEO_SPI_TEST_MESSAGE));
-   #endif
-   
-   #if defined(CONFIG_NUCLEO_SPI3_TEST)
-   spi3 = stm32_spibus_initialize(3);
-
+      }
+      
+      /* Default SPI2 to NUCLEO_SPI2_FREQ and mode */
+      unsafe{
+        SPI_SETFREQUENCY(spi2, CONFIG_NUCLEO_SPI2_TEST_FREQ);
+        SPI_SETBITS(spi2, CONFIG_NUCLEO_SPI2_TEST_BITS);
+        SPI_SETMODE(spi2, CONFIG_NUCLEO_SPI2_TEST_MODE);
+        SPI_EXCHANGE(spi2, tx, NULL, nitems(CONFIG_NUCLEO_SPI_TEST_MESSAGE));
+      }
+    }
+      
+  if (#[cfg(CONFIG_NUCLEO_SPI3_TEST)])
+  {
+    unsafe{
+      spi3 = stm32_spibus_initialize(3);
+    }
+    
    if (!spi3)
      {
-       syslog(LOG_ERR, "ERROR Failed to initialize SPI port 2\n");
+      unsafe{
+        syslog(LOG_ERR, "ERROR Failed to initialize SPI port 2\n");
+      }
        return -ENODEV;
      }
 
    /* Default SPI3 to NUCLEO_SPI3_FREQ and mode */
-
-   SPI_SETFREQUENCY(spi3, CONFIG_NUCLEO_SPI3_TEST_FREQ);
-   SPI_SETBITS(spi3, CONFIG_NUCLEO_SPI3_TEST_BITS);
-   SPI_SETMODE(spi3, CONFIG_NUCLEO_SPI3_TEST_MODE);
-   SPI_EXCHANGE(spi3, tx, NULL, nitems(CONFIG_NUCLEO_SPI_TEST_MESSAGE));
-   #endif
+  unsafe{
+    SPI_SETFREQUENCY(spi3, CONFIG_NUCLEO_SPI3_TEST_FREQ);
+    SPI_SETBITS(spi3, CONFIG_NUCLEO_SPI3_TEST_BITS);
+    SPI_SETMODE(spi3, CONFIG_NUCLEO_SPI3_TEST_MODE);
+    SPI_EXCHANGE(spi3, tx, NULL, nitems(CONFIG_NUCLEO_SPI_TEST_MESSAGE));
+  }
+  }
    
    return OK;
   }
 } // CONFIG_NUCLEO_SPI_TEST
 } // defined(CONFIG_SPI)
+else{
+  // considering creating a empty config that will catch and allow this to be a fake preprocessor
+  pub extern "C" fn stm32_spidev_initialize()
+ {
+   /* Configure SPI CS GPIO for output */
+
+ if(cfg!(CONFIG_STM32F7_SPI1)){
+  for i in g_spi1gpio.iter();
+   {
+     if (*i != 0)
+     {
+      unsafe{
+        stm32_configgpio(*i);
+        }
+      }
+    }
+  } //CONFIG_STM32F7_SPI1
+
+ if(cfg!(CONFIG_STM32F7_SPI2)){
+  for i in g_spi2gpio.iter();
+   {
+     if (*i != 0)
+     {
+      unsafe{
+        stm32_configgpio(*i);
+        }
+      }
+    }
+  } // CONFIG_STM32F7_SPI2
+
+  if(cfg!(CONFIG_STM32F7_SPI3)){
+    for i in g_spi3gpio.iter();
+     {
+       if (*i != 0)
+       {
+        unsafe{
+          stm32_configgpio(*i);
+          }
+        }
+      }
+    } // CONFIG_STM32F7_SPI3
+ }
+}
 } // if_cfg
