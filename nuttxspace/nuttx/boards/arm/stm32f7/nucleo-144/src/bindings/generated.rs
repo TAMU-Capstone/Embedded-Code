@@ -3012,9 +3012,12 @@ extern "C" {
     #[doc = " Name: stm32_bringup\n\n Description:\n   Perform architecture specific initialization\n\n   CONFIG_BOARDCTL=y:\n     If CONFIG_NSH_ARCHINITIALIZE=y:\n       Called from the NSH library (or other application)\n     Otherwise, assumed to be called from some other application.\n\n   Otherwise CONFIG_BOARD_LATE_INITIALIZE=y:\n     Called from board_late_initialize().\n\n   Otherwise, bad news:  Never called\n"]
     pub fn stm32_bringup() -> cty::c_int;
 }
+
+/*
 extern "C" {
     pub fn stm32_spidev_initialize();
 }
+*/
 extern "C" {
     #[doc = " Name: stm32_dma_alloc_init\n\n Description:\n   Called to create a FAT DMA allocator\n\n Returned Value:\n   0 on success or -ENOMEM\n"]
     pub fn stm32_dma_alloc_init();

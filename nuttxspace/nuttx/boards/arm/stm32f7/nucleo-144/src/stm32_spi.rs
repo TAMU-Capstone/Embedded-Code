@@ -22,8 +22,6 @@
  * Included Files
  ****************************************************************************/
 
-use crate::bindings::*;
-use cty;
 cfg_if::cfg_if! {
 
    if #[cfg(CONFIG_SPI)]
@@ -254,11 +252,9 @@ cfg_if::cfg_if! {
   ****************************************************************************/
 
 
-// weak function used here, no rust equivalent, hoping to ignore but I really think this wont work
+// weak function used here, no direct rust equivalent, hoping to ignore but I really think this wont work
 
-
-
-pub extern "C" fn stm32_spidev_initialize()
+pub fn stm32_spidev_initialize()
  {
    /* Configure SPI CS GPIO for output */
 
@@ -489,7 +485,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
    if #[cfg(CONFIG_STM32F7_SPI1)]
    {
 
-    fnt stm32_spi1cmddata(dev: *mut spi_dev_s , devid : uint32_td, cm : boold -> i32)
+    fn stm32_spi1cmddata(dev: *mut spi_dev_s , devid : uint32_td, cm : boold -> i32)
      {
        return -ENODEV;
       }
@@ -498,7 +494,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
  if #[cfg(CONFIG_STM32F7_SPI2)]
  {
 
-   ifnstm32_spi2cmddata(dev: *mut spi_dev_s, devid, : uint32_t bmd) : bool
+   if stm32_spi2cmddata(dev: *mut spi_dev_s, devid, : uint32_t bmd) : bool
  -> i32   {
      return -ENODEV;
     }
@@ -507,7 +503,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
  if #[cfg(CONFIG_STM32F7_SPI3)]
  {
 
-   ifnstm32_spi3cmddata(dev: *mut spi_dev_s, devid, : uint32_t bmd) : bool
+   if stm32_spi3cmddata(dev: *mut spi_dev_s, devid, : uint32_t bmd) : bool
  -> i32   {
      return -ENODEV;
     }
@@ -552,7 +548,8 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
       let tx : *mux uint8_t  = CONFIG_NUCLEO_SPI_TEST_MESSAGE as *mux uint8_t;
     }
 
- if (#[cfg(CONFIG_NUCLEO_SPI1_TEST)]){
+ if #[cfg(CONFIG_NUCLEO_SPI1_TEST)]
+ {
   unsafe{
     spi1 = stm32_spibus_initialize(1);
   }
@@ -574,7 +571,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
     }
 } // CONFIG_NUCLEO_SPI1_TEST
 
- if (#[cfg(CONFIG_NUCLEO_SPI2_TEST)])
+ if #[cfg(CONFIG_NUCLEO_SPI2_TEST)]
  {
   unsafe{
     spi2 = stm32_spibus_initialize(2);
@@ -597,7 +594,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
       }
     }
       
-  if (#[cfg(CONFIG_NUCLEO_SPI3_TEST)])
+  if #[cfg(CONFIG_NUCLEO_SPI3_TEST)]
   {
     unsafe{
       spi3 = stm32_spibus_initialize(3);
@@ -626,14 +623,15 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
 } // defined(CONFIG_SPI)
 else{
   // considering creating a empty config that will catch and allow this to be a fake preprocessor
+  /*
   pub extern "C" fn stm32_spidev_initialize()
- {
-   /* Configure SPI CS GPIO for output */
-
- if(cfg!(CONFIG_STM32F7_SPI1)){
-  for i in g_spi1gpio.iter();
+  {
+    /* Configure SPI CS GPIO for output */
+    
+    if cfg!(CONFIG_STM32F7_SPI1){
+      for i in g_spi1gpio.iter()
    {
-     if (*i != 0)
+     if *i != 0
      {
       unsafe{
         stm32_configgpio(*i);
@@ -642,10 +640,11 @@ else{
     }
   } //CONFIG_STM32F7_SPI1
 
- if(cfg!(CONFIG_STM32F7_SPI2)){
-  for i in g_spi2gpio.iter();
+ if cfg!(CONFIG_STM32F7_SPI2)
+ {
+  for i in g_spi2gpio.iter()
    {
-     if (*i != 0)
+     if *i != 0
      {
       unsafe{
         stm32_configgpio(*i);
@@ -654,17 +653,19 @@ else{
     }
   } // CONFIG_STM32F7_SPI2
 
-  if(cfg!(CONFIG_STM32F7_SPI3)){
-    for i in g_spi3gpio.iter();
+  if cfg!(CONFIG_STM32F7_SPI3)
+  {
+    for i in g_spi3gpio.iter()
      {
-       if (*i != 0)
+       if *i != 0
        {
-        unsafe{
+         unsafe{
           stm32_configgpio(*i);
           }
         }
       }
     } // CONFIG_STM32F7_SPI3
- }
+  }
+  */
 }
 } // if_cfg

@@ -22,7 +22,7 @@
  * Included Files
  ****************************************************************************/
 use crate::bindings::*;
-
+use crate::stm32_bringup::stm32_bringup;
 
 
 /****************************************************************************
@@ -58,9 +58,7 @@ use crate::bindings::*;
 #[no_mangle]
 pub extern "C" fn board_app_initialize(_arg: usize) -> cty::c_int { 
     #[cfg(not(CONFIG_BOARD_LATE_INITIALIZE))] {
-        unsafe {
             return stm32_bringup();
-        }
     }
     #[cfg(CONFIG_BOARD_LATE_INITIALIZE)] {
         return OK;
