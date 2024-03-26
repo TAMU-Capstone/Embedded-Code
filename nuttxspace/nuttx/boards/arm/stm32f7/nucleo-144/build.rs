@@ -3,20 +3,22 @@ use std::path::PathBuf;
 
 fn main() {
     // Tell cargo to look for shared libraries in the specified directory
-    // println!("cargo:rerun-if-changed=src/nucleo-144.h");
     
     let paths = [
+        "src/",
+        "../../../../sched/",
         "../../../../include/",
-        "../../../../arch/arm/src/stm32f7/",        // stm32_gpio.h, 
-        "../../../../sched/",                       // task/task_create.c, 
+        "../../../../arch/arm/src/common/",
+        "../../../../arch/arm/src/stm32f7/",
         "../../../../arch/arm/src/stm32f7/hardware/",
     ].map(|dir| PathBuf::from(dir).canonicalize().unwrap());
 
     let include_args = paths.map(|path| format!("-I{}", path.to_str().unwrap()));
 
-    
+
     bindgen::Builder::default()
         .header("include/wrapper.h")
+        .clang_arg("-H")
         .clang_args(include_args)
         .use_core()                                 // use ::core instead of ::std
         .ctypes_prefix("cty")                       // Use cty::* for the C types
