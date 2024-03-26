@@ -11,9 +11,7 @@ fn panic(_info: &PanicInfo) -> ! {
 
 mod bindings;
 
-
-mod include;
-
 mod stm32_autoleds;
 mod stm32_reset;
-mod bringup;
+mod stm32_appinitialize;
+mod stm32_adc;
