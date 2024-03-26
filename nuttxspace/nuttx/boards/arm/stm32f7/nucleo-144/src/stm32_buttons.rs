@@ -23,8 +23,8 @@
  /****************************************************************************
   * Included Files
   ****************************************************************************/
- use crate::include::*;
- 
+ use crate::bindings::*;
+ use crate::bindings::stm32_configgpio;
  /****************************************************************************
   * Public Functions
  ****************************************************************************/
@@ -42,7 +42,7 @@
  #[no_mangle]
  pub extern "C" fn board_button_initialize() -> cty::uint8_t {
      unsafe {
-         stm32_configgpio(GPIO_BTN_USER);
+        stm32_configgpio(GPIO_BTN_USER);
      }
      return NUM_BUTTONS;
  }
@@ -88,7 +88,7 @@
  //#[cfg(CONFIG_ARCH_IRQBUTTONS)]
  #[no_mangle]
  pub extern "C" fn board_button_irq(id: u8, irqhandler: Option<unsafe extern "C" fn(i32, *mut c_void, *mut cty::c_void) -> i32>, arg: *mut c_void) -> cty::c_int  {
-     let ret: u8 = -EINVAL;
+     let mut ret: i32 = -<u8 as Into<i32>>::into(EINVAL);
  
      if id == BUTTON_USER {
          unsafe {
@@ -96,7 +96,7 @@
          }
      }
  
-     return ret;
+     return ret.into();
  }
  
   
