@@ -21,3 +21,5 @@ mod stm32_spi;
 mod stm32_appinitialize;
 mod stm32_buttons;
 mod stm32_userleds;
+mod stm32_adc;
+mod stm32_gpio;
