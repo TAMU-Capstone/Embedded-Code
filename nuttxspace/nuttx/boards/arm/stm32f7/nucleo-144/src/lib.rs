@@ -16,3 +16,4 @@ mod stm32_reset;
 mod stm32_appinitialize;
 //mod stm32_adc;
 mod stm32_buttons;
+mod stm32_userleds;
