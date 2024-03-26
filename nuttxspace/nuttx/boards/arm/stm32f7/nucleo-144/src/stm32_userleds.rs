@@ -22,6 +22,7 @@
  * Included Files
  ****************************************************************************/
 
+use crate::bindings::*;
 
 
 /****************************************************************************
@@ -32,7 +33,11 @@
 * BOARD_LED_<color>
 */
 
-
+static g_ledcfg: [u32; BOARD_NLEDS as usize] = [
+    GPIO_LED_GREEN,
+    GPIO_LED_BLUE,
+    GPIO_LED_RED,
+];
 
 /****************************************************************************
  * Public Functions
@@ -48,7 +53,18 @@
 *   application logic.
 *
 ****************************************************************************/
+pub extern "C" fn board_userled_initialize() -> cty::uint32_t {
+    let i: i32;
 
+    for &gpio in &g_ledcfg {
+        unsafe {
+            stm32_configgpio(gpio);
+        }
+    }
+
+    return BOARD_NLEDS.into()
+
+}
 
 
 /****************************************************************************
