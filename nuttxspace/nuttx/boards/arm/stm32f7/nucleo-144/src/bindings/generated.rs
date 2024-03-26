@@ -6838,7 +6838,7 @@ extern "C" {
     pub fn realloc(arg1: *mut cty::c_void, arg2: cty::c_uint) -> *mut cty::c_void;
 }
 extern "C" {
-    pub fn memalign(arg1: usize, arg2: usize) -> *mut cty::c_void;
+    pub fn memalign(arg1: cty::c_uint, arg2: cty::c_uint) -> *mut cty::c_void;
 }
 extern "C" {
     pub fn zalloc(arg1: usize) -> *mut cty::c_void;
@@ -6847,7 +6847,7 @@ extern "C" {
     pub fn calloc(arg1: cty::c_uint, arg2: cty::c_uint) -> *mut cty::c_void;
 }
 extern "C" {
-    pub fn aligned_alloc(arg1: usize, arg2: usize) -> *mut cty::c_void;
+    pub fn aligned_alloc(arg1: cty::c_uint, arg2: cty::c_uint) -> *mut cty::c_void;
 }
 extern "C" {
     pub fn posix_memalign(arg1: *mut *mut cty::c_void, arg2: usize, arg3: usize) -> cty::c_int;
