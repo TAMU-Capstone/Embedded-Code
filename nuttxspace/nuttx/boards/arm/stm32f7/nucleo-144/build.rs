@@ -19,6 +19,8 @@ fn main() {
     bindgen::Builder::default()
         .header("include/wrapper.h")
         .clang_arg("-H")
+        .clang_arg("-E")
+        .clang_arg("-dD")
         .clang_args(include_args)
         .use_core()                                 // use ::core instead of ::std
         .ctypes_prefix("cty")                       // Use cty::* for the C types
