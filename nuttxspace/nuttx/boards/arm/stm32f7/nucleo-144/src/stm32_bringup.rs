@@ -71,7 +71,7 @@ use crate::bindings::*;
         ret = nx_mount(null_ptr, STM32_PROCFS_MOUNTPOINT, "procfs", 0, null_ptr);
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: Failed to mount procfs at %s: %d\n": &str, STM32_PROCFS_MOUNTPOINT, ret: i32);
+            fn syslog(LOG_ERR: u8, "ERROR: Failed to mount procfs at %s: %d\n": &str, STM32_PROCFS_MOUNTPOINT, ret: i32);
         }
     }
 
@@ -83,7 +83,7 @@ use crate::bindings::*;
 
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: Failed to mount romfs at %s: %d\n": &str, CONFIG_STM32_ROMFS_MOUNTPOINT, ret: i32);
+            syslog(LOG_ERR: u8, "ERROR: Failed to mount romfs at %s: %d\n": &str, CONFIG_STM32_ROMFS_MOUNTPOINT, ret: i32);
         }
     }
 
@@ -93,7 +93,7 @@ use crate::bindings::*;
         ret = stm32_gpio_initialize();
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "Failed to initialize GPIO Driver: %d\n": &str, ret: i32);
+            syslog(LOG_ERR: u8, "Failed to initialize GPIO Driver: %d\n": &str, ret: i32);
             return ret;
         }
     }
@@ -103,7 +103,7 @@ use crate::bindings::*;
         ret = userled_lower_initialize(LED_DRIVER_PATH);
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: userled_lower_initialize() failed: {}\n": &str, ret: i32);
+            syslog(LOG_ERR: u8, "ERROR: userled_lower_initialize() failed: {}\n": &str, ret: i32);
         }
     }
 
@@ -112,13 +112,13 @@ use crate::bindings::*;
         ret = stm32_adc_setup();
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: stm32_adc_setup failed: %d\n": &str, ret: i32);
+            syslog(LOG_ERR: u8, "ERROR: stm32_adc_setup failed: %d\n": &str, ret: i32);
         }
     }
 
     if cfg!(CONFIG_STM32F7_BBSRAM)
     {
-        pub fn stm32_bbsram_int();
+        stm32_bbsram_int();
     }
 
     if cfg!(CONFIG_FAT_DMAMEMORY)
@@ -127,7 +127,7 @@ use crate::bindings::*;
         let temp = stm32_dma_alloc_init();
         if temp < 0
         {
-            pub fn syslog(LOG_ERR: u8, "DMA alloc FAILED": &str);
+            syslog(LOG_ERR: u8, "DMA alloc FAILED": &str);
         }
     }
 
@@ -137,7 +137,7 @@ use crate::bindings::*;
         //there is if ret != OK
         if ret != OK
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: Failed to initialize SPI interfaces: %d\n": &str, ret: i32);
+            syslog(LOG_ERR: u8, "ERROR: Failed to initialize SPI interfaces: %d\n": &str, ret: i32);
             return ret;
         }
     }
@@ -147,7 +147,7 @@ use crate::bindings::*;
         ret = stm32_sdio_initialize();
         if ret != OK
         {
-            pub fn ferr("ERROR: Failed to initialize MMC/SD driver: %d\n": &str, ret: i32);
+            ferr("ERROR: Failed to initialize MMC/SD driver: %d\n": &str, ret: i32);
             return ret;
         }
     }
@@ -157,7 +157,7 @@ use crate::bindings::*;
         ret = stm32_pwm_setup();
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: stm32_pwm_setup() failed: %d\n": &str, ret: i32);
+            syslog(LOG_ERR: u8, "ERROR: stm32_pwm_setup() failed: %d\n": &str, ret: i32);
         }
     }
 
