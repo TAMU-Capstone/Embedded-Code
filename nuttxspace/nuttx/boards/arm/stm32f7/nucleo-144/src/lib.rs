@@ -19,7 +19,10 @@ mod stm32_spi;
 // mod stm32_bringup;
 // mod stm32_adc;
 mod stm32_appinitialize;
+<<<<<<< HEAD
 mod stm32_buttons;
 mod stm32_userleds;
+=======
+>>>>>>> 522ac6ee (moved initialized varibale in main function of adc outside cfg to fix not found error)
 mod stm32_adc;
 mod stm32_gpio;
