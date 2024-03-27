@@ -57,6 +57,9 @@ const ADC1_NCHANNELS: usize = 4;
  * {1,  2,  3, 4,  5,  6, 7,  8,  9, 10, 11, 12, 13, 15};
 */
 
+pub const ADC1_NCHANNELS: usize = 4;
+pub const G_CHANLIST: [u8; ADC1_NCHANNELS] = [3, 4, 10, 13];
+
 #[cfg(CONFIG_STM32F7_ADC1)] 
 const G_CHANLIST: [u8; ADC1_NCHANNELS] = [3, 4, 10, 13];
 
