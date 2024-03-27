@@ -169,11 +169,11 @@ use crate::bindings::*;
     
     if cfg!(CONFIG_STM32F7_TIM1_QE)
     {
-        pub fn snprintf(buf: &[i32], buf.len(): i32, "/dev/qe0": &str);
+        snprintf(buf: &[i32], buf.len(): i32, "/dev/qe0": &str);
         ret = stm32_qencoder_initialize(buf: &[i32], 1);
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: Failed to register the qencoder: %d\n": &str, ret: i32);
+            syslog(LOG_ERR: u8, "ERROR: Failed to register the qencoder: %d\n": &str, ret: i32);
             return ret;
         }
     }
