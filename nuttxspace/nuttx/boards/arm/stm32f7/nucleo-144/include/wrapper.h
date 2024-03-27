@@ -16,6 +16,7 @@ grep "#include" src/*.c | awk '
 */
 
 #include "arm_internal.h"               // bbsram.rs, boot.rs, pwm.rs, qencoder.rs, spi.rs, usb.rs
+#include "./board.h"
 #include "chip.h"                       // adc.rs, gpio.rs, pwm.rs, qencoder.rs, sdio.rs, spi.rs, usb.rs
 #include "nucleo-144.h"                 // adc.rs, appinitialize.rs, autoleds.rs, bbsram.rs, boot.rs, bringup.rs, buttons.rs, can.rs, dma_alloc.rs, gpio.rs, pwm.rs, qencoder.rs, sdio.rs, spi.rs, usb.rs, userleds.rs
 #include "stm32_adc.h"                  // adc.rs
