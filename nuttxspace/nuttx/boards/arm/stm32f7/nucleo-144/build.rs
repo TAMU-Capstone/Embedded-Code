@@ -54,6 +54,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         "../../../../include/",
         "../../../../arch/arm/src/stm32f7/",        // stm32_gpio.h, 
         "../../../../arch/arm/src/",                // stm32_bringup
+        "../../../../arch/arm/src/common",          // stm32_bringup--arm_internal.h
         "../../../../sched/",                       // task/task_create.c, 
         "../../../../arch/arm/src/stm32f7/hardware/",
     ]

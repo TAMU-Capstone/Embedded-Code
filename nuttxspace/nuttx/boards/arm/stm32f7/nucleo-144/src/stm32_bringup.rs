@@ -71,7 +71,9 @@ use crate::bindings::*;
         ret = nx_mount(null_ptr, STM32_PROCFS_MOUNTPOINT, "procfs", 0, null_ptr);
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: Failed to mount procfs at %s: %d\n": &str, STM32_PROCFS_MOUNTPOINT, ret: i32);
+            unsafe{
+                syslog(LOG_ERR, "ERROR: Failed to mount procfs at %s: %d\n", STM32_PROCFS_MOUNTPOINT, ret);
+            }
         }
     }
 
@@ -134,7 +136,8 @@ use crate::bindings::*;
     if cfg!(CONFIG_FAT_DMAMEMORY)
     {
         //TO-DO: may need to use let and make variable and then compare
-        unsafe{
+        unsafe
+        {
             if stm32_dma_alloc_init() < 0
             {
                 syslog(LOG_ERR, "DMA alloc FAILED");
@@ -293,9 +296,11 @@ use crate::bindings::*;
             }
         }
     }
-unsafe{
-    UNUSED(ret);
-}
+    unsafe
+    {
+        UNUSED(ret);
+    }
     return OK;
 
   }
+}
