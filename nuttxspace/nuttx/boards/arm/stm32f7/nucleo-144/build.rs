@@ -1,27 +1,50 @@
+use std::process::Command;
 use std::path::PathBuf;
 
 
 fn main() {
-    // Tell cargo to look for shared libraries in the specified directory
-    
-    let paths = [
+    // Constants that are used to determine `#ifdef` and `#if defined`
+    let prepocessor_constants = PathBuf::from("../../../../include/nuttx/config.h")
+        .canonicalize()
+        .unwrap();
+        
+    let include_paths = [
         "src/",
         "../../../../sched/",
         "../../../../include/",
         "../../../../arch/arm/src/common/",
         "../../../../arch/arm/src/stm32f7/",
         "../../../../arch/arm/src/stm32f7/hardware/",
-    ].map(|dir| PathBuf::from(dir).canonicalize().unwrap());
+    ].map(|path| format!("-I{}", PathBuf::from(path)
+        .canonicalize()
+        .unwrap()
+        .to_str()
+        .unwrap())
+    );
 
-    let include_args = paths.map(|path| format!("-I{}", path.to_str().unwrap()));
+
+    let wrapper = "include/wrapper.h";
+    let header = "include/preprocessed_wrapper.h";
+
+
+    Command::new("clang")
+        .arg("-E")
+        .arg("-dM")
+        .arg("-include")
+        .arg(prepocessor_constants)
+        .arg(wrapper)
+        .arg("-o")
+        .arg(header)
+        .args(&include_paths)
+        .output()
+        .expect("Failed to execute Clang command");
 
 
     bindgen::Builder::default()
-        .header("include/wrapper.h")
         .clang_arg("-H")
-        .clang_arg("-E")
-        .clang_arg("-dD")
-        .clang_args(include_args)
+        .clang_args(include_paths)
+        .header(wrapper)
+        .header(header)
         .use_core()                                 // use ::core instead of ::std
         .ctypes_prefix("cty")                       // Use cty::* for the C types
         .layout_tests(false)                        // Don't generate #[test]'s because #![no_std]
