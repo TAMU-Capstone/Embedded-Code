@@ -8,9 +8,8 @@ fn main() {
         "src/",
         "../../../../sched/",
         "../../../../include/",
-        "../../../../arch/arm/src/stm32f7/",        // stm32_gpio.h, 
-        "../../../../arch/arm/src/",                // stm32_bringup
-        "../../../../sched/",                       // task/task_create.c, 
+        "../../../../arch/arm/src/common/",
+        "../../../../arch/arm/src/stm32f7/",
         "../../../../arch/arm/src/stm32f7/hardware/",
     ].map(|dir| PathBuf::from(dir).canonicalize().unwrap());
 
