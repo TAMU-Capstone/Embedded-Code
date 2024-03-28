@@ -61,6 +61,9 @@ add_subdirectory(system)
 add_subdirectory(testing)
 add_subdirectory(wireless)
 
+# Add any new application directories here
+add_subdirectory(testingApp)
+
 # add examples and external at the end to allow library dependencies
 add_subdirectory(examples)
 if(EXISTS ${CMAKE_CURRENT_LIST_DIR}/external)
