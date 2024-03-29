@@ -351,15 +351,9 @@ else{
 #[no_mangle]
 pub extern "C" fn stm32_usbinitialize()
 {
-
-  // pub to allow boot to use this function
-  /* The OTG FS has an internal soft pull-up.
-    * No GPIO configuration is required
-    */
-
-  /* Configure the OTG FS VBUS sensing GPIO,
-    * Power On, and Overcurrent GPIOs
-    */
+  /*
+  This is cursed, but the CFG flag blocks the scope reading the public functions in other crates
+   */
   if cfg! (CONFIG_STM32F7_OTGFS)
   {
     unsafe{
