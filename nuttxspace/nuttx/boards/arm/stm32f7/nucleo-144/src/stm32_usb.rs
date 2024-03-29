@@ -28,9 +28,9 @@ use crate::bindings::*;
  ****************************************************************************/
 
 cfg_if::cfg_if! { 
-  if #[cfg(CONFIG_STM32F7_OTGFS)]
+  if #[cfg(features = "CONFIG_STM32F7_OTGFS")]
   {
-    if ( cfg!(CONFIG_USBDEV) || cfg!(CONFIG_USBHOST) )
+    if ( #[cfg(features = "CONFIG_USBDEV")] || #[cfg(features = "CONFIG_USBHOST")] )
     {
       //https://stackoverflow.com/questions/45163024/whats-the-equivalent-of-a-c-preprocessor-like-define-for-an-array-length
       static HAVE_USB: i32 = 1;
@@ -58,7 +58,7 @@ cfg_if::cfg_if! {
     ****************************************************************************/
 
   if( cfg!(CONFIG_USBHOST) ){
-    static struct usbhost_connection_s *g_usbconn;
+    static g_usbconn: mux* usbhost_connection_s;
   }
 
   /****************************************************************************
@@ -73,7 +73,7 @@ cfg_if::cfg_if! {
     *
     ****************************************************************************/
 
-  if #[cfg(CONFIG_USBHOST)]{
+  if #[cfg(features = (CONFIG_USBHOST))]{
     extern "C" fn usbhost_waiter( argc: i32, argv: &[String]) -> i32
     {
       // DONT TRUST THIS STRUGGLING TO FIND A SOLID LIFT AND SHIFT HERE
@@ -157,7 +157,7 @@ cfg_if::cfg_if! {
     ****************************************************************************/
 
 
-     if( #[cfg(CONFIG_USBHOST)])
+     if( #[cfg(features = (CONFIG_USBHOST))])
      {
 
        pub extern "C" fn stm32_usbhost_initialize()
@@ -289,7 +289,7 @@ cfg_if::cfg_if! {
     *
     ****************************************************************************/
 
-    if( #[cfg(CONFIG_USBHOST)])
+    if( #[cfg(features(CONFIG_USBHOST))])
     {
       pub extern "C" fn stm32_usbhost_vbusdrive( iface :i32, enable: bool)
       {
@@ -318,7 +318,7 @@ cfg_if::cfg_if! {
     *
     ****************************************************************************/
 
-      if( #[cfg(CONFIG_USBHOST)] )
+      if( #[cfg(features = (CONFIG_USBHOST))] )
       {
         // reading line 1414 of binding.rs
         pub extern "C" fn stm32_setup_overcurrent( handler : c_int, arg: *mut cty::c_void) -> i32
@@ -339,7 +339,7 @@ cfg_if::cfg_if! {
     *   shutdown clocks, power, etc. while the USB is suspended.
     *
     ****************************************************************************/
-      if( #[cfg(CONFIG_USBDEV)])
+      if( #[cfg(features = (CONFIG_USBDEV))])
       {
          pub extern "C" fn stm32_usbsuspend(struct usbdev_s *dev, resume : bool)
          {
