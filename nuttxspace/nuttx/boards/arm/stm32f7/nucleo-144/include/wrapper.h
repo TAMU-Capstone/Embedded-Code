@@ -5,15 +5,16 @@
  * Created by using this pipeline command:
  * 
  * 
-grep "#include" src/*.c | awk '
-    BEGIN{FS=":"; OFS="\t// "};
-    { arr[$2] = arr[$2] == ""? $1 : arr[$2] ", " $1 }
-    END {for (i in arr) print i, arr[i] }
-' \
-| sort \
-| sed 's/\.c/\.rs/g' \
-| sed 's@src/stm32_@@g';
-*/
+ */
+// grep "#include" src/*.c | awk '
+//     BEGIN{FS=":"; OFS="\t// "};
+//     { arr[$2] = arr[$2] == ""? $1 : arr[$2] ", " $1 }
+//     END {for (i in arr) print i, arr[i] }
+// ' \
+// | sort \
+// | sed 's/\.c/\.rs/g' \
+// | sed 's@src/stm32_@@g';
+
 
 #include "arm_internal.h"               // bbsram.rs, boot.rs, pwm.rs, qencoder.rs, spi.rs, usb.rs
 #include "./board.h"

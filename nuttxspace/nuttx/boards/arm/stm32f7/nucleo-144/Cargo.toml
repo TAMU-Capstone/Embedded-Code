@@ -30,3 +30,5 @@ thiserror-no-std = "2.0.2" # no std version of throwing errors
 # Build Dependencies for our project
 [build-dependencies]
 bindgen = "0.69.4"
+regex = "1.10.4"
+topo_sort = "0.4.0"
