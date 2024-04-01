@@ -77,3 +77,4 @@
 #include <sys/param.h>                  // autoleds.rs, bbsram.rs, spi.rs, userleds.rs
 #include <sys/types.h>                  // appinitialize.rs, bringup.rs, composite.rs, pwm.rs, romfs_initialize.rs, usb.rs
 #include <syslog.h>                     // bbsram.rs, bringup.rs, dma_alloc.rs
+
