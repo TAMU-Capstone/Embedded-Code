@@ -26,7 +26,10 @@ use crate::bindings::*;
 use crate::bindings::ENOSYS;
 use heapless::String;
 use::bindings::stm32_adc_initialize;
+<<<<<<< HEAD
 //use::bindings::GPIO_ADC1_IN10;
+=======
+>>>>>>> 49660a99b487bd5d28cb9d3e29b520d99685f0d9
 
 /* Up to 3 ADC interfaces are supported */
 #[cfg_if::cfg_if(not(STM32F7_NADC >= 3), then(not(CONFIG_STM32F7_ADC3)))]
