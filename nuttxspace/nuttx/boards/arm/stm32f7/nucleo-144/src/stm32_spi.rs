@@ -24,7 +24,7 @@
 use crate::bindings::*;
 cfg_if::cfg_if! {
 
-   if #[cfg(CONFIG_SPI)]
+   if #[cfg(featuress = (CONFIG_SPI))]
 {
    /****************************************************************************
   * Pre-processor Definitions
@@ -322,7 +322,7 @@ pub fn stm32_spidev_initialize()
   *
   ****************************************************************************/
 
-  if(#[cfg!(CONFIG_STM32F7_SPI1)])
+  if(#[cfg(features (CONFIG_STM32F7_SPI1))])
   {
 
     pub extern "C" fn stm32_spi1select( dev: *mut spi_dev_s, devid : uint32_t , select : bool )
@@ -349,7 +349,7 @@ pub fn stm32_spidev_initialize()
  }
 } // CONFIG_STM32F7_SPI1
 
- if(#[cfg(CONFIG_STM32F7_SPI2)])
+ if(#[cfg(features = (CONFIG_STM32F7_SPI2))])
  {
 
    extern "C" fn stm32_spi2select( dev : *mut spi_dev_s,
@@ -377,7 +377,7 @@ pub fn stm32_spidev_initialize()
  }
 } // CONFIG_STM32F7_SPI2
 
-if(#[cfg(CONFIG_STM32F7_SPI3)])
+if(#[cfg( features = (CONFIG_STM32F7_SPI3))])
 {
 
   extern "C" fn stm32_spi3select( dev : *mut spi_dev_s,
@@ -405,7 +405,7 @@ fn stm32_spi3status(dev : *mut spi_dev_s , devid : _uint32_t ) -> __uint8_t
 }
 } // CONFIG_STM32F7_SPI3
 
- if(#[cfg(CONFIG_STM32F7_SPI4)]){
+ if(#[cfg( features = (CONFIG_STM32F7_SPI4))]){
 
    extern "C" fn stm32_spi4select( dev : * mut spi_dev_s,
     devid : uint32_t, selected : bool)
@@ -422,7 +422,7 @@ fn stm32_spi3status(dev : *mut spi_dev_s , devid : _uint32_t ) -> __uint8_t
   }
 } // CONFIG_STM32F7_SPI4
 
-if(#[cfg(CONFIG_STM32F7_SPI5)]){
+if(#[cfg(features = (CONFIG_STM32F7_SPI5))]){
 
   extern "C" fn stm32_spi5select( dev : * mut spi_dev_s,
    devid : uint32_t, selected : bool)
@@ -439,7 +439,7 @@ fn stm32_spi5status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
  }
 } // CONFIG_STM32F7_SPI5
 
-if(#[cfg(CONFIG_STM32F7_SPI6)]){
+if(#[cfg(features = (CONFIG_STM32F7_SPI6))]){
 
   extern "C" fn stm32_spi6select( dev : * mut spi_dev_s,
    devid : uint32_t, selected : bool)
@@ -480,9 +480,9 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
   *
   ****************************************************************************/
 
- if #[cfg( CONFIG_SPI_CMDDATA )]
+ if #[cfg( featuress = (CONFIG_SPI_CMDDATA))]
  {
-   if #[cfg(CONFIG_STM32F7_SPI1)]
+   if #[cfg(featuress = (CONFIG_STM32F7_SPI1))]
    {
 
     fn stm32_spi1cmddata(dev: *mut spi_dev_s , devid : uint32_td, cm : boold -> i32)
@@ -491,7 +491,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
       }
     }
 
- if #[cfg(CONFIG_STM32F7_SPI2)]
+ if #[cfg(featuress = (CONFIG_STM32F7_SPI2))]
  {
 
    if stm32_spi2cmddata(dev: *mut spi_dev_s, devid, : uint32_t bmd) : bool
@@ -500,7 +500,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
     }
   }
 
- if #[cfg(CONFIG_STM32F7_SPI3)]
+ if #[cfg(features = (CONFIG_STM32F7_SPI3))]
  {
 
    if stm32_spi3cmddata(dev: *mut spi_dev_s, devid, : uint32_t bmd) : bool
@@ -509,7 +509,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
     }
   }
 
-  if #[cfg(CONFIG_STM32F7_SPI4)]
+  if #[cfg( features = (CONFIG_STM32F7_SPI4))]
   {
 
     fn stm32_spi4cmddata(dev: *mut spi_dev_s, devid : uint32_t, cmd : bool) -> i32
@@ -518,7 +518,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
     }
   }
 
-  if #[cfg(CONFIG_STM32F7_SPI5)]
+  if #[cfg( features = (CONFIG_STM32F7_SPI5))]
   {
 
     fn stm32_spi5cmddata(dev: *mut spi_dev_s, devid : uint32_t, cmd : bool) -> i32
@@ -527,7 +527,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
     }
   }
 
-  if #[cfg(CONFIG_STM32F7_SPI6)]
+  if #[cfg( features = (CONFIG_STM32F7_SPI6))]
   {
 
     fn stm32_spi6cmddata(dev: *mut spi_dev_s, devid : uint32_t, cmd : bool) -> i32
@@ -538,7 +538,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
 
 } // CONFIG_SPI_CMDDATA
 
- if (#cfg(CONFIG_NUCLEO_SPI_TEST))
+ if (#[cfg(features = (CONFIG_NUCLEO_SPI_TEST))])
  {
 
    fn stm32_spidev_bus_test() -> i32
@@ -548,7 +548,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
       let tx : *mux uint8_t  = CONFIG_NUCLEO_SPI_TEST_MESSAGE as *mux uint8_t;
     }
 
- if #[cfg(CONFIG_NUCLEO_SPI1_TEST)]
+ if #[cfg(features = (CONFIG_NUCLEO_SPI1_TEST))]
  {
   unsafe{
     spi1 = stm32_spibus_initialize(1);
