@@ -53,6 +53,8 @@ static g_ledcfg: [u32; BOARD_NLEDS as usize] = [
 *   application logic.
 *
 ****************************************************************************/
+
+#[no_mangle]
 pub extern "C" fn board_userled_initialize() -> cty::uint32_t {
     let i: i32;
 
@@ -77,6 +79,10 @@ pub extern "C" fn board_userled_initialize() -> cty::uint32_t {
 *
 ****************************************************************************/
 
+#[no_mangle]
+pub extern "C" fn  board_userled(int led, bool ledon) {
+
+}
 
 
 /****************************************************************************
