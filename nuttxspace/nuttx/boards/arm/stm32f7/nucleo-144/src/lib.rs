@@ -9,15 +9,15 @@ fn panic(_info: &PanicInfo) -> ! {
 }
 
 
-// mod bindings;
+mod bindings;
 
-// mod stm32_autoleds;
-// mod stm32_reset;
-// mod stm32_usb;
-// mod stm32_boot;
-// mod stm32_spi;
-// // mod stm32_bringup;
-// // mod stm32_adc;
-// mod stm32_appinitialize;
-// mod stm32_buttons;
-// mod stm32_userleds;
+mod stm32_autoleds;
+mod stm32_reset;
+mod stm32_usb;
+mod stm32_boot;
+mod stm32_spi;
+// mod stm32_bringup;
+// mod stm32_adc;
+mod stm32_appinitialize;
+mod stm32_buttons;
+mod stm32_userleds;
