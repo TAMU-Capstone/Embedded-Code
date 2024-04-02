@@ -22,19 +22,52 @@
  * Included Files
  ****************************************************************************/
 
+//#include <../../nuttx/include/nuttx/config.h>
 #include <nuttx/config.h>
 #include <stdio.h>
+#include <stdbool.h> //why do I have to do this??????????????????????????????????????/
+#include <unistd.h>
+
 
 /****************************************************************************
- * Public Functions
+ * Function Definitions
  ****************************************************************************/
+
+extern int board_userled_initialize(void);
+extern void board_userled(int led, _Bool ledon); //Necessary??????????????????????????///
+
+
+/****************************************************************************
+ * Test Functions
+ ****************************************************************************/
+
+void userleds_test(void) {
+  int ledset = 0;
+
+  // configure leds
+  int NUM_LEDS = board_userled_initialize();
+
+  // Turn on all three leds
+  for (int i = 0; i < NUM_LEDS; i++) {
+    board_userled(i, true);
+  }
+
+  printf("Test 1 Userleds:\n");
+  printf("All three Userleds should be on for 10 seconds.\n");
+
+  sleep(10);
+
+  for (int i = 0; i < NUM_LEDS; i++) {
+    board_userled(i, false);
+  }
+
+}
 
 /****************************************************************************
  * testingApp_main
  ****************************************************************************/
+int main(int argc, FAR char *argv[]) {
+  userleds_test();
 
-int main(int argc, FAR char *argv[])
-{
-  printf("Howdy\n");
   return 0;
 }
