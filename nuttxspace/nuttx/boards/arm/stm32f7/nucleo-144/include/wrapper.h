@@ -30,7 +30,7 @@
 #include <nuttx/kmalloc.h>          // bringup.rs
 #include <nuttx/leds/userled.h>     // bringup.rs
 #include <nuttx/fs/fs.h>            // bringup.rs
-#include "stm32f7/stm32_i2c.h"      // bringup.rs
+#include "stm32_i2c.h"      // bringup.rs
 #include <syslog.h>
 #include <stdio.h>
 #include <nuttx/config.h>
