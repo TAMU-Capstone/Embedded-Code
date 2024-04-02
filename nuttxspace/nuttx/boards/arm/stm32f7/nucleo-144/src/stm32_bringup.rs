@@ -56,19 +56,22 @@ extern "C" {
     let mut null_ptr: *const u8 = 0 as *const u8;
 
     //if CONFIG_I2C
-    if cfg!(CONFIG_I2C)
+    //if cfg!(CONFIG_I2C)
+    #[cfg(CONFIG_I2C)]
     {
         let mut i2c_bus: i32;
         //should I use Box? -- its a smart pointer
         let mut i2c = &mut i2c_master_s { ops: val };
 
-        if cfg!(CONFIG_MPU60X0_I2C)
+        //if cfg!(CONFIG_MPU60X0_I2C)
+        #[cfg(CONFIG_MPU60X0_I2C)]
         {
             let mut mpu_config = &mut mpu_config_s { i2c: val, addr: val };
         }
     } // CONFIG_I2C
 
-    if cfg!(CONFIG_FS_PROCFS)
+    //if cfg!(CONFIG_FS_PROCFS)
+    #[cfg(CONFIG_FS_PROCFS)]
     {
         /* Mount the procfs file system */
         ret = nx_mount(null_ptr, STM32_PROCFS_MOUNTPOINT, "procfs".as_ptr() as *const u8, 0, core::ptr::null_mut()); //null_ptr.as_ptr().cast::<mut *c_void>()
@@ -83,7 +86,8 @@ extern "C" {
         }
     }
 
-    if cfg!(CONFIG_STM32_ROMFS)
+    //if cfg!(CONFIG_STM32_ROMFS)
+    #[cfg(CONFIG_STM32_ROMFS)]
     {
         /* Mount the romfs partition */
 
@@ -97,7 +101,8 @@ extern "C" {
         }
     }
 
-    if cfg!(CONFIG_DEV_GPIO)
+    //if cfg!(CONFIG_DEV_GPIO)
+    #[cfg(CONFIG_DEV_GPIO)]
     {
         /* Register the GPIO driver */
         ret = stm32_gpio_initialize();
@@ -110,18 +115,23 @@ extern "C" {
         }
     }
 
-    if cfg!(not(CONFIG_ARCH_LEDS)) && cfg!(CONFIG_USERLED_LOWER)
+    //if cfg!(not(CONFIG_ARCH_LEDS)) && cfg!(CONFIG_USERLED_LOWER)
+    #[cfg(not(CONFIG_ARCH_LEDS))]
     {
-        ret = userled_lower_initialize(LED_DRIVER_PATH);
-        if ret < 0
+        #[(CONFIG_USERLED_LOWER)]
         {
-            unsafe{
-                syslog(LOG_ERR.into(), "ERROR: userled_lower_initialize() failed: {}\n".as_ptr() as *const u8, ret);
+            ret = userled_lower_initialize(LED_DRIVER_PATH);
+            if ret < 0
+            {
+                unsafe{
+                    syslog(LOG_ERR.into(), "ERROR: userled_lower_initialize() failed: {}\n".as_ptr() as *const u8, ret);
+                }
             }
         }
     }
 
-    if cfg!(CONFIG_ADC)
+    //if cfg!(CONFIG_ADC)
+    #[cfg(CONFIG_ADC)]
     {
         ret = stm32_adc_setup();
         if ret < 0
@@ -132,14 +142,16 @@ extern "C" {
         }
     }
 
-    if cfg!(CONFIG_STM32F7_BBSRAM)
+    //if cfg!(CONFIG_STM32F7_BBSRAM)
+    #[cfg(CONFIG_STM32F7_BBSRAM)]
     {
         unsafe{
             stm32_bbsram_int();
         }
     }
 
-    if cfg!(CONFIG_FAT_DMAMEMORY)
+    //if cfg!(CONFIG_FAT_DMAMEMORY)
+    #[cfg(CONFIG_FAT_DMAMEMORY)]
     {
         //TO-DO: may need to use let and make variable and then compare
         unsafe
@@ -154,7 +166,8 @@ extern "C" {
         }
     }
 
-    if cfg!(CONFIG_NUCLEO_SPI_TEST)
+    //if cfg!(CONFIG_NUCLEO_SPI_TEST)
+    #[cfg(CONFIG_NUCLEO_SPI_TEST)]
     {
         ret = stm32_spidev_bus_test();
         //there is if ret != OK
@@ -165,7 +178,8 @@ extern "C" {
         }
     }
 
-    if cfg!(CONFIG_MMCSD)
+    //if cfg!(CONFIG_MMCSD)
+    #[cfg(CONFIG_MMCSD)]
     {
         ret = stm32_sdio_initialize();
         if ret != OK
@@ -175,7 +189,8 @@ extern "C" {
         }
     }
 
-    if cfg!(CONFIG_PWM)
+    //if cfg!(CONFIG_PWM)
+    #[cfg(CONFIG_PWM)]
     {
         ret = stm32_pwm_setup();
         if ret < 0
@@ -186,12 +201,14 @@ extern "C" {
         }
     }
 
-    if cfg!(CONFIG_SENSORS_QENCODER)
+    //if cfg!(CONFIG_SENSORS_QENCODER)
+    #[cfg(CONFIG_SENSORS_QENCODER)]
     {
         //defines an array of size 9 and initializes it to 0
         let mut buf : [u8; 9] = [0; 9];
         
-        if cfg!(CONFIG_STM32F7_TIM1_QE)
+        //if cfg!(CONFIG_STM32F7_TIM1_QE)
+        #[cfg(CONFIG_STM32F7_TIM1_QE)]
         {
             //(&buf[0..1]).read_u16::<LittleEndian>();
             snprintf(buf.as_ptr() as *mut u8, buf.len().try_into().unwrap(), "/dev/qe0".as_ptr() as *const u8);
@@ -203,7 +220,8 @@ extern "C" {
             }
         }
     
-        if cfg!(CONFIG_STM32F7_TIM3_QE)
+        //if cfg!(CONFIG_STM32F7_TIM3_QE)
+        #[cfg(CONFIG_STM32F7_TIM3_QE)]
         {
             unsafe{
                 snprintf(buf.as_ptr() as *mut u8, buf.len().try_into().unwrap(), "/dev/qe2".as_ptr() as *const u8);  //.try_into().unwrap()
@@ -220,7 +238,8 @@ extern "C" {
             }
         }
 
-        if cfg!(CONFIG_STM32F7_TIM4_QE)
+        //if cfg!(CONFIG_STM32F7_TIM4_QE)
+        #[cfg(CONFIG_STM32F7_TIM4_QE)]
         {
             unsafe{
                 snprintf(buf.as_ptr() as *mut u8, buf.len().try_into().unwrap(), "/dev/qe3".as_ptr() as *const u8);
@@ -238,7 +257,8 @@ extern "C" {
         }
     } // CONFIG_SENSORS_QENCODER
     
-    if cfg!(CONFIG_STM32F7_CAN_CHARDRIVER)
+    //if cfg!(CONFIG_STM32F7_CAN_CHARDRIVER)
+    #[cfg(CONFIG_STM32F7_CAN_CHARDRIVER)]
     {
         ret = stm32_can_setup();
         if ret < 0
@@ -250,7 +270,8 @@ extern "C" {
         }
     }
 
-    if cfg!(CONFIG_STM32F7_CAN_SOCKET)
+    //if cfg!(CONFIG_STM32F7_CAN_SOCKET)
+    #[cfg(CONFIG_STM32F7_CAN_SOCKET)]
     {
         unsafe{
             ret = stm32_cansock_setup();
@@ -276,7 +297,8 @@ extern "C" {
         }
         else
         {
-            if cfg!(CONFIG_SYSTEM_I2CTOOL)
+            //if cfg!(CONFIG_SYSTEM_I2CTOOL)
+            #[cfg(CONFIG_SYSTEM_I2CTOOL)]
             {
                 ret = i2c_register(i2c, i2c_bus);
             
@@ -288,7 +310,8 @@ extern "C" {
                 }
             }
 
-            if cfg!(CONFIG_MPU60X0_I2C)
+            //if cfg!(CONFIG_MPU60X0_I2C)
+            #[cfg(CONFIG_MPU60X0_I2C)]
             {
                 let mpu_config = kmm_zalloc(get_size(mpu_config_s));
                 if mpu_config == null_ptr
