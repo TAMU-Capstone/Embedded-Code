@@ -6,11 +6,11 @@
  * 
  * 
  */
-// grep "#include" src/*.c | awk '
+// grep "#include" src/*.c \
+// | awk '
 //     BEGIN{FS=":"; OFS="\t// "};
 //     { arr[$2] = arr[$2] == ""? $1 : arr[$2] ", " $1 }
-//     END {for (i in arr) print i, arr[i] }
-// ' \
+//     END {for (i in arr) print i, arr[i] }' \
 // | sort \
 // | sed 's/\.c/\.rs/g' \
 // | sed 's@src/stm32_@@g';
