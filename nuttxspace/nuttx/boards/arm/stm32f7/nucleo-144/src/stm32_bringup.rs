@@ -49,19 +49,16 @@ use crate::bindings::*;
     //define as mutable
     let mut ret: i32 = 0;
 
-    //create a null ptr to replace NULL in C
-    let mut null_ptr: *const u8 = 0 as *const u8;
-
     //if CONFIG_I2C
     if cfg!(CONFIG_I2C)
     {
         let mut i2c_bus: i32;
         //should I use Box? -- its a smart pointer
-        let mut i2c = &mut i2c_master_s { ops: val };
+        let mut i2c = &mut i2c_master_s;
 
         if cfg!(CONFIG_MPU60X0_I2C)
         {
-            let mpu_config = mpu_config_s { i2c: val, addr: val };
+            let mut mpu_config = &mpu_config_s;
         }
     } // CONFIG_I2C
 
