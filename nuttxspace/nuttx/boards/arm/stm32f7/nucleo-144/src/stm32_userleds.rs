@@ -24,7 +24,6 @@
 
 use crate::bindings::*;
 
-
 /****************************************************************************
  * Private Data
 ****************************************************************************/
@@ -34,9 +33,9 @@ use crate::bindings::*;
 */
 
 static g_ledcfg: [u32; BOARD_NLEDS as usize] = [
-    GPIO_LED_GREEN,
-    GPIO_LED_BLUE,
-    GPIO_LED_RED,
+    GPIO_LED_GREEN_TRUE,
+    GPIO_LED_BLUE_TRUE,
+    GPIO_LED_RED_TRUE,
 ];
 
 /****************************************************************************
