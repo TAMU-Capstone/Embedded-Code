@@ -34,8 +34,7 @@ fn toposort_macros(lines: String) -> Result<String, Box<dyn Error>> {
     }
 
     let sorted: Vec<String> = deps
-        .try_into_vec_nodes()
-        .expect("unexpected cycle!")
+        .try_into_vec_nodes()?
         .iter()
         .map(|name| format!("#define {} {}\n", name, macros[name]))
         .collect();
@@ -67,11 +66,14 @@ fn main() -> Result<(), Box<dyn Error>> {
         )
     });
 
+    println!("{:?}", &include_paths);
+    println!("{:?}", prepocessor_constants);
+
     let preprocess = Command::new("clang")
         .arg("-E")
         .arg("-dM")
         .arg("-include")
-        .arg(prepocessor_constants)
+        .arg(&prepocessor_constants)
         .arg("include/wrapper.h")
         .arg("-o")
         .arg("-")                       // write to stdout so we can capture in a variable
@@ -90,6 +92,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     bindgen::Builder::default()
         .clang_arg("-H")                            // Print the names of header files during compilation
         .clang_args(include_paths)                  // Search in these directories for the headers
+        .clang_arg(format!("-include{}", prepocessor_constants.to_str().unwrap()))
         .header("include/wrapper.h")
         .header("sorted_macros.h")
         .use_core()                                 // use ::core instead of ::std
