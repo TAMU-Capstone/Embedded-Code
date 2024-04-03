@@ -21,13 +21,13 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
- use crate::include::*;
- use lazy_static::lazy_static;
+ use crate::bindings::*;
+ //use lazy_static::lazy_static;
 
 //DEFINE config first -- encompasses all
 cfg_if::cfg_if! 
 { 
-    if #[cfg(features = (CONFIG_MMCSD))]
+    if #[cfg(CONFIG_MMCSD)]
     {
         const HAVE_NCD: i32 = 1;
         //if macro defined, have constant
