@@ -571,7 +571,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
     }
 } // CONFIG_NUCLEO_SPI1_TEST
 
- if #[cfg(CONFIG_NUCLEO_SPI2_TEST)]
+ if #[cfg(features = (CONFIG_NUCLEO_SPI2_TEST))]
  {
   unsafe{
     spi2 = stm32_spibus_initialize(2);
@@ -594,7 +594,7 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
       }
     }
       
-  if #[cfg(CONFIG_NUCLEO_SPI3_TEST)]
+  if #[cfg(features = (CONFIG_NUCLEO_SPI3_TEST))]
   {
     unsafe{
       spi3 = stm32_spibus_initialize(3);
