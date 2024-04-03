@@ -22,6 +22,8 @@
  * Included Files
  ****************************************************************************/
 use crate::bindings::*;
+use core::ptr::{NonNull, null_mut};
+
 //pub use generated::*;
 /****************************************************************************
 * Public Functions
@@ -40,300 +42,356 @@ use crate::bindings::*;
  *     Called from the NSH library
  *
  ****************************************************************************/
-extern "C" {
-    pub fn stm32_dma_alloc_init() -> i32;
-}
-  //main function
-  //returns an int
-  #[no_mangle]
-  pub extern "C" fn stm32_bringup() -> cty::c_int
-  {
-    //define int ret
+// extern "C" {
+//     pub fn stm32_dma_alloc_init() -> i32;
+// }
+//main function
+//returns an int
+#[no_mangle]
+pub extern "C" fn stm32_bringup() -> cty::c_int {
+    //define int _ret
     //define as mutable
-    let mut ret: i32 = 0;
-
-    //create a null ptr to replace NULL in C
-    let mut null_ptr: *const u8 = 0 as *const u8;
+    let mut _ret: i32 = 0;
 
     //if CONFIG_I2C
-    //if cfg!(CONFIG_I2C)
-    #[cfg(CONFIG_I2C)]
+    if cfg!(CONFIG_I2C)
+    //#[cfg(CONFIG_I2C)]
     {
         let mut i2c_bus: i32;
         //should I use Box? -- its a smart pointer
-        let mut i2c = &mut i2c_master_s { ops: val };
+        let i2c: Option<i2c_master_s>;
 
-        //if cfg!(CONFIG_MPU60X0_I2C)
-        #[cfg(CONFIG_MPU60X0_I2C)]
+        if cfg!(CONFIG_MPU60X0_I2C)
+        //#[cfg(CONFIG_MPU60X0_I2C)]
         {
-            let mut mpu_config = &mut mpu_config_s { i2c: val, addr: val };
+            let mut mpu_config = &mut mpu_config_s {
+                i2c: val,
+                addr: val,
+            };
         }
     } // CONFIG_I2C
 
-    //if cfg!(CONFIG_FS_PROCFS)
-    #[cfg(CONFIG_FS_PROCFS)]
+    if cfg!(CONFIG_FS_PROCFS)
+    //#[cfg(CONFIG_FS_PROCFS)]
     {
         /* Mount the procfs file system */
-        ret = nx_mount(null_ptr, STM32_PROCFS_MOUNTPOINT, "procfs".as_ptr() as *const u8, 0, core::ptr::null_mut()); //null_ptr.as_ptr().cast::<mut *c_void>()
-        if ret < 0
-        {
-            unsafe{
+        _ret = unsafe { nx_mount(
+            null_mut(),
+            STM32_PROCFS_MOUNTPOINT,
+            "procfs".as_ptr() as *const u8,
+            0,
+            null_mut(),
+        )}; //null_ptr.as_ptr().cast::<mut *c_void>()
+        if _ret < 0 {
+            unsafe {
                 //let c_str = CString::new(s).unwrap();
                 //log_impl(s.as_bytes().as_ptr() as *const u8);
                 //https://stackoverflow.com/questions/49203561/how-do-i-convert-a-str-to-a-const-u8 -- converting str to u8
-                syslog(LOG_ERR.into(), "ERROR: Failed to mount procfs at %s: %d\n".as_ptr() as *const u8, STM32_PROCFS_MOUNTPOINT, ret);
+                syslog(
+                    LOG_ERR.into(),
+                    "ERROR: Failed to mount procfs at %s: %d\n".as_ptr() as *const u8,
+                    STM32_PROCFS_MOUNTPOINT,
+                    _ret,
+                );
             }
         }
     }
 
-    //if cfg!(CONFIG_STM32_ROMFS)
-    #[cfg(CONFIG_STM32_ROMFS)]
+    if cfg!(CONFIG_STM32_ROMFS)
+    //#[cfg(CONFIG_STM32_ROMFS)]
     {
         /* Mount the romfs partition */
 
-        ret = stm32_romfs_initialize();
+        _ret = unsafe{ stm32_romfs_initialize() } ;
 
-        if ret < 0
-        {
-            unsafe{
-                syslog(LOG_ERR.into(), "ERROR: Failed to mount romfs at %s: %d\n".as_ptr() as *const u8, CONFIG_STM32_ROMFS_MOUNTPOINT, ret);
+        if _ret < 0 {
+            unsafe {
+                syslog(
+                    LOG_ERR.into(),
+                    "ERROR: Failed to mount romfs at %s: %d\n".as_ptr() as *const u8,
+                    CONFIG_STM32_ROMFS_MOUNTPOINT,
+                    _ret,
+                );
             }
         }
     }
 
-    //if cfg!(CONFIG_DEV_GPIO)
-    #[cfg(CONFIG_DEV_GPIO)]
+    if cfg!(CONFIG_DEV_GPIO)
+    //#[cfg(CONFIG_DEV_GPIO)]
     {
         /* Register the GPIO driver */
-        ret = stm32_gpio_initialize();
-        if ret < 0
-        {
-            unsafe{
-                syslog(LOG_ERR.into(), "Failed to initialize GPIO Driver: %d\n".as_ptr() as *const u8, ret);
-                return ret;
+        _ret = unsafe{stm32_gpio_initialize()};
+        if _ret < 0 {
+            unsafe {
+                syslog(
+                    LOG_ERR.into(),
+                    "Failed to initialize GPIO Driver: %d\n".as_ptr() as *const u8,
+                    _ret,
+                );
+                return _ret;
             }
         }
     }
 
-    //if cfg!(not(CONFIG_ARCH_LEDS)) && cfg!(CONFIG_USERLED_LOWER)
-    #[cfg(not(CONFIG_ARCH_LEDS))]
+    if cfg!(not(CONFIG_ARCH_LEDS)) && cfg!(CONFIG_USERLED_LOWER)
+    //#[cfg(not(CONFIG_ARCH_LEDS))]
     {
-        #[(CONFIG_USERLED_LOWER)]
+        if cfg!(CONFIG_USERLED_LOWER)
+        //#[cfg(CONFIG_USERLED_LOWER)]
         {
-            ret = userled_lower_initialize(LED_DRIVER_PATH);
-            if ret < 0
-            {
-                unsafe{
-                    syslog(LOG_ERR.into(), "ERROR: userled_lower_initialize() failed: {}\n".as_ptr() as *const u8, ret);
+            _ret = userled_lower_initialize(LED_DRIVER_PATH);
+            if _ret < 0 {
+                unsafe {
+                    syslog(
+                        LOG_ERR.into(),
+                        "ERROR: userled_lower_initialize() failed: {}\n".as_ptr() as *const u8,
+                        _ret,
+                    );
                 }
             }
         }
     }
 
-    //if cfg!(CONFIG_ADC)
-    #[cfg(CONFIG_ADC)]
+    if cfg!(CONFIG_ADC)
+    //#[cfg(CONFIG_ADC)]
     {
-        ret = stm32_adc_setup();
-        if ret < 0
-        {
-            unsafe{
-                syslog(LOG_ERR.into(), "ERROR: stm32_adc_setup failed: %d\n".as_ptr() as *const u8, ret);
+        _ret = stm32_adc_setup();
+        if _ret < 0 {
+            unsafe {
+                syslog(
+                    LOG_ERR.into(),
+                    "ERROR: stm32_adc_setup failed: %d\n".as_ptr() as *const u8,
+                    _ret,
+                );
             }
         }
     }
 
-    //if cfg!(CONFIG_STM32F7_BBSRAM)
-    #[cfg(CONFIG_STM32F7_BBSRAM)]
+    if cfg!(CONFIG_STM32F7_BBSRAM)
+    //#[cfg(CONFIG_STM32F7_BBSRAM)]
     {
-        unsafe{
+        unsafe {
             stm32_bbsram_int();
         }
     }
 
-    //if cfg!(CONFIG_FAT_DMAMEMORY)
-    #[cfg(CONFIG_FAT_DMAMEMORY)]
+    if cfg!(CONFIG_FAT_DMAMEMORY)
+    //#[cfg(CONFIG_FAT_DMAMEMORY)]
     {
         //TO-DO: may need to use let and make variable and then compare
-        unsafe
-        {
-            let init = unsafe{
-                stm32_dma_alloc_init()
-            };
-            if init < 0
-            {
+        unsafe {
+            let init = unsafe { stm32_dma_alloc_init() };
+            if init < 0 {
                 syslog(LOG_ERR.into(), "DMA alloc FAILED".as_ptr() as *const u8);
             }
         }
     }
 
-    //if cfg!(CONFIG_NUCLEO_SPI_TEST)
-    #[cfg(CONFIG_NUCLEO_SPI_TEST)]
+    if cfg!(CONFIG_NUCLEO_SPI_TEST)
+    //#[cfg(CONFIG_NUCLEO_SPI_TEST)]
     {
-        ret = stm32_spidev_bus_test();
-        //there is if ret != OK
-        if ret != OK
-        {
-            syslog(LOG_ERR.into(), "ERROR: Failed to initialize SPI interfaces: %d\n".as_ptr() as *const u8, ret);
-            return ret;
-        }
-    }
-
-    //if cfg!(CONFIG_MMCSD)
-    #[cfg(CONFIG_MMCSD)]
-    {
-        ret = stm32_sdio_initialize();
-        if ret != OK
-        {
-            ferr("ERROR: Failed to initialize MMC/SD driver: %d\n".as_ptr() as *const u8, ret);
-            return ret;
-        }
-    }
-
-    //if cfg!(CONFIG_PWM)
-    #[cfg(CONFIG_PWM)]
-    {
-        ret = stm32_pwm_setup();
-        if ret < 0
-        {
+        _ret = unsafe{stm32_spidev_bus_test()};
+        //there is if _ret != OK
+        if _ret != OK {
             unsafe{
-                syslog(LOG_ERR.into(), "ERROR: stm32_pwm_setup() failed: %d\n".as_ptr() as *const u8, ret);
+            syslog(
+                LOG_ERR.into(),
+                "ERROR: Failed to initialize SPI interfaces: %d\n".as_ptr() as *const u8,
+                _ret,
+            )};
+            return _ret;
+        }
+    }
+
+    if cfg!(CONFIG_MMCSD)
+    //#[cfg(CONFIG_MMCSD)]
+    {
+        _ret = unsafe{stm32_sdio_initialize()};
+        if _ret != OK {
+            ferr(
+                "ERROR: Failed to initialize MMC/SD driver: %d\n".as_ptr() as *const u8,
+                _ret,
+            );
+            return _ret;
+        }
+    }
+
+    if cfg!(CONFIG_PWM)
+    //#[cfg(CONFIG_PWM)]
+    {
+        _ret = stm32_pwm_setup();
+        if _ret < 0 {
+            unsafe {
+                syslog(
+                    LOG_ERR.into(),
+                    "ERROR: stm32_pwm_setup() failed: %d\n".as_ptr() as *const u8,
+                    _ret,
+                );
             }
         }
     }
 
-    //if cfg!(CONFIG_SENSORS_QENCODER)
-    #[cfg(CONFIG_SENSORS_QENCODER)]
+    if cfg!(CONFIG_SENSORS_QENCODER)
+    //#[cfg(CONFIG_SENSORS_QENCODER)]
     {
         //defines an array of size 9 and initializes it to 0
-        let mut buf : [u8; 9] = [0; 9];
-        
-        //if cfg!(CONFIG_STM32F7_TIM1_QE)
-        #[cfg(CONFIG_STM32F7_TIM1_QE)]
+        let mut buf: [u8; 9] = [0; 9];
+
+        if cfg!(CONFIG_STM32F7_TIM1_QE)
+        //#[cfg(CONFIG_STM32F7_TIM1_QE)]
         {
             //(&buf[0..1]).read_u16::<LittleEndian>();
-            snprintf(buf.as_ptr() as *mut u8, buf.len().try_into().unwrap(), "/dev/qe0".as_ptr() as *const u8);
-            ret = stm32_qencoder_initialize(buf.into(), 1);
-            if ret < 0
-            {
-                syslog(LOG_ERR.into(), "ERROR: Failed to register the qencoder: %d\n".as_ptr() as *const u8, ret);
-                return ret;
+            unsafe{snprintf(
+                buf.as_ptr() as *mut u8,
+                buf.len().try_into().unwrap(),
+                "/dev/qe0".as_ptr() as *const u8,
+            )};
+            _ret = unsafe{stm32_qencoder_initialize(buf.into(), 1)};
+            if _ret < 0 {
+                unsafe{syslog(
+                    LOG_ERR.into(),
+                    "ERROR: Failed to register the qencoder: %d\n".as_ptr() as *const u8,
+                    _ret,
+                )};
+                return _ret;
             }
         }
-    
-        //if cfg!(CONFIG_STM32F7_TIM3_QE)
-        #[cfg(CONFIG_STM32F7_TIM3_QE)]
+
+        if cfg!(CONFIG_STM32F7_TIM3_QE)
+        //#[cfg(CONFIG_STM32F7_TIM3_QE)]
         {
-            unsafe{
-                snprintf(buf.as_ptr() as *mut u8, buf.len().try_into().unwrap(), "/dev/qe2".as_ptr() as *const u8);  //.try_into().unwrap()
+            unsafe {
+                snprintf(
+                    buf.as_ptr() as *mut u8,
+                    buf.len().try_into().unwrap(),
+                    "/dev/qe2".as_ptr() as *const u8,
+                ); //.try_into().unwrap()
             }
-            unsafe{
-                ret = stm32_qencoder_initialize(buf.as_ptr() as *mut u8, 3);
+            unsafe {
+                _ret = stm32_qencoder_initialize(buf.as_ptr() as *mut u8, 3);
             }
-            if ret < 0
-            {
-                unsafe{
-                    syslog(LOG_ERR.into(), "ERROR: Failed to register the qencoder: %d\n".as_ptr() as *const u8, ret);
-                    return ret;
+            if _ret < 0 {
+                unsafe {
+                    syslog(
+                        LOG_ERR.into(),
+                        "ERROR: Failed to register the qencoder: %d\n".as_ptr() as *const u8,
+                        _ret,
+                    );
+                    return _ret;
                 }
             }
         }
 
-        //if cfg!(CONFIG_STM32F7_TIM4_QE)
-        #[cfg(CONFIG_STM32F7_TIM4_QE)]
+        if cfg!(CONFIG_STM32F7_TIM4_QE)
+        //#[cfg(CONFIG_STM32F7_TIM4_QE)]
         {
-            unsafe{
-                snprintf(buf.as_ptr() as *mut u8, buf.len().try_into().unwrap(), "/dev/qe3".as_ptr() as *const u8);
+            unsafe {
+                snprintf(
+                    buf.as_ptr() as *mut u8,
+                    buf.len().try_into().unwrap(),
+                    "/dev/qe3".as_ptr() as *const u8,
+                );
             }
-            unsafe{
-                ret = stm32_qencoder_initialize(buf.as_ptr() as *mut u8, 4);
+            unsafe {
+                _ret = stm32_qencoder_initialize(buf.as_ptr() as *mut u8, 4);
             }
-            if ret < 0
-            {
-                unsafe{
-                    syslog(LOG_ERR.into(), "ERROR: Failed to register the qencoder: %d\n".as_ptr() as *const u8, ret);
-                    return ret;
+            if _ret < 0 {
+                unsafe {
+                    syslog(
+                        LOG_ERR.into(),
+                        "ERROR: Failed to register the qencoder: %d\n".as_ptr() as *const u8,
+                        _ret,
+                    );
+                    return _ret;
                 }
             }
         }
     } // CONFIG_SENSORS_QENCODER
-    
-    //if cfg!(CONFIG_STM32F7_CAN_CHARDRIVER)
-    #[cfg(CONFIG_STM32F7_CAN_CHARDRIVER)]
+
+    if cfg!(CONFIG_STM32F7_CAN_CHARDRIVER)
+    //#[cfg(CONFIG_STM32F7_CAN_CHARDRIVER)]
     {
-        ret = stm32_can_setup();
-        if ret < 0
-        {
-            unsafe{
-                syslog(LOG_ERR.into(), "ERROR: stm32f7_can_setup failed: %d\n".as_ptr() as *const u8, ret);
+        _ret = unsafe{stm32_can_setup()};
+        if _ret < 0 {
+            unsafe {
+                syslog(
+                    LOG_ERR.into(),
+                    "ERROR: stm32f7_can_setup failed: %d\n".as_ptr() as *const u8,
+                    _ret,
+                );
             }
-            return ret;
+            return _ret;
         }
     }
 
-    //if cfg!(CONFIG_STM32F7_CAN_SOCKET)
-    #[cfg(CONFIG_STM32F7_CAN_SOCKET)]
+    if cfg!(CONFIG_STM32F7_CAN_SOCKET)
+    //#[cfg(CONFIG_STM32F7_CAN_SOCKET)]
     {
-        unsafe{
-            ret = stm32_cansock_setup();
+        unsafe {
+            _ret = stm32_cansock_setup();
         }
-        if ret < 0
-        {
-            unsafe{
-                syslog(LOG_ERR.into(), "ERROR: stm32_cansock_setup failed: %d\n".as_ptr() as *const u8, ret);
+        if _ret < 0 {
+            unsafe {
+                syslog(
+                    LOG_ERR.into(),
+                    "ERROR: stm32_cansock_setup failed: %d\n".as_ptr() as *const u8,
+                    _ret,
+                );
             }
         }
     }
 
-    if cfg!(CONFIG_I2C) && cfg!(CONFIG_STM32F7_I2C1)
-    {
-        let mut i2c_bus : i32 = 1;
-        let mut i2c = stm32_i2cbus_initialize(i2c_bus);
-
-        if i2c.into() == null_ptr
-        {
-            unsafe{
-                syslog(LOG_ERR.into(), "ERROR: Failed to get I2C%d interface\n".as_ptr() as *const u8, i2c_bus);
-            }
-        }
-        else
-        {
-            //if cfg!(CONFIG_SYSTEM_I2CTOOL)
-            #[cfg(CONFIG_SYSTEM_I2CTOOL)]
-            {
-                ret = i2c_register(i2c, i2c_bus);
-            
-                if ret < 0
+    if cfg!(CONFIG_I2C) && cfg!(CONFIG_STM32F7_I2C1) {
+        let i2c_bus: i32 = 1;
+        let _i2c: Option<_> = NonNull::<i2c_master_s>::new(unsafe { stm32_i2cbus_initialize(i2c_bus) });
+        match _i2c {
+            None => unsafe {
+                syslog(
+                    LOG_ERR.into(),
+                    "ERROR: Failed to get I2C%d interface\n".as_ptr() as *const u8,
+                    i2c_bus,
+                );
+            },
+            Some(_i2c) => {
+                if cfg!(CONFIG_SYSTEM_I2CTOOL)
+                //#[cfg(CONFIG_SYSTEM_I2CTOOL)]
                 {
-                    unsafe{
-                        syslog(LOG_ERR.into(), "ERROR: Failed to register I2C%d driver: %d\n".as_ptr() as *const u8, i2c_bus, ret);
+                    _ret = unsafe{ i2c_register(_i2c.as_ptr(), i2c_bus) };
+
+                    if _ret < 0 {
+                        unsafe {
+                            syslog(
+                                LOG_ERR.into(),
+                                "ERROR: Failed to register I2C%d driver: %d\n".as_ptr(),
+                                i2c_bus,
+                                _ret,
+                            );
+                        }
+                    }
+                }
+                if cfg!(CONFIG_MPU60X0_I2C)
+                //#[cfg(CONFIG_MPU60X0_I2C)]
+                {
+                    //let mpu_config = unsafe{kmm_zalloc(get_size(mpu_config_s))};
+                    //kmm_zalloc calls zalloc()
+                    let mpu_config: Option<_> = NonNull::<mpu_config_s>::new(unsafe { zalloc(get_size(mpu_config_s)) });
+
+                    match mpu_config {
+                        None => unsafe{
+                            syslog(
+                                LOG_ERR.into(),
+                                "ERROR: Failed to allocate mpu60x0 driver\n".as_ptr() as *const u8,
+                            );
+                        },
+                        Some(mpu_config) => unsafe {
+                            mpu_config.as_ref().i2c = _i2c.as_ptr();
+                            mpu_config.as_ref().addr = 0x68;
+                            mpu60x0_register("/dev/imu0".as_ptr() as *const u8, mpu_config.as_ptr());
+                        }
                     }
                 }
             }
-
-            //if cfg!(CONFIG_MPU60X0_I2C)
-            #[cfg(CONFIG_MPU60X0_I2C)]
-            {
-                let mpu_config = kmm_zalloc(get_size(mpu_config_s));
-                if mpu_config == null_ptr
-                {
-                    unsafe{
-                        syslog(LOG_ERR.into(), "ERROR: Failed to allocate mpu60x0 driver\n".as_ptr() as *const u8);
-                    }
-                }
-                else
-                {
-                  mpu_config.i2c = i2c;
-                  mpu_config.addr = 0x68;
-                  unsafe{
-                        mpu60x0_register("/dev/imu0".as_ptr() as *const u8, mpu_config);
-                  }
-                }
-            }
         }
-    }
-    unsafe
-    {
-        UNUSED(ret);
     }
     return OK;
 }
