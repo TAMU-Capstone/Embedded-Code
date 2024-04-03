@@ -22,6 +22,7 @@ panic = "abort"
 cty = "0.2.2"
 cfg-if = "1.0"  # used throughout as a conditional dependencies
 libc = "0.2.139"
+get-size = "0.1.4"
 heapless = "*"
 
 log = "0.4.21"  # used to replicate warnings and errors at compile time

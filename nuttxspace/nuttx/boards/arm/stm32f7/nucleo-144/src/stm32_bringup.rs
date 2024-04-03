@@ -63,7 +63,7 @@ use crate::bindings::*;
         {
             let mpu_config = mpu_config_s { i2c: val, addr: val };
         }
-    }
+    } // CONFIG_I2C
 
     if cfg!(CONFIG_FS_PROCFS)
     {
@@ -71,7 +71,10 @@ use crate::bindings::*;
         ret = nx_mount(null_ptr, STM32_PROCFS_MOUNTPOINT, "procfs", 0, null_ptr);
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: Failed to mount procfs at %s: %d\n": &str, STM32_PROCFS_MOUNTPOINT, ret: i32);
+            unsafe{
+                syslog(LOG_ERR, "ERROR: Failed to mount procfs at %s: %d\n",
+                STM32_PROCFS_MOUNTPOINT, ret);
+            }
         }
     }
 
@@ -83,7 +86,9 @@ use crate::bindings::*;
 
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: Failed to mount romfs at %s: %d\n": &str, CONFIG_STM32_ROMFS_MOUNTPOINT, ret: i32);
+            unsafe{
+                syslog(LOG_ERR, "ERROR: Failed to mount romfs at %s: %d\n", CONFIG_STM32_ROMFS_MOUNTPOINT, ret);
+            }
         }
     }
 
@@ -93,7 +98,9 @@ use crate::bindings::*;
         ret = stm32_gpio_initialize();
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "Failed to initialize GPIO Driver: %d\n": &str, ret: i32);
+            unsafe{
+                syslog(LOG_ERR, "Failed to initialize GPIO Driver: %d\n", ret);
+            }
             return ret;
         }
     }
@@ -103,7 +110,9 @@ use crate::bindings::*;
         ret = userled_lower_initialize(LED_DRIVER_PATH);
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: userled_lower_initialize() failed: {}\n": &str, ret: i32);
+            unsafe{
+                syslog(LOG_ERR, "ERROR: userled_lower_initialize() failed: {}\n", ret);
+            }
         }
     }
 
@@ -112,22 +121,27 @@ use crate::bindings::*;
         ret = stm32_adc_setup();
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: stm32_adc_setup failed: %d\n": &str, ret: i32);
+            unsafe{
+                syslog(LOG_ERR, "ERROR: stm32_adc_setup failed: %d\n", ret);
+            }
         }
     }
 
     if cfg!(CONFIG_STM32F7_BBSRAM)
     {
-        pub fn stm32_bbsram_int();
+        unsafe{
+            stm32_bbsram_int();
+        }
     }
 
     if cfg!(CONFIG_FAT_DMAMEMORY)
     {
         //TO-DO: may need to use let and make variable and then compare
-        let temp = stm32_dma_alloc_init();
-        if temp < 0
-        {
-            pub fn syslog(LOG_ERR: u8, "DMA alloc FAILED": &str);
+        unsafe{
+            if stm32_dma_alloc_init() < 0
+            {
+                syslog(LOG_ERR, "DMA alloc FAILED");
+            }
         }
     }
 
@@ -137,7 +151,7 @@ use crate::bindings::*;
         //there is if ret != OK
         if ret != OK
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: Failed to initialize SPI interfaces: %d\n": &str, ret: i32);
+            syslog(LOG_ERR, "ERROR: Failed to initialize SPI interfaces: %d\n", ret);
             return ret;
         }
     }
@@ -147,7 +161,7 @@ use crate::bindings::*;
         ret = stm32_sdio_initialize();
         if ret != OK
         {
-            pub fn ferr("ERROR: Failed to initialize MMC/SD driver: %d\n": &str, ret: i32);
+            ferr("ERROR: Failed to initialize MMC/SD driver: %d\n", ret);
             return ret;
         }
     }
@@ -157,76 +171,100 @@ use crate::bindings::*;
         ret = stm32_pwm_setup();
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: stm32_pwm_setup() failed: %d\n": &str, ret: i32);
+            syslog(LOG_ERR, "ERROR: stm32_pwm_setup() failed: %d\n", ret);
         }
     }
 
     if cfg!(CONFIG_SENSORS_QENCODER)
     {
         //defines an array of size 9 and initializes it to 0
-        let mut buf: [i32; 9] = [0; 9];
-    }
-    
-    if cfg!(CONFIG_STM32F7_TIM1_QE)
+        let mut buf : [i32; 9] = [0; 9];
+        
+        if cfg!(CONFIG_STM32F7_TIM1_QE)
     {
-        pub fn snprintf(buf: &[i32], buf.len(): i32, "/dev/qe0": &str);
-        ret = stm32_qencoder_initialize(buf: &[i32], 1);
+        unsafe{
+            snprintf(buf, buf.len(), "/dev/qe0");
+        }
+        ret = stm32_qencoder_initialize(buf, 1);
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: Failed to register the qencoder: %d\n": &str, ret: i32);
+            unsafe{
+                syslog(LOG_ERR, "ERROR: Failed to register the qencoder: %d\n", ret);
+            }
             return ret;
         }
     }
-
+    
     if cfg!(CONFIG_STM32F7_TIM3_QE)
     {
-        pub fn snprintf(buf: &[i32], sizeof(buf): i32, "/dev/qe2": &str);
-        ret = stm32_qencoder_initialize(buf: &[i32], 3);
+        unsafe{
+            snprintf(buf, buf.len(), "/dev/qe2");
+        }
+        unsafe{
+            ret = stm32_qencoder_initialize(buf, 3);
+        }
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: Failed to register the qencoder: %d\n": &str, ret: i32);
+            unsafe{
+                syslog(LOG_ERR, "ERROR: Failed to register the qencoder: %d\n", ret);
+            }
             return ret;
         }
     }
 
     if cfg!(CONFIG_STM32F7_TIM4_QE)
     {
-        pub fn snprintf(buf: &[i32], buf.len(): i32, "/dev/qe3": &str);
-        ret = stm32_qencoder_initialize(buf: &[i32], 4);
+        unsafe{
+            snprintf(buf, buf.len(), "/dev/qe3");
+        }
+        unsafe{
+            ret = stm32_qencoder_initialize(buf, 4);
+        }
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: Failed to register the qencoder: %d\n": &str, ret: i32);
+            unsafe{
+                syslog(LOG_ERR, "ERROR: Failed to register the qencoder: %d\n", ret);
+            }
          return ret;
         }
     }
-
+} // CONFIG_SENSORS_QENCODER
+    
     if cfg!(CONFIG_STM32F7_CAN_CHARDRIVER)
     {
         ret = stm32_can_setup();
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: stm32f7_can_setup failed: %d\n": &str, ret: i32);
+            unsafe{
+                syslog(LOG_ERR, "ERROR: stm32f7_can_setup failed: %d\n", ret);
+            }
             return ret;
         }
     }
 
     if cfg!(CONFIG_STM32F7_CAN_SOCKET)
     {
-        ret = stm32_cansock_setup();
+        unsafe{
+            ret = stm32_cansock_setup();
+        }
         if ret < 0
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: stm32_cansock_setup failed: %d\n": &str, ret: i32);
+            unsafe{
+                syslog(LOG_ERR, "ERROR: stm32_cansock_setup failed: %d\n", ret);
+            }
         }
     }
 
     if cfg!(CONFIG_I2C) && cfg!(CONFIG_STM32F7_I2C1)
     {
-        let i2c_bus: i32 = 1;
-        let i2c = stm32_i2cbus_initialize(i2c_bus);
+        let i2c_bus : i32 = 1;
+        i2c = stm32_i2cbus_initialize(i2c_bus);
 
         if i2c == null_ptr
         {
-            pub fn syslog(LOG_ERR: u8, "ERROR: Failed to get I2C%d interface\n": &str, i2c_bus);
+            unsafe{
+                syslog(LOG_ERR, "ERROR: Failed to get I2C%d interface\n", i2c_bus);
+            }
         }
         else
         {
@@ -236,28 +274,36 @@ use crate::bindings::*;
             
                 if ret < 0
                 {
-                    pub fn syslog(LOG_ERR: u8, "ERROR: Failed to register I2C%d driver: %d\n": &str, i2c_bus, ret: i32);
+                    unsafe{
+                        syslog(LOG_ERR, "ERROR: Failed to register I2C%d driver: %d\n", i2c_bus, ret);
+                    }
                 }
             }
 
             if cfg!(CONFIG_MPU60X0_I2C)
             {
-                let mpu_config = kmm_zalloc(sizeof(struct mpu_config_s));
-                if mpu_config == null_ptr
+                mpu_config = kmm_zalloc( get_size(mpu_config_s ));
+                if mpu_config == None
                 {
-                    pub fn syslog(LOG_ERR: u8, "ERROR: Failed to allocate mpu60x0 driver\n": &str);
+                    unsafe{
+                        syslog(LOG_ERR, "ERROR: Failed to allocate mpu60x0 driver\n");
+                    }
                 }
                 else
                 {
                   mpu_config->i2c = i2c;
                   mpu_config->addr = 0x68;
-                  pub fn mpu60x0_register("/dev/imu0": &str, mpu_config);
+                  unsafe{
+                    mpu60x0_register("/dev/imu0", mpu_config);
+                    }
+
                 }
             }
         }
     }
-
-    pub fn UNUSED(ret: i32);
+unsafe{
+    UNUSED(ret);
+}
     return OK;
 
   }
