@@ -29,24 +29,24 @@
 #include <unistd.h>
 
 
-int GPIO_OUTPUT = 262144;
-int GPIO_PUSHPULL = 0;
-int GPIO_SPEED_50MHz = 2048;
-int OUTPUT_CLEAR = 0;
-int GPIO_PIN0 = 0;
-int GPIO_PIN7 = 7;
-int GPIO_PIN14 = 14;
-int GPIO_PORTB = 16;
+// int GPIO_OUTPUT = 262144;
+// int GPIO_PUSHPULL = 0;
+// int GPIO_SPEED_50MHz = 2048;
+// int OUTPUT_CLEAR = 0;
+// int GPIO_PIN0 = 0;
+// int GPIO_PIN7 = 7;
+// int GPIO_PIN14 = 14;
+// int GPIO_PORTB = 16;
 
 // #include "stm32_gpio.h"
 // #include "nucleo-144.h"
-#define GPIO_LD1       (GPIO_OUTPUT | GPIO_PUSHPULL | GPIO_SPEED_50MHz | OUTPUT_CLEAR | GPIO_PORTB | GPIO_PIN0)
-#define GPIO_LD2       (GPIO_OUTPUT | GPIO_PUSHPULL | GPIO_SPEED_50MHz | OUTPUT_CLEAR | GPIO_PORTB | GPIO_PIN7)
-#define GPIO_LD3       (GPIO_OUTPUT | GPIO_PUSHPULL | GPIO_SPEED_50MHz | OUTPUT_CLEAR | GPIO_PORTB | GPIO_PIN14)
+// #define GPIO_LD1       (GPIO_OUTPUT | GPIO_PUSHPULL | GPIO_SPEED_50MHz | OUTPUT_CLEAR | GPIO_PORTB | GPIO_PIN0)
+// #define GPIO_LD2       (GPIO_OUTPUT | GPIO_PUSHPULL | GPIO_SPEED_50MHz | OUTPUT_CLEAR | GPIO_PORTB | GPIO_PIN7)
+// #define GPIO_LD3       (GPIO_OUTPUT | GPIO_PUSHPULL | GPIO_SPEED_50MHz | OUTPUT_CLEAR | GPIO_PORTB | GPIO_PIN14)
 
-#define GPIO_LED_GREEN GPIO_LD1
-#define GPIO_LED_BLUE  GPIO_LD2
-#define GPIO_LED_RED   GPIO_LD3
+// #define GPIO_LED_GREEN GPIO_LD1
+// #define GPIO_LED_BLUE  GPIO_LD2
+// #define GPIO_LED_RED   GPIO_LD3
 
 
 /****************************************************************************
@@ -71,33 +71,38 @@ void userleds_test(void) {
   printf("All three Userleds should be on for 10 seconds.\n");
 
   // Turn on all three leds
-  // for (int i = 0; i < NUM_LEDS; i++) {
-  //   board_userled(i, true);
-  // }
+  for (int i = 0; i < NUM_LEDS; i++) {
+    board_userled(i, true);
+  }
 
-  // // for (int i = 0; i < NUM_LEDS; i++) {
-  // //   board_userled(i, false);
-  // // }
+  sleep(10);
+
+  for (int i = 0; i < NUM_LEDS; i++) {
+    board_userled(i, false);
+  }
 
   //TESTING*************
 
-  board_userled(0, true); 
+  // board_userled(0, true); 
 
-  sleep(10);
 
-  board_userled(0, false);
+  // sleep(3);
 
-  board_userled(1, true); 
+  // board_userled(0, false);
 
-  sleep(10);
+  // board_userled(1, true); 
 
-  board_userled(1, false);
 
-  board_userled(2, true); 
+  // sleep(3);
 
-  sleep(10);
+  // board_userled(1, false);
 
-  board_userled(2, false);
+  // board_userled(2, true); 
+  
+
+  // sleep(3);
+
+  // board_userled(2, false);
 
   // printf("Green gpio %d\n", GPIO_LED_GREEN);
   // printf("Blue gpio %d\n", GPIO_LED_BLUE);
