@@ -151,16 +151,12 @@ static ROMFS_DATA: &[u8] = include_bytes!("CONFIG_STM32_ROMFS_IMAGEFILE.txt"); /
 
   /* Mount the file system */
   // finfo("Mounting ROMFS filesystem at target=%s with source=%s\n", CONFIG_STM32_ROMFS_MOUNTPOINT, MOUNT_DEVNAME);
-
-  ret = nx_mount(MOUNT_DEVNAME, CONFIG_STM32_ROMFS_MOUNTPOINT,
-    "romfs", MS_RDONLY, NULL);
-
   let ret = unsafe {
     nx_mount(
         MOUNT_DEVNAME.as_ptr() as *const i8,
         CONFIG_STM32_ROMFS_MOUNTPOINT.as_ptr() as *const i8,
-        "romfs\0".as_ptr() as *const i8,
-        MS_RDONLY,
+        "romfs\0".as_ptr() as *const u8,
+        MS_RDONLY as u32,
         null_mut(),
     )
   };
