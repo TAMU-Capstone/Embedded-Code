@@ -41,8 +41,6 @@
  use heapless::String;
  use core::fmt::Write;
  use core::ptr::null_mut;
- //use core::ffi::{c_char, c_ulong, c_void};
-
 
  /* Constants/functions I am missing for romfs_initilaize 
   CONFIG_STM32_ROMFS_DEV_MINOR
