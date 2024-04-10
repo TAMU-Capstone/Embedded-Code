@@ -97,7 +97,7 @@ mod stm32_dma_alloc {
     pub unsafe fn fat_dma_alloc(size: usize) -> *mut u8 {
         match dma_allocator{
             Some(dma_allocator) => gran_alloc(dma_allocator, size) as *mut u8,
-            None => ptr::null_mut(),
+            None => null_mut(),
         }
     }
     

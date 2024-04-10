@@ -24,3 +24,4 @@ mod stm32_userleds;
 //mod stm32_gpio;
 //mod stm32_romfs_initialize;
 mod stm32_dma_alloc;
+mod stm32_composite;
