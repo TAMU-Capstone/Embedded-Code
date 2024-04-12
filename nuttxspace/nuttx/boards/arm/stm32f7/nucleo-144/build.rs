@@ -2,7 +2,7 @@ use std::error::Error;
 
 use std::path::PathBuf;
 
-use std::io::{stderr, Write};
+use std::io::{Write, stderr};
 use std::process::Command;
 
 use std::collections::HashMap;
@@ -22,7 +22,7 @@ fn toposort_macros(lines: String) -> Result<String, Box<dyn Error>> {
     let parse_re = Regex::new(r"\w+")?;
 
     for line in lines.trim_end().split('\n') {
-        let [name, value] = macro_re.captures(line).map(|c| c.extract()).unwrap().1;
+        let [name, value] = macro_re.captures(line).and_then(|c| c.extract().1.into()).unwrap();
         macros.insert(name.to_string(), value.to_string());
         deps.insert(
             name.to_string(),
@@ -66,23 +66,20 @@ fn main() -> Result<(), Box<dyn Error>> {
         )
     });
 
-    println!("{:?}", &include_paths);
-    println!("{:?}", prepocessor_constants);
-
     let preprocess = Command::new("clang")
         .arg("-E")
         .arg("-dM")
         .arg("-include")
-        .arg(&prepocessor_constants)
+        .arg(prepocessor_constants)
         .arg("include/wrapper.h")
         .arg("-o")
-        .arg("-")                       // write to stdout so we can capture in a variable
+        .arg("-") // write to stdout so we can capture in a variable
         .args(&include_paths)
         .output()
         .expect("Failed to execute Clang command");
 
-    stderr().write_all(&preprocess.stderr)?;            // Write the stderr of the command to stderr
-    assert!(preprocess.status.success());               // Panic if the command didnt succeed
+    stderr().write_all(&preprocess.stderr)?; // Write the stderr of the command to stderr
+    assert!(preprocess.status.success()); // Panic if the command didnt succeed
 
     let macros = String::from_utf8(preprocess.stdout)?;
     let sorted_macros: String = toposort_macros(macros)?;
@@ -90,15 +87,14 @@ fn main() -> Result<(), Box<dyn Error>> {
     std::fs::write("sorted_macros.h", sorted_macros)?;
 
     bindgen::Builder::default()
-        .clang_arg("-H")                            // Print the names of header files during compilation
-        .clang_args(include_paths)                  // Search in these directories for the headers
-        .clang_arg(format!("-include{}", prepocessor_constants.to_str().unwrap()))
+        .clang_arg("-H")                    // Print the names of header files during compilation
+        .clang_args(include_paths)          // Search in these directories for the headers
         .header("include/wrapper.h")
         .header("sorted_macros.h")
-        .use_core()                                 // use ::core instead of ::std
-        .ctypes_prefix("cty")                       // Use cty::* for the C types
-        .layout_tests(false)                        // Don't generate #[test]'s because #![no_std]
-        .fit_macro_constants(true)                  // Reduce the size of the constant to the smallest integer size, (e.g. u32 -> u8)
+        .use_core()                         // use ::core instead of ::std
+        .ctypes_prefix("cty")               // Use cty::* for the C types
+        .layout_tests(false)                // Don't generate #[test]'s because #![no_std]
+        .fit_macro_constants(true)          // Reduce the size of the constant to the smallest integer size, (e.g. u32 -> u8)
         .raw_line(
             "#![allow(non_snake_case, non_camel_case_types, non_upper_case_globals, dead_code)]",
         )
@@ -107,8 +103,8 @@ fn main() -> Result<(), Box<dyn Error>> {
         .expect("Unable to generate bindings")
         .write_to_file("src/bindings/generated.rs")
         .expect("Couldn't write bindings!");
-    
+
     std::fs::remove_file("sorted_macros.h")?;
-    
+
     Ok(())
 }
