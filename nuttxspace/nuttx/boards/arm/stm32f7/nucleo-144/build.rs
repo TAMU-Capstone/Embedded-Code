@@ -96,7 +96,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         .layout_tests(false)                // Don't generate #[test]'s because #![no_std]
         .fit_macro_constants(true)          // Reduce the size of the constant to the smallest integer size, (e.g. u32 -> u8)
         .raw_line(
-            "#![allow(non_snake_case, non_camel_case_types, non_upper_case_globals, dead_code)]",
+            "#![allow(non_snake_case, non_camel_case_types, non_upper_case_globals, dead_code, unused_imports)]",
         )
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
         .generate()

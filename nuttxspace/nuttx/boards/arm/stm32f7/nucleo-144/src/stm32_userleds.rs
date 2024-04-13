@@ -33,7 +33,7 @@ use crate::bindings::*;
 * BOARD_LED_<color>
 */
 
-static g_ledcfg: [u32; BOARD_NLEDS as usize] = [
+static G_LEDCFG: [u32; BOARD_NLEDS as usize] = [
     GPIO_LED_GREEN,
     GPIO_LED_BLUE,
     GPIO_LED_RED,
@@ -53,10 +53,10 @@ static g_ledcfg: [u32; BOARD_NLEDS as usize] = [
 *   application logic.
 *
 ****************************************************************************/
+#[no_mangle]
 pub extern "C" fn board_userled_initialize() -> cty::uint32_t {
-    let i: i32;
 
-    for &gpio in &g_ledcfg {
+    for &gpio in &G_LEDCFG {
         unsafe {
             stm32_configgpio(gpio);
         }

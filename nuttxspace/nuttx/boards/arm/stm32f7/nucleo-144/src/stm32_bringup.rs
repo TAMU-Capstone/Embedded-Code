@@ -22,6 +22,8 @@
  * Included Files
  ****************************************************************************/
 use crate::bindings::*;
+
+#[allow(unused_imports)]
 use core::ptr::{NonNull, null_mut};
 
 //pub use generated::*;
@@ -47,32 +49,22 @@ use core::ptr::{NonNull, null_mut};
 // }
 //main function
 //returns an int
+#[allow(unused_variables)]
 #[no_mangle]
 pub extern "C" fn stm32_bringup() -> cty::c_int {
     //define int _ret
     //define as mutable
     let mut _ret: i32 = 0;
 
-    //if CONFIG_I2C
-    if cfg!(CONFIG_I2C)
-    //#[cfg(CONFIG_I2C)]
+    #[cfg(CONFIG_I2C)]
     {
         let mut i2c_bus: i32;
-        //should I use Box? -- its a smart pointer
         let i2c: Option<i2c_master_s>;
-
-        if cfg!(CONFIG_MPU60X0_I2C)
-        //#[cfg(CONFIG_MPU60X0_I2C)]
-        {
-            let mut mpu_config = &mut mpu_config_s {
-                i2c: val,
-                addr: val,
-            };
-        }
+        #[cfg(CONFIG_MPU60X0_I2C)]
+        let mpu_config: NonNull<mpu_config_s>;
     } // CONFIG_I2C
 
-    if cfg!(CONFIG_FS_PROCFS)
-    //#[cfg(CONFIG_FS_PROCFS)]
+    #[cfg(CONFIG_FS_PROCFS)]
     {
         /* Mount the procfs file system */
         _ret = unsafe { nx_mount(
@@ -97,8 +89,7 @@ pub extern "C" fn stm32_bringup() -> cty::c_int {
         }
     }
 
-    if cfg!(CONFIG_STM32_ROMFS)
-    //#[cfg(CONFIG_STM32_ROMFS)]
+    #[cfg(CONFIG_STM32_ROMFS)]
     {
         /* Mount the romfs partition */
 
@@ -116,8 +107,7 @@ pub extern "C" fn stm32_bringup() -> cty::c_int {
         }
     }
 
-    if cfg!(CONFIG_DEV_GPIO)
-    //#[cfg(CONFIG_DEV_GPIO)]
+    #[cfg(CONFIG_DEV_GPIO)]
     {
         /* Register the GPIO driver */
         _ret = unsafe{stm32_gpio_initialize()};
@@ -133,27 +123,21 @@ pub extern "C" fn stm32_bringup() -> cty::c_int {
         }
     }
 
-    if cfg!(not(CONFIG_ARCH_LEDS)) && cfg!(CONFIG_USERLED_LOWER)
-    //#[cfg(not(CONFIG_ARCH_LEDS))]
+    #[cfg(all(not(CONFIG_ARCH_LEDS), CONFIG_USERLED_LOWER))]
     {
-        if cfg!(CONFIG_USERLED_LOWER)
-        //#[cfg(CONFIG_USERLED_LOWER)]
-        {
-            _ret = userled_lower_initialize(LED_DRIVER_PATH);
-            if _ret < 0 {
-                unsafe {
-                    syslog(
-                        LOG_ERR.into(),
-                        "ERROR: userled_lower_initialize() failed: {}\n".as_ptr() as *const u8,
-                        _ret,
-                    );
-                }
+        _ret = userled_lower_initialize(LED_DRIVER_PATH);
+        if _ret < 0 {
+            unsafe {
+                syslog(
+                    LOG_ERR.into(),
+                    "ERROR: userled_lower_initialize() failed: {}\n".as_ptr() as *const u8,
+                    _ret,
+                );
             }
         }
     }
 
-    if cfg!(CONFIG_ADC)
-    //#[cfg(CONFIG_ADC)]
+    #[cfg(CONFIG_ADC)]
     {
         _ret = stm32_adc_setup();
         if _ret < 0 {
@@ -167,16 +151,14 @@ pub extern "C" fn stm32_bringup() -> cty::c_int {
         }
     }
 
-    if cfg!(CONFIG_STM32F7_BBSRAM)
-    //#[cfg(CONFIG_STM32F7_BBSRAM)]
+    #[cfg(CONFIG_STM32F7_BBSRAM)]
     {
         unsafe {
             stm32_bbsram_int();
         }
     }
 
-    if cfg!(CONFIG_FAT_DMAMEMORY)
-    //#[cfg(CONFIG_FAT_DMAMEMORY)]
+    #[cfg(CONFIG_FAT_DMAMEMORY)]
     {
         //TO-DO: may need to use let and make variable and then compare
         unsafe {
@@ -187,8 +169,7 @@ pub extern "C" fn stm32_bringup() -> cty::c_int {
         }
     }
 
-    if cfg!(CONFIG_NUCLEO_SPI_TEST)
-    //#[cfg(CONFIG_NUCLEO_SPI_TEST)]
+    #[cfg(CONFIG_NUCLEO_SPI_TEST)]
     {
         _ret = unsafe{stm32_spidev_bus_test()};
         //there is if _ret != OK
@@ -203,8 +184,7 @@ pub extern "C" fn stm32_bringup() -> cty::c_int {
         }
     }
 
-    if cfg!(CONFIG_MMCSD)
-    //#[cfg(CONFIG_MMCSD)]
+    #[cfg(CONFIG_MMCSD)]
     {
         _ret = unsafe{stm32_sdio_initialize()};
         if _ret != OK {
@@ -216,8 +196,7 @@ pub extern "C" fn stm32_bringup() -> cty::c_int {
         }
     }
 
-    if cfg!(CONFIG_PWM)
-    //#[cfg(CONFIG_PWM)]
+    #[cfg(CONFIG_PWM)]
     {
         _ret = stm32_pwm_setup();
         if _ret < 0 {
@@ -231,14 +210,12 @@ pub extern "C" fn stm32_bringup() -> cty::c_int {
         }
     }
 
-    if cfg!(CONFIG_SENSORS_QENCODER)
-    //#[cfg(CONFIG_SENSORS_QENCODER)]
+    #[cfg(CONFIG_SENSORS_QENCODER)]
     {
         //defines an array of size 9 and initializes it to 0
         let mut buf: [u8; 9] = [0; 9];
 
-        if cfg!(CONFIG_STM32F7_TIM1_QE)
-        //#[cfg(CONFIG_STM32F7_TIM1_QE)]
+        #[cfg(CONFIG_STM32F7_TIM1_QE)]
         {
             //(&buf[0..1]).read_u16::<LittleEndian>();
             unsafe{snprintf(
@@ -257,8 +234,7 @@ pub extern "C" fn stm32_bringup() -> cty::c_int {
             }
         }
 
-        if cfg!(CONFIG_STM32F7_TIM3_QE)
-        //#[cfg(CONFIG_STM32F7_TIM3_QE)]
+        #[cfg(CONFIG_STM32F7_TIM3_QE)]
         {
             unsafe {
                 snprintf(
@@ -282,8 +258,7 @@ pub extern "C" fn stm32_bringup() -> cty::c_int {
             }
         }
 
-        if cfg!(CONFIG_STM32F7_TIM4_QE)
-        //#[cfg(CONFIG_STM32F7_TIM4_QE)]
+        #[cfg(CONFIG_STM32F7_TIM4_QE)]
         {
             unsafe {
                 snprintf(
@@ -308,8 +283,7 @@ pub extern "C" fn stm32_bringup() -> cty::c_int {
         }
     } // CONFIG_SENSORS_QENCODER
 
-    if cfg!(CONFIG_STM32F7_CAN_CHARDRIVER)
-    //#[cfg(CONFIG_STM32F7_CAN_CHARDRIVER)]
+    #[cfg(CONFIG_STM32F7_CAN_CHARDRIVER)]
     {
         _ret = unsafe{stm32_can_setup()};
         if _ret < 0 {
@@ -324,8 +298,7 @@ pub extern "C" fn stm32_bringup() -> cty::c_int {
         }
     }
 
-    if cfg!(CONFIG_STM32F7_CAN_SOCKET)
-    //#[cfg(CONFIG_STM32F7_CAN_SOCKET)]
+    #[cfg(CONFIG_STM32F7_CAN_SOCKET)]
     {
         unsafe {
             _ret = stm32_cansock_setup();
@@ -341,7 +314,7 @@ pub extern "C" fn stm32_bringup() -> cty::c_int {
         }
     }
 
-    if cfg!(CONFIG_I2C) && cfg!(CONFIG_STM32F7_I2C1) {
+    #[cfg(all(CONFIG_I2C, CONFIG_STM32F7_I2C1))] {
         let i2c_bus: i32 = 1;
         let _i2c: Option<_> = NonNull::<i2c_master_s>::new(unsafe { stm32_i2cbus_initialize(i2c_bus) });
         match _i2c {
@@ -353,8 +326,7 @@ pub extern "C" fn stm32_bringup() -> cty::c_int {
                 );
             },
             Some(_i2c) => {
-                if cfg!(CONFIG_SYSTEM_I2CTOOL)
-                //#[cfg(CONFIG_SYSTEM_I2CTOOL)]
+                #[cfg(CONFIG_SYSTEM_I2CTOOL)]
                 {
                     _ret = unsafe{ i2c_register(_i2c.as_ptr(), i2c_bus) };
 
@@ -369,8 +341,7 @@ pub extern "C" fn stm32_bringup() -> cty::c_int {
                         }
                     }
                 }
-                if cfg!(CONFIG_MPU60X0_I2C)
-                //#[cfg(CONFIG_MPU60X0_I2C)]
+                #[cfg(CONFIG_MPU60X0_I2C)]
                 {
                     //let mpu_config = unsafe{kmm_zalloc(get_size(mpu_config_s))};
                     //kmm_zalloc calls zalloc()
