@@ -162,16 +162,212 @@ unsafe fn board_mscuninitialize(classdev: *mut usbdevclass_driver_s) {
  *   any failure.
  *
  ****************************************************************************/
- //static void *board_composite0_connect(int port)
-/*
- fn board_composite0_connect(port: i32) -> *mut() {
+fn board_composite0_connect(port: i32) -> *mut() {
     
-    let mut dev: [composite_devdesc_s; COMPOSITE0_DEV] = [composite_devdesc_s::default(); COMPOSITE0_DEV];
+    //  struct composite_devdesc_s dev[COMPOSITE0_DEV];
+    let mut dev: [composite_devdesc_s; COMPOSITE0_DEV] = [composite_devdesc_s {
+        mkconfdesc: None,
+        mkstrdesc: None,
+        classobject: None,
+        uninitialize: None,
+        nconfigs: 0,
+        configid: 0,
+        cfgdescsize: 0,
+        minor: 0,
+        #[cfg(CONFIG_COMPOSITE_MSFT_OS_DESCRIPTORS)]
+        msft_compatible_id: [0; 8],
+        #[cfg(CONFIG_COMPOSITE_MSFT_OS_DESCRIPTORS)]
+        msft_sub_id: [0; 8],
+        // initialize usbdev_devinfo_s
+        devinfo: usbdev_devinfo_s {
+            name: null_mut(),
+            ninterfaces: 0,
+            ifnobase: 0,
+            nstrings: 0,
+            strbase: 0,
+            nendpoints: 0,
+            epno: [0; 5],
+            epinfos: null_mut(),
+        },
+    }; COMPOSITE0_DEV];
+
+    let ifnobase: i32 = 0;
+    let strbase: u8 = COMPOSITE_NSTRIDS;
+    let dev_idx: i32 = 0;
+    let epin: i32 = 1;
+    let epout: i32 = 1;
+
+    // not finished rEview this part 
+    #[cfg(CONFIG_RNDIS_COMPOSITE)] {
+        // Configure the RNDIS USB device
+
+        // Ask the rndis driver to fill in the constants we didn't know here.
+        unsafe {
+            //   usbdev_rndis_get_composite_devdesc(&dev[dev_idx]);
+            usbdev_rndis_get_composite_devdesc(&mut dev[dev_idx as usize]);
+        }
+
+        /* Interfaces */
+        dev[dev_idx as usize].devinfo.ifnobase = ifnobase;
+        dev[dev_idx as usize].minor = 0;
+
+        /* Strings */
+        dev[dev_idx as usize].devinfo.strbase = strbase;
+
+        /* Endpoints */
+        dev[dev_idx as usize].devinfo.epno[RNDIS_EP_INTIN_IDX as usize] = epin;
+        epin += 1;
+        dev[dev_idx as usize].devinfo.epno[RNDIS_EP_BULKIN_IDX as usize] = epin;
+        epin += 1;
+        dev[dev_idx as usize].devinfo.epno[RNDIS_EP_BULKOUT_IDX as usize] = epout;
+        epout += 1;
 
 
+        /* Count up the base numbers */
+        ifnobase += dev[dev_idx as usize].devinfo.ninterfaces;
+        strbase += dev[dev_idx as usize].devinfo.nstrings;
+        dev_idx += 1;
+    } // end if CONFIG_RNDIS_COMPOSITE
 
+    /* Configure the CDC/ACM device */
+    #[cfg(CONFIG_CDCACM_COMPOSITE)] {
+        /* Ask the cdcacm driver to fill in the constants we didn't know here*/
+        unsafe {
+            //cdcacm_get_composite_devdesc(&dev[dev_idx]);
+            cdcacm_get_composite_devdesc(&mut dev[dev_idx as usize]);
+        }
 
-    
-    null_mut() // temp
+        /* Overwrite and correct some values... */
+
+        /* The callback functions for the CDC/ACM class */
+        dev[dev_idx as usize].classobject  = cdcacm_classobject;
+        dev[dev_idx as usize].uninitialize = cdcacm_uninitialize;
+
+        /* Interfaces */
+        dev[dev_idx as usize].devinfo.ifnobase = ifnobase;             /* Offset to Interface-IDs */
+        dev[dev_idx as usize].minor = 0;                               /* The minor interface number */
+
+        /* Strings */
+        dev[dev_idx as usize].devinfo.strbase = strbase;               /* Offset to String Numbers */
+
+        /* Endpoints */
+        dev[dev_idx as usize].devinfo.epno[CDCACM_EP_INTIN_IDX] = epin;
+        epin += 1;
+        dev[dev_idx as usize].devinfo.epno[CDCACM_EP_BULKIN_IDX] = epin;
+        epin += 1;
+        dev[dev_idx as usize].devinfo.epno[CDCACM_EP_BULKOUT_IDX] = epout;
+        epout += 1;
+
+        /* Count up the base numbers */
+        ifnobase += dev[dev_idx as usize].devinfo.ninterfaces;
+        strbase  += dev[dev_idx as usize].devinfo.nstrings;
+        dev_idx += 1;
+
+    } // end CONFIG_CDCACM_COMPOSITE
+
+    /* Configure the mass storage device device */
+    #[cfg(CONFIG_USBMSC_COMPOSITE)] {
+
+        /* Ask the usbmsc driver to fill in the constants we didn't know here */
+        unsafe{
+            usbmsc_get_composite_devdesc(&mut[dev_idx as usize]);
+        }
+
+        /* Overwrite and correct some values... */
+        /* The callback functions for the USBMSC class */
+        dev[dev_idx as usize].classobject  = board_mscclassobject;
+        dev[dev_idx as usize].uninitialize = board_mscuninitialize;
+
+        /* Interfaces */
+        dev[dev_idx as usize].devinfo.ifnobase = ifnobase;               /* Offset to Interface-IDs */
+        dev[dev_idx as usize].minor = 0;                                 /* The minor interface number */
+
+        /* Strings */
+        dev[dev_idx as usize].devinfo.strbase = strbase;                 /* Offset to String Numbers */
+
+        /* Endpoints */
+        dev[dev_idx as usize].devinfo.epno[USBMSC_EP_BULKIN_IDX] = epin;
+        epin += 1;
+        dev[dev_idx as usize].devinfo.epno[USBMSC_EP_BULKOUT_IDX] = epout;
+        epout += 1;
+
+        /* Count up the base numbers */
+        ifnobase += dev[dev_idx as usize].devinfo.ninterfaces;
+        strbase  += dev[dev_idx as usize].devinfo.nstrings;
+        dev_idx += 1;
+
+    } // end if CONFIG_USBMSC_COMPOSITE
+
+    /* Sanity checks */
+    //debug_assert!(epin < STM32_NENDPOINTS);
+    //debug_assert!(epout < STM32_NENDPOINTS);    
+
+    // FIX
+    //return unsafe {composite_initialize(composite_getdevdescs_result().as_ptr() *mut _, dev, dev_idx as u8);}
+
+    return unsafe {
+        composite_initialize(composite_getdevdescs(), dev.as_mut_ptr(), dev_idx as u8) as *mut ()
+        //composite_initialize(composite_getdevdescs(), &dev, dev_idx as u8) as *mut ()
+    };
 } // end board_composite0_connect
+
+
+/****************************************************************************
+ * Public Functions
+ ****************************************************************************/
+
+/****************************************************************************
+ * Name: board_composite_initialize
+ *
+ * Description:
+ *   Perform architecture specific initialization of a composite USB device.
+ *
+ ****************************************************************************/
+
+pub fn board_composite_initialize(port: i32) -> Result<(), ()> {
+    return Ok(());
+}
+
+/****************************************************************************
+ * Name:  board_composite_connect
+ *
+ * Description:
+ *   Connect the USB composite device on the specified USB device port using
+ *   the specified configuration.  The interpretation of the configid is
+ *   board specific.
+ *
+ * Input Parameters:
+ *   port     - The USB device port.
+ *   configid - The USB composite configuration
+ *
+ * Returned Value:
+ *   A non-NULL handle value is returned on success.  NULL is returned on
+ *   any failure.
+ *
+ ****************************************************************************/
+ /*
+ void *board_composite_connect(int port, int configid) {
+  if (configid == 0) {
+      return board_composite0_connect(port);
+  }
+  else {
+    return NULL;
+  }
+}
 */
+
+
+pub fn board_composite_connect(port: i32, configid: i32) -> *mut() {
+    
+    let temp: bool = configid == 0;
+    if temp {
+        return unsafe{
+            board_composite0_connect(port)
+        }
+    }
+    else {
+        null_mut()
+    }
+}
+
+

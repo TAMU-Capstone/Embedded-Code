@@ -42,12 +42,14 @@
  use core::fmt::Write;
  use core::ptr::null_mut;
 
- /* Constants/functions I am missing for romfs_initilaize 
+ /* Anything wrapped in these is most likely not used so remove these blocks 
+  Constants/functions I am missing for romfs_initilaize 
   CONFIG_STM32_ROMFS_DEV_MINOR
   CONFIG_STM32_ROMFS
   CONFIG_STM32_ROMFS_IMAGEFILE
   CONFIG_STM32_ROMFS_DEV_MINOR
   CONFIG_STM32_ROMFS_MOUNTPOINT
+  MOUNT_DEVNAME
   romdisk_register
 */
 

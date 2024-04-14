@@ -81,10 +81,8 @@ static void *g_mschandle;
  ****************************************************************************/
 
 #ifdef CONFIG_USBMSC_COMPOSITE
-static int board_mscclassobject(int minor,
-                                struct usbdev_devinfo_s *devinfo,
-                                struct usbdevclass_driver_s **classdev)
-{
+static int board_mscclassobject(int minor, struct usbdev_devinfo_s *devinfo, struct usbdevclass_driver_s **classdev) {
+  
   int ret;
 
   DEBUGASSERT(g_mschandle == NULL);
@@ -92,6 +90,7 @@ static int board_mscclassobject(int minor,
   /* Configure the mass storage device */
 
   uinfo("Configuring with NLUNS=1\n");
+
   ret = usbmsc_configure(1, &g_mschandle);
   if (ret < 0)
     {
@@ -214,6 +213,11 @@ static void *board_composite0_connect(int port)
   dev_idx += 1;
 #endif
 
+
+
+
+
+
 #ifdef CONFIG_CDCACM_COMPOSITE
   /* Configure the CDC/ACM device */
 
@@ -298,6 +302,9 @@ static void *board_composite0_connect(int port)
 
   return composite_initialize(composite_getdevdescs(), dev, dev_idx);
 }
+
+
+
 
 /****************************************************************************
  * Public Functions
