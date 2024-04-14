@@ -17,138 +17,99 @@
  * under the License.
  *
  ****************************************************************************/
+ // #[cfg(CONFIG_MMCSD)]
+mod stm32_sdio {
 
-/****************************************************************************
- * Included Files
- ****************************************************************************/
- use crate::bindings::*;
- //use lazy_static::lazy_static;
+    use core::ptr::NonNull;
+    use crate::bindings::*;
 
-//DEFINE config first -- encompasses all
-cfg_if::cfg_if! 
-{ 
-    if #[cfg(CONFIG_MMCSD)]
+
+    static mut G_SDIO_DEV: Option<NonNull<sdio_dev_s>> = None;
+
+    // #[cfg(GPIO_SDMMC1_NCD)]
+    static mut G_SD_INSERTED: bool = false;
+    
+    // #[cfg(GPIO_SDMMC1_NCD)]
+    fn stm32_ncd_interrupt(irq: i32, _context: *mut cty::c_void) -> cty::c_int {
+        unsafe {
+            let present = !stm32_gpioread(GPIO_SDMMC1_NCD);
+            if let Some(g_sdio) = &mut G_SDIO_DEV {
+                if present != G_SD_INSERTED {
+                    sdio_mediachange(g_sdio.as_ptr(), present);
+                    G_SD_INSERTED = present;
+                }
+            }
+        }
+        OK
+    }
+
+    #[no_mangle]
+    pub extern "C" fn stm32_sdio_initialize() -> cty::c_int
     {
-        const HAVE_NCD: i32 = 1;
-        //if macro defined, have constant
-        if cfg!(not(GPIO_SDMMC1_NCD))
-        {
-            const HAVE_NCD: i32 = 0;
-        }
+        let ret: i32;
 
-        //define struct statically
-        //https://users.rust-lang.org/t/static-struct-with-a-string-inside-a-module-for-singleton-pattern/37475
-        //https://github.com/rust-lang-nursery/lazy-static.rs
-        lazy_static!
-        {
-            static ref g_sdio_dev = &mut sdio_dev_s;
-        }
-
-        //if constant is defined
-        if cfg!(HAVE_NCD)
-        {
-            lazy_static!
-            {
-                static bool g_sd_inserted;
-            }
-        }
 
         if cfg!(HAVE_NCD)
         {
             unsafe
             {
-                lazy_static
-                {
-                    stm32_ncd_interrupt(irq: i32, context: *mut c_void) -> cty::cint
-                    {
-                        present: bool;
-
-                        present = not(stm32_gpioread(GPIO_SDMMC1_NCD));
-                        if(g_sdio_dev && (present != g_sd_inserted))
-                        {
-                            unsafe
-                            {
-                                sdio_mediachange(g_sdio_dev, present);
-                                g_sd_inserted = present;
-                            }
-                        }
-
-                        return OK;
-                    }
-                }
+                /* Configure the card detect GPIO */
+                stm32_configgpio(GPIO_SDMMC1_NCD);
+                /* Register an interrupt handler for the card detect pin */
+                stm32_gpiosetevent(GPIO_SDMMC1_NCD, true, true, true, stm32_ncd_interrupt, null_ptr);
             }
         }
-
-        #[no_mangle]
-        pub extern "C" fn stm32_sdio_initialize() -> cty::cint
+        
+        /* Mount the SDIO-based MMC/SD block driver */
+        /* First, get an instance of the SDIO interface */
+        unsafe
         {
-            ret: i32;
-
-            //create a null ptr to replace NULL in C
-            let mut null_ptr: *const u8 = 0 as *const u8;
-
-            if cfg!(HAVE_NCD)
-            {
-                unsafe
-                {
-                    /* Configure the card detect GPIO */
-                    stm32_configgpio(GPIO_SDMMC1_NCD);
-                    /* Register an interrupt handler for the card detect pin */
-                    stm32_gpiosetevent(GPIO_SDMMC1_NCD, true, true, true, stm32_ncd_interrupt, null_ptr);
-                }
-            }
-            
-            /* Mount the SDIO-based MMC/SD block driver */
-            /* First, get an instance of the SDIO interface */
-            unsafe
-            {
-                finfo("Initializing SDIO slot %d\n".as_ptr() as *const u8, SDIO_SLOTNO);    
-            }
-
-            g_sdio_dev = sdio_initialize(SDIO_SLOTNO);
-            if !g_sdio_dev
-            {
-                ferr("ERROR: Failed to initialize SDIO slot %d\n".as_ptr() as *const u8, SDIO_SLOTNO);
-                return -ENODEV;
-            }
-
-            /* Now bind the SDIO interface to the MMC/SD driver */
-            unsafe
-            {
-                finfo("Bind SDIO to the MMC/SD driver, minor=%d\n".as_ptr() as *const u8, SDIO_MINOR);
-            }
-
-            ret = mmcsd_slotinitialize(SDIO_MINOR, g_sdio_dev);
-
-            if ret != OK
-            {
-                ferr("ERROR: Failed to bind SDIO to the MMC/SD driver: %d\n".as_ptr() as *const u8, ret);
-                return ret;
-            }
-
-            unsafe
-            {
-                finfo("Successfully bound SDIO to the MMC/SD driver\n".as_ptr() as *const u8);
-            }
-
-            if cfg!(HAVE_NCD)
-            {
-                g_sd_inserted = !stm32_gpioread(GPIO_SDMMC1_NCD);
-                unsafe
-                {
-                    finfo("Card detect : %d\n".as_ptr() as *const u8, g_sd_inserted);
-                    sdio_mediachange(g_sdio_dev, g_sd_inserted);
-                }
-            }
-            else
-            {
-                /* Assume that the SD card is inserted.  What choice do we have? */
-                unsafe
-                {
-                    sdio_mediachange(g_sdio_dev, true);
-                }
-            }
-            return OK;
+            finfo("Initializing SDIO slot %d\n".as_ptr() as *const u8, SDIO_SLOTNO);    
         }
+
+        G_SDIO_DEV = sdio_initialize(SDIO_SLOTNO);
+        if !G_SDIO_DEV
+        {
+            ferr("ERROR: Failed to initialize SDIO slot %d\n".as_ptr() as *const u8, SDIO_SLOTNO);
+            return -ENODEV;
+        }
+
+        /* Now bind the SDIO interface to the MMC/SD driver */
+        unsafe
+        {
+            finfo("Bind SDIO to the MMC/SD driver, minor=%d\n".as_ptr() as *const u8, SDIO_MINOR);
+        }
+
+        ret = mmcsd_slotinitialize(SDIO_MINOR, G_SDIO_DEV);
+
+        if ret != OK
+        {
+            ferr("ERROR: Failed to bind SDIO to the MMC/SD driver: %d\n".as_ptr() as *const u8, ret);
+            return ret;
+        }
+
+        unsafe
+        {
+            finfo("Successfully bound SDIO to the MMC/SD driver\n".as_ptr() as *const u8);
+        }
+
+        if cfg!(HAVE_NCD)
+        {
+            G_SD_INSERTED = !stm32_gpioread(GPIO_SDMMC1_NCD);
+            unsafe
+            {
+                finfo("Card detect : %d\n".as_ptr() as *const u8, G_SD_INSERTED);
+                sdio_mediachange(G_SDIO_DEV, G_SD_INSERTED);
+            }
+        }
+        else
+        {
+            /* Assume that the SD card is inserted.  What choice do we have? */
+            unsafe
+            {
+                sdio_mediachange(G_SDIO_DEV, true);
+            }
+        }
+        return OK;
     }
 }
