@@ -26,5 +26,20 @@ config TEST_STACKSIZE
 	int "testingApp stack size"
 	default DEFAULT_TASK_STACKSIZE
 
+config TEST_PROGNAME
+	string "Program name"
+	default "testingButtons"
+	---help---
+		This is the name of the program that will be used when the NSH ELF
+		program is installed.
+
+config TEST_PRIORITY
+	int "testingButtons task priority"
+	default 100
+
+config TEST_STACKSIZE
+	int "testingButtons stack size"
+	default DEFAULT_TASK_STACKSIZE
+
 endif
 endmenu # testingApp Framework

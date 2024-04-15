@@ -63,6 +63,7 @@ add_subdirectory(wireless)
 
 # Add any new application directories here
 add_subdirectory(testingApp)
+add_subdirectory(testingButtons)
 
 # add examples and external at the end to allow library dependencies
 add_subdirectory(examples)

@@ -28,4 +28,13 @@ if(CONFIG_TEST)
     ${CONFIG_TEST_STACKSIZE}
     PRIORITY
     ${CONFIG_TEST_PRIORITY})
+    nuttx_add_application(
+      NAME
+      ${CONFIG_TEST_PROGNAME}
+      SRCS
+      testingButtons_main.c
+      STACKSIZE
+      ${CONFIG_TEST_STACKSIZE}
+      PRIORITY
+      ${CONFIG_TEST_PRIORITY})
 endif()
