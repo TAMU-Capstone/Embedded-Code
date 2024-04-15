@@ -17,20 +17,24 @@
  * under the License.
  *
  ****************************************************************************/
-
- use cty::c_void;
-
- /****************************************************************************
-  * Included Files
-  ****************************************************************************/
- use crate::bindings::*;
-
- /****************************************************************************
-  * Public Functions
- ****************************************************************************/
  
- /****************************************************************************
-  * Name: board_button_initialize
+ #[cfg(CONFIG_ARCH_BUTTONS)]
+mod stm32_buttons {
+
+use crate::bindings::*;
+// use crate::bindings::CONFIG_ARCH_BUTTONS;
+
+
+/****************************************************************************
+ * Included Files
+ ****************************************************************************/
+
+/****************************************************************************
+ * Public Functions
+ ****************************************************************************/
+
+/****************************************************************************
+ * Name: board_button_initialize
  *
  * Description:
  *   board_button_initialize() must be called to initialize button resources.
@@ -39,32 +43,23 @@
  *   interrupt handlers.
  *
  ****************************************************************************/
- #[no_mangle]
- pub extern "C" fn board_button_initialize() -> cty::uint8_t {
-    unsafe {
-        stm32_configgpio(GPIO_BTN_USER);
-    }
-    return NUM_BUTTONS;
- }
- 
- /****************************************************************************
-  * Name: board_buttons
+#[no_mangle]
+pub unsafe extern "C" fn board_button_initialize() -> cty::uint32_t {
+    stm32_configgpio(GPIO_BTN_USER as u32);
+    NUM_BUTTONS as u32
+}
+
+/****************************************************************************
+ * Name: board_buttons
  ****************************************************************************/
- 
- #[no_mangle]
- pub extern "C" fn board_buttons() -> cty::uint32_t {
-     unsafe {
-         if stm32_gpioread(GPIO_BTN_USER) {
-             return 1;
-         }
-         else {
-             return 0;
-         }
-     }
- }
- 
- /****************************************************************************
-  * Button support.
+
+#[no_mangle]
+pub unsafe extern "C" fn board_buttons() -> cty::uint32_t {
+    stm32_gpioread(GPIO_BTN_USER as u32) as u32
+}
+
+/****************************************************************************
+ * Button support.
  *
  * Description:
  *   board_button_initialize() must be called to initialize button resources.
@@ -84,19 +79,19 @@
  *   value.
  *
  ****************************************************************************/
- 
- //#[cfg(CONFIG_ARCH_IRQBUTTONS)]
- #[no_mangle]
- pub extern "C" fn board_button_irq(id: u8, irqhandler: Option<unsafe extern "C" fn(i32, *mut c_void, *mut cty::c_void) -> i32>, arg: *mut c_void) -> cty::c_int  {
-     let mut ret: i32 = -<u8 as Into<i32>>::into(EINVAL);
- 
-     if id == BUTTON_USER {
-         unsafe {
-             ret = stm32_gpiosetevent(GPIO_BTN_USER, true, true, true, irqhandler, arg);
-         }
-     }
- 
-     return ret.into();
- }
- 
-  
+
+#[cfg(CONFIG_ARCH_IRQBUTTONS)]
+#[no_mangle]
+pub extern "C" fn board_button_irq(id: u8, irqhandler: xcpt_t, arg: *mut c_void) -> cty::c_int {
+    let mut ret = -(EINVAL as i32);
+
+    if id == BUTTON_USER {
+        unsafe {
+            ret = stm32_gpiosetevent(GPIO_BTN_USER as u32, true, true, true, irqhandler, arg);
+        }
+    }
+
+    ret
+}
+
+}

@@ -33,6 +33,11 @@ fn toposort_macros(lines: String) -> Result<String, Box<dyn Error>> {
         );
     }
 
+    macros
+        .keys()
+        .filter(|s| s.contains("CONFIG_"))
+        .for_each(|conf| println!("cargo:rustc-cfg={}", conf));
+
     let sorted: Vec<String> = deps
         .try_into_vec_nodes()?
         .iter()

@@ -17,10 +17,13 @@
  * under the License.
  *
  ****************************************************************************/
- #[cfg(CONFIG_MMCSD)]
+ 
+#[allow(unused_imports)]
+use crate::bindings::*;
+ 
+#[cfg(CONFIG_MMCSD)]
 mod stm32_sdio {
     use core::ptr;
-    use crate::bindings::*;
 
     static mut G_SDIO_DEV: Option<ptr::NonNull<sdio_dev_s>> = None;
 

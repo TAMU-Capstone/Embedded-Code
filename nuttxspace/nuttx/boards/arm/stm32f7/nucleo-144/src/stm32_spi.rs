@@ -21,86 +21,52 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
+//  #[cfg(CONFIG_SPI)]
+pub mod stm32_spi {
+  
 use crate::bindings::*;
-cfg_if::cfg_if! {
-
-   if #[cfg(CONFIG_SPI)]
-{
-   /****************************************************************************
+  /****************************************************************************
   * Pre-processor Definitions
   ****************************************************************************/
 
- if ( cfg!(CONFIG_NUCLEO_SPI1_TEST) )
- {
+    #[cfg(CONFIG_NUCLEO_SPI1_TEST)]
+    pub const NUCLEO_SPI1_TEST_MODE: u32 = match () {
+        #[cfg(CONFIG_NUCLEO_SPI1_TEST_MODE0)]
+        () => SPIDEV_MODE0,
+        #[cfg(CONFIG_NUCLEO_SPI1_TEST_MODE1)]
+        () => SPIDEV_MODE1,
+        #[cfg(CONFIG_NUCLEO_SPI1_TEST_MODE2)]
+        () => SPIDEV_MODE2,
+        #[cfg(CONFIG_NUCLEO_SPI1_TEST_MODE3)]
+        () => SPIDEV_MODE3,
+        _ => compile_error!("No CONFIG_NUCLEO_SPI1_TEST_MODEx defined")
+    };
+    
+    #[cfg(CONFIG_NUCLEO_SPI2_TEST)]
+    pub const NUCLEO_SPI1_TEST_MODE: u32 = match () {
+        #[cfg(CONFIG_NUCLEO_SPI2_TEST_MODE0)]
+        () => SPIDEV_MODE0,
+        #[cfg(CONFIG_NUCLEO_SPI2_TEST_MODE1)]
+        () => SPIDEV_MODE1,
+        #[cfg(CONFIG_NUCLEO_SPI2_TEST_MODE2)]
+        () => SPIDEV_MODE2,
+        #[cfg(CONFIG_NUCLEO_SPI2_TEST_MODE3)]
+        () => SPIDEV_MODE3,
+        _ => compile_error!("No CONFIG_NUCLEO_SPI2_TEST_MODEx defined")
+    };
 
-    if ( cfg!(CONFIG_NUCLEO_SPI1_TEST_MODE0) )
-    {
-          static CONFIG_NUCLEO_SPI1_TEST_MODE SPIDEV_MODE0: i32 = 1;
-    }
-    elif ( cfg!(CONFIG_NUCLEO_SPI1_TEST_MODE1) )
-    {
-          static CONFIG_NUCLEO_SPI1_TEST_MODE SPIDEV_MODE1: i32 = 1;
-    }
-   elif ( cfg!(CONFIG_NUCLEO_SPI1_TEST_MODE2) )
-   {
-     static CONFIG_NUCLEO_SPI1_TEST_MODE SPIDEV_MODE2: i32 = 1;
-   }
-    elif ( cfg!(CONFIG_NUCLEO_SPI1_TEST_MODE3) )
-    {
-      static CONFIG_NUCLEO_SPI1_TEST_MODE SPIDEV_MODE3: i32 = 1;
-    }
-  else{
-   #[error("No CONFIG_NUCLEO_SPI1_TEST_MODEx defined")];
-  }
-} // CONFIG_NUCLEO_SPI1_TEST
-
- if ( cfg!(CONFIG_NUCLEO_SPI2_TEST) )
- {
-   if ( cfg!(CONFIG_NUCLEO_SPI2_TEST_MODE0) )
-   {
-     static CONFIG_NUCLEO_SPI2_TEST_MODE SPIDEV_MODE0: i32 = 1;
-    }
-    elif ( cfg! (CONFIG_NUCLEO_SPI2_TEST_MODE1) )
-    {
-      static CONFIG_NUCLEO_SPI2_TEST_MODE SPIDEV_MODE1: i32 = 1;
-    }
-     elif ( cfg! (CONFIG_NUCLEO_SPI2_TEST_MODE2))
-     {
-       static CONFIG_NUCLEO_SPI2_TEST_MODE SPIDEV_MODE2: i32 = 1;
-     }
-    elif ( cfg! (CONFIG_NUCLEO_SPI2_TEST_MODE3) )
-    {
-      static CONFIG_NUCLEO_SPI2_TEST_MODE SPIDEV_MODE3: i32 = 1;
-    }
-   else
-   {
-     #[error("No CONFIG_NUCLEO_SPI2_TEST_MODEx defined")];
-    }
-} // CONFIG_NUCLEO_SPI2_TEST
-
- if ( cfg!(CONFIG_NUCLEO_SPI3_TEST) )
- {
-     if ( cfg!(CONFIG_NUCLEO_SPI3_TEST_MODE0) )
-     {
-       static CONFIG_NUCLEO_SPI3_TEST_MODE SPIDEV_MODE0: i32 = 1;
-     }
-     elif ( cfg!(CONFIG_NUCLEO_SPI3_TEST_MODE1) )
-     {
-       static CONFIG_NUCLEO_SPI3_TEST_MODE SPIDEV_MODE1: i32 = 1;
-     }
-   elif ( cfg! (CONFIG_NUCLEO_SPI3_TEST_MODE2))
-   {
-     static CONFIG_NUCLEO_SPI3_TEST_MODE SPIDEV_MODE2: i32 = 1;
-   }
-   elif (cfg!(CONFIG_NUCLEO_SPI3_TEST_MODE3))
-   {
-     static CONFIG_NUCLEO_SPI3_TEST_MODE SPIDEV_MODE3: i32 = 1;
-   }
-  else
-  {
-   #[error("No CONFIG_NUCLEO_SPI3_TEST_MODEx defined")];
-  }
-} // CONFIG_NUCLEO_SPI3_TEST
+    #[cfg(CONFIG_NUCLEO_SPI3_TEST)]
+    pub const NUCLEO_SPI1_TEST_MODE: u32 = match () {
+        #[cfg(CONFIG_NUCLEO_SPI3_TEST_MODE0)]
+        () => SPIDEV_MODE0,
+        #[cfg(CONFIG_NUCLEO_SPI3_TEST_MODE1)]
+        () => SPIDEV_MODE1,
+        #[cfg(CONFIG_NUCLEO_SPI3_TEST_MODE2)]
+        () => SPIDEV_MODE2,
+        #[cfg(CONFIG_NUCLEO_SPI3_TEST_MODE3)]
+        () => SPIDEV_MODE3,
+        _ => compile_error!("No CONFIG_NUCLEO_SPI3_TEST_MODEx defined")
+    };
 
  /****************************************************************************
   * Private Data
@@ -621,11 +587,3 @@ fn stm32_spi6status( dev : * mut spi_dev_s,  devid : uint32_t) -> uint8_t
   }
 } // CONFIG_NUCLEO_SPI_TEST
 } // defined(CONFIG_SPI)
-else{
-  // considering creating a empty config that will catch and allow this to be a fake preprocessor
-  pub extern "C" fn stm32_spidev_initialize()
-  {
-    /* Configure SPI CS GPIO for output */
-      }
-}
-} // if_cfg
