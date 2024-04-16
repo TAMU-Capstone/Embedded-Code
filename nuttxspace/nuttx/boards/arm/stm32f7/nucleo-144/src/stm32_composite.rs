@@ -301,14 +301,19 @@ fn board_composite0_connect(port: i32) -> *mut() {
     /* Sanity checks */
     //debug_assert!(epin < STM32_NENDPOINTS);
     //debug_assert!(epout < STM32_NENDPOINTS);    
+    
+    // Original
+    //return composite_initialize(composite_getdevdescs(), dev, dev_idx);
 
-    // FIX
-    //return unsafe {composite_initialize(composite_getdevdescs_result().as_ptr() *mut _, dev, dev_idx as u8);}
-
+    /*
     return unsafe {
         composite_initialize(composite_getdevdescs(), dev.as_mut_ptr(), dev_idx as u8) as *mut ()
-        //composite_initialize(composite_getdevdescs(), &dev, dev_idx as u8) as *mut ()
     };
+    */
+
+    let devdescs = unsafe { composite_getdevdescs() };
+    let ret = unsafe { composite_initialize(devdescs, dev.as_mut_ptr(), dev_idx as u8) };
+    ret as *mut ()
 } // end board_composite0_connect
 
 
