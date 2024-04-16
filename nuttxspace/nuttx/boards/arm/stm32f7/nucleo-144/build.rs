@@ -35,7 +35,7 @@ fn toposort_macros(lines: String) -> Result<String, Box<dyn Error>> {
 
     macros
         .keys()
-        .filter(|s| s.contains("CONFIG_"))
+        .filter(|c| !(c.contains("(") || c.contains(")")))
         .for_each(|conf| println!("cargo:rustc-cfg={}", conf));
 
     let sorted: Vec<String> = deps

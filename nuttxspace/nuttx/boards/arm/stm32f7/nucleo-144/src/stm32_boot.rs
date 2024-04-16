@@ -24,7 +24,7 @@
 //  use crate::bindings::*;
  use crate::stm32_autoleds::board_autoled_initialize;
  use crate::stm32_usb::stm32_usbinitialize;
- use crate::bindings::stm32_spidev_initialize;
+ use crate::stm32_spi::stm32_spidev_initialize;
  // use crate::stm32_bringup::stm32_bringup;
  /****************************************************************************
   * Public Functions
