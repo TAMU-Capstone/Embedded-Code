@@ -144,22 +144,22 @@ mod stm32_spi {
         #[cfg(CONFIG_STM32F7_SPI1)]
         G_SPI1GPIO
             .iter()
-            .filter(|pin| pin != 0)
-            .for_each(stm32_configgpio);
+            .filter(|p| **p != 0)
+            .for_each(|p| unsafe { stm32_configgpio(*p); });
     
     
         #[cfg(CONFIG_STM32F7_SPI2)]
         G_SPI2GPIO
             .iter()
-            .filter(|pin| pin != 0)
-            .for_each(stm32_configgpio);
+            .filter(|p| **p != 0)
+            .for_each(|p| unsafe { stm32_configgpio(*p); });
     
     
         #[cfg(CONFIG_STM32F7_SPI3)]
         G_SPI3GPIO
             .iter()
-            .filter(|pin| pin != 0)
-            .for_each(stm32_configgpio);
+            .filter(|p| **p != 0)
+            .for_each(|p| unsafe { stm32_configgpio(*p); });
     }
 
     /****************************************************************************
