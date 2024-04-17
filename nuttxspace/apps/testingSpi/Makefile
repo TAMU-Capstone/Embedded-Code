@@ -1,5 +1,5 @@
 ############################################################################
-# apps/testingApp/Make.defs
+# apps/testingApp/Makefile
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -18,6 +18,17 @@
 #
 ############################################################################
 
-ifneq ($(CONFIG_LEDS),)
-CONFIGURED_APPS += $(APPDIR)/testingLeds
-endif
+include $(APPDIR)/Make.defs
+
+# testingApp built-in application info
+
+PROGNAME  = $(CONFIG_SPI_PROGNAME)
+PRIORITY  = $(CONFIG_SPI_PRIORITY)
+STACKSIZE = $(CONFIG_SPI_STACKSIZE)
+MODULE    = $(CONFIG_SPI)
+
+# Testing Application
+
+MAINSRC = testingSpi_main.c
+
+include $(APPDIR)/Application.mk

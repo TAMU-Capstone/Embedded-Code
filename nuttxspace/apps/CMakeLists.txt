@@ -64,6 +64,7 @@ add_subdirectory(wireless)
 # Add any new application directories here
 add_subdirectory(testingLeds)
 add_subdirectory(testingButtons)
+add_subdirectory(testingSpi)
 
 # add examples and external at the end to allow library dependencies
 add_subdirectory(examples)
