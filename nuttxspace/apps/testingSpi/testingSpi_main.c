@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32f7/nucleo-144/src/stm32_buttons.c
+ * boards/arm/stm32f7/nucleo-144/src/stm32_Spi.c
  *
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -22,4 +22,7 @@
  * Included Files
  ****************************************************************************/
 
-
+int main() {
+  printf("Test");
+  return 0;
+}

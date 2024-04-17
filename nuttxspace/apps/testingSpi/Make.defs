@@ -18,6 +18,6 @@
 #
 ############################################################################
 
-ifneq ($(CONFIG_LEDS),)
-CONFIGURED_APPS += $(APPDIR)/testingLeds
+ifneq ($(CONFIG_SPI),)
+CONFIGURED_APPS += $(APPDIR)/testingSpi
 endif

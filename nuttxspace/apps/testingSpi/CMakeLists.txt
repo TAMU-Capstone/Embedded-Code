@@ -18,14 +18,14 @@
 #
 # ##############################################################################
 
-if(CONFIG_BUTTONS)
+if(CONFIG_SPI)
     nuttx_add_application(
       NAME
-      ${CONFIG_BUTTONS_PROGNAME}
+      ${CONFIG_SPI_PROGNAME}
       SRCS
-      testingButtons_main.c
+      testingSpi_main.c
       STACKSIZE
-      ${CONFIG_BUTTONS_STACKSIZE}
+      ${CONFIG_SPI_STACKSIZE}
       PRIORITY
-      ${CONFIG_BUTTONS_PRIORITY})
+      ${CONFIG_SPI_PRIORITY})
 endif()
