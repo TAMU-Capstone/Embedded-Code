@@ -82,9 +82,9 @@ pub extern "C" fn board_userled_initialize() -> cty::uint32_t {
 
 #[no_mangle]
 pub extern "C" fn  board_userled(led: i32, ledon: bool) {
-    if (led as usize) < g_ledcfg.len() {
+    if (led as usize) < G_LEDCFG.len() {
         unsafe {
-            stm32_gpiowrite(g_ledcfg[led as usize], ledon);
+            stm32_gpiowrite(G_LEDCFG[led as usize], ledon);
         }
     }
 }
@@ -103,7 +103,7 @@ pub extern "C" fn  board_userled(led: i32, ledon: bool) {
 
 #[no_mangle]
 pub extern "C" fn  board_userled_all(ledset: i32) {
-    for (i, &pin) in g_ledcfg.iter().enumerate() {
+    for (i, &pin) in G_LEDCFG.iter().enumerate() {
         let ledon = (ledset & (1 << i)) != 0;
         unsafe{
             stm32_gpiowrite(pin, ledon);
