@@ -47,6 +47,10 @@
 #define CONFIG_ARCH_BUTTONS; // make sure that we can call these C functions
 #define CONFIG_ARCH_IRQBUTTONS;
 
+void setLed(void)
+{
+
+}
 
 
 void testingButtons(void)
