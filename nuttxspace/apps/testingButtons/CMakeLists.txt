@@ -19,15 +19,6 @@
 # ##############################################################################
 
 if(CONFIG_TEST)
-  nuttx_add_application(
-    NAME
-    ${CONFIG_TEST_PROGNAME}
-    SRCS
-    testingApp_main.c
-    STACKSIZE
-    ${CONFIG_TEST_STACKSIZE}
-    PRIORITY
-    ${CONFIG_TEST_PRIORITY})
     nuttx_add_application(
       NAME
       ${CONFIG_TEST_PROGNAME}

@@ -29,6 +29,6 @@ MODULE    = $(CONFIG_TEST)
 
 # Testing Application
 
-MAINSRC = testingApp_main.c, testingButtons_main.c
+MAINSRC =  testingButtons_main.c
 
 include $(APPDIR)/Application.mk

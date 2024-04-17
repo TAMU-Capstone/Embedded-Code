@@ -35,36 +35,45 @@
 #include "stm32_gpio.h"
 #include "nucleo-144.h"
 
-#ifdef CONFIG_ARCH_BUTTONS
+
 
 /****************************************************************************
- * Public Functions
+* Test Functions
+ * in board.h
+ * #define BUTTON_USER        0
+ * #define NUM_BUTTONS        1
+ * #define BUTTON_USER_BIT    (1 << BUTTON_USER)
  ****************************************************************************/
+#define CONFIG_ARCH_BUTTONS; // make sure that we can call these C functions
+#define CONFIG_ARCH_IRQBUTTONS;
 
-/****************************************************************************
- * Name: board_button_initialize
- *
- * Description:
- *   board_button_initialize() must be called to initialize button resources.
- *   After that, board_buttons() may be called to collect the current state
- *   of all buttons or board_button_irq() may be called to register button
- *   interrupt handlers.
- *
- ****************************************************************************/
 
-uint32_t board_button_initialize(void)
+
+void testingButtons(void)
 {
-  stm32_configgpio(GPIO_BTN_USER);
-  return NUM_BUTTONS;
-}
+  uint32_t numberOfButtons  = -1;
 
-/****************************************************************************
- * Name: board_buttons
- ****************************************************************************/
+  printf("testing Buttons\n");
+  numberOfButtons = board_button_initialize();
+  printf("number of buttons %zu \n", numberOfButtons);
 
-uint32_t board_buttons(void)
-{
-  return stm32_gpioread(GPIO_BTN_USER) ? 1 : 0;
+  printf("for each buttonn what is it high or low?\n");
+  printf("buttonState is set -1 each iteration\n");
+  uint32_t buttonState = -1;
+  for (uint32_t i = 0; i < numberOfButtons; i++)
+  {
+    buttonState = board_button_initialize();
+    printf("button number %zu is currently %zu \n", i, buttonState);
+    buttonState = -1;
+  }
+
+  printf("setting interupt handling to flash led on user button (blue) press");
+  xcpt_t exceptionHandler = 
+  printf(" if -22, invalid arguemnet = something failed");
+  printf("test: %n",board_button_irq(0, exceptionHandler, void));
+
+  
+
 }
 
 /****************************************************************************
@@ -89,7 +98,6 @@ uint32_t board_buttons(void)
  *
  ****************************************************************************/
 
-#ifdef CONFIG_ARCH_IRQBUTTONS
 int board_button_irq(int id, xcpt_t irqhandler, void *arg)
 {
   int ret = -EINVAL;
@@ -102,5 +110,3 @@ int board_button_irq(int id, xcpt_t irqhandler, void *arg)
 
   return ret;
 }
-#endif
-#endif /* CONFIG_ARCH_BUTTONS */
