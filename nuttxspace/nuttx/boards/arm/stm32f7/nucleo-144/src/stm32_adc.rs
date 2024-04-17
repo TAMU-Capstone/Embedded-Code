@@ -18,8 +18,7 @@
  *
  ****************************************************************************/
 
-#[cfg(CONFIG_ADC)]
-mod stm32_adc {
+#![cfg(CONFIG_ADC)]
 
 /****************************************************************************
  * Included Files and Fsunctions
@@ -133,6 +132,4 @@ pub fn stm32_adc_setup() -> Result<(), i32> {
         return Err(ENOSYS as i32); 
     }
     Ok(())
-}
-
 }

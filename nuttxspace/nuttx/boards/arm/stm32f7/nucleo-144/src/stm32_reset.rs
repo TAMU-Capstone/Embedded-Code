@@ -21,8 +21,11 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
+#![cfg(CONFIG_BOARDCTL_RESET)]
+
 use cty;
 use crate::bindings::up_systemreset;
+
 
 /****************************************************************************
  * Public Functions
@@ -49,11 +52,9 @@ use crate::bindings::up_systemreset;
  ****************************************************************************/
 
 #[no_mangle]
-pub extern "C" fn board_reset(_status: i8) -> cty::c_int {
-    unsafe {
-        up_systemreset();
-    }
-    // return 0;
+pub unsafe extern "C" fn board_reset(_status: i8) -> cty::c_int {
+    up_systemreset();
+    0
 }
 
 /* CONFIG_BOARDCTL_RESET */

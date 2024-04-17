@@ -22,6 +22,9 @@
  * Included Files
  ****************************************************************************/
 
+
+#![cfg(not(CONFIG_ARCH_LEDS))]
+
 use crate::bindings::*;
 
 

@@ -40,109 +40,75 @@ use crate::bindings::*;
  ****************************************************************************/
 //DEFINE config first -- encompasses all
 
+
+#[cfg(CONFIG_PWM)]
 #[no_mangle]
 pub extern "C" fn stm32_pwm_setup() -> cty::c_int
 {
-    #[cfg(HAVE_PWM)]
-    {
-        let mut initialized: bool = false;
-        let mut pwm: &mut pwm_lowerhalf_s;
+    use core::mem::MaybeUninit;
+    static mut INITIALIZED: bool = false;
 
-        let mut ret: i32;
+    if unsafe { !INITIALIZED } {
+        let mut pwm: MaybeUninit<*mut pwm_lowerhalf_s> = MaybeUninit::uninit();
 
-        const ENODEV: i32 = -1;
-
-        if initialized == true
-        {
-            #[cfg(CONFIG_STM32F7_TIM1_PWM)]
-            {
-                let pwm = unsafe{ stm32_pwminitialize(1) };
-
-                if !pwm
-                {
-                    unsafe{
-                        aerr("ERROR: Failed to get the STM32F7 PWM lower half\n");
-                    }
-                    return ENODEV.into();
-                }
-
-                ret = unsafe{ pwm_register("/dev/pwm0".as_ptr(), pwm) };
-
-                if ret < 0
-                {
-                    aerr("ERROR: pwm_register failed: %d\n".as_ptr(), ret);
-                    return ret;
-                }
+        #[cfg(CONFIG_STM32F7_TIM1_PWM)]
+        unsafe {
+            pwm.write(stm32_pwminitialize(1));
+            if pwm.assume_init().is_null() {
+                return -(ENODEV as i32);
             }
-
-            #[cfg(CONFIG_STM32F7_TIM2_PWM)]
-            {
-                let pwm = unsafe{ stm32_pwminitialize(2) };
-                if !pwm
-                {
-                    unsafe{
-                        aerr("ERROR: Failed to get the STM32F7 PWM lower half\n".as_ptr());
-                    }
-                    return ENODEV.into();
-                }
-
-                ret = unsafe{ pwm_register("/dev/pwm1".as_ptr(), pwm) };
-                if ret < 0
-                {
-                    unsafe{
-                        aerr("ERROR: pwm_register failed: %d\n".as_ptr(), ret);
-                    }
-                    return ret;
-                }
+            match pwm_register(b"/dev/pwm0\0" as *const u8, pwm.assume_init()) {
+                OK => (),
+                ret => return ret
             }
-
-            #[cfg(CONFIG_STM32F7_TIM3_PWM)]
-            {
-                let pwm = unsafe{ stm32_pwminitialize(3) };
-                if !pwm
-                {
-                    unsafe{
-                        aerr("ERROR: Failed to get the STM32F7 PWM lower half\n".as_ptr());
-                    }
-                    return ENODEV.into();
-                }
-
-                ret = unsafe{ pwm_register("/dev/pwm2".as_ptr(), pwm) };
-                if ret < 0
-                {
-                    unsafe{
-                        aerr("ERROR: pwm_register failed: %d\n".as_ptr(), ret);
-                    }
-                    return ret;
-                }
-            }
-
-            #[cfg(CONFIG_STM32F7_TIM4_PWM)]
-            {
-                let pwm = unsafe{ stm32_pwminitialize(4) };
-                if !pwm
-                {
-                    unsafe{
-                        aerr("ERROR: Failed to get the STM32F7 PWM lower half\n".as_ptr());
-                    }
-                    return ENODEV.into();
-                }
-
-                ret = unsafe{ pwm_register("/dev/pwm3".as_ptr(), pwm) };
-                if ret < 0
-                {
-                    unsafe{
-                        aerr("ERROR: pwm_register failed: %d\n", ret);
-                    }
-                    return ret;
-                }
-            }
-            initialized = true;
         }
-        return OK;
+        
+        #[cfg(CONFIG_STM32F7_TIM2_PWM)]
+        unsafe {
+            pwm.write(stm32_pwminitialize(2));
+            if pwm.assume_init().is_null() {
+                return -(ENODEV as i32);
+            }
+            match pwm_register(b"/dev/pwm1\0" as *const u8, pwm.assume_init()) {
+                OK => (),
+                ret => return ret
+            }
+        }
+        
+        #[cfg(CONFIG_STM32F7_TIM3_PWM)]
+        unsafe {
+            pwm.write(stm32_pwminitialize(3));
+            if pwm.assume_init().is_null() {
+                return -(ENODEV as i32);
+            }
+            match pwm_register(b"/dev/pwm2\0" as *const u8, pwm.assume_init()) {
+                OK => (),
+                ret => return ret
+            }
+        }
+        
+        #[cfg(CONFIG_STM32F7_TIM4_PWM)]
+        unsafe {
+            pwm.write(stm32_pwminitialize(4));
+            if pwm.assume_init().is_null() {
+                return -(ENODEV as i32);
+            }
+            match pwm_register(b"/dev/pwm3\0" as *const u8, pwm.assume_init()) {
+                OK => (),
+                ret => return ret
+            }
+        }
+
+        unsafe { INITIALIZED = true }
     }
-    #[cfg(not(HAVE_PWM))]
-    {
-        return ENODEV.into();
-    }
+    return OK;
+}
+
+
+
+#[cfg(not(CONFIG_PWM))]
+#[no_mangle]
+pub extern "C" fn stm32_pwm_setup() -> cty::c_int
+{
+    -(ENODEV as i32)
 }

@@ -18,8 +18,7 @@
  *
  ****************************************************************************/
  
- #[cfg(CONFIG_ARCH_BUTTONS)]
-mod stm32_buttons {
+#![cfg(CONFIG_ARCH_BUTTONS)]
 
 use crate::bindings::*;
 // use crate::bindings::CONFIG_ARCH_BUTTONS;
@@ -92,6 +91,4 @@ pub extern "C" fn board_button_irq(id: u8, irqhandler: xcpt_t, arg: *mut c_void)
     }
 
     ret
-}
-
 }

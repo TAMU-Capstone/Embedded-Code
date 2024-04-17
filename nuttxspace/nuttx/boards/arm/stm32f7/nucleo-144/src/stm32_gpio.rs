@@ -18,8 +18,8 @@
  *
  ****************************************************************************/
  // at the top to apply to the entire file similiar to how they are using ifdef
- #[cfg(all(CONFIG_DEV_GPIO, not(CONFIG_GPIO_LOWER_HALF)))]
- mod stm32_gpio {
+#![cfg(all(CONFIG_DEV_GPIO, not(CONFIG_GPIO_LOWER_HALF)))]
+
 /****************************************************************************
  * Included Files
  ****************************************************************************/
@@ -340,6 +340,3 @@ pub fn stm32_gpio_initialize() -> Result<(), i32> {
     }
     Ok(())// final return for stm32_gpio_initialize() function
 }
-
-
- }
