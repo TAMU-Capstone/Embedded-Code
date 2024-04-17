@@ -23,7 +23,7 @@
  ****************************************************************************/
 
 
-#![cfg(not(CONFIG_ARCH_LEDS))]
+//#![cfg(not(CONFIG_ARCH_LEDS))]
 
 use crate::bindings::*;
 
@@ -80,6 +80,14 @@ pub extern "C" fn board_userled_initialize() -> cty::uint32_t {
 *
 ****************************************************************************/
 
+#[no_mangle]
+pub extern "C" fn  board_userled(led: i32, ledon: bool) {
+    if (led as usize) < g_ledcfg.len() {
+        unsafe {
+            stm32_gpiowrite(g_ledcfg[led as usize], ledon);
+        }
+    }
+}
 
 
 /****************************************************************************
@@ -93,4 +101,13 @@ pub extern "C" fn board_userled_initialize() -> cty::uint32_t {
 *
 ****************************************************************************/
 
+#[no_mangle]
+pub extern "C" fn  board_userled_all(ledset: i32) {
+    for (i, &pin) in g_ledcfg.iter().enumerate() {
+        let ledon = (ledset & (1 << i)) != 0;
+        unsafe{
+            stm32_gpiowrite(pin, ledon);
+        }
+    }
+}
 

@@ -25,7 +25,7 @@ CSRCS = stm32_bringup.c #deleted stm32_boot.c from here
 ifeq ($(CONFIG_ARCH_LEDS),y)
 #CSRCS += stm32_autoleds.c
 else
-CSRCS += stm32_userleds.c
+#CSRCS += stm32_userleds.c
 endif
 
 ifeq ($(CONFIG_ARCH_BUTTONS),y)
