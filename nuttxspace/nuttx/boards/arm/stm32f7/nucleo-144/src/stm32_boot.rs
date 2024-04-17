@@ -21,47 +21,36 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
-//  use crate::bindings::*;
- use crate::stm32_autoleds::board_autoled_initialize;
- use crate::stm32_usb::stm32_usbinitialize;
- use crate::stm32_spi::stm32_spidev_initialize;
- // use crate::stm32_bringup::stm32_bringup;
- /****************************************************************************
-  * Public Functions
-  ****************************************************************************/
+
+/****************************************************************************
+ * Public Functions
+ ****************************************************************************/
  
- /****************************************************************************
-  * Name: stm32_boardinitialize
-  *
-  * Description:
-  *   All STM32 architectures must provide the following entry point.
-  *   This entry point is called early in the initialization -- after all
-  *   memory has been configured and mapped but before any devices have been
-  *   initialized.
-  *
-  ****************************************************************************/
- // https://doc.rust-lang.org/rust-by-example/attribute/cfg.html
- // #ifdef does not exist, therefor we will use cfg [ conditional configuration check ]
+/****************************************************************************
+ * Name: stm32_boardinitialize
+ *
+ * Description:
+ *   All STM32 architectures must provide the following entry point.
+ *   This entry point is called early in the initialization -- after all
+ *   memory has been configured and mapped but before any devices have been
+ *   initialized.
+ *
+ ****************************************************************************/
 
 #[no_mangle]
-pub extern "C" fn stm32_boardinitialize()
+pub unsafe extern "C" fn stm32_boardinitialize()
  {
-    if cfg!(CONFIG_ARCH_LEDS){
-       /* Configure on-board LEDs if LED support has been selected. */
-       board_autoled_initialize();
-      }
-    // CONFIG_STM32F7_HOST is missing from files
-    if cfg!(CONFIG_STM32F7_OTGFS) || cfg!(CONFIG_STM32F7_HOST) {
-        stm32_usbinitialize();
-    }
-    if cfg!(CONFIG_SPI) {
-        /* Configure SPI chip selects */
-        stm32_spidev_initialize();
-    }
+    #[cfg(CONFIG_ARCH_LEDS)]
+    crate::stm32_autoleds::board_autoled_initialize();
+
+    #[cfg(any(CONFIG_STM32F7_OTGFS, CONFIG_STM32F7_HOST))]
+    crate::stm32_usb::stm32_usbinitialize();
+    
+    #[cfg(CONFIG_SPI)]
+    crate::stm32_spi::stm32_spidev_initialize();
 }
 
 /****************************************************************************
-#[cfg(CONFIG_SPI)]
 * Name: board_late_initialize
 *
 * Description:
@@ -76,7 +65,8 @@ pub extern "C" fn stm32_boardinitialize()
  ****************************************************************************/
 
 #[cfg(CONFIG_BOARD_LATE_INITIALIZE)]
-fn board_late_initialize() {
+#[no_mangle]
+pub unsafe extern "C" fn board_late_initialize() {
     /* Perform board-specific initialization */
-    stm32_bringup();
+    crate::bindings::stm32_bringup();
 }
