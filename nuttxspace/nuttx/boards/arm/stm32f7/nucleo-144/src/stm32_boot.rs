@@ -22,7 +22,7 @@
  * Included Files
  ****************************************************************************/
 //  use crate::bindings::*;
- //use crate::stm32_autoleds::board_autoled_initialize;
+ use crate::stm32_autoleds::board_autoled_initialize;
  use crate::stm32_usb::stm32_usbinitialize;
  use crate::stm32_spi::stm32_spidev_initialize;
  // use crate::stm32_bringup::stm32_bringup;
@@ -48,7 +48,7 @@ pub extern "C" fn stm32_boardinitialize()
  {
     if cfg!(CONFIG_ARCH_LEDS){
        /* Configure on-board LEDs if LED support has been selected. */
-       //board_autoled_initialize();
+       board_autoled_initialize();
       }
     // CONFIG_STM32F7_HOST is missing from files
     if cfg!(CONFIG_STM32F7_OTGFS) || cfg!(CONFIG_STM32F7_HOST) {
