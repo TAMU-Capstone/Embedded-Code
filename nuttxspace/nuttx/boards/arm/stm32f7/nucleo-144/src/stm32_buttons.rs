@@ -90,5 +90,5 @@ pub extern "C" fn board_button_irq(id: u8, irqhandler: xcpt_t, arg: *mut c_void)
         }
     }
 
-    ret
+    return ret;
 }
