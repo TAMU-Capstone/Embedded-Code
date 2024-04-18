@@ -60,11 +60,11 @@ void testingButtons(void)
     printf("setting interupt handling to flash led on user button (blue) press");
     printf(" if -22, invalid arguemnet = something failed");
     printf("test: %d", board_button_irq(0, handler, NULL));
-    printf(" while looping to 10k you can press button ");
-    for(int i = 0 ; i < 100000 ; i++)
+    printf(" while looping to 1k you can press button ");
+    for (int i = 0; i < 1000; i++){}
 #endif
 #ifndef CONFIG_ARCH_IRQBUTTONS
-    printf("interupt option has not been defined in menu config!");
+        printf("interupt option has not been defined in menu config!");
 #endif
 }
 
