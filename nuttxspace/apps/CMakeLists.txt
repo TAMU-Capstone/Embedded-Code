@@ -65,6 +65,7 @@ add_subdirectory(wireless)
 add_subdirectory(testingLeds)
 add_subdirectory(testingButtons)
 add_subdirectory(testingSpi)
+add_subdirectory(testingGPIO)
 
 # add examples and external at the end to allow library dependencies
 add_subdirectory(examples)
@@ -73,5 +74,5 @@ if(EXISTS ${CMAKE_CURRENT_LIST_DIR}/external)
 endif()
 
 add_subdirectory(builtin) # must be last
-
+s
 nuttx_generate_kconfig()
