@@ -25,3 +25,6 @@ mod stm32_adc;
 mod stm32_appinitialize;
 mod stm32_buttons;
 mod stm32_userleds;
+// mod stm32_composite;
+mod stm32_romfs_initialize;
+mod stm32_dma_alloc;
