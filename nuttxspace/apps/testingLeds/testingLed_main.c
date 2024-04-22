@@ -1,5 +1,5 @@
 /****************************************************************************
- * apps/testingApp/testingApp_main.c
+ * apps/testingLed/testingLed_main.c
  *
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -24,9 +24,13 @@
 
 //#include <../../nuttx/include/nuttx/config.h>
 #include <nuttx/config.h>
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
 #include <unistd.h>
+#include <stddef.h>
+#include <sys/param.h>
+
+
 
 #define LED_STARTED        0 /* NuttX has been started   OFF    OFF   OFF  */
 #define LED_HEAPALLOCATE   1 /* Heap has been allocated  OFF    OFF   ON   */
@@ -41,16 +45,18 @@
 /****************************************************************************
  * Function Definitions
  ****************************************************************************/
-
+uint32_t board_userled_initialize(void);
+void board_userled(int led, bool ledon);
+void board_autoled_on(int led);
+void board_autoled_off(int led);
+void board_autoled_initialize(void);
 /****************************************************************************
  * Test Function
  ****************************************************************************/
 
 void userleds_test(void) {
-  int ledset = 0;
-
   // configure leds
-  int NUM_LEDS = board_userled_initialize();
+  uint32_t NUM_LEDS = board_userled_initialize();
 
   printf("Test 1 Userleds:\n");
   printf("All three Userleds should be on for 5 seconds. (Blue turns on only momentarily)\n");

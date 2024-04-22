@@ -81,7 +81,7 @@ pub unsafe extern "C" fn board_buttons() -> cty::uint32_t {
 
 #[cfg(CONFIG_ARCH_IRQBUTTONS)]
 #[no_mangle]
-pub extern "C" fn board_button_irq(id: u8, irqhandler: xcpt_t, arg: *mut c_void) -> cty::c_int {
+pub extern "C" fn board_button_irq(id: u8, irqhandler: xcpt_t, arg: *mut cty::c_void) -> cty::c_int {
     let mut ret = -(EINVAL as i32);
 
     if id == BUTTON_USER {
@@ -90,5 +90,5 @@ pub extern "C" fn board_button_irq(id: u8, irqhandler: xcpt_t, arg: *mut c_void)
         }
     }
 
-    ret
+    return ret;
 }
