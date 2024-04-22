@@ -18,14 +18,14 @@
 #
 # ##############################################################################
 
-if(CONFIG_GPIO)
-  nuttx_add_application(
-    NAME
-    ${CONFIG_GPIO_PROGNAME}
-    SRCS
-    testingGPIO_main.c
-    STACKSIZE
-    ${CONFIG_GPIO_STACKSIZE}
-    PRIORITY
-    ${CONFIG_GPIO_PRIORITY})
+if(CONFIG_USER_TEST_GPIO_1)
+    nuttx_add_application(
+      NAME
+      ${CONFIG_USER_TEST_GPIO_1_PROGNAME}
+      SRCS
+      testingGPIO_main.c
+      STACKSIZE
+      ${CONFIG_USER_TEST_GPIO_1_STACKSIZE}
+      PRIORITY
+      ${CONFIG_USER_TEST_GPIO_1_PRIORITY})
 endif()

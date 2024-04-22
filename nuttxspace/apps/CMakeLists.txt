@@ -65,7 +65,7 @@ add_subdirectory(wireless)
 add_subdirectory(testingLeds)
 add_subdirectory(testingButtons)
 add_subdirectory(testingSpi)
-add_subdirectory(testingGPIO)
+add_subdirectory(testingGpio)
 
 # add examples and external at the end to allow library dependencies
 add_subdirectory(examples)
