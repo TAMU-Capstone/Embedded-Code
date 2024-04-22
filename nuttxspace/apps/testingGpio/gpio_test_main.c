@@ -1,5 +1,5 @@
 /****************************************************************************
- * apps/testingButtons/testingButtons_main.c
+ * apps/examples/hello/hello_main.c
  *
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -23,17 +23,25 @@
  ****************************************************************************/
 #include <nuttx/config.h>
 #include <stdio.h>
-#include <stddef.h>
-#include <stdbool.h>
-#include <errno.h>
-
+static int gpin_read(struct gpio_dev_s *dev, bool *value);
+static int gpout_read(struct gpio_dev_s *dev, bool *value);
+static int gpout_write(struct gpio_dev_s *dev, bool value);
+static int gpint_read(struct gpio_dev_s *dev, bool *value);
+static int gpint_attach(struct gpio_dev_s *dev,
+                        pin_interrupt_t callback);
+static int gpint_enable(struct gpio_dev_s *dev, bool enable);
+struct stm32gpio_dev_s;
+struct stm32gpint_dev_s;
 /****************************************************************************
- * Function Definitions
+ * Public Functions
  ****************************************************************************/
 
+/****************************************************************************
+ * stub_main
+ ****************************************************************************/
 
 int main(int argc, FAR char *argv[])
 {
-
-    return 0;
+  printf("Hello, I'm a Stub\n");
+  return 0;
 }

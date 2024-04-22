@@ -1,5 +1,5 @@
 # ##############################################################################
-# apps/testingApp/CMakeLists.txt
+# apps/GPIO_TEST/CMakeLists.txt
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more contributor
 # license agreements.  See the NOTICE file distributed with this work for
@@ -18,14 +18,14 @@
 #
 # ##############################################################################
 
-if(CONFIG_USER_TEST_GPIO_1)
-    nuttx_add_application(
-      NAME
-      ${CONFIG_USER_TEST_GPIO_1_PROGNAME}
-      SRCS
-      testingGPIO_main.c
-      STACKSIZE
-      ${CONFIG_USER_TEST_GPIO_1_STACKSIZE}
-      PRIORITY
-      ${CONFIG_USER_TEST_GPIO_1_PRIORITY})
+if(CONFIG_GPIO_TEST)
+  nuttx_add_application(
+    NAME
+    ${CONFIG_GPIO_TEST_PROGNAME}
+    SRCS
+    gpio_test_main.c
+    STACKSIZE
+    ${CONFIG_GPIO_TEST_STACKSIZE}
+    PRIORITY
+    ${CONFIG_GPIO_TEST_PRIORITY})
 endif()
