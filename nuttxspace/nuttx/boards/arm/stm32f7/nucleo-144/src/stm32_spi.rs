@@ -384,8 +384,9 @@ macro_rules! spi_setfrequency {
 fn stm32_spidev_bus_test() -> i32 {
 
     /* Configure and test SPI- */
-    let tx: *mut u8 = unsafe{
-        CONFIG_NUCLEO_SPI_TEST_MESSAGE.as_mut_ptr()
+
+    let tx: *const cty::c_void = unsafe {
+        CONFIG_NUCLEO_SPI_TEST_MESSAGE.as_ptr() as *const cty::c_void
     };
 
     #[cfg(CONFIG_NUCLEO_SPI1_TEST)]
