@@ -38,8 +38,7 @@
 #include "stm32_gpio.h"
 #include "nucleo-144.h"
 
-#if defined(CONFIG_DEV_GPIO) && !defined(CONFIG_GPIO_LOWER_HALF)
-
+/* CONFIG_DEV_GPIO && !CONFIG_GPIO_LOWER_HALF */
 /****************************************************************************
  * Private Types
  ****************************************************************************/
@@ -334,4 +333,4 @@ int stm32_gpio_initialize(void)
 
   return 0;
 }
-#endif /* CONFIG_DEV_GPIO && !CONFIG_GPIO_LOWER_HALF */
+

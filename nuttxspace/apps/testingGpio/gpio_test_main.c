@@ -23,13 +23,15 @@
  ****************************************************************************/
 #include <nuttx/config.h>
 #include <stdio.h>
+#include <arch/board/board.h>
 
+// To run make menuconfig -> drivers -> gpio support -> gpio drivers
 #if defined(CONFIG_DEV_GPIO) && !defined(CONFIG_GPIO_LOWER_HALF)
 
 /****************************************************************************
  * Private Types
  ****************************************************************************/
-
+struct gpio_dev_s gpio;
 struct stm32gpio_dev_s
 {
   struct gpio_dev_s gpio;
@@ -138,9 +140,54 @@ static struct stm32gpint_dev_s g_gpint[BOARD_NGPIOINT];
  * stub_main
  ****************************************************************************/
 #endif
+/* ADC1 */
+
+#define GPIO_ADC1_IN0   GPIO_ADC1_IN0_0   /* PA0 */
+#define GPIO_ADC1_IN1   GPIO_ADC1_IN1_0   /* PA1 */
+#define GPIO_ADC1_IN2   GPIO_ADC1_IN2_0   /* PA2 */
+#define GPIO_ADC1_IN3   GPIO_ADC1_IN3_0   /* PA3 */
+#define GPIO_ADC1_IN4   GPIO_ADC1_IN4_0   /* PA4 */
+#define GPIO_ADC1_IN5   GPIO_ADC1_IN5_0   /* PA5 */
+#define GPIO_ADC1_IN6   GPIO_ADC1_IN6_0   /* PA6 */
+#define GPIO_ADC1_IN7   GPIO_ADC1_IN7_0   /* PA7 */
+#define GPIO_ADC1_IN8   GPIO_ADC1_IN8_0   /* PB0 */
+#define GPIO_ADC1_IN9   GPIO_ADC1_IN9_0   /* PB1 */
+#define GPIO_ADC1_IN10  GPIO_ADC1_IN10_0  /* PC0 */
+#define GPIO_ADC1_IN11  GPIO_ADC1_IN11_0  /* PC1 */
+#define GPIO_ADC1_IN12  GPIO_ADC1_IN12_0  /* PC2 */
+#define GPIO_ADC1_IN13  GPIO_ADC1_IN13_0  /* PC3 */
+#define GPIO_ADC1_IN14  GPIO_ADC1_IN14_0  /* PC4 */
+#define GPIO_ADC1_IN15  GPIO_ADC1_IN15_0  /* PC5 */
+
+void pin_read_test(struct gpio_dev_s *dev)
+{
+
+}
 
 int main(int argc, FAR char *argv[])
 {
-  printf("Hello, I'm a Stub\n");
+  //  *  PA5   SPI1_SCK  CN12-11
+  // GPIO_ADC1_IN5_0
+  // tehre are outpins and in pins, find them and define them, first
+  struct gpio_dev_s gpio;
+  gpio.gp_pintype = GPIO_ADC1_IN5_0;
+  gpio.gpout_ops = gpout_ops;
+  printf(" initializing pins \n");
+  stm32_gpio_initialize();
+  
+  printf(" writing high to pin \n");
+  gpout_write(gpio, 1);
+  printf(" sleeping for 3 \n");
+  sleep(3);
+
+
+  printf(" reading high from pin \n");
+  gpout_read(gpio, 1);
+  printf(" sleeping for 3 \n");
+  sleep(3);
+
+
+// interupt method
+
   return 0;
 }
