@@ -86,6 +86,7 @@ pub extern "C" fn board_button_irq(id: u8, irqhandler: xcpt_t, arg: *mut cty::c_
 
     if id == BUTTON_USER {
         unsafe {
+            sleep(3);
             ret = stm32_gpiosetevent(GPIO_BTN_USER as u32, true, true, true, irqhandler, arg);
         }
     }

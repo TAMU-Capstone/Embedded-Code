@@ -57,11 +57,14 @@ void testingButtons(void)
     buttonState = -1;
 #ifdef CONFIG_ARCH_IRQBUTTONS
     xcpt_t handler; /* Button interrupt handler this can be more complicated and better if needed, see github resource above */
+    // ERROR in https://github.com/TAMU-Capstone/Embedded-Code/blob/main/nuttxspace/nuttx/arch/arm/src/stm32f7/stm32_exti_gpio.c
+    // seems something is overflowing
     printf("setting interupt handling to flash led on user button (blue) press");
     printf(" if -22, invalid arguemnet = something failed");
     printf("test: %d", board_button_irq(0, handler, NULL));
     printf(" while looping to 1k you can press button ");
     for (int i = 0; i < 1000; i++){}
+    printf(" timer complete done \n");
 #endif
 #ifndef CONFIG_ARCH_IRQBUTTONS
         printf("interupt option has not been defined in menu config!");
