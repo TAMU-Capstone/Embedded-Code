@@ -22,10 +22,10 @@
  * Included Files
  ****************************************************************************/
 use crate::bindings::*; 
-use core::ptr::null_mut;
+use core::ptr;
+use core::mem::MaybeUninit;
+use crate::{info, err};
 /* Not found in this scope
-g_mschandle
-uerr
 usbmsc_classobject
 */
 
@@ -37,8 +37,8 @@ const COMPOSITE0_DEV: usize = 3;
 /****************************************************************************
  * Private Data
  ****************************************************************************/
-#[cfg(CONFIG_USBMSC_COMPOSITE)]
-static g_mschandle: *mut cty::c_void;
+// #[cfg(CONFIG_USBMSC_COMPOSITE)]
+static mut G_MSCHANDLE: MaybeUninit<cty::c_void> = MaybeUninit::uninit();
 
  /****************************************************************************
  * Private Functions
@@ -66,62 +66,47 @@ static g_mschandle: *mut cty::c_void;
  *
  ****************************************************************************/
 
- #[cfg(CONFIG_USBMSC_COMPOSITE)] 
- fn board_mscclassobject_impl(minor: i32, devinfo: &mut usbdev_devinfo_s, classdev: &mut *mut usbdevclass_driver_s) -> i32 {
+// #[cfg(CONFIG_USBMSC_COMPOSITE)]
+fn board_mscclassobject(minor: i32, devinfo: &mut usbdev_devinfo_s, classdev: &mut *mut usbdevclass_driver_s) -> i32 {
 
-    let ret: i32 = 0;
-    // g_mschandle not found in this scope 
-    debug_assert!(g_mschandle.is_null(), "g_mschandle is null");
+    unsafe {
+        debug_assert!(G_MSCHANDLE.as_ptr().is_null());
+    }
 
     /* Configure the mass storage device */
     
-    // see how josh used print outs 
-    //uinfo("Configuring with NLUNS=1\n");
-    ret = unsafe {
-        usbmsc_configure(1, &g_mschandle)
-    };
-
-    if ret < 0 {
-        /* May not really need this
-        unsafe {
-            // uerr will either be replaced by _err or _none during preprocessing.
-            uerr(b"ERROR: usbmsc_configure failed: %d\n".as_ptr(), -ret);
+    info!("Configuring with NLUNS=1\n");
+    match unsafe { usbmsc_configure(1, &mut G_MSCHANDLE.as_mut_ptr()) } {
+        OK => (),
+        err => {
+            err!("ERROR: usbmsc_configure failed: %d\n\0", -err);
+            return err;
         }
-        */
-        return ret;
     }
 
-    //uinfo("MSC handle=%p\n", g_mschandle);
+    info!("MSC handle=%p\n", G_MSCHANDLE.as_ptr());
 
     /* Bind the LUN(s) */
-    // uinfo("Bind LUN=0 to /dev/mmcsd0\n");
-    ret = unsafe {
-        usbmsc_bindlun(g_mschandle, "/dev/mmcsd0".as_ptr(), 0, 0, 0, false)
-    };
-
-    if ret < 0 {
-        unsafe{
-            //uerr("ERROR: usbmsc_bindlun failed for LUN 1 at /dev/mmcsd0: %d\n", ret);
-            usbmsc_uninitialize(g_mschandle);
-            g_mschandle = null_mut();
-            return ret; // may need to change
+    info!("Bind LUN=0 to /dev/mmcsd0\n");
+    match unsafe { usbmsc_bindlun(G_MSCHANDLE.as_mut_ptr(), "/dev/mmcsd0".as_ptr(), 0, 0, 0, false) } {
+        OK => (),
+        err => unsafe {
+            err!("ERROR: usbmsc_bindlun failed for LUN 1 at /dev/mmcsd0: %d\n", err);
+            usbmsc_uninitialize(G_MSCHANDLE.as_mut_ptr());
+            return err;
         }
     }
 
     /* Get the mass storage device's class object */
-    ret = unsafe { usbmsc_classobject(g_mschandle, devinfo, classdev) };
-
-    if ret < 0 {
-      unsafe{
-        uerr("ERROR: usbmsc_classobject failed: %d\n", -ret);
-        usbmsc_uninitialize(g_mschandle);
-        g_mschandle = null_mut();
-      }
+    return match unsafe { usbmsc_classobject(G_MSCHANDLE.as_mut_ptr(), devinfo, classdev) } {
+        OK => OK,
+        err => {
+            err!("ERROR: usbmsc_classobject failed: %d\n", -ret);
+            unsafe { usbmsc_uninitialize(G_MSCHANDLE.as_mut_ptr()) };
+            err
+        }
     }
-    return ret;
- }
- // end CONFIG_USBMSC_COMPOSITE
-
+}
 
  /****************************************************************************
  * Name: board_mscuninitialize
@@ -139,12 +124,13 @@ static g_mschandle: *mut cty::c_void;
  *   None
  *
  *******************************************************/
-#[cfg(CONFIG_USBMSC_COMPOSITE)]
-unsafe fn board_mscuninitialize(classdev: *mut usbdevclass_driver_s) {
-    if !g_mschandle.is_null() {
-        unsafe{ usbmsc_uninitialize(g_mschandle) };
+// #[cfg(CONFIG_USBMSC_COMPOSITE)]
+fn board_mscuninitialize(classdev: *mut usbdevclass_driver_s) {
+    unsafe {
+        if !G_MSCHANDLE.as_ptr().is_null() {
+            usbmsc_uninitialize(G_MSCHANDLE.as_mut_ptr());
+        }
     }
-    g_mschandle = null_mut();
 }
 
 /****************************************************************************
@@ -162,48 +148,22 @@ unsafe fn board_mscuninitialize(classdev: *mut usbdevclass_driver_s) {
  *   any failure.
  *
  ****************************************************************************/
-fn board_composite0_connect(port: i32) -> *mut() {
+fn board_composite0_connect(port: i32) -> *mut cty::c_void {
     
     //  struct composite_devdesc_s dev[COMPOSITE0_DEV];
-    let mut dev: [composite_devdesc_s; COMPOSITE0_DEV] = [composite_devdesc_s {
-        mkconfdesc: None,
-        mkstrdesc: None,
-        classobject: None,
-        uninitialize: None,
-        nconfigs: 0,
-        configid: 0,
-        cfgdescsize: 0,
-        minor: 0,
-        #[cfg(CONFIG_COMPOSITE_MSFT_OS_DESCRIPTORS)]
-        msft_compatible_id: [0; 8],
-        #[cfg(CONFIG_COMPOSITE_MSFT_OS_DESCRIPTORS)]
-        msft_sub_id: [0; 8],
-        // initialize usbdev_devinfo_s
-        devinfo: usbdev_devinfo_s {
-            name: null_mut(),
-            ninterfaces: 0,
-            ifnobase: 0,
-            nstrings: 0,
-            strbase: 0,
-            nendpoints: 0,
-            epno: [0; 5],
-            epinfos: null_mut(),
-        },
-    }; COMPOSITE0_DEV];
-
+    let dev: [composite_devdesc_s; COMPOSITE0_DEV];
     let ifnobase: i32 = 0;
-    let strbase: u8 = COMPOSITE_NSTRIDS;
-    let dev_idx: i32 = 0;
+    let strbase: i32 = COMPOSITE_NSTRIDS.into();
+    let dev_idx: u8 = 0;
     let epin: i32 = 1;
     let epout: i32 = 1;
 
-    // not finished rEview this part 
-    #[cfg(CONFIG_RNDIS_COMPOSITE)] {
+    #[cfg(CONFIG_RNDIS_COMPOSITE)] 
+    {
         // Configure the RNDIS USB device
 
         // Ask the rndis driver to fill in the constants we didn't know here.
         unsafe {
-            //   usbdev_rndis_get_composite_devdesc(&dev[dev_idx]);
             usbdev_rndis_get_composite_devdesc(&mut dev[dev_idx as usize]);
         }
 
@@ -230,10 +190,10 @@ fn board_composite0_connect(port: i32) -> *mut() {
     } // end if CONFIG_RNDIS_COMPOSITE
 
     /* Configure the CDC/ACM device */
-    #[cfg(CONFIG_CDCACM_COMPOSITE)] {
+    #[cfg(CONFIG_CDCACM_COMPOSITE)]
+    {
         /* Ask the cdcacm driver to fill in the constants we didn't know here*/
         unsafe {
-            //cdcacm_get_composite_devdesc(&dev[dev_idx]);
             cdcacm_get_composite_devdesc(&mut dev[dev_idx as usize]);
         }
 
@@ -262,12 +222,11 @@ fn board_composite0_connect(port: i32) -> *mut() {
         ifnobase += dev[dev_idx as usize].devinfo.ninterfaces;
         strbase  += dev[dev_idx as usize].devinfo.nstrings;
         dev_idx += 1;
-
     } // end CONFIG_CDCACM_COMPOSITE
 
     /* Configure the mass storage device device */
-    #[cfg(CONFIG_USBMSC_COMPOSITE)] {
-
+    #[cfg(CONFIG_USBMSC_COMPOSITE)] 
+    {
         /* Ask the usbmsc driver to fill in the constants we didn't know here */
         unsafe{
             usbmsc_get_composite_devdesc(&mut[dev_idx as usize]);
@@ -295,25 +254,13 @@ fn board_composite0_connect(port: i32) -> *mut() {
         ifnobase += dev[dev_idx as usize].devinfo.ninterfaces;
         strbase  += dev[dev_idx as usize].devinfo.nstrings;
         dev_idx += 1;
-
     } // end if CONFIG_USBMSC_COMPOSITE
 
     /* Sanity checks */
-    //debug_assert!(epin < STM32_NENDPOINTS);
-    //debug_assert!(epout < STM32_NENDPOINTS);    
+    debug_assert!(epin < STM32_NENDPOINTS);
+    debug_assert!(epout < STM32_NENDPOINTS);    
     
-    // Original
-    //return composite_initialize(composite_getdevdescs(), dev, dev_idx);
-
-    /*
-    return unsafe {
-        composite_initialize(composite_getdevdescs(), dev.as_mut_ptr(), dev_idx as u8) as *mut ()
-    };
-    */
-
-    let devdescs = unsafe { composite_getdevdescs() };
-    let ret = unsafe { composite_initialize(devdescs, dev.as_mut_ptr(), dev_idx as u8) };
-    ret as *mut ()
+    return unsafe { composite_initialize(composite_getdevdescs(), dev.as_mut_ptr(), dev_idx) };
 } // end board_composite0_connect
 
 
@@ -329,8 +276,8 @@ fn board_composite0_connect(port: i32) -> *mut() {
  *
  ****************************************************************************/
 
-pub fn board_composite_initialize(port: i32) -> Result<(), ()> {
-    return Ok(());
+pub fn board_composite_initialize(port: i32) -> i32 {
+    OK
 }
 
 /****************************************************************************
@@ -350,28 +297,13 @@ pub fn board_composite_initialize(port: i32) -> Result<(), ()> {
  *   any failure.
  *
  ****************************************************************************/
- /*
- void *board_composite_connect(int port, int configid) {
-  if (configid == 0) {
-      return board_composite0_connect(port);
-  }
-  else {
-    return NULL;
-  }
-}
-*/
 
-
-pub fn board_composite_connect(port: i32, configid: i32) -> *mut() {
-    
-    let temp: bool = configid == 0;
-    if temp {
-        return unsafe{
-            board_composite0_connect(port)
-        }
+pub fn board_composite_connect(port: i32, configid: i32) -> *mut cty::c_void {
+    if configid == 0 {
+        unsafe { board_composite0_connect(port) }
     }
     else {
-        null_mut()
+        ptr::null_mut()
     }
 }
 
