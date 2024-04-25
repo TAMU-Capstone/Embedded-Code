@@ -18,14 +18,14 @@
 #
 # ##############################################################################
 
-if(CONFIG_LEDS)
+if(CONFIG_USERLEDS)
   nuttx_add_application(
     NAME
-    ${CONFIG_LEDS_PROGNAME}
+    ${CONFIG_USERLEDS_PROGNAME}
     SRCS
-    testingLed_main.c
+    testingUserleds_main.c
     STACKSIZE
-    ${CONFIG_LEDS_STACKSIZE}
+    ${CONFIG_USERLEDS_STACKSIZE}
     PRIORITY
-    ${CONFIG_LEDS_PRIORITY})
+    ${CONFIG_USERLEDS_PRIORITY})
 endif()

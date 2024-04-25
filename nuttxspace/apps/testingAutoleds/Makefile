@@ -1,5 +1,5 @@
 ############################################################################
-# apps/testingApp/Make.defs
+# apps/testingApp/Makefile
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -18,6 +18,17 @@
 #
 ############################################################################
 
-ifneq ($(CONFIG_LEDS),)
-CONFIGURED_APPS += $(APPDIR)/testingLeds
-endif
+include $(APPDIR)/Make.defs
+
+# testingApp built-in application info
+
+PROGNAME  = $(CONFIG_AUTOLEDS_PROGNAME)
+PRIORITY  = $(CONFIG_AUTOLEDS_PRIORITY)
+STACKSIZE = $(CONFIG_AUTOLEDS_STACKSIZE)
+MODULE    = $(CONFIG_AUTOLEDS)
+
+# Testing Application
+
+MAINSRC = testingAutoleds_main.c
+
+include $(APPDIR)/Application.mk

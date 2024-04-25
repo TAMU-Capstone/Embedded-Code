@@ -45,35 +45,12 @@
 /****************************************************************************
  * Function Definitions
  ****************************************************************************/
-uint32_t board_userled_initialize(void);
-void board_userled(int led, bool ledon);
 void board_autoled_on(int led);
 void board_autoled_off(int led);
 void board_autoled_initialize(void);
 /****************************************************************************
  * Test Function
  ****************************************************************************/
-
-void userleds_test(void) {
-  // configure leds
-  uint32_t NUM_LEDS = board_userled_initialize();
-
-  printf("Test 1 Userleds:\n");
-  printf("All three Userleds should be on for 5 seconds. (Blue turns on only momentarily)\n");
-
-  // Turn on all three leds
-  for (int i = 0; i < NUM_LEDS; i++) {
-    board_userled(i, true);
-  }
-
-  sleep(10);
-
-  for (int i = 0; i < NUM_LEDS; i++) {
-    board_userled(i, false);
-  }
-
-
-}
 
 void autoleds_test(void) {
   board_autoled_initialize();
@@ -92,7 +69,8 @@ void autoleds_test(void) {
 
   //int OffParams[5] = [LED_SIGNAL, LED_INIRQ, LED_ASSERTION, LED_PANIC, LED_IDLE];
 
-  printf("Test 2 Autoleds:\n");
+  printf("Testing Autoleds:\n");
+  pritnf("The blue LED will only turn on momentarily\n")
 
   for (int i = 0; i < 8; i++) {
     printf("%s\n", OnMessages[i]);
@@ -110,7 +88,6 @@ void autoleds_test(void) {
  * testingApp_main
  ****************************************************************************/
 int main(int argc, FAR char *argv[]) {
-  userleds_test();
   autoleds_test();
 
   return 0;

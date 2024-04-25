@@ -62,7 +62,8 @@ add_subdirectory(testing)
 add_subdirectory(wireless)
 
 # Add any new application directories here
-add_subdirectory(testingLeds)
+add_subdirectory(testingAutoleds)
+add_subdirectory(testingUserleds)
 add_subdirectory(testingButtons)
 add_subdirectory(testingSpi)
 
