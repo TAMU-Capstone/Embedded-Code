@@ -49,26 +49,36 @@ pub struct stm32gpint_dev_s {
  * Private Data
  ****************************************************************************/
 // check if should add const in rust
-const GPIN_OPS: gpio_operations_s  = gpio_operations_s {
+const GPIN_OPS: gpin_ops  = gpio_operations_s {
+
     go_read: Some(gpin_read),
     go_write: None,
     go_attach: None,
     go_enable: None,
-};
-
-const GPOUT_OPS: gpio_operations_s = gpio_operations_s {
+    impl Default for GPIN_OPS {
+        fn default() -> Self { GPIN_OPS::go_read, GPIN_OPS::go_write, GPIN_OPS::go_attach, GPIN_OPS::go_enable }
+        }
+    };
+    
+const GPOUT_OPS: gpout_ops = gpio_operations_s {
     go_read: Some(gpout_read),
     go_write: Some(gpout_write),
     go_attach: None,
     go_enable: None,
+    // impl Default for Kind {
+    // fn default() -> Self { Kind::A }
+    // }
 };
 
-const GPINT_OPS: gpio_operations_s = gpio_operations_s {
+const GPINT_OPS: gpint_ops = gpio_operations_s {
     go_read: Some(gpint_read),
     go_write: None,
     go_attach: Some(gpint_attach),
     go_enable: Some(gpint_enable),
-    
+    // impl Default for Kind {
+    // fn default() -> Self { Kind::A }
+    // }
+
 };
 
 /* This array maps the GPIO pins used as INPUT */
@@ -81,7 +91,7 @@ const G_GPIOINPUTS: [u8; BOARD_NGPIOIN as usize] = [
     GPIO_IN4,
 ];
 #[cfg(BOARD_NGPIOIN)]
-static mut g_gpin: [stm32gpio_dev_s; BOARD_NGPIOIN as usize] = [stm32gpio_dev_s::default(); BOARD_NGPIOIN as usize];
+static mut g_gpin: [stm32gpio_dev_s; BOARD_NGPIOIN as usize] = [gpin_ops::default(); BOARD_NGPIOIN as usize];
 
 /* This array maps the GPIO pins used as OUTPUT */
 #[cfg(BOARD_NGPIOOUT)]
@@ -100,7 +110,7 @@ const g_gpiooutputs: &[u32] = &[
     GPIO_OUT7,
 ];
 #[cfg(BOARD_NGPIOOUT)]
-static mut g_gpout: [stm32gpio_dev_s; BOARD_NGPIOIN as usize] = [stm32gpio_dev_s::Copy(); BOARD_NGPIOIN as usize];
+static mut g_gpout: [stm32gpio_dev_s; BOARD_NGPIOIN as usize] = [gpout_ops::default(); BOARD_NGPIOIN as usize];
 
 /* This array maps the GPIO pins used as INTERRUPT INPUTS */
 const BOARD_NGPIOINT_G0: bool = BOARD_NGPIOINT > 0;
@@ -108,7 +118,7 @@ const BOARD_NGPIOINT_G0: bool = BOARD_NGPIOINT > 0;
 const g_gpiointinputs: [u32; BOARD_NGPIOINT.into()] = [GPIO_INT1];
 
 #[cfg(BOARD_NGPIOINT)]
-static mut g_gpint: [stm32gpint_dev_s; BOARD_NGPIOINT as usize] = [stm32gpint_dev_s::Copy(); BOARD_NGPIOINT as usize];
+static mut g_gpint: [stm32gpint_dev_s; BOARD_NGPIOINT as usize] = [gpint_ops::default(); BOARD_NGPIOINT as usize];
 
 /****************************************************************************
  * Private Functions
