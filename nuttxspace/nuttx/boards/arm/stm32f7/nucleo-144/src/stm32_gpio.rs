@@ -67,6 +67,7 @@ const GPINT_OPS: gpio_operations_s = gpio_operations_s {
     go_write: None,
     go_attach: Some(gpint_attach),
     go_enable: Some(gpint_enable),
+    
 };
 
 /* This array maps the GPIO pins used as INPUT */
@@ -102,17 +103,17 @@ static mut g_gpout: [stm32gpio_dev_s; BOARD_NGPIOIN as usize] = [stm32gpio_dev_s
 
 /* This array maps the GPIO pins used as INTERRUPT INPUTS */
 const BOARD_NGPIOINT_G0: bool = BOARD_NGPIOINT > 0;
-#[cfg(BOARD_NGPIOINT_G0)]
-const g_gpiointinputs: [u32; BOARD_NGPIOINT] = [GPIO_INT1];
+#[cfg(BOARD_NGPIOINT)]
+const g_gpiointinputs: [u32; BOARD_NGPIOINT.into()] = [GPIO_INT1];
 
-#[cfg(BOARD_NGPIOINT_G0)]
+#[cfg(BOARD_NGPIOINT)]
 static mut g_gpint: [stm32gpint_dev_s; BOARD_NGPIOINT as usize] = [stm32gpint_dev_s::default(); BOARD_NGPIOINT as usize];
 
 /****************************************************************************
  * Private Functions
  ****************************************************************************/
  #[no_mangle]
- fn stm32gpio_interrupt(irq: i32, context: *mut (), arg: *mut ()) -> Result<(), i32> {
+ pub extern "C" fn stm32gpio_interrupt(irq: i32, context: *mut (), arg: *mut ()) -> Result<(), i32> {
      #[allow(non_snake_case)]
      let stm32gpint = unsafe { &mut *(arg as *mut stm32gpint_dev_s) };
  
@@ -132,12 +133,12 @@ static mut g_gpint: [stm32gpint_dev_s; BOARD_NGPIOINT as usize] = [stm32gpint_de
  }
 
  #[no_mangle]
- fn gpin_read(dev: *mut gpio_dev_s, value: *mut bool) -> Result<(), i32> {
+ pub extern "C" fn gpin_read(dev: *mut gpio_dev_s, value: *mut bool) -> Result<(), i32> {
      #[allow(non_snake_case)]
      let stm32gpio = unsafe { &mut *(dev as *mut stm32gpio_dev_s) };
  
      debug_assert!(stm32gpio as *const _ as usize != 0 && value as *const _ as usize != 0, "Null pointer");
-     debug_assert!((stm32gpio.id as usize) < BOARD_NGPIOIN, "Invalid GPIO ID");
+     debug_assert!((stm32gpio.id as usize) < BOARD_NGPIOIN.into(), "Invalid GPIO ID");
  
      unsafe {
         gpioinfo(b"Reading...\n\0".as_ptr() as *const _);
@@ -150,12 +151,12 @@ static mut g_gpint: [stm32gpint_dev_s; BOARD_NGPIOINT as usize] = [stm32gpint_de
  }
 
  #[no_mangle]
-fn gpout_read(dev: *mut gpio_dev_s, value: *mut bool) -> Result<(), i32> {
+pub extern "C" fn gpout_read(dev: *mut gpio_dev_s, value: *mut bool) -> Result<(), i32> {
     #[allow(non_snake_case)]
     let stm32gpio = unsafe { &mut *(dev as *mut stm32gpio_dev_s) };
 
     debug_assert!(stm32gpio as *const _ as usize != 0 && value as *const _ as usize != 0, "Null pointer");
-    debug_assert!((stm32gpio.id as usize) < BOARD_NGPIOOUT, "Invalid GPIO ID");
+    debug_assert!((stm32gpio.id as usize) < BOARD_NGPIOOUT.into(), "Invalid GPIO ID");
 
     unsafe {
         gpioinfo(b"Reading\n\0".as_ptr() as *const _);
@@ -168,12 +169,12 @@ fn gpout_read(dev: *mut gpio_dev_s, value: *mut bool) -> Result<(), i32> {
 }
 
 #[no_mangle]
-fn gpout_write(dev: *mut gpio_dev_s, value: bool) -> Result<(), i32> {
+pub extern "C" fn gpout_write(dev: *mut gpio_dev_s, value: bool) -> Result<(), i32> {
     #[allow(non_snake_case)]
     let stm32gpio = unsafe { &mut *(dev as *mut stm32gpio_dev_s) };
 
     debug_assert!(stm32gpio as *const _ as usize != 0, "Null pointer");
-    debug_assert!((stm32gpio.id as usize) < BOARD_NGPIOOUT, "Invalid GPIO ID");
+    debug_assert!((stm32gpio.id as usize) < BOARD_NGPIOOUT.into(), "Invalid GPIO ID");
 
     unsafe {
         gpioinfo(b"Writing {}\n\0".as_ptr() as *const _);
@@ -186,7 +187,7 @@ fn gpout_write(dev: *mut gpio_dev_s, value: bool) -> Result<(), i32> {
 }
 
 #[no_mangle]
-fn gpint_read(dev: *mut gpio_dev_s, value: *mut bool) -> Result<(), i32> {
+pub extern "C" fn gpint_read(dev: *mut gpio_dev_s, value: *mut bool) -> Result<(), i32> {
     #[allow(non_snake_case)]
     let stm32gpint = unsafe { &mut *(dev as *mut stm32gpint_dev_s) };
 
@@ -202,7 +203,75 @@ fn gpint_read(dev: *mut gpio_dev_s, value: *mut bool) -> Result<(), i32> {
     }
     Ok(())
 }
+#[no_mangle]
+pub extern "C" fn gpint_enable(dev: *mut gpio_dev_s, enable: bool) -> Result<(), i32> {
+    // for enable
+    let stm32gpint = unsafe { &mut *(dev as *mut stm32gpint_dev_s) };
+    if enable {
+        if let Some(callback) = stm32gpint.callback {
+            unsafe {
+                gpioinfo(b"Enabling the interrupt\n\0".as_ptr() as *const _);
+                /* Configure the interrupt for rising edge */
+                unsafe {
+                    stm32_gpiosetevent(
+                        g_gpiointinputs[stm32gpint.stm32gpio.id as usize],
+                        true,
+                        false,
+                        false,
+                        None, //THIS IS WRONG USING TEMPORARILY 
+                        null_mut(),  //THIS IS WRONG USING TEMPORARILY 
+                    );
+                }
+            }
+        }
+    } 
+    else {
+        unsafe {
+        gpioinfo(b"Disable the interrupt\n\0".as_ptr() as *const _);
+        stm32_gpiosetevent(
+            g_gpiointinputs[stm32gpint.stm32gpio.id as usize],
+            true,
+            false,
+            false,
+            None,
+            null_mut(),  
+        );
+    }
+}
+Ok(())
+}   
+// this has problems since  pin_interrupt_t is not in scope 
+#[no_mangle]
+pub extern "C" fn gpint_attach(dev: *mut gpio_dev_s, callback: pin_interrupt_t) -> Result<(), i32> {       
+    // dev is a pointer to a struct of type gpio_dev_s 
+    // we need to cast dev to a pointer of type stm32gpint_dev_s
+    // C code: struct stm32gpint_dev_s *stm32gpint = (struct stm32gpint_dev_s *)dev;
+    //let stm32gpint = dev as *mut stm32gpint_dev_s;
+    let stm32gpint = unsafe { &mut *(dev as *mut stm32gpint_dev_s) };
 
+
+    unsafe {
+        gpioinfo(b"Attaching the callback\n\0".as_ptr() as *const _);
+    }
+    /* Make sure the interrupt is disabled */
+    unsafe {
+        stm32_gpiosetevent(
+            g_gpiointinputs[(*stm32gpint).stm32gpio.id as usize],
+            false,
+            false,
+            false,
+            None,
+            null_mut(),
+        );
+    }
+
+    unsafe {
+        gpioinfo(b"Attach %p\n\0".as_ptr() as *const _, callback); // most likely need to cast callback as something else 
+    }
+    //stm32gpint.callback = callback;
+    stm32gpint.callback = NonNull::new(callback as *mut _);
+    Ok(()) // return for gpint_attatch
+}
 
 /****************************************************************************
  * Public Functions
@@ -268,75 +337,8 @@ pub fn stm32_gpio_initialize() -> Result<(), i32> {
         }
     }
 
-    // this has problems since  pin_interrupt_t is not in scope 
-    fn gpint_attach(dev: *mut gpio_dev_s, callback: pin_interrupt_t) -> Result<(), i32> {       
-        // dev is a pointer to a struct of type gpio_dev_s 
-        // we need to cast dev to a pointer of type stm32gpint_dev_s
-        // C code: struct stm32gpint_dev_s *stm32gpint = (struct stm32gpint_dev_s *)dev;
-        //let stm32gpint = dev as *mut stm32gpint_dev_s;
-        let stm32gpint = unsafe { &mut *(dev as *mut stm32gpint_dev_s) };
-
-
-        unsafe {
-            gpioinfo(b"Attaching the callback\n\0".as_ptr() as *const _);
-        }
-        /* Make sure the interrupt is disabled */
-        unsafe {
-            stm32_gpiosetevent(
-                g_gpiointinputs[(*stm32gpint).stm32gpio.id as usize],
-                false,
-                false,
-                false,
-                None,
-                null_mut(),
-            );
-        }
-
-        unsafe {
-            gpioinfo(b"Attach %p\n\0".as_ptr() as *const _, callback); // most likely need to cast callback as something else 
-        }
-        //stm32gpint.callback = callback;
-        stm32gpint.callback = NonNull::new(callback as *mut _);
-        Ok(()) // return for gpint_attatch
-    }
 
 
 
-    fn gpint_enable(dev: *mut gpio_dev_s, enable: bool) -> Result<(), i32> {
-        // for enable
-        let stm32gpint = unsafe { &mut *(dev as *mut stm32gpint_dev_s) };
-        if enable {
-            if let Some(callback) = stm32gpint.callback {
-                unsafe {
-                    gpioinfo(b"Enabling the interrupt\n\0".as_ptr() as *const _);
-                    /* Configure the interrupt for rising edge */
-                    unsafe {
-                        stm32_gpiosetevent(
-                            g_gpiointinputs[stm32gpint.stm32gpio.id as usize],
-                            true,
-                            false,
-                            false,
-                            None, //THIS IS WRONG USING TEMPORARILY 
-                            null_mut(),  //THIS IS WRONG USING TEMPORARILY 
-                        );
-                    }
-                }
-            }
-        } 
-        else {
-            unsafe {
-            gpioinfo(b"Disable the interrupt\n\0".as_ptr() as *const _);
-            stm32_gpiosetevent(
-                g_gpiointinputs[stm32gpint.stm32gpio.id as usize],
-                true,
-                false,
-                false,
-                None,
-                null_mut(),  
-            );
-            }
-        }
-        Ok(())
-    }
     Ok(())// final return for stm32_gpio_initialize() function
 }
