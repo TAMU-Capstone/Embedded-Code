@@ -55,6 +55,7 @@ const GPIN_OPS: gpin_ops  = gpio_operations_s {
     go_write: None,
     go_attach: None,
     go_enable: None,
+    // implementing the default constructor
     impl Default for GPIN_OPS {
         fn default() -> Self { GPIN_OPS::go_read, GPIN_OPS::go_write, GPIN_OPS::go_attach, GPIN_OPS::go_enable }
         }
