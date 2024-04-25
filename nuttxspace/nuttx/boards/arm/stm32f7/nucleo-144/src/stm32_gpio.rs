@@ -31,6 +31,7 @@ use core::ptr::{NonNull, null_mut};
 ****************************************************************************/
 
 #[allow(non_camel_case_types)]
+#[derive(Copy)]
 pub struct stm32gpio_dev_s {
     pub gpio: gpio_dev_s,
     pub id: u8,
@@ -73,7 +74,7 @@ const GPINT_OPS: gpio_operations_s = gpio_operations_s {
 /* This array maps the GPIO pins used as INPUT */
 const BOARD_NGPIOIN_G0: bool = BOARD_NGPIOIN > 0;
 #[cfg(BOARD_NGPIOIN_G0)]
-const G_GPIOINPUTS: [u32; BOARD_NGPIOIN as usize] = [
+const G_GPIOINPUTS: [u8; BOARD_NGPIOIN as usize] = [
     GPIO_IN1,
     GPIO_IN2,
     GPIO_IN3,
@@ -99,7 +100,7 @@ const g_gpiooutputs: &[u32] = &[
     GPIO_OUT7,
 ];
 #[cfg(BOARD_NGPIOOUT)]
-static mut g_gpout: [stm32gpio_dev_s; BOARD_NGPIOIN as usize] = [stm32gpio_dev_s::default(); BOARD_NGPIOIN as usize];
+static mut g_gpout: [stm32gpio_dev_s; BOARD_NGPIOIN as usize] = [stm32gpio_dev_s::Copy(); BOARD_NGPIOIN as usize];
 
 /* This array maps the GPIO pins used as INTERRUPT INPUTS */
 const BOARD_NGPIOINT_G0: bool = BOARD_NGPIOINT > 0;
@@ -107,7 +108,7 @@ const BOARD_NGPIOINT_G0: bool = BOARD_NGPIOINT > 0;
 const g_gpiointinputs: [u32; BOARD_NGPIOINT.into()] = [GPIO_INT1];
 
 #[cfg(BOARD_NGPIOINT)]
-static mut g_gpint: [stm32gpint_dev_s; BOARD_NGPIOINT as usize] = [stm32gpint_dev_s::default(); BOARD_NGPIOINT as usize];
+static mut g_gpint: [stm32gpint_dev_s; BOARD_NGPIOINT as usize] = [stm32gpint_dev_s::Copy(); BOARD_NGPIOINT as usize];
 
 /****************************************************************************
  * Private Functions
