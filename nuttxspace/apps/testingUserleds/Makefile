@@ -22,13 +22,13 @@ include $(APPDIR)/Make.defs
 
 # testingApp built-in application info
 
-PROGNAME  = $(CONFIG_LEDS_PROGNAME)
-PRIORITY  = $(CONFIG_LEDS_PRIORITY)
-STACKSIZE = $(CONFIG_LEDS_STACKSIZE)
-MODULE    = $(CONFIG_LEDS)
+PROGNAME  = $(CONFIG_USERLEDS_PROGNAME)
+PRIORITY  = $(CONFIG_USERLEDS_PRIORITY)
+STACKSIZE = $(CONFIG_USERLEDS_STACKSIZE)
+MODULE    = $(CONFIG_USERLEDS)
 
 # Testing Application
 
-MAINSRC = testingLed_main.c
+MAINSRC = testingUserleds_main.c
 
 include $(APPDIR)/Application.mk
