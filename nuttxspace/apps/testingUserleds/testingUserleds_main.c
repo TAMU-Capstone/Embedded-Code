@@ -21,7 +21,6 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
-
 //#include <../../nuttx/include/nuttx/config.h>
 #include <nuttx/config.h>
 #include <stdbool.h>
@@ -30,8 +29,7 @@
 #include <stddef.h>
 #include <sys/param.h>
 
-
-
+#ifndef CONFIG_ARCH_LEDS
 /****************************************************************************
  * Function Definitions
  ****************************************************************************/
@@ -70,3 +68,10 @@ int main(int argc, FAR char *argv[]) {
 
   return 0;
 }
+#endif
+#ifdef CONFIG_ARCH_LEDS
+int main(int argc, FAR char *argv[])
+{
+  printf("User leds is defined therefore autoleds cannot be\n");
+}
+#endif

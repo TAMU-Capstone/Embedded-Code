@@ -41,7 +41,7 @@
 #define LED_ASSERTION      6 /* An assertion failed      GLOW   N/C   GLOW */
 #define LED_PANIC          7 /* The system has crashed   Blink  OFF   N/C  */
 #define LED_IDLE           8 /* MCU is is sleep mode     ON     OFF   OFF  */
-
+#ifdef CONFIG_ARCH_LEDS
 /****************************************************************************
  * Function Definitions
  ****************************************************************************/
@@ -92,3 +92,11 @@ int main(int argc, FAR char *argv[]) {
 
   return 0;
 }
+#endif
+
+#ifndef CONFIG_ARCH_LEDS
+int main(int argc, FAR char *argv[])
+{
+  printf("User leds is defined therefore autoleds cannot be\n");
+}
+#endif

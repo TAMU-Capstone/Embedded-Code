@@ -35,8 +35,6 @@
 #include "stm32_gpio.h"
 #include "nucleo-144.h"
 
-#ifndef CONFIG_ARCH_LEDS
-
 /****************************************************************************
  * Private Data
  ****************************************************************************/
@@ -122,4 +120,3 @@ void board_userled_all(uint32_t ledset)
     }
 }
 
-#endif /* !CONFIG_ARCH_LEDS */
