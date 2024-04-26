@@ -26,47 +26,45 @@
 
 use crate::bindings::*;
 use core::ptr;
+use crate::{err, info};
+use crate::bindings::spi_mode_e::{
+    SPIDEV_MODE0,
+    SPIDEV_MODE1,
+    SPIDEV_MODE2,
+    SPIDEV_MODE3
+};
 /****************************************************************************
  * Pre-processor Definitions
 ****************************************************************************/
 
 #[cfg(CONFIG_NUCLEO_SPI1_TEST)]
-pub const NUCLEO_SPI1_TEST_MODE: u32 = match () {
-    #[cfg(CONFIG_NUCLEO_SPI1_TEST_MODE0)]
-    () => SPIDEV_MODE0,
-    #[cfg(CONFIG_NUCLEO_SPI1_TEST_MODE1)]
-    () => SPIDEV_MODE1,
-    #[cfg(CONFIG_NUCLEO_SPI1_TEST_MODE2)]
-    () => SPIDEV_MODE2,
-    #[cfg(CONFIG_NUCLEO_SPI1_TEST_MODE3)]
-    () => SPIDEV_MODE3,
-    _ => compile_error!("No CONFIG_NUCLEO_SPI1_TEST_MODEx defined")
+pub const CONFIG_NUCLEO_SPI1_TEST_MODE: u32 = {
+    #[cfg(CONFIG_NUCLEO_SPI1_TEST_MODE0)] { SPIDEV_MODE0 }
+    #[cfg(CONFIG_NUCLEO_SPI1_TEST_MODE1)] { SPIDEV_MODE1 }
+    #[cfg(CONFIG_NUCLEO_SPI1_TEST_MODE2)] { SPIDEV_MODE2 }
+    #[cfg(CONFIG_NUCLEO_SPI1_TEST_MODE3)] { SPIDEV_MODE3 }
+    #[cfg(not(any(CONFIG_NUCLEO_SPI1_TEST_MODE0, CONFIG_NUCLEO_SPI1_TEST_MODE1, CONFIG_NUCLEO_SPI1_TEST_MODE2, CONFIG_NUCLEO_SPI1_TEST_MODE3)))]
+    compile_error!("No CONFIG_NUCLEO_SPI1_TEST_MODEx defined")
 };
 
 #[cfg(CONFIG_NUCLEO_SPI2_TEST)]
-pub const NUCLEO_SPI2_TEST_MODE: u32 = match () {
-    #[cfg(CONFIG_NUCLEO_SPI2_TEST_MODE0)]
-    () => SPIDEV_MODE0,
-    #[cfg(CONFIG_NUCLEO_SPI2_TEST_MODE1)]
-    () => SPIDEV_MODE1,
-    #[cfg(CONFIG_NUCLEO_SPI2_TEST_MODE2)]
-    () => SPIDEV_MODE2,
-    #[cfg(CONFIG_NUCLEO_SPI2_TEST_MODE3)]
-    () => SPIDEV_MODE3,
-    _ => compile_error!("No CONFIG_NUCLEO_SPI2_TEST_MODEx defined")
+pub const CONFIG_NUCLEO_SPI2_TEST_MODE: u32 = {
+    #[cfg(CONFIG_NUCLEO_SPI2_TEST_MODE0)] { SPIDEV_MODE0 }
+    #[cfg(CONFIG_NUCLEO_SPI2_TEST_MODE1)] { SPIDEV_MODE1 }
+    #[cfg(CONFIG_NUCLEO_SPI2_TEST_MODE2)] { SPIDEV_MODE2 }
+    #[cfg(CONFIG_NUCLEO_SPI2_TEST_MODE3)] { SPIDEV_MODE3 }
+    #[cfg(not(any(CONFIG_NUCLEO_SPI2_TEST_MODE0, CONFIG_NUCLEO_SPI2_TEST_MODE1, CONFIG_NUCLEO_SPI2_TEST_MODE2, CONFIG_NUCLEO_SPI2_TEST_MODE3)))]
+    compile_error!("No CONFIG_NUCLEO_SPI2_TEST_MODEx defined")
 };
 
 #[cfg(CONFIG_NUCLEO_SPI3_TEST)]
-pub const NUCLEO_SPI3_TEST_MODE: u32 = match () {
-    #[cfg(CONFIG_NUCLEO_SPI3_TEST_MODE0)]
-    () => SPIDEV_MODE0,
-    #[cfg(CONFIG_NUCLEO_SPI3_TEST_MODE1)]
-    () => SPIDEV_MODE1,
-    #[cfg(CONFIG_NUCLEO_SPI3_TEST_MODE2)]
-    () => SPIDEV_MODE2,
-    #[cfg(CONFIG_NUCLEO_SPI3_TEST_MODE3)]
-    () => SPIDEV_MODE3,
-    _ => compile_error!("No CONFIG_NUCLEO_SPI3_TEST_MODEx defined")
+pub const CONFIG_NUCLEO_SPI3_TEST_MODE: u32 = {
+    #[cfg(CONFIG_NUCLEO_SPI3_TEST_MODE0)] { SPIDEV_MODE0 }
+    #[cfg(CONFIG_NUCLEO_SPI3_TEST_MODE1)] { SPIDEV_MODE1 }
+    #[cfg(CONFIG_NUCLEO_SPI3_TEST_MODE2)] { SPIDEV_MODE2 }
+    #[cfg(CONFIG_NUCLEO_SPI3_TEST_MODE3)] { SPIDEV_MODE3 }
+    #[cfg(not(any(CONFIG_NUCLEO_SPI3_TEST_MODE0, CONFIG_NUCLEO_SPI3_TEST_MODE1, CONFIG_NUCLEO_SPI3_TEST_MODE2, CONFIG_NUCLEO_SPI3_TEST_MODE3)))]
+    compile_error!("No CONFIG_NUCLEO_SPI3_TEST_MODEx defined")
 };
 
 /****************************************************************************
@@ -352,26 +350,64 @@ fn stm32_spi6cmddata(dev: *mut spi_dev_s, devid: u32, cmd: bool) -> i32 {
 }
 
 #[cfg(CONFIG_NUCLEO_SPI_TEST)]
+macro_rules! spi_exchange {
+    ($d:expr, $t:expr, $r:expr, $l:expr) => {
+        match (*($d.as_ref().ops)).exchange {
+            None => (),
+            Some(func) => func($d.as_ptr(), $t, $r, $l)
+        }
+    };
+}
+#[cfg(CONFIG_NUCLEO_SPI_TEST)]
+macro_rules! spi_setmode {
+    ($d:expr, $m:expr) => {
+        match (*($d.as_ref().ops)).setmode {
+            None => (),
+            Some(func) => func($d.as_ptr(), $m)
+        }
+    };
+}
+#[cfg(CONFIG_NUCLEO_SPI_TEST)]
+macro_rules! spi_setbits {
+    ($d:expr, $b:expr) => {
+        match (*($d.as_ref().ops)).setbits {
+            None => (),
+            Some(func) => func($d.as_ptr(), $b)
+        }
+    };
+}
+#[cfg(CONFIG_NUCLEO_SPI_TEST)]
+macro_rules! spi_setfrequency {
+    ($d:expr, $f:expr) => {
+        match (*($d.as_ref().ops)).setfrequency {
+            None => ENODEV as u32,
+            Some(func) => func($d.as_ptr(), $f)
+        }
+    };
+}
+
+#[cfg(CONFIG_NUCLEO_SPI_TEST)]
 fn stm32_spidev_bus_test() -> i32 {
 
     /* Configure and test SPI- */
-    unsafe{
-        let tx: *mut u8  = CONFIG_NUCLEO_SPI_TEST_MESSAGE as *mut u8;
-    }
+
+    let tx: *const cty::c_void = unsafe {
+        CONFIG_NUCLEO_SPI_TEST_MESSAGE.as_ptr() as *const cty::c_void
+    };
 
     #[cfg(CONFIG_NUCLEO_SPI1_TEST)]
     unsafe {
-        SPI1 = ptr::NonNull::new(stm32_spibus_initialize(1));
-        match SPI1 {
+        let spi1 = ptr::NonNull::new(stm32_spibus_initialize(1));
+        match spi1 {
             None => {
-                syslog(LOG_ERR, "ERROR Failed to initialize SPI port 1\n");
+                err!("ERROR Failed to initialize SPI port 1\n");
                 return -(ENODEV as i32);
             }
             Some(mut spi) => {
-                SPI_SETFREQUENCY(spi, CONFIG_NUCLEO_SPI1_TEST_FREQ);
-                SPI_SETBITS(spi, CONFIG_NUCLEO_SPI1_TEST_BITS);
-                SPI_SETMODE(spi, CONFIG_NUCLEO_SPI1_TEST_MODE);
-                SPI_EXCHANGE(spi, tx, ptr::null_mut(), nitems(CONFIG_NUCLEO_SPI_TEST_MESSAGE));
+                spi_setfrequency!(spi, CONFIG_NUCLEO_SPI1_TEST_FREQ);
+                spi_setbits!(spi, CONFIG_NUCLEO_SPI1_TEST_BITS);
+                spi_setmode!(spi, CONFIG_NUCLEO_SPI1_TEST_MODE);
+                spi_exchange!(spi, tx, ptr::null_mut(), CONFIG_NUCLEO_SPI_TEST_MESSAGE.len());
             }
         }
     }
@@ -385,10 +421,10 @@ fn stm32_spidev_bus_test() -> i32 {
                 return -(ENODEV as i32);
             }
             Some(mut spi) => {
-                SPI_SETFREQUENCY(spi, CONFIG_NUCLEO_SPI1_TEST_FREQ);
-                SPI_SETBITS(spi, CONFIG_NUCLEO_SPI1_TEST_BITS);
-                SPI_SETMODE(spi, CONFIG_NUCLEO_SPI1_TEST_MODE);
-                SPI_EXCHANGE(spi, tx, ptr::null_mut(), nitems(CONFIG_NUCLEO_SPI_TEST_MESSAGE));
+                spi_setfrequency!(spi, CONFIG_NUCLEO_SPI1_TEST_FREQ);
+                spi_setbits!(spi, CONFIG_NUCLEO_SPI1_TEST_BITS);
+                spi_setmode!(spi, CONFIG_NUCLEO_SPI1_TEST_MODE);
+                spi_exchange!(spi, tx, ptr::null_mut(), CONFIG_NUCLEO_SPI_TEST_MESSAGE.len());
             }
         }
     }
@@ -402,10 +438,10 @@ fn stm32_spidev_bus_test() -> i32 {
                 return -(ENODEV as i32);
             }
             Some(mut spi) => {
-                SPI_SETFREQUENCY(spi, CONFIG_NUCLEO_SPI1_TEST_FREQ);
-                SPI_SETBITS(spi, CONFIG_NUCLEO_SPI1_TEST_BITS);
-                SPI_SETMODE(spi, CONFIG_NUCLEO_SPI1_TEST_MODE);
-                SPI_EXCHANGE(spi, tx, ptr::null_mut(), nitems(CONFIG_NUCLEO_SPI_TEST_MESSAGE));
+                spi_setfrequency!(spi, CONFIG_NUCLEO_SPI1_TEST_FREQ);
+                spi_setbits!(spi, CONFIG_NUCLEO_SPI1_TEST_BITS);
+                spi_setmode!(spi, CONFIG_NUCLEO_SPI1_TEST_MODE);
+                spi_exchange!(spi, tx, ptr::null_mut(), CONFIG_NUCLEO_SPI_TEST_MESSAGE.len());
             }
         }
     }

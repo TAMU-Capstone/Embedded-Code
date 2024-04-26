@@ -1,5 +1,5 @@
 /****************************************************************************
- * boards/arm/stm32f7/nucleo-144/src/stm32_boot.c
+ * apps/testingLed/testingLed_main.c
  *
  * Licensed to the Apache Software Foundation (ASF) under one or more
  * contributor license agreements.  See the NOTICE file distributed with
@@ -22,51 +22,51 @@
  * Included Files
  ****************************************************************************/
 
+//#include <../../nuttx/include/nuttx/config.h>
+#include <nuttx/config.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <stddef.h>
+#include <sys/param.h>
+
+
+
 /****************************************************************************
- * Public Functions
+ * Function Definitions
  ****************************************************************************/
- 
+uint32_t board_userled_initialize(void);
+void board_userled(int led, bool ledon);
 /****************************************************************************
- * Name: stm32_boardinitialize
- *
- * Description:
- *   All STM32 architectures must provide the following entry point.
- *   This entry point is called early in the initialization -- after all
- *   memory has been configured and mapped but before any devices have been
- *   initialized.
- *
+ * Test Function
  ****************************************************************************/
 
-#[no_mangle]
-pub unsafe extern "C" fn stm32_boardinitialize()
- {
-    #[cfg(CONFIG_ARCH_LEDS)]
-    crate::stm32_autoleds::board_autoled_initialize();
+void userleds_test(void) {
+  // configure leds
+  uint32_t NUM_LEDS = board_userled_initialize();
 
-    #[cfg(any(CONFIG_STM32F7_OTGFS, CONFIG_STM32F7_HOST))]
-    crate::stm32_usb::stm32_usbinitialize();
-    
-    #[cfg(CONFIG_SPI)]
-    crate::stm32_spi::stm32_spidev_initialize();
+  printf("Testing Userleds:\n");
+  printf("All three Userleds should be on for 5 seconds. (Blue turns on only momentarily)\n");
+
+  // Turn on all three leds
+  for (int i = 0; i < NUM_LEDS; i++) {
+    board_userled(i, true);
+  }
+
+  sleep(10);
+
+  for (int i = 0; i < NUM_LEDS; i++) {
+    board_userled(i, false);
+  }
 }
 
-/****************************************************************************
-* Name: board_late_initialize
-*
-* Description:
- *   If CONFIG_BOARD_LATE_INITIALIZE is selected, then an additional
- *   initialization call will be performed in the boot-up sequence to a
- *   function called board_late_initialize().  board_late_initialize() will
- *   be called immediately after up_initialize() is called and just before
- *   the initial application is started. This additional initialization
- *   phase may be used, for example, to initialize board-specific device
- *   drivers.
- *
- ****************************************************************************/
 
-#[cfg(CONFIG_BOARD_LATE_INITIALIZE)]
-#[no_mangle]
-pub unsafe extern "C" fn board_late_initialize() {
-    /* Perform board-specific initialization */
-    crate::bindings::stm32_bringup();
+
+/****************************************************************************
+ * testingApp_main
+ ****************************************************************************/
+int main(int argc, FAR char *argv[]) {
+  userleds_test();
+
+  return 0;
 }

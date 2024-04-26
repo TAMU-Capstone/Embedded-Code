@@ -21,349 +21,235 @@
 /****************************************************************************
  * Included Files
  ****************************************************************************/
+#![cfg(CONFIG_STM32F7_OTGFS)]
+
 use crate::bindings::*;
+use core::ptr;
+use crate::{err, info};
 
 /****************************************************************************
  * Pre-processor Definitions
  ****************************************************************************/
 
-cfg_if::cfg_if! { 
-  if #[cfg(features = "CONFIG_STM32F7_OTGFS")]
-  {
-    if ( #[cfg(features = "CONFIG_USBDEV")] || #[cfg(features = "CONFIG_USBHOST")] )
-    {
-      //https://stackoverflow.com/questions/45163024/whats-the-equivalent-of-a-c-preprocessor-like-define-for-an-array-length
-      static HAVE_USB: i32 = 1;
-    }
-    else
-    {
-      warn!("CONFIG_STM32_OTGFS is enabled but neither CONFIG_USBDEV nor CONFIG_USBHOST");
-       // #  undef HAVE_USB <- this will be dropped automatically when it goes out of scope
-    }
+#[cfg(not(any(CONFIG_USBDEV, CONFIG_USBHOST)))]
+compile_error!("CONFIG_STM32_OTGFS is enabled but neither CONFIG_USBDEV nor CONFIG_USBHOST");
 
-    if( cfg!(CONFIG_NUCLEO144_USBHOST_PRIO == false )) {
-      static CONFIG_NUCLEO144_USBHOST_PRIO: i32 = 100;
-      // using static rather than const to avoid them being dropped when they leave scope
-      // this is likely unneeded
-    }
+#[cfg(not(CONFIG_NUCLEO144_USBHOST_PRIO))]
+const CONFIG_NUCLEO144_USBHOST_PRIO: i32 = 100;
 
-  if( cfg!(CONFIG_NUCLEO_USBHOST_STACKSIZE == false)) {
-    static CONFIG_NUCLEO_USBHOST_STACKSIZE: i32 = 1024;
-      // using static rather than const to avoid them being dropped when they leave scope
-      // this is likely unneeded
-  }
+#[cfg(not(CONFIG_NUCLEO_USBHOST_STACKSIZE))]
+const CONFIG_NUCLEO_USBHOST_STACKSIZE: i32 = 1024;
 
-  /****************************************************************************
-    * Private Data
-    ****************************************************************************/
+/****************************************************************************
+ * Private Data
+ ****************************************************************************/
 
-  if( cfg!(CONFIG_USBHOST) ){
-    static g_usbconn: mux* usbhost_connection_s;
-  }
+#[cfg(CONFIG_USBHOST)]
+static mut G_USBCONN: Option<ptr::NonNull<usbhost_connection_s>> = None;
 
-  /****************************************************************************
-    * Private Functions
-    ****************************************************************************/
+/****************************************************************************
+ * Private Functions
+ ****************************************************************************/
 
-  /****************************************************************************
-    * Name: usbhost_waiter
-    *
-    * Description:
-    *   Wait for USB devices to be connected.
-    *
-    ****************************************************************************/
+/****************************************************************************
+ * Name: usbhost_waiter
+ *
+ * Description:
+ *   Wait for USB devices to be connected.
+ *
+ ****************************************************************************/
 
-  if #[cfg(features = (CONFIG_USBHOST))]{
-    extern "C" fn usbhost_waiter( argc: i32, argv: &[String]) -> i32
-    {
-      // DONT TRUST THIS STRUGGLING TO FIND A SOLID LIFT AND SHIFT HERE
-      let mut hport: *mut usbhost_hubport_s;
+#[cfg(CONFIG_USBHOST)]
+#[no_mangle]
+unsafe extern "C" fn usbhost_waiter(argc: i32, argv: *mut *mut u8) -> i32 {
+    use core::mem::MaybeUninit;
+    let mut hport: MaybeUninit<*mut usbhost_hubport_s> = MaybeUninit::uninit();
 
-    println!("Running\n");
-    loop
-      {
-        /* Wait for the device to change state */
-        unsafe{
-          let hport = conn_wait(&g_usbconn).expect("Failed to wait for connection state change");
-        }
-        if(hport.connected == true)
-        {
-          println!("connected\n");
-        }
-        else
-        {
-          println!("disconnected\n");
-        }
-        /* Did we just become connected? */
+    loop {
+        if let Some(mut conn) = G_USBCONN {
+            conn.as_ref().wait.unwrap()(conn.as_ptr(), hport.assume_init_mut() as *mut _);
 
-        if (hport->connected)
-          {
-            /* Yes.. enumerate the newly connected device */
-            unsafe{
-              CONN_ENUMERATE(g_usbconn, hport);
+            if !hport.assume_init().is_null() && (*hport.assume_init()).connected {
+                conn.as_ref().enumerate.unwrap()(conn.as_ptr(), hport.assume_init());
             }
-          }
         }
-
-    /* Keep the compiler from complaining */
-
-    return 0;
-  }
+    }
+    OK
 }
 
-  /****************************************************************************
-    * Public Functions
-    ****************************************************************************/
+/****************************************************************************
+ * Public Functions
+ ****************************************************************************/
 
-  /****************************************************************************
-    * Name: stm32_usbinitialize
-    *
-    * Description:
-    *   Called from stm32_usbinitialize very early in inialization to setup
-    *   USB-related GPIO pins for the nucleo-144 board.
-    *
-    ****************************************************************************/
+/****************************************************************************
+ * Name: stm32_usbinitialize
+ *
+ * Description:
+ *   Called from stm32_usbinitialize very early in inialization to setup
+ *   USB-related GPIO pins for the nucleo-144 board.
+ *
+ ****************************************************************************/
 #[no_mangle]
- pub extern "C" fn stm32_usbinitialize()
-  {
-    // pub to allow boot to use this function
+pub extern "C" fn stm32_usbinitialize() {
     /* The OTG FS has an internal soft pull-up.
-      * No GPIO configuration is required
-      */
+     * No GPIO configuration is required
+     */
 
     /* Configure the OTG FS VBUS sensing GPIO,
-      * Power On, and Overcurrent GPIOs
-      */
+     * Power On, and Overcurrent GPIOs
+     */
 
-    if ( cfg! (CONFIG_STM32F7_OTGFS) )
-    {
-      unsafe{
-        stm32_configgpio(GPIO_OTGFS_VBUS);
-        stm32_configgpio(GPIO_OTGFS_PWRON);
-        stm32_configgpio(GPIO_OTGFS_OVER);
-      }
+    #[cfg(CONFIG_STM32F7_OTGFS)]
+    unsafe {
+        stm32_configgpio(GPIO_OTGFS_VBUS.into());
+        stm32_configgpio(GPIO_OTGFS_PWRON.into());
+        stm32_configgpio(GPIO_OTGFS_OVER.into());
     }
-  }
+}
 
-  /****************************************************************************
-    * Name: stm32_usbhost_initialize
-    *
-    * Description:
-    *   Called at application startup time to initialize the USB host
-    *   functionality.
-    *   This function will start a thread that will monitor for device
-    *   connection/disconnection events.
-    *
-    ****************************************************************************/
+/****************************************************************************
+ * Name: stm32_usbhost_initialize
+ *
+ * Description:
+ *   Called at application startup time to initialize the USB host
+ *   functionality.
+ *   This function will start a thread that will monitor for device
+ *   connection/disconnection events.
+ *
+ ****************************************************************************/
 
+#[cfg(CONFIG_USBHOST)]
+pub extern "C" fn stm32_usbhost_initialize() -> i32 {
+    info!("Register class drivers\n");
 
-     if( #[cfg(features = (CONFIG_USBHOST))])
-     {
+    #[cfg(CONFIG_USBHOST_HUB)]
+    match unsafe { usbhost_hub_initialize() } {
+        OK => (),
+        ret => err!("ERROR: usbhost_hub_initialize failed: %d\n\0", ret)
+    }
 
-       pub extern "C" fn stm32_usbhost_initialize()
-       {
-        let ret: i32;
+    #[cfg(CONFIG_USBHOST_MSC)]
+    match unsafe { usbhost_msc_initialize() } {
+        OK => (),
+        ret => err!("ERROR: Failed to register the mass storage class: %d\n\0", ret)
+    }
 
-        /* First, register all of the class drivers needed to support the drivers
-          * that we care about:
-          */
+    #[cfg(CONFIG_USBHOST_CDCACM)]
+    match unsafe { usbhost_cdcacm_initialize() } {
+        OK => (),
+        ret => err!("ERROR: Failed to register the CDC/ACM serial class: %d\n\0", ret)
+    }
 
-        println!("Register class drivers\n");
-        if ( cfg!(CONFIG_USBHOST_HUB))
-        {
+    #[cfg(CONFIG_USBHOST_HIDKBD)]
+    match unsafe { usbhost_kbdinit() } {
+        OK => (),
+        ret => err!("ERROR: Failed to register the HID keyboard class\n\0", ret)
+    }
 
-        /* Initialize USB hub class support */
-        unsafe{
-          ret = usbhost_hub_initialize();
-        }
-        if (ret < 0)
-        {
-          #[error("ERROR: usbhost_hub_initialize failed: {}\n", ret)];
-          return;
-          }
-        } /* CONFIG_USBHOST_HUB */
+    #[cfg(CONFIG_USBHOST_HIDMOUSE)]
+    match unsafe { usbhost_mouse_init() } {
+        OK => (),
+        ret => err!("ERROR: Failed to register the HID mouse class\n\0", ret)
+    }
 
-      if(cfg!(CONFIG_USBHOST_MSC))
-      {
-        /* Register the USB mass storage class class */
-        unsafe{
-          ret = usbhost_msc_initialize();
-        }
-        if (ret != OK)
-        {
-          #[error("ERROR: Failed to register the mass storage class: {}\n", ret)];
-          return;
-        }
-      } /* CONFIG_USBHOST_MSC */
-
-      if( cfg!(CONFIG_USBHOST_CDCACM) )
-      {
-
-      /* Register the CDC/ACM serial class */
-      unsafe{
-        ret = usbhost_cdcacm_initialize();
-      }
-      if (ret != OK)
-        {
-          #[error("ERROR: Failed to register the CDC/ACM serial class: {}\n", ret)];
-        }
-    } /* CONFIG_USBHOST_CDCACM */
-
-      if(cfg!(CONFIG_USBHOST_HIDKBD))
-      {
-
-      /* Initialize the HID keyboard class */
-      unsafe{
-        ret = usbhost_kbdinit();
-      }
-      if (ret != OK)
-        {
-          #[error("ERROR: Failed to register the HID keyboard class\n")];
-        }
-      }/*CONFIG_USBHOST_HIDKBD */
-
-      if(cfg!(CONFIG_USBHOST_HIDMOUSE))
-      {
-
-      /* Initialize the HID mouse class */
-      unsafe{
-        ret = usbhost_mouse_init();
-      }
-      if (ret != OK)
-      {
-          #[error("ERROR: Failed to register the HID mouse class\n")];
-        }
-      } /*CONFIG_USBHOST_HIDMOUSE */
+    info!("Initialize USB host\n");
 
     /* Then get an instance of the USB host interface */
-
-    println!("Initialize USB host\n");
-    unsafe{
-      g_usbconn = stm32_otgfshost_initialize(0);
-    }
-    if (g_usbconn)
-      {
-        /* Start a thread to handle device connection. */
-        println!("Start usbhost_waiter\n");
-        unsafe{
-          let usbhost_thread = kthread_create("usbhost", CONFIG_NUCLEO144_USBHOST_PRIO,
-          CONFIG_NUCLEO_USBHOST_STACKSIZE,
-          usbhost_waiter, NULL);
+    unsafe {
+        G_USBCONN = ptr::NonNull::new(stm32_otgfshost_initialize(0));
+        if G_USBCONN.is_none() {
+            return -(ENODEV as i32);
         }
-        // CONFIG_NUCLEO144_USBHOST_PRIO ->  is defined on line 48 of this file, this is defined to be static to prevent it from dropping out of scope
-        // CONFIG_NUCLEO_USBHOST_STACKSIZE -> is defined on line 52 of this file,this is defined to be static to prevent it from dropping out of scope
-        // Converted using https://github.com/torvalds/linux/blob/master/include/linux/kthread.h#L15
 
-        Ok(()) // we where successful in creating the thread if this is reached
-      }
-      return -ENOEXEC; // throw ENOEXEC which is a standard c error for invalid enviourment ( i think? )
+        info!("Start usbhost_waiter\n");
+
+        return match kthread_create(
+            b"usbhost" as *const u8,
+            CONFIG_NUCLEO144_USBHOST_PRIO,
+            CONFIG_NUCLEO_USBHOST_STACKSIZE,
+            Some(usbhost_waiter),
+            ptr::null_mut(),
+        ) {
+            OK => OK,
+            _ => -(ENODEV as i32),
+        };
     }
-  } /* CONFIG_USBHOST */
+}
 
-  /****************************************************************************
-    * Name: stm32_usbhost_vbusdrive
-    *
-    * Description:
-    *   Enable/disable driving of VBUS 5V output.  This function must be
-    *   provided be each platform that implements the STM32 OTG FS host
-    *   interface
-    *
-    *   "On-chip 5 V VBUS generation is not supported. For this reason, a
-    *    charge pump or, if 5 V are available on the application board, a
-    *    basic power switch, must be added externally to drive the 5 V VBUS
-    *    line. The external charge pump can be driven by any GPIO output.
-    *    When the application decides to power on VBUS using the chosen GPIO,
-    *    it must also set the port power bit in the host port control and
-    *    status register (PPWR bit in OTG_FS_HPRT).
-    *
-    *   "The application uses this field to control power to this port,
-    *    and the core clears this bit on an overcurrent condition."
-    *
-    * Input Parameters:
-    *   iface - For future growth to handle multiple USB host interface.
-    *           Should be zero.
-    *   enable - true: enable VBUS power; false: disable VBUS power
-    *
-    * Returned Value:
-    *   None
-    *
-    ****************************************************************************/
+/****************************************************************************
+ * Name: stm32_usbhost_vbusdrive
+ *
+ * Description:
+ *   Enable/disable driving of VBUS 5V output.  This function must be
+ *   provided be each platform that implements the STM32 OTG FS host
+ *   interface
+ *
+ *   "On-chip 5 V VBUS generation is not supported. For this reason, a
+ *    charge pump or, if 5 V are available on the application board, a
+ *    basic power switch, must be added externally to drive the 5 V VBUS
+ *    line. The external charge pump can be driven by any GPIO output.
+ *    When the application decides to power on VBUS using the chosen GPIO,
+ *    it must also set the port power bit in the host port control and
+ *    status register (PPWR bit in OTG_FS_HPRT).
+ *
+ *   "The application uses this field to control power to this port,
+ *    and the core clears this bit on an overcurrent condition."
+ *
+ * Input Parameters:
+ *   iface - For future growth to handle multiple USB host interface.
+ *           Should be zero.
+ *   enable - true: enable VBUS power; false: disable VBUS power
+ *
+ * Returned Value:
+ *   None
+ *
+ ****************************************************************************/
 
-    if( #[cfg(features(CONFIG_USBHOST))])
-    {
-      pub extern "C" fn stm32_usbhost_vbusdrive( iface :i32, enable: bool)
-      {
-         debug_assert_eq!(iface,0);
-         /* Set the Power Switch by driving the active low enable pin */
-         unsafe{
-           stm32_gpiowrite(GPIO_OTGFS_PWRON, !enable);
-         }
-       }
-} /* CONFIG_USBHOST */
-
-  /****************************************************************************
-    * Name: stm32_setup_overcurrent
-    *
-    * Description:
-    *   Setup to receive an interrupt-level callback if an overcurrent
-    *   condition is detected.
-    *
-    * Input Parameters:
-    *   handler - New overcurrent interrupt handler
-    *   arg     - The argument provided for the interrupt handler
-    *aa
-    * Returned Value:
-    *   Zero (OK) is returned on success.  Otherwise, a negated errno value
-    *   is returned to indicate the nature of the failure.
-    *
-    ****************************************************************************/
-
-      if( #[cfg(features = (CONFIG_USBHOST))] )
-      {
-        // reading line 1414 of binding.rs
-        pub extern "C" fn stm32_setup_overcurrent( handler : c_int, arg: *mut cty::c_void) -> i32
-        {
-          unsafe{
-            return stm32_gpiosetevent(GPIO_OTGFS_OVER, true, true, true, handler, arg);
-          }
-        }
-      } /* CONFIG_USBHOST */
-
-  /****************************************************************************
-    * Name:  stm32_usbsuspend
-    *
-    * Description:
-    *   Board logic must provide the stm32_usbsuspend logic if the USBDEV
-    *   driver is used. This function is called whenever the USB enters or
-    *   leaves suspend mode. This is an opportunity for the board logic to
-    *   shutdown clocks, power, etc. while the USB is suspended.
-    *
-    ****************************************************************************/
-      if( #[cfg(features = (CONFIG_USBDEV))])
-      {
-         pub extern "C" fn stm32_usbsuspend(struct usbdev_s *dev, resume : bool)
-         {
-           println!("resume: {}\n", resume);
-         }
-      } /* CONFIG_USBDEV */
-}/* CONFIG_STM32F7_OTGFS */
-else{
+#[cfg(CONFIG_USBHOST)]
 #[no_mangle]
-pub extern "C" fn stm32_usbinitialize()
-{
-  /*
-  This is cursed, but the CFG flag blocks the scope reading the public functions in other crates
-   */
-  if cfg! (CONFIG_STM32F7_OTGFS)
-  {
+pub extern "C" fn stm32_usbhost_vbusdrive(iface: i32, enable: bool) {
+    debug_assert!(iface == 0);
+
     unsafe{
-      stm32_configgpio(0);
-      stm32_configgpio(0);
-      stm32_configgpio(0);
+        stm32_gpiowrite(GPIO_OTGFS_PWRON, !enable);
     }
-  }
-
 }
 
+/****************************************************************************
+ * Name: stm32_setup_overcurrent
+ *
+ * Description:
+ *   Setup to receive an interrupt-level callback if an overcurrent
+ *   condition is detected.
+ *
+ * Input Parameters:
+ *   handler - New overcurrent interrupt handler
+ *   arg     - The argument provided for the interrupt handler
+ *aa
+ * Returned Value:
+ *   Zero (OK) is returned on success.  Otherwise, a negated errno value
+ *   is returned to indicate the nature of the failure.
+ *
+ ****************************************************************************/
+
+#[cfg(CONFIG_USBHOST)]
+#[no_mangle]
+pub unsafe extern "C" fn stm32_setup_overcurrent(handler: xcpt_t, arg: *mut cty::c_void) -> i32 {
+    stm32_gpiosetevent(GPIO_OTGFS_OVER as u32, true, true, true, handler, arg)
 }
+
+/****************************************************************************
+ * Name:  stm32_usbsuspend
+ *
+ * Description:
+ *   Board logic must provide the stm32_usbsuspend logic if the USBDEV
+ *   driver is used. This function is called whenever the USB enters or
+ *   leaves suspend mode. This is an opportunity for the board logic to
+ *   shutdown clocks, power, etc. while the USB is suspended.
+ *
+ ****************************************************************************/
+
+#[cfg(CONFIG_USBDEV)]
+pub extern "C" fn stm32_usbsuspend(dev: *mut usbdev_s, resume: bool) {
+    info!("resume: %d\n", resume);
 }
