@@ -70,7 +70,7 @@ void autoleds_test(void) {
   //int OffParams[5] = [LED_SIGNAL, LED_INIRQ, LED_ASSERTION, LED_PANIC, LED_IDLE];
 
   printf("Testing Autoleds:\n");
-  pritnf("The blue LED will only turn on momentarily\n")
+  printf("The blue LED will only turn on momentarily\n");
 
   for (int i = 0; i < 8; i++) {
     printf("%s\n", OnMessages[i]);
