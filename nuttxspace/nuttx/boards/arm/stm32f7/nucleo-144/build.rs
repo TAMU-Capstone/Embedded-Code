@@ -11,7 +11,8 @@ use regex::Regex;
 use topo_sort::TopoSort;
 
 /**
-Topologically Sorts the given header file based on each "#define" statement's dependancies
+ * Cole's baby
+ * Topologically Sorts the given header file based on each "#define" statement's dependancies
  */
 fn toposort_macros(lines: String) -> Result<String, Box<dyn Error>> {
     let mut macros: HashMap<String, String> = HashMap::new();
@@ -33,6 +34,7 @@ fn toposort_macros(lines: String) -> Result<String, Box<dyn Error>> {
         );
     }
 
+    // Add the constants to the environment so that we can check them with `cfg`
     macros
         .keys()
         .filter(|c| !(c.contains("(") || c.contains(")")))
@@ -92,15 +94,17 @@ fn main() -> Result<(), Box<dyn Error>> {
     std::fs::write("sorted_macros.h", sorted_macros)?;
 
     bindgen::Builder::default()
-        .clang_arg("-H")                    // Print the names of header files during compilation
-        .clang_args(include_paths)          // Search in these directories for the headers
+        // .clang_arg("-H") // DEBUG ONLY              // Print the names of header files during compilation
+        .clang_args(include_paths)                  // Search in these directories for the headers
         .header("include/wrapper.h")
         .header("sorted_macros.h")
-        .use_core()                         // use ::core instead of ::std
-        .ctypes_prefix("cty")               // Use cty::* for the C types
-        .layout_tests(false)                // Don't generate #[test]'s because #![no_std]
-        .fit_macro_constants(true)          // Reduce the size of the constant to the smallest integer size, (e.g. u32 -> u8)
-        .raw_line(
+        .use_core()                                 // use ::core instead of ::std
+        .ctypes_prefix("cty")                       // Use cty::* for the C types
+        .layout_tests(false)                        // Don't generate #[test]'s because #![no_std]
+        .derive_default(true)                       // Generate sane defaults for structs and enums for each of use
+        .fit_macro_constants(true)                  // Reduce the size of the constant to the smallest integer size, (e.g. u32 -> u8)
+        .rustified_non_exhaustive_enum(r"(\S*_e)")  // Convert C enums to Rust enums (names end with *_e)
+        .raw_line(                                  // All of the C bindings have non-idiomatic Rust naming conventions (shut up)
             "#![allow(non_snake_case, non_camel_case_types, non_upper_case_globals, dead_code, unused_imports)]",
         )
         .parse_callbacks(Box::new(bindgen::CargoCallbacks::new()))
