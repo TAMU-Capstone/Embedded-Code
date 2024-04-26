@@ -186,7 +186,7 @@ static struct stm32gpio_dev_s g_gpout[BOARD_NGPIOOUT];
 #if BOARD_NGPIOINT > 0
 /* This array maps the GPIO pins used as INTERRUPT INPUTS */
 
-static const uint32_t g_gpiointinputs[BOARD_NGPIOINT] =
+static const uint32_t cd[BOARD_NGPIOINT] =
     {
         GPIO_INT1,
 };
