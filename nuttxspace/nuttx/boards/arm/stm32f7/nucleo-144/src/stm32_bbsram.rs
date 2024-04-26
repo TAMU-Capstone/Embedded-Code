@@ -182,7 +182,7 @@ use cty;
 
                     syslog(LOG_INFO.int(), "Fault Log info File No %d Length %d flags:0x%02x ""state:%d\n".as_ptr() as *const u8, (unsigned int)desc.fileno, (unsigned int)desc.len, (unsigned int)desc.flags, state);
 
-                    if (state == OK)
+                    if state == OK
                     {
                         //time_t is an i64 in rust
                         let mut time_sec: i64 = desc.lastwrite.tv_sec + (desc.lastwrite.tv_nsec / 1e9);
@@ -193,7 +193,7 @@ use cty;
                     }
 
                     rv = nx_unlink(HARDFAULT_PATH);
-                    if (rv < 0)
+                    if rv < 0
                     {
                         syslog(LOG_INFO.into(), "stm32 bbsram: Failed to unlink Fault Log file"" [%s] (%d)\n".as_ptr() as *const u8, HARDFAULT_PATH, rv);
                     }
@@ -208,7 +208,24 @@ use cty;
     {
         pub unsafe extern "C" fn board_crashdump(uintptr_t sp, struct tcb_s *tcb, const char *filename, int lineno, const char *msg, void *regs)
         {
-            
+            pdump: *mut fullcontext = &mut g_sdata as *mut fullcontext;
+            rv: i32;
+
+            unsafe{
+                enter_critical_section();
+
+                memset(pdump, 0, sizeof(fullcontext_t));
+            }
+
+            lineno: info.lineno;
+
+            if filename
+            {
+                offset: i32 = 0;
+                len: u32 = (filename + 1).len();
+
+                if len > 
+            }
         }
     }
 }
