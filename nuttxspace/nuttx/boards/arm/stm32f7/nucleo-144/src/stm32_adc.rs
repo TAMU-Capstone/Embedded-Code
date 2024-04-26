@@ -19,22 +19,22 @@
  ****************************************************************************/
 
 #![cfg(CONFIG_ADC)]
+#![cfg(any(CONFIG_STM32F7_ADC1, CONFIG_STM32F7_ADC2, CONFIG_STM32F7_ADC3))]
+
+#[cfg(not(CONFIG_STM32F7_ADC1))]
+compile_error!("Channel information only available for ADC1");
+
 
 /****************************************************************************
  * Included Files and Fsunctions
  ****************************************************************************/
-use crate::bindings::*; 
-use crate::bindings::ENOSYS;
-use heapless::String;
+use crate::bindings::*;
+use crate::{err, info};
+
 // use crate::bindings::stm32_adc_initialize;
 
-
 /* Up to 3 ADC interfaces are supported */
-#[cfg_if::cfg_if(not(STM32F7_NADC >= 3), then(not(CONFIG_STM32F7_ADC3)))]
 
-#[cfg_if::cfg_if(not(STM32F7_NADC >= 2), then(not(CONFIG_STM32F7_ADC2)))]
-
-#[cfg_if::cfg_if(not(STM32F7_NADC >= 1), then(not(CONFIG_STM32F7_ADC1)))]
 
 /* This only prints a warning it does not seem to exclude any code based on the condition so i am just going to take it out for now and add back if we get println working
 mod adc_config {
@@ -54,16 +54,12 @@ const ADC1_NCHANNELS: usize = 4;
  * {1,  2,  3, 4,  5,  6, 7,  8,  9, 10, 11, 12, 13, 15};
 */
 
+#[cfg(CONFIG_STM32F7_ADC1)]
 static G_CHANLIST: [u8; ADC1_NCHANNELS] = [3, 4, 10, 13];
 
-#[cfg(CONFIG_STM32F7_ADC1)] 
-const G_CHANLIST: [u8; ADC1_NCHANNELS] = [3, 4, 10, 13];
-
+#[cfg(CONFIG_STM32F7_ADC1)]
 const G_PINLIST: [u32; ADC1_NCHANNELS] = [
-     GPIO_ADC1_IN3,
-     GPIO_ADC1_IN4,
-     GPIO_ADC1_IN10,
-     GPIO_ADC1_IN13,
+    GPIO_ADC1_IN3, GPIO_ADC1_IN4, GPIO_ADC1_IN10, GPIO_ADC1_IN13
 ];
 
 /****************************************************************************
@@ -82,54 +78,48 @@ const G_PINLIST: [u32; ADC1_NCHANNELS] = [
  *
  ****************************************************************************/
 
-// main function 
+// main function
+#[cfg(CONFIG_STM32F7_ADC1)]
 #[no_mangle]
-pub fn stm32_adc_setup() -> Result<(), i32> {
+pub extern "C" fn stm32_adc_setup() -> i32 {
+    use crate::err;
+    use core::ptr;
+
     static mut INITIALIZED: bool = false;
-    
-    #[cfg(CONFIG_STM32F7_ADC1)]
-    let mut adc: Option<&mut adc_dev_s >= None; //mutable reference to the adc_dev_s struct initialized to None 
-    let mut ret: i32 = 0; // for use with integer error codes i32 is signed
-    let mut i: usize = 0; // for use as a loop counter
 
     /* Check if we have already initialized */
-    if !unsafe { INITIALIZED } { 
+    if unsafe { !INITIALIZED } {
         /* Configure the pins as analog inputs for the selected channels */
-        for i in 0..ADC1_NCHANNELS {
-            if G_PINLIST[i] != 0 {
-                // requires an unsafe block because Rust cannot guarantee the safety of the C function at compile
-                unsafe {
-                    stm32_configgpio(G_PINLIST[i]);
-                }
-            }
-        }   
+        G_PINLIST
+            .iter()
+            .filter(|p| **p != 0)
+            .for_each(|p| unsafe { stm32_configgpio(*p); });
 
-        /* Call stm32_adcinitialize() to get an instance of the ADC interface  */
-        let adc = unsafe {
+
+        let Some(adc) = ptr::NonNull::new( unsafe {
             stm32_adc_initialize(1, G_CHANLIST.as_ptr(), ADC1_NCHANNELS as i32)
+        }) else {
+            err!("ERROR: Failed to get ADC interface");
+            return -(ENODEV as i32);
         };
 
-        if adc.is_null() {
-            //println!("ERROR: Failed to get ADC interface");
-            return Err(-19); // -ENODEV is similiar to -19 in Rust
+        let ret = unsafe {
+            adc_register(b"/dev/adc0" as *const u8, adc.as_ptr())
+        };
+        if ret != OK {
+            err!("ERROR: adc_register failed: %d\n", ret);
+            return ret;
         }
-
-        /* Register the ADC driver at "/dev/adc0" */
-        let mut path = String::<32>::new();
-        path.push_str("/dev/adc0"); 
-        let ret = unsafe { adc_register(path.as_ptr().cast::<u8>(), adc.unwrap()) };
-
-        if ret < 0 {
-            // Handle the error case
-            return Err(ret);
-        }
-
         /* Now we are initialized */
-        INITIALIZED = true;
+        unsafe {
+            INITIALIZED = true;
+        }
+    }
+    OK
+}
 
-    }
-    else{
-        return Err(ENOSYS as i32); 
-    }
-    Ok(())
+#[cfg(not(CONFIG_STM32F7_ADC1))]
+#[no_mangle]
+pub extern "C" fn stm32_adc_setup() -> i32 {
+    -(ENOSYS as i32)
 }
