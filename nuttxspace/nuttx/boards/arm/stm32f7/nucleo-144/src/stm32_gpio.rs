@@ -24,7 +24,7 @@
  * Included Files
  ****************************************************************************/
 use crate::bindings::*;
-use crate::{err, info};
+use crate::info;
 use core::ptr;
 
 /****************************************************************************
@@ -42,7 +42,7 @@ struct stm32gpio_dev_s {
 #[derive(Clone, Copy, Default)]
 struct stm32gpint_dev_s {
     stm32gpio: stm32gpio_dev_s,
-    callback: Option<pin_interrupt_t>,
+    callback: pin_interrupt_t,
 }
 /***************************************************************************
  * Private Function Prototypes
@@ -57,6 +57,7 @@ const GPIN_OPS: gpio_operations_s = gpio_operations_s {
     go_write: None,
     go_attach: None,
     go_enable: None,
+    go_setpintype: None
 };
 
 const GPOUT_OPS: gpio_operations_s = gpio_operations_s {
@@ -64,6 +65,7 @@ const GPOUT_OPS: gpio_operations_s = gpio_operations_s {
     go_write: Some(gpout_write),
     go_attach: None,
     go_enable: None,
+    go_setpintype: None
 };
 
 const GPINT_OPS: gpio_operations_s = gpio_operations_s {
@@ -71,6 +73,7 @@ const GPINT_OPS: gpio_operations_s = gpio_operations_s {
     go_write: None,
     go_attach: Some(gpint_attach),
     go_enable: Some(gpint_enable),
+    go_setpintype: None
 };
 
 /* This array maps the GPIO pins used as INPUT */
@@ -81,9 +84,9 @@ const G_GPIOINPUTS: [u32; BOARD_NGPIOIN as usize] = [
     GPIO_IN3 as u32,
     GPIO_IN4 as u32,
 ];
+
 #[cfg(BOARD_NGPIOIN)]
-static mut G_GPIN: [stm32gpio_dev_s; BOARD_NGPIOIN as usize] =
-    [stm32gpio_dev_s::default(); BOARD_NGPIOIN as usize];
+static mut G_GPIN: [Option<stm32gpio_dev_s>; BOARD_NGPIOIN as usize] = [None; BOARD_NGPIOIN as usize];
 
 /* This array maps the GPIO pins used as OUTPUT */
 #[cfg(BOARD_NGPIOOUT)]
@@ -102,27 +105,24 @@ const G_GPIOOUTPUTS: &[u32] = &[
     GPIO_OUT7,
 ];
 #[cfg(BOARD_NGPIOOUT)]
-static mut G_GPOUT: [stm32gpio_dev_s; BOARD_NGPIOIN as usize] =
-    [stm32gpio_dev_s::default(); BOARD_NGPIOIN as usize];
+static mut G_GPOUT: [Option<stm32gpio_dev_s>; BOARD_NGPIOIN as usize] = [None; BOARD_NGPIOIN as usize];
 
 /* This array maps the GPIO pins used as INTERRUPT INPUTS */
 #[cfg(BOARD_NGPIOINT)]
 const G_GPIOINTINPUTS: [u32; BOARD_NGPIOINT as usize] = [GPIO_INT1 as u32];
 
 #[cfg(BOARD_NGPIOINT)]
-static mut G_GPINT: [stm32gpint_dev_s; BOARD_NGPIOINT as usize] =
-    [stm32gpint_dev_s::default(); BOARD_NGPIOINT as usize];
+static mut G_GPINT: [Option<stm32gpint_dev_s>; BOARD_NGPIOINT as usize] = [None; BOARD_NGPIOINT as usize];
 
 /****************************************************************************
  * Private Functions
  ****************************************************************************/
 #[no_mangle]
 extern "C" fn stm32gpio_interrupt(
-    irq: i32,
-    context: *mut cty::c_void,
+    _irq: i32,
+    _context: *mut cty::c_void,
     arg: *mut cty::c_void,
 ) -> i32 {
-    #[allow(non_snake_case)]
     let stm32gpint = unsafe { &mut *(arg as *mut stm32gpint_dev_s) };
 
     debug_assert!(stm32gpint.callback.is_some(), "Callback is None");
@@ -133,13 +133,13 @@ extern "C" fn stm32gpio_interrupt(
     #[allow(non_snake_case)]
     let gpio = &mut stm32gpint.stm32gpio.gpio;
     let id = stm32gpint.stm32gpio.id;
-    callback(gpio, id);
+    unsafe { callback(gpio, id) };
 
     OK
 }
 
 #[no_mangle]
-fn gpin_read(dev: *mut gpio_dev_s, value: *mut bool) -> i32 {
+extern "C" fn gpin_read(dev: *mut gpio_dev_s, value: *mut bool) -> i32 {
     #[allow(non_snake_case)]
     let stm32gpio = unsafe { &mut *(dev as *mut stm32gpio_dev_s) };
 
@@ -157,7 +157,7 @@ fn gpin_read(dev: *mut gpio_dev_s, value: *mut bool) -> i32 {
 }
 
 #[no_mangle]
-fn gpout_read(dev: *mut gpio_dev_s, value: *mut bool) -> i32 {
+extern "C" fn gpout_read(dev: *mut gpio_dev_s, value: *mut bool) -> i32 {
     #[allow(non_snake_case)]
     let stm32gpio = unsafe { &mut *(dev as *mut stm32gpio_dev_s) };
 
@@ -176,7 +176,7 @@ fn gpout_read(dev: *mut gpio_dev_s, value: *mut bool) -> i32 {
 }
 
 #[no_mangle]
-fn gpout_write(dev: *mut gpio_dev_s, value: bool) -> i32 {
+extern "C" fn gpout_write(dev: *mut gpio_dev_s, value: bool) -> i32 {
     #[allow(non_snake_case)]
     let stm32gpio = unsafe { &mut *(dev as *mut stm32gpio_dev_s) };
 
@@ -191,7 +191,7 @@ fn gpout_write(dev: *mut gpio_dev_s, value: bool) -> i32 {
 }
 
 #[no_mangle]
-fn gpint_read(dev: *mut gpio_dev_s, value: *mut bool) -> i32 {
+extern "C" fn gpint_read(dev: *mut gpio_dev_s, value: *mut bool) -> i32 {
     #[allow(non_snake_case)]
     let stm32gpint = unsafe { &mut *(dev as *mut stm32gpint_dev_s) };
 
@@ -211,8 +211,8 @@ fn gpint_read(dev: *mut gpio_dev_s, value: *mut bool) -> i32 {
     }
     OK
 }
-// this has problems since  pin_interrupt_t is not in scope
-fn gpint_attach(dev: *mut gpio_dev_s, callback: pin_interrupt_t) -> i32 {
+#[no_mangle]
+extern "C" fn gpint_attach(dev: *mut gpio_dev_s, callback: pin_interrupt_t) -> i32 {
     // dev is a pointer to a struct of type gpio_dev_s
     // we need to cast dev to a pointer of type stm32gpint_dev_s
     // C code: struct stm32gpint_dev_s *stm32gpint = (struct stm32gpint_dev_s *)dev;
@@ -231,13 +231,13 @@ fn gpint_attach(dev: *mut gpio_dev_s, callback: pin_interrupt_t) -> i32 {
             ptr::null_mut(),
         );
     }
-
-    info!(b"Attach %p\n", callback); // most likely need to cast callback as something else
-    stm32gpint.callback = Some(callback);
+    info!(b"Attach %p\n", callback.unwrap()); // most likely need to cast callback as something else
+    stm32gpint.callback = callback;
     OK // return for gpint_attatch
 }
 
-fn gpint_enable(dev: *mut gpio_dev_s, enable: bool) -> i32 {
+#[no_mangle]
+extern "C" fn gpint_enable(dev: *mut gpio_dev_s, enable: bool) -> i32 {
     // for enable
     let stm32gpint = unsafe { &mut *(dev as *mut stm32gpint_dev_s) };
     if enable && stm32gpint.callback.is_some() {
@@ -250,7 +250,7 @@ fn gpint_enable(dev: *mut gpio_dev_s, enable: bool) -> i32 {
                 false,
                 false,
                 Some(stm32gpio_interrupt),
-                (&mut G_GPINT[stm32gpint.stm32gpio.id as usize] as *mut stm32gpint_dev_s) as *mut cty::c_void,
+                (&mut G_GPINT[stm32gpint.stm32gpio.id as usize].unwrap() as *mut stm32gpint_dev_s) as *mut cty::c_void,
             );
         }
     } else {
@@ -283,52 +283,55 @@ fn gpint_enable(dev: *mut gpio_dev_s, enable: bool) -> i32 {
 
 #[no_mangle]
 pub fn stm32_gpio_initialize() -> i32 {
-    let pincount = 0;
+    let mut pincount = 0;
 
-    #[cfg(BOARD_NGPIOIN)]
+    // #[cfg(BOARD_NGPIOIN)]
     for i in 0..BOARD_NGPIOIN as usize {
         unsafe {
+            G_GPIN[i] = Some(stm32gpio_dev_s::default());
             // Setup and register the GPIO pin
-            G_GPIN[i].gpio.gp_pintype = GPIO_INPUT_PIN;
-            G_GPIN[i].gpio.gp_ops = &GPIN_OPS;
-            G_GPIN[i].id = i as u8;
-            gpio_pin_register(&mut G_GPIN[i].gpio, pincount);
+            G_GPIN[i].unwrap().gpio.gp_pintype = gpio_pintype_e::GPIO_INPUT_PIN as u8;
+            G_GPIN[i].unwrap().gpio.gp_ops = &GPIN_OPS;
+            G_GPIN[i].unwrap().id = i as u8;
+            gpio_pin_register(&mut G_GPIN[i].unwrap().gpio, pincount);
 
             // Configure the pin that will be used as input
             stm32_configgpio(G_GPIOINPUTS[i]);
-            pincount += 1;
         }
+        pincount += 1;
     }
 
     #[cfg(BOARD_NGPIOOUT)]
     for i in 0..BOARD_NGPIOOUT as usize {
         unsafe {
+            G_GPOUT[i] = Some(stm32gpio_dev_s::default());
             // Setup and register the GPIO pin
-            G_GPOUT[i].gpio.gp_pintype = GPIO_OUTPUT_PIN;
-            G_GPOUT[i].gpio.gp_ops = &GPOUT_OPS;
-            G_GPOUT[i].id = i as u8;
-            gpio_pin_register(&mut G_GPOUT[i].gpio, pincount);
+            G_GPOUT[i].unwrap().gpio.gp_pintype = gpio_pintype_e::GPIO_OUTPUT_PIN as u8;
+            G_GPOUT[i].unwrap().gpio.gp_ops = &GPOUT_OPS;
+            G_GPOUT[i].unwrap().id = i as u8;
+            gpio_pin_register(&mut G_GPOUT[i].unwrap().gpio, pincount);
 
             // Configure the pin that will be used as output
             stm32_gpiowrite(G_GPIOOUTPUTS[i], false);
             stm32_configgpio(G_GPIOOUTPUTS[i]);
-            pincount += 1;
         }
+        pincount += 1;
     }
 
     #[cfg(BOARD_NGPIOINT)]
     for i in 0..BOARD_NGPIOINT as usize {
         unsafe {
+            G_GPINT[i] = Some(stm32gpint_dev_s::default());
             // Setup and register the GPIO pin
-            G_GPINT[i].stm32gpio.gpio.gp_pintype = GPIO_INTERRUPT_PIN;
-            G_GPINT[i].stm32gpio.gpio.gp_ops = &GPINT_OPS;
-            G_GPINT[i].stm32gpio.id = i as u8;
-            gpio_pin_register(&mut G_GPINT[i].stm32gpio.gpio, pincount);
+            G_GPINT[i].unwrap().stm32gpio.gpio.gp_pintype = gpio_pintype_e::GPIO_INTERRUPT_PIN as u8;
+            G_GPINT[i].unwrap().stm32gpio.gpio.gp_ops = &GPINT_OPS;
+            G_GPINT[i].unwrap().stm32gpio.id = i as u8;
+            gpio_pin_register(&mut G_GPINT[i].unwrap().stm32gpio.gpio, pincount);
 
             // Configure the pin that will be used as interrupt input
             stm32_configgpio(G_GPIOINTINPUTS[i]);
-            pincount += 1;
         }
+        pincount += 1;
     }
     OK // final return for stm32_gpio_initialize() function
 }
