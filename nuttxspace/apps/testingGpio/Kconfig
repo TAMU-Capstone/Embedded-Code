@@ -2,12 +2,12 @@
 # For a description of the syntax of this configuration file,
 # see the file kconfig-language.txt in the NuttX tools repository.
 #
-menu "GPIO_TEST Application"
+menu "test Gpio"
 config GPIO_TEST
 	tristate "\"GPIO_TEST\" example"
 	default n
 	---help---
-		Enable the \"GPIO_TEST\" example
+		Enabwle the \"GPIO_TEST\" example
 
 if GPIO_TEST
 

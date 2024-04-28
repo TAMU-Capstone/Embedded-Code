@@ -24,8 +24,6 @@
 #include <nuttx/config.h>
 #include <nuttx/compiler.h>
 #include <stdint.h>
-// #include <nuttx/boards/arm/stm32f7/src/nucleo-144.h>
-// #include "nucleo-144.h"
 #include <stdio.h>
 #include <arch/board/board.h>
 #include <nuttx/clock.h>
@@ -33,15 +31,28 @@
 #include <nuttx/ioexpander/gpio.h>
 #include <nuttx/irq.h>
 #include "stm32_gpio.h"
+#include <stdbool.h>
+#include <assert.h>
+#include <debug.h>
+#include <nuttx/wdog.h>
+#include <nuttx/compiler.h>
+
+#include "chip.h"
+#include "stm32_gpio.h"
 // To run make menuconfig -> drivers -> gpio support -> gpio drivers
 #if !defined(CONFIG_DEV_GPIO) && defined(CONFIG_GPIO_LOWER_HALF)
-printf(" CONFIG_DEV_GPIO NOT DEFINED, LOOK AT DOCUMENTATION FOR PARAMS\n");
+int main(int argc, FAR char *argv[])
+{
+  printf(" CONFIG_DEV_GPIO NOT DEFINED, LOOK AT DOCUMENTATION FOR PARAMS\n");
+  return 0;
+}
 #endif
 
 /****************************************************************************
  * Defined Types
  ****************************************************************************/
 
+#if defined(CONFIG_DEV_GPIO) && !defined(CONFIG_GPIO_LOWER_HALF)
 #define BOARD_NGPIOIN 4 /* Amount of GPIO Input pins */
 #if defined(CONFIG_STM32F7_TIM1_CH1NOUT) && defined(CONFIG_STM32F7_TIM1_CH2NOUT)
 #define BOARD_NGPIOOUT 8 /* Amount of GPIO Output pins */
@@ -52,17 +63,16 @@ printf(" CONFIG_DEV_GPIO NOT DEFINED, LOOK AT DOCUMENTATION FOR PARAMS\n");
 #endif
 #define BOARD_NGPIOINT 1 /* Amount of GPIO Input w/ Interruption pins */
 
-
-#define GPIO_LD1       (GPIO_OUTPUT | GPIO_PUSHPULL | GPIO_SPEED_50MHz | GPIO_OUTPUT_CLEAR | \
-                        GPIO_PORTB | GPIO_PIN0)
-#define GPIO_LD2       (GPIO_OUTPUT | GPIO_PUSHPULL | GPIO_SPEED_50MHz | GPIO_OUTPUT_CLEAR | \
-                        GPIO_PORTB | GPIO_PIN7)
-#define GPIO_LD3       (GPIO_OUTPUT | GPIO_PUSHPULL | GPIO_SPEED_50MHz | GPIO_OUTPUT_CLEAR | \
-                        GPIO_PORTB | GPIO_PIN14)
+#define GPIO_LD1 (GPIO_OUTPUT | GPIO_PUSHPULL | GPIO_SPEED_50MHz | GPIO_OUTPUT_CLEAR | \
+                  GPIO_PORTB | GPIO_PIN0)
+#define GPIO_LD2 (GPIO_OUTPUT | GPIO_PUSHPULL | GPIO_SPEED_50MHz | GPIO_OUTPUT_CLEAR | \
+                  GPIO_PORTB | GPIO_PIN7)
+#define GPIO_LD3 (GPIO_OUTPUT | GPIO_PUSHPULL | GPIO_SPEED_50MHz | GPIO_OUTPUT_CLEAR | \
+                  GPIO_PORTB | GPIO_PIN14)
 
 #define GPIO_LED_GREEN GPIO_LD1
-#define GPIO_LED_BLUE  GPIO_LD2
-#define GPIO_LED_RED   GPIO_LD3
+#define GPIO_LED_BLUE GPIO_LD2
+#define GPIO_LED_RED GPIO_LD3
 
 // found in arch/arm/src/stm32f7/chip.h
 #define GPIO_INT1 (GPIO_INPUT | GPIO_FLOAT | GPIO_PORTB | GPIO_PIN2)
@@ -91,7 +101,7 @@ printf(" CONFIG_DEV_GPIO NOT DEFINED, LOOK AT DOCUMENTATION FOR PARAMS\n");
                    GPIO_OUTPUT_SET | GPIO_PORTE | GPIO_PIN10)
 #endif
 
-
+// struct gpio_dev_s;
 struct gpio_dev_s;
 struct stm32gpio_dev_s
 {
@@ -116,7 +126,7 @@ static int gpint_read(struct gpio_dev_s *dev, bool *value);
 static int gpint_attach(struct gpio_dev_s *dev,
                         pin_interrupt_t callback);
 static int gpint_enable(struct gpio_dev_s *dev, bool enable);
-void stm32_gpio_initialize();
+void stm32_gpio_initialize(void);
 
 /****************************************************************************
  * Private Data
@@ -202,7 +212,6 @@ static struct stm32gpint_dev_s g_gpint[BOARD_NGPIOINT];
  ****************************************************************************/
 /* ADC1 */
 
-
 void pin_read_test(struct gpio_dev_s *dev)
 {
 }
@@ -211,17 +220,22 @@ int main(int argc, FAR char *argv[])
 {
   //  *  PA5   SPI1_SCK  CN12-11
   // GPIO_ADC1_IN5_0
-  // tehre are outpins and in pins, find them and define them, first
-  struct gpio_dev_s * gpio;
+  // tehre are outpins and in pins, find them and define them, first  
+  printf(" enter main \n");
+  struct gpio_dev_s *gpio;
   gpio->gp_pintype = GPIO_OUT1;
+  printf(" set pintype properly \n");
   gpio->gp_ops = &gpout_ops;
+  printf(" set output operation properly \n");
+  bool * readPin = 0;
   printf(" initializing pins \n");
   stm32_gpio_initialize();
 
   printf(" writing high to pin \n");
-  gpout_write(gpio, 1);
+  gpout_write(gpio, readPin);
   printf(" sleeping for 3 \n");
   sleep(3);
+  printf(" the pin value is %d", *readPin);
 
   printf(" reading high from pin \n");
   gpout_read(gpio, 1);
@@ -232,3 +246,5 @@ int main(int argc, FAR char *argv[])
 
   return 0;
 }
+
+#endif
