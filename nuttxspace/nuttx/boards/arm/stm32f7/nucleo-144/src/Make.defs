@@ -61,7 +61,7 @@ ifeq ($(CONFIG_STM32F7_OTGFS),y)
 endif
 
 ifeq ($(CONFIG_STM32F7_BBSRAM),y)
-CSRCS += stm32_bbsram.c
+#CSRCS += stm32_bbsram.c
 endif
 
 # COMMENTED OUT

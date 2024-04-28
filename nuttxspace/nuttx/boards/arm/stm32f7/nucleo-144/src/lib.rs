@@ -68,3 +68,6 @@ mod stm32_romfs_initialize;
 
 #[cfg(CONFIG_USBDEV_COMPOSITE)]
 mod stm32_composite;
+
+#[cfg(CONFIG_STM32F7_BBSRAM)]
+mod stm32_bbsram;
