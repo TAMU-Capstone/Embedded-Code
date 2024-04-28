@@ -36,9 +36,11 @@
 #include <debug.h>
 #include <nuttx/wdog.h>
 #include <nuttx/compiler.h>
-
 #include "chip.h"
 #include "stm32_gpio.h"
+void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
+
 // To run make menuconfig -> drivers -> gpio support -> gpio drivers
 #if !defined(CONFIG_DEV_GPIO) && defined(CONFIG_GPIO_LOWER_HALF)
 int main(int argc, FAR char *argv[])
