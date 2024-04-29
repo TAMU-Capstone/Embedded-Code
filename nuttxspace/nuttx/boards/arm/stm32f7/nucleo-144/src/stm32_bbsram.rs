@@ -117,25 +117,24 @@ static gsdata: [u8; STM32F7_BBSRAM_SIZE];
  ****************************************************************************/
 
 #[no_mangle]
-pub unsafe extern "C" fn hardfault_get_desc(desc: *mut bbsramd_s) -> cty::c_int {
+pub extern "C" fn hardfault_get_desc(desc: *mut bbsramd_s) -> cty::c_int {
     let filestruct: file;
     let ret: i32;
 
-    ret = unsafe{file_open(&filestruct, HARDFAULT_PATH, O_RDONLY)};
+    ret = unsafe{ file_open(&filestruct, HARDFAULT_PATH, O_RDONLY) };
 
     if (ret < 0) {
         unsafe {
-            info!("stm32 bbsram: Failed to open Fault Log file [%s] ""(%d)\n" as *const u8, HARDFAULT_PATH, ret);
+            info!("stm32 bbsram: Failed to open Fault Log file [%s] ""(%d)\n", HARDFAULT_PATH, ret);
         }
     }
     else {
         unsafe {
-            ret = file_ioctl(&filestruct, STM32F7_BBSRAM_GETDESC_IOCTL, (unsigned long)((uintptr_t)desc));
+            ret = file_ioctl(&filestruct, STM32F7_BBSRAM_GETDESC_IOCTL, desc);
             file_close(&filestruct);
 
-            if (ret < 0)
-            {
-                info!("stm32 bbsram: Failed to get Fault Log ""descriptor (%d)\n" as *const u8, ret);
+            if (ret < 0) {
+                info!("stm32 bbsram: Failed to get Fault Log ""descriptor (%d)\n", ret);
             }
         }
     }
@@ -145,27 +144,32 @@ pub unsafe extern "C" fn hardfault_get_desc(desc: *mut bbsramd_s) -> cty::c_int 
 
 // #[cfg(CONFIG_STM32F7_SAVE_CRASHDUMP)]
 #[no_mangle]
-pub unsafe extern "C" fn copy_reverse(stack_word_t *dest, stack_word_t *src, int size)
-{
-while size--
-{
-    *dest++ = *src--;
-}
+fn copy_reverse(dest: *mut stack_word_t, src: *mut stack_word_t, mut size: i32) {
+    while size != 0 {
+        unsafe {
+            *dest = *src;
+            *dest += 1;
+            *src -= 1;
+        }
+        size -= 1;
+    }
 }
 
 #[no_mangle]
 pub unsafe extern "C" fn stm32_bbsram_int() -> cty::c_int
 {
-    let mut filesizes: [i32, CONFIG_STM32F7_BBSRAM_FILES + 1] = BSRAM_FILE_SIZES;
-    let mut buf: [0 as char, HEADER_TIME_FMT_LEN + 1];
+    let mut filesizes: [i32; CONFIG_STM32F7_BBSRAM_FILES + 1] = BSRAM_FILE_SIZES;
+    let mut buf: [char; HEADER_TIME_FMT_LEN + 1];
     let mut desc: bbsramd_s = core::mem::zeroed();
     let mut rv: i32;
     let mut state: i32;
-    tt: struct tm;
+    let tt: tm;
     //time_t is an i64 in rust
 
     /* Using Battery Backed Up SRAM */
-    unsafe{stm32_bbsraminitialize(BBSRAM_PATH.as_ptr() as *const char, filesizes.as_ptr())};
+    unsafe{ 
+        stm32_bbsraminitialize(BBSRAM_PATH.as_ptr() as *const char, filesizes.as_ptr())
+    };
 
     // #[cfg(CONFIG_STM32F7_SAVE_CRASHDUMP)]
     {
