@@ -48,8 +48,8 @@ mod stm32_sdio;
 #[cfg(CONFIG_STM32F7_OTGFS)]
 mod stm32_usb;
 
-// #[cfg(CONFIG_STM32F7_BBSRAM)]
-// mod stm32_bbsram;
+#[cfg(CONFIG_STM32F7_BBSRAM)]
+mod stm32_bbsram;
 
 #[cfg(CONFIG_BOARDCTL_RESET)]
 mod stm32_reset;
@@ -57,14 +57,14 @@ mod stm32_reset;
 #[cfg(CONFIG_STM32_ROMFS)]
 mod stm32_romfs_initialize;
 
-// #[cfg(CONFIG_SENSORS_QENCODER)]
-// mod stm32_qencoder;
+#[cfg(CONFIG_SENSORS_QENCODER)]
+mod stm32_qencoder;
 
-// #[cfg(all(CONFIG_STM32F7_CAN, CONFIG_STM32F7_CAN_CHARDRIVER))]
-// mod stm32_can;
+#[cfg(all(CONFIG_STM32F7_CAN, CONFIG_STM32F7_CAN_CHARDRIVER))]
+mod stm32_can;
 
-// #[cfg(all(CONFIG_STM32F7_CAN, CONFIG_STM32F7_CAN_SOCKET))]
-// mod stm32_cansock;
+#[cfg(all(CONFIG_STM32F7_CAN, CONFIG_STM32F7_CAN_SOCKET))]
+mod stm32_cansock;
 
 #[cfg(CONFIG_USBDEV_COMPOSITE)]
 mod stm32_composite;
