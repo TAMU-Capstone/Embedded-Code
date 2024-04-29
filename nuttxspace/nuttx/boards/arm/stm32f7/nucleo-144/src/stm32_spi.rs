@@ -190,9 +190,7 @@ pub fn stm32_spidev_initialize() {
 #[no_mangle]
 pub extern "C" fn stm32_spi1select( dev: *mut spi_dev_s, devid: u32, selected: bool ) {
     let index: u32 = unsafe{ SPIDEVID_INDEX(devid) };
-    unsafe {
-        spiinfo("devid: %d CS: %s\n", devid as i32, if selected { "assert" } else { "de-assert" })
-    };
+    info!("devid: %d CS: %s\n", devid as i32, if selected { "assert" } else { "de-assert" });
     
     if (G_SPI1GPIO[index] != 0) {
         unsafe {
@@ -212,9 +210,7 @@ pub extern "C" fn stm32_spi1status(_dev: *mut spi_dev_s, _devid: u32 ) -> cty::u
 #[no_mangle]
 pub extern "C" fn stm32_spi2select( dev: *mut spi_dev_s, devid: u32, selected: bool ) {
     let index: u32 = unsafe{ SPIDEVID_INDEX(devid) };
-    unsafe {
-        spiinfo("devid: %d CS: %s\n", devid as i32, if selected { "assert" } else { "de-assert" })
-    };
+    info!("devid: %d CS: %s\n", devid as i32, if selected { "assert" } else { "de-assert" });
     
     if (G_SPI2GPIO[index] != 0) {
         unsafe {
@@ -234,9 +230,7 @@ pub extern "C" fn stm32_spi2status(_dev: *mut spi_dev_s, _devid: u32 ) -> cty::u
 #[no_mangle]
 pub extern "C" fn stm32_spi3select( dev: *mut spi_dev_s, devid: u32, selected: bool ) {
     let index: u32 = unsafe{ SPIDEVID_INDEX(devid) };
-    unsafe {
-        spiinfo("devid: %d CS: %s\n", devid as i32, if selected { "assert" } else { "de-assert" })
-    };
+    info!("devid: %d CS: %s\n", devid as i32, if selected { "assert" } else { "de-assert" });
     
     if (G_SPI3GPIO[index] != 0) {
         unsafe {
@@ -255,9 +249,7 @@ pub extern "C" fn stm32_spi3status(_dev: *mut spi_dev_s, _devid: u32 ) -> cty::u
 #[cfg(CONFIG_STM32F7_SPI4)]
 #[no_mangle]
 pub extern "C" fn stm32_spi4select( dev: *mut spi_dev_s, devid: u32, selected: bool ) {
-    unsafe {
-        spiinfo("devid: %d CS: %s\n", devid as i32, if selected { "assert" } else { "de-assert" })
-    }
+    info!("devid: %d CS: %s\n", devid as i32, if selected { "assert" } else { "de-assert" });
 }
 
 #[cfg(CONFIG_STM32F7_SPI4)]
@@ -270,9 +262,7 @@ pub extern "C" fn stm32_spi4status(_dev: *mut spi_dev_s, _devid: u32 ) -> cty::u
 #[cfg(CONFIG_STM32F7_SPI5)]
 #[no_mangle]
 pub extern "C" fn stm32_spi5select( dev: *mut spi_dev_s, devid: u32, selected: bool ) {
-    unsafe {
-        spiinfo("devid: %d CS: %s\n", devid as i32, if selected { "assert" } else { "de-assert" })
-    }
+    info!("devid: %d CS: %s\n", devid as i32, if selected { "assert" } else { "de-assert" });
 }
 
 #[cfg(CONFIG_STM32F7_SPI5)]
@@ -285,9 +275,7 @@ pub extern "C" fn stm32_spi5status(_dev: *mut spi_dev_s, _devid: u32 ) -> cty::u
 #[cfg(CONFIG_STM32F7_SPI6)]
 #[no_mangle]
 pub extern "C" fn stm32_spi6select( dev: *mut spi_dev_s, devid: u32, selected: bool ) {
-    unsafe {
-        spiinfo("devid: %d CS: %s\n", devid as i32, if selected { "assert" } else { "de-assert" })
-    }
+    info!("devid: %d CS: %s\n", devid as i32, if selected { "assert" } else { "de-assert" });
 }
 
 #[cfg(CONFIG_STM32F7_SPI6)]
@@ -321,32 +309,32 @@ pub extern "C" fn stm32_spi6status(_dev: *mut spi_dev_s, _devid: u32 ) -> cty::u
 
 #[cfg(all(CONFIG_STM32F7_SPI1, CONFIG_SPI_CMDDATA))]
 fn stm32_spi1cmddata(dev: *mut spi_dev_s , devid: u32, cmd: bool) -> i32 {
-    return -(ENODEV as i32);
+    -(ENODEV as i32);
 }
 
 #[cfg(all(CONFIG_STM32F7_SPI2, CONFIG_SPI_CMDDATA))]
 fn stm32_spi2cmddata(dev: *mut spi_dev_s, devid: u32, cmd: bool) -> i32 {
-    return -(ENODEV as i32);
+    -(ENODEV as i32);
 }
 
 #[cfg(all(CONFIG_STM32F7_SPI3, CONFIG_SPI_CMDDATA))]
 fn stm32_spi3cmddata(dev: *mut spi_dev_s, devid: u32, cmd: bool) -> i32 {
-    return -(ENODEV as i32);
+    -(ENODEV as i32);
 }
 
 #[cfg(all(CONFIG_STM32F7_SPI4, CONFIG_SPI_CMDDATA))]
 fn stm32_spi4cmddata(dev: *mut spi_dev_s, devid: u32, cmd: bool) -> i32 {
-    return -(ENODEV as i32);
+    -(ENODEV as i32);
 }
 
 #[cfg(all(CONFIG_STM32F7_SPI5, CONFIG_SPI_CMDDATA))]
 fn stm32_spi5cmddata(dev: *mut spi_dev_s, devid: u32, cmd: bool) -> i32 {
-    return -(ENODEV as i32);
+    -(ENODEV as i32);
 }
 
 #[cfg(all(CONFIG_STM32F7_SPI6, CONFIG_SPI_CMDDATA))]
 fn stm32_spi6cmddata(dev: *mut spi_dev_s, devid: u32, cmd: bool) -> i32 {
-    return -(ENODEV as i32);
+    -(ENODEV as i32);
 }
 
 #[cfg(CONFIG_NUCLEO_SPI_TEST)]
@@ -417,7 +405,7 @@ fn stm32_spidev_bus_test() -> i32 {
         SPI2 = ptr::NonNull::new(stm32_spibus_initialize(2));
         match SPI2 {
             None => {
-                syslog(LOG_ERR, "ERROR Failed to initialize SPI port 2\n");
+                err!("ERROR Failed to initialize SPI port 2\n");
                 return -(ENODEV as i32);
             }
             Some(mut spi) => {
@@ -434,7 +422,7 @@ fn stm32_spidev_bus_test() -> i32 {
         SPI3 = ptr::NonNull::new(stm32_spibus_initialize(3));
         match SPI3 {
             None => {
-                syslog(LOG_ERR, "ERROR Failed to initialize SPI port 3\n");
+                err!("ERROR Failed to initialize SPI port 3\n");
                 return -(ENODEV as i32);
             }
             Some(mut spi) => {
