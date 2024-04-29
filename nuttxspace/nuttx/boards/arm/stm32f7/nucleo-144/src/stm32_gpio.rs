@@ -285,7 +285,7 @@ extern "C" fn gpint_enable(dev: *mut gpio_dev_s, enable: bool) -> i32 {
 pub fn stm32_gpio_initialize() -> i32 {
     let mut pincount = 0;
 
-    // #[cfg(BOARD_NGPIOIN)]
+    #[cfg(BOARD_NGPIOIN)]
     for i in 0..BOARD_NGPIOIN as usize {
         unsafe {
             G_GPIN[i] = Some(stm32gpio_dev_s::default());
