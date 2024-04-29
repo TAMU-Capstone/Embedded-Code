@@ -1,5 +1,5 @@
 ############################################################################
-# apps/examples/hello/Make.defs
+# apps/GPIO_TEST/Makefile
 #
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
@@ -18,6 +18,17 @@
 #
 ############################################################################
 
-ifneq ($(CONFIG_BUTTONS),)
-CONFIGURED_APPS += $(APPDIR)/testingButtons
-endif
+include $(APPDIR)/Make.defs
+
+# GPIO_TEST built-in application info
+
+PROGNAME  = $(CONFIG_GPIO_TEST_PROGNAME)
+PRIORITY  = $(CONFIG_GPIO_TEST_PRIORITY)
+STACKSIZE = $(CONFIG_GPIO_TEST_STACKSIZE)
+MODULE    = $(CONFIG_GPIO_TEST)
+
+# GPIO_TEST Application
+
+MAINSRC = gpio_test_main.c
+
+include $(APPDIR)/Application.mk
