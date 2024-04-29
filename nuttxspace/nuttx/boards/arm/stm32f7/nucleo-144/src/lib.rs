@@ -48,7 +48,7 @@ mod stm32_sdio;
 #[cfg(CONFIG_STM32F7_OTGFS)]
 mod stm32_usb;
 
-#[cfg(CONFIG_STM32F7_BBSRAM)]
+// #[cfg(CONFIG_STM32F7_BBSRAM)]
 mod stm32_bbsram;
 
 #[cfg(CONFIG_BOARDCTL_RESET)]
