@@ -103,7 +103,6 @@ int main(int argc, FAR char *argv[])
                    GPIO_OUTPUT_SET | GPIO_PORTE | GPIO_PIN10)
 #endif
 
-// struct gpio_dev_s;
 struct gpio_dev_s;
 struct stm32gpio_dev_s
 {
@@ -236,13 +235,14 @@ int main(int argc, FAR char *argv[])
   printf(" writing high to pin \n");
   gpout_write(gpio, readPin);
   printf(" sleeping for 3 \n");
-  sleep(3);
   printf(" the pin value is %d", *readPin);
 
   printf(" reading high from pin \n");
-  gpout_read(gpio, 1);
+ sleep(3); 
+ gpout_read(gpio, readPin);
   printf(" sleeping for 3 \n");
-  sleep(3);
+ printf(" reading from the defined pin %d", *readPin);  
+sleep(3);
 
   // interupt method
 
