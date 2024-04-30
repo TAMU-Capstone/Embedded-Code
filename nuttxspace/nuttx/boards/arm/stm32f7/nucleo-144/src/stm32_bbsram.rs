@@ -17,10 +17,10 @@
  * under the License.
  *
  ****************************************************************************/
-//  #![cfg(CONFIG_STM32F7_BBSRAM)]
+#![cfg(CONFIG_STM32F7_BBSRAM)]
 
 use crate::bindings::*;
-use crate::{info, err};
+use crate::info;
 use core::sizeof;
 use core::mem::zeroed;
 use crate::cty;
@@ -142,7 +142,7 @@ pub extern "C" fn hardfault_get_desc(desc: *mut bbsramd_s) -> cty::c_int {
     return ret;
 }
 
-// #[cfg(CONFIG_STM32F7_SAVE_CRASHDUMP)]
+#[cfg(CONFIG_STM32F7_SAVE_CRASHDUMP)]
 #[no_mangle]
 fn copy_reverse(dest: *mut stack_word_t, src: *mut stack_word_t, mut size: i32) {
     while size != 0 {
@@ -167,31 +167,26 @@ pub unsafe extern "C" fn stm32_bbsram_int() -> cty::c_int
     //time_t is an i64 in rust
 
     /* Using Battery Backed Up SRAM */
-    unsafe{ 
-        stm32_bbsraminitialize(BBSRAM_PATH.as_ptr() as *const char, filesizes.as_ptr())
-    };
+    stm32_bbsraminitialize(BBSRAM_PATH.as_ptr() as *const char, filesizes.as_ptr());
 
-    // #[cfg(CONFIG_STM32F7_SAVE_CRASHDUMP)]
+    #[cfg(CONFIG_STM32F7_SAVE_CRASHDUMP)]
     {
         rv = unsafe{hardfault_get_desc(&mut desc)};
         if rv == OK
         {
             unsafe
             {
-                syslog(LOG_EMERG.into(), "There is a hard fault logged.\n".as_ptr() as *const u8);
-                state = if desc.lastwrite.tv_sec != 0 || desc.lastwrite.tv_nsec != 0
-                {
-                0
+                //syslog(LOG_EMERG.into(), "There is a hard fault logged.\n".as_ptr() as *const u8);
+                state = if desc.lastwrite.tv_sec != 0 || desc.lastwrite.tv_nsec != 0 {
+                    0
                 }
-                else
-                {
-                1
+                else {
+                    1
                 };
 
-                syslog(LOG_INFO.int(), "Fault Log info File No %d Length %d flags:0x%02x ""state:%d\n".as_ptr() as *const u8, desc.fileno, desc.len, desc.flags, state);
-
-                if state == OK
-                {
+                //syslog(LOG_INFO.int(), "Fault Log info File No %d Length %d flags:0x%02x ""state:%d\n".as_ptr() as *const u8, desc.fileno, desc.len, desc.flags, state);
+                
+                if state == OK {
                     //time_t is an i64 in rust
                     let time_sec: i64 = desc.lastwrite.tv_sec + (desc.lastwrite.tv_nsec / 1e9);
                     unsafe{
@@ -214,110 +209,111 @@ pub unsafe extern "C" fn stm32_bbsram_int() -> cty::c_int
     return rv;
 }
 
-// #[cfg(CONFIG_STM32F7_SAVE_CRASHDUMP)]
-{
-    pub unsafe extern "C" fn board_crashdump(sp: usize, struct tcb_s: *mut tcb, filename: *const char, lineno: i32, msg: const char, regs: *mut void)
+/****************************************************************************
+ * Name: board_crashdump
+ ****************************************************************************/
+
+#[cfg(CONFIG_STM32F7_SAVE_CRASHDUMP)] 
+pub unsafe extern "C" fn board_crashdump(sp: usize, tcb_s: *mut tcb, filename: *const char, lineno: i32, msg: cty::c_char, regs: *mut void) {
+    pdump = &mut g_sdata as *mut fullcontext;
+    let mut rv: i32;
+
+    unsafe {
+        enter_critical_section();
+
+        memset(pdump, 0, sizeof(fullcontext_t));
+    }
+
+    pdump.info.lineno = lineno;
+
+    if filename
     {
-        pdump = &mut g_sdata as *mut fullcontext;
-        let mut rv: i32;
+        let mut offset: i32 = 0;
+        let filename_str = CStr::from_ptr(filename).to_str().unwrap_or("");
+        let mut len: u32 = filename_str.len() + 1;
+
+        if len > sizeof((*pdump).info.filename)
+        {
+            offset = len - sizeof((*pdump).info.filename);
+        }
 
         unsafe{
-            enter_critical_section();
-
-            memset(pdump, 0, sizeof(fullcontext_t));
+            strlcpy(pdump.info.filename, )
         }
+    }
 
-        lineno: (*pdump).info.lineno;
+    (*pdump).info.current_regs = CURRENT_REGS as usize;
 
-        if filename
-        {
-            let mut offset: i32 = 0;
-            let filename_str = CStr::from_ptr(filename).to_str().unwrap_or("");
-            let mut len: u32 = filename_str.len() + 1;
+    let CONFIG_TASK_NAME_SIZE_G0: bool = CONFIG_TASK_NAME_SIZE > 0;
+    #[cfg(CONFIG_TASK_NAME_SIZE)]
+    unsafe{strlcpy((*pdump).info.name, (*tcb).name, sizeof(*pdump).info.name)};
 
-            if len > sizeof((*pdump).info.filename)
-            {
-                offset = len - sizeof((*pdump).info.filename);
-            }
+    (*pdump).info.pid = (*tcb).pid;
 
-            unsafe{
-                strlcpy(pdump.info.filename, )
-            }
-        }
+    if CURRENT_REGS
+    {
+    (*pdump).info.stacks.interrupt.sp = sp as u32;
+    (*pdump).info.flags |= fault_flags::REGS_PRESENT as u8;
+    (*pdump).info.flags |= fault_flags::USERSTACK_PRESENT as u8;
+    (*pdump).info.flags |= fault_flags::INTSTACK_PRESENT as u8;
+    unsafe{
+        memcpy((*pdump).info.regs, CURRENT_REGS, sizeof((*pdump).info.regs));
+    }
+    (*pdump).info.stacks.user.sp = (*pdump).info.regs[REG_R13];
+    }
+    else
+    {
+    (*pdump).info.flags |= fault_flags::USERSTACK_PRESENT as u8;
+    (*pdump).info.stacks.user.sp = sp as u32;
+    }
 
-        (*pdump).info.current_regs = CURRENT_REGS as usize;
+    (*pdump).info.stacks.user.top = (*tcb).stack_base_ptr as usize + (*tcb).adj_stack_size as u32;
+    (*pdump).info.stacks.user.size = (*tcb).adj_stack_size as u32;
 
-        // #[cfg(CONFIG_TASK_NAME_SIZE) > 0]
-        unsafe{strlcpy((*pdump).info.name, (*tcb).name, sizeof(*pdump).info.name)};
-    
-        (*pdump).info.pid = (*tcb).pid;
+    let CONFIG_ARCH_INTERRUPTSTACK_G0: bool = CONFIG_ARCH_INTERRUPTSTACK > 0;
 
-        if CURRENT_REGS
-        {
-        (*pdump).info.stacks.interrupt.sp = sp as u32;
-        (*pdump).info.flags |= fault_flags::REGS_PRESENT as u8;
-        (*pdump).info.flags |= fault_flags::USERSTACK_PRESENT as u8;
-        (*pdump).info.flags |= fault_flags::INTSTACK_PRESENT as u8;
+    #[cfg(CONFIG_ARCH_INTERRUPTSTACKs)]
+    {
+    (*pdump).info.stacks.interrupt.top = g_intstacktop;
+    (*pdump).info.stacks.interrupt.size = (CONFIG_ARCH_INTERRUPTSTACK & !3) as u32;
+
+    if (*pdump).info.flags & fault_flags_t::INTSTACK_PRESENT as u8 != 0
+    {
+        let ps: stack_word_t = (*pdump).info.stacks.interrupt.sp as *mut stack_word_t;
+
         unsafe{
-            memcpy((*pdump).info.regs, CURRENT_REGS, sizeof((*pdump).info.regs));
+            copy_reverse((*pdump).istack.as_mut_ptr(), &ps[nitems((*pdump).istack) / 2], nitems((*pdump).istack));
         }
-        (*pdump).info.stacks.user.sp = (*pdump).info.regs[REG_R13];
-        }
-        else
+    }
+        if !((*pdump).info.stacks.interrupt.sp <= (*pdump).info.stacks.interrupt.top && (*pdump).info.stacks.interrupt.sp > (*pdump).info.stacks.interrupt.top - (*pdump).info.stacks.interrupt.size)
         {
-        (*pdump).info.flags |= fault_flags::USERSTACK_PRESENT as u8;
-        (*pdump).info.stacks.user.sp = sp as u32;
+        (*pdump).info.flags != fault_flags::INVALID_INTSTACK_PTR as u8;
         }
+    }
+    if (*pdump).info.flags & fault_flags::USERSTACK_PRESENT as u8 != 0
+    {
+    let ps = (*pdump).info.stacks.user.sp as *mut stack_word_t;
+    unsafe{
+        copy_reverse((*pdump).ustack, &ps[nitems((*pdump).ustack) / 2], nitems((*pdump).ustack));
+    }
+    }
 
-        (*pdump).info.stacks.user.top = (*tcb).stack_base_ptr as usize + (*tcb).adj_stack_size as u32;
-        (*pdump).info.stacks.user.size = (*tcb).adj_stack_size as u32;
+    if !((*pdump).info.stacks.user.sp <= (*pdump).info.stacks.user.top && (*pdump).info.stacks.user.sp > (*pdump).info.stacks.user.top - (*pdump).info.stacks.user.size)
+    {
+        (*pdump).info.flags |= fault_flags_t::INVALID_USERSTACK_PTR as u8;
+    }
 
-        *[cfg(CONFIG_ARCH_INTERRUPTSTACK > 3)]
-        {
-        (*pdump).info.stacks.interrupt.top = g_intstacktop;
-        (*pdump).info.stacks.interrupt.size = (CONFIG_ARCH_INTERRUPTSTACK & !3) as u32;
+    let rv = stm32_bbsram_savepanic(HARDFAULT_FILENO as i32, pdump as *mut u8, sizeof(fullcontext));
 
-        if (*pdump).info.flags & fault_flags_t::INTSTACK_PRESENT as u8 != 0
-        {
-            let ps: stack_word_t = (*pdump).info.stacks.interrupt.sp as *mut stack_word_t;
-
-            unsafe{
-                copy_reverse((*pdump).istack.as_mut_ptr(), &ps[nitems((*pdump).istack) / 2], nitems((*pdump).istack));
-            }
+    if rv == -EXNIO {
+    let dead = b"Memory wiped - dump not saved!\0";
+    let mut ptr = dead.as_ptr();
+        while *ptr != 0 {
+            arm_lowputc(*ptr);
+            ptr = ptr.offset(1);
         }
-            if !((*pdump).info.stacks.interrupt.sp <= (*pdump).info.stacks.interrupt.top && (*pdump).info.stacks.interrupt.sp > (*pdump).info.stacks.interrupt.top - (*pdump).info.stacks.interrupt.size)
-            {
-            (*pdump).info.flags != fault_flags::INVALID_INTSTACK_PTR as u8;
-            }
-        }
-        if (*pdump).info.flags & fault_flags::USERSTACK_PRESENT as u8 != 0
-        {
-        let ps = (*pdump).info.stacks.user.sp as *mut stack_word_t;
-        unsafe{
-            copy_reverse((*pdump).ustack, &ps[nitems((*pdump).ustack) / 2], nitems((*pdump).ustack));
-        }
-        }
-
-        if !((*pdump).info.stacks.user.sp <= (*pdump).info.stacks.user.top && (*pdump).info.stacks.user.sp > (*pdump).info.stacks.user.top - (*pdump).info.stacks.user.size)
-        {
-            (*pdump).info.flags |= fault_flags_t::INVALID_USERSTACK_PTR as u8;
-        }
-
-        let rv = stm32_bbsram_savepanic(HARDFAULT_FILENO as i32, pdump as *mut u8, sizeof(fullcontext));
-
-        if rv == -EXNIO
-        {
-        let dead = b"Memory wiped - dump not saved!\0";
-        while *dead
-        {
-            unsafe{
-                arm_lowputc(*dead++);
-            }
-        }
-        }
-        else if rv == -ENOSPC
-        {
-        arm_lowputc('!');
-        }
+    }
+    else if rv == -ENOSPC {
+        arm_lowputc('!' as c_char);
     }
 }
