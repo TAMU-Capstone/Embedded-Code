@@ -23,7 +23,7 @@
  ****************************************************************************/
 #![cfg(CONFIG_BOARDCTL_RESET)]
 
-use cty;
+use crate::cty;
 use crate::bindings::up_systemreset;
 
 

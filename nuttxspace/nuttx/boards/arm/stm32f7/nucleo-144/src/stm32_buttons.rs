@@ -21,6 +21,7 @@
 #![cfg(CONFIG_ARCH_BUTTONS)]
 
 use crate::bindings::*;
+use crate::cty;
 // use crate::bindings::CONFIG_ARCH_BUTTONS;
 
 
@@ -43,7 +44,7 @@ use crate::bindings::*;
  *
  ****************************************************************************/
 #[no_mangle]
-pub unsafe extern "C" fn board_button_initialize() -> cty::uint32_t {
+pub unsafe extern "C" fn board_button_initialize() -> cty::c_uint {
     stm32_configgpio(GPIO_BTN_USER as u32);
     NUM_BUTTONS as u32
 }
@@ -53,7 +54,7 @@ pub unsafe extern "C" fn board_button_initialize() -> cty::uint32_t {
  ****************************************************************************/
 
 #[no_mangle]
-pub unsafe extern "C" fn board_buttons() -> cty::uint32_t {
+pub unsafe extern "C" fn board_buttons() -> cty::c_uint {
     stm32_gpioread(GPIO_BTN_USER as u32) as u32
 }
 

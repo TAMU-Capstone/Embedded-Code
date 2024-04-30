@@ -23,6 +23,7 @@
  ****************************************************************************/
 #![cfg(CONFIG_BOARDCTL)]
 
+use crate::cty;
 use crate::bindings::*;
 // use crate::stm32_bringup::stm32_bringup;
 

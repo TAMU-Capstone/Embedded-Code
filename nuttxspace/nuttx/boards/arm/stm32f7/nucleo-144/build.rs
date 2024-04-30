@@ -1,8 +1,12 @@
+/**
+ * @author Cole McAnelly
+ */
+
 use std::error::Error;
 
-use std::path::PathBuf;
+use std::fs::canonicalize;
 
-use std::io::{Write, stderr};
+use std::io::{stderr, Write};
 use std::process::Command;
 
 use std::collections::HashMap;
@@ -11,7 +15,6 @@ use regex::Regex;
 use topo_sort::TopoSort;
 
 /**
- * Cole's baby
  * Topologically Sorts the given header file based on each "#define" statement's dependancies
  */
 fn toposort_macros(lines: String) -> Result<String, Box<dyn Error>> {
@@ -25,6 +28,7 @@ fn toposort_macros(lines: String) -> Result<String, Box<dyn Error>> {
     for line in lines.trim_end().split('\n') {
         let [name, value] = macro_re.captures(line).and_then(|c| c.extract().1.into()).unwrap();
         macros.insert(name.to_string(), value.to_string());
+
         deps.insert(
             name.to_string(),
             parse_re
@@ -51,10 +55,9 @@ fn toposort_macros(lines: String) -> Result<String, Box<dyn Error>> {
 
 fn main() -> Result<(), Box<dyn Error>> {
     // Constants that are used to determine `#ifdef` and `#if defined`
-    let prepocessor_constants =
-        PathBuf::from("../../../../include/nuttx/config.h").canonicalize()?;
+    let prepocessor_constants = canonicalize("../../../../include/nuttx/config.h")?;
 
-    let include_paths = [
+    let include_paths: Vec<String> = [
         "src/",
         "../../../../sched/",
         "../../../../include/",
@@ -62,16 +65,9 @@ fn main() -> Result<(), Box<dyn Error>> {
         "../../../../arch/arm/src/stm32f7/",
         "../../../../arch/arm/src/stm32f7/hardware/",
     ]
-    .map(|path| {
-        format!(
-            "-I{}",
-            PathBuf::from(path)
-                .canonicalize()
-                .unwrap()
-                .to_str()
-                .unwrap()
-        )
-    });
+    .iter()
+    .filter_map(|&path| Some(format!("-I{}", canonicalize(path).ok()?.to_str()?)))
+    .collect();
 
     let preprocess = Command::new("clang")
         .arg("-E")
@@ -99,7 +95,6 @@ fn main() -> Result<(), Box<dyn Error>> {
         .header("include/wrapper.h")
         .header("sorted_macros.h")
         .use_core()                                 // use ::core instead of ::std
-        .ctypes_prefix("cty")                       // Use cty::* for the C types
         .layout_tests(false)                        // Don't generate #[test]'s because #![no_std]
         .derive_default(true)                       // Generate sane defaults for structs and enums for each of use
         .fit_macro_constants(true)                  // Reduce the size of the constant to the smallest integer size, (e.g. u32 -> u8)

@@ -27,6 +27,7 @@
 use crate::bindings::*;
 use core::ptr;
 use crate::{err, info};
+use crate::cty;
 use crate::bindings::spi_mode_e::{
     SPIDEV_MODE0,
     SPIDEV_MODE1,

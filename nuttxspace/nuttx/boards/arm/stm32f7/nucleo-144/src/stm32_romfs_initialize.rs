@@ -42,6 +42,7 @@
  use heapless::String;
  use core::fmt::Write;
  use core::ptr::null_mut;
+ use crate::cty;
 
  /* Anything wrapped in these is most likely not used so remove these blocks 
   Constants/functions I am missing for romfs_initilaize 

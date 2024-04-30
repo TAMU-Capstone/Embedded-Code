@@ -24,6 +24,7 @@
 #![cfg(CONFIG_STM32F7_OTGFS)]
 
 use crate::bindings::*;
+use crate::cty;
 use core::ptr;
 use crate::{err, info};
 

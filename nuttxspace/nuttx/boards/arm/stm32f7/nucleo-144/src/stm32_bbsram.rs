@@ -23,7 +23,7 @@ use crate::bindings::*;
 use crate::{info, err};
 use core::sizeof;
 use core::mem::zeroed;
-use cty;
+use crate::cty;
 
 /****************************************************************************
  * Pre-processor Definitions
@@ -198,7 +198,7 @@ pub unsafe extern "C" fn stm32_bbsram_int() -> cty::c_int
                         gmtime_r(&time_sec, &tt);
                         strftime(buf, HEADER_TIME_FMT_LEN, HEADER_TIME_FMT, &tt);
 
-                        info!("Fault Logged on %s - Valid\n" as *const u8, buf);
+                        info!("Fault Logged on %s - Valid\n", buf);
                     }
                 }
 

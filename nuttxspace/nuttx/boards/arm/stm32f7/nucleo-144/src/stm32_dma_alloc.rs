@@ -39,7 +39,7 @@
 use crate::bindings::*; 
 use core::mem::size_of_val;
 use core::ptr;
-use cty;
+use crate::cty;
 
 /****************************************************************************
 * Pre-processor Definitions

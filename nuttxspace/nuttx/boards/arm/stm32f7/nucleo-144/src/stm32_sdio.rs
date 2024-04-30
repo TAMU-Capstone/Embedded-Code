@@ -23,6 +23,7 @@
 
 use crate::bindings::*;
 use core::ptr;
+use crate::cty;
 
 static mut G_SDIO_DEV: Option<ptr::NonNull<sdio_dev_s>> = None;
 
