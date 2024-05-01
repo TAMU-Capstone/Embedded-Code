@@ -285,12 +285,17 @@ pub extern "C" fn board_crashdump(
 
     (*pdump).info.stacks.user.top = (*tcb).stack_base_ptr as usize + (*tcb).adj_stack_size as u32;
     (*pdump).info.stacks.user.size = (*tcb).adj_stack_size as u32;
+    (*pdump).info.stacks.user.top = (*tcb).stack_base_ptr as usize + (*tcb).adj_stack_size as u32;
+    (*pdump).info.stacks.user.size = (*tcb).adj_stack_size as u32;
 
     *[cfg(CONFIG_ARCH_INTERRUPTSTACK > 3)]
     {
         (*pdump).info.stacks.interrupt.top = g_intstacktop;
         (*pdump).info.stacks.interrupt.size = (CONFIG_ARCH_INTERRUPTSTACK & !3) as u32;
 
+    if (*pdump).info.flags & fault_flags_t::INTSTACK_PRESENT as u8 != 0
+    {
+        let ps: stack_word_t = (*pdump).info.stacks.interrupt.sp as *mut stack_word_t;
     if (*pdump).info.flags & fault_flags_t::INTSTACK_PRESENT as u8 != 0
     {
         let ps: stack_word_t = (*pdump).info.stacks.interrupt.sp as *mut stack_word_t;
@@ -312,6 +317,10 @@ pub extern "C" fn board_crashdump(
     }
     }
 
+    if !((*pdump).info.stacks.user.sp <= (*pdump).info.stacks.user.top && (*pdump).info.stacks.user.sp > (*pdump).info.stacks.user.top - (*pdump).info.stacks.user.size)
+    {
+        (*pdump).info.flags |= fault_flags_t::INVALID_USERSTACK_PTR as u8;
+    }
     if !((*pdump).info.stacks.user.sp <= (*pdump).info.stacks.user.top && (*pdump).info.stacks.user.sp > (*pdump).info.stacks.user.top - (*pdump).info.stacks.user.size)
     {
         (*pdump).info.flags |= fault_flags_t::INVALID_USERSTACK_PTR as u8;
