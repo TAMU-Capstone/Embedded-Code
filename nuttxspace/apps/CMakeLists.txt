@@ -61,8 +61,12 @@ add_subdirectory(system)
 add_subdirectory(testing)
 add_subdirectory(wireless)
 
-# Add your new application directory here
-add_subdirectory(stub)
+# Add any new application directories here
+add_subdirectory(testingAutoleds)
+add_subdirectory(testingUserleds)
+add_subdirectory(testingButtons)
+add_subdirectory(testingSpi)
+add_subdirectory(testingGpio)
 
 # add examples and external at the end to allow library dependencies
 add_subdirectory(examples)
@@ -71,5 +75,5 @@ if(EXISTS ${CMAKE_CURRENT_LIST_DIR}/external)
 endif()
 
 add_subdirectory(builtin) # must be last
-
+s
 nuttx_generate_kconfig()

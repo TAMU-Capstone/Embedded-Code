@@ -1,0 +1,31 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+menu "Testing Buttons"
+config BUTTONS
+	tristate "\"testingButtons\" example"
+	default n
+	---help---
+		Enable the \"testingButtons\" example
+
+if BUTTONS
+
+config BUTTONS_PROGNAME
+	string "Program name"
+	default "testingButtons"
+	---help---
+		This is the name of the program that will be used when the NSH ELF
+		program is installed.
+
+config BUTTONS_PRIORITY
+	int "testingButtons task priority"
+	default 100
+
+config BUTTONS_STACKSIZE
+	int "testingButtons stack size"
+	default DEFAULT_TASK_STACKSIZE
+
+
+endif
+endmenu # testingButtons Framework

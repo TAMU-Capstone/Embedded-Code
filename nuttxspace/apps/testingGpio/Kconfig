@@ -1,0 +1,30 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+menu "test Gpio"
+config GPIO_TEST
+	tristate "\"GPIO_TEST\" example"
+	default n
+	---help---
+		Enabwle the \"GPIO_TEST\" example
+
+if GPIO_TEST
+
+config GPIO_TEST_PROGNAME
+	string "Program name"
+	default "GPIO_TEST"
+	---help---
+		This is the name of the program that will be used when the NSH ELF
+		program is installed.
+
+config GPIO_TEST_PRIORITY
+	int "GPIO_TEST task priority"
+	default 100
+
+config GPIO_TEST_STACKSIZE
+	int "GPIO_TEST stack size"
+	default DEFAULT_TASK_STACKSIZE
+
+endif
+endmenu # GPIO_TEST Framework

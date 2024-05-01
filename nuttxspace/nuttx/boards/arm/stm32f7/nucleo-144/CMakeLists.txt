@@ -18,4 +18,18 @@
 #
 # ##############################################################################
 
+
+# Complile the Rust with Cargo
+add_custom_target(
+    libnucleo_rs
+    COMMAND cargo build
+)
+add_library(libnucleo_rs STATIC IMPORTED)
+
+set_target_properties(libnucleo_rs PROPERTIES IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/target/debug/libnucleo_rs.a")
+
+# Link the static library with the target "board"
+TARGET_LINK_LIBRARIES(board libnucleo_rs libdl libpthread)
+
 add_subdirectory(src)
+

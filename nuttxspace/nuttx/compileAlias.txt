@@ -1,0 +1,804 @@
+./syscall/Makefile:70:	$(call COMPILE, $<, $@)
+./fs/Makefile:81:	$(call COMPILE, $<, $@)
+./net/Makefile:79:	$(call COMPILE, $<, $@)
+./mm/kasan/CMakeLists.txt:22:  set_source_files_properties(kasan.c PROPERTIES COMPILE_FLAGS
+./mm/kasan/CMakeLists.txt:24:  set_source_files_properties(kasan.c PROPERTIES COMPILE_FLAGS -fno-lto)
+./mm/Makefile:75:	$(call COMPILE, $<, $@)
+./arch/risc-v/src/cmake/platform.cmake:22:                                                   COMPILE_OPTIONS)
+./arch/risc-v/src/cmake/platform.cmake:27:  COMMAND ${CMAKE_C_COMPILER} ${LIBPRT_CFLAGS} ${NUTTX_EXTRA_FLAGS}
+./arch/risc-v/src/cmake/platform.cmake:36:    COMMAND ${CMAKE_C_COMPILER} ${LIBPRT_CFLAGS} ${NUTTX_EXTRA_FLAGS}
+./arch/risc-v/src/cmake/platform.cmake:45:    COMMAND ${CMAKE_C_COMPILER} ${LIBPRT_CFLAGS} ${NUTTX_EXTRA_FLAGS}
+./arch/risc-v/src/cmake/platform.cmake:54:    COMMAND ${CMAKE_C_COMPILER} ${LIBPRT_CFLAGS} ${NUTTX_EXTRA_FLAGS}
+./arch/risc-v/src/cmake/platform.cmake:64:set(PREPROCES ${CMAKE_C_COMPILER} ${CMAKE_C_FLAG_ARGS} -E -P -x c)
+./arch/risc-v/src/cmake/Toolchain.cmake:24:set(CMAKE_C_COMPILER_FORCED TRUE)
+./arch/risc-v/src/cmake/Toolchain.cmake:25:set(CMAKE_CXX_COMPILER_FORCED TRUE)
+./arch/risc-v/src/cmake/Toolchain.cmake:34:find_program(RV_COMPILER riscv-none-elf-gcc)
+./arch/risc-v/src/cmake/Toolchain.cmake:35:if(RV_COMPILER)
+./arch/risc-v/src/cmake/Toolchain.cmake:46:set(CMAKE_C_COMPILER_TARGET ${TOOLCHAIN_PREFIX})
+./arch/risc-v/src/cmake/Toolchain.cmake:47:set(CMAKE_CXX_COMPILER_TARGET ${TOOLCHAIN_PREFIX})
+./arch/risc-v/src/cmake/Toolchain.cmake:49:set(CMAKE_ASM_COMPILER ${CMAKE_C_COMPILER})
+./arch/risc-v/src/cmake/Toolchain.cmake:50:set(CMAKE_C_COMPILER ${TOOLCHAIN_PREFIX}-gcc)
+./arch/risc-v/src/cmake/Toolchain.cmake:51:set(CMAKE_CXX_COMPILER ${TOOLCHAIN_PREFIX}-g++)
+./arch/risc-v/src/cmake/Toolchain.cmake:219:      execute_process(COMMAND ${CMAKE_CXX_COMPILER} --version
+./arch/risc-v/src/Makefile:145:	$(call COMPILE, $<, $@)
+./arch/risc-v/src/Makefile:148:	$(call COMPILE, $<, $@)
+./arch/risc-v/src/Makefile:166:	$(Q) $(call COMPILE, allsyms.tmp, allsyms$(OBJEXT), -x c)
+./arch/hc/src/Makefile:96:	$(call COMPILE, $<, $@)
+./arch/z80/src/Makefile.sdccl:75:	$(call COMPILE, $<, $@)
+./arch/z80/src/Makefile.sdccw:72:	$(call COMPILE, $<, $@)
+./arch/z80/src/Makefile.zdsiil:82:	$(call COMPILE, $<, $@)
+./arch/z80/src/Makefile.zdsiiw:73:	$(call COMPILE, $<, $@)
+./arch/z80/src/Makefile:28:COMPILER = ${shell basename "$(CC)"}
+./arch/z80/src/Makefile:29:ifeq ($(patsubst %-clang,clang,$(COMPILER)),clang)
+./arch/z80/src/Makefile:33:else ifeq ($(COMPILER),sdcc)
+./arch/z80/src/Makefile.clang:73:	$(call COMPILE, $<, $@)
+./arch/misoc/src/Makefile:86:	$(call COMPILE, $<, $@)
+./arch/x86/src/Makefile:94:	$(call COMPILE, $<, $@)
+./arch/sim/src/cmake/Toolchain.cmake:22:  find_program(CMAKE_C_ELF_COMPILER x86_64-elf-gcc)
+./arch/sim/src/cmake/Toolchain.cmake:23:  find_program(CMAKE_CXX_ELF_COMPILER x86_64-elf-g++)
+./arch/sim/src/cmake/Toolchain.cmake:98:  add_compile_options($<$<COMPILE_LANGUAGE:CXX>:-std=${CONFIG_CXX_STANDARD}>)
+./arch/sim/src/Makefile:313:	$(call COMPILE, $<, $@)
+./arch/sim/src/Makefile:358:	$(Q) $(call COMPILE, allsyms.tmp, allsyms$(OBJEXT), -x c)
+./arch/sim/CMakeLists.txt:44:    PROPERTY NUTTX_COMPILE_OPTIONS -fvisibility=hidden)
+./arch/sim/CMakeLists.txt:52:    PROPERTY NUTTX_COMPILE_OPTIONS -fno-common)
+./arch/sim/CMakeLists.txt:59:    PROPERTY NUTTX_COMPILE_OPTIONS -fsanitize=address -fsanitize=undefined
+./arch/sim/CMakeLists.txt:66:  PROPERTY NUTTX_COMPILE_OPTIONS
+./arch/sim/CMakeLists.txt:96:    PROPERTY NUTTX_COMPILE_OPTIONS -m32)
+./arch/sim/CMakeLists.txt:142:  PROPERTY NUTTX_ELF_MODULE_COMPILE_OPTIONS -fno-pic)
+./arch/sim/CMakeLists.txt:157:    PROPERTY NUTTX_ELF_MODULE_COMPILE_OPTIONS -mcmodel=large)
+./arch/sim/CMakeLists.txt:166:  PROPERTY NUTTX_ELF_MODULE_COMPILE_OPTIONS -fno-stack-protector)
+./arch/sim/CMakeLists.txt:179:  PROPERTY NUTTX_ELF_APP_COMPILE_OPTIONS -fno-pic)
+./arch/avr/src/Makefile:84:	$(call COMPILE, $<, $@)
+./arch/renesas/src/Makefile:90:	$(call COMPILE, $<, $@)
+./arch/or1k/src/Makefile:112:	$(call COMPILE, $<, $@)
+./arch/sparc/src/Makefile:99:	$(call COMPILE, $<, $@)
+./arch/arm64/src/cmake/platform.cmake:21:                                                   COMPILE_OPTIONS)
+./arch/arm64/src/cmake/platform.cmake:23:  COMMAND ${CMAKE_C_COMPILER} ${CMAKE_C_FLAGS} ${NUTTX_EXTRA_FLAGS}
+./arch/arm64/src/cmake/platform.cmake:30:    COMMAND ${CMAKE_C_COMPILER} ${CMAKE_C_FLAGS} ${NUTTX_EXTRA_FLAGS}
+./arch/arm64/src/cmake/platform.cmake:38:    COMMAND ${CMAKE_C_COMPILER} ${CMAKE_C_FLAGS} ${NUTTX_EXTRA_FLAGS}
+./arch/arm64/src/cmake/platform.cmake:46:    COMMAND ${CMAKE_C_COMPILER} ${CMAKE_C_FLAGS} ${NUTTX_EXTRA_FLAGS}
+./arch/arm64/src/cmake/platform.cmake:54:set(PREPROCES ${CMAKE_C_COMPILER} ${CMAKE_C_FLAG_ARGS} -E -P -x c)
+./arch/arm64/src/cmake/Toolchain.cmake:23:set(CMAKE_C_COMPILER_FORCED TRUE)
+./arch/arm64/src/cmake/Toolchain.cmake:24:set(CMAKE_CXX_COMPILER_FORCED TRUE)
+./arch/arm64/src/cmake/Toolchain.cmake:30:set(CMAKE_C_COMPILER_TARGET ${TOOLCHAIN_PREFIX})
+./arch/arm64/src/cmake/Toolchain.cmake:31:set(CMAKE_CXX_COMPILER_TARGET ${TOOLCHAIN_PREFIX})
+./arch/arm64/src/cmake/Toolchain.cmake:32:set(CMAKE_ASM_COMPILER ${CMAKE_C_COMPILER})
+./arch/arm64/src/cmake/Toolchain.cmake:33:set(CMAKE_C_COMPILER ${TOOLCHAIN_PREFIX}-gcc)
+./arch/arm64/src/cmake/Toolchain.cmake:34:set(CMAKE_CXX_COMPILER ${TOOLCHAIN_PREFIX}-g++)
+./arch/arm64/src/cmake/Toolchain.cmake:163:    execute_process(COMMAND ${CMAKE_C_COMPILER} --version
+./arch/arm64/src/Makefile:143:	$(call COMPILE, $<, $@)
+./arch/arm64/src/Makefile:161:	$(Q) $(call COMPILE, allsyms.tmp, allsyms$(OBJEXT), -x c)
+./arch/ceva/src/Makefile:123:	$(call COMPILE, $<, $@)
+./arch/xtensa/src/Makefile:144:	$(call COMPILE, $<, $@)
+./arch/xtensa/src/Makefile:162:	$(Q) $(call COMPILE, allsyms.tmp, allsyms$(OBJEXT), -x c)
+./arch/x86_64/src/Makefile:96:	$(call COMPILE, $<, $@)
+./arch/arm/src/cmake/platform.cmake:60:                                                   COMPILE_OPTIONS)
+./arch/arm/src/cmake/platform.cmake:63:  COMMAND ${CMAKE_C_COMPILER} ${CMAKE_C_FLAGS} ${NUTTX_EXTRA_FLAGS}
+./arch/arm/src/cmake/platform.cmake:68:  get_filename_component(COMPILER_RT_LIB ${extra_library} NAME)
+./arch/arm/src/cmake/platform.cmake:70:    COMMAND ${CMAKE_C_COMPILER} ${CMAKE_C_FLAGS} ${NUTTX_EXTRA_FLAGS}
+./arch/arm/src/cmake/platform.cmake:71:            --print-file-name ${COMPILER_RT_LIB}
+./arch/arm/src/cmake/platform.cmake:80:    COMMAND ${CMAKE_C_COMPILER} ${CMAKE_C_FLAGS} ${NUTTX_EXTRA_FLAGS}
+./arch/arm/src/cmake/platform.cmake:89:    COMMAND ${CMAKE_C_COMPILER} ${CMAKE_C_FLAGS} ${NUTTX_EXTRA_FLAGS}
+./arch/arm/src/cmake/platform.cmake:98:    COMMAND ${CMAKE_C_COMPILER} ${CMAKE_C_FLAGS} ${NUTTX_EXTRA_FLAGS}
+./arch/arm/src/cmake/platform.cmake:108:set(PREPROCES ${CMAKE_C_COMPILER} ${CMAKE_C_FLAG_ARGS} -E -P -x c)
+./arch/arm/src/cmake/Toolchain.cmake:47:  set(CMAKE_ASM_COMPILER clang)
+./arch/arm/src/cmake/Toolchain.cmake:48:  set(CMAKE_C_COMPILER clang)
+./arch/arm/src/cmake/Toolchain.cmake:49:  set(CMAKE_CXX_COMPILER clang++)
+./arch/arm/src/cmake/Toolchain.cmake:67:  set(CMAKE_C_COMPILER_TARGET ${TOOLCHAIN_PREFIX})
+./arch/arm/src/cmake/Toolchain.cmake:68:  set(CMAKE_CXX_COMPILER_TARGET ${TOOLCHAIN_PREFIX})
+./arch/arm/src/cmake/Toolchain.cmake:70:  set(CMAKE_ASM_COMPILER ${CMAKE_C_COMPILER})
+./arch/arm/src/cmake/Toolchain.cmake:71:  set(CMAKE_C_COMPILER ${TOOLCHAIN_PREFIX}-gcc)
+./arch/arm/src/cmake/Toolchain.cmake:72:  set(CMAKE_CXX_COMPILER ${TOOLCHAIN_PREFIX}-g++)
+./arch/arm/src/common/Toolchain.defs:366:COMPILER_RT_LIB = $(shell $(CC) $(ARCHCPUFLAGS) --print-libgcc-file-name)
+./arch/arm/src/common/Toolchain.defs:368:  ifeq ($(wildcard $(COMPILER_RT_LIB)),)
+./arch/arm/src/common/Toolchain.defs:371:    COMPILER_RT_LIB := $(wildcard $(shell $(CC) $(ARCHCPUFLAGS) --print-file-name $(notdir $(COMPILER_RT_LIB))))
+./arch/arm/src/common/Toolchain.defs:375:EXTRA_LIBS += $(COMPILER_RT_LIB)
+./arch/arm/src/Makefile:167:	$(call COMPILE, $<, $@)
+./arch/arm/src/Makefile:185:	$(Q) $(call COMPILE, allsyms.tmp, allsyms$(OBJEXT), -x c)
+./arch/mips/src/Makefile:82:	$(call COMPILE, $<, $@)
+./arch/z16/src/Makefile:24:COMPILER = ${shell basename "$(CC)"}
+./arch/z16/src/Makefile:37:ifeq ($(COMPILER),zneocc.exe)
+./arch/z16/src/Makefile:62:ifeq ($(COMPILER),zneocc.exe)
+./arch/z16/src/Makefile:76:	$(call COMPILE, $<, $@)
+./arch/z16/src/Makefile:84:ifeq ($(COMPILER),zneocc.exe)
+./arch/z16/src/Makefile:151:ifeq ($(COMPILER),zneocc.exe)
+./crypto/Makefile:95:	$(call COMPILE, $<, $@)
+./include/nuttx/compiler.h:21:#ifndef __INCLUDE_NUTTX_COMPILER_H
+./include/nuttx/compiler.h:22:#define __INCLUDE_NUTTX_COMPILER_H
+./include/nuttx/compiler.h:1044:#endif /* __INCLUDE_NUTTX_COMPILER_H */
+./include/nuttx/binfmt/ieee695.h:125:#define IEEE695_COMENT_COMPILER      0xdb  /* For pragma comment(compiler); version number */
+./drivers/Makefile:102:	$(call COMPILE, $<, $@)
+./pass1/Makefile:41:	$(call COMPILE, $<, $@)
+./CMakeLists.txt:54:set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+./CMakeLists.txt:437:    PROPERTY NUTTX_KERNEL_COMPILE_OPTIONS)
+./CMakeLists.txt:452:    PRIVATE $<GENEX_EVAL:$<TARGET_PROPERTY:nuttx,NUTTX_COMPILE_DEFINITIONS>>)
+./CMakeLists.txt:454:    nuttx PRIVATE $<GENEX_EVAL:$<TARGET_PROPERTY:nuttx,NUTTX_COMPILE_OPTIONS>>)
+./CMakeLists.txt:459:if("${CMAKE_C_COMPILER_ID}" STREQUAL "GNU")
+./CMakeLists.txt:460:  if(CMAKE_C_COMPILER_VERSION VERSION_GREATER 4.9)
+./CMakeLists.txt:480:    $<$<COMPILE_LANGUAGE:C>:-Wstrict-prototypes>
+./CMakeLists.txt:484:    $<$<COMPILE_LANGUAGE:CXX>:-nostdinc++>
+./CMakeLists.txt:485:    $<$<COMPILE_LANGUAGE:ASM>:-D__ASSEMBLY__>)
+./CMakeLists.txt:489:  add_compile_options($<$<COMPILE_LANGUAGE:CXX>:-fno-exceptions>
+./CMakeLists.txt:490:                      $<$<COMPILE_LANGUAGE:CXX>:-fcheck-new>)
+./CMakeLists.txt:668:        ${CMAKE_C_COMPILER} ${CMAKE_EXE_LINKER_FLAGS}
+./CMakeLists.txt:706:        ${CMAKE_C_COMPILER} ARGS -r $<$<BOOL:${CONFIG_SIM_M32}>:-m32>
+./openamp/Makefile:43:	$(call COMPILE, $<, $@)
+./sched/Makefile:61:	$(call COMPILE, $<, $@)
+./libs/libxx/0001_fix_stdatomic_h_miss_typedef.patch:7:-#elif defined(_LIBCPP_COMPILER_CLANG_BASED)
+./libs/libxx/libcxx.cmake:98:  execute_process(COMMAND ${CMAKE_CXX_COMPILER} --version
+./libs/libxx/libcxx.cmake:107:                              PROPERTIES COMPILE_FLAGS -Wno-maybe-uninitialized)
+./libs/libxx/libcxx.cmake:109:                              PROPERTIES COMPILE_FLAGS -Wno-maybe-uninitialized)
+./libs/libxx/libcxx.cmake:111:    libcxx/src/string.cpp PROPERTIES COMPILE_FLAGS -Wno-alloc-size-larger-than)
+./libs/libxx/libcxx.cmake:113:                              PROPERTIES COMPILE_FLAGS -Wno-attributes)
+./libs/libxx/libcxx.cmake:114:  set_source_files_properties(libcxx/src/locale.cpp PROPERTIES COMPILE_FLAGS
+./libs/libxx/libcxx.cmake:120:    libcxx/src/string.cpp PROPERTIES COMPILE_FLAGS -Wno-deprecated-declarations)
+./libs/libxx/libcxx.cmake:122:                              PROPERTIES COMPILE_FLAGS -Wno-shadow)
+./libs/libxx/libcxx.cmake:124:                              PROPERTIES COMPILE_FLAGS -Wno-maybe-uninitialized)
+./libs/libxx/libcxx.cmake:127:set_source_files_properties(libcxx/src/barrier.cpp PROPERTIES COMPILE_FLAGS
+./libs/libxx/libcxx.cmake:129:set_source_files_properties(libcxx/src/locale.cpp PROPERTIES COMPILE_FLAGS
+./libs/libxx/libcxx.cmake:132:                            PROPERTIES COMPILE_FLAGS -Wno-shadow)
+./libs/libxx/libcxx.cmake:134:                            PROPERTIES COMPILE_FLAGS -Wno-sign-compare)
+./libs/libxx/Kconfig:12:		Toolchain supports C++ and CXX, CXXFLAGS, and COMPILEXX have been
+./libs/libxx/libcxxmini.cmake:24:  libcxxmini/libxx_new.cxx PROPERTIES COMPILE_FLAGS -Wno-missing-exception-spec)
+./libs/libxx/libcxxmini.cmake:26:  libcxxmini/libxx_newa.cxx PROPERTIES COMPILE_FLAGS
+./libs/libxx/Makefile:66:	$(call COMPILE, $<, $@)
+./libs/libxx/Makefile:69:	$(call COMPILEXX, $<, $@)
+./libs/libxx/Makefile:72:	$(call COMPILEXX, $<, $@)
+./libs/libc/zoneinfo/Makefile:46:	$(call COMPILE, $<, $@)
+./libs/libc/assert/CMakeLists.txt:27:set_source_files_properties(lib_assert.c PROPERTIES COMPILE_FLAGS -fno-lto)
+./libs/libc/assert/CMakeLists.txt:28:set_source_files_properties(lib_stackchk.c PROPERTIES COMPILE_FLAGS -fno-lto)
+./libs/libc/Makefile:153:	$(call COMPILE, $<, $@)
+./libs/libdsp/Makefile:59:	$(call COMPILE, $<, $@)
+./libs/libnx/nxfonts/CMakeLists.txt:29:    PROPERTY COMPILE_DEFINITIONS ${CUSTOM_DEFINES})
+./libs/libnx/nxfonts/CMakeLists.txt:56:      PROPERTY COMPILE_DEFINITIONS ${CUSTOM_DEFINES})
+./libs/libnx/Makefile:206:	$(call COMPILE, $<, $@)
+./libs/libm/Makefile:51:	$(call COMPILE, $<, $@)
+./cmake/nuttx_add_module.cmake:24:  if(CMAKE_C_ELF_COMPILER)
+./cmake/nuttx_add_module.cmake:31:        ${CMAKE_C_ELF_COMPILER}
+./cmake/nuttx_add_module.cmake:50:      $<GENEX_EVAL:$<TARGET_PROPERTY:nuttx,NUTTX_ELF_MODULE_COMPILE_OPTIONS>>)
+./cmake/nuttx_add_romfs.cmake:66:        ${CMAKE_C_COMPILER} ${CMAKE_C_FLAGS} -E -P -x c
+./cmake/nuttx_add_application.cmake:40:#     [ STACKSIZE <string> ] [ COMPILE_FLAGS <list> ]
+./cmake/nuttx_add_application.cmake:48:#   COMPILE_FLAGS       : compile flags
+./cmake/nuttx_add_application.cmake:84:    COMPILE_FLAGS
+./cmake/nuttx_add_application.cmake:107:      if(NOT CMAKE_C_ELF_COMPILER)
+./cmake/nuttx_add_application.cmake:114:            ${CMAKE_C_COMPILER}
+./cmake/nuttx_add_application.cmake:152:          PROPERTY COMPILE_DEFINITIONS main=${NAME}_main)
+./cmake/nuttx_add_application.cmake:162:          $<GENEX_EVAL:$<TARGET_PROPERTY:nuttx,NUTTX_ELF_APP_COMPILE_OPTIONS>>)
+./cmake/nuttx_add_application.cmake:187:  if(COMPILE_FLAGS)
+./cmake/nuttx_add_application.cmake:188:    target_compile_options(${TARGET} PRIVATE ${COMPILE_FLAGS})
+./cmake/nuttx_add_library.cmake:41:    PRIVATE $<GENEX_EVAL:$<TARGET_PROPERTY:nuttx,NUTTX_COMPILE_OPTIONS>>)
+./cmake/nuttx_add_library.cmake:136:    PRIVATE $<GENEX_EVAL:$<TARGET_PROPERTY:nuttx,NUTTX_KERNEL_COMPILE_OPTIONS>>)
+./Documentation/ReleaseNotes/NuttX-12.0.0:182: * [#7052](https://github.com/apache/incubator-nuttx/pull/7052) Config.mk: Add COMPILEZIG
+./Documentation/ReleaseNotes/NuttX-12.1.0:218:* [#8357](https://github.com/apache/nuttx/pull/8357) tools: add separate flags parameter for COMPILE/COMPILEXX
+./Documentation/guides/customapps.rst:62:      $(call COMPILE, $<, $@)
+./Documentation/guides/cpp_cmake.rst:127:    set(COMPILER_PREFIX arm-none-eabi-)
+./Documentation/guides/cpp_cmake.rst:130:    set(CMAKE_C_COMPILER    ${COMPILER_PREFIX}gcc)
+./Documentation/guides/cpp_cmake.rst:131:    set(CMAKE_CXX_COMPILER  ${COMPILER_PREFIX}g++)
+./Documentation/guides/cpp_cmake.rst:132:    set(CMAKE_AR            ${COMPILER_PREFIX}ar)
+./Documentation/guides/cpp_cmake.rst:133:    set(CMAKE_RANLIB        ${COMPILER_PREFIX}ranlib)
+./Documentation/guides/cpp_cmake.rst:134:    set(CMAKE_LINKER        ${COMPILER_PREFIX}ld)
+./Documentation/guides/cpp_cmake.rst:135:    set(CMAKE_ASM_COMPILER  ${COMPILER_PREFIX}gcc)
+./Documentation/guides/cpp_cmake.rst:136:    set(CMAKE_OBJCOPY       ${COMPILER_PREFIX}objcopy)
+./Documentation/guides/cpp_cmake.rst:137:    set(CMAKE_OBJDUMP       ${COMPILER_PREFIX}objdump)
+./Documentation/guides/cpp_cmake.rst:138:    set(CMAKE_SIZE          ${COMPILER_PREFIX}size)
+./Documentation/guides/cpp_cmake.rst:145:    set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+./Documentation/components/boards.rst:113:    COMPILE, ASSEMBLE, ARCHIVE, CLEAN, and MKDEP macros
+./Documentation/platforms/risc-v/litex/cores/vexriscv_smp/index.rst:20:   $ make CROSS_COMPILE=riscv64-unknown-elf- PLATFORM=litex/vexriscv
+./Documentation/platforms/risc-v/k230/boards/canmv230/index.rst:127:          CROSS_COMPILE=riscv64-unknown-elf- FW_PIC=n K230_LIITLE_CORE=1 \
+./Documentation/platforms/arm/imx6/boards/sabre-6quad/README.txt:298:    $ export CROSS_COMPILE=arm-eabi-
+./Documentation/platforms/arm/a1x/boards/pcduino-a10/README.txt:297:       $ make pcduino CROSS_COMPILE=arm-none-eabi-
+./Documentation/platforms/arm/a1x/boards/pcduino-a10/README.txt:303:       a. You may need to use a different tool prefix for the CROSS_COMPILE=
+./Documentation/platforms/arm/str71x/boards/olimex-strp711/README.txt:132:  Of course, hard coding this CROSS_COMPILE value in Make.defs file will save
+./Documentation/platforms/arm/lpc214x/boards/mcu123-lpc214x/README.txt:46:  Of course, hard coding this CROSS_COMPILE value in Make.defs file will save
+./video/Makefile:39:	$(call COMPILE, $<, $@)
+./audio/Makefile:52:	$(call COMPILE, $<, $@)
+./boards/risc-v/mpfs/common/kernel/Makefile:58:	$(call COMPILE, $<, $@)
+./boards/risc-v/esp32c3-legacy/common/kernel/Makefile:69:	$(call COMPILE, $<, $@)
+./boards/risc-v/k230/canmv230/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/risc-v/c906/smartl-c906/kernel/Makefile:62:	$(call COMPILE, $<, $@)
+./boards/risc-v/k210/maix-bit/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/Board.mk:85:# RUSTCOMPILE is aliased to 
+./boards/Board.mk:87:	$(call RUSTCOMPILE, $<, $@)
+./boards/Board.mk:94:	$(call COMPILE, $<, $@)
+./boards/Board.mk:97:	$(call COMPILEXX, $<, $@)
+./boards/Makefile:59:	$(call COMPILE, $<, $@)
+./boards/Makefile:62:	$(call COMPILEXX, $<, $@)
+./boards/xtensa/esp32/common/kernel/Makefile:68:	$(call COMPILE, $<, $@)
+./boards/xtensa/esp32s3/common/kernel/Makefile:74:	$(call COMPILE,$<,$@)
+./boards/arm/at32/at32f437-mini/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/tiva/lm3s6965-ek/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/stm32l4/stm32l4r9ai-disco/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/stm32l4/stm32l476vg-disco/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/imxrt/imxrt1064-evk/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/imxrt/teensy-4.x/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/imxrt/imxrt1060-evk/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/imxrt/imxrt1170-evk/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/imxrt/imxrt1050-evk/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/lpc43xx/bambino-200e/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/stm32h7/nucleo-h743zi/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/stm32h7/stm32h747i-disco/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/lc823450/lc823450-xgevk/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/stm32/stm3240g-eval/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/stm32/omnibusf4/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/stm32/stm32f4discovery/src/CMakeLists.txt:180:  PROPERTY COMPILE_OPTIONS $<$<CONFIG:Release>:-fno-strict-aliasing
+./boards/arm/stm32/stm32f4discovery/src/CMakeLists.txt:184:# NUTTX_COMPILE_OPTIONS $<$<NOT:$<COMPILE_LANGUAGE:ASM>>:-fpic -msingle-pic-base
+./boards/arm/stm32/stm32f4discovery/src/CMakeLists.txt:195:  PROPERTY NUTTX_COMPILE_OPTIONS -funwind-tables)
+./boards/arm/stm32/stm32f4discovery/src/CMakeLists.txt:196:set_property(GLOBAL APPEND PROPERTY COMPILE_OPTIONS -fno-strength-reduce)
+./boards/arm/stm32/stm32f4discovery/src/CMakeLists.txt:207:  PROPERTY NUTTX_ELF_MODULE_COMPILE_OPTIONS -mlong-calls)
+./boards/arm/stm32/stm32f4discovery/src/CMakeLists.txt:219:  PROPERTY NUTTX_ELF_APP_COMPILE_OPTIONS -mlong-calls)
+./boards/arm/stm32/stm32f4discovery/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/stm32/olimex-stm32-p407/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/stm32/clicker2-stm32/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/stm32/mikroe-stm32f4/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/lpc17xx_40xx/lpc4088-devkit/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/lpc17xx_40xx/open1788/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/lpc17xx_40xx/pnev5180b/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/lpc17xx_40xx/lpc4088-quickstart/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/samv7/samv71-xult/kernel/Makefile:58:	$(call COMPILE, $<, $@)
+./boards/arm/samv7/same70-qmtech/kernel/Makefile:58:	$(call COMPILE, $<, $@)
+./boards/arm/samv7/same70-xplained/kernel/Makefile:58:	$(call COMPILE, $<, $@)
+./boards/arm/stm32f7/stm32f777zit6-meadow/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:34:CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/g++
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:38:CMAKE_CXX_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar-9
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:42:CMAKE_CXX_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib-9
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:60:CMAKE_C_COMPILER:FILEPATH=/usr/bin/gcc
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:64:CMAKE_C_COMPILER_AR:FILEPATH=/usr/bin/gcc-ar-9
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:68:CMAKE_C_COMPILER_RANLIB:FILEPATH=/usr/bin/gcc-ranlib-9
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:104:CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:261://ADVANCED property for variable: CMAKE_CXX_COMPILER
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:262:CMAKE_CXX_COMPILER-ADVANCED:INTERNAL=1
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:263://ADVANCED property for variable: CMAKE_CXX_COMPILER_AR
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:264:CMAKE_CXX_COMPILER_AR-ADVANCED:INTERNAL=1
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:265://ADVANCED property for variable: CMAKE_CXX_COMPILER_RANLIB
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:266:CMAKE_CXX_COMPILER_RANLIB-ADVANCED:INTERNAL=1
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:277://ADVANCED property for variable: CMAKE_C_COMPILER
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:278:CMAKE_C_COMPILER-ADVANCED:INTERNAL=1
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:279://ADVANCED property for variable: CMAKE_C_COMPILER_AR
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:280:CMAKE_C_COMPILER_AR-ADVANCED:INTERNAL=1
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:281://ADVANCED property for variable: CMAKE_C_COMPILER_RANLIB
+./boards/arm/stm32f7/nucleo-144/build/CMakeCache.txt:282:CMAKE_C_COMPILER_RANLIB-ADVANCED:INTERNAL=1
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:16:      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:38:      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:70:      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:92:      - "/usr/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:113:      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:123:      variable: "CMAKE_C_ABI_COMPILED"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:165:        COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:180:        COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:192:      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:214:      - "/usr/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:258:        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/]
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:273:        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/]
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:347:      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:357:      variable: "CMAKE_CXX_ABI_COMPILED"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:403:        COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:418:        COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:430:      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:458:      - "/usr/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:506:        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/]
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/CMakeConfigureLog.yaml:521:        ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/9/:/usr/lib/gcc/x86_64-linux-gnu/]
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:1:set(CMAKE_CXX_COMPILER "/usr/bin/g++")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:2:set(CMAKE_CXX_COMPILER_ARG1 "")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:3:set(CMAKE_CXX_COMPILER_ID "GNU")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:4:set(CMAKE_CXX_COMPILER_VERSION "9.4.0")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:5:set(CMAKE_CXX_COMPILER_VERSION_INTERNAL "")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:6:set(CMAKE_CXX_COMPILER_WRAPPER "")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:9:set(CMAKE_CXX_COMPILE_FEATURES "cxx_std_98;cxx_template_template_parameters;cxx_std_11;cxx_alias_templates;cxx_alignas;cxx_alignof;cxx_attributes;cxx_auto_type;cxx_constexpr;cxx_decltype;cxx_decltype_incomplete_return_types;cxx_default_function_template_args;cxx_defaulted_functions;cxx_defaulted_move_initializers;cxx_delegating_constructors;cxx_deleted_functions;cxx_enum_forward_declarations;cxx_explicit_conversions;cxx_extended_friend_declarations;cxx_extern_templates;cxx_final;cxx_func_identifier;cxx_generalized_initializers;cxx_inheriting_constructors;cxx_inline_namespaces;cxx_lambdas;cxx_local_type_template_args;cxx_long_long_type;cxx_noexcept;cxx_nonstatic_member_init;cxx_nullptr;cxx_override;cxx_range_for;cxx_raw_string_literals;cxx_reference_qualified_functions;cxx_right_angle_brackets;cxx_rvalue_references;cxx_sizeof_member;cxx_static_assert;cxx_strong_enums;cxx_thread_local;cxx_trailing_return_types;cxx_unicode_literals;cxx_uniform_initialization;cxx_unrestricted_unions;cxx_user_literals;cxx_variadic_macros;cxx_variadic_templates;cxx_std_14;cxx_aggregate_default_initializers;cxx_attribute_deprecated;cxx_binary_literals;cxx_contextual_conversions;cxx_decltype_auto;cxx_digit_separators;cxx_generic_lambdas;cxx_lambda_init_captures;cxx_relaxed_constexpr;cxx_return_type_deduction;cxx_variable_templates;cxx_std_17;cxx_std_20")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:10:set(CMAKE_CXX98_COMPILE_FEATURES "cxx_std_98;cxx_template_template_parameters")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:11:set(CMAKE_CXX11_COMPILE_FEATURES "cxx_std_11;cxx_alias_templates;cxx_alignas;cxx_alignof;cxx_attributes;cxx_auto_type;cxx_constexpr;cxx_decltype;cxx_decltype_incomplete_return_types;cxx_default_function_template_args;cxx_defaulted_functions;cxx_defaulted_move_initializers;cxx_delegating_constructors;cxx_deleted_functions;cxx_enum_forward_declarations;cxx_explicit_conversions;cxx_extended_friend_declarations;cxx_extern_templates;cxx_final;cxx_func_identifier;cxx_generalized_initializers;cxx_inheriting_constructors;cxx_inline_namespaces;cxx_lambdas;cxx_local_type_template_args;cxx_long_long_type;cxx_noexcept;cxx_nonstatic_member_init;cxx_nullptr;cxx_override;cxx_range_for;cxx_raw_string_literals;cxx_reference_qualified_functions;cxx_right_angle_brackets;cxx_rvalue_references;cxx_sizeof_member;cxx_static_assert;cxx_strong_enums;cxx_thread_local;cxx_trailing_return_types;cxx_unicode_literals;cxx_uniform_initialization;cxx_unrestricted_unions;cxx_user_literals;cxx_variadic_macros;cxx_variadic_templates")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:12:set(CMAKE_CXX14_COMPILE_FEATURES "cxx_std_14;cxx_aggregate_default_initializers;cxx_attribute_deprecated;cxx_binary_literals;cxx_contextual_conversions;cxx_decltype_auto;cxx_digit_separators;cxx_generic_lambdas;cxx_lambda_init_captures;cxx_relaxed_constexpr;cxx_return_type_deduction;cxx_variable_templates")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:13:set(CMAKE_CXX17_COMPILE_FEATURES "cxx_std_17")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:14:set(CMAKE_CXX20_COMPILE_FEATURES "cxx_std_20")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:15:set(CMAKE_CXX23_COMPILE_FEATURES "")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:19:set(CMAKE_CXX_COMPILER_FRONTEND_VARIANT "GNU")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:26:set(CMAKE_CXX_COMPILER_AR "/usr/bin/gcc-ar-9")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:28:set(CMAKE_CXX_COMPILER_RANLIB "/usr/bin/gcc-ranlib-9")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:32:set(CMAKE_COMPILER_IS_GNUCXX 1)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:33:set(CMAKE_CXX_COMPILER_LOADED 1)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:34:set(CMAKE_CXX_COMPILER_WORKS TRUE)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:35:set(CMAKE_CXX_ABI_COMPILED TRUE)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:37:set(CMAKE_CXX_COMPILER_ENV_VAR "CXX")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:39:set(CMAKE_CXX_COMPILER_ID_RUN 1)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:44:  if (CMAKE_${lang}_COMPILER_ID_RUN)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:57:set(CMAKE_CXX_COMPILER_ABI "ELF")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:65:if(CMAKE_CXX_COMPILER_ABI)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake:66:  set(CMAKE_INTERNAL_PLATFORM_ABI "${CMAKE_CXX_COMPILER_ABI}")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:1:set(CMAKE_C_COMPILER "/usr/bin/gcc")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:2:set(CMAKE_C_COMPILER_ARG1 "")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:3:set(CMAKE_C_COMPILER_ID "GNU")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:4:set(CMAKE_C_COMPILER_VERSION "9.4.0")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:5:set(CMAKE_C_COMPILER_VERSION_INTERNAL "")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:6:set(CMAKE_C_COMPILER_WRAPPER "")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:9:set(CMAKE_C_COMPILE_FEATURES "c_std_90;c_function_prototypes;c_std_99;c_restrict;c_variadic_macros;c_std_11;c_static_assert;c_std_17;c_std_23")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:10:set(CMAKE_C90_COMPILE_FEATURES "c_std_90;c_function_prototypes")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:11:set(CMAKE_C99_COMPILE_FEATURES "c_std_99;c_restrict;c_variadic_macros")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:12:set(CMAKE_C11_COMPILE_FEATURES "c_std_11;c_static_assert")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:13:set(CMAKE_C17_COMPILE_FEATURES "c_std_17")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:14:set(CMAKE_C23_COMPILE_FEATURES "c_std_23")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:18:set(CMAKE_C_COMPILER_FRONTEND_VARIANT "GNU")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:25:set(CMAKE_C_COMPILER_AR "/usr/bin/gcc-ar-9")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:27:set(CMAKE_C_COMPILER_RANLIB "/usr/bin/gcc-ranlib-9")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:31:set(CMAKE_COMPILER_IS_GNUCC 1)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:32:set(CMAKE_C_COMPILER_LOADED 1)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:33:set(CMAKE_C_COMPILER_WORKS TRUE)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:34:set(CMAKE_C_ABI_COMPILED TRUE)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:36:set(CMAKE_C_COMPILER_ENV_VAR "CC")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:38:set(CMAKE_C_COMPILER_ID_RUN 1)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:46:set(CMAKE_C_COMPILER_ABI "ELF")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:54:if(CMAKE_C_COMPILER_ABI)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CMakeCCompiler.cmake:55:  set(CMAKE_INTERNAL_PLATFORM_ABI "${CMAKE_C_COMPILER_ABI}")
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:19:# define COMPILER_ID "Comeau"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:21:# define COMPILER_VERSION_MAJOR DEC(__COMO_VERSION__ / 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:22:# define COMPILER_VERSION_MINOR DEC(__COMO_VERSION__ % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:24:#elif defined(__INTEL_COMPILER) || defined(__ICC)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:25:# define COMPILER_ID "Intel"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:32:  /* __INTEL_COMPILER = VRP prior to 2021, and then VVVV for 2021 and later,
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:34:# if __INTEL_COMPILER < 2021 || __INTEL_COMPILER == 202110 || __INTEL_COMPILER == 202111
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:35:#  define COMPILER_VERSION_MAJOR DEC(__INTEL_COMPILER/100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:36:#  define COMPILER_VERSION_MINOR DEC(__INTEL_COMPILER/10 % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:37:#  if defined(__INTEL_COMPILER_UPDATE)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:38:#   define COMPILER_VERSION_PATCH DEC(__INTEL_COMPILER_UPDATE)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:40:#   define COMPILER_VERSION_PATCH DEC(__INTEL_COMPILER   % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:43:#  define COMPILER_VERSION_MAJOR DEC(__INTEL_COMPILER)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:44:#  define COMPILER_VERSION_MINOR DEC(__INTEL_COMPILER_UPDATE)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:47:#  define COMPILER_VERSION_PATCH DEC(0)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:49:# if defined(__INTEL_COMPILER_BUILD_DATE)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:50:   /* __INTEL_COMPILER_BUILD_DATE = YYYYMMDD */
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:51:#  define COMPILER_VERSION_TWEAK DEC(__INTEL_COMPILER_BUILD_DATE)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:70:#elif (defined(__clang__) && defined(__INTEL_CLANG_COMPILER)) || defined(__INTEL_LLVM_COMPILER)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:71:# define COMPILER_ID "IntelLLVM"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:78:/* __INTEL_LLVM_COMPILER = VVVVRP prior to 2021.2.0, VVVVRRPP for 2021.2.0 and
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:82:#if __INTEL_LLVM_COMPILER < 1000000L
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:83:# define COMPILER_VERSION_MAJOR DEC(__INTEL_LLVM_COMPILER/100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:84:# define COMPILER_VERSION_MINOR DEC(__INTEL_LLVM_COMPILER/10 % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:85:# define COMPILER_VERSION_PATCH DEC(__INTEL_LLVM_COMPILER    % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:87:# define COMPILER_VERSION_MAJOR DEC(__INTEL_LLVM_COMPILER/10000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:88:# define COMPILER_VERSION_MINOR DEC(__INTEL_LLVM_COMPILER/100 % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:89:# define COMPILER_VERSION_PATCH DEC(__INTEL_LLVM_COMPILER     % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:109:# define COMPILER_ID "PathScale"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:110:# define COMPILER_VERSION_MAJOR DEC(__PATHCC__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:111:# define COMPILER_VERSION_MINOR DEC(__PATHCC_MINOR__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:113:#  define COMPILER_VERSION_PATCH DEC(__PATHCC_PATCHLEVEL__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:117:# define COMPILER_ID "Embarcadero"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:118:# define COMPILER_VERSION_MAJOR HEX(__CODEGEARC_VERSION__>>24 & 0x00FF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:119:# define COMPILER_VERSION_MINOR HEX(__CODEGEARC_VERSION__>>16 & 0x00FF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:120:# define COMPILER_VERSION_PATCH DEC(__CODEGEARC_VERSION__     & 0xFFFF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:123:# define COMPILER_ID "Borland"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:125:# define COMPILER_VERSION_MAJOR HEX(__BORLANDC__>>8)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:126:# define COMPILER_VERSION_MINOR HEX(__BORLANDC__ & 0xFF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:129:# define COMPILER_ID "Watcom"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:131:# define COMPILER_VERSION_MAJOR DEC(__WATCOMC__ / 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:132:# define COMPILER_VERSION_MINOR DEC((__WATCOMC__ / 10) % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:134:#  define COMPILER_VERSION_PATCH DEC(__WATCOMC__ % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:138:# define COMPILER_ID "OpenWatcom"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:140:# define COMPILER_VERSION_MAJOR DEC((__WATCOMC__ - 1100) / 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:141:# define COMPILER_VERSION_MINOR DEC((__WATCOMC__ / 10) % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:143:#  define COMPILER_VERSION_PATCH DEC(__WATCOMC__ % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:147:# define COMPILER_ID "SunPro"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:150:#  define COMPILER_VERSION_MAJOR HEX(__SUNPRO_CC>>12)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:151:#  define COMPILER_VERSION_MINOR HEX(__SUNPRO_CC>>4 & 0xFF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:152:#  define COMPILER_VERSION_PATCH HEX(__SUNPRO_CC    & 0xF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:155:#  define COMPILER_VERSION_MAJOR HEX(__SUNPRO_CC>>8)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:156:#  define COMPILER_VERSION_MINOR HEX(__SUNPRO_CC>>4 & 0xF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:157:#  define COMPILER_VERSION_PATCH HEX(__SUNPRO_CC    & 0xF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:161:# define COMPILER_ID "HP"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:163:# define COMPILER_VERSION_MAJOR DEC(__HP_aCC/10000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:164:# define COMPILER_VERSION_MINOR DEC(__HP_aCC/100 % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:165:# define COMPILER_VERSION_PATCH DEC(__HP_aCC     % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:168:# define COMPILER_ID "Compaq"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:170:# define COMPILER_VERSION_MAJOR DEC(__DECCXX_VER/10000000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:171:# define COMPILER_VERSION_MINOR DEC(__DECCXX_VER/100000  % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:172:# define COMPILER_VERSION_PATCH DEC(__DECCXX_VER         % 10000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:174:#elif defined(__IBMCPP__) && defined(__COMPILER_VER__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:175:# define COMPILER_ID "zOS"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:177:# define COMPILER_VERSION_MAJOR DEC(__IBMCPP__/100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:178:# define COMPILER_VERSION_MINOR DEC(__IBMCPP__/10 % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:179:# define COMPILER_VERSION_PATCH DEC(__IBMCPP__    % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:182:# define COMPILER_ID "IBMClang"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:183:# define COMPILER_VERSION_MAJOR DEC(__open_xl_version__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:184:# define COMPILER_VERSION_MINOR DEC(__open_xl_release__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:185:# define COMPILER_VERSION_PATCH DEC(__open_xl_modification__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:186:# define COMPILER_VERSION_TWEAK DEC(__open_xl_ptf_fix_level__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:190:# define COMPILER_ID "XLClang"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:191:# define COMPILER_VERSION_MAJOR DEC(__ibmxl_version__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:192:# define COMPILER_VERSION_MINOR DEC(__ibmxl_release__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:193:# define COMPILER_VERSION_PATCH DEC(__ibmxl_modification__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:194:# define COMPILER_VERSION_TWEAK DEC(__ibmxl_ptf_fix_level__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:197:#elif defined(__IBMCPP__) && !defined(__COMPILER_VER__) && __IBMCPP__ >= 800
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:198:# define COMPILER_ID "XL"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:200:# define COMPILER_VERSION_MAJOR DEC(__IBMCPP__/100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:201:# define COMPILER_VERSION_MINOR DEC(__IBMCPP__/10 % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:202:# define COMPILER_VERSION_PATCH DEC(__IBMCPP__    % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:204:#elif defined(__IBMCPP__) && !defined(__COMPILER_VER__) && __IBMCPP__ < 800
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:205:# define COMPILER_ID "VisualAge"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:207:# define COMPILER_VERSION_MAJOR DEC(__IBMCPP__/100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:208:# define COMPILER_VERSION_MINOR DEC(__IBMCPP__/10 % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:209:# define COMPILER_VERSION_PATCH DEC(__IBMCPP__    % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:211:#elif defined(__NVCOMPILER)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:212:# define COMPILER_ID "NVHPC"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:213:# define COMPILER_VERSION_MAJOR DEC(__NVCOMPILER_MAJOR__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:214:# define COMPILER_VERSION_MINOR DEC(__NVCOMPILER_MINOR__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:215:# if defined(__NVCOMPILER_PATCHLEVEL__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:216:#  define COMPILER_VERSION_PATCH DEC(__NVCOMPILER_PATCHLEVEL__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:220:# define COMPILER_ID "PGI"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:221:# define COMPILER_VERSION_MAJOR DEC(__PGIC__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:222:# define COMPILER_VERSION_MINOR DEC(__PGIC_MINOR__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:224:#  define COMPILER_VERSION_PATCH DEC(__PGIC_PATCHLEVEL__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:228:# define COMPILER_ID "CrayClang"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:229:# define COMPILER_VERSION_MAJOR DEC(__cray_major__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:230:# define COMPILER_VERSION_MINOR DEC(__cray_minor__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:231:# define COMPILER_VERSION_PATCH DEC(__cray_patchlevel__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:232:# define COMPILER_VERSION_INTERNAL_STR __clang_version__
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:236:# define COMPILER_ID "Cray"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:237:# define COMPILER_VERSION_MAJOR DEC(_RELEASE_MAJOR)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:238:# define COMPILER_VERSION_MINOR DEC(_RELEASE_MINOR)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:240:#elif defined(__TI_COMPILER_VERSION__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:241:# define COMPILER_ID "TI"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:242:  /* __TI_COMPILER_VERSION__ = VVVRRRPPP */
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:243:# define COMPILER_VERSION_MAJOR DEC(__TI_COMPILER_VERSION__/1000000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:244:# define COMPILER_VERSION_MINOR DEC(__TI_COMPILER_VERSION__/1000   % 1000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:245:# define COMPILER_VERSION_PATCH DEC(__TI_COMPILER_VERSION__        % 1000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:248:# define COMPILER_ID "FujitsuClang"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:249:# define COMPILER_VERSION_MAJOR DEC(__FCC_major__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:250:# define COMPILER_VERSION_MINOR DEC(__FCC_minor__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:251:# define COMPILER_VERSION_PATCH DEC(__FCC_patchlevel__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:252:# define COMPILER_VERSION_INTERNAL_STR __clang_version__
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:256:# define COMPILER_ID "Fujitsu"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:258:#   define COMPILER_VERSION __FCC_version__
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:260:#   define COMPILER_VERSION_MAJOR DEC(__FCC_major__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:261:#   define COMPILER_VERSION_MINOR DEC(__FCC_minor__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:262:#   define COMPILER_VERSION_PATCH DEC(__FCC_patchlevel__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:265:#   define COMPILER_VERSION_INTERNAL DEC(__fcc_version)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:267:#   define COMPILER_VERSION_INTERNAL DEC(__FCC_VERSION)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:272:# define COMPILER_ID "GHS"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:275:# define COMPILER_VERSION_MAJOR DEC(__GHS_VERSION_NUMBER / 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:276:# define COMPILER_VERSION_MINOR DEC(__GHS_VERSION_NUMBER / 10 % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:277:# define COMPILER_VERSION_PATCH DEC(__GHS_VERSION_NUMBER      % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:281:# define COMPILER_ID "Tasking"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:282:  # define COMPILER_VERSION_MAJOR DEC(__VERSION__/1000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:283:  # define COMPILER_VERSION_MINOR DEC(__VERSION__ % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:284:# define COMPILER_VERSION_INTERNAL DEC(__VERSION__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:287:# define COMPILER_ID "OrangeC"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:288:# define COMPILER_VERSION_MAJOR DEC(__ORANGEC_MAJOR__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:289:# define COMPILER_VERSION_MINOR DEC(__ORANGEC_MINOR__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:290:# define COMPILER_VERSION_PATCH DEC(__ORANGEC_PATCHLEVEL__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:293:# define COMPILER_ID "SCO"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:296:# define COMPILER_ID "ARMCC"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:299:  # define COMPILER_VERSION_MAJOR DEC(__ARMCC_VERSION/1000000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:300:  # define COMPILER_VERSION_MINOR DEC(__ARMCC_VERSION/10000 % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:301:  # define COMPILER_VERSION_PATCH DEC(__ARMCC_VERSION     % 10000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:304:  # define COMPILER_VERSION_MAJOR DEC(__ARMCC_VERSION/100000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:305:  # define COMPILER_VERSION_MINOR DEC(__ARMCC_VERSION/10000 % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:306:  # define COMPILER_VERSION_PATCH DEC(__ARMCC_VERSION    % 10000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:311:# define COMPILER_ID "AppleClang"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:315:# define COMPILER_VERSION_MAJOR DEC(__clang_major__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:316:# define COMPILER_VERSION_MINOR DEC(__clang_minor__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:317:# define COMPILER_VERSION_PATCH DEC(__clang_patchlevel__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:323:# define COMPILER_VERSION_TWEAK DEC(__apple_build_version__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:325:#elif defined(__clang__) && defined(__ARMCOMPILER_VERSION)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:326:# define COMPILER_ID "ARMClang"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:327:  # define COMPILER_VERSION_MAJOR DEC(__ARMCOMPILER_VERSION/1000000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:328:  # define COMPILER_VERSION_MINOR DEC(__ARMCOMPILER_VERSION/10000 % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:329:  # define COMPILER_VERSION_PATCH DEC(__ARMCOMPILER_VERSION/100   % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:330:# define COMPILER_VERSION_INTERNAL DEC(__ARMCOMPILER_VERSION)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:333:# define COMPILER_ID "Clang"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:337:# define COMPILER_VERSION_MAJOR DEC(__clang_major__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:338:# define COMPILER_VERSION_MINOR DEC(__clang_minor__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:339:# define COMPILER_VERSION_PATCH DEC(__clang_patchlevel__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:347:# define COMPILER_ID "LCC"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:348:# define COMPILER_VERSION_MAJOR DEC(__LCC__ / 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:349:# define COMPILER_VERSION_MINOR DEC(__LCC__ % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:351:#  define COMPILER_VERSION_PATCH DEC(__LCC_MINOR__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:363:# define COMPILER_ID "GNU"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:365:#  define COMPILER_VERSION_MAJOR DEC(__GNUC__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:367:#  define COMPILER_VERSION_MAJOR DEC(__GNUG__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:370:#  define COMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:373:#  define COMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:377:# define COMPILER_ID "MSVC"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:379:# define COMPILER_VERSION_MAJOR DEC(_MSC_VER / 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:380:# define COMPILER_VERSION_MINOR DEC(_MSC_VER % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:384:#   define COMPILER_VERSION_PATCH DEC(_MSC_FULL_VER % 100000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:387:#   define COMPILER_VERSION_PATCH DEC(_MSC_FULL_VER % 10000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:391:#  define COMPILER_VERSION_TWEAK DEC(_MSC_BUILD)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:394:#elif defined(_ADI_COMPILER)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:395:# define COMPILER_ID "ADSP"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:398:#  define COMPILER_VERSION_MAJOR DEC(__VERSIONNUM__ >> 24 & 0xFF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:399:#  define COMPILER_VERSION_MINOR DEC(__VERSIONNUM__ >> 16 & 0xFF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:400:#  define COMPILER_VERSION_PATCH DEC(__VERSIONNUM__ >> 8 & 0xFF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:401:#  define COMPILER_VERSION_TWEAK DEC(__VERSIONNUM__ & 0xFF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:405:# define COMPILER_ID "IAR"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:407:#  define COMPILER_VERSION_MAJOR DEC((__VER__) / 1000000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:408:#  define COMPILER_VERSION_MINOR DEC(((__VER__) / 1000) % 1000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:409:#  define COMPILER_VERSION_PATCH DEC((__VER__) % 1000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:410:#  define COMPILER_VERSION_INTERNAL DEC(__IAR_SYSTEMS_ICC__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:412:#  define COMPILER_VERSION_MAJOR DEC((__VER__) / 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:413:#  define COMPILER_VERSION_MINOR DEC((__VER__) - (((__VER__) / 100)*100))
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:414:#  define COMPILER_VERSION_PATCH DEC(__SUBVERSION__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:415:#  define COMPILER_VERSION_INTERNAL DEC(__IAR_SYSTEMS_ICC__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:423:# define COMPILER_ID "HP"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:426:# define COMPILER_ID ""
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:433:char const* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:553:# elif defined(_ADI_COMPILER)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:667:#elif defined(__TI_COMPILER_VERSION__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:741:#ifdef COMPILER_VERSION
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:742:char const* info_version = "INFO" ":" "compiler_version[" COMPILER_VERSION "]";
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:745:#elif defined(COMPILER_VERSION_MAJOR)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:749:  COMPILER_VERSION_MAJOR,
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:750:# ifdef COMPILER_VERSION_MINOR
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:751:  '.', COMPILER_VERSION_MINOR,
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:752:#  ifdef COMPILER_VERSION_PATCH
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:753:   '.', COMPILER_VERSION_PATCH,
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:754:#   ifdef COMPILER_VERSION_TWEAK
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:755:    '.', COMPILER_VERSION_TWEAK,
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:763:#ifdef COMPILER_VERSION_INTERNAL
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:768:  COMPILER_VERSION_INTERNAL,']','\0'};
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:769:#elif defined(COMPILER_VERSION_INTERNAL_STR)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:770:char const* info_version_internal = "INFO" ":" "compiler_version_internal[" COMPILER_VERSION_INTERNAL_STR "]";
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:800:#if defined(__INTEL_COMPILER) && defined(_MSVC_LANG) && _MSVC_LANG < 201403L
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:834:     defined(__TI_COMPILER_VERSION__)) &&                                     \
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:850:#ifdef COMPILER_VERSION_MAJOR
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdCXX/CMakeCXXCompilerId.cpp:853:#ifdef COMPILER_VERSION_INTERNAL
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:24:#if defined(__INTEL_COMPILER) || defined(__ICC)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:25:# define COMPILER_ID "Intel"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:32:  /* __INTEL_COMPILER = VRP prior to 2021, and then VVVV for 2021 and later,
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:34:# if __INTEL_COMPILER < 2021 || __INTEL_COMPILER == 202110 || __INTEL_COMPILER == 202111
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:35:#  define COMPILER_VERSION_MAJOR DEC(__INTEL_COMPILER/100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:36:#  define COMPILER_VERSION_MINOR DEC(__INTEL_COMPILER/10 % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:37:#  if defined(__INTEL_COMPILER_UPDATE)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:38:#   define COMPILER_VERSION_PATCH DEC(__INTEL_COMPILER_UPDATE)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:40:#   define COMPILER_VERSION_PATCH DEC(__INTEL_COMPILER   % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:43:#  define COMPILER_VERSION_MAJOR DEC(__INTEL_COMPILER)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:44:#  define COMPILER_VERSION_MINOR DEC(__INTEL_COMPILER_UPDATE)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:47:#  define COMPILER_VERSION_PATCH DEC(0)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:49:# if defined(__INTEL_COMPILER_BUILD_DATE)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:50:   /* __INTEL_COMPILER_BUILD_DATE = YYYYMMDD */
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:51:#  define COMPILER_VERSION_TWEAK DEC(__INTEL_COMPILER_BUILD_DATE)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:70:#elif (defined(__clang__) && defined(__INTEL_CLANG_COMPILER)) || defined(__INTEL_LLVM_COMPILER)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:71:# define COMPILER_ID "IntelLLVM"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:78:/* __INTEL_LLVM_COMPILER = VVVVRP prior to 2021.2.0, VVVVRRPP for 2021.2.0 and
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:82:#if __INTEL_LLVM_COMPILER < 1000000L
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:83:# define COMPILER_VERSION_MAJOR DEC(__INTEL_LLVM_COMPILER/100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:84:# define COMPILER_VERSION_MINOR DEC(__INTEL_LLVM_COMPILER/10 % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:85:# define COMPILER_VERSION_PATCH DEC(__INTEL_LLVM_COMPILER    % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:87:# define COMPILER_VERSION_MAJOR DEC(__INTEL_LLVM_COMPILER/10000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:88:# define COMPILER_VERSION_MINOR DEC(__INTEL_LLVM_COMPILER/100 % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:89:# define COMPILER_VERSION_PATCH DEC(__INTEL_LLVM_COMPILER     % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:109:# define COMPILER_ID "PathScale"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:110:# define COMPILER_VERSION_MAJOR DEC(__PATHCC__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:111:# define COMPILER_VERSION_MINOR DEC(__PATHCC_MINOR__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:113:#  define COMPILER_VERSION_PATCH DEC(__PATHCC_PATCHLEVEL__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:117:# define COMPILER_ID "Embarcadero"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:118:# define COMPILER_VERSION_MAJOR HEX(__CODEGEARC_VERSION__>>24 & 0x00FF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:119:# define COMPILER_VERSION_MINOR HEX(__CODEGEARC_VERSION__>>16 & 0x00FF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:120:# define COMPILER_VERSION_PATCH DEC(__CODEGEARC_VERSION__     & 0xFFFF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:123:# define COMPILER_ID "Borland"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:125:# define COMPILER_VERSION_MAJOR HEX(__BORLANDC__>>8)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:126:# define COMPILER_VERSION_MINOR HEX(__BORLANDC__ & 0xFF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:129:# define COMPILER_ID "Watcom"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:131:# define COMPILER_VERSION_MAJOR DEC(__WATCOMC__ / 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:132:# define COMPILER_VERSION_MINOR DEC((__WATCOMC__ / 10) % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:134:#  define COMPILER_VERSION_PATCH DEC(__WATCOMC__ % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:138:# define COMPILER_ID "OpenWatcom"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:140:# define COMPILER_VERSION_MAJOR DEC((__WATCOMC__ - 1100) / 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:141:# define COMPILER_VERSION_MINOR DEC((__WATCOMC__ / 10) % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:143:#  define COMPILER_VERSION_PATCH DEC(__WATCOMC__ % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:147:# define COMPILER_ID "SunPro"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:150:#  define COMPILER_VERSION_MAJOR HEX(__SUNPRO_C>>12)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:151:#  define COMPILER_VERSION_MINOR HEX(__SUNPRO_C>>4 & 0xFF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:152:#  define COMPILER_VERSION_PATCH HEX(__SUNPRO_C    & 0xF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:155:#  define COMPILER_VERSION_MAJOR HEX(__SUNPRO_C>>8)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:156:#  define COMPILER_VERSION_MINOR HEX(__SUNPRO_C>>4 & 0xF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:157:#  define COMPILER_VERSION_PATCH HEX(__SUNPRO_C    & 0xF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:161:# define COMPILER_ID "HP"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:163:# define COMPILER_VERSION_MAJOR DEC(__HP_cc/10000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:164:# define COMPILER_VERSION_MINOR DEC(__HP_cc/100 % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:165:# define COMPILER_VERSION_PATCH DEC(__HP_cc     % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:168:# define COMPILER_ID "Compaq"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:170:# define COMPILER_VERSION_MAJOR DEC(__DECC_VER/10000000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:171:# define COMPILER_VERSION_MINOR DEC(__DECC_VER/100000  % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:172:# define COMPILER_VERSION_PATCH DEC(__DECC_VER         % 10000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:174:#elif defined(__IBMC__) && defined(__COMPILER_VER__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:175:# define COMPILER_ID "zOS"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:177:# define COMPILER_VERSION_MAJOR DEC(__IBMC__/100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:178:# define COMPILER_VERSION_MINOR DEC(__IBMC__/10 % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:179:# define COMPILER_VERSION_PATCH DEC(__IBMC__    % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:182:# define COMPILER_ID "IBMClang"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:183:# define COMPILER_VERSION_MAJOR DEC(__open_xl_version__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:184:# define COMPILER_VERSION_MINOR DEC(__open_xl_release__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:185:# define COMPILER_VERSION_PATCH DEC(__open_xl_modification__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:186:# define COMPILER_VERSION_TWEAK DEC(__open_xl_ptf_fix_level__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:190:# define COMPILER_ID "XLClang"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:191:# define COMPILER_VERSION_MAJOR DEC(__ibmxl_version__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:192:# define COMPILER_VERSION_MINOR DEC(__ibmxl_release__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:193:# define COMPILER_VERSION_PATCH DEC(__ibmxl_modification__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:194:# define COMPILER_VERSION_TWEAK DEC(__ibmxl_ptf_fix_level__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:197:#elif defined(__IBMC__) && !defined(__COMPILER_VER__) && __IBMC__ >= 800
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:198:# define COMPILER_ID "XL"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:200:# define COMPILER_VERSION_MAJOR DEC(__IBMC__/100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:201:# define COMPILER_VERSION_MINOR DEC(__IBMC__/10 % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:202:# define COMPILER_VERSION_PATCH DEC(__IBMC__    % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:204:#elif defined(__IBMC__) && !defined(__COMPILER_VER__) && __IBMC__ < 800
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:205:# define COMPILER_ID "VisualAge"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:207:# define COMPILER_VERSION_MAJOR DEC(__IBMC__/100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:208:# define COMPILER_VERSION_MINOR DEC(__IBMC__/10 % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:209:# define COMPILER_VERSION_PATCH DEC(__IBMC__    % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:211:#elif defined(__NVCOMPILER)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:212:# define COMPILER_ID "NVHPC"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:213:# define COMPILER_VERSION_MAJOR DEC(__NVCOMPILER_MAJOR__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:214:# define COMPILER_VERSION_MINOR DEC(__NVCOMPILER_MINOR__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:215:# if defined(__NVCOMPILER_PATCHLEVEL__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:216:#  define COMPILER_VERSION_PATCH DEC(__NVCOMPILER_PATCHLEVEL__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:220:# define COMPILER_ID "PGI"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:221:# define COMPILER_VERSION_MAJOR DEC(__PGIC__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:222:# define COMPILER_VERSION_MINOR DEC(__PGIC_MINOR__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:224:#  define COMPILER_VERSION_PATCH DEC(__PGIC_PATCHLEVEL__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:228:# define COMPILER_ID "CrayClang"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:229:# define COMPILER_VERSION_MAJOR DEC(__cray_major__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:230:# define COMPILER_VERSION_MINOR DEC(__cray_minor__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:231:# define COMPILER_VERSION_PATCH DEC(__cray_patchlevel__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:232:# define COMPILER_VERSION_INTERNAL_STR __clang_version__
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:236:# define COMPILER_ID "Cray"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:237:# define COMPILER_VERSION_MAJOR DEC(_RELEASE_MAJOR)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:238:# define COMPILER_VERSION_MINOR DEC(_RELEASE_MINOR)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:240:#elif defined(__TI_COMPILER_VERSION__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:241:# define COMPILER_ID "TI"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:242:  /* __TI_COMPILER_VERSION__ = VVVRRRPPP */
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:243:# define COMPILER_VERSION_MAJOR DEC(__TI_COMPILER_VERSION__/1000000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:244:# define COMPILER_VERSION_MINOR DEC(__TI_COMPILER_VERSION__/1000   % 1000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:245:# define COMPILER_VERSION_PATCH DEC(__TI_COMPILER_VERSION__        % 1000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:248:# define COMPILER_ID "FujitsuClang"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:249:# define COMPILER_VERSION_MAJOR DEC(__FCC_major__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:250:# define COMPILER_VERSION_MINOR DEC(__FCC_minor__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:251:# define COMPILER_VERSION_PATCH DEC(__FCC_patchlevel__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:252:# define COMPILER_VERSION_INTERNAL_STR __clang_version__
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:256:# define COMPILER_ID "Fujitsu"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:258:#   define COMPILER_VERSION __FCC_version__
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:260:#   define COMPILER_VERSION_MAJOR DEC(__FCC_major__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:261:#   define COMPILER_VERSION_MINOR DEC(__FCC_minor__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:262:#   define COMPILER_VERSION_PATCH DEC(__FCC_patchlevel__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:265:#   define COMPILER_VERSION_INTERNAL DEC(__fcc_version)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:267:#   define COMPILER_VERSION_INTERNAL DEC(__FCC_VERSION)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:272:# define COMPILER_ID "GHS"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:275:# define COMPILER_VERSION_MAJOR DEC(__GHS_VERSION_NUMBER / 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:276:# define COMPILER_VERSION_MINOR DEC(__GHS_VERSION_NUMBER / 10 % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:277:# define COMPILER_VERSION_PATCH DEC(__GHS_VERSION_NUMBER      % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:281:# define COMPILER_ID "Tasking"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:282:  # define COMPILER_VERSION_MAJOR DEC(__VERSION__/1000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:283:  # define COMPILER_VERSION_MINOR DEC(__VERSION__ % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:284:# define COMPILER_VERSION_INTERNAL DEC(__VERSION__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:287:# define COMPILER_ID "OrangeC"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:288:# define COMPILER_VERSION_MAJOR DEC(__ORANGEC_MAJOR__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:289:# define COMPILER_VERSION_MINOR DEC(__ORANGEC_MINOR__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:290:# define COMPILER_VERSION_PATCH DEC(__ORANGEC_PATCHLEVEL__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:293:# define COMPILER_ID "TinyCC"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:296:# define COMPILER_ID "Bruce"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:299:# define COMPILER_ID "SCO"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:302:# define COMPILER_ID "ARMCC"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:305:  # define COMPILER_VERSION_MAJOR DEC(__ARMCC_VERSION/1000000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:306:  # define COMPILER_VERSION_MINOR DEC(__ARMCC_VERSION/10000 % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:307:  # define COMPILER_VERSION_PATCH DEC(__ARMCC_VERSION     % 10000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:310:  # define COMPILER_VERSION_MAJOR DEC(__ARMCC_VERSION/100000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:311:  # define COMPILER_VERSION_MINOR DEC(__ARMCC_VERSION/10000 % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:312:  # define COMPILER_VERSION_PATCH DEC(__ARMCC_VERSION    % 10000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:317:# define COMPILER_ID "AppleClang"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:321:# define COMPILER_VERSION_MAJOR DEC(__clang_major__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:322:# define COMPILER_VERSION_MINOR DEC(__clang_minor__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:323:# define COMPILER_VERSION_PATCH DEC(__clang_patchlevel__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:329:# define COMPILER_VERSION_TWEAK DEC(__apple_build_version__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:331:#elif defined(__clang__) && defined(__ARMCOMPILER_VERSION)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:332:# define COMPILER_ID "ARMClang"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:333:  # define COMPILER_VERSION_MAJOR DEC(__ARMCOMPILER_VERSION/1000000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:334:  # define COMPILER_VERSION_MINOR DEC(__ARMCOMPILER_VERSION/10000 % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:335:  # define COMPILER_VERSION_PATCH DEC(__ARMCOMPILER_VERSION/100   % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:336:# define COMPILER_VERSION_INTERNAL DEC(__ARMCOMPILER_VERSION)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:339:# define COMPILER_ID "Clang"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:343:# define COMPILER_VERSION_MAJOR DEC(__clang_major__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:344:# define COMPILER_VERSION_MINOR DEC(__clang_minor__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:345:# define COMPILER_VERSION_PATCH DEC(__clang_patchlevel__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:353:# define COMPILER_ID "LCC"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:354:# define COMPILER_VERSION_MAJOR DEC(__LCC__ / 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:355:# define COMPILER_VERSION_MINOR DEC(__LCC__ % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:357:#  define COMPILER_VERSION_PATCH DEC(__LCC_MINOR__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:369:# define COMPILER_ID "GNU"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:370:# define COMPILER_VERSION_MAJOR DEC(__GNUC__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:372:#  define COMPILER_VERSION_MINOR DEC(__GNUC_MINOR__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:375:#  define COMPILER_VERSION_PATCH DEC(__GNUC_PATCHLEVEL__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:379:# define COMPILER_ID "MSVC"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:381:# define COMPILER_VERSION_MAJOR DEC(_MSC_VER / 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:382:# define COMPILER_VERSION_MINOR DEC(_MSC_VER % 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:386:#   define COMPILER_VERSION_PATCH DEC(_MSC_FULL_VER % 100000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:389:#   define COMPILER_VERSION_PATCH DEC(_MSC_FULL_VER % 10000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:393:#  define COMPILER_VERSION_TWEAK DEC(_MSC_BUILD)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:396:#elif defined(_ADI_COMPILER)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:397:# define COMPILER_ID "ADSP"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:400:#  define COMPILER_VERSION_MAJOR DEC(__VERSIONNUM__ >> 24 & 0xFF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:401:#  define COMPILER_VERSION_MINOR DEC(__VERSIONNUM__ >> 16 & 0xFF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:402:#  define COMPILER_VERSION_PATCH DEC(__VERSIONNUM__ >> 8 & 0xFF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:403:#  define COMPILER_VERSION_TWEAK DEC(__VERSIONNUM__ & 0xFF)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:407:# define COMPILER_ID "IAR"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:409:#  define COMPILER_VERSION_MAJOR DEC((__VER__) / 1000000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:410:#  define COMPILER_VERSION_MINOR DEC(((__VER__) / 1000) % 1000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:411:#  define COMPILER_VERSION_PATCH DEC((__VER__) % 1000)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:412:#  define COMPILER_VERSION_INTERNAL DEC(__IAR_SYSTEMS_ICC__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:414:#  define COMPILER_VERSION_MAJOR DEC((__VER__) / 100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:415:#  define COMPILER_VERSION_MINOR DEC((__VER__) - (((__VER__) / 100)*100))
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:416:#  define COMPILER_VERSION_PATCH DEC(__SUBVERSION__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:417:#  define COMPILER_VERSION_INTERNAL DEC(__IAR_SYSTEMS_ICC__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:421:# define COMPILER_ID "SDCC"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:423:#  define COMPILER_VERSION_MAJOR DEC(__SDCC_VERSION_MAJOR)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:424:#  define COMPILER_VERSION_MINOR DEC(__SDCC_VERSION_MINOR)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:425:#  define COMPILER_VERSION_PATCH DEC(__SDCC_VERSION_PATCH)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:428:#  define COMPILER_VERSION_MAJOR DEC(SDCC/100)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:429:#  define COMPILER_VERSION_MINOR DEC(SDCC/10 % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:430:#  define COMPILER_VERSION_PATCH DEC(SDCC    % 10)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:438:# define COMPILER_ID "HP"
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:441:# define COMPILER_ID ""
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:448:char const* info_compiler = "INFO" ":" "compiler[" COMPILER_ID "]";
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:568:# elif defined(_ADI_COMPILER)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:682:#elif defined(__TI_COMPILER_VERSION__)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:756:#ifdef COMPILER_VERSION
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:757:char const* info_version = "INFO" ":" "compiler_version[" COMPILER_VERSION "]";
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:760:#elif defined(COMPILER_VERSION_MAJOR)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:764:  COMPILER_VERSION_MAJOR,
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:765:# ifdef COMPILER_VERSION_MINOR
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:766:  '.', COMPILER_VERSION_MINOR,
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:767:#  ifdef COMPILER_VERSION_PATCH
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:768:   '.', COMPILER_VERSION_PATCH,
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:769:#   ifdef COMPILER_VERSION_TWEAK
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:770:    '.', COMPILER_VERSION_TWEAK,
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:778:#ifdef COMPILER_VERSION_INTERNAL
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:783:  COMPILER_VERSION_INTERNAL,']','\0'};
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:784:#elif defined(COMPILER_VERSION_INTERNAL_STR)
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:785:char const* info_version_internal = "INFO" ":" "compiler_version_internal[" COMPILER_VERSION_INTERNAL_STR "]";
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:837:     defined(__TI_COMPILER_VERSION__)) &&                                     \
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:860:#ifdef COMPILER_VERSION_MAJOR
+./boards/arm/stm32f7/nucleo-144/build/CMakeFiles/3.28.3/CompilerIdC/CMakeCCompilerId.c:863:#ifdef COMPILER_VERSION_INTERNAL
+./boards/arm/stm32f7/stm32f746g-disco/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/stm32f7/stm32f769i-disco/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./boards/arm/sam34/sam3u-ek/kernel/Makefile:51:	$(call COMPILE, $<, $@)
+./boards/arm/s32k3xx/mr-canhubk3/kernel/Makefile:54:	$(call COMPILE, $<, $@)
+./graphics/nxglib/CMakeLists.txt:51:      PROPERTY COMPILE_DEFINITIONS ${CUSTOM_DEFINES})
+./graphics/nxglib/CMakeLists.txt:65:        PROPERTY COMPILE_DEFINITIONS ${CUSTOM_DEFINES})
+./graphics/nxglib/CMakeLists.txt:84:        PROPERTY COMPILE_DEFINITIONS ${CUSTOM_DEFINES})
+./graphics/Makefile:103:	$(call COMPILE, $<, $@)
+./binfmt/Makefile:78:	$(call COMPILE, $<, $@)
+./tools/Config.mk:290:# COMPILE - Default macro to compile one C file
+./tools/Config.mk:291:# Example: $(call COMPILE, in-file, out-file, flags)
+./tools/Config.mk:302:define COMPILE
+./tools/Config.mk:308:# COMPILEXX - Default macro to compile one C++ file
+./tools/Config.mk:309:# Example: $(call COMPILEXX, in-file, out-file, flags)
+./tools/Config.mk:321:define COMPILEXX
+./tools/Config.mk:327:# COMPILERUST - Default macro to compile one Rust file
+./tools/Config.mk:328:# Example: $(call COMPILERUST, in-file, out-file)
+./tools/Config.mk:340:define COMPILERUST
+./tools/Config.mk:346:# COMPILEZIG - Default macro to compile one Zig file
+./tools/Config.mk:347:# Example: $(call COMPILEZIG, in-file, out-file)
+./tools/Config.mk:359:define COMPILEZIG
+./tools/ProtectedLibs.mk:74:# Add libraries for C++ support.  CXX, CXXFLAGS, and COMPILEXX must
+./tools/zds/Config.mk:34:# COMPILE, ASSEMBLE, and helpers
+./tools/zds/Config.mk:66:define COMPILE
+./tools/zds/Config.mk:90:define COMPILE
+./tools/toolchain.cmake.export:5:set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+./tools/incdir.c:65:  COMPILER_UNKNOWN = 0,
+./tools/incdir.c:66:  COMPILER_GCC,
+./tools/incdir.c:67:  COMPILER_CLANG,
+./tools/incdir.c:68:  COMPILER_MINGW,
+./tools/incdir.c:69:  COMPILER_SDCC,
+./tools/incdir.c:70:  COMPILER_ZDSII
+./tools/incdir.c:183:      return COMPILER_GCC;
+./tools/incdir.c:187:      return COMPILER_CLANG;
+./tools/incdir.c:191:      return COMPILER_SDCC;
+./tools/incdir.c:195:      return COMPILER_MINGW;
+./tools/incdir.c:201:      return COMPILER_ZDSII;
+./tools/incdir.c:207:      return COMPILER_GCC;
+./tools/incdir.c:335:  if (compiler == COMPILER_UNKNOWN)
+./tools/incdir.c:343:  if (compiler == COMPILER_ZDSII)
+./tools/incdir.c:350:  else if (compiler == COMPILER_SDCC)
+./tools/incdir.c:403:      if (compiler == COMPILER_ZDSII)
+./tools/ide_exporter.py:80:COMPILE_PREFIX_LIST = ("CC: ", "AS: ", "CXX:")
+./tools/ide_exporter.py:821:        if _lp in COMPILE_PREFIX_LIST:
+./tools/KernelLibs.mk:66:# Add libraries for C++ support.  CXX, CXXFLAGS, and COMPILEXX must
+./tools/FlatLibs.mk:76:# Add libraries for C++ support.  CXX, CXXFLAGS, and COMPILEXX must
+./tools/mkexport.sh:269:echo "set(CMAKE_C_COMPILER    \"${CC}\")"               >>"${EXPORTDIR}/scripts/target.cmake"
+./tools/mkexport.sh:270:echo "set(CMAKE_CXX_COMPILER  \"${CXX}\")"              >>"${EXPORTDIR}/scripts/target.cmake"
+./wireless/Makefile:44:	$(call COMPILE, $<, $@)
