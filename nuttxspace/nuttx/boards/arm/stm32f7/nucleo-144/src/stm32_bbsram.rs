@@ -17,7 +17,7 @@
  * under the License.
  *
  ****************************************************************************/
-//  #![cfg(CONFIG_STM32F7_BBSRAM)]
+#![cfg(CONFIG_STM32F7_BBSRAM)]
 
 use core::default;
 
@@ -84,7 +84,7 @@ pub struct stack_t {
 #[derive(Debug, Default, Clone)]
 pub struct stacks_t {
     user: stack_t,
-    // #[cfg(CONFIG_ARCH_INTERRUPTSTACK)]
+    #[cfg(CONFIG_ARCH_INTERRUPTSTACK)]
     interrupt: stack_t
 }
 
@@ -121,7 +121,7 @@ pub struct info_t {
 #[derive(Clone)]
 pub struct fullcontext_t {
     info: info_t,
-    // #[cfg(CONFIG_ARCH_INTERRUPTSTACK)]
+    #[cfg(CONFIG_ARCH_INTERRUPTSTACK)]
     istack: [usize; CONFIG_USTACK_SIZE as usize],
     ustack: [usize; CONFIG_ISTACK_SIZE as usize],
 }
@@ -164,7 +164,7 @@ fn hardfault_get_desc(desc: *mut bbsramd_s) -> Result<(), i32> {
     Ok(())
 }
 
-// #[cfg(CONFIG_STM32F7_SAVE_CRASHDUMP)]
+#[cfg(CONFIG_STM32F7_SAVE_CRASHDUMP)]
 fn copy_reverse(dest: *mut stack_word_t, src: *mut stack_word_t, size: i32) {
     for i in 0..size as isize{
         unsafe {
@@ -227,9 +227,9 @@ pub extern "C" fn stm32_bbsram_int() -> cty::c_int
     OK
 }
 
-// #[cfg(CONFIG_STM32F7_SAVE_CRASHDUMP)]
+#[cfg(CONFIG_STM32F7_SAVE_CRASHDUMP)]
 #[no_mangle]
-pub extern "C" fn board_crashdump(
+pub unsafe extern "C" fn board_crashdump(
     sp: usize, tcb: *mut tcb_s,
     filename: *const cty::c_char, lineno: i32, 
     msg: *const cty::c_char, regs: *mut cty::c_void
@@ -239,107 +239,84 @@ pub extern "C" fn board_crashdump(
     let mut rv: i32;
 
 
-    unsafe { enter_critical_section() };
+    enter_critical_section();
 
-    unsafe { memset(pdump as *mut cty::c_void, 0, size_of::<fullcontext_t>() as u32) };
+    memset(pdump as *mut cty::c_void, 0, size_of::<fullcontext_t>() as u32);
     
-    unsafe { (*pdump).info.lineno = lineno };
+    (*pdump).info.lineno = lineno;
     
     
     if !filename.is_null()
     {
         let mut offset: i32 = 0;
-        let len = unsafe { strlen(filename) } + 1;
+        let len = strlen(filename) + 1;
         
         if len > size_of::<[u8; MAX_FILE_PATH_LENGTH]>() as u32 {
             offset = (len - size_of::<[u8; MAX_FILE_PATH_LENGTH]>() as u32) as i32;
         }
         
-        unsafe{
-            strlcpy((*pdump).info.filename.as_mut_ptr(), filename.offset(offset as isize), size_of::<[u8; MAX_FILE_PATH_LENGTH]>())
-        };
+        strlcpy((*pdump).info.filename.as_mut_ptr(), filename.offset(offset as isize), size_of::<[u8; MAX_FILE_PATH_LENGTH]>());
     }
     
-    unsafe { (*pdump).info.current_regs = g_current_regs[up_cpu_index()] as usize };
+    (*pdump).info.current_regs = g_current_regs[up_cpu_index()] as usize;
     
     #[cfg(CONFIG_TASK_NAME_SIZE)]
-    unsafe{ strlcpy((*pdump).info.name.as_mut_ptr(), (*tcb).name, size_of::<[u8; CONFIG_TASK_NAME_SIZE as usize + 1]>()) };
+    strlcpy((*pdump).info.name.as_mut_ptr(), (*tcb).name, size_of::<[u8; CONFIG_TASK_NAME_SIZE as usize + 1]>());
     
-    unsafe { (*pdump).info.pid = (*tcb).pid };
-
-    // Good luck bro, start here
-    
+    (*pdump).info.pid = (*tcb).pid;
 
     if CURRENT_REGS != 0 {
-        unsafe{
-            (*pdump).info.stacks.interrupt.sp = sp as u32;
-            (*pdump).info.flags = (*pdump).info.flags | fault_flags_t::REGS_PRESENT | fault_flags_t::USERSTACK_PRESENT | fault_flags_t::INTSTACK_PRESENT;
-            memcpy((*pdump).info.regs, CURRENT_REGS, size_of<((*pdump).info.regs));
-            (*pdump).info.stacks.user.sp = (*pdump).info.regs[REG_R13];
-        }
+        (*pdump).info.stacks.interrupt.sp = sp as u32;
+        (*pdump).info.flags = (*pdump).info.flags | fault_flags_t::REGS_PRESENT | fault_flags_t::USERSTACK_PRESENT | fault_flags_t::INTSTACK_PRESENT;
+        memcpy((*pdump).info.regs.as_mut_ptr() as *mut cty::c_void, (&CURRENT_REGS) as *const cty::c_void, size_of::<[u32; XCPTCONTEXT_REGS as usize]>() as u32);
+        (*pdump).info.stacks.user.sp = (*pdump).info.regs[REG_R13 as usize];
     }
     else {
-        (*pdump).info.flags |= fault_flags_t::USERSTACK_PRESENT as u8;
+        (*pdump).info.flags |= fault_flags_t::USERSTACK_PRESENT;
         (*pdump).info.stacks.user.sp = sp as u32;
     }
 
-    (*pdump).info.stacks.user.top = (*tcb).stack_base_ptr as usize + (*tcb).adj_stack_size as u32;
-    (*pdump).info.stacks.user.size = (*tcb).adj_stack_size as u32;
-    (*pdump).info.stacks.user.top = (*tcb).stack_base_ptr as usize + (*tcb).adj_stack_size as u32;
+    (*pdump).info.stacks.user.top = ((*tcb).stack_base_ptr.add((*tcb).adj_stack_size)) as u32;
     (*pdump).info.stacks.user.size = (*tcb).adj_stack_size as u32;
 
-    *[cfg(CONFIG_ARCH_INTERRUPTSTACK > 3)]
+    #[cfg(CONFIG_ARCH_INTERRUPTSTACK)]
     {
         (*pdump).info.stacks.interrupt.top = g_intstacktop;
         (*pdump).info.stacks.interrupt.size = (CONFIG_ARCH_INTERRUPTSTACK & !3) as u32;
 
-    if (*pdump).info.flags & fault_flags_t::INTSTACK_PRESENT as u8 != 0
-    {
-        let ps: stack_word_t = (*pdump).info.stacks.interrupt.sp as *mut stack_word_t;
-    if (*pdump).info.flags & fault_flags_t::INTSTACK_PRESENT as u8 != 0
-    {
-        let ps: stack_word_t = (*pdump).info.stacks.interrupt.sp as *mut stack_word_t;
-
-        unsafe{
-            copy_reverse((*pdump).istack.as_mut_ptr(), &ps[nitems((*pdump).istack) / 2], nitems((*pdump).istack));
+        if (*pdump).info.flags as u8 & fault_flags_t::INTSTACK_PRESENT as u8 != 0 {
+            let ps = (*pdump).info.stacks.interrupt.sp as *mut stack_word_t;
+            copy_reverse((*pdump).istack.as_mut_ptr() as *mut stack_word_t, ps.add((*pdump).istack.len() / 2), (*pdump).istack.len() as i32);
         }
-    }
-        if !((*pdump).info.stacks.interrupt.sp <= (*pdump).info.stacks.interrupt.top && (*pdump).info.stacks.interrupt.sp > (*pdump).info.stacks.interrupt.top - (*pdump).info.stacks.interrupt.size)
+
+        if !((*pdump).info.stacks.interrupt.sp <= (*pdump).info.stacks.interrupt.top && 
+             (*pdump).info.stacks.interrupt.sp > (*pdump).info.stacks.interrupt.top - (*pdump).info.stacks.interrupt.size)
         {
-        (*pdump).info.flags != fault_flags_t::INVALID_INTSTACK_PTR as u8;
+            (*pdump).info.flags != fault_flags_t::INVALID_INTSTACK_PTR as u8;
         }
     }
-    if (*pdump).info.flags & fault_flags_t::USERSTACK_PRESENT as u8 != 0
-    {
-    let ps = (*pdump).info.stacks.user.sp as *mut stack_word_t;
-    unsafe{
-        copy_reverse((*pdump).ustack, &ps[nitems((*pdump).ustack) / 2], nitems((*pdump).ustack));
-    }
-    }
 
-    if !((*pdump).info.stacks.user.sp <= (*pdump).info.stacks.user.top && (*pdump).info.stacks.user.sp > (*pdump).info.stacks.user.top - (*pdump).info.stacks.user.size)
+    if (*pdump).info.flags as u8 & fault_flags_t::USERSTACK_PRESENT as u8 != 0
     {
+        let ps = (*pdump).info.stacks.user.sp as *mut stack_word_t;
+        copy_reverse((*pdump).ustack.as_mut_ptr() as *mut stack_word_t, ps.add((*pdump).ustack.len() / 2), (*pdump).ustack.len() as i32);
+    }
+    
+    if !((*pdump).info.stacks.user.sp <= (*pdump).info.stacks.user.top && (*pdump).info.stacks.user.sp > (*pdump).info.stacks.user.top - (*pdump).info.stacks.user.size) {
         (*pdump).info.flags |= fault_flags_t::INVALID_USERSTACK_PTR as u8;
     }
-    if !((*pdump).info.stacks.user.sp <= (*pdump).info.stacks.user.top && (*pdump).info.stacks.user.sp > (*pdump).info.stacks.user.top - (*pdump).info.stacks.user.size)
-    {
+    if !((*pdump).info.stacks.user.sp <= (*pdump).info.stacks.user.top && (*pdump).info.stacks.user.sp > (*pdump).info.stacks.user.top - (*pdump).info.stacks.user.size) {
         (*pdump).info.flags |= fault_flags_t::INVALID_USERSTACK_PTR as u8;
     }
 
-    let rv = stm32_bbsram_savepanic(HARDFAULT_FILENO as i32, pdump as *mut u8, size_of<(fullcontext_t));
+    let rv = stm32_bbsram_savepanic(HARDFAULT_FILENO as i32, pdump as *mut u8, size_of::<fullcontext_t>());
 
-    if rv == -EXNIO
-    {
-    let dead = b"Memory wiped - dump not saved!\0";
-    while *dead
-    {
-        unsafe{
-            arm_lowputc(*dead++);
+    if rv == -(EXNIO as i32) {
+        for c in b"Memory wiped - dump not saved!\0" {
+            arm_lowputc(*c);
         }
     }
-    }
-    else if rv == -ENOSPC
-    {
-    arm_lowputc('!');
+    else if rv == -(ENOSPC as i32) {
+        arm_lowputc(b'!');
     }
 }
