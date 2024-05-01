@@ -5,7 +5,7 @@
  * Included Files
  ****************************************************************************/
 use crate::bindings::*;
-use crate::cty;
+use cty;
 use crate::err;
 
 #[allow(unused_imports)]

@@ -21,7 +21,7 @@
 #![cfg(CONFIG_ARCH_BUTTONS)]
 
 use crate::bindings::*;
-use crate::cty;
+use cty;
 // use crate::bindings::CONFIG_ARCH_BUTTONS;
 
 

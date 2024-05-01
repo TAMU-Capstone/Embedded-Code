@@ -1,6 +1,6 @@
 /*
-These can be used in place of calls like `uinfo`, `ainfo`, `uerr`, `aerr`,  etc.
-they all compile down to a syslog call.
+These can be used in place of calls like `uinfo`, `ainfo`, `uerr`, `aerr`, `spiinfo`,  etc.
+they all compile down to a `syslog` call.
 
 TODO: Implement a Global Allocator for Rust, which would allow use of `format!`
 allowing for Rust style format strings, rather than sticking with C

@@ -95,6 +95,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         .header("include/wrapper.h")
         .header("sorted_macros.h")
         .use_core()                                 // use ::core instead of ::std
+        .ctypes_prefix("cty")                       // Use cty::* for the C types
         .layout_tests(false)                        // Don't generate #[test]'s because #![no_std]
         .derive_default(true)                       // Generate sane defaults for structs and enums for each of use
         .fit_macro_constants(true)                  // Reduce the size of the constant to the smallest integer size, (e.g. u32 -> u8)

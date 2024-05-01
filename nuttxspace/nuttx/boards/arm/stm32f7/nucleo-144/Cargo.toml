@@ -19,6 +19,7 @@ panic = "abort"
 
 # Dependencies for our project
 [dependencies]
+cty = "0.2.2"
 
 # Build Dependencies for our project
 [build-dependencies]

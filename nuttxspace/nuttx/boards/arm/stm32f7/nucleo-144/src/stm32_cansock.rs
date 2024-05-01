@@ -25,7 +25,7 @@
 use crate::bindings::*; 
 use crate::{err, info};
 use core::ptr;
-use crate::cty;
+use cty;
  
 /****************************************************************************
  * Pre-processor Definitions

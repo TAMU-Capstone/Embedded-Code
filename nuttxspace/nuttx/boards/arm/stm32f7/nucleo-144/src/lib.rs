@@ -1,8 +1,6 @@
 #![no_std]
 // #![cfg_attr(not(test), no_std)]
 
-pub use core::ffi as cty;
-
 
 // Reference: https://os.phil-opp.com/freestanding-rust-binary/#panic-implementation
 use core::panic::PanicInfo;
@@ -51,7 +49,7 @@ mod stm32_sdio;
 mod stm32_usb;
 
 // #[cfg(CONFIG_STM32F7_BBSRAM)]
-// mod stm32_bbsram;
+mod stm32_bbsram;
 
 #[cfg(CONFIG_BOARDCTL_RESET)]
 mod stm32_reset;

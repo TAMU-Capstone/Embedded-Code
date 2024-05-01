@@ -45,7 +45,7 @@
 
 #include "nucleo-144.h"
 
-#ifdef CONFIG_STM32F7_BBSRAM
+// #ifdef CONFIG_STM32F7_BBSRAM
 
 /****************************************************************************
  * Pre-processor Definitions
@@ -57,7 +57,7 @@
 #define STRINGIFY(s)           FREEZE_STR(s)
 #define HARDFAULT_FILENO       3
 #define HARDFAULT_PATH         BBSRAM_PATH""STRINGIFY(HARDFAULT_FILENO)
-#define HARDFAULT_REBOOT_      FILENO 0
+#define HARDFAULT_REBOOT_FILENO 0
 #define HARDFAULT_REBOOT_PATH  BBSRAM_PATH""STRINGIFY(HARDFAULT_REBOOT_FILENO)
 
 #define BBSRAM_SIZE_FN0        (sizeof(int))

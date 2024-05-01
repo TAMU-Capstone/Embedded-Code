@@ -25,7 +25,7 @@ use crate::bindings::*;
 use core::ptr;
 use core::mem::MaybeUninit;
 use crate::{info, err};
-use crate::cty;
+use cty;
 /* Not found in this scope
 usbmsc_classobject
 */

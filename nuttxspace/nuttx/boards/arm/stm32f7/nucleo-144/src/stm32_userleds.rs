@@ -26,7 +26,7 @@
 #![cfg(not(CONFIG_ARCH_LEDS))]
 
 use crate::bindings::*;
-use crate::cty;
+use cty;
 
 
 /****************************************************************************
